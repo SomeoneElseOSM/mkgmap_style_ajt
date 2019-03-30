@@ -46,9 +46,9 @@ fi
 # ------------------------------------------------------------------------------
 if test -e  "6........osm.gz"
 then
-  java  -Xmx1200m -jar /drivec/Utils/splitter-r592/splitter.jar ${file_prefix1}_${file_extension1}.osm.pbf --max-nodes=800000 --output=xml
-else
   echo "Splitter already run"
+else
+  java  -Xmx1200m -jar /drivec/Utils/splitter-r592/splitter.jar ${file_prefix1}_${file_extension1}.osm.pbf --max-nodes=800000 --output=xml
 fi
 #
 # ------------------------------------------------------------------------------

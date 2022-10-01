@@ -6,7 +6,7 @@
 # Normally needs to be run from the correct directory; "cd" here added for
 # testing convenience.
 # ------------------------------------------------------------------------------
-cd /drivec/Utils/gps/convert/20190315_test/
+cd /drivec/Utils/gps/convert/20221001_test/
 #
 # ----------------------------------------------------------------------------
 # What's the file that we are interested in?

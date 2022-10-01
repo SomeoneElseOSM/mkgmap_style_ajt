@@ -83,7 +83,8 @@ natural=sea [0x32 resolution 10]
 natural=wood [0x50 resolution 18]
 
 place=village [0x03 resolution 18]
-place=island & name=* [0x53 resolution 18]
+# Suppress "island" to avoid problems with the Island of Great Britain
+#place=island & name=* [0x53 resolution 18]
 place=islet & name=* [0x53 resolution 20]
 
 shop=* [0x08 resolution 20]

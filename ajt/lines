@@ -180,7 +180,9 @@ route=ferry {add mkgmap:ferry=1} [0x1b road_class=3 road_speed=0 resolution 18]
 waterway=canal [0x1f resolution 18]
 waterway=lock [0x1f resolution 18]
 waterway=drain [0x1f resolution 18]
-waterway=river [0x1f resolution 18]
+
+waterway=river {name '${name}'} [0x1f resolution 18]
+
 waterway=stream [0x18 resolution 22]
 waterway=derelict_canal [0x1d resolution 18]
 

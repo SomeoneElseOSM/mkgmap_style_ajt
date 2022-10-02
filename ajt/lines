@@ -16,7 +16,7 @@
 #bridge=yes [0x1d resolution 17]
 #ford=yes [0x18 resolution 22]
 #
-route=hiking {name '${name} (${route_ref})'}
+route=hiking {name '${name} (${route_ref})' | '(${route_ref})' }
 #
 aeroway=runway [0x27 resolution 20]
 aeroway=taxiway [0x27 resolution 24]

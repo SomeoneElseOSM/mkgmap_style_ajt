@@ -29,7 +29,7 @@ If you already have a version of Java installed you may be able to skip the "ope
 
 Older versions of mkgmap and splitter will also work; it doesn't need to be a bleeding edge version.
 
-A "local filesystem user" is defined at the top of the script.  This repository is expected to be at "~/src/mkgmap_style_ajt" and a "data" directory at "~/data" is expected to exist.
+A "local filesystem user" is defined at the top of the script.  This repository is expected to be at ".../src/mkgmap_style_ajt" and a "data" directory at ".../data" is expected to exist.
 
 The amount of memory and disk space needed will depend on the size of the files downloaded and the map created.  4GB memory and a few GB disk should be enough for a medium-sized country (in OSM terms) such as Great Britain, which is a 1.4GB download from Geofabrik.
 
@@ -45,9 +45,9 @@ Run the script.
 
 If it succeeds, you should have 3 files:
 
-* ~/data/mkgmap/etrex/ajt2supp.img
-* ~/data/mkgmap/etrex/ajt2map.img
-* ~/data/mkgmap/etrex/ajt2map.tdb
+* .../data/mkgmap/etrex/ajt2supp.img
+* .../data/mkgmap/etrex/ajt2map.img
+* .../data/mkgmap/etrex/ajt2map.tdb
 
 If your Garmin GPS supports an external SD card and you don't currently have an SD card in it, it's recommended to copy these files to the "garmin" directory of an [FAT32-formatted(https://support.garmin.com/en-US/?faq=ZpYaMzfRLI8SE5KmrY9k27) SD card and insert that in the device.  Use a 32GB or smaller card.
 
@@ -55,6 +55,5 @@ If you don't have a free SD card slot you can, if [very careful](https://wiki.op
 
 ** Do not delete or modify any existing files!  As the licence of this software notes, "THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION".
 
-
-If the script didn't work for some reason, you'll need to investigate why it failed.  You may need to delete a file "update_garmin.running" in the "~/data" directory.  If the script didn't complete successfully, don't "just try the files in your device" - fix the problem and rerun the script.
+If the script didn't work for some reason, you'll need to investigate why it failed.  You may need to delete a file "update_garmin.running" in the ".../data" directory.  If the script didn't complete successfully, don't "just try the files in your device" - fix the problem and rerun the script.
 

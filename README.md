@@ -9,7 +9,7 @@ There are two things in this repository:
 
 * a variant of mkgmap's standard map style that shows public footpaths and some route relations, and doesn't show roads and tracks that are likely to be private as far as foot access is concerned.
 
-* a shell script that can be used to create maps.
+* a shell script that can be used to call "mkgmap" and create maps.
 
 An example map showing a public footpath running along a service road and a track that is part of a route relation:
 

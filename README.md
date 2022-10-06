@@ -11,6 +11,9 @@ There are two things in this repository:
 
 * a shell script that can be used to create maps.
 
+![IMG_20221006_164434](https://user-images.githubusercontent.com/5311740/194359173-c12c91c9-3b52-40a5-b95c-06f2bc53a74c.jpg)
+
+
 ## Dependencies
 
 The latest version of "mkgmap" can be downloaded from [here](https://www.mkgmap.org.uk/download/mkgmap.html), and you will also need "splitter" from [here](https://www.mkgmap.org.uk/download/splitter.html).

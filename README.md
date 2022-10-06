@@ -11,8 +11,9 @@ There are two things in this repository:
 
 * a shell script that can be used to create maps.
 
-![IMG_20221006_164434](https://user-images.githubusercontent.com/5311740/194359173-c12c91c9-3b52-40a5-b95c-06f2bc53a74c.jpg)
+An example map showing a public footpath running along a service road and a track that is part of a route relation:
 
+![IMG_20221006_164434](https://user-images.githubusercontent.com/5311740/194361440-72af56f8-37c3-426c-9fb4-f7224d566fa2.jpg)
 
 ## Dependencies
 

@@ -13,7 +13,7 @@ There are two things in this repository:
 
 An example map showing a public footpath running along a service road and a track that is part of a route relation:
 
-![IMG_20221006_164434](https://user-images.githubusercontent.com/5311740/194361440-72af56f8-37c3-426c-9fb4-f7224d566fa2.jpg)
+![IMG_20221009_210942_HDR_2](https://user-images.githubusercontent.com/5311740/194777623-1a0fd2c3-e997-4ca1-8f54-c9a8cf839d95.jpg)
 
 ## Dependencies
 

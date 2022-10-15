@@ -21,9 +21,9 @@ function ott.process_way(object)
 
         if ( object.tags['lit'] == nil ) then
             if ( object.tags['name'] == nil ) then
-                object.tags.name = object.tags[' (L)']
+                object.tags.name = ' (L)'
             else
-                object.tags.name = object.tags['name'] .. object.tags[' (L)']
+                object.tags.name = object.tags['name'] .. ' (L)'
             end
         end
     end

@@ -57,3 +57,21 @@ If you don't have a free SD card slot you can, if [very careful](https://wiki.op
 
 If the script didn't work for some reason, you'll need to investigate why it failed.  You may need to delete a file "update_garmin.running" in the ".../data" directory.  If the script didn't complete successfully, don't "just try the files in your device" - fix the problem and rerun the script.
 
+## QA map style using lua tag transforms.
+
+In addition, another [script](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/blob/master/garmin_map_etrex_03.sh) is available that uses "osm-tags-transform" (a front-end for "osmium").  This allows the mkgmap "style" files to be simpler, and allows more complicated QA rules, such as:
+
+* roads expected to have a speed limit have (M) appended to the name
+* roads untagged as either lit or not lit have (L) appended to the name
+* roads untagged as either with or without sidewalk have (S) appended to the name
+* roads tagged with no sidewalk but untagged as either with or without verge have (V) appended to the name
+* paths without foot access tagged have (A) appended to the name
+* highway=road has (RD) appended to the name
+* fixme and FIXME have (fix) appended to the name (but will still only appear if some other tag would cause it to)
+
+When run, if it succeeds, it will create 3 files:
+
+* .../data/mkgmap/etrex/ajt03supp.img
+* .../data/mkgmap/etrex/ajt03map.img
+* .../data/mkgmap/etrex/ajt03map.tdb
+

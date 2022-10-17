@@ -2,6 +2,9 @@
 -- Apply "name" transformations to ways for "map style 03"
 --
 
+--
+-- "all" function
+--
 function process_all(object)
 --
 -- Quality Control tagging on all objects
@@ -16,14 +19,22 @@ function process_all(object)
         end
     end
 
+    return object
+end
+
+--
+-- "node" function
+--
+function ott.process_node(object)
+    object = process_all(object)
     return object.tags
 end
 
-function ott.process_node(object)
-    return process_all(object)
-end
-
+--
+-- "way" function
+--
 function ott.process_way(object)
+    object = process_all(object)
 --
 -- Designation tagging on ways
 --
@@ -158,9 +169,13 @@ function ott.process_way(object)
         end
     end
 
-    return process_all(object)
+    return object.tags
 end
 
+--
+-- "relation" function
+--
 function ott.process_relation(object)
-    return process_all(object)
+    object = process_all(object)
+    return object.tags
 end

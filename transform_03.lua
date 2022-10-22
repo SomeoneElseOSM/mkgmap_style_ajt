@@ -35,6 +35,164 @@ end
 --
 function ott.process_way(object)
     object = process_all(object)
+
+-- ----------------------------------------------------------------------------
+-- From style.lua
+--
+-- Before processing footways, turn certain corridors into footways
+--
+-- Note that https://wiki.openstreetmap.org/wiki/Key:indoor defines
+-- indoor=corridor as a closed way.  highway=corridor is not documented there
+-- but is used for corridors.  We'll only process layer or level 0 (or nil)
+-- ----------------------------------------------------------------------------
+    if (( object.tags['highway'] == 'corridor'  ) and
+        (( object.tags["level"]  == nil         )  or
+         ( object.tags["level"]  == "0"         )) and
+        (( object.tags["layer"]  == nil         )  or
+         ( object.tags["layer"]  == "0"         ))) then
+       object.tags["highway"] = "path"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Different names on each side of the street
+-- ----------------------------------------------------------------------------
+   if (( object.tags["name:left"]  ~= nil ) and
+       ( object.tags["name:right"] ~= nil )) then
+      object.tags["name"] = object.tags["name:left"] .. " / " .. object.tags["name:right"]
+   end
+
+-- ----------------------------------------------------------------------------
+-- If name does not exist but name:en does, use it.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["name"]    == nil ) and
+       ( object.tags["name:en"] ~= nil )) then
+      object.tags["name"] = object.tags["name:en"]
+   end
+
+-- ----------------------------------------------------------------------------
+-- Consolidate some rare highway types into track
+--
+-- The "bywayness" of something should be handled by designation now.  byway
+-- isn't otherwise rendered (and really should no longer be used), so change 
+-- to track (which is what it probably will be).
+--
+-- "gallop" makes sense as a tag (it really isn't like anything else), but for
+-- rendering change to "track".  "unsurfaced" makes less sense; change to
+-- "track" also.
+--
+-- "track" will be changed into something else lower down 
+-- (path, pathwide or track_graded).
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["highway"] == "byway"       ) or
+       (  object.tags["highway"] == "gallop"      ) or
+       (  object.tags["highway"] == "unsurfaced"  ) or
+       (( object.tags["golf"]    == "track"      )  and
+        ( object.tags["highway"] == nil         ))) then
+      object.tags["highway"] = "track"
+   end
+
+   if ((  object.tags["golf"]    == "path"       ) and
+       (( object.tags["highway"] == nil         )  or
+        ( object.tags["highway"] == "service"   ))) then
+      object.tags["highway"] = "path"
+   end
+
+   if ((  object.tags["golf"]    == "cartpath"   ) and
+       (( object.tags["highway"] == nil         )  or
+        ( object.tags["highway"] == "service"   ))) then
+      object.tags["highway"] = "track"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Where a wide width is specified on a normally narrow path, render as wider
+--
+-- Note that "steps" and "footwaysteps" are unchanged by the 
+-- pathwide / path choice below:
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "footway"   ) or 
+       ( object.tags["highway"] == "bridleway" ) or 
+       ( object.tags["highway"] == "cycleway"  ) or
+       ( object.tags["highway"] == "path"      )) then
+      if ((( tonumber(object.tags["width"]) or 0 ) >=  2 ) or
+          ( object.tags["width"] == "2 m"                ) or
+          ( object.tags["width"] == "2.5 m"              ) or
+          ( object.tags["width"] == "3 m"                ) or
+          ( object.tags["width"] == "4 m"                )) then
+         object.tags["highway"] = "track"
+      else
+         object.tags["highway"] = "path"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Where a narrow width is specified on a normally wide track, render as
+-- narrower
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "track" ) then
+      if ( object.tags["width"] == nil ) then
+         object.tags["width"] = "2"
+      end
+      if ((( tonumber(object.tags["width"]) or 0 ) >= 2 ) or
+          (  object.tags["width"] == "2 m"              ) or
+          (  object.tags["width"] == "2.5 m"            ) or
+          (  object.tags["width"] == "2.5m"             ) or
+          (  object.tags["width"] == "3 m"              ) or
+          (  object.tags["width"] == "3 metres"         ) or
+          (  object.tags["width"] == "3.5 m"            ) or
+          (  object.tags["width"] == "4 m"              ) or
+          (  object.tags["width"] == "5m"               )) then
+         object.tags["highway"] = "track"
+      else
+         object.tags["highway"] = "path"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handle dodgy access tags.  Note that this doesn't affect my "designation"
+-- processing, but may be used by the main style, as "foot", "bicycle" and 
+-- "horse" are all in as columns.
+-- ----------------------------------------------------------------------------
+   if (object.tags["access:foot"] == "yes") then
+      object.tags["access:foot"] = nil
+      object.tags["foot"] = "yes"
+   end
+
+   if (object.tags["access:bicycle"] == "yes") then
+      object.tags["access:bicycle"] = nil
+      object.tags["bicycle"] = "yes"
+   end
+
+   if (object.tags["access:horse"] == "yes") then
+      object.tags["access:horse"] = nil
+      object.tags["horse"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render narrow tertiary roads as unclassified
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"]    == "tertiary"   )  and
+       ((( tonumber(object.tags["width"])    or 4 ) <=  3 ) or
+        (( tonumber(object.tags["maxwidth"]) or 4 ) <=  3 ))) then
+      object.tags["highway"] = "unclassified"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render bus-only service roads tagged as "highway=busway" as service roads.
+-- ----------------------------------------------------------------------------
+   if (object.tags["highway"] == "busway") then
+      object.tags["highway"] = "service"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Remove name from footway=sidewalk (we expect it to be rendered via the
+-- road that this is a sidewalk for), or "is_sidepath=yes".
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["footway"]     == "sidewalk" )  or
+        ( object.tags["is_sidepath"] == "yes"      )) and
+       (  object.tags["name"]    ~= nil             )) then
+      object.tags["name"] = nil
+   end
+
 --
 -- Designation tagging on ways
 --

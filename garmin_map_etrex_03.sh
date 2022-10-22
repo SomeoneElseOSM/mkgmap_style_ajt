@@ -1,11 +1,11 @@
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # garmin_map_etrex_03.sh
 # This builds on garmin_map_etrex.sh and uses osm-tags-transform to 
 # transform data before feeding it to splitter and mkgmap.
 #
 # The output files produced are ajt03supp.img, ajt03map.tdb, ajt03map.img
 # in ~/data/mkgmap/etrex
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 local_filesystem_user=ajtown
 cd /home/${local_filesystem_user}/data/
 if test -e update_garmin.running
@@ -16,7 +16,7 @@ else
     touch update_garmin.running
 fi
 #
-# ----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # What's the file that we are interested in?
 #
 # The data file is downloaded in ~/data which allows it to be shared with data

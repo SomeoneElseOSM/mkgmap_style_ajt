@@ -88,7 +88,7 @@ if test -e  "6........osm.gz"
 then
   echo "Splitter already run"
 else
-  java  -Xmx4800m -jar /usr/share/mkgmap-splitter/splitter.jar transformed_after.pbf --max-nodes=800000 --output=xml
+  java  -Xmx9600m -jar /usr/share/mkgmap-splitter/splitter.jar transformed_after.pbf --max-nodes=800000 --output=xml
 fi
 #
 # ------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ fi
 # "/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt" rather than 
 # "~/src/mkgmap_style_ajt/ajt".
 # ------------------------------------------------------------------------------
-java -Xmx4800M -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
+java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
 #
 if [ -f gmapsupp.img ]; then
   mv gmapsupp.img ajt03supp.img

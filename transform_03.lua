@@ -168,6 +168,54 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- When handling TROs etc. we test for "no", not private, hence this change:
+-- ----------------------------------------------------------------------------
+   if ( object.tags["access"] == "private" ) then
+      object.tags["access"] = "no"
+   end
+
+   if ( object.tags["foot"] == "private" ) then
+      object.tags["foot"] = "no"
+   end
+
+   if ( object.tags["bicycle"] == "private" ) then
+      object.tags["bicycle"] = "no"
+   end
+
+   if ( object.tags["horse"] == "private" ) then
+      object.tags["horse"] = "no"
+   end
+
+-- ----------------------------------------------------------------------------
+-- The extra information "and"ed with "public_footpath" below checks that
+-- "It's access=private and designation=public_footpath, and ordinarily we'd
+-- just remove the access=private tag as you ought to be able to walk there,
+-- unless there isn't foot=yes/designated to say you can, or there is an 
+-- explicit foot=no".
+-- ----------------------------------------------------------------------------
+   if (((   object.tags["access"]      == "no"                          )  or
+        (   object.tags["access"]      == "destination"                 )) and
+       (((( object.tags["designation"] == "public_footpath"           )    or
+          ( object.tags["designation"] == "public_bridleway"          )    or
+          ( object.tags["designation"] == "restricted_byway"          )    or
+          ( object.tags["designation"] == "byway_open_to_all_traffic" )    or
+          ( object.tags["designation"] == "unclassified_county_road"  )    or
+          ( object.tags["designation"] == "unclassified_country_road" )    or
+          ( object.tags["designation"] == "unclassified_highway"      ))   and
+         (  object.tags["foot"]        ~= nil                          )   and
+         (  object.tags["foot"]        ~= "no"                         ))  or
+        ((( object.tags["highway"]     == "footwayy  "                )    or
+          ( object.tags["highway"]     == "bridleway"                 )    or
+          ( object.tags["highway"]     == "cycleway"                  )    or
+          ( object.tags["highway"]     == "path"                      )    or
+          ( object.tags["highway"]     == "track"                     )    or
+          ( object.tags["highway"]     == "service"                   ))   and
+         (( object.tags["foot"]        == "permissive"                )    or
+          ( object.tags["foot"]        == "yes"                       ))))) then
+      object.tags["access"]  = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Render narrow tertiary roads as unclassified
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]    == "tertiary"   )  and

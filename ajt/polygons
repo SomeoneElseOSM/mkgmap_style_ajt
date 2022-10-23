@@ -50,7 +50,6 @@ landuse=residential [0x10 resolution 23-18]
 landuse=retail [0x08 resolution 20]
 landuse=village_green [0x17 resolution 20]
 landuse=vineyard [0x4e resolution 20]
-landuse=wood [0x50 resolution 18]
 
 leisure=common [0x17 resolution 20]
 leisure=garden [0x17 resolution 20]
@@ -80,7 +79,7 @@ natural=scrub [0x4f resolution 20]
 natural=water [0x3c resolution 20]
 natural=waterfall | waterway=waterfall [0x47 resolution 21]
 natural=sea [0x32 resolution 10]
-natural=wood [0x50 resolution 18]
+natural=wood {name '${name}'} [0x50 resolution 18]
 
 place=village [0x03 resolution 18]
 # Suppress "island" to avoid problems with the Island of Great Britain

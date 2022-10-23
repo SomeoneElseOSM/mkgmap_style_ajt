@@ -104,10 +104,10 @@ fi
 # default value always seems to be used.
 #
 # The full path to the style is needed, so e.g.
-# "/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt" rather than 
-# "~/src/mkgmap_style_ajt/ajt".
+# "/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt03" rather than 
+# "~/src/mkgmap_style_ajt/ajt03".
 # ------------------------------------------------------------------------------
-java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
+java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt03  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
 #
 if [ -f gmapsupp.img ]; then
   mv gmapsupp.img ajt03supp.img

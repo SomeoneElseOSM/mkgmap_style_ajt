@@ -241,6 +241,24 @@ function ott.process_way(object)
       object.tags["name"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Tunnel values - render as "yes" if appropriate.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tunnel"] == "culvert"             ) or
+       ( object.tags["tunnel"] == "covered"             ) or
+       ( object.tags["tunnel"] == "avalanche_protector" ) or
+       ( object.tags["tunnel"] == "passage"             ) or
+       ( object.tags["tunnel"] == "1"                   ) or
+       ( object.tags["tunnel"] == "cave"                ) or
+       ( object.tags["tunnel"] == "flooded"             )) then
+      object.tags["tunnel"] = "yes"
+   end
+
+   if (( object.tags["waterway"] ~= nil   ) and
+       ( object.tags["tunnel"]   == "yes" )) then
+      object.tags["waterway"] = nil
+   end
+
 --
 -- Designation tagging on ways
 --

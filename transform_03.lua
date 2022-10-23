@@ -325,14 +325,14 @@ function ott.process_way(object)
         end
     end
 
---
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways
 --
 -- Append M to roads if no speed limit defined
 -- Append L if not known if lit
 -- Append S if not known if sidewalk
 -- Append V if known if sidewalk but known if verge
---
+-- ----------------------------------------------------------------------------
     street_appendix = ''
 
     if (( object.tags['highway'] == 'unclassified'  ) or
@@ -393,9 +393,9 @@ function ott.process_way(object)
         end
     end
 
---
+-- ----------------------------------------------------------------------------
 -- Append (RD) to roads tagged as highway=road
---
+-- ----------------------------------------------------------------------------
     if ( object.tags['highway'] == 'road'  ) then
         if ( object.tags['name'] == nil ) then
             object.tags.name = '[RD]'
@@ -405,13 +405,15 @@ function ott.process_way(object)
     end
 
 
---
--- Append (A) if an expected foot tag is missing
---
+-- ----------------------------------------------------------------------------
+-- QA for footway-bridleway
+-- ----------------------------------------------------------------------------
     if (( object.tags['highway'] == 'footway'   ) or
         ( object.tags['highway'] == 'path'      ) or
-        ( object.tags['highway'] == 'bridleway' ) or
-        ( object.tags['highway'] == 'track'     )) then
+        ( object.tags['highway'] == 'bridleway' )) then
+-- ----------------------------------------------------------------------------
+-- Append (A) if an expected foot tag is missing
+-- ----------------------------------------------------------------------------
         if ( object.tags['foot'] == nil ) then
             if ( object.tags['name'] == nil ) then
                 object.tags.name = '[A]'
@@ -419,14 +421,97 @@ function ott.process_way(object)
                 object.tags.name = object.tags['name'] .. ' [A]'
             end
         end
+
+-- ----------------------------------------------------------------------------
+-- Append U to roads if no surface defined
+-- Append O if no smoothness
+-- ----------------------------------------------------------------------------
+        track_appendix = ''
+
+        if ( object.tags['surface'] == nil ) then
+            track_appendix = 'U'
+        end
+
+        if ( object.tags['smoothness'] == nil ) then
+            if ( track_appendix == nil ) then
+                track_appendix = 'O'
+            else
+                track_appendix = track_appendix .. 'O'
+            end
+        end
+
+        if ( track_appendix ~= '' ) then
+            if ( object.tags['name'] == nil ) then
+                object.tags.name = '[' .. track_appendix .. ']'
+            else
+                object.tags.name = object.tags['name'] .. ' [' .. track_appendix .. ']'
+            end
+        end
     end
+-- ----------------------------------------------------------------------------
+-- End QA for footway-bridleway
+-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- QA for track
+-- ----------------------------------------------------------------------------
+    if ( object.tags['highway'] == 'track' ) then
+-- ----------------------------------------------------------------------------
+-- Append (A) if an expected foot tag is missing
+-- ----------------------------------------------------------------------------
+        if ( object.tags['foot'] == nil ) then
+            if ( object.tags['name'] == nil ) then
+                object.tags.name = '[A]'
+            else
+                object.tags.name = object.tags['name'] .. ' [A]'
+            end
+        end
+
+-- ----------------------------------------------------------------------------
+-- Append U to roads if no surface defined
+-- Append G if no tracktype
+-- Append O if no smoothness
+-- ----------------------------------------------------------------------------
+        track_appendix = ''
+
+        if ( object.tags['surface'] == nil ) then
+            track_appendix = 'U'
+        end
+
+        if ( object.tags['tracktype'] == nil ) then
+            if ( track_appendix == nil ) then
+                track_appendix = 'G'
+            else
+                track_appendix = track_appendix .. 'G'
+            end
+        end
+
+        if ( object.tags['smoothness'] == nil ) then
+            if ( track_appendix == nil ) then
+                track_appendix = 'O'
+            else
+                track_appendix = track_appendix .. 'O'
+            end
+        end
+
+        if ( track_appendix ~= '' ) then
+            if ( object.tags['name'] == nil ) then
+                object.tags.name = '[' .. track_appendix .. ']'
+            else
+                object.tags.name = object.tags['name'] .. ' [' .. track_appendix .. ']'
+            end
+        end
+    end
+-- ----------------------------------------------------------------------------
+-- End QA for track
+-- ----------------------------------------------------------------------------
 
     return object.tags
 end
 
---
+-- ----------------------------------------------------------------------------
 -- "relation" function
---
+-- ----------------------------------------------------------------------------
 function ott.process_relation(object)
     object = process_all(object)
     return object.tags

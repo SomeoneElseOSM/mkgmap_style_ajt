@@ -13,9 +13,9 @@ function process_all(object)
     if (( object.tags['fixme'] ~= nil  ) or
         ( object.tags['FIXME'] ~= nil  )) then
         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(fix)'
+            object.tags.name = '[fix]'
         else
-            object.tags.name = object.tags['name'] .. ' (fix)'
+            object.tags.name = object.tags['name'] .. ' [fix]'
         end
     end
 
@@ -359,9 +359,9 @@ function ott.process_way(object)
 
     if ( street_appendix ~= '' ) then
         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(' .. street_appendix .. ')'
+            object.tags.name = '[' .. street_appendix .. ']'
         else
-            object.tags.name = object.tags['name'] .. ' (' .. street_appendix .. ')'
+            object.tags.name = object.tags['name'] .. ' [' .. street_appendix .. ']'
         end
     end
 
@@ -370,9 +370,9 @@ function ott.process_way(object)
 --
     if ( object.tags['highway'] == 'road'  ) then
         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(RD)'
+            object.tags.name = '[RD]'
         else
-            object.tags.name = object.tags['name'] .. ' (RD)'
+            object.tags.name = object.tags['name'] .. ' [RD]'
         end
     end
 
@@ -386,9 +386,9 @@ function ott.process_way(object)
         ( object.tags['highway'] == 'track'     )) then
         if ( object.tags['foot'] == nil ) then
             if ( object.tags['name'] == nil ) then
-                object.tags.name = '(A)'
+                object.tags.name = '[A]'
             else
-                object.tags.name = object.tags['name'] .. ' (A)'
+                object.tags.name = object.tags['name'] .. ' [A]'
             end
         end
     end

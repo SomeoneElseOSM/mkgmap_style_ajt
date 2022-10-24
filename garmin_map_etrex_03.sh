@@ -24,13 +24,13 @@ fi
 #
 # While still testing, just use a small area:
 # -----------------------------------------------------------------------------
-#file_prefix1=great-britain
-#file_page1=http://download.geofabrik.de/europe/${file_prefix1}.html
-#file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
+file_prefix1=great-britain
+file_page1=http://download.geofabrik.de/europe/${file_prefix1}.html
+file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
 #
-file_prefix1=north-yorkshire
-file_page1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}.html
-file_url1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}-latest.osm.pbf
+#file_prefix1=north-yorkshire
+#file_page1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}.html
+#file_url1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}-latest.osm.pbf
 #
 #
 # First things first - define some shared functions

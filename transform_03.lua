@@ -27,6 +27,75 @@ end
 --
 function ott.process_node(object)
     object = process_all(object)
+
+-- ----------------------------------------------------------------------------
+-- Not quite the same as style.lua
+--
+-- Information guideposts and route markers
+-- ----------------------------------------------------------------------------
+   information_appendix = ''
+
+   if ( object.tags["tourism"] == "information" ) then
+      if (( object.tags["information"] == "guidepost"                        )   or
+          ( object.tags["information"] == "fingerpost"                       )   or
+          ( object.tags["information"] == "marker"                           )) then
+         information_appendix = 'GP'
+      end
+
+      if (( object.tags["information"] == "route_marker"                     )  or
+          ( object.tags["information"] == "trail_blaze"                      )) then
+         information_appendix = 'RM'
+      end
+
+      if ( object.tags["guide_type"] == "intermediary" ) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'INT'
+         else
+             information_appendix = information_appendix .. ' INT'
+         end
+      end
+
+      if ( object.tags["guide_type"] == "destination" ) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'DEST'
+         else
+             information_appendix = information_appendix .. ' DEST'
+         end
+      end
+
+      if ( object.tags["guidepost_type"] == "PROW" ) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'PROW'
+         else
+             information_appendix = information_appendix .. ' PROW'
+         end
+      end
+
+      if ( object.tags["guidepost_type"] == "route_marker" ) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'ROUTE'
+         else
+             information_appendix = information_appendix .. ' ROUTE'
+         end
+      end
+
+      if ( object.tags["guidepost_type"] == "route_marker;PROW" ) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'ROUTE PROW'
+         else
+             information_appendix = information_appendix .. ' ROUTE PROW'
+         end
+      end
+   end
+
+    if ( information_appendix ~= '' ) then
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(' .. information_appendix .. ')'
+        else
+            object.tags.name = object.tags['name'] .. ' (' .. information_appendix .. ')'
+        end
+    end
+
     return object.tags
 end
 

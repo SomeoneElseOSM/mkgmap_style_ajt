@@ -36,17 +36,17 @@ contour=elevation | contour_ext=elevation
 	[0x21 resolution 20]
 
 # Hide unaccessible tunnels
-highway=* & tunnel=yes & (access=private|access=no)
+highway=* & tunnel=yes & (access=no)
 & foot!=* & bicycle!=* {delete highway;delete junction}
 # Disable dead-end-checks for unaccessible oneways
-highway=* & oneway=yes & (access=private|access=no)
+highway=* & oneway=yes & (access=no)
 {add mkgmap:dead-end-check=false}
 
 # Hide unaccessible tunnels
-highway=* & tunnel=yes & (access=private|access=no)
+highway=* & tunnel=yes & (access=no)
 & foot!=* & bicycle!=* {delete highway;delete junction}
 # Disable dead-end-checks for unaccessible oneways
-highway=* & oneway=yes & (access=private|access=no)
+highway=* & oneway=yes & (access=no)
 {add mkgmap:dead-end-check=false}
 
 # Set highway names to include the reference if there is one
@@ -116,7 +116,7 @@ highway=bridleway {add access = no; add foot = yes; name '${name}' | '' } [0x16 
 
 highway=byway [0x16 road_class=0 road_speed=0 resolution 23]
 
-highway=service & access=private {delete highway}
+highway=service & access=no {delete highway}
 highway=service {add access = no; add foot = yes; name '${name}' | '' } [0x06 road_class=0 road_speed=2 resolution 22]
 
 highway=access [0x06 road_class=0 road_speed=2 resolution 22]
@@ -128,7 +128,7 @@ highway=footway {add access = no; add foot = yes; name '${name}' | '' } [0x16 ro
 highway=path {add access = no; add bicycle = no; add foot = yes} [0x16 road_class=0 road_speed=0 resolution 23]
 highway=steps {add access = no; add foot = yes} [0x16 road_class=0 road_speed=0 resolution 23]
 
-highway=track & access=private {delete highway}
+highway=track & access=no {delete highway}
 highway=track {add access = no; add foot = yes; name '${name}' | '' } [0x0a road_class=0 road_speed=1 resolution 21]
 
 highway=unsurfaced [0x0a road_class=0 road_speed=1 resolution 21]

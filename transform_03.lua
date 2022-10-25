@@ -273,7 +273,7 @@ function ott.process_way(object)
           ( object.tags["designation"] == "unclassified_highway"      ))   and
          (  object.tags["foot"]        ~= nil                          )   and
          (  object.tags["foot"]        ~= "no"                         ))  or
-        ((( object.tags["highway"]     == "footwayy  "                )    or
+        ((( object.tags["highway"]     == "footway"                   )    or
           ( object.tags["highway"]     == "bridleway"                 )    or
           ( object.tags["highway"]     == "cycleway"                  )    or
           ( object.tags["highway"]     == "path"                      )    or

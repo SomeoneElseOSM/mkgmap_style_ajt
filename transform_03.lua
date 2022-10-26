@@ -31,7 +31,7 @@ function ott.process_node(object)
 -- ----------------------------------------------------------------------------
 -- Not quite the same as style.lua
 --
--- Information guideposts and route markers
+-- Information guideposts, route markers, boards
 -- ----------------------------------------------------------------------------
    information_appendix = ''
 
@@ -46,6 +46,43 @@ function ott.process_node(object)
           ( object.tags["information"] == "trail_blaze"                      )) then
          information_appendix = 'RM'
       end
+
+      if (( object.tags["information"] == "board"                            )  or
+          ( object.tags["information"] == "map"                              )  or
+          ( object.tags["information"] == "terminal"                         )  or
+          ( object.tags["information"] == "nature"                           )  or
+          ( object.tags["information"] == "noticeboard"                      )  or
+          ( object.tags["information"] == "map_board"                        )  or
+          ( object.tags["information"] == "wildlife"                         )  or
+          ( object.tags["information"] == "sitemap"                          )  or
+          ( object.tags["information"] == "notice_board"                     )  or
+          ( object.tags["information"] == "tactile_map"                      )  or
+          ( object.tags["information"] == "electronic_board"                 )  or
+          ( object.tags["information"] == "hikingmap"                        )  or
+          ( object.tags["information"] == "interpretation"                   )  or
+          ( object.tags["information"] == "map;board"                        )  or
+          ( object.tags["information"] == "former_telephone_box"             )  or
+          ( object.tags["information"] == "leaflets"                         )  or
+          ( object.tags["information"] == "departure times and destinations" )  or
+          ( object.tags["information"] == "sitemap"                          )  or
+          ( object.tags["information"] == "notice_board"                     )  or
+          ( object.tags["information"] == "tactile_map"                      )  or
+          ( object.tags["information"] == "electronic_board"                 )  or
+          ( object.tags["information"] == "hikingmap"                        )  or
+          ( object.tags["information"] == "interpretation"                   )  or
+          ( object.tags["information"] == "map;board"                        )  or
+          ( object.tags["information"] == "former_telephone_box"             )  or
+          ( object.tags["information"] == "leaflets"                         )  or
+          ( object.tags["information"] == "departure times and destinations" )  or
+          ( object.tags["information"] == "board;map"                        )) then
+         information_appendix = 'B'
+      end
+
+      if ( object.tags["information"] == "sign" ) then
+         information_appendix = 'S'
+      end
+
+-- Eventually, once there is some local data to support it, an "operator:type=military" check will go here.
 
       if ( object.tags["guide_type"] == "intermediary" ) then
          if ( information_appendix == nil ) then

@@ -7,6 +7,52 @@
 -- ----------------------------------------------------------------------------
 function process_all(object)
 -- ----------------------------------------------------------------------------
+-- Some changes based on style.lua
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- Mistaggings for wastewater_plant
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]   == "sewage_works"      ) or
+       ( object.tags["man_made"]   == "wastewater_works"  )) then
+      object.tags["man_made"] = "wastewater_plant"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Electricity substations
+-- ----------------------------------------------------------------------------
+   if (( object.tags["power"] == "substation"  )  or
+       ( object.tags["power"] == "sub_station" )) then
+      object.tags["power"]   = nil
+
+      if (( object.tags["building"] == nil  ) or
+          ( object.tags["building"] == "no" )) then
+         object.tags["landuse"] = "industrial"
+      else
+         object.tags["building"] = "yes"
+         object.tags["landuse"] = "industrialbuilding"
+      end
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(el.sub.)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (el.sub.)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Append (sewage) to sewage works.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"]   == "wastewater_plant" ) then
+      object.tags["man_made"] = nil
+      object.tags["landuse"] = "industrial"
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(sewage)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (sewage)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

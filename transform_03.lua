@@ -581,7 +581,7 @@ function ott.process_way(object)
 
 -- ----------------------------------------------------------------------------
 -- Append U to roads if no surface defined
--- Append O if no smoothness
+-- Append O if no smoothness (on non-long fords)
 -- ----------------------------------------------------------------------------
         track_appendix = ''
 
@@ -589,7 +589,8 @@ function ott.process_way(object)
             track_appendix = 'U'
         end
 
-        if ( object.tags['smoothness'] == nil ) then
+        if (( object.tags['smoothness'] == nil ) and
+            ( object.tags['ford']       == nil )) then
             if ( track_appendix == nil ) then
                 track_appendix = 'O'
             else
@@ -627,7 +628,7 @@ function ott.process_way(object)
 -- ----------------------------------------------------------------------------
 -- Append U to roads if no surface defined
 -- Append G if no tracktype
--- Append O if no smoothness
+-- Append O if no smoothness (on non-long fords)
 -- ----------------------------------------------------------------------------
         track_appendix = ''
 
@@ -643,7 +644,8 @@ function ott.process_way(object)
             end
         end
 
-        if ( object.tags['smoothness'] == nil ) then
+        if (( object.tags['smoothness'] == nil ) and
+            ( object.tags['ford']       == nil )) then
             if ( track_appendix == nil ) then
                 track_appendix = 'O'
             else

@@ -1,15 +1,15 @@
---
+-- ----------------------------------------------------------------------------
 -- Apply "name" transformations to ways for "map style 03"
---
+-- ----------------------------------------------------------------------------
 
---
+-- ----------------------------------------------------------------------------
 -- "all" function
---
+-- ----------------------------------------------------------------------------
 function process_all(object)
---
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
---
+-- ----------------------------------------------------------------------------
     if (( object.tags['fixme'] ~= nil  ) or
         ( object.tags['FIXME'] ~= nil  )) then
         if ( object.tags['name'] == nil ) then
@@ -136,9 +136,9 @@ function ott.process_node(object)
     return object.tags
 end
 
---
+-- ----------------------------------------------------------------------------
 -- "way" function
---
+-- ----------------------------------------------------------------------------
 function ott.process_way(object)
     object = process_all(object)
 
@@ -402,6 +402,26 @@ function ott.process_way(object)
             object.tags.name = object.tags['name'] .. ' (' .. designation_appendix .. ')'
         end
     end
+-- ----------------------------------------------------------------------------
+-- End Designation tagging on ways
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- Informal footway-service
+-- ----------------------------------------------------------------------------
+    if ((( object.tags['highway']  == 'footway'   ) or
+         ( object.tags['highway']  == 'path'      ) or
+         ( object.tags['highway']  == 'steps'     ) or
+         ( object.tags['highway']  == 'bridleway' ) or
+         ( object.tags['highway']  == 'cycleway'  ) or
+         ( object.tags['highway']  == 'track'     ) or
+         ( object.tags['highway']  == 'service'   )) and
+        (  object.tags['informal'] == 'yes'        )) then
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(I)'
+        else
+            object.tags.name = object.tags['name'] .. ' (I)'
+        end
+    end
 
 -- ----------------------------------------------------------------------------
 -- Woodland - append B, C or M based on leaf_type.
@@ -428,6 +448,33 @@ function ott.process_way(object)
             else
                 object.tags.name = object.tags['name'] .. ' (' .. leaf_type_appendix .. ')'
             end
+        end
+    end
+
+-- ----------------------------------------------------------------------------
+-- Fence, hedge, wall
+-- ----------------------------------------------------------------------------
+    if ( object.tags['barrier'] == 'fence' ) then
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(fence)'
+        else
+            object.tags.name = object.tags['name'] .. ' (fence)'
+        end
+    end
+
+    if ( object.tags['barrier'] == 'hedge' ) then
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(hedge)'
+        else
+            object.tags.name = object.tags['name'] .. ' (hedge)'
+        end
+    end
+
+    if ( object.tags['barrier'] == 'wall' ) then
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(wall)'
+        else
+            object.tags.name = object.tags['name'] .. ' (wall)'
         end
     end
 
@@ -518,9 +565,13 @@ function ott.process_way(object)
         ( object.tags['highway'] == 'path'      ) or
         ( object.tags['highway'] == 'bridleway' )) then
 -- ----------------------------------------------------------------------------
--- Append (A) if an expected foot tag is missing
+-- Append (A) if an expected foot tag is missing 
+-- on things that aren't obviously sidewalks
 -- ----------------------------------------------------------------------------
-        if ( object.tags['foot'] == nil ) then
+        if (( object.tags['foot']     == nil        ) and
+            ( object.tags['footway']  ~= 'sidewalk' ) and
+            ( object.tags['cycleway'] ~= 'sidewalk' ) and
+            ( object.tags['path']     ~= 'sidewalk' )) then
             if ( object.tags['name'] == nil ) then
                 object.tags.name = '[A]'
             else

@@ -141,9 +141,9 @@ natural=coastline [0x15 resolution 12]
 # qqq Power lines removed - see how this pans out:
 #power=line [0x29 resolution 20]
 
-barrier=wall [0x1d resolution 20]
-barrier=fence [0x1d resolution 20]
-barrier=hedge [0x1d resolution 20]
+barrier=wall {name '${name}'} [0x1d resolution 20]
+barrier=fence {name '${name}'} [0x1d resolution 20]
+barrier=hedge {name '${name}'} [0x1d resolution 20]
 
 railway=abandoned [0x1d road_class=0 road_speed=1 resolution 17]
 railway:historic=rail [0x1d road_class=0 road_speed=1 resolution 17]

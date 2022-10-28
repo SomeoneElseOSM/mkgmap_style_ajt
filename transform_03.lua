@@ -52,6 +52,51 @@ function process_all(object)
       end
    end
 
+   if (( object.tags["man_made"]   == "reservoir_covered"      ) or 
+       ( object.tags["man_made"]   == "petroleum_well"         ) or 
+       ( object.tags["industrial"] == "warehouse"              ) or
+       ( object.tags["industrial"] == "brewery"                ) or 
+       ( object.tags["industrial"] == "distillery"             ) or 
+       ( object.tags["craft"]      == "distillery"             ) or
+       ( object.tags["craft"]      == "bakery"                 ) or
+       ( object.tags["craft"]      == "sawmill"                ) or
+       ( object.tags["industrial"] == "sawmill"                ) or
+       ( object.tags["industrial"] == "factory"                ) or 
+       ( object.tags["industrial"] == "yes"                    ) or 
+       ( object.tags["industrial"] == "depot"                  ) or 
+       ( object.tags["landuse"]    == "depot"                  ) or
+       ( object.tags["amenity"]    == "depot"                  ) or
+       ( object.tags["amenity"]    == "bus_depot"              ) or
+       ( object.tags["amenity"]    == "fuel_depot"             ) or
+       ( object.tags["amenity"]    == "scrapyard"              ) or 
+       ( object.tags["industrial"] == "scrap_yard"             ) or 
+       ( object.tags["industrial"] == "scrapyard"              ) or 
+       ( object.tags["industrial"] == "yard"                   ) or 
+       ( object.tags["industrial"] == "engineering"            ) or
+       ( object.tags["industrial"] == "machine_shop"           ) or
+       ( object.tags["industrial"] == "packaging"              ) or
+       ( object.tags["industrial"] == "haulage"                ) or
+       ( object.tags["power"]      == "plant"                  ) or
+       ( object.tags["man_made"]   == "gas_station"            ) or
+       ( object.tags["man_made"]   == "gas_works"              ) or
+       ( object.tags["man_made"]   == "water_treatment"        ) or
+       ( object.tags["man_made"]   == "pumping_station"        ) or
+       ( object.tags["man_made"]   == "water_works"            )) then
+      object.tags["landuse"] = "industrial"
+   end
+
+   if ( object.tags["parking"]   == "depot" ) then
+      object.tags["parking"] = nil
+      object.tags["landuse"] = "industrial"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handle spoil heaps as landfill
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "spoil_heap" ) then
+      object.tags["landuse"] = "landfill"
+   end
+
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags

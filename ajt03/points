@@ -223,7 +223,8 @@ place=city [0x0400 resolution 17]
 place=town [0x0800 resolution 18]
 place=suburb [0x0a00 resolution 20]
 place=village [0x0b00 resolution 20]
-place=hamlet [0x0c00 resolution 20]
+place=hamlet {name '${name}'} [0x0c00 resolution 20]
+place=locality {name '${name}'} [0x0c00 resolution 20]
 
 place=island [0x650c resolution 20]
 

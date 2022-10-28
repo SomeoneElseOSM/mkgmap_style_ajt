@@ -98,6 +98,21 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Handle place=quarter
+-- ----------------------------------------------------------------------------
+   if ( object.tags["place"] == "quarter" ) then
+      object.tags["place"] = "neighbourhood"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handle natural=cape
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "cape" ) then
+      object.tags["place"] = "locality"
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

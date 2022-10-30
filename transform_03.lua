@@ -111,6 +111,190 @@ function process_all(object)
       object.tags["place"] = "locality"
    end
 
+-- ----------------------------------------------------------------------------
+-- Handle various sorts of milestones.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "milestone" )  or
+       ( object.tags["historic"] == "milepost"  )  or
+       ( object.tags["waterway"] == "milestone" )  or
+       ( object.tags["railway"]  == "milestone" )) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(milestone)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (milestone)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Aerial markers for pipelines etc.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["marker"]   == "aerial"          ) or
+       ( object.tags["marker"]   == "pipeline"        ) or
+       ( object.tags["man_made"] == "pipeline_marker" )) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(pipeline marker)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (pipeline marker)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Boundary stones.  If they're already tagged as tourism=attraction, remove
+-- that tag.
+-- Note that "marker=stone" (for "non boundary stones") are handled elsewhere.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "boundary_stone"  )  or
+       ( object.tags["historic"] == "boundary_marker" )  or
+       ( object.tags["historic"] == "boundary_post"   )  or
+       ( object.tags["marker"]   == "boundary_stone"  )  or
+       ( object.tags["boundary"] == "marker"          )) then
+      object.tags["man_made"] = "marker"
+      object.tags["tourism"]  = nil
+
+      if ( object.tags["inscription"] ~= nil ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = object.tags["inscription"]
+         else
+            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
+         end
+      end
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(boundary stone)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (boundary stone)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Stones that are not boundary stones.
+-- Note that "marker=boundary_stone" are handled elsewhere.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["marker"]   == "stone" ) or
+       ( object.tags["natural"]  == "stone" )) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["inscription"] ~= nil ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = object.tags["inscription"]
+         else
+            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
+         end
+      end
+
+      if ( object.tags["stone_type"]   == "ogham_stone" ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(ogham stone)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (ogham stone)"
+         end
+      else
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(historic stone)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (historic stone)"
+         end
+      end
+   end
+
+   if ( object.tags["historic"]   == "stone" ) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["inscription"] ~= nil ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = object.tags["inscription"]
+         else
+            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
+         end
+      end
+
+      if ( object.tags["stone_type"]   == "ogham_stone" ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(ogham stone)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (ogham stone)"
+         end
+      else
+         if ( object.tags["historic:stone"]   == "standing_stone" ) then
+            if ( object.tags["name"] == nil ) then
+               object.tags["name"] = "(standing stone)"
+            else
+               object.tags["name"] = object.tags["name"] .. " (standing stone)"
+            end
+         else
+            if ( object.tags["name"] == nil ) then
+               object.tags["name"] = "(historic stone)"
+            else
+               object.tags["name"] = object.tags["name"] .. " (historic stone)"
+            end
+         end
+      end
+   end
+
+   if ((   object.tags["historic"]           == "standing_stone"        ) or
+       ((  object.tags["historic"]           == "archaeological_site"  )  and
+        (( object.tags["site_type"]          == "standing_stone"      )   or
+         ( object.tags["site_type"]          == "megalith"            )   or
+         ( object.tags["Canmore_Site_Type"]  == "Standing Stone"      )))) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["inscription"] ~= nil ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = object.tags["inscription"]
+         else
+            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
+         end
+      end
+
+      if ( object.tags["stone_type"]   == "ogham_stone" ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(ogham stone)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (ogham stone)"
+         end
+      else
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(standing stone)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (standing stone)"
+         end
+      end
+
+      object.tags["tourism"] = nil
+   end
+
+   if ( object.tags["historic"]   == "rune_stone" ) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["inscription"] ~= nil ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = object.tags["inscription"]
+         else
+            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
+         end
+      end
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(standing stone)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (standing stone)"
+      end
+   end
+
+   if ( object.tags["place_of_worship"]   == "mass_rock" ) then
+      object.tags["man_made"] = "marker"
+      object.tags["amenity"]  = nil
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(mass rock)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (mass rock)"
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

@@ -527,6 +527,40 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Map various landuse to park
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]   == "scout_camp"     ) or
+       ( object.tags["landuse"]   == "scout_camp"     )) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(scout camp)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (scout camp)"
+      end
+   end
+
+   if ( object.tags["leisure"]   == "fishing" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(fishing)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (fishing)"
+      end
+   end
+
+   if ( object.tags["leisure"]   == "outdoor_centre" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(outdoor centre)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (outdoor centre)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

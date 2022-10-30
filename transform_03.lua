@@ -432,6 +432,42 @@ function process_all(object)
    end
    
 -- ----------------------------------------------------------------------------
+-- Mappings to shop=car
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "car;car_repair"  )  or
+       ( object.tags["shop"]    == "car;bicycle"     )  or
+       ( object.tags["shop"]    == "cars"            )  or
+       ( object.tags["shop"]    == "car_showroom"    )  or
+       ( object.tags["shop"]    == "vehicle"         )) then
+      object.tags["shop"] = "car"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Mappings to shop=bicycle
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "bicycle_repair"   ) or
+       ( object.tags["shop"] == "electric_bicycle" )) then
+      object.tags["shop"] = "bicycle"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Map amenity=car_repair etc. to shop=car_repair
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "car_repair"         )  or
+       ( object.tags["craft"]   == "car_repair"         )  or
+       ( object.tags["craft"]   == "coachbuilder"       )  or
+       ( object.tags["shop"]    == "car_service"        )  or
+       ( object.tags["shop"]    == "car_inspection"     )  or
+       ( object.tags["shop"]    == "car_bodyshop"       )  or
+       ( object.tags["shop"]    == "vehicle_inspection" )  or
+       ( object.tags["shop"]    == "mechanic"           )  or
+       ( object.tags["shop"]    == "car_repair;car"     )  or
+       ( object.tags["shop"]    == "car_repair;tyres"   )  or
+       ( object.tags["shop"]    == "auto_repair"        )) then
+      object.tags["shop"] = "car_repair"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

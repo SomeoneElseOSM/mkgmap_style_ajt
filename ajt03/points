@@ -212,7 +212,7 @@ natural=rocks {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 
 man_made=survey_point {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 
 natural=rock [0x6614 resolution 21]
-natural=spring [0x6511 resolution 21]
+natural=spring {name '${name}'} [0x6511 resolution 21]
 natural=stream [0x6512 resolution 21]
 natural=volcano [0x2c0c resolution 21]
 natural=water & name=* [0x6603 resolution 21]

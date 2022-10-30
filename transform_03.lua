@@ -490,6 +490,43 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Holy wells might be natural=spring or something else.
+-- Make sure that we set "amenity" to something other than "place_of_worship"
+-- The one existing "holy_well" is actually a spring.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "holy_well" ) and
+       ( object.tags["natural"] == "spring"    )) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(holy spring)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (holy spring)"
+      end
+   end
+
+   if ( object.tags["place_of_worship"] == "holy_well" ) then
+      object.tags["natural"] = "spring"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(holy well)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (holy well)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Ordinary wells
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "water_well" ) then
+      object.tags["natural"] = "spring"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(well)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (well)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

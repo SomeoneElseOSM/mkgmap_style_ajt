@@ -594,6 +594,52 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Attempt to do something sensible with trees
+--
+-- There are a few 10s of landuse=wood and natural=forest; treat them the same
+-- as other woodland.  If we have landuse=forest on its own without
+-- leaf_type, then we don't change it - we'll handle that separately in the
+-- rss file.
+-- ----------------------------------------------------------------------------
+  if ( object.tags["landuse"] == "forestry" ) then
+      object.tags["landuse"] = "forest"
+  end
+
+-- ----------------------------------------------------------------------------
+-- Use operator (but not brand) on various natural objects, always in brackets.
+-- (compare with the similar check including "brand" for e.g. "atm" below)
+-- This is done before we change tags based on leaf_type.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"] == "forest" )  or
+       ( object.tags["natural"] == "wood"   )) then
+      if ( object.tags["name"] == nil ) then
+         if ( object.tags["operator"] ~= nil ) then
+            object.tags["name"] = "(" .. object.tags["operator"] .. ")"
+            object.tags["operator"] = nil
+         end
+      else
+         if (( object.tags["operator"] ~= nil                )  and
+             ( object.tags["operator"] ~= object.tags["name"]  )) then
+            object.tags["name"] = object.tags["name"] .. " (" .. object.tags["operator"] .. ")"
+            object.tags["operator"] = nil
+         end
+      end
+   end
+
+  if ((( object.tags["landuse"]   == "forest"     )  and
+       ( object.tags["leaf_type"] ~= nil          )) or
+      (  object.tags["natural"]   == "forest"      ) or
+      (  object.tags["landuse"]   == "wood"        ) or
+      (  object.tags["landcover"] == "trees"       ) or
+      (( object.tags["natural"]   == "tree_group" )  and
+       ( object.tags["landuse"]   == nil          )  and
+       ( object.tags["leisure"]   == nil          ))) then
+      object.tags["landuse"] = nil
+      object.tags["natural"] = "wood"
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

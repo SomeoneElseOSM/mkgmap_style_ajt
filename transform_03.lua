@@ -468,6 +468,28 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Map various diplomatic things to embassy.
+-- Pedants may claim that some of these aren't legally embassies, and they'd
+-- be correct, but I use the same icon for all of these currently.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["diplomatic"] == "embassy"            ) or
+       ( object.tags["diplomatic"] == "consulate"          ) or
+       ( object.tags["diplomatic"] == "consulate_general"  ) or
+       ( object.tags["diplomatic"] == "honorary_consulate" ) or
+       ( object.tags["diplomatic"] == "high_commission"    )) then
+      object.tags["amenity"] = "embassy"
+   end
+
+   if (( object.tags["diplomatic"] == "permanent_mission"     ) or
+       ( object.tags["diplomatic"] == "ambassadors_residence" ) or
+       ( object.tags["diplomatic"] == "trade_delegation"      )) then
+      if ( object.tags["amenity"] == "embassy" ) then
+         object.tags["amenity"] = nil
+      end
+      object.tags["office"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

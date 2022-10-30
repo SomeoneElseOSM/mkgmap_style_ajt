@@ -46,7 +46,7 @@ final_tidy_up()
 # When was the target file last modified?
 # -----------------------------------------------------------------------------
 wget $file_page1 -O file_page1.$$
-grep " and contains all OSM data up to " file_page1.$$ | sed "s/.*and contains all OSM data up to //" | sed "s/T..:..:..Z. File size.*//" > last_modified1.$$
+grep " and contains all OSM data up to " file_page1.$$ | sed "s/.*and contains all OSM data up to //" | sed "s/. File size.*//" > last_modified1.$$
 rm file_page1.$$
 #
 file_extension1=`cat last_modified1.$$`

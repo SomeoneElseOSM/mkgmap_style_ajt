@@ -112,7 +112,7 @@ amenity=working_mens_club [0x4f00 resolution 21 default_name 'Working Mens Club'
 # amenity=supermarket is superceded by shop=supermarket
 amenity=supermarket [0x2e02 resolution 20]
 amenity=taxi [0x2f17 resolution 20]
-amenity=telephone [0x5100 resolution 21 default_name 'Telephone']
+amenity=telephone {name '${name}'} [0x5100 resolution 21 default_name 'Telephone']
 amenity=theatre [0x2d01 resolution 21]
 amenity=toilets & tourism=information [0x2f0c resolution 20]
 amenity=toilets [0x4e00 resolution 21 default_name 'Toilets' ]

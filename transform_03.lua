@@ -297,6 +297,141 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Former telephone boxes
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["covered"]         == "booth"          )   and
+        ( object.tags["booth"]           ~= "K1"             )   and
+        ( object.tags["booth"]           ~= "KX100"          )   and
+        ( object.tags["booth"]           ~= "KX200"          )   and
+        ( object.tags["booth"]           ~= "KX300"          )   and
+        ( object.tags["booth"]           ~= "KXPlus"         )   and
+        ( object.tags["booth"]           ~= "KX410"          )   and
+        ( object.tags["booth"]           ~= "KX420"          )   and
+        ( object.tags["booth"]           ~= "KX520"          )   and
+        ( object.tags["booth"]           ~= "oakham"         )   and
+        ( object.tags["booth"]           ~= "ST6"            ))  or
+       (  object.tags["booth"]           == "K2"              )  or
+       (  object.tags["booth"]           == "K4_Post_Office"  )  or
+       (  object.tags["booth"]           == "K6"              )  or
+       (  object.tags["booth"]           == "k6"              )  or
+       (  object.tags["booth"]           == "K8"              )  or
+       (  object.tags["telephone_kiosk"] == "K4"              )  or
+       (  object.tags["telephone_kiosk"] == "K6"              )  or
+       (  object.tags["man_made"]        == "telephone_kiosk" )  or
+       (  object.tags["man_made"]        == "telephone_box"   )  or
+       (  object.tags["building"]        == "telephone_kiosk" )  or
+       (  object.tags["building"]        == "telephone_box"   )  or
+       (  object.tags["historic"]        == "telephone"       )  or
+       (  object.tags["disused:amenity"] == "telephone"       )  or
+       (  object.tags["removed:amenity"] == "telephone"       )) then
+      if ((( object.tags["amenity"]   == "telephone"    )  or
+           ( object.tags["amenity"]   == "phone"        )) and
+          (  object.tags["emergency"] ~= "defibrillator" ) and
+          (  object.tags["emergency"] ~= "phone"         ) and
+          (  object.tags["tourism"]   ~= "information"   ) and
+          (  object.tags["tourism"]   ~= "artwork"       ) and
+          (  object.tags["tourism"]   ~= "museum"        )) then
+         object.tags["amenity"] = "telephone"
+         object.tags["tourism"] = nil
+         object.tags["emergency"] = nil
+      else
+         if ( object.tags["emergency"] == "defibrillator" ) then
+            object.tags["amenity"] = "telephone"
+
+	    if ( object.tags["name"] == nil ) then
+               object.tags["name"] = "(fmr phone defib)"
+	    else
+               object.tags["name"] = object.tags["name"] .. " (fmr phone defib)"
+	    end
+         else
+            if (( object.tags["amenity"] == "public_bookcase" )  or
+                ( object.tags["amenity"] == "book_exchange"   )  or
+                ( object.tags["amenity"] == "library"         )) then
+               object.tags["amenity"] = "telephone"
+
+	       if ( object.tags["name"] == nil ) then
+                  object.tags["name"] = "(fmr phone book exchange)"
+	       else
+                  object.tags["name"] = object.tags["name"] .. " (fmr phone book exchange)"
+	       end
+            else
+               if ( object.tags["amenity"] == "bicycle_repair_station" ) then
+                  object.tags["amenity"] = "telephone"
+
+	          if ( object.tags["name"] == nil ) then
+                     object.tags["name"] = "(fmr phone bicycle repair)"
+	          else
+                     object.tags["name"] = object.tags["name"] .. " (fmr phone bicycle repair)"
+	          end
+               else
+                  if ( object.tags["amenity"] == "atm" ) then
+                     object.tags["amenity"] = "telephone"
+
+	             if ( object.tags["name"] == nil ) then
+                        object.tags["name"] = "(fmr phone atm)"
+	             else
+                        object.tags["name"] = object.tags["name"] .. " (fmr phone atm)"
+	             end
+                  else
+                     if ( object.tags["tourism"] == "information" ) then
+                        object.tags["amenity"] = "telephone"
+
+	                if ( object.tags["name"] == nil ) then
+                           object.tags["name"] = "(fmr phone tourist info)"
+	                else
+                           object.tags["name"] = object.tags["name"] .. " (fmr phone tourist info)"
+	                end
+                     else
+                        if ( object.tags["tourism"] == "artwork" ) then
+                           object.tags["amenity"] = "telephone"
+
+	                   if ( object.tags["name"] == nil ) then
+                              object.tags["name"] = "(fmr phone artwork)"
+	                   else
+                              object.tags["name"] = object.tags["name"] .. " (fmr phone artwork)"
+	                   end
+                        else
+                           if ( object.tags["tourism"] == "museum" ) then
+                              object.tags["amenity"] = "telephone"
+
+	                      if ( object.tags["name"] == nil ) then
+                                 object.tags["name"] = "(fmr phone museum)"
+	                      else
+                                 object.tags["name"] = object.tags["name"] .. " (fmr phone museum)"
+	                      end
+		  	   else
+                              if (( object.tags["disused:amenity"]    == "telephone"        )  or
+                                  ( object.tags["removed:amenity"]    == "telephone"        )  or
+                                  ( object.tags["abandoned:amenity"]  == "telephone"        )  or
+                                  ( object.tags["demolished:amenity"] == "telephone"        )  or
+                                  ( object.tags["razed:amenity"]      == "telephone"        )  or
+                                  ( object.tags["old_amenity"]        == "telephone"        )  or
+                                  ( object.tags["historic:amenity"]   == "telephone"        )  or
+                                  ( object.tags["disused"]            == "telephone"        )  or
+                                  ( object.tags["was:amenity"]        == "telephone"        )  or
+                                  ( object.tags["old:amenity"]        == "telephone"        )  or
+                                  ( object.tags["amenity"]            == "former_telephone" )  or
+                                  ( object.tags["amenity:old"]        == "telephone"        )  or
+                                  ( object.tags["historic"]           == "telephone"        )) then
+                                 object.tags["amenity"] = "telephone"
+
+	                         if ( object.tags["name"] == nil ) then
+                                    object.tags["name"] = "(fmr phone)"
+	                         else
+                                    object.tags["name"] = object.tags["name"] .. " (fmr phone)"
+	                         end
+                              end
+                           end
+			end
+                     end
+                  end
+               end
+            end
+         end
+      end
+   end
+   
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

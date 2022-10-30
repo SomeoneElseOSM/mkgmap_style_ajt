@@ -571,6 +571,29 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Bird hides and similar features
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "bird_hide" ) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(bird hide)'
+      else
+         object.tags.name = object.tags['name'] .. ' (bird hide)'
+      end
+   end
+
+   if ( object.tags["leisure"] == "wildlife_hide" ) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(wildlife hide)'
+      else
+         object.tags.name = object.tags['name'] .. ' (wildlife hide)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

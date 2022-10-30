@@ -561,6 +561,16 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- leisure=dog_park is used a few times.  Map to pitch to differentiate from
+-- underlying park.
+-- Also "court" often means "pitch" (tennis, basketball).
+-- ----------------------------------------------------------------------------
+   if (( object.tags["leisure"] == "dog_park" ) or
+       ( object.tags["leisure"] == "court"    )) then
+      object.tags["leisure"] = "pitch"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

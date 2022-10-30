@@ -638,6 +638,24 @@ function process_all(object)
       object.tags["natural"] = "wood"
    end
 
+-- ----------------------------------------------------------------------------
+-- Don't show pubs, cafes or restaurants if you can't actually get to them.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["amenity"] == "pub"        ) or
+        ( object.tags["amenity"] == "cafe"       ) or
+        ( object.tags["amenity"] == "restaurant" )) and
+       (  object.tags["access"]  == "no"          )) then
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handle mistagged pubs
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"]  == "pub;hotel" ) then
+      object.tags["amenity"] = "pub"
+      object.tags["tourism"] = nil
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

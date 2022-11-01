@@ -120,6 +120,16 @@ if [ -f gmapsupp.img ]; then
   mv ajt03supp.img etrex
   mv ajt03map.tdb  etrex
   mv ajt03map.img  etrex
+  # ---------------------------------------------------------------------------
+  # At this point we know that a file was successfully created.
+  # Copy it to a directory below a webserver /var/www/html/maps/mkgmap_maps/ajt03:
+  # ---------------------------------------------------------------------------
+  cp etrex/ajt03supp.img /var/www/html/maps/mkgmap_maps/ajt03
+  cp etrex/ajt03map.tdb /var/www/html/maps/mkgmap_maps/ajt03
+  cp etrex/ajt03map.img /var/www/html/maps/mkgmap_maps/ajt03
+  # ---------------------------------------------------------------------------
+  # Update html files from markdown.
+  # ---------------------------------------------------------------------------
   pandoc /home/${local_filesystem_user}/src/SomeoneElse-map/mkgmap.md > /var/www/html/maps/map/mkgmap.html
   pandoc /home/${local_filesystem_user}/src/mkgmap_style_ajt/changelog_mkgmap.md > /var/www/html/maps/map/changelog_mkgmap.html
 else

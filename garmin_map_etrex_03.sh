@@ -16,14 +16,14 @@ else
     touch update_garmin.running
 fi
 #
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # What's the file that we are interested in?
 #
 # The data file is downloaded in ~/data which allows it to be shared with data
 # files user by update_render.sh; if that is also installed.
 #
 # While still testing, just use a small area:
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #file_prefix1=great-britain
 #file_page1=http://download.geofabrik.de/europe/${file_prefix1}.html
 #file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
@@ -39,7 +39,7 @@ final_tidy_up()
 {
     cd /home/${local_filesystem_user}/data/mkgmap
     rm 6???????.osm.gz
-    # qqq rm transformed_after.pbf
+    rm transformed_after.pbf
     cd /home/${local_filesystem_user}/data/
     rm last_modified1.$$
     rm update_garmin.running
@@ -72,6 +72,9 @@ fi
 mkdir mkgmap
 cd mkgmap
 #
+# ------------------------------------------------------------------------------
+# Run osm-tags-transform
+# ------------------------------------------------------------------------------
 if /home/${local_filesystem_user}/src/osm-tags-transform/build/src/osm-tags-transform -c /home/${local_filesystem_user}/src/mkgmap_style_ajt/transform_03.lua ../${file_prefix1}_${file_extension1}.osm.pbf -O -o transformed_after.pbf
 then
     echo Transform OK

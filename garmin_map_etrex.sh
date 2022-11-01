@@ -1,11 +1,11 @@
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # garmin_map_etrex.sh
 # based on GARMIN_MAP_ETREX.BAT, which ran a VC# processor before calling
 # mkgmap.
 #
 # The output files produced are ajt2supp.img, ajt2map.tdb, ajt2map.img
 # in ~/data/mkgmap/etrex
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 local_filesystem_user=ajtown
 cd /home/${local_filesystem_user}/data/
 if test -e update_garmin.running
@@ -21,7 +21,9 @@ fi
 #
 # The data file is downloaded in ~/data which allows it to be shared with data
 # files user by update_render.sh; if that is also installed.
-# -----------------------------------------------------------------------------
+#
+# While still testing, just use a small area:
+# ----------------------------------------------------------------------------
 file_prefix1=great-britain
 file_page1=http://download.geofabrik.de/europe/${file_prefix1}.html
 file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
@@ -70,7 +72,7 @@ if test -e  "6........osm.gz"
 then
   echo "Splitter already run"
 else
-  java  -Xmx1200m -jar /usr/share/mkgmap-splitter/splitter.jar ../${file_prefix1}_${file_extension1}.osm.pbf --max-nodes=800000 --output=xml
+  java  -Xmx9600m -jar /usr/share/mkgmap-splitter/splitter.jar ../${file_prefix1}_${file_extension1}.osm.pbf --max-nodes=800000 --output=xml
 fi
 #
 # ------------------------------------------------------------------------------
@@ -89,7 +91,7 @@ fi
 # "/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt" rather than 
 # "~/src/mkgmap_style_ajt/ajt".
 # ------------------------------------------------------------------------------
-java -Xmx1200M -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt2map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
+java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt2map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
 #
 if [ -f gmapsupp.img ]; then
   mv gmapsupp.img ajt2supp.img

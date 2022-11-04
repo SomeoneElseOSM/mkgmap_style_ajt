@@ -1222,7 +1222,8 @@ function ott.process_way(object)
         if (( object.tags['foot']     == nil        ) and
             ( object.tags['footway']  ~= 'sidewalk' ) and
             ( object.tags['cycleway'] ~= 'sidewalk' ) and
-            ( object.tags['path']     ~= 'sidewalk' )) then
+            ( object.tags['path']     ~= 'sidewalk' ) and
+            ( object.tags['informal'] ~= 'yes'      )) then
             if ( object.tags['name'] == nil ) then
                 object.tags.name = '[A]'
             else
@@ -1268,7 +1269,8 @@ function ott.process_way(object)
 -- ----------------------------------------------------------------------------
 -- Append (A) if an expected foot tag is missing
 -- ----------------------------------------------------------------------------
-        if ( object.tags['foot'] == nil ) then
+        if (( object.tags['foot']     == nil   ) and
+            ( object.tags['informal'] ~= 'yes' )) then
             if ( object.tags['name'] == nil ) then
                 object.tags.name = '[A]'
             else

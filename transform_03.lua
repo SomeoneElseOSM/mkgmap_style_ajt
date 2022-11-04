@@ -528,7 +528,70 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Map various landuse to park
+--
+-- All handled in the style like this:
+-- leisure=park {name '${name}'} [0x17 resolution 20]
 -- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"]   == "common" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(common)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (common)"
+      end
+   end
+
+   if ( object.tags["leisure"]   == "garden" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(garden)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (garden)"
+      end
+   end
+
+   if ( object.tags["landuse"]   == "greenfield" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(greenfield)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (greenfield)"
+      end
+   end
+
+   if ( object.tags["landuse"]   == "meadow" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(meadow)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (meadow)"
+      end
+   end
+
+   if ( object.tags["leisure"]   == "playground" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(playground)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (playground)"
+      end
+   end
+
+   if ( object.tags["landuse"]   == "village_green" ) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(village_green)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (village_green)"
+      end
+   end
+
    if (( object.tags["amenity"]   == "scout_camp"     ) or
        ( object.tags["landuse"]   == "scout_camp"     )) then
       object.tags["leisure"] = "park"

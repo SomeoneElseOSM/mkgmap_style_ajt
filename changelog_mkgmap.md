@@ -4,7 +4,11 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Show names for guesthouses.
 Don't show "[a]" as QA on intermittent paths and tracks.
-Show names on meadows etc., and indicate type pn various types.
+Show names on meadows etc., and indicate type on various types.
+Show various places that serve beer (hotels etc.) as pubs.
+Handle the myriad of ways of tagging dead pubs.
+Don't show dead pubs that are now something else as dead pubs.
+Show beer gardens as beer gardens.
 
 ## First map.atownsend.org.uk release - 01/11/2022
 Includes style processing for a number of features includng sewage works, electricity substations, various industrial areas and localities, markers and stones, telephones and reused phoneboxes, car shops, embassies, holy springs and wells, wells, outdoor centres, dog parks, bird ad wildlife hides, forestry, pubs, tourist info boards, signs guideposts and route markers.

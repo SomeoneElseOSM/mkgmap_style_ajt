@@ -545,10 +545,18 @@ function process_all(object)
    if ( object.tags["leisure"]   == "garden" ) then
       object.tags["leisure"] = "park"
 
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(garden)"
+      if ( object.tags["garden"] == "beer_garden" ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(beer_garden)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (beer_garden)"
+         end
       else
-         object.tags["name"] = object.tags["name"] .. " (garden)"
+         if ( object.tags["name"] == nil ) then
+            object.tags["name"] = "(garden)"
+         else
+            object.tags["name"] = object.tags["name"] .. " (garden)"
+         end
       end
    end
 
@@ -717,6 +725,108 @@ function process_all(object)
    if ( object.tags["tourism"]  == "pub;hotel" ) then
       object.tags["amenity"] = "pub"
       object.tags["tourism"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Things that are both hotels, B&Bs etc. and pubs should render as pubs, 
+-- because I'm far more likely to be looking for the latter than the former.
+-- This is done by removing the tourism tag for them.
+--
+-- People have used lots of tags for "former" or "dead" pubs.
+-- "disused:amenity=pub" is the most popular.
+--
+-- Treat things that were pubs but are now something else as whatever else 
+-- they now are.
+--
+-- If a real_ale tag has got stuck on something unexpected, don't render that
+-- as a pub.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]   == "pub"   ) and
+       ( object.tags["tourism"]   ~= nil     )) then
+      if (( object.tags["tourism"]   == "hotel"       ) or
+          ( object.tags["tourism"]   == "guest_house" )) then
+         object.tags["accommodation"] = "yes"
+      end
+
+      object.tags["tourism"] = nil
+   end
+
+   if (( object.tags["tourism"] == "hotel" ) and
+       ( object.tags["pub"]     == "yes"   )) then
+      object.tags["accommodation"] = "yes"
+      object.tags["amenity"] = "pub"
+      object.tags["pub"] = nil
+      object.tags["tourism"] = nil
+   end
+
+   if ((( object.tags["tourism"]  == "hotel"       )   or
+        ( object.tags["tourism"]  == "guest_house" ))  and
+       (  object.tags["real_ale"] ~= nil            )  and
+       (  object.tags["real_ale"] ~= "maybe"        )  and
+       (  object.tags["real_ale"] ~= "no"           )) then
+      object.tags["accommodation"] = "yes"
+      object.tags["amenity"] = "pub"
+      object.tags["tourism"] = nil
+   end
+
+   if (( object.tags["leisure"]     == "outdoor_seating" ) and
+       ( object.tags["beer_garden"] == "yes"             )) then
+      object.tags["leisure"] = "garden"
+      object.tags["garden"] = "beer_garden"
+   end
+
+   if ((  object.tags["abandoned:amenity"] == "pub"             )   or
+       (  object.tags["amenity:disused"]   == "pub"             )   or
+       (  object.tags["disused"]           == "pub"             )   or
+       (  object.tags["disused:pub"]       == "yes"             )   or
+       (  object.tags["former_amenity"]    == "former_pub"      )   or
+       (  object.tags["former_amenity"]    == "pub"             )   or
+       (  object.tags["former_amenity"]    == "old_pub"         )   or
+       (  object.tags["former:amenity"]    == "pub"             )   or
+       (  object.tags["old_amenity"]       == "pub"             )) then
+      object.tags["disused:amenity"] = "pub"
+      object.tags["amenity:disused"] = nil
+      object.tags["disused"] = nil
+      object.tags["disused:pub"] = nil
+      object.tags["former_amenity"] = nil
+      object.tags["old_amenity"] = nil
+   end
+
+   if ((  object.tags["amenity"]           == "closed_pub"      )   or
+       (  object.tags["amenity"]           == "dead_pub"        )   or
+       (  object.tags["amenity"]           == "disused_pub"     )   or
+       (  object.tags["amenity"]           == "former_pub"      )   or
+       (  object.tags["amenity"]           == "old_pub"         )   or
+       (( object.tags["amenity"]           == "pub"            )    and
+        ( object.tags["disused"]           == "yes"            ))   or
+       (( object.tags["amenity"]           == "pub"            )    and
+        ( object.tags["opening_hours"]     == "closed"         ))) then
+      object.tags["disused:amenity"] = "pub"
+      object.tags["amenity:disused"] = nil
+      object.tags["disused"] = nil
+      object.tags["disused:pub"] = nil
+      object.tags["former_amenity"] = nil
+      object.tags["old_amenity"] = nil
+      object.tags["amenity"] = nil
+   end
+
+   if ((  object.tags["disused:amenity"]   == "pub"    ) and
+       (( object.tags["tourism"]           ~= nil     )  or
+        ( object.tags["amenity"]           ~= nil     )  or
+        ( object.tags["leisure"]           ~= nil     )  or
+        ( object.tags["shop"]              ~= nil     )  or
+        ( object.tags["office"]            ~= nil     ))) then
+      object.tags["disused:amenity"] = nil
+   end
+
+   if ((  object.tags["real_ale"]  ~= nil    ) and
+       (( object.tags["amenity"]   == nil   )  and
+        ( object.tags["shop"]      == nil   )  and
+        ( object.tags["tourism"]   == nil   )  and
+        ( object.tags["room"]      == nil   )  and
+        ( object.tags["leisure"]   == nil   )  and
+        ( object.tags["club"]      == nil   ))) then
+      object.tags["real_ale"] = nil
    end
 
 

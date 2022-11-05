@@ -9,6 +9,10 @@ Show various places that serve beer (hotels etc.) as pubs.
 Handle the myriad of ways of tagging dead pubs.
 Don't show dead pubs that are now something else as dead pubs.
 Show beer gardens as beer gardens.
+Handle pubs that are also breweries.
+Handle pubs that serve real ale.
+Coalesce "noncarpeted" tags.
+Handle "closed due to covid" pubs.
 
 ## First map.atownsend.org.uk release - 01/11/2022
 Includes style processing for a number of features includng sewage works, electricity substations, various industrial areas and localities, markers and stones, telephones and reused phoneboxes, car shops, embassies, holy springs and wells, wells, outdoor centres, dog parks, bird ad wildlife hides, forestry, pubs, tourist info boards, signs guideposts and route markers.

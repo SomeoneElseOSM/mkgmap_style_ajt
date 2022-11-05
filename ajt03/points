@@ -74,8 +74,7 @@ amenity=pub & real_ale=yes {name '${name} PQRV (${operator})' | '${name} PQRV' }
 amenity=pub & real_ale=no {name '${name} PQN (${operator})' | '${name} PQN' } [0x2a11 resolution 20]
 amenity=pub & real_ale!=* {name '${name} PQV (${operator})' | '${name} PQV' } [0x2a11 resolution 20]
 amenity=pub & real_ale=* {name '${name} PQR (${operator})' | '${name} PQR' } [0x2a11 resolution 20]
-amenity=former_pub [0x4f00 resolution 21 default_name 'Former Pub' ]
-disused:amenity=pub [0x4f00 resolution 21 default_name 'Former Pub' ]
+disused:amenity=pub {name '${name}'} [0x4f00 resolution 21 default_name 'Former Pub' ]
 amenity=public_building [0x3007 resolution 21]
 amenity=recycling { name '${name} (${operator})' | '${name}' | '${operator}' }
 amenity=recycling [0x2f15 resolution 20]

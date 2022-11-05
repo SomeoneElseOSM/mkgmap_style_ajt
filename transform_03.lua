@@ -829,6 +829,101 @@ function process_all(object)
       object.tags["real_ale"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- If something has been tagged both as a brewery and a pub or bar, render as
+-- a pub with a microbrewery.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["amenity"]    == "pub"     )  or
+        ( object.tags["amenity"]    == "bar"     )) and
+       (( object.tags["craft"]      == "brewery" )  or
+        ( object.tags["industrial"] == "brewery" ))) then
+      object.tags["amenity"]  = "pub"
+      object.tags["microbrewery"]  = "yes"
+      object.tags["craft"]  = nil
+      object.tags["industrial"]  = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If a food place has a real_ale tag, also add a food tag an let the real_ale
+-- tag render.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["amenity"]  == "cafe"       )  or
+        ( object.tags["amenity"]  == "restaurant" )) and
+       (( object.tags["real_ale"] ~= nil          )  and
+        ( object.tags["real_ale"] ~= "maybe"      )  and
+        ( object.tags["real_ale"] ~= "no"         )) and
+       (  object.tags["food"]     == nil           )) then
+      object.tags["food"]  = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Attempt to do something sensible with pubs (and other places that serve
+-- real_ale)
+-- Pubs that serve real_ale get a nice IPA, ones that don't a yellowy lager,
+-- closed pubs an "X".  Food gets an F on the right, micropubs a u on the left.
+-- Noncarpeted floor gets an underline, accommodation a blue "roof", and 
+-- Microbrewery a "mash tun in the background".  Not all combinations exist so
+-- not all are checked for.  Pubs without any other tags get the default empty 
+-- glass.
+--
+-- Pub flags:
+-- Live or dead pub?  y or n, or c (closed due to covid)
+-- Real ale?          y n or d (don't know)
+-- Food 	      y or d
+-- Noncarpeted floor  y or d
+-- Microbrewery	      y n or d
+-- Micropub	      y n or d
+-- Accommodation      y n or d
+-- Wheelchair	      y, l, n or d
+-- Beer Garden	      g (beer garden), o (outside seating), d (don't know)
+-- ----------------------------------------------------------------------------
+   if (( object.tags["description:floor"] ~= nil                ) or
+       ( object.tags["floor:material"]    == "tiles"            ) or
+       ( object.tags["floor:material"]    == "stone"            ) or
+       ( object.tags["floor:material"]    == "lino"             ) or
+       ( object.tags["floor:material"]    == "slate"            ) or
+       ( object.tags["floor:material"]    == "brick"            ) or
+       ( object.tags["floor:material"]    == "rough_wood"       ) or
+       ( object.tags["floor:material"]    == "rough wood"       ) or
+       ( object.tags["floor:material"]    == "concrete"         ) or
+       ( object.tags["floor:material"]    == "lino;tiles;stone" )) then
+      object.tags["noncarpeted"] = "yes"
+   end
+
+   if (( object.tags["micropub"] == "yes"   ) or
+       ( object.tags["pub"]      == "micro" )) then
+      object.tags["micropub"] = nil
+      object.tags["pub"]      = "micropub"
+   end
+
+-- ----------------------------------------------------------------------------
+-- The misspelling "accomodation" is quite common.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["accommodation"] == nil )  and
+       ( object.tags["accomodation"]  ~= nil )) then
+      object.tags["accommodation"] = object.tags["accomodation"]
+      object.tags["accomodation"]  = nil
+   end
+		  
+-- ----------------------------------------------------------------------------
+-- Next, "closed due to covid" pubs
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"]               == "pub"        ) and
+       (( object.tags["opening_hours:covid19"] == "off"       ) or
+        ( object.tags["opening_hours:covid19"] == "closed"    ) or
+        ( object.tags["opening_hours:covid19"] == "Mu-Su off" ) or
+        ( object.tags["access:covid19"]        == "no"        ))) then
+      object.tags["disused:amenity"] = "pub"
+      object.tags["amenity"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(closed covid)'
+      else
+         object.tags.name = object.tags['name'] .. ' (closed covid)'
+      end
+
+      object.tags["real_ale"] = nil
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

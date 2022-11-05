@@ -859,23 +859,28 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- Attempt to do something sensible with pubs (and other places that serve
 -- real_ale)
--- Pubs that serve real_ale get a nice IPA, ones that don't a yellowy lager,
--- closed pubs an "X".  Food gets an F on the right, micropubs a u on the left.
--- Noncarpeted floor gets an underline, accommodation a blue "roof", and 
--- Microbrewery a "mash tun in the background".  Not all combinations exist so
--- not all are checked for.  Pubs without any other tags get the default empty 
--- glass.
 --
--- Pub flags:
--- Live or dead pub?  y or n, or c (closed due to covid)
--- Real ale?          y n or d (don't know)
--- Food 	      y or d
--- Noncarpeted floor  y or d
--- Microbrewery	      y n or d
--- Micropub	      y n or d
--- Accommodation      y n or d
--- Wheelchair	      y, l, n or d
--- Beer Garden	      g (beer garden), o (outside seating), d (don't know)
+-- On the web map, the following "pub flags" are used:    mkgmap:
+-- Live or dead pub?  y or 	      	     	 	  B (bar) or P (pub)
+--                    n, or				  Social Club
+--                    c (closed due to covid)		  Social Club (with description)
+-- Real ale?          y       	   	       	  	  R
+--                    n					  -
+--                    d (don't know)           		  -
+-- Food 	      y or d                              F
+-- Noncarpeted floor  y or d                              L
+-- Microbrewery	      y n or d                            UB
+-- Micropub	      y n or d                            UP
+-- Accommodation      y n or d                            A
+-- Wheelchair	      y, l, n or d                        n/a
+-- Beer Garden	      g (beer garden), 			  G
+--                    o (outside seating), 		  O
+--                    d (don't know)			  -
+-- 
+-- For mkgmap, we don't use different icons beyond "restaurant" and 
+-- "social club" (used for "not an accessible pub").  
+-- We do use appendices to the name.
+-- Initially, set some object flags that we will use later.
 -- ----------------------------------------------------------------------------
    if (( object.tags["description:floor"] ~= nil                ) or
        ( object.tags["floor:material"]    == "tiles"            ) or
@@ -923,6 +928,138 @@ function process_all(object)
       end
 
       object.tags["real_ale"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Main bar/pub description selection
+-- (equivalent to "real_ale icon selection" logic on web map)
+-- Note that there's no "if pub" here, so any non-pub establishment that serves
+-- real ale will get the icon (hotels, restaurants, cafes, etc.)
+-- We have explicitly excluded pubs "closed for covid" above.
+-- After this large "if" there is no "else" but another "if" for non-real ale
+-- pubs (that does check that the thing is actually a pub).
+-- ----------------------------------------------------------------------------
+   if (( object.tags["real_ale"] ~= nil     ) and
+       ( object.tags["real_ale"] ~= "maybe" ) and
+       ( object.tags["real_ale"] ~= "no"    )) then
+      beer_appendix = ''
+
+      if ( object.tags["amenity"] == "bar" ) then
+         beer_appendix = 'B'
+      else
+         if ( object.tags["amenity"] == "pub" ) then
+            beer_appendix = 'P'
+         end
+      end
+
+      if ( beer_appendix == nil ) then
+         beer_appendix = 'QR'
+      else
+         beer_appendix = beer_appendix .. 'QR'
+      end
+
+      if (( object.tags["food"] ~= nil  ) and
+          ( object.tags["food"] ~= "no" )) then
+         beer_appendix = beer_appendix .. 'F'
+      end
+
+      if ( object.tags["noncarpeted"] == "yes"  ) then
+         beer_appendix = beer_appendix .. 'L'
+      end
+
+      if ( object.tags["microbrewery"] == "yes"  ) then
+         beer_appendix = beer_appendix .. 'UB'
+      end
+
+      if ( object.tags["micropub"] == "yes"  ) then
+         beer_appendix = beer_appendix .. 'UP'
+      end
+
+      if (( object.tags["accommodation"] ~= nil  ) and
+          ( object.tags["accommodation"] ~= "no" )) then
+         beer_appendix = beer_appendix .. 'A'
+      end
+
+      if ( object.tags["beer_garden"] == "yes" ) then
+         beer_appendix = beer_appendix .. 'G'
+      else
+         if ( object.tags["outdoor_seating"] == "yes" ) then
+            beer_appendix = beer_appendix .. 'O'
+         end
+      end
+
+      if ( beer_appendix ~= '' ) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(' .. beer_appendix .. ')'
+         else
+            object.tags.name = object.tags['name'] .. ' (' .. beer_appendix .. ')'
+         end
+      end
+   end
+
+   if ((( object.tags["amenity"] == "bar" )  or
+        ( object.tags["amenity"] == "pub" )) and
+       (( object.tags["real_ale"] == "no" )  or
+        ( object.tags["real_ale"] == nil  ))) then
+      beer_appendix = ''
+
+      if ( object.tags["amenity"] == "bar" ) then
+         beer_appendix = 'B'
+      else
+         if ( object.tags["amenity"] == "pub" ) then
+            beer_appendix = 'P'
+         end
+      end
+
+      if ( beer_appendix == nil ) then
+         beer_appendix = 'Q'
+      else
+         beer_appendix = beer_appendix .. 'Q'
+      end
+
+      if (  object.tags["real_ale"] == "no" ) then
+         beer_appendix = beer_appendix .. 'N'
+      else
+         beer_appendix = beer_appendix .. 'V'
+      end
+
+      if (( object.tags["food"] ~= nil  ) and
+          ( object.tags["food"] ~= "no" )) then
+         beer_appendix = beer_appendix .. 'F'
+      end
+
+      if ( object.tags["noncarpeted"] == "yes"  ) then
+         beer_appendix = beer_appendix .. 'L'
+      end
+
+      if ( object.tags["microbrewery"] == "yes"  ) then
+         beer_appendix = beer_appendix .. 'UB'
+      end
+
+      if ( object.tags["micropub"] == "yes"  ) then
+         beer_appendix = beer_appendix .. 'UP'
+      end
+
+      if (( object.tags["accommodation"] ~= nil  ) and
+          ( object.tags["accommodation"] ~= "no" )) then
+         beer_appendix = beer_appendix .. 'A'
+      end
+
+      if ( object.tags["beer_garden"] == "yes" ) then
+         beer_appendix = beer_appendix .. 'G'
+      else
+         if ( object.tags["outdoor_seating"] == "yes" ) then
+            beer_appendix = beer_appendix .. 'O'
+         end
+      end
+
+      if ( beer_appendix ~= '' ) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(' .. beer_appendix .. ')'
+         else
+            object.tags.name = object.tags['name'] .. ' (' .. beer_appendix .. ')'
+         end
+      end
    end
 
 -- ----------------------------------------------------------------------------

@@ -527,6 +527,17 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Render unnamed amenity=biergarten as gardens, which is all they likely are.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "biergarten"   )  and
+       (( object.tags["name"]    == nil           )   or
+        ( object.tags["name"]    == "Beer Garden" ))) then
+      object.tags["amenity"] = nil
+      object.tags["leisure"] = "garden"
+      object.tags["garden"]  = "beer_garden"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Map various landuse to park
 --
 -- All handled in the style like this:
@@ -1061,6 +1072,7 @@ function process_all(object)
          end
       end
    end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

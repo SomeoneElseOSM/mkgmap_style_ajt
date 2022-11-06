@@ -5,6 +5,8 @@ This page describes changes made to the "03" map style [here](https://github.com
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.
 Show landuse=grass as green with a "(grass)" suffix.
 Show names of cafes.
+Show various things as meadows.
+Show "(farmyard)" in a suffix on farmyard names.
 
 ## 5/11/2022
 Show names for guesthouses.

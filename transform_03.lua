@@ -602,7 +602,10 @@ function process_all(object)
       end
    end
 
-   if ( object.tags["landuse"]   == "meadow" ) then
+-- ----------------------------------------------------------------------------
+-- These all map to meadow in the web maps
+-- ----------------------------------------------------------------------------
+if ( object.tags["landuse"]   == "meadow" ) then
       object.tags["leisure"] = "park"
 
       if ( object.tags["name"] == nil ) then
@@ -611,6 +614,45 @@ function process_all(object)
          object.tags["name"] = object.tags["name"] .. " (meadow)"
       end
    end
+
+if (( object.tags["amenity"] == "showground"   ) or
+    ( object.tags["leisure"] == "showground"   ) or
+    ( object.tags["amenity"] == "show_ground"  ) or
+    ( object.tags["amenity"] == "show_grounds" )) then
+      object.tags["amenity"] = nil
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(showground)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (showground)"
+      end
+   end
+
+if ( object.tags["amenity"]   == "festival_grounds" ) then
+      object.tags["amenity"] = nil
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(festival grounds)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (festival grounds)"
+      end
+   end
+
+   if ( object.tags["amenity"]   == "car_boot_sale" ) then
+      object.tags["amenity"] = nil
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(car boot sale)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (car boot sale)"
+      end
+   end
+-- ----------------------------------------------------------------------------
+-- (end of list that maps to meadow)
+-- ----------------------------------------------------------------------------
 
    if ( object.tags["leisure"]   == "playground" ) then
       object.tags["leisure"] = "park"
@@ -662,6 +704,36 @@ function process_all(object)
          object.tags["name"] = object.tags["name"] .. " (outdoor centre)"
       end
    end
+-- ----------------------------------------------------------------------------
+-- (end of things that map to park)
+-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- These all map to farmyard in the web maps
+-- ----------------------------------------------------------------------------
+   if ( object.tags["landuse"]   == "farmyard" ) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(farmyard)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (farmyard)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Change landuse=greenhouse_horticulture to farmyard.
+-- ----------------------------------------------------------------------------
+   if (object.tags["landuse"]   == "greenhouse_horticulture") then
+      object.tags["landuse"] = "farmyard"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(greenhouse horticulture)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (greenhouse horticulture)"
+      end
+   end
+-- ----------------------------------------------------------------------------
+-- (end of things that map to farmyard)
+-- ----------------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------------
 -- leisure=dog_park is used a few times.  Map to pitch to differentiate from

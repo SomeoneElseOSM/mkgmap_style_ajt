@@ -2,6 +2,9 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.
+
+## 5/11/2022
 Show names for guesthouses.
 Don't show "[a]" as QA on intermittent paths and tracks.
 Show names on meadows etc., and indicate type on various types.

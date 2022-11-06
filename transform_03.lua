@@ -571,6 +571,17 @@ function process_all(object)
       end
    end
 
+   if (( object.tags["leisure"]   == "outdoor_seating" ) and
+       ( object.tags["surface"]   == "grass"           )) then
+      object.tags["leisure"] = "park"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(outdoor grass)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (outdoor grass)"
+      end
+   end
+
    if ( object.tags["landuse"]   == "greenfield" ) then
       object.tags["leisure"] = "park"
 

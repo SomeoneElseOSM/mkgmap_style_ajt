@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.
+Show landuse=grass as green with a "(grass)" suffix.
 
 ## 5/11/2022
 Show names for guesthouses.

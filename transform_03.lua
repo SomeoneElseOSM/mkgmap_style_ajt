@@ -538,6 +538,28 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- We don't show landuse=farmland here (yet)
+-- We also don't show farmland processed in style.lua as "landuse=farmgrass"
+-- We do process meadows here that would process as "farmgrass" here so that
+-- they don't (yet) get handled as meadows.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["landuse"] == "meadow"        ) and
+       (( object.tags["meadow"]  == "agricultural" )  or
+        ( object.tags["meadow"]  == "paddock"      )  or
+        ( object.tags["meadow"]  == "pasture"      )  or
+        ( object.tags["meadow"]  == "agriculture"  )  or
+        ( object.tags["meadow"]  == "hay"          )  or
+        ( object.tags["meadow"]  == "managed"      )  or
+        ( object.tags["meadow"]  == "cut"          )  or
+        ( object.tags["animal"]  == "pig"          )  or
+        ( object.tags["animal"]  == "sheep"        )  or
+        ( object.tags["animal"]  == "cattle"       )  or
+        ( object.tags["animal"]  == "chicken"      )  or
+        ( object.tags["animal"]  == "horse"        ))) then
+      object.tags["landuse"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Map various landuse to park
 --
 -- All handled in the style like this:

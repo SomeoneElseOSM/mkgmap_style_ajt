@@ -690,9 +690,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["leisure"] = "park"
 
       if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(village_green)"
+         object.tags["name"] = "(village green)"
       else
-         object.tags["name"] = object.tags["name"] .. " (village_green)"
+         object.tags["name"] = object.tags["name"] .. " (village green)"
       end
    end
 

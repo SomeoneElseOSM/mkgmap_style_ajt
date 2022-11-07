@@ -41,10 +41,6 @@ Mass rocks are consolidated into "man_made=marker" and "(mass rock)" is appended
 
 The current use is appended to the name, for example "(fmr phone defib)".
 
-## Shops
-
-Some rarer tags are consolidated into "shop=car", "shop=car_repair" and "shop=bicycle".
-
 ## Diplomatic
 
 End-user diplomatic things are consolidated into "amenity=embassy".  Others (e.g. "diplomatic=trade_delegation") are shown as offices.
@@ -84,3 +80,47 @@ Dog parks and "leisure=court" are shown as "leisure=pitch".
 ## Tourism
 
 Bird and wildlife hides are shown as tourist information with a suffix added to the name.
+
+## Trees
+
+"forestry" is handled as "forest".  Various tags are consolidated into "wood".  "operator" is appended to the name, if present.
+
+## Shops
+
+Some rarer tags are consolidated into "shop=car", "shop=car_repair" and "shop=bicycle".
+Building societies are consolidated into banks.
+ATMs have "(ATM)" added as a suffix.
+
+## Pubs, restaurants etc.
+
+Pubs that are inaccessible (e.g. "access=no") are hidden.
+Things that are both hotels and pubs are treated as pubs that do accommodation.
+Some other things that serve real ale are treated as pubs, unless another tag is more relevant (e.g. brewery).  Other tags (e.g. "food=yes", for restaurants) are also added.
+Pub beer gardens are handled as beer gardens (see grass landuse elsewhere).
+Various disused and former pubs are shown as social clubs (Garmin symbol "0x4f00").
+
+All open pubs and bars have a suffix added, that contains:
+
+* BQ (bars) or PQ (pubs)
+* R if they serve real ale
+* F if they serve food
+* L if they have a noncarpeted floor
+* UB if they are a microbrewery
+* UP if they are a micropub
+* A if they have accommodation
+* G if there is a beer garden
+* O if there is outside seating
+
+Pubs that are allegedly still "closed due to covid" have an appropriate suffix added to the name.
+
+Restaurants have "(rest)" added as a suffix, or "(rest accomm)" if they have rooms.
+
+## Healthcare
+
+An appropriate suffix is added for doctors, dentists, hospitals and clinics.
+Vaccination centres are shown as clinics if no other tag applies.
+Pharmacies and chemists have a suffix added.
+
+## Other
+
+Libraries and public bookcases are shown as libraries with an appropriate suffix.

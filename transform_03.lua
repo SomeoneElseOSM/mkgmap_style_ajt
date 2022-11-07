@@ -1256,6 +1256,17 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- Add suffix to ATMS
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "atm" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(atm)'
+      else
+         object.tags.name = object.tags['name'] .. ' (atm)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various mistagging, comma and semicolon healthcare
 -- Note that health centres currently appear as "health nonspecific".
 -- ----------------------------------------------------------------------------

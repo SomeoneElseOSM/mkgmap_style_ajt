@@ -1028,7 +1028,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
--- The misspelling "accomodation" is quite common.
+-- The misspelling "accomodation" (with one "m") is quite common.
 -- ----------------------------------------------------------------------------
    if (( object.tags["accommodation"] == nil )  and
        ( object.tags["accomodation"]  ~= nil )) then
@@ -1188,6 +1188,150 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Restaurants
+-- Different sorts of restaurants get mapped to different sorts of features
+-- in the garmin map.  Visually they are very alike, but searching for e.g.
+-- "restaurants / chinese" will find chinese restaurants.
+-- As with the web map, restaurants with accommodation are shown differently.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "restaurant" ) then
+      if (( object.tags["accommodation"] ~= nil  ) and
+          ( object.tags["accommodation"] ~= "no" )) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(rest accomm)'
+         else
+            object.tags.name = object.tags['name'] .. ' (rest accomm)'
+         end
+      else
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(rest)'
+         else
+            object.tags.name = object.tags['name'] .. ' (rest)'
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- "cafe" - consolidation of lesser used tags
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"] == "cafe"       ) then
+      object.tags["amenity"] = "cafe"
+   end
+
+   if (( object.tags["shop"] == "sandwiches" ) or
+       ( object.tags["shop"] == "sandwich"   )) then
+      object.tags["amenity"] = "cafe"
+      object.tags["cuisine"] = "sandwich"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Cafes with accommodation and without
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "cafe" ) then
+      if (( object.tags["accommodation"] ~= nil  ) and
+          ( object.tags["accommodation"] ~= "no" )) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(cafe accomm)'
+         else
+            object.tags.name = object.tags['name'] .. ' (cafe accomm)'
+         end
+      else
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(cafe)'
+         else
+            object.tags.name = object.tags['name'] .. ' (cafe)'
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render building societies as banks.  Also shop=bank and credit unions.
+-- No suffix added to name.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "building_society" ) or
+       ( object.tags["shop"]    == "bank"             ) or
+       ( object.tags["amenity"] == "credit_union"     )) then
+      object.tags["amenity"] = "bank"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various mistagging, comma and semicolon healthcare
+-- Note that health centres currently appear as "health nonspecific".
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "doctors; pharmacy"       ) or
+       ( object.tags["amenity"] == "surgery"                 ) or
+       ( object.tags["amenity"] == "doctor"                  )) then
+      object.tags["amenity"] = "doctors"
+   end
+
+   if ( object.tags["amenity"] == "doctors" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(doctors)'
+      else
+         object.tags.name = object.tags['name'] .. ' (doctors)'
+      end
+   end
+
+   if (( object.tags["healthcare"] == "dentist" ) and
+       ( object.tags["amenity"]    == nil       )) then
+      object.tags["amenity"] = "dentist"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Dentists were not previously handled but are now passed through as doctors 
+-- with a suffix.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "dentist" ) then
+      object.tags["amenity"] = "doctors"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(dentist)'
+      else
+         object.tags.name = object.tags['name'] .. ' (dentist)'
+      end
+   end
+
+   if (( object.tags["healthcare"] == "hospital" ) and
+       ( object.tags["amenity"]    == nil        )) then
+      object.tags["amenity"] = "hospital"
+   end
+
+   if ( object.tags["amenity"] == "hospital" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(hospital)'
+      else
+         object.tags.name = object.tags['name'] .. ' (hospital)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Ensure that vaccination centries (e.g. for COVID 19) that aren't already
+-- something else get shown as something.
+-- Things that _are_ something else get (e.g. community centres) get left as
+-- that something else.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["healthcare"]            == "vaccination_centre" )  or
+        ( object.tags["healthcare:speciality"] == "vaccination"        )) and
+       (  object.tags["amenity"]               == nil                   ) and
+       (  object.tags["leisure"]               == nil                   ) and
+       (  object.tags["shop"]                  == nil                   )) then
+      object.tags["amenity"] = "clinic"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Clinics were not previously handled but are now passed through as doctors 
+-- with a suffix.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "clinic" ) then
+      object.tags["amenity"] = "doctors"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(clinic)'
+      else
+         object.tags.name = object.tags['name'] .. ' (clinic)'
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

@@ -7,6 +7,11 @@ Show landuse=grass as green with a "(grass)" suffix.
 Show names of cafes.
 Show various things as meadows.
 Show "(farmyard)" in a suffix on farmyard names.
+Show names on any genuine biergartens.
+Show names on doctors and hospitals.  Show clinics as doctors.
+Show names on various food places.
+Show "(rest accomm)" as a suffix on restaurants with rooms and "(rest)" on others.
+Show "(cafe)" as a suffix on cafes.
 
 ## 5/11/2022
 Show names for guesthouses.

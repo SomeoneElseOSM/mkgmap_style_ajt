@@ -12,7 +12,8 @@ Show names on doctors and hospitals.  Show clinics as doctors.
 Show names on various food places.
 Show "(rest accomm)" as a suffix on restaurants with rooms and "(rest)" on others.
 Show "(cafe)" as a suffix on cafes.
-Append "(atm)" to ATMs
+Append "(atm)" to ATMs.
+Show name on libraries, and also render a suffix for them and public bookcases.
 
 ## 5/11/2022
 Show names for guesthouses.

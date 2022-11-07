@@ -1382,6 +1382,28 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Add suffix to libraries and public bookcases
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "library" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(library)'
+      else
+         object.tags.name = object.tags['name'] .. ' (library)'
+      end
+   end
+
+   if (( object.tags["amenity"] == "book_exchange"   ) or
+       ( object.tags["amenity"] == "public_bookcase" )) then
+      object.tags["amenity"] = "library"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(book exchange)'
+      else
+         object.tags.name = object.tags['name'] .. ' (book exchange)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

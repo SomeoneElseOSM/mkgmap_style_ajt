@@ -1334,6 +1334,45 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- If something is mapped both as a supermarket and a pharmacy, suppress the
+-- tags for the latter.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "supermarket" ) and
+       ( object.tags["amenity"] == "pharmacy"    )) then
+      object.tags["amenity"] = nil
+   end
+
+   if ((( object.tags["healthcare"] == "pharmacy"                   )  and
+        ( object.tags["amenity"]    == nil                          )) or
+       (( object.tags["shop"]       == "cosmetics"                  )  and
+        ( object.tags["pharmacy"]   == "yes"                        )  and
+        ( object.tags["amenity"]    == nil                          )) or
+       (( object.tags["shop"]       == "chemist"                    )  and
+        ( object.tags["pharmacy"]   == "yes"                        )  and
+        ( object.tags["amenity"]    == nil                          )) or
+       (( object.tags["amenity"]    == "clinic"                     )  and
+        ( object.tags["pharmacy"]   == "yes"                        ))) then
+      object.tags["amenity"] = "pharmacy"
+   end
+
+   if ( object.tags["amenity"] == "pharmacy" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(pharmacy)'
+      else
+         object.tags.name = object.tags['name'] .. ' (pharmacy)'
+      end
+   end
+
+   if ( object.tags["shop"] == "chemist" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(chemist)'
+      else
+         object.tags.name = object.tags['name'] .. ' (chemist)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

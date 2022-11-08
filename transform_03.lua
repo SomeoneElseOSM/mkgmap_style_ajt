@@ -1741,6 +1741,8 @@ function ott.process_way(object)
 -- road that this is a sidewalk for), or "is_sidepath=yes".
 -- ----------------------------------------------------------------------------
    if ((( object.tags["footway"]     == "sidewalk" )  or
+        ( object.tags["cycleway"]    == "sidewalk" )  or
+	( object.tags["cycleway"]    == "sidepath" )  or
         ( object.tags["is_sidepath"] == "yes"      )) and
        (  object.tags["name"]    ~= nil             )) then
       object.tags["name"] = nil

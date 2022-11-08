@@ -13,7 +13,34 @@ Most map features are transferred in the same way as mkgmap's standard style.  T
 
 The created maps are routable.
 
+Extra information is added to a tag in round brackets, for example "(meadow)".
+
+Tags useful for quality control are added to a tag in square brackets, for example "[fix]".
+
 ## Processing for specific objects
+
+### Roads and Paths
+
+Some corridors are shown as paths.
+
+Some rare highway tags are consolidated into "track".
+
+Golf features are shown as paths or tracks if no other appropriate tags exist.
+
+Wide paths are shown as tracks.
+Narrow tracks are shown as paths.
+
+Narrow tertiary roads are shown as unclassified.
+
+Show highway=busway as highway=service.
+
+Roads with different names on left and right are shown correctly.
+
+Unusual access tags such as "access:foot" are used if no more usual equivalent (here "foot") is available.
+
+Negative access tags (private / no) are consolidated to make value checks simpler.
+
+These maps are designed for foot access, so use tags such as "foot" in place of "access".
 
 ### Infrastructure and industrial landuse
 
@@ -41,16 +68,16 @@ Mass rocks are consolidated into "man_made=marker" and "(mass rock)" is appended
 
 The current use is appended to the name, for example "(fmr phone defib)".
 
-## Diplomatic
+### Diplomatic
 
 End-user diplomatic things are consolidated into "amenity=embassy".  Others (e.g. "diplomatic=trade_delegation") are shown as offices.
 
-## Wells
+### Wells
 
 Holy wells are shown as springs and have "(holy well)" appended to the name
 Ordinary wells are shown as springs and have "(well)" appended to the name
 
-## Grass etc. landuse
+### Grass etc. landuse
 
 Unnamed "amenity=biergarten" are shown as pub beer gardens, which is all they likely are.
 
@@ -77,21 +104,36 @@ Farmyards and greenhouse horticulture are consolidated into "landuse=farmyard" a
 
 Dog parks and "leisure=court" are shown as "leisure=pitch".
 
-## Tourism
+### Tourism
 
 Bird and wildlife hides are shown as tourist information with a suffix added to the name.
 
-## Trees
+Guideposts, fingerposts and markers have "GP" appended to the name.
+
+Route markers have "RM" appended to the name.
+
+Various types of boards and maps have "B" appended to to name.
+
+Signs have "S" appended to to name.
+
+"destination" features have "DEST" appended.  "intermediary" ones have "INT".
+
+Guideposts that are "public right of way" markers have "PROW" appended.
+
+Guideposts that sign a route have "ROUTE" appended.
+
+
+### Trees
 
 "forestry" is handled as "forest".  Various tags are consolidated into "wood".  "operator" is appended to the name, if present.
 
-## Shops
+### Shops
 
 Some rarer tags are consolidated into "shop=car", "shop=car_repair" and "shop=bicycle".
 Building societies are consolidated into banks.
 ATMs have "(ATM)" added as a suffix.
 
-## Pubs, restaurants etc.
+### Pubs, restaurants etc.
 
 Pubs that are inaccessible (e.g. "access=no") are hidden.
 Things that are both hotels and pubs are treated as pubs that do accommodation.
@@ -115,12 +157,16 @@ Pubs that are allegedly still "closed due to covid" have an appropriate suffix a
 
 Restaurants have "(rest)" added as a suffix, or "(rest accomm)" if they have rooms.
 
-## Healthcare
+### Healthcare
 
 An appropriate suffix is added for doctors, dentists, hospitals and clinics.
 Vaccination centres are shown as clinics if no other tag applies.
 Pharmacies and chemists have a suffix added.
 
-## Other
+### Other
 
 Libraries and public bookcases are shown as libraries with an appropriate suffix.
+
+## Quality Control
+
+Objects with a fixme tag have "[fix]" appended to the name.

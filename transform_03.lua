@@ -1724,6 +1724,7 @@ function ott.process_way(object)
 -- Render narrow tertiary roads as unclassified
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]    == "tertiary"   )  and
+       ( object.tags["oneway"]     == nil          )  and
        ((( tonumber(object.tags["width"])    or 4 ) <=  3 ) or
         (( tonumber(object.tags["maxwidth"]) or 4 ) <=  3 ))) then
       object.tags["highway"] = "unclassified"

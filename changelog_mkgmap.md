@@ -14,6 +14,7 @@ Show "(rest accomm)" as a suffix on restaurants with rooms and "(rest)" on other
 Show "(cafe)" as a suffix on cafes.
 Append "(atm)" to ATMs.
 Show name on libraries, and also render a suffix for them and public bookcases.
+Don't show narrow tertiary roads as unclassified if a oneway tag is set.
 
 ## 5/11/2022
 Show names for guesthouses.

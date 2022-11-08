@@ -1885,7 +1885,7 @@ function ott.process_way(object)
 -- Append M to roads if no speed limit defined
 -- Append L if not known if lit
 -- Append S if not known if sidewalk
--- Append V if known if sidewalk but known if verge
+-- Append V no sidewalk, but not known if verge
 -- ----------------------------------------------------------------------------
     street_appendix = ''
 

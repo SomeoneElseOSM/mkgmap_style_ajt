@@ -21,9 +21,24 @@ Tags useful for quality control are added to a tag in square brackets, for examp
 
 ### Roads and Paths
 
+Various designations are appended.  In England and Wales:
+
+* PF  Public Footpath
+* PB  Bridleways
+* RB  Restricted Byway
+* BY  Byway Open to All Traffic
+
+In Scotland:
+
+* CP  Core paths
+
+Informal paths have "(I)" appended.
+
 Some corridors are shown as paths.
 
 Some rare highway tags are consolidated into "track".
+
+Various tunnel tags are consolidated into "yes.
 
 Golf features are shown as paths or tracks if no other appropriate tags exist.
 
@@ -35,6 +50,8 @@ Narrow tertiary roads are shown as unclassified.
 Show highway=busway as highway=service.
 
 Roads with different names on left and right are shown correctly.
+
+Don't show names on things that could be reasonably be thought to be sidewalks.
 
 Unusual access tags such as "access:foot" are used if no more usual equivalent (here "foot") is available.
 
@@ -104,6 +121,10 @@ Farmyards and greenhouse horticulture are consolidated into "landuse=farmyard" a
 
 Dog parks and "leisure=court" are shown as "leisure=pitch".
 
+### Barriers
+
+Fences, hedges and walls are all shown as black lines.  Fences have "(fence)" appended; hedges "(hedge)" and walls "(wall)".
+
 ### Tourism
 
 Bird and wildlife hides are shown as tourist information with a suffix added to the name.
@@ -126,6 +147,8 @@ Guideposts that sign a route have "ROUTE" appended.
 ### Trees
 
 "forestry" is handled as "forest".  Various tags are consolidated into "wood".  "operator" is appended to the name, if present.
+
+Broadleaved woodland has "B" appended; needleleaved has "C" and mixed "M".
 
 ### Shops
 
@@ -170,3 +193,21 @@ Libraries and public bookcases are shown as libraries with an appropriate suffix
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.
+
+Roads have various letters appended:
+
+* M  No speed limit defined where one would be expected.
+* L  Not known if lit
+* S  Not known if sidewalk
+* V  No sidewalk, but not known if sidewalk
+
+"[RD]" is appended to any "highway=road".
+
+"[A]" is appended to footways etc. if no "foot" tag and one is expected.
+
+Paths and tracks have various things appended for other missing tags:
+
+* U  No surface tag
+* O  No smoothness tag
+* G  No tracktype tag
+

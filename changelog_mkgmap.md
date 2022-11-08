@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.
 Show landuse=grass as green with a "(grass)" suffix.
 Show names of cafes.
@@ -16,7 +16,7 @@ Append "(atm)" to ATMs.
 Show name on libraries, and also render a suffix for them and public bookcases.
 Don't show narrow tertiary roads as unclassified if a oneway tag is set.
 
-## 5/11/2022
+## 05/11/2022
 Show names for guesthouses.
 Don't show "[a]" as QA on intermittent paths and tracks.
 Show names on meadows etc., and indicate type on various types.

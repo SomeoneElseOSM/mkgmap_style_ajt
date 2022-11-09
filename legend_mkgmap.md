@@ -188,9 +188,11 @@ Pharmacies and chemists have a suffix added.
 
 ### Other
 
-Libraries and public bookcases are shown as libraries with an appropriate suffix.
+Libraries and public bookcases are shown as libraries with an appropriate suffix to the name.
 
-Clocks (tower, pedestal and sundial) are shown with an appropriate suffix.
+Clocks (tower, pedestal and sundial) are shown as a dot with an appropriate suffix.
+
+Left luggage, parcel lockers and vending machines are all shown as a dot with an appropriate suffix.
 
 ## Quality Control
 

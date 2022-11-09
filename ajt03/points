@@ -191,7 +191,7 @@ leisure=water_park [0x2b04 resolution 21]
 man_made=tower [0x6411 resolution 21]
 man_made=mast [0x6411 resolution 21]
 man_made=marker {name '${name}'}  [0x4c00 resolution 20]
-man_made=clock {name '${name}'}  [0x2f14 resolution 20]
+man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
 natural=beach [0x6604 resolution 21]

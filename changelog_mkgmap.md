@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Show various clocks with an appropriate suffix.
+Show left luggage, parcel lockers, vending machines (with suffix of what sold if appropriate).
 
 ## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.

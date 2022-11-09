@@ -1409,7 +1409,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "clock"   )  and
        ( object.tags["display"] == "sundial" )) then
-      object.tags["man_made"] = "clock"
+      object.tags["man_made"] = "thing"
       object.tags["amenity"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -1425,7 +1425,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          ( object.tags["amenity"]    == "clock"       ))) or
        ((  object.tags["amenity"]    == "clock"        )  and
         (  object.tags["support"]    == "tower"        ))) then
-      object.tags["man_made"] = "clock"
+      object.tags["man_made"] = "thing"
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -1441,7 +1441,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
         ( object.tags["support"]    == "stone_pillar" )   or
         ( object.tags["support"]    == "plinth"       )   or
         ( object.tags["support"]    == "column"       ))) then
-      object.tags["man_made"] = "clock"
+      object.tags["man_made"] = "thing"
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -1450,6 +1450,94 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          object.tags.name = object.tags['name'] .. ' (clockpedestal)'
       end
    end
+
+-- ----------------------------------------------------------------------------
+-- Left luggage
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "luggage_locker"  ) or
+       ( object.tags["shop"]    == "luggage_locker"  ) or
+       ( object.tags["shop"]    == "luggage_lockers" )) then
+      object.tags["man_made"]  = "thing"
+      object.tags["amenity"] = nil
+      object.tags["shop"]    = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(left luggage)'
+      else
+         object.tags.name = object.tags['name'] .. ' (left luggage)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Parcel lockers
+-- ----------------------------------------------------------------------------
+   if (((  object.tags["amenity"]         == "vending_machine"                )  and
+        (( object.tags["vending"]         == "parcel_pickup;parcel_mail_in"  )   or
+         ( object.tags["vending"]         == "parcel_mail_in;parcel_pickup"  )   or
+         ( object.tags["vending"]         == "parcel_mail_in"                )   or
+         ( object.tags["vending"]         == "parcel_pickup"                 )   or
+         ( object.tags["vending_machine"] == "parcel_pickup"                 )))  or
+       (   object.tags["amenity"]         == "parcel_box"                      )  or
+       (   object.tags["amenity"]         == "parcel_pickup"                   )) then
+      object.tags["man_made"]  = "thing"
+      object.tags["amenity"]  = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(parcel locker)'
+      else
+         object.tags.name = object.tags['name'] .. ' (parcel locker)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Excrement bags
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "vending_machine" ) and
+       ( object.tags["vending"] == "excrement_bags"  )) then
+      object.tags["man_made"]  = "thing"
+      object.tags["amenity"]  = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(excrememnt bags)'
+      else
+         object.tags.name = object.tags['name'] .. ' (excrememnt bags)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Some vending machines get the thing sold as the label.
+-- ----------------------------------------------------------------------------
+   if (  object.tags["amenity"] == "vending_machine"  ) then
+      object.tags["man_made"]  = "thing"
+      object.tags["amenity"]  = nil
+
+      if (( object.tags["vending"] == "milk"            )  or
+          ( object.tags["vending"] == "eggs"            )  or
+          ( object.tags["vending"] == "potatoes"        )  or
+          ( object.tags["vending"] == "honey"           )  or
+          ( object.tags["vending"] == "cheese"          )  or
+          ( object.tags["vending"] == "vegetables"      )  or
+          ( object.tags["vending"] == "fruit"           )  or
+          ( object.tags["vending"] == "food"            )  or
+          ( object.tags["vending"] == "photos"          )  or
+          ( object.tags["vending"] == "maps"            )  or
+          ( object.tags["vending"] == "newspapers"      )) then
+         
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = "(" .. object.tags["vending"] .. ")"
+         else
+            object.tags["name"] = object.tags['name'] .. " (" .. object.tags["vending"] .. ")"
+         end
+      else
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(vending)'
+         else
+            object.tags.name = object.tags['name'] .. ' (vending)'
+         end
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

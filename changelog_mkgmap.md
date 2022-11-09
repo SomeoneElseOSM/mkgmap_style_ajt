@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Show various clocks with an appropriate suffix.
+
 ## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.
 Show landuse=grass as green with a "(grass)" suffix.

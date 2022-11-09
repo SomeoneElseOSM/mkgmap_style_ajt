@@ -190,6 +190,8 @@ Pharmacies and chemists have a suffix added.
 
 Libraries and public bookcases are shown as libraries with an appropriate suffix.
 
+Clocks (tower, pedestal and sundial) are shown with an appropriate suffix.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

@@ -1404,6 +1404,52 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Various clocks
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "clock"   )  and
+       ( object.tags["display"] == "sundial" )) then
+      object.tags["man_made"] = "marker"
+      object.tags["amenity"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(sundial)'
+      else
+         object.tags.name = object.tags['name'] .. ' (sundial)'
+      end
+   end
+
+   if (((  object.tags["man_made"]   == "tower"        )  and
+        (( object.tags["tower:type"] == "clock"       )   or
+         ( object.tags["building"]   == "clock_tower" )   or
+         ( object.tags["amenity"]    == "clock"       ))) or
+       ((  object.tags["amenity"]    == "clock"        )  and
+        (  object.tags["support"]    == "tower"        ))) then
+      object.tags["man_made"] = "marker"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(clocktower)'
+      else
+         object.tags.name = object.tags['name'] .. ' (clocktower)'
+      end
+   end
+
+   if ((  object.tags["amenity"]    == "clock"         )  and
+       (( object.tags["support"]    == "pedestal"     )   or
+        ( object.tags["support"]    == "pole"         )   or
+        ( object.tags["support"]    == "stone_pillar" )   or
+        ( object.tags["support"]    == "plinth"       )   or
+        ( object.tags["support"]    == "column"       ))) then
+      object.tags["man_made"] = "marker"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(clockpedestal)'
+      else
+         object.tags.name = object.tags['name'] .. ' (clockpedestal)'
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

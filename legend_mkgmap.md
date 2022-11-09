@@ -194,6 +194,8 @@ Clocks (tower, pedestal and sundial) are shown as a dot with an appropriate suff
 
 Left luggage, parcel lockers and vending machines are all shown as a dot with an appropriate suffix.
 
+Pianos and musical instruments are shown.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

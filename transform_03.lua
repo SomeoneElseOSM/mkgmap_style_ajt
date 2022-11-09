@@ -527,7 +527,7 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Render unnamed amenity=biergarten as gardens, which is all they likely are.
+-- Show unnamed amenity=biergarten as gardens, which is all they likely are.
 -- ----------------------------------------------------------------------------
    if ((  object.tags["amenity"] == "biergarten"   )  and
        (( object.tags["name"]    == nil           )   or
@@ -854,7 +854,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
--- Things that are both hotels, B&Bs etc. and pubs should render as pubs, 
+-- Things that are both hotels, B&Bs etc. and pubs should show as pubs, 
 -- because I'm far more likely to be looking for the latter than the former.
 -- This is done by removing the tourism tag for them.
 --
@@ -864,7 +864,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 -- Treat things that were pubs but are now something else as whatever else 
 -- they now are.
 --
--- If a real_ale tag has got stuck on something unexpected, don't render that
+-- If a real_ale tag has got stuck on something unexpected, don't show that
 -- as a pub.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]   == "pub"   ) and
@@ -956,7 +956,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
--- If something has been tagged both as a brewery and a pub or bar, render as
+-- If something has been tagged both as a brewery and a pub or bar, show as
 -- a pub with a microbrewery.
 -- ----------------------------------------------------------------------------
    if ((( object.tags["amenity"]    == "pub"     )  or
@@ -970,8 +970,8 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
--- If a food place has a real_ale tag, also add a food tag an let the real_ale
--- tag render.
+-- If a food place has a real_ale tag, also add a food tag and let the real_ale
+-- tag control what is shown.
 -- ----------------------------------------------------------------------------
    if ((( object.tags["amenity"]  == "cafe"       )  or
         ( object.tags["amenity"]  == "restaurant" )) and
@@ -1246,7 +1246,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
--- Render building societies as banks.  Also shop=bank and credit unions.
+-- Show building societies as banks.  Also shop=bank and credit unions.
 -- No suffix added to name.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "building_society" ) or
@@ -1498,12 +1498,11 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["amenity"]  = nil
 
       if ( object.tags['name'] == nil ) then
-         object.tags.name = '(excrememnt bags)'
+         object.tags.name = '(excrement bags)'
       else
-         object.tags.name = object.tags['name'] .. ' (excrememnt bags)'
+         object.tags.name = object.tags['name'] .. ' (excrement bags)'
       end
    end
-
 
 -- ----------------------------------------------------------------------------
 -- Some vending machines get the thing sold as the label.
@@ -1538,6 +1537,30 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Show amenity=piano and amenity=musical_instrument
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "piano" ) then
+      object.tags["man_made"]  = "thing"
+      object.tags["amenity"]  = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(piano)'
+      else
+         object.tags.name = object.tags['name'] .. ' (piano)'
+      end
+   end
+
+   if ( object.tags["amenity"] == "musical_instrument" ) then
+      object.tags["man_made"]  = "thing"
+      object.tags["amenity"]  = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(musical instrument)'
+      else
+         object.tags.name = object.tags['name'] .. ' (musical instrument)'
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
@@ -1712,11 +1735,11 @@ function ott.process_way(object)
 -- Consolidate some rare highway types into track
 --
 -- The "bywayness" of something should be handled by designation now.  byway
--- isn't otherwise rendered (and really should no longer be used), so change 
+-- isn't otherwise shown (and really should no longer be used), so change 
 -- to track (which is what it probably will be).
 --
 -- "gallop" makes sense as a tag (it really isn't like anything else), but for
--- rendering change to "track".  "unsurfaced" makes less sense; change to
+-- our purposes change to "track".  "unsurfaced" makes less sense; change to
 -- "track" also.
 --
 -- "track" will be changed into something else lower down 
@@ -1743,7 +1766,7 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Where a wide width is specified on a normally narrow path, render as wider
+-- Where a wide width is specified on a normally narrow path, show as wider
 --
 -- Note that "steps" and "footwaysteps" are unchanged by the 
 -- pathwide / path choice below:
@@ -1764,7 +1787,7 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Where a narrow width is specified on a normally wide track, render as
+-- Where a narrow width is specified on a normally wide track, show as
 -- narrower
 -- ----------------------------------------------------------------------------
    if ( object.tags["highway"] == "track" ) then
@@ -1855,7 +1878,7 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Render narrow tertiary roads as unclassified
+-- Show narrow tertiary roads as unclassified
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]    == "tertiary"   )  and
        ( object.tags["oneway"]     == nil          )  and
@@ -1865,14 +1888,14 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Render bus-only service roads tagged as "highway=busway" as service roads.
+-- Show bus-only service roads tagged as "highway=busway" as service roads.
 -- ----------------------------------------------------------------------------
    if (object.tags["highway"] == "busway") then
       object.tags["highway"] = "service"
    end
 
 -- ----------------------------------------------------------------------------
--- Remove name from footway=sidewalk (we expect it to be rendered via the
+-- Remove name from footway=sidewalk (we expect it to be shown via the
 -- road that this is a sidewalk for), or "is_sidepath=yes".
 -- ----------------------------------------------------------------------------
    if ((( object.tags["footway"]     == "sidewalk" )  or
@@ -1884,7 +1907,7 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Tunnel values - render as "yes" if appropriate.
+-- Tunnel values - show as "yes" if appropriate.
 -- ----------------------------------------------------------------------------
    if (( object.tags["tunnel"] == "culvert"             ) or
        ( object.tags["tunnel"] == "covered"             ) or

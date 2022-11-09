@@ -1409,7 +1409,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "clock"   )  and
        ( object.tags["display"] == "sundial" )) then
-      object.tags["man_made"] = "marker"
+      object.tags["man_made"] = "clock"
       object.tags["amenity"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -1425,7 +1425,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          ( object.tags["amenity"]    == "clock"       ))) or
        ((  object.tags["amenity"]    == "clock"        )  and
         (  object.tags["support"]    == "tower"        ))) then
-      object.tags["man_made"] = "marker"
+      object.tags["man_made"] = "clock"
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -1441,7 +1441,7 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
         ( object.tags["support"]    == "stone_pillar" )   or
         ( object.tags["support"]    == "plinth"       )   or
         ( object.tags["support"]    == "column"       ))) then
-      object.tags["man_made"] = "marker"
+      object.tags["man_made"] = "clock"
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then

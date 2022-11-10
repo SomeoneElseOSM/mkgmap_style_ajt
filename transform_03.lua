@@ -1747,6 +1747,14 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["railway"] = "narrow_gauge"
    end
 
+-- ----------------------------------------------------------------------------
+-- Goods Conveyors - render as narrow_gauge railway.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "goods_conveyor" ) then
+      object.tags["railway"] = "narrow_gauge"
+   end
+
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

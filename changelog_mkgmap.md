@@ -5,6 +5,9 @@ This page describes changes made to the "03" map style [here](https://github.com
 Show various clocks with an appropriate suffix.
 Show left luggage, parcel lockers, vending machines (with suffix of what sold if appropriate).
 Show musical instruments and pianos.
+Show motorcycle and bicycle parking.
+Show laybies as parking.
+Append "(pay)" to the end of for-pay parking.
 
 ## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.

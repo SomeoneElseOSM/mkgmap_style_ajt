@@ -196,6 +196,9 @@ Left luggage, parcel lockers and vending machines are all shown as a dot with an
 
 Pianos and musical instruments are shown.
 
+Motorcycle and bicycle parking are show, with a suffix if for pay.  
+Show laybies as parking.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

@@ -1563,6 +1563,87 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- Motorcycle parking
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "parking"    )  and
+       ( object.tags["parking"] == "motorcycle" )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(motorcycle parking)'
+      else
+         object.tags.name = object.tags['name'] .. ' (motorcycle parking)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show amenity=layby as parking.
+-- highway=rest_area is used a lot in the UK for laybies, so map that over too.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "layby"     ) or
+       ( object.tags["highway"] == "rest_area" )) then
+      object.tags["amenity"] = "parking"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Lose any "access=permissive" on parking; it should not be greyed out as it
+-- is "somewhere we can park".
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "parking"    ) and
+       ( object.tags["access"]  == "permissive" )) then
+      object.tags["access"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show for-pay parking areas differently.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "parking"  ) and
+       (( object.tags["fee"]     ~= nil       )  and
+        ( object.tags["fee"]     ~= "no"      )  and
+        ( object.tags["fee"]     ~= "No"      )  and
+        ( object.tags["fee"]     ~= "none"    )  and
+        ( object.tags["fee"]     ~= "None"    )  and
+        ( object.tags["fee"]     ~= "Free"    )  and
+        ( object.tags["fee"]     ~= "free"    )  and
+        ( object.tags["fee"]     ~= "0"       ))) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(pay)'
+      else
+         object.tags.name = object.tags['name'] .. ' (pay)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show bicycle_parking areas, and 
+-- show for-pay bicycle_parking areas differently.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "bicycle_parking" ) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(bicycle parking)'
+      else
+         object.tags.name = object.tags['name'] .. ' (bicycle parking)'
+      end
+
+      if (( object.tags["fee"]     ~= nil               )  and
+          ( object.tags["fee"]     ~= "no"              )  and
+          ( object.tags["fee"]     ~= "No"              )  and
+          ( object.tags["fee"]     ~= "none"            )  and
+          ( object.tags["fee"]     ~= "None"            )  and
+          ( object.tags["fee"]     ~= "Free"            )  and
+          ( object.tags["fee"]     ~= "free"            )  and
+          ( object.tags["fee"]     ~= "0"               )) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(pay)'
+         else
+            object.tags.name = object.tags['name'] .. ' (pay)'
+         end
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

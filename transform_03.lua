@@ -527,6 +527,17 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Beer gardens etc.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "beer_garden" ) or
+       ( object.tags["landuse"] == "beer_garden" ) or
+       ( object.tags["leisure"] == "beer_garden" )) then
+      object.tags["amenity"] = nil
+      object.tags["leisure"] = "garden"
+      object.tags["garden"]  = "beer_garden"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show unnamed amenity=biergarten as gardens, which is all they likely are.
 -- ----------------------------------------------------------------------------
    if ((  object.tags["amenity"] == "biergarten"   )  and
@@ -1704,6 +1715,38 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          end
       end
    end
+
+-- ----------------------------------------------------------------------------
+-- Render amenity=leisure_centre as leisure=sports_centre
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "leisure_centre" ) then
+      object.tags["leisure"] = "sports_centre"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handle razed railways and old inclined_planes as dismantled.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"]  == "razed"          ) or
+       ( object.tags["historic"] == "inclined_plane" )) then
+      object.tags["railway"] = "dismantled"
+   end
+
+-- ----------------------------------------------------------------------------
+-- The "OpenRailwayMap" crowd prefer the less popular railway:preserved=yes
+-- instead of railway=preserved (which has the advantage of still allowing
+-- e.g. narrow_gauge in addition to rail).
+-- ----------------------------------------------------------------------------
+   if ( object.tags["railway:preserved"] == "yes" ) then
+      object.tags["railway"] = "preserved"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Change miniature railways (not handled in the style file) to narrow_gauge.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["railway"] == "miniature" ) then
+      object.tags["railway"] = "narrow_gauge"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

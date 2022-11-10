@@ -201,6 +201,12 @@ Show laybies as parking.
 
 Toilets are shown with a suffix indicating pay or free, male or female etc.
 
+amenity=leisure_centre is shown as leisure=sports_centre.
+
+Razed railways and old inclined_planes are shown as dismantled.
+
+Miniature railways (not handled in the style file) are shown as narrow_gauge.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

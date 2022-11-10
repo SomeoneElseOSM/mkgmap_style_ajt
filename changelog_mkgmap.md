@@ -9,6 +9,9 @@ Show motorcycle and bicycle parking.
 Show laybies as parking.
 Append "(pay)" to the end of for-pay parking.
 Show toilets with a suffix indicating pay or free, male or female etc.
+Show amenity=leisure_centre as leisure=sports_centre.
+Handle razed railways and old inclined_planes as dismantled.
+Change miniature railways (not handled in the style file) to narrow_gauge.
 
 ## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.

@@ -108,7 +108,7 @@ amenity=taxi [0x2f17 resolution 20]
 amenity=telephone {name '${name}'} [0x5100 resolution 21 default_name 'Telephone']
 amenity=theatre [0x2d01 resolution 21]
 amenity=toilets & tourism=information [0x2f0c resolution 20]
-amenity=toilets [0x4e00 resolution 21 default_name 'Toilets' ]
+amenity=toilets {name '${name}'}  [0x4e00 resolution 21]
 amenity=townhall [0x3003 resolution 21 default_name 'Townhall' ]
 amenity=university [0x2c05 resolution 21]
 # amenity=zoo is superceded by tourism=zoo

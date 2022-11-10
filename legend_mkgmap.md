@@ -199,6 +199,8 @@ Pianos and musical instruments are shown.
 Motorcycle and bicycle parking are show, with a suffix if for pay.  
 Show laybies as parking.
 
+Toilets are shown with a suffix indicating pay or free, male or female etc.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

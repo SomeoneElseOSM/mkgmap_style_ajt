@@ -8,6 +8,7 @@ Show musical instruments and pianos.
 Show motorcycle and bicycle parking.
 Show laybies as parking.
 Append "(pay)" to the end of for-pay parking.
+Show toilets with a suffix indicating pay or free, male or female etc.
 
 ## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.

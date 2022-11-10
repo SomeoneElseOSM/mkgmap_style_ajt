@@ -1642,6 +1642,68 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Render for-pay toilets differently to free ones, and if male vs female is
+-- known, show that too.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "toilets" ) then
+      if (( object.tags["fee"]     ~= nil       )  and
+          ( object.tags["fee"]     ~= "no"      )  and
+          ( object.tags["fee"]     ~= "No"      )  and
+          ( object.tags["fee"]     ~= "none"    )  and
+          ( object.tags["fee"]     ~= "None"    )  and
+          ( object.tags["fee"]     ~= "Free"    )  and
+          ( object.tags["fee"]     ~= "free"    )  and
+          ( object.tags["fee"]     ~= "0"       )) then
+         if (( object.tags["male"]   == "yes" ) and
+             ( object.tags["female"] ~= "yes" )) then
+            if ( object.tags['name'] == nil ) then
+               object.tags.name = '(pay m)'
+            else
+               object.tags.name = object.tags['name'] .. ' (pay m)'
+            end
+         else
+            if (( object.tags["female"] == "yes"       ) and
+                ( object.tags["male"]   ~= "yes"       )) then
+               if ( object.tags['name'] == nil ) then
+                  object.tags.name = '(pay w)'
+               else
+                  object.tags.name = object.tags['name'] .. ' (pay w)'
+               end
+            else
+               if ( object.tags['name'] == nil ) then
+                  object.tags.name = '(pay)'
+               else
+                  object.tags.name = object.tags['name'] .. ' (pay)'
+               end
+            end
+         end
+      else
+         if (( object.tags["male"]   == "yes" ) and
+             ( object.tags["female"] ~= "yes" )) then
+            if ( object.tags['name'] == nil ) then
+               object.tags.name = '(free m)'
+            else
+               object.tags.name = object.tags['name'] .. ' (free m)'
+            end
+         else
+            if (( object.tags["female"] == "yes"       ) and
+                ( object.tags["male"]   ~= "yes"       )) then
+               if ( object.tags['name'] == nil ) then
+                  object.tags.name = '(free w)'
+               else
+                  object.tags.name = object.tags['name'] .. ' (free w)'
+               end
+            else
+               if ( object.tags['name'] == nil ) then
+                  object.tags.name = '(free)'
+               else
+                  object.tags.name = object.tags['name'] .. ' (free)'
+               end
+            end
+         end
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

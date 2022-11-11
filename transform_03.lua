@@ -1772,6 +1772,22 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Sluice gates - send through as man_made=thing and append name
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["waterway"]     == "sluice_gate"      ) or
+       (  object.tags["waterway"]     == "sluice"           ) or
+       (( object.tags["waterway"]     == "flow_control"    )  and
+        ( object.tags["flow_control"] == "sluice_gate"     ))) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(sluice)'
+      else
+         object.tags.name = object.tags['name'] .. ' (sluice)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
@@ -1789,9 +1805,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
     return object
 end
 
---
+-- ----------------------------------------------------------------------------
 -- "node" function
---
+-- ----------------------------------------------------------------------------
 function ott.process_node(object)
     object = process_all(object)
 
@@ -1897,6 +1913,20 @@ function ott.process_node(object)
             object.tags.name = '(' .. information_appendix .. ')'
         else
             object.tags.name = object.tags['name'] .. ' (' .. information_appendix .. ')'
+        end
+    end
+
+-- ----------------------------------------------------------------------------
+-- Point weirs are sent through as points with a name of "weir"
+-- ----------------------------------------------------------------------------
+    if ( object.tags['waterway'] == 'weir' ) then
+        object.tags["man_made"] = "thing"
+        object.tags["waterway"] = nil
+
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(weir)'
+        else
+            object.tags.name = object.tags['name'] .. ' (weir)'
         end
     end
 
@@ -2247,6 +2277,33 @@ function ott.process_way(object)
             object.tags.name = object.tags['name'] .. ' (wall)'
         end
     end
+
+-- ----------------------------------------------------------------------------
+-- Linear weirs are sent through as "county lines" with a name of "weir"
+-- Likewise floating barriers.
+-- ----------------------------------------------------------------------------
+    if ( object.tags['waterway'] == 'weir' ) then
+        object.tags["barrier"] = "wall"
+        object.tags["waterway"] = nil
+
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(weir)'
+        else
+            object.tags.name = object.tags['name'] .. ' (weir)'
+        end
+    end
+
+    if ( object.tags['waterway'] == 'floating_barrier' ) then
+        object.tags["barrier"] = "wall"
+        object.tags["waterway"] = nil
+
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(floating barrier)'
+        else
+            object.tags.name = object.tags['name'] .. ' (floating barrier)'
+        end
+    end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways

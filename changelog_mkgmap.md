@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 10/11/2022
 Show various clocks with an appropriate suffix.
 Show left luggage, parcel lockers, vending machines (with suffix of what sold if appropriate).
 Show musical instruments and pianos.
@@ -13,6 +13,7 @@ Show amenity=leisure_centre as leisure=sports_centre.
 Handle razed railways and old inclined_planes as dismantled.
 Change miniature railways (not handled in the style file) to narrow_gauge.
 Show names on point water features (waterfalls, lock gates).
+Show sluice gates, weirs and floating barriers, with names.
 
 ## 08/11/2022
 Show grass-covered outdoor seating areas as green with an "(outdoor grass)" suffix.

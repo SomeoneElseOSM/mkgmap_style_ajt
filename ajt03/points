@@ -158,7 +158,7 @@ barrier=cycle_barrier [0x2f14 resolution 23 default_name 'Cycle Barrier']
 barrier=horse_barrier [0x2f14 resolution 23 default_name 'Horse Barrier']
 barrier=horse_stile [0x2f14 resolution 23 default_name 'Horse Stile']
 barrier=ford [0x6512 resolution 21]
-waterway=lock_gate [0x1607 resolution 21]
+waterway=lock_gate {name '${name}'} [0x1607 resolution 21]
 
 highway=motorway_junction { name '${ref} ${name}' | '${ref}' | '${name}' }
 highway=motorway_junction [0x2000 resolution 20]
@@ -208,7 +208,7 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 natural=stream [0x6512 resolution 21]
 natural=volcano [0x2c0c resolution 21]
 natural=water & name=* [0x6603 resolution 21]
-natural=waterfall | waterway=waterfall [0x6508 resolution 21]
+waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=wetland & name=* [0x6513 resolution 21]
 natural=wood & name=* [0x6618 resolution 21]
 

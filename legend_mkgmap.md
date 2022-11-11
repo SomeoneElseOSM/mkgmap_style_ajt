@@ -207,6 +207,8 @@ Razed railways and old inclined_planes are shown as dismantled.
 
 Miniature railways (not handled in the style file) are shown as narrow_gauge.
 
+Point water features (waterfalls, lock gates) are displayed with a name.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

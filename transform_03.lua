@@ -1754,6 +1754,23 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["railway"] = "narrow_gauge"
    end
 
+-- ----------------------------------------------------------------------------
+-- Waterfalls
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "waterfall" ) then
+      object.tags["waterway"] = "waterfall"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Lock gtes
+-- ----------------------------------------------------------------------------
+   if ( object.tags["waterway"] == "lock_gate" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(lock gate)'
+      else
+         object.tags.name = object.tags['name'] .. ' (lock gate)'
+      end
+   end
 
 
 -- ----------------------------------------------------------------------------

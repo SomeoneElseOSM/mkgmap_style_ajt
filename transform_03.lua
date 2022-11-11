@@ -1788,6 +1788,51 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Historic canal
+-- A former canal can, like an abandoned railway, still be a major
+-- physical feature.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"]           == "canal"           ) or
+       ( object.tags["historic:waterway"]  == "canal"           ) or
+       ( object.tags["historic"]           == "leat"            ) or
+       ( object.tags["disused:waterway"]   == "canal"           ) or
+       ( object.tags["disused"]            == "canal"           ) or
+       ( object.tags["abandoned:waterway"] == "canal"           ) or
+       ( object.tags["waterway"]           == "disused_canal"   ) or
+       ( object.tags["waterway"]           == "historic_canal"  ) or
+       ( object.tags["waterway"]           == "abandoned_canal" ) or
+       ( object.tags["waterway"]           == "former_canal"    ) or
+       ( object.tags["waterway:historic"]  == "canal"           ) or
+       ( object.tags["waterway:abandoned"] == "canal"           ) or
+       ( object.tags["abandoned"]          == "waterway=canal"  )) then
+      object.tags["waterway"] = "derelict_canal"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Use historical names if present for historical canals.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["waterway"]      == "derelict_canal" ) and
+       ( object.tags["name"]          == nil              ) and
+       ( object.tags["name:historic"] ~= nil              )) then
+      object.tags["name"] = object.tags["name:historic"]
+   end
+
+   if (( object.tags["waterway"]      == "derelict_canal" ) and
+       ( object.tags["name"]          == nil              ) and
+       ( object.tags["historic:name"] ~= nil              )) then
+      object.tags["name"] = object.tags["historic:name"]
+   end
+
+-- ----------------------------------------------------------------------------
+-- If the derelict canal still has no name at this point, give it one.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["waterway"] == "derelict_canal" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(derelict canal)'
+      end
+   end
+   
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

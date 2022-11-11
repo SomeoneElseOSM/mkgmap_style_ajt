@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Show derelict canals with a name.
+
 ## 10/11/2022
 Show various clocks with an appropriate suffix.
 Show left luggage, parcel lockers, vending machines (with suffix of what sold if appropriate).

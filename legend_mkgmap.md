@@ -209,7 +209,7 @@ Miniature railways (not handled in the style file) are shown as narrow_gauge.
 
 Point water features (waterfalls, lock gates) are displayed with a name.
 
-Sluice gates, weirs and floating barriers and all shown with names.
+Sluice gates, weirs, floating barriers and derelict canals are all shown with names.
 
 ## Quality Control
 

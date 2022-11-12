@@ -211,6 +211,8 @@ Point water features (waterfalls, lock gates) are displayed with a name.
 
 Sluice gates, weirs, floating barriers and derelict canals are all shown with names.
 
+Unnamed farm shops with particular produce are shown as farm "vending machines".
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

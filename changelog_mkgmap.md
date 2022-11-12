@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Show derelict canals with a name.
+Show unnamed farm shops with particular produce as farm "vending machines".
 
 ## 10/11/2022
 Show various clocks with an appropriate suffix.

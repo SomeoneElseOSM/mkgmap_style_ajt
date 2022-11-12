@@ -1516,6 +1516,19 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- If a farm shop doesn't have a name but does have named produce, map across
+-- to vending machine, and also the produce into "vending" for consideration 
+-- below.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["shop"]    == "farm" ) and
+       (  object.tags["name"]    == nil    ) and
+       (  object.tags["produce"] ~= nil    )) then
+      object.tags["amenity"] = "vending_machine"
+      object.tags["vending"] = object.tags["produce"]
+      object.tags["shop"]    = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Some vending machines get the thing sold as the label.
 -- ----------------------------------------------------------------------------
    if (  object.tags["amenity"] == "vending_machine"  ) then

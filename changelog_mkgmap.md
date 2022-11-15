@@ -2,6 +2,9 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Show "(int)" at the end of names on intermittent waterways, water and wetlands.
+
+## 13/11/2022
 Show derelict canals with a name.
 Show unnamed farm shops with particular produce as farm "vending machines".
 

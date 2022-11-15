@@ -1845,7 +1845,20 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          object.tags.name = '(derelict canal)'
       end
    end
-   
+
+-- ----------------------------------------------------------------------------
+-- Intermittent water
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["waterway"] ~= nil      )   or
+        ( object.tags["natural"]  ~= nil      ))  and
+       (  object.tags["intermittent"] == "yes" )) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(int)'
+      else
+         object.tags.name = object.tags['name'] .. ' (int)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

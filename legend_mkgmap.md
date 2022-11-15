@@ -213,6 +213,8 @@ Sluice gates, weirs, floating barriers and derelict canals are all shown with na
 
 Unnamed farm shops with particular produce are shown as farm "vending machines".
 
+Intermittent waterways, water and wetlands have "(int)" appended to the name.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

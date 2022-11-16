@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.
 Removed the setting of "industrialbuilding", which is not used in the mkgmap map style.
+Display "waterway=leat" and "waterway=spillway" etc. as drain.
 
 ## 13/11/2022
 Show derelict canals with a name.

@@ -215,6 +215,8 @@ Unnamed farm shops with particular produce are shown as farm "vending machines".
 
 Intermittent waterways, water and wetlands have "(int)" appended to the name.
 
+Display "waterway=leat" and "waterway=spillway" etc. as drain.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

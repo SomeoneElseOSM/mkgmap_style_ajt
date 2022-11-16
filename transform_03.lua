@@ -2374,6 +2374,62 @@ function ott.process_way(object)
         end
     end
 
+-- ----------------------------------------------------------------------------
+-- Display "waterway=leat" and "waterway=spillway" etc. as drain.
+-- man_made=spillway tends to be used on areas, hence show as natural=water.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["waterway"] == "leat" )  then
+      object.tags["waterway"] = "drain"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(leat)'
+      else
+          object.tags.name = object.tags['name'] .. ' (leat)'
+      end
+   end
+
+   if ( object.tags["waterway"] == "spillway" )  then
+      object.tags["waterway"] = "drain"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(spillway)'
+      else
+          object.tags.name = object.tags['name'] .. ' (spillway)'
+      end
+   end
+
+   if ( object.tags["waterway"] == "aqueduct" )  then
+      object.tags["waterway"] = "drain"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(aqueduct)'
+      else
+          object.tags.name = object.tags['name'] .. ' (aqueduct)'
+      end
+   end
+
+   if ( object.tags["waterway"] == "fish_pass" )  then
+      object.tags["waterway"] = "drain"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(fish pass)'
+      else
+          object.tags.name = object.tags['name'] .. ' (fish pass)'
+      end
+   end
+
+   if ((  object.tags["waterway"] == "canal"      )  and
+       (( object.tags["usage"]    == "headrace"  )   or
+        ( object.tags["usage"]    == "spillway"  ))) then
+      object.tags["waterway"] = "drain"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(canal)'
+      else
+          object.tags.name = object.tags['name'] .. ' (canal)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways

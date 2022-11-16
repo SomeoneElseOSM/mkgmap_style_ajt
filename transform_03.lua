@@ -1858,6 +1858,39 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Various man_made things as normal buildings
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]   == "storage_tank"     ) or
+       ( object.tags["man_made"]   == "silo"             ) or
+       ( object.tags["man_made"]   == "tank"             ) or
+       ( object.tags["man_made"]   == "water_tank"       ) or
+       ( object.tags["man_made"]   == "kiln"             ) or
+       ( object.tags["man_made"]   == "gasometer"        ) or
+       ( object.tags["man_made"]   == "oil_tank"         ) or
+       ( object.tags["man_made"]   == "greenhouse"       ) or
+       ( object.tags["man_made"]   == "water_treatment"  ) or
+       ( object.tags["man_made"]   == "trickling_filter" ) or
+       ( object.tags["man_made"]   == "filter_bed"       ) or
+       ( object.tags["man_made"]   == "filtration_bed"   ) or
+       ( object.tags["man_made"]   == "waste_treatment"  ) or
+       ( object.tags["man_made"]   == "lighthouse"       ) or
+       ( object.tags["man_made"]   == "telescope"        ) or
+       ( object.tags["man_made"]   == "radio_telescope"  ) or
+       ( object.tags["man_made"]   == "street_cabinet"   ) or
+       ( object.tags["man_made"]   == "aeroplane"        ) or
+       ( object.tags["man_made"]   == "helicopter"       )) then
+      object.tags["building"] = "yes"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(' .. object.tags["man_made"] .. ')'
+      else
+         object.tags.name = object.tags['name'] .. ' (' .. object.tags["man_made"] .. ')'
+      end
+
+      object.tags["man_made"] = nil
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

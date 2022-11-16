@@ -6,6 +6,7 @@ Show "(int)" at the end of names on intermittent waterways, water and wetlands.
 Removed the setting of "industrialbuilding", which is not used in the mkgmap map style.
 Display "waterway=leat" and "waterway=spillway" etc. as drain / water area.
 Display "location=underground" waterways as tunnels.
+Display various man_made items as buildings, with a suffix saying what each one is.
 
 ## 13/11/2022
 Show derelict canals with a name.

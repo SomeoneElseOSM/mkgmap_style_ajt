@@ -1893,6 +1893,20 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 
 
 -- ----------------------------------------------------------------------------
+-- historic=monument
+-- ----------------------------------------------------------------------------
+   if ( object.tags["historic"]   == "monument"     ) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(monument)'
+      else
+         object.tags.name = object.tags['name'] .. ' (monument)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

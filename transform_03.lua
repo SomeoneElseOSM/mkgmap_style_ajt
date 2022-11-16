@@ -2230,6 +2230,21 @@ function ott.process_way(object)
       object.tags["tunnel"] = "yes"
    end
 
+-- ----------------------------------------------------------------------------
+-- Display "location=underground" waterways as tunnels.
+--
+-- There are currently no "location=overground" waterways that are not
+-- also "man_made=pipeline".
+-- ----------------------------------------------------------------------------
+   if (( object.tags["waterway"] ~= nil           )  and
+       ( object.tags["location"] == "underground" ) and
+       ( object.tags["tunnel"]   == nil           )) then
+      object.tags["tunnel"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Don't show subsurface waterways
+-- ----------------------------------------------------------------------------
    if (( object.tags["waterway"] ~= nil   ) and
        ( object.tags["tunnel"]   == "yes" )) then
       object.tags["waterway"] = nil
@@ -2439,6 +2454,13 @@ function ott.process_way(object)
       else
           object.tags.name = object.tags['name'] .. ' (spillway)'
       end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Apparently there are a few "waterway=brook" in the UK.  Render as stream.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["waterway"] == "brook" ) then
+      object.tags["waterway"] = "stream"
    end
 
 

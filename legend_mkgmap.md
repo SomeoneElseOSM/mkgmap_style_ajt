@@ -217,6 +217,8 @@ Intermittent waterways, water and wetlands have "(int)" appended to the name.
 
 Display "waterway=leat" and "waterway=spillway" etc. as drain.
 
+Display "location=underground" waterways as tunnels.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

@@ -2430,6 +2430,17 @@ function ott.process_way(object)
       end
    end
 
+   if ( object.tags["man_made"] == "spillway" ) then
+      object.tags["natural"] = "water"
+      object.tags["man_made"] = nil
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(spillway)'
+      else
+          object.tags.name = object.tags['name'] .. ' (spillway)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways

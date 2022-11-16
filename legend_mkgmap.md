@@ -221,7 +221,8 @@ Display "location=underground" waterways as tunnels.
 
 Display various man_made items as buildings, with a suffix saying what each one is.
 
-Show historic=monument, with a suffix of "(monument)".
+Show historic=monument, with a suffix of "(monument)".  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
+
 
 ## Quality Control
 

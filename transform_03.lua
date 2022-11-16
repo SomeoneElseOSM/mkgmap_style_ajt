@@ -1891,6 +1891,27 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["man_made"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Map man_made=monument to historic=monument (handled below) if no better tag
+-- exists.
+-- Also handle geoglyphs in this way.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["man_made"] == "monument" )  and
+        ( object.tags["historic"]  == nil       )) or
+       (  object.tags["man_made"] == "geoglyph"  )) then
+      object.tags["historic"] = "monument"
+      object.tags["man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Things that are both towers and monuments or memorials 
+-- should render as the latter.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"]  == "tower"     ) and
+       (( object.tags["historic"]  == "memorial" )  or
+        ( object.tags["historic"]  == "monument" ))) then
+      object.tags["man_made"] = nil
+   end
 
 -- ----------------------------------------------------------------------------
 -- historic=monument
@@ -1902,6 +1923,54 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          object.tags.name = '(monument)'
       else
          object.tags.name = object.tags['name'] .. ' (monument)'
+      end
+   end
+
+   if ( object.tags["tourism"] == "gallery" ) then
+      object.tags["amenity"] = nil
+      object.tags["tourism"] = "museum"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(gallery)'
+      else
+         object.tags.name = object.tags['name'] .. ' (gallery)'
+      end
+   end
+
+   if ( object.tags["tourism"] == "museum" ) then
+      object.tags["amenity"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(museum)'
+      else
+         object.tags.name = object.tags['name'] .. ' (museum)'
+      end
+   end
+
+   if ( object.tags["tourism"] == "attraction" ) then
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(tourist attraction)'
+      else
+         object.tags.name = object.tags['name'] .. ' (tourist attraction)'
+      end
+   end
+
+   if ( object.tags["tourism"] == "artwork" ) then
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(artwork)'
+      else
+         object.tags.name = object.tags['name'] .. ' (artwork)'
+      end
+   end
+
+   if ( object.tags["amenity"] == "arts_centre" ) then
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(arts centre)'
+      else
+         object.tags.name = object.tags['name'] .. ' (arts centre)'
       end
    end
 

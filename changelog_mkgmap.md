@@ -7,7 +7,7 @@ Removed the setting of "industrialbuilding", which is not used in the mkgmap map
 Display "waterway=leat" and "waterway=spillway" etc. as drain / water area.
 Display "location=underground" waterways as tunnels.
 Display various man_made items as buildings, with a suffix saying what each one is.
-Show historic=monument, with a suffix of "(monument)".
+Show historic=monument, with a suffix of "(monument)".  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
 
 ## 13/11/2022
 Show derelict canals with a name.

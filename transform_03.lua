@@ -29,7 +29,6 @@ function process_all(object)
          object.tags["landuse"] = "industrial"
       else
          object.tags["building"] = "yes"
-         object.tags["landuse"] = "industrialbuilding"
       end
 
       if ( object.tags["name"] == nil ) then

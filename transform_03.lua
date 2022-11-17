@@ -1974,6 +1974,83 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Mineshafts
+-- First make sure that we treat historic ones as historic
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["man_made"] == "mine"       )  or
+        ( object.tags["man_made"] == "mineshaft"  )  or
+        ( object.tags["man_made"] == "mine_shaft" )) and
+       (( object.tags["historic"] == "yes"        )  or
+        ( object.tags["historic"] == "mine"       )  or
+        ( object.tags["historic"] == "mineshaft"  )  or
+        ( object.tags["historic"] == "mine_shaft" ))) then
+      object.tags["historic"] = "ruins"
+      object.tags["man_made"] = nil
+      object.tags["tourism"]  = nil
+ 
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(historic mine)'
+      else
+         object.tags.name = object.tags['name'] .. ' (historic mine)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Then other spellings of mineshaft
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"] == "mine"       )  or
+       ( object.tags["man_made"] == "mineshaft"  )  or
+       ( object.tags["man_made"] == "mine_shaft" )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(mine)'
+      else
+         object.tags.name = object.tags['name'] .. ' (mine)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Add a building tag to historic items that are likely buildings so that
+-- buildings.mss can process it.  Some shouldn't assume buildings (e.g. "fort"
+-- below).  Some use "roof" (which I use for "nearly a building" elsewhere).
+-- It's sent through as "nonspecific".
+-- "stone" has a building tag added because some are mapped as closed ways.
+--
+-- "historic=monument" is here rather than under e.g. obelisk because it's 
+-- used for all sorts of features.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "building"           ) or
+       ( object.tags["historic"] == "heritage_building"  ) or
+       ( object.tags["historic"] == "protected_building" ) or
+       ( object.tags["historic"] == "watermill"          ) or
+       ( object.tags["historic"] == "windmill"           ) or
+       ( object.tags["historic"] == "church"             ) or
+       ( object.tags["historic"] == "wayside_chapel"     ) or
+       ( object.tags["historic"] == "chapel"             ) or
+       ( object.tags["historic"] == "gate_house"         ) or
+       ( object.tags["historic"] == "aircraft"           ) or
+       ( object.tags["historic"] == "locomotive"         ) or
+       ( object.tags["historic"] == "roundhouse"         ) or
+       ( object.tags["historic"] == "ship"               ) or
+       ( object.tags["historic"] == "tank"               ) or
+       ( object.tags["historic"] == "house"              ) or
+       ( object.tags["historic"] == "mine_shaft"         ) or
+       ( object.tags["historic"] == "lime_kiln"          ) or
+       ( object.tags["historic"] == "limekiln"           ) or
+       ( object.tags["historic"] == "kiln"               ) or
+       ( object.tags["historic"] == "trough"             )) then
+      object.tags["historic"] = "ruins"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(historic ' .. object.tags["historic"] .. ')'
+      else
+         object.tags.name = object.tags['name'] .. ' (historic ' .. object.tags["historic"] .. ')'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

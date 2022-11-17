@@ -8,6 +8,8 @@ Display "waterway=leat" and "waterway=spillway" etc. as drain / water area.
 Display "location=underground" waterways as tunnels.
 Display various man_made items as buildings, with a suffix saying what each one is.
 Show historic=monument, with a suffix of "(monument)".  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
+Show historic mines as ruins.  Also show non-historic mines.
+Show other historic things, with an appropriate suffix.
 
 ## 13/11/2022
 Show derelict canals with a name.

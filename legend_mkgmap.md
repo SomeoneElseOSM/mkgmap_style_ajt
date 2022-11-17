@@ -225,6 +225,8 @@ Show historic=monument, with a suffix of "(monument)"; and other historic things
 
 Show historic mines as ruins.  Also show non-historic mines.
 
+Show plaques and cairns.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

@@ -2131,6 +2131,37 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+   if (( object.tags["historic"] == "marker"          ) or
+       ( object.tags["historic"] == "plaque"          ) or
+       ( object.tags["historic"] == "memorial_plaque" ) or
+       ( object.tags["historic"] == "blue_plaque"     )) then
+      object.tags["historic"] = nil
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(historic plaque)'
+      else
+         object.tags.name = object.tags['name'] .. ' (historic plaque)'
+      end
+   end
+
+   if ( object.tags["historic"] == "pillar" ) then
+      object.tags["barrier"] = "bollard"
+      object.tags["historic"] = nil
+   end
+
+   if (( object.tags["historic"] == "cairn" ) or
+       ( object.tags["man_made"] == "cairn" )) then
+      object.tags["man_made"] = "thing"
+      object.tags["historic"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(cairn)'
+      else
+         object.tags.name = object.tags['name'] .. ' (cairn)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

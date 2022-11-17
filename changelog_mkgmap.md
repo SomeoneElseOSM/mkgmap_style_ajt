@@ -10,6 +10,7 @@ Display various man_made items as buildings, with a suffix saying what each one 
 Show historic=monument, with a suffix of "(monument)".  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
 Show historic mines as ruins.  Also show non-historic mines.
 Show other historic things, with an appropriate suffix.
+Show plaques and cairns.
 
 ## 13/11/2022
 Show derelict canals with a name.

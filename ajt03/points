@@ -188,8 +188,8 @@ leisure=stadium { name '${name} (${sport})' | '${name}' } [0x2c08 resolution 21]
 leisure=track { name '${name} (${sport})' | '${name}' } [0x2c08 resolution 21]
 leisure=water_park [0x2b04 resolution 21]
 
-man_made=tower [0x6411 resolution 21]
-man_made=mast [0x6411 resolution 21]
+man_made=tower {name '${name}'} [0x6411 resolution 21]
+man_made=mast {name '${name}'} [0x6411 resolution 21]
 man_made=marker {name '${name}'}  [0x4c00 resolution 20]
 man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 

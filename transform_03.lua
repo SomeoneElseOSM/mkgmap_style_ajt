@@ -2035,8 +2035,61 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
        ( object.tags["historic"] == "lime_kiln"          ) or
        ( object.tags["historic"] == "limekiln"           ) or
        ( object.tags["historic"] == "kiln"               ) or
-       ( object.tags["historic"] == "trough"             )) then
-      object.tags["historic"] = "ruins"
+       ( object.tags["historic"] == "trough"             ) or
+       ( object.tags["historic"] == "wreck"             ) or
+       ( object.tags["historic"] == "monument"          ) or
+       ( object.tags["historic"] == "fort"              ) or
+       ( object.tags["historic"] == "ringfort"          ) or
+       ( object.tags["historic"] == "earthworks"        ) or
+       ( object.tags["historic"] == "motte"             ) or
+       ( object.tags["historic"] == "barrow"            ) or
+       ( object.tags["historic"] == "tumulus"           ) or
+       ( object.tags["historic"] == "tomb"              ) or
+       ( object.tags["historic"] == "fortification"     ) or
+       ( object.tags["historic"] == "camp"              ) or
+       ( object.tags["historic"] == "menhir"            ) or
+       ( object.tags["historic"] == "stone_circle"      ) or
+       ( object.tags["historic"] == "castle"            ) or
+       ( object.tags["historic"] == "mill"              ) or
+       ( object.tags["historic"] == "mound"             ) or
+       ( object.tags["historic"] == "manor"             ) or
+       ( object.tags["historic"] == "country_mansion"   ) or
+       ( object.tags["historic"] == "mansion"           ) or
+       ( object.tags["historic"] == "mansion;castle"    ) or
+       ( object.tags["historic"] == "hall"              ) or
+       ( object.tags["historic"] == "stately_home"      ) or
+       ( object.tags["historic"] == "tower_house"       ) or
+       ( object.tags["historic"] == "almshouse"         ) or
+       ( object.tags["historic"] == "police_box"        ) or
+       ( object.tags["historic"] == "bakery"            ) or
+       ( object.tags["historic"] == "battlefield"       ) or
+       ( object.tags["historic"] == "monastery"         ) or
+       ( object.tags["historic"] == "monastic_grange"   ) or
+       ( object.tags["historic"] == "abbey"             ) or
+       ( object.tags["historic"] == "priory"            ) or
+       ( object.tags["historic"] == "palace"            ) or
+       ( object.tags["historic"] == "tower"             ) or
+       ( object.tags["historic"] == "dovecote"          ) or
+       ( object.tags["historic"] == "toll_house"        ) or
+       ( object.tags["historic"] == "city_gate"         ) or
+       ( object.tags["historic"] == "gate"              ) or
+       ( object.tags["historic"] == "pinfold"           ) or
+       ( object.tags["historic"] == "prison"            ) or
+       ( object.tags["historic"] == "theatre"           ) or
+       ( object.tags["historic"] == "shelter"           ) or
+       ( object.tags["historic"] == "grave"             ) or
+       ( object.tags["historic"] == "grave_yard"        ) or
+       ( object.tags["historic"] == "statue"            ) or
+       ( object.tags["historic"] == "cross"             ) or
+       ( object.tags["historic"] == "market_cross"      ) or
+       ( object.tags["historic"] == "stocks"            ) or
+       ( object.tags["historic"] == "folly"             ) or
+       ( object.tags["historic"] == "drinking_fountain" ) or
+       ( object.tags["historic"] == "mine_adit"         ) or
+       ( object.tags["historic"] == "mine"              ) or
+       ( object.tags["historic"] == "sawmill"           ) or
+       ( object.tags["historic"] == "well"              ) or
+       ( object.tags["historic"] == "cannon"            )) then
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -2044,6 +2097,8 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       else
          object.tags.name = object.tags['name'] .. ' (historic ' .. object.tags["historic"] .. ')'
       end
+
+      object.tags["historic"] = "ruins"
    end
 
 

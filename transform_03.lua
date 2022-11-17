@@ -2012,6 +2012,13 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- palaeolontological_site
+-- ----------------------------------------------------------------------------
+   if ( object.tags["geological"] == "palaeontological_site" ) then
+      object.tags["historic"] = "palaeontological_site"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Ensure historic things are shown.
 -- There's no distinction here between building / almost a building / 
 -- not a building as there is with the web maps.
@@ -2089,7 +2096,8 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
        ( object.tags["historic"] == "mine"              ) or
        ( object.tags["historic"] == "sawmill"           ) or
        ( object.tags["historic"] == "well"              ) or
-       ( object.tags["historic"] == "cannon"            )) then
+       ( object.tags["historic"] == "cannon"            ) or
+       ( object.tags["historic"] == "icon"              )) then
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -2099,6 +2107,28 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
 
       object.tags["historic"] = "ruins"
+   end
+
+-- ----------------------------------------------------------------------------
+-- If something is tagged as both an archaelogical site and a place, lose the
+-- place tag.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "archaeological_site" )  and
+       ( object.tags["place"]    ~= nil                   )) then
+      object.tags["place"] = nil
+   end
+
+   if (( object.tags["historic"] == "archaeological_site" )  and
+       ( object.tags["landuse"]  == nil                   )) then
+      object.tags["tourism"] = nil
+
+      if ( object.tags["megalith_type"] == "standing_stone" ) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(standing stone)'
+         else
+            object.tags.name = object.tags['name'] .. ' (standing stone)'
+         end
+      end
    end
 
 

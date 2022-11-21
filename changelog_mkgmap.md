@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet released
+Show various references, including for trig points.
+
 ## 21/11/2022
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.
 Removed the setting of "industrialbuilding", which is not used in the mkgmap map style.

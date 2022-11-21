@@ -2210,6 +2210,78 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- If set, move bridge:name to bridge_name
+-- ----------------------------------------------------------------------------
+   if ( object.tags["bridge:name"] ~= nil ) then
+      object.tags["bridge_name"] = object.tags["bridge:name"]
+      object.tags["bridge:name"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If set, move bridge_name to name
+-- ----------------------------------------------------------------------------
+   if ( object.tags["bridge_name"] ~= nil ) then
+      object.tags["name"] = object.tags["bridge_name"]
+      object.tags["bridge_name"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If set, move bridge:ref to bridge_ref
+-- ----------------------------------------------------------------------------
+   if ( object.tags["bridge:ref"] ~= nil ) then
+      object.tags["bridge_ref"] = object.tags["bridge:ref"]
+      object.tags["bridge:ref"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If set, move canal_bridge_ref to bridge_ref
+-- ----------------------------------------------------------------------------
+   if ( object.tags["canal_bridge_ref"] ~= nil ) then
+      object.tags["bridge_ref"] = object.tags["canal_bridge_ref"]
+      object.tags["canal_bridge_ref"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If set and relevant, do something with bridge_ref
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["bridge_ref"] ~= nil  ) and
+       (( object.tags["highway"]    ~= nil )  or
+        ( object.tags["railway"]    ~= nil )  or
+        ( object.tags["waterway"]   ~= nil ))) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "{" .. object.tags["bridge_ref"] .. ")"
+      else
+         object.tags["name"] = object.tags["name"] .. " {" .. object.tags["bridge_ref"] .. ")"
+      end
+
+      object.tags["bridge_ref"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If set, move tunnel:name to tunnel_name
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tunnel:name"] ~= nil ) then
+      object.tags["tunnel_name"] = object.tags["tunnel:name"]
+      object.tags["tunnel:name"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If set, move tunnel_name to name
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tunnel_name"] ~= nil ) then
+      object.tags["name"] = object.tags["tunnel_name"]
+      object.tags["tunnel_name"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If something has a "tpuk_ref", use it in preference to "name".
+-- It's in brackets because it's likely not signed.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tpuk_ref"] ~= nil ) then
+      object.tags["name"] = "(" .. object.tags["tpuk_ref"] .. ")"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

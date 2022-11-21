@@ -233,6 +233,8 @@ Show hogweed.
 
 Show waterway lock references.
 
+Various the references of various points, including trig points.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

@@ -6,6 +6,7 @@ Show various references, including for trig points.
 Show various sorts of rarer water as "natural=water".
 Show wind turbines and wind pumps.
 Show vent shafts.
+Show horse mounting blocks.
 
 ## 21/11/2022
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.

@@ -240,6 +240,9 @@ Show various sorts of rarer water as "natural=water".
 Show wind turbines and wind pumps.
 Show vent shafts.
 
+Show horse mounting blocks.
+
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

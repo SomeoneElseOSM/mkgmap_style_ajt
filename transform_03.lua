@@ -2353,6 +2353,26 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Horse mounting blocks
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]  == "mounting_block"       ) or
+       ( object.tags["amenity"]   == "mounting_block"       ) or
+       ( object.tags["bridleway"] == "mounting_block"       ) or
+       ( object.tags["historic"]  == "mounting_block"       ) or
+       ( object.tags["horse"]     == "mounting_block"       ) or
+       ( object.tags["horse"]     == "mounting block"       ) or
+       ( object.tags["amenity"]   == "mounting_step"        ) or
+       ( object.tags["amenity"]   == "mounting_steps"       ) or
+       ( object.tags["amenity"]   == "horse_dismount_block" )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(mounting block)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (mounting block)"
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

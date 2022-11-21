@@ -229,6 +229,10 @@ Show plaques and cairns.
 
 Show chimneys.
 
+Show hogweed.
+
+Show waterway lock references.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

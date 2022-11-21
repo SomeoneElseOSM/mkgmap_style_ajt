@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 21/11/2022
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.
 Removed the setting of "industrialbuilding", which is not used in the mkgmap map style.
 Display "waterway=leat" and "waterway=spillway" etc. as drain / water area.
@@ -12,6 +12,8 @@ Show historic mines as ruins.  Also show non-historic mines.
 Show other historic things, with an appropriate suffix.
 Show plaques and cairns.
 Show chimneys with a suffix of "(chimney)".
+Show giant hogweed with a suffix of"(hogweed)".
+Show waterway lock references.
 
 ## 13/11/2022
 Show derelict canals with a name.

@@ -2177,6 +2177,39 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- hazard=plant is fairly rare, but render as a nonspecific historic dot.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["hazard"]  == "plant"                    )  or
+        ( object.tags["hazard"]  == "toxic_plant"              )) and
+       (( object.tags["species"] == "giant_hogweed"            )  or
+        ( object.tags["species"] == "Heracleum mantegazzianum" )  or
+        ( object.tags["taxon"]   == "Heracleum mantegazzianum" ))) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(hogweed)'
+      else
+         object.tags.name = object.tags['name'] .. ' (hogweed)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- If something has a "lock_ref", append it to "lock_name" (if it exists) or
+-- "name" (if it doesn't), and put the result in "name".
+-- ----------------------------------------------------------------------------
+   if ( object.tags["lock_ref"] ~= nil ) then
+      if ( object.tags["lock_name"] ~= nil ) then
+         object.tags["name"] = object.tags["lock_name"] .. " (" .. object.tags["lock_ref"] .. ")"
+      else
+         if ( object.tags["name"] ~= nil ) then
+            object.tags["name"] = object.tags["name"] .. " (" .. object.tags["lock_ref"] .. ")"
+         else
+            object.tags["name"] = "(" .. object.tags["lock_ref"] .. ")"
+         end
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

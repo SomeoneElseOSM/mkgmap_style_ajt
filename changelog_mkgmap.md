@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet released
 Show various references, including for trig points.
 Show various sorts of rarer water as "natural=water".
+Show wind turbines and wind pumps
 
 ## 21/11/2022
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.

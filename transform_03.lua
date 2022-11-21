@@ -2250,9 +2250,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
         ( object.tags["railway"]    ~= nil )  or
         ( object.tags["waterway"]   ~= nil ))) then
       if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "{" .. object.tags["bridge_ref"] .. ")"
+         object.tags["name"] = "(" .. object.tags["bridge_ref"] .. ")"
       else
-         object.tags["name"] = object.tags["name"] .. " {" .. object.tags["bridge_ref"] .. ")"
+         object.tags["name"] = object.tags["name"] .. " (" .. object.tags["bridge_ref"] .. ")"
       end
 
       object.tags["bridge_ref"] = nil
@@ -2291,6 +2291,32 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
        ( object.tags["man_made"]   == "reservoir"             ) or
        ( object.tags["basin"]      == "wastewater"            )) then
       object.tags["natural"] = "water"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show wind turbines and wind pumps
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]         == "wind_turbine" ) or
+       ( object.tags["generator:method"] == "wind_turbine" ) or
+       ( object.tags["plant_method"]     == "wind_turbine" ) or
+       ( object.tags["generator:type"]   == "wind_turbine" )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(wind turbine)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (wind turbine)"
+      end
+   end
+
+   if ( object.tags["man_made"]   == "windpump" ) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(windpump)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (windpump)"
+      end
    end
 
 

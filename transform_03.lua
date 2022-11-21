@@ -2375,6 +2375,99 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- Water monitoring stations
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"]                  == "monitoring_station"  ) and
+       (( object.tags["monitoring:water_level"]    == "yes"                )  or
+        ( object.tags["monitoring:water_flow"]     == "yes"                )  or
+        ( object.tags["monitoring:water_velocity"] == "yes"                ))) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(water monitoring)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (water monitoring)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Weather monitoring stations
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]               == "monitoring_station" ) and
+       ( object.tags["monitoring:weather"]     == "yes"                ) and
+       ( object.tags["weather:radar"]          == nil                  ) and
+       ( object.tags["monitoring:water_level"] == nil                  )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(weather monitoring)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (weather monitoring)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Rainfall monitoring stations
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]               == "monitoring_station" ) and
+       ( object.tags["monitoring:rainfall"]    == "yes"                ) and
+       ( object.tags["monitoring:weather"]     == nil                  ) and
+       ( object.tags["monitoring:water_level"] == nil                  )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(rainfall monitoring)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (rainfall monitoring)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Earthquake monitoring stations
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]                     == "monitoring_station" ) and
+       ( object.tags["monitoring:seismic_activity"]  == "yes"                )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(earthquake monitoring)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (earthquake monitoring)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Sky brightness monitoring stations
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]                   == "monitoring_station" ) and
+       ( object.tags["monitoring:sky_brightness"]  == "yes"                )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(sky brightness monitoring)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (sky brightness monitoring)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Air quality monitoring stations
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]               == "monitoring_station" ) and
+       ( object.tags["monitoring:air_quality"] == "yes"                ) and
+       ( object.tags["monitoring:weather"]     == nil                  )) then
+      object.tags["man_made"] = nil
+      object.tags["landuse"] = "industrial"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(air quality)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (air quality)"
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

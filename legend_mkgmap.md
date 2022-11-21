@@ -242,6 +242,8 @@ Show vent shafts.
 
 Show horse mounting blocks.
 
+Show Water monitoring stations etc.
+
 
 ## Quality Control
 

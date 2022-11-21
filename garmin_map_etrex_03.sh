@@ -32,6 +32,7 @@ fi
 #file_prefix1=derbyshire
 #file_prefix1=greater-london
 file_prefix1=north-yorkshire
+#file_prefix1=south-yorkshire
 file_page1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}.html
 file_url1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}-latest.osm.pbf
 #

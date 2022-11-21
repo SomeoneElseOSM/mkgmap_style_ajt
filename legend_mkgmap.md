@@ -238,6 +238,7 @@ Various the references of various points, including trig points.
 Show various sorts of rarer water as "natural=water".
 
 Show wind turbines and wind pumps.
+Show vent shafts.
 
 ## Quality Control
 

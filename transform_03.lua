@@ -2327,6 +2327,32 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Railway ventilation shaft nodes.
+-- Nodes of these are rendered as a stubby black tower
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]   == "ventilation_shaft" ) or
+       ( object.tags["building"]   == "air_shaft"         ) or
+       ( object.tags["man_made"]   == "air_shaft"         ) or
+       ( object.tags["tunnel"]     == "air_shaft"         ) or
+       ( object.tags["historic"]   == "air_shaft"         ) or
+       ( object.tags["railway"]    == "ventilation_shaft" ) or
+       ( object.tags["tunnel"]     == "ventilation_shaft" ) or
+       ( object.tags["tunnel"]     == "ventilation shaft" ) or
+       ( object.tags["building"]   == "ventilation_shaft" ) or
+       ( object.tags["building"]   == "vent_shaft"        ) or
+       ( object.tags["man_made"]   == "vent_shaft"        ) or
+       ( object.tags["tower:type"] == "vent"              ) or
+       ( object.tags["man_made"]   == "tunnel_vent"       )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(vent shaft)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (vent shaft)"
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

@@ -2162,6 +2162,21 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+   if ((  object.tags["historic"]   == "chimney"  ) or
+       (  object.tags["man_made"]   == "chimney"  ) or
+       (  object.tags["building"]   == "chimney"  ) or
+       (( object.tags["building"]   == "tower"   )  and
+        ( object.tags["tower:type"] == "chimney" ))) then
+      object.tags["man_made"] = "thing"
+      object.tags["historic"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(chimney)'
+      else
+         object.tags.name = object.tags['name'] .. ' (chimney)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

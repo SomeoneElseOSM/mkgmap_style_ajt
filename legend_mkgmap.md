@@ -227,6 +227,8 @@ Show historic mines as ruins.  Also show non-historic mines.
 
 Show plaques and cairns.
 
+Show chimneys.
+
 ## Quality Control
 
 Objects with a fixme tag have "[fix]" appended to the name.

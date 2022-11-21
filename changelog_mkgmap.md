@@ -11,6 +11,7 @@ Show historic=monument, with a suffix of "(monument)".  Similarly "tourism=attra
 Show historic mines as ruins.  Also show non-historic mines.
 Show other historic things, with an appropriate suffix.
 Show plaques and cairns.
+Show chimneys with a suffix of "(chimney)".
 
 ## 13/11/2022
 Show derelict canals with a name.

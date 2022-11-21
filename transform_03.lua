@@ -2282,6 +2282,17 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["name"] = "(" .. object.tags["tpuk_ref"] .. ")"
    end
 
+-- ----------------------------------------------------------------------------
+-- Add "water" to some "wet" features for rendering.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]   == "wastewater_reservoir"  ) or
+       ( object.tags["man_made"]   == "lagoon"                ) or
+       ( object.tags["man_made"]   == "lake"                  ) or
+       ( object.tags["man_made"]   == "reservoir"             ) or
+       ( object.tags["basin"]      == "wastewater"            )) then
+      object.tags["natural"] = "water"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

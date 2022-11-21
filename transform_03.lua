@@ -2296,10 +2296,18 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 -- ----------------------------------------------------------------------------
 -- Show wind turbines and wind pumps
 -- ----------------------------------------------------------------------------
-   if (( object.tags["man_made"]         == "wind_turbine" ) or
-       ( object.tags["generator:method"] == "wind_turbine" ) or
-       ( object.tags["plant_method"]     == "wind_turbine" ) or
-       ( object.tags["generator:type"]   == "wind_turbine" )) then
+   if ((   object.tags["man_made"]         == "wind_turbine"   ) or
+       (   object.tags["generator:method"] == "wind_turbine"   ) or
+       (   object.tags["plant_method"]     == "wind_turbine"   ) or
+       (   object.tags["generator:type"]   == "wind_turbine"   ) or
+       ((  object.tags["man_made"]         == "tower"         )  and
+        (  object.tags["power"]            == "generator"     )  and
+        (( object.tags["power_source"]     == "wind"         )   or
+         ( object.tags["generator:source"] == "wind"         )   or
+         ( object.tags["generator:method"] == "wind_turbine" )   or
+         ( object.tags["plant:source"]     == "wind"         )   or
+         ( object.tags["generator:type"]   == "wind"         )   or
+         ( object.tags["generator:method"] == "wind"         )))) then
       object.tags["man_made"] = "thing"
 
       if ( object.tags["name"] == nil ) then

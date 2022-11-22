@@ -244,6 +244,7 @@ Show horse mounting blocks.
 
 Show Water monitoring stations etc.
 
+Show B&Bs and self catering etc.
 
 ## Quality Control
 

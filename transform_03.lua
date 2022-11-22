@@ -2505,6 +2505,27 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Also "self_catering" et al (used occasionally) as guest_house.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tourism"]   == "self_catering"           ) or
+       ( object.tags["tourism"]   == "apartment"               ) or
+       ( object.tags["tourism"]   == "apartments"              ) or
+       ( object.tags["tourism"]   == "holiday_cottage"         ) or
+       ( object.tags["tourism"]   == "cottage"                 ) or
+       ( object.tags["tourism"]   == "holiday_village"         ) or
+       ( object.tags["tourism"]   == "holiday_park"            ) or
+       ( object.tags["tourism"]   == "spa_resort"              ) or
+       ( object.tags["tourism"]   == "accommodation"           ) or
+       ( object.tags["tourism"]   == "holiday_accommodation"   ) or
+       ( object.tags["tourism"]   == "holiday_lets"            ) or
+       ( object.tags["tourism"]   == "holiday_let"             ) or
+       ( object.tags["tourism"]   == "Holiday Lodges"          ) or
+       ( object.tags["tourism"]   == "guesthouse"              ) or
+       ( object.tags["tourism"]   == "aparthotel"              )) then
+      object.tags["tourism"] = "guest_house"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

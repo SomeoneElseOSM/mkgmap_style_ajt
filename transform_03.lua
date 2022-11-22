@@ -2466,6 +2466,45 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Golf ball washers
+-- ----------------------------------------------------------------------------
+   if ( object.tags["golf"] == "ball_washer" ) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(golf ball washer)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (golf ball washer)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Advertising Columns
+-- ----------------------------------------------------------------------------
+   if ( object.tags["advertising"] == "column" ) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(advertising column)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (advertising column)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render guest houses subtagged as B&B as B&B
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "bed_and_breakfast" ) then
+      object.tags["tourism"] = "guest_house"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(B&B)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (B&B)"
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

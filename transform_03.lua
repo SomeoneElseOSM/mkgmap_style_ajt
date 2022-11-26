@@ -614,6 +614,18 @@ function process_all(object)
       end
    end
 
+   if (( object.tags["landuse"] == "recreation_ground" ) or
+       ( object.tags["leisure"] == "recreation_ground" )) then
+      object.tags["leisure"] = "park"
+      object.tags["landuse"] = nil
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(rec)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (rec)"
+      end
+   end
+
    if ( object.tags["landuse"]   == "grass" ) then
       object.tags["leisure"] = "park"
 
@@ -963,6 +975,17 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
         ( object.tags["leisure"]   == nil   )  and
         ( object.tags["club"]      == nil   ))) then
       object.tags["real_ale"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Change some common semicolon values to the first in the list.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "bar;restaurant" ) then
+      object.tags["amenity"] = "bar"
+   end
+
+   if ( object.tags["shop"] == "butcher;greengrocer" ) then
+      object.tags["shop"] = "butcher"
    end
 
 -- ----------------------------------------------------------------------------
@@ -1963,6 +1986,22 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- Things that are both peaks and memorials should render as the latter.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["natural"]   == "peak"     ) and
+       ( object.tags["historic"]  == "memorial" )) then
+      object.tags["natural"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Things that are both peaks and cairns should render as the former.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["natural"]   == "peak"     ) and
+       ( object.tags["man_made"]  == "cairn" )) then
+      object.tags["man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both towers and monuments or memorials 
 -- should render as the latter.
 -- ----------------------------------------------------------------------------
@@ -2602,6 +2641,25 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 
    if ( object.tags["tourism"] == "adventure_holiday"  ) then
       object.tags["tourism"] = "hostel"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Beacons - render historic ones, not radio ones.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["man_made"] == "beacon"        )  or
+        ( object.tags["man_made"] == "signal_beacon" )  or
+        ( object.tags["landmark"] == "beacon"        )  or
+        ( object.tags["historic"] == "beacon"        )) and
+       (  object.tags["airmark"]  == nil              ) and
+       (  object.tags["aeroway"]  == nil              ) and
+       (  object.tags["natural"]  ~= "peak"           )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(beacon)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (beacon)"
+      end
    end
 
 

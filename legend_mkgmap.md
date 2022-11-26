@@ -153,6 +153,7 @@ Military signs have "MIL" appended.
 Peak and Northern Footpath Society signposts have "PNFS" appended.
 Guideposts that are "public right of way" markers have "PROW" appended.
 Guideposts that sign a route have "ROUTE" appended.
+NCN route markers are shown with "NCN", the marker type and the sustrans reference.
 
 ### Trees
 

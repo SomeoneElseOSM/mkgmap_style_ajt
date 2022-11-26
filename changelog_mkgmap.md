@@ -11,6 +11,7 @@ Show Water monitoring stations etc.
 Show B&Bs and self catering etc.
 Added suffix for old railways
 Show tourist information offices and audioguides with a suffix.
+Show NCN route markers.
 
 ## 21/11/2022
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.

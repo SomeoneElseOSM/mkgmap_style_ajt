@@ -2658,6 +2658,60 @@ function ott.process_node(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- NCN Route markers
+-- ----------------------------------------------------------------------------
+   if ( object.tags["ncn_milepost"] == "dudgeon" ) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags["sustrans_ref"] == nil ) then
+         object.tags["name"]    = "NCN Dudgeon"
+      else
+         object.tags["name"]    = "NCN Dudgeon " .. object.tags["sustrans_ref"]
+      end
+   end
+
+   if ( object.tags["ncn_milepost"] == "mccoll" ) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags["sustrans_ref"] == nil ) then
+         object.tags["name"]    = "NCN McColl"
+      else
+         object.tags["name"]    = "NCN McColl " .. object.tags["sustrans_ref"]
+      end
+   end
+
+   if ( object.tags["ncn_milepost"] == "mills" ) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags["sustrans_ref"] == nil ) then
+         object.tags["name"]    = "NCN Mills"
+      else
+         object.tags["name"]    = "NCN Mills " .. object.tags["sustrans_ref"]
+      end
+   end
+
+   if ( object.tags["ncn_milepost"] == "rowe" ) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags["sustrans_ref"] == nil ) then
+         object.tags["name"]    = "NCN Rowe"
+      else
+         object.tags["name"]    = "NCN Rowe " .. object.tags["sustrans_ref"]
+      end
+   end
+
+   if (( object.tags["ncn_milepost"] == "unknown" )  or
+       ( object.tags["ncn_milepost"] == "yes"     )) then
+      object.tags["tourism"] = "information"
+
+      if ( object.tags["sustrans_ref"] == nil ) then
+         object.tags["name"]    = "NCN"
+      else
+         object.tags["name"]    = "NCN " .. object.tags["sustrans_ref"]
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Information guideposts, route markers, boards
 -- ----------------------------------------------------------------------------
    information_appendix = ''

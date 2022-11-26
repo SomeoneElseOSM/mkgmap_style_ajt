@@ -86,7 +86,7 @@ Pianos and musical instruments are shown.
 Motorcycle and bicycle parking are shown, with a suffix if for pay.  
 Laybies are shown as parking.
 Toilets are shown with a suffix indicating pay or free, male or female etc.
-Show historic=monument, with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
+Show historic=monument, with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre", information offices, audioguides.
 Show historic mines as ruins.  Also show non-historic mines.
 Show plaques and cairns.
 Show chimneys.
@@ -144,19 +144,14 @@ Fences, hedges and walls are all shown as black lines.  Fences have "(fence)" ap
 ### Tourism
 
 Bird and wildlife hides are shown as tourist information with a suffix added to the name.
-
 Guideposts, fingerposts and markers have "GP" appended to the name.
-
 Route markers have "RM" appended to the name.
-
 Various types of boards and maps have "B" appended to to name.
-
 Signs have "S" appended to to name.
-
 "destination" features have "DEST" appended.  "intermediary" ones have "INT".
-
+Military signs have "MIL" appended.
+Peak and Northern Footpath Society signposts have "PNFS" appended.
 Guideposts that are "public right of way" markers have "PROW" appended.
-
 Guideposts that sign a route have "ROUTE" appended.
 
 ### Trees

@@ -2190,10 +2190,13 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
-   if (( object.tags["historic"] == "marker"          ) or
-       ( object.tags["historic"] == "plaque"          ) or
-       ( object.tags["historic"] == "memorial_plaque" ) or
-       ( object.tags["historic"] == "blue_plaque"     )) then
+   if ((   object.tags["historic"]    == "marker"          )  or
+       (   object.tags["historic"]    == "plaque"          )  or
+       (   object.tags["historic"]    == "memorial_plaque" )  or
+       (   object.tags["historic"]    == "blue_plaque"     )  or
+       ((  object.tags["tourism"]     == "information"    )   and
+        (( object.tags["information"] == "blue_plaque"   )    or
+         ( object.tags["information"] == "plaque"        )))) then
       object.tags["historic"] = nil
       object.tags["man_made"] = "thing"
 
@@ -2585,6 +2588,22 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["tourism"] = "guest_house"
    end
 
+-- ----------------------------------------------------------------------------
+-- Render alternative taggings of camp_site etc.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "camping"  ) then
+      object.tags["tourism"] = "camp_site"
+   end
+
+   if (( object.tags["tourism"] == "caravan_site;camp_site"    ) or
+       ( object.tags["tourism"] == "caravan_site;camping_site" )) then
+      object.tags["tourism"] = "caravan_site"
+   end
+
+   if ( object.tags["tourism"] == "adventure_holiday"  ) then
+      object.tags["tourism"] = "hostel"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
@@ -2609,8 +2628,36 @@ function ott.process_node(object)
     object = process_all(object)
 
 -- ----------------------------------------------------------------------------
--- Not quite the same as style.lua
---
+-- Render amenity=information as tourism
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "information"  ) then
+      object.tags["tourism"] = "information"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various types of information
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["amenity"]     == "notice_board" )  or
+       (   object.tags["tourism"]     == "village_sign" )  or
+       (   object.tags["man_made"]    == "village_sign" )) then
+      object.tags["tourism"]     = "information"
+      object.tags["information"] = "board"
+   end
+
+   if ((  object.tags["amenity"]     == "notice_board"       )  or
+       (  object.tags["tourism"]     == "sign"               )  or
+       (  object.tags["emergency"]   == "beach_safety_sign"  )) then
+      object.tags["tourism"]     = "information"
+      object.tags["information"] = "sign"
+   end
+
+   if (( object.tags["tourism"]     == "information" )  and
+       ( object.tags["name"]        == nil           )  and
+       ( object.tags["board:title"] ~= nil           )) then
+      object.tags["name"] = object.tags["board:title"]
+   end
+
+-- ----------------------------------------------------------------------------
 -- Information guideposts, route markers, boards
 -- ----------------------------------------------------------------------------
    information_appendix = ''
@@ -2662,7 +2709,24 @@ function ott.process_node(object)
          information_appendix = 'S'
       end
 
--- Eventually, once there is some local data to support it, an "operator:type=military" check will go here.
+      if (( object.tags["operator"]  == "Peak & Northern Footpaths Society"                                )  or
+          ( object.tags["operator"]  == "Peak and Northern Footpaths Society"                              )  or
+          ( object.tags["operator"]  == "Peak District & Northern Counties Footpaths Preservation Sciety"  ) or
+          ( object.tags["operator"]  == "Peak District & Northern Counties Footpaths Preservation Society" )) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'PNFS'
+         else
+             information_appendix = information_appendix .. ' PNFS'
+         end
+      end
+
+      if ( object.tags["operator:type"] == "military" ) then
+         if ( information_appendix == nil ) then
+             information_appendix = 'MIL'
+         else
+             information_appendix = information_appendix .. ' MIL'
+         end
+      end
 
       if ( object.tags["guide_type"] == "intermediary" ) then
          if ( information_appendix == nil ) then
@@ -2712,6 +2776,30 @@ function ott.process_node(object)
             object.tags.name = object.tags['name'] .. ' (' .. information_appendix .. ')'
         end
     end
+
+   if ((  object.tags["tourism"]     == "information"                       )  and
+       (( object.tags["information"] == "office"                           )   or
+        ( object.tags["information"] == "kiosk"                            )   or
+        ( object.tags["information"] == "visitor_centre"                   ))) then
+      object.tags["office"] = "yes"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(info)'
+      else
+          object.tags.name = object.tags['name'] .. ' (info)'
+      end
+   end
+
+   if (( object.tags["tourism"]     == "information"                       )  and
+       ( object.tags["information"] == "audioguide"                        )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(audio)'
+      else
+          object.tags.name = object.tags['name'] .. ' (audio)'
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Point weirs are sent through as points with a name of "weir"

@@ -1801,6 +1801,65 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- Abandoned railways etc.
+-- All are passed through to the style as "railway=abandoned" with an
+-- appropriate suffix.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["railway"] == "abandoned" ) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(abrly)'
+      else
+         object.tags.name = object.tags['name'] .. ' (abrly)'
+      end
+   end
+
+   if (( object.tags["railway:historic"] == "rail"           ) or
+       ( object.tags["railway"]          == "dismantled"     ) or
+       ( object.tags["historic"]         == "inclined_plane" )) then
+      object.tags["railway"] = "abandoned"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(dismrly)'
+      else
+         object.tags.name = object.tags['name'] .. ' (dismrly)'
+      end
+   end
+
+   if ( object.tags["railway"] == "disused" ) then
+      object.tags["railway"] = "abandoned"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(disurly)'
+      else
+         object.tags.name = object.tags['name'] .. ' (disurly)'
+      end
+   end
+
+   if ( object.tags["railway"] == "construction" ) then
+      object.tags["railway"] = "abandoned"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(consturly)'
+      else
+         object.tags.name = object.tags['name'] .. ' (consturly)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render bus guideways as "a sort of railway"
+-- ----------------------------------------------------------------------------
+   if (object.tags["highway"] == "bus_guideway") then
+      object.tags["highway"] = nil
+      object.tags["railway"] = "abandoned"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(bus guideway)'
+      else
+         object.tags.name = object.tags['name'] .. ' (bus guideway)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Historic canal
 -- A former canal can, like an abandoned railway, still be a major
 -- physical feature.

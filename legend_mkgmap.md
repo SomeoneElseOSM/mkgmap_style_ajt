@@ -80,6 +80,22 @@ Various pipeline markers are consolidated into "man_made=marker" and "(pipeline 
 Various boundary stones are consolidated into "man_made=marker" and any inscription and "(boundary stone)" are appended to the name.
 Various other stones are consolidated into "man_made=marker" and any inscription and "(ogham stone)", "(historic stone)" or "(historic stone)" are appended to the name.
 Mass rocks are consolidated into "man_made=marker" and "(mass rock)" is appended to the name.
+Clocks (tower, pedestal and sundial) are shown as a dot with an appropriate suffix.
+Left luggage, parcel lockers and vending machines are all shown as a dot with an appropriate suffix.
+Pianos and musical instruments are shown.
+Motorcycle and bicycle parking are shown, with a suffix if for pay.  
+Laybies are shown as parking.
+Toilets are shown with a suffix indicating pay or free, male or female etc.
+Show historic=monument, with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
+Show historic mines as ruins.  Also show non-historic mines.
+Show plaques and cairns.
+Show chimneys.
+Show hogweed.
+Various the references of various points, including trig points.
+Show wind turbines and wind pumps.
+Show vent shafts.
+Show horse mounting blocks.
+Show B&Bs and self catering etc.
 
 ### Former telephone boxes
 
@@ -143,7 +159,6 @@ Guideposts that are "public right of way" markers have "PROW" appended.
 
 Guideposts that sign a route have "ROUTE" appended.
 
-
 ### Trees
 
 "forestry" is handled as "forest".  Various tags are consolidated into "wood".  "operator" is appended to the name, if present.
@@ -155,6 +170,7 @@ Broadleaved woodland has "B" appended; needleleaved has "C" and mixed "M".
 Some rarer tags are consolidated into "shop=car", "shop=car_repair" and "shop=bicycle".
 Building societies are consolidated into banks.
 ATMs have "(ATM)" added as a suffix.
+Unnamed farm shops with particular produce are shown as farm "vending machines".
 
 ### Pubs, restaurants etc.
 
@@ -186,65 +202,27 @@ An appropriate suffix is added for doctors, dentists, hospitals and clinics.
 Vaccination centres are shown as clinics if no other tag applies.
 Pharmacies and chemists have a suffix added.
 
+### Railways
+
+Razed railways and old inclined_planes are shown as dismantled.
+Miniature railways (not handled in the style file) are shown as narrow_gauge.
+
+### Water features
+
+Point water features (waterfalls, lock gates) are displayed with a name.
+Sluice gates, weirs, floating barriers and derelict canals are all shown with names.
+Intermittent waterways, water and wetlands have "(int)" appended to the name.
+Display "waterway=leat" and "waterway=spillway" etc. as drain.
+Display "location=underground" waterways as tunnels.
+Show waterway lock references.
+Show Water monitoring stations etc.
+Show various sorts of rarer water as "natural=water".
+
 ### Other
 
 Libraries and public bookcases are shown as libraries with an appropriate suffix to the name.
-
-Clocks (tower, pedestal and sundial) are shown as a dot with an appropriate suffix.
-
-Left luggage, parcel lockers and vending machines are all shown as a dot with an appropriate suffix.
-
-Pianos and musical instruments are shown.
-
-Motorcycle and bicycle parking are show, with a suffix if for pay.  
-Show laybies as parking.
-
-Toilets are shown with a suffix indicating pay or free, male or female etc.
-
 amenity=leisure_centre is shown as leisure=sports_centre.
-
-Razed railways and old inclined_planes are shown as dismantled.
-
-Miniature railways (not handled in the style file) are shown as narrow_gauge.
-
-Point water features (waterfalls, lock gates) are displayed with a name.
-
-Sluice gates, weirs, floating barriers and derelict canals are all shown with names.
-
-Unnamed farm shops with particular produce are shown as farm "vending machines".
-
-Intermittent waterways, water and wetlands have "(int)" appended to the name.
-
-Display "waterway=leat" and "waterway=spillway" etc. as drain.
-
-Display "location=underground" waterways as tunnels.
-
 Display various man_made items as buildings, with a suffix saying what each one is.
-
-Show historic=monument, with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre".
-
-Show historic mines as ruins.  Also show non-historic mines.
-
-Show plaques and cairns.
-
-Show chimneys.
-
-Show hogweed.
-
-Show waterway lock references.
-
-Various the references of various points, including trig points.
-
-Show various sorts of rarer water as "natural=water".
-
-Show wind turbines and wind pumps.
-Show vent shafts.
-
-Show horse mounting blocks.
-
-Show Water monitoring stations etc.
-
-Show B&Bs and self catering etc.
 
 ## Quality Control
 

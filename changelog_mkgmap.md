@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet released
+## 27/11/2022
 Show various references, including for trig points.
 Show various sorts of rarer water as "natural=water".
 Show wind turbines and wind pumps.

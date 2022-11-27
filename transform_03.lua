@@ -2662,6 +2662,30 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Render historic railway stations.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["abandoned:railway"] == "station" )  or
+       ( object.tags["historic:railway"]  == "station" )  or
+       ( object.tags["disused:railway"]   == "station" )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(historic station)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (historic station)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Where military has been overtagged over natural=wood, remove military.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["natural"]   == "wood"        )  or
+        ( object.tags["landuse"]   == "forest"      )) and
+       (  object.tags["military"]  == "danger_area"  )) then
+      object.tags["military"] = nil
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

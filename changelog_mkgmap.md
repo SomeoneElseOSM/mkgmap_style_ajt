@@ -13,6 +13,8 @@ Added suffix for old railways
 Show tourist information offices and audioguides with a suffix.
 Show NCN route markers.
 Show recreation grounds as grass.
+Render historic railway stations.
+Where military has been overtagged over natural=wood, remove military.
 
 ## 21/11/2022
 Show "(int)" at the end of names on intermittent waterways, water and wetlands.

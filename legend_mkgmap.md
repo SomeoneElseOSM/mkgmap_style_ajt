@@ -202,6 +202,7 @@ Pharmacies and chemists have a suffix added.
 
 Razed railways and old inclined_planes are shown as dismantled.
 Miniature railways (not handled in the style file) are shown as narrow_gauge.
+Render historic railway stations.
 
 ### Water features
 

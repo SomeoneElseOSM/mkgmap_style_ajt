@@ -2714,6 +2714,22 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Tag military offices as military landuse, if not already.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["military"] == "office"  ) or
+       ( object.tags["military"] == "offices" ))  then
+      if ( object.tags['landuse'] == nil ) then
+         object.tags.landuse = "military"
+      end
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(military office)'
+      else
+         object.tags.name = object.tags['name'] .. ' (military office)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

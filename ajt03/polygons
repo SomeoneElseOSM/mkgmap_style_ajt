@@ -8,10 +8,10 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-aeroway=airport [0x07 resolution 18]
-aeroway=aerodrome [0x07 resolution 18]
-aeroway=terminal [0x13 resolution 20]
-aeroway=helipad [0x0e resolution 20]
+aeroway=airport {name '${name}'} [0x07 resolution 18]
+aeroway=aerodrome {name '${name}'} [0x07 resolution 18]
+aeroway=terminal {name '${name}'} [0x13 resolution 20]
+aeroway=helipad {name '${name}'} [0x0e resolution 20]
 
 amenity=kindergarten [0x0a resolution 18]
 amenity=cafe | amenity=fast_food | amenity=restaurant | amenity=food_court [0x08 resolution 20]

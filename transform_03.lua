@@ -2686,6 +2686,19 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["military"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Retag military bunkers as buildings
+-- ----------------------------------------------------------------------------
+   if ( object.tags["military"] == "bunker" )  then
+      object.tags["building"] = "yes"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(bunker)'
+      else
+         object.tags.name = object.tags['name'] .. ' (bunker)'
+      end
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

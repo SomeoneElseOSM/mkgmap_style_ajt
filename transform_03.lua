@@ -10,6 +10,34 @@ function process_all(object)
 -- Some changes based on style.lua
 -- ----------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------
+-- Woodland - append B, C or M based on leaf_type.
+-- If there is no name after this procedure Garmins will show "Woods" instead.
+-- ----------------------------------------------------------------------------
+    if ( object.tags['natural'] == 'wood' ) then
+        leaf_type_appendix = ''
+
+        if ( object.tags['leaf_type'] == 'broadleaved' ) then
+            leaf_type_appendix = 'B'
+        end
+
+        if ( object.tags['leaf_type'] == 'needleleaved' ) then
+            leaf_type_appendix = 'C'
+        end
+
+        if ( object.tags['leaf_type'] == 'mixed' ) then
+            leaf_type_appendix = 'M'
+        end
+
+        if ( leaf_type_appendix ~= nil ) then
+            if ( object.tags['name'] == nil ) then
+                object.tags.name = '(' .. leaf_type_appendix .. ')'
+            else
+                object.tags.name = object.tags['name'] .. ' (' .. leaf_type_appendix .. ')'
+            end
+        end
+    end
+
+-- ----------------------------------------------------------------------------
 -- Mistaggings for wastewater_plant
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "sewage_works"      ) or
@@ -3300,34 +3328,6 @@ function ott.process_way(object)
             object.tags.name = '(I)'
         else
             object.tags.name = object.tags['name'] .. ' (I)'
-        end
-    end
-
--- ----------------------------------------------------------------------------
--- Woodland - append B, C or M based on leaf_type.
--- If there is no name after this procedure Garmins will show "Woods" instead.
--- ----------------------------------------------------------------------------
-    if ( object.tags['natural'] == 'wood' ) then
-        leaf_type_appendix = ''
-
-        if ( object.tags['leaf_type'] == 'broadleaved' ) then
-            leaf_type_appendix = 'B'
-        end
-
-        if ( object.tags['leaf_type'] == 'needleleaved' ) then
-            leaf_type_appendix = 'C'
-        end
-
-        if ( object.tags['leaf_type'] == 'mixed' ) then
-            leaf_type_appendix = 'M'
-        end
-
-        if ( leaf_type_appendix ~= nil ) then
-            if ( object.tags['name'] == nil ) then
-                object.tags.name = '(' .. leaf_type_appendix .. ')'
-            else
-                object.tags.name = object.tags['name'] .. ' (' .. leaf_type_appendix .. ')'
-            end
         end
     end
 

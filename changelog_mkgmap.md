@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Added taginfo_ajt02.json to the project.
+
 ## 29/12/2022
 Fix bug where woodland relations weren't processed properly.
 

@@ -68,7 +68,7 @@ highway=*
    sac_scale ~ '.*(mountain|alpine)_hiking' |
    sport=via_ferrata)
 { add mkgmap:unpaved=1 }
-(highway=bridleway | highway=path | highway=track | highway=unsurfaced)
+(highway=bridleway | highway=path | highway=track)
 & surface!=* & tracktype!=* & smoothness!=* & sac_scale!=*
 { add mkgmap:unpaved=1 }
 
@@ -119,8 +119,6 @@ highway=bridleway & designation=byway_open_to_all_traffic {add access = no; add 
 highway=bridleway & designation!=* {add access = no; add foot = yes; name '${name}' | '' } [0x16 road_class=0 road_speed=0 resolution 23]
 highway=bridleway & designation=* {add access = no; add foot = yes; name '${name} (FO)' | '(FO)' } [0x16 road_class=0 road_speed=0 resolution 23]
 
-highway=byway [0x16 road_class=0 road_speed=0 resolution 23]
-
 highway=service & access=private {delete highway}
 highway=service & designation=public_footpath {add foot = yes; name '${name} (FF)' | '(FF)' } [0x06 road_class=0 road_speed=2 resolution 22]
 highway=service & designation=public_bridleway {add foot = yes; name '${name} (FB)' | '(FB)' } [0x06 road_class=0 road_speed=2 resolution 22]
@@ -148,7 +146,6 @@ highway=track & designation=byway_open_to_all_traffic {add foot = yes; name '${n
 highway=track & designation!=* {add access = no; add foot = yes; name '${name}' | '' } [0x0a road_class=0 road_speed=1 resolution 21]
 highway=track & designation=* {add access = no; add foot = yes; name '${name} (FO)' | '(FO)' } [0x0a road_class=0 road_speed=1 resolution 21]
 
-highway=unsurfaced [0x0a road_class=0 road_speed=1 resolution 21]
 highway=road { add mkgmap:dead-end-check = false} [0x06 road_class=0 road_speed=1 resolution 21]
 
 # Mop up any unrecognised highway types

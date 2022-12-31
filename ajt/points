@@ -151,10 +151,8 @@ healthcare=* [0x3002 resolution 20]
 
 highway=bus_stop [0x2f17 resolution 20]
 
-highway=gate [0x2f0f resolution 23 default_name 'Gate']
 barrier=gate [0x2f0f resolution 23 default_name 'Gate']
 barrier=kissing_gate [0x2f0f resolution 23 default_name 'Kissing Gate']
-highway=stile [0x2f14 resolution 23 default_name 'Stile']
 barrier=stile [0x2f14 resolution 23 default_name 'Stile']
 barrier=cycle_barrier [0x2f14 resolution 23 default_name 'Cycle Barrier']
 barrier=horse_barrier [0x2f14 resolution 23 default_name 'Horse Barrier']

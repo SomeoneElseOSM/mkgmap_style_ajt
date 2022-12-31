@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Added taginfo_ajt02.json to the project.
+Removed some unused tag key/value combinations from the ajt02 style.
 
 ## 29/12/2022
 Fix bug where woodland relations weren't processed properly.

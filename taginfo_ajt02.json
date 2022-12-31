@@ -15,7 +15,6 @@
     { "key": "access", "value": "no", "description": "Consider access" },
     { "key": "aeroway", "description": "Show aeroways" },
     { "key": "aeroway", "value": "aerodrome", "description": "Show aerodromes" },
-    { "key": "aeroway", "value": "airport", "description": "Show aeroway features" },
     { "key": "aeroway", "value": "helipad", "description": "Show aeroway features" },
     { "key": "aeroway", "value": "runway", "description": "Show aeroway features" },
     { "key": "aeroway", "value": "taxiway", "description": "Show aeroway features" },

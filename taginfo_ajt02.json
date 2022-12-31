@@ -316,7 +316,6 @@
     { "key": "sport", "description": "Show sport features" },
     { "key": "sport", "value": "10pin", "description": "Show sport features" },
     { "key": "sport", "value": "9pin", "description": "Show sport features" },
-    { "key": "sport", "value": "airport", "description": "Show sport features" },
     { "key": "sport", "value": "multi", "description": "Show sport features" },
     { "key": "sport", "value": "skating", "description": "Show sport features" },
     { "key": "sport", "value": "skiing", "description": "Show sport features" },

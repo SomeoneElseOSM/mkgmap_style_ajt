@@ -213,7 +213,6 @@
     { "key": "natural", "value": "col", "description": "Show natural features" },
     { "key": "natural", "value": "glacier", "description": "Show natural features" },
     { "key": "natural", "value": "glacier", "description": "Show natural features" },
-    { "key": "natural", "value": "marsh", "description": "Show natural features" },
     { "key": "natural", "value": "mud", "description": "Show natural features" },
     { "key": "natural", "value": "peak", "description": "Show natural features" },
     { "key": "natural", "value": "rock", "description": "Show natural features" },

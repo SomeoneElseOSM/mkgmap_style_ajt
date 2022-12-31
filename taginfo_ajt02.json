@@ -299,7 +299,6 @@
     { "key": "shop", "value": "doityourself", "description": "Show shops" },
     { "key": "shop", "value": "fashion", "description": "Show shops" },
     { "key": "shop", "value": "furniture", "description": "Show shops" },
-    { "key": "shop", "value": "garden_center", "description": "Show shops" },
     { "key": "shop", "value": "garden_centre", "description": "Show shops" },
     { "key": "shop", "value": "general", "description": "Show shops" },
     { "key": "shop", "value": "hairdresser", "description": "Show shops" },

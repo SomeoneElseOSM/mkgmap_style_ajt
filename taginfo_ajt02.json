@@ -32,7 +32,6 @@
     { "key": "amenity", "value": "cafe", "description": "Show most amenities" },
     { "key": "amenity", "value": "car_club", "description": "Show most amenities" },
     { "key": "amenity", "value": "car_rental", "description": "Show most amenities" },
-    { "key": "amenity", "value": "car_sharing", "description": "Show most amenities" },
     { "key": "amenity", "value": "car_wash", "description": "Show most amenities" },
     { "key": "amenity", "value": "casino", "description": "Show most amenities" },
     { "key": "amenity", "value": "cinema", "description": "Show most amenities" },

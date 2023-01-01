@@ -13,9 +13,6 @@
 # bridges rather than just highways some lines would be here.
 # However, I've omitted these for now in case it breaks routing.
 # -------------------------------------------------------------------
-#bridge=yes [0x1d resolution 17]
-#ford=yes [0x18 resolution 22]
-#
 route=hiking {name '${name} (${route_ref})' | '(${route_ref})' }
 #
 aeroway=runway [0x27 resolution 20]
@@ -166,17 +163,5 @@ waterway=ditch {name '${name}'} [0x18 resolution 22]
 waterway=derelict_canal {name '${name}'} [0x1d resolution 18]
 
 man_made=pipeline {name '${operator}'} [0x28 resolution 23]
-
-# The following boundary styles are after the highway rules because ways
-# are frequently tagged with both and we want the highway to take priority.
-#
-# qqq all removed by AJT to suppress boundaries:
-#boundary=administrative { name '${mkgmap:boundary_name}' }
-#boundary=administrative & admin_level<3 [0x1e resolution 16]
-#boundary=administrative & admin_level<5 [0x1d resolution 18]
-#boundary=administrative & admin_level<7 [0x1c resolution 20]
-#boundary=administrative & admin_level<9 [0x1c resolution 21]
-#boundary=administrative [0x1c resolution 22]
-#boundary=national [0x1e resolution 17]
-#boundary=political [0x1c resolution 17]
+man_made=levee {name '${name}'} [0x1d resolution 18]
 

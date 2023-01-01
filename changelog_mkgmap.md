@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Removed some more unused tag key/value combinations from the ajt02 style.
 Added support for more military landuse for the ajt03 style.
+Added support for levees, either with highways on them or not.
 
 ## 31/12/2022
 Added taginfo_ajt02.json to the project.

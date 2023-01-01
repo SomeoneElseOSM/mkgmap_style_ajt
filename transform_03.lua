@@ -2871,6 +2871,56 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=embankment and natural=cliff displays as a non-sided cliff 
+-- (from z13 for cliff, z17 for embankment, direction is important)
+-- man_made=levee displays as a two-sided cliff (from z14).
+-- Often it's combined with highway though, and that is handled separately.
+-- In that case it's passed through to the stylesheet as bridge=levee.
+-- embankment handling is asymmetric for railways currently - it's checked
+-- before we apply the "man_made=levee" tag, but "bridge=levee" is not applied.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["barrier"]    == "flood_bank"    )  or
+        ( object.tags["barrier"]    == "bund"          )  or
+        ( object.tags["barrier"]    == "mound"         )  or
+        ( object.tags["barrier"]    == "ridge"         )  or
+        ( object.tags["barrier"]    == "embankment"    )  or
+        ( object.tags["man_made"]   == "dyke"          )  or
+        ( object.tags["man_made"]   == "levee"         )  or
+        ( object.tags["embankment"] == "yes"           )) and
+       (  object.tags["highway"]    == nil              ) and
+       (  object.tags["railway"]    == nil              ) and
+       (  object.tags["waterway"]   == nil              )) then
+      object.tags["man_made"] = "levee"
+
+      object.tags["barrier"] = nil
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(flood bank)'
+      else
+         object.tags.name = object.tags['name'] .. ' (flood bank)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Re the "bridge" check below, we've already changed valid ones to "yes"
+-- above.
+-- ----------------------------------------------------------------------------
+   if (((  object.tags["barrier"]    == "flood_bank"     )  or
+        (  object.tags["man_made"]   == "dyke"           )  or
+        (  object.tags["man_made"]   == "levee"          )  or
+        (  object.tags["embankment"] == "yes"            )) and
+       ((  object.tags["highway"]    ~= nil              ) or
+        (  object.tags["railway"]    ~= nil              ) or
+        (  object.tags["waterway"]   ~= nil              )) and
+       (   object.tags["bridge"]     ~= "yes"             ) and
+       (   object.tags["tunnel"]     ~= "yes"             )) then
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(flood bank)'
+      else
+         object.tags.name = object.tags['name'] .. ' (flood bank)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

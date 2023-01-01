@@ -2842,6 +2842,35 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 
 
 -- ----------------------------------------------------------------------------
+-- Nightclubs wouldn't ordinarily be rendered - render them as bar
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"]   == "nightclub"   ) then
+      object.tags["amenity"] = "bar"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(nightclub)'
+      else
+         object.tags.name = object.tags['name'] .. ' (nightclub)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Render concert hall theatres as concert halls with the nightclub icon
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["amenity"] == "theatre"      )  and
+        ( object.tags["theatre"] == "concert_hall" )) or
+       (  object.tags["amenity"] == "music_venue"   )) then
+      object.tags["amenity"] = "concert_hall"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(music venue)'
+      else
+         object.tags.name = object.tags['name'] .. ' (music venue)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------

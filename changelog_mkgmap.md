@@ -2,6 +2,9 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Removed some more unused tag key/value combinations from the ajt02 style.
+
+## 31/12/2022
 Added taginfo_ajt02.json to the project.
 Removed some unused tag key/value combinations from the ajt02 style.
 

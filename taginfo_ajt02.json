@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt02.json",
-  "data_updated": "20221231T162100Z",
+  "data_updated": "20230101T104900Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT2 basic mkgmap maps",
     "description": "This map style is designed for England and Wales-based rural pedestrians.  It shows public rights of way and long distance paths.",
@@ -30,7 +30,6 @@
     { "key": "amenity", "value": "border_control", "description": "Show most amenities" },
     { "key": "amenity", "value": "bus_station", "description": "Show most amenities" },
     { "key": "amenity", "value": "cafe", "description": "Show most amenities" },
-    { "key": "amenity", "value": "car_club", "description": "Show most amenities" },
     { "key": "amenity", "value": "car_rental", "description": "Show most amenities" },
     { "key": "amenity", "value": "car_wash", "description": "Show most amenities" },
     { "key": "amenity", "value": "casino", "description": "Show most amenities" },
@@ -141,7 +140,6 @@
     { "key": "highway", "value": "trunk", "description": "Show most highways" },
     { "key": "highway", "value": "trunk_link", "description": "Show most highways" },
     { "key": "highway", "value": "unclassified", "description": "Show most highways" },
-    { "key": "highway", "value": "unsurfaced", "description": "Show most highways" },
     { "key": "historic", "description": "Show historic features" },
     { "key": "historic", "value": "archaeological_site", "description": "Show historic features" },
     { "key": "historic", "value": "castle", "description": "Show historic features" },

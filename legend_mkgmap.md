@@ -137,6 +137,10 @@ Farmyards and greenhouse horticulture are consolidated into "landuse=farmyard" a
 
 Dog parks and "leisure=court" are shown as "leisure=pitch".
 
+### Other landuse
+
+Military landuse is labelled as such.
+
 ### Barriers
 
 Fences, hedges and walls are all shown as black lines.  Fences have "(fence)" appended; hedges "(hedge)" and walls "(wall)".

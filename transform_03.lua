@@ -2745,8 +2745,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 -- ----------------------------------------------------------------------------
 -- Tag military offices as military landuse, if not already.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["military"] == "office"  ) or
-       ( object.tags["military"] == "offices" ))  then
+   if (( object.tags["military"] == "office"                             ) or
+       ( object.tags["military"] == "offices"                            ) or
+       ( object.tags["military"] == "registration_and_enlistment_office" ))  then
       if ( object.tags['landuse'] == nil ) then
          object.tags.landuse = "military"
       end
@@ -2755,6 +2756,87 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
          object.tags.name = '(military office)'
       else
          object.tags.name = object.tags['name'] .. ' (military office)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Tag naval bases as military landuse, if not already.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["military"] == "naval_base" ) then
+      if ( object.tags['landuse'] == nil ) then
+         object.tags.landuse = "military"
+      end
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(naval base)'
+      else
+         object.tags.name = object.tags['name'] .. ' (naval base)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Tag military depots as military landuse, if not already.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["military"] == "depot" ) then
+      if ( object.tags['landuse'] == nil ) then
+         object.tags.landuse = "military"
+      end
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(military depot)'
+      else
+         object.tags.name = object.tags['name'] .. ' (military depot)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Tag ta centres as military landuse, if not already.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["military"] == "ta centre" ) then
+      if ( object.tags['landuse'] == nil ) then
+         object.tags.landuse = "military"
+      end
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(TA centre)'
+      else
+         object.tags.name = object.tags['name'] .. ' (TA centre)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Tag military checkpoints as military landuse, if not already.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["military"] == "checkpoint" ) then
+      if ( object.tags['landuse'] == nil ) then
+         object.tags.landuse = "military"
+      end
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(military checkpoint)'
+      else
+         object.tags.name = object.tags['name'] .. ' (military checkpoint)'
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
+-- Tag shooting ranges as military landuse, if not already.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["hazard"] == "shooting_range" )  or
+       ( object.tags["sport"]  == "shooting_range" )) then
+      if ( object.tags['landuse'] == nil ) then
+         object.tags.landuse = "military"
+      end
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(shooting range)'
+      else
+         object.tags.name = object.tags['name'] .. ' (shooting_range)'
       end
    end
 

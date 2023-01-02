@@ -536,20 +536,49 @@ function process_all(object)
 -- Pedants may claim that some of these aren't legally embassies, and they'd
 -- be correct, but I use the same icon for all of these currently.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["diplomatic"] == "embassy"            ) or
-       ( object.tags["diplomatic"] == "consulate"          ) or
-       ( object.tags["diplomatic"] == "consulate_general"  ) or
-       ( object.tags["diplomatic"] == "honorary_consulate" ) or
-       ( object.tags["diplomatic"] == "high_commission"    )) then
-      object.tags["amenity"] = "embassy"
+   if (((  object.tags["diplomatic"] == "embassy"            )  and
+        (( object.tags["embassy"]    == nil                 )   or
+         ( object.tags["embassy"]    == "yes"               )   or
+         ( object.tags["embassy"]    == "high_commission"   )   or
+         ( object.tags["embassy"]    == "nunciature"        )   or
+         ( object.tags["embassy"]    == "delegation"        )   or
+         ( object.tags["embassy"]    == "embassy"           ))) or
+       ((  object.tags["diplomatic"] == "consulate"          )  and
+        (( object.tags["consulate"]  == nil                 )   or
+         ( object.tags["consulate"]  == "consulate_general" )   or
+         ( object.tags["consulate"]  == "yes"               ))) or
+       ( object.tags["diplomatic"] == "embassy;consulate"     ) or
+       ( object.tags["diplomatic"] == "embassy;mission"       ) or
+       ( object.tags["diplomatic"] == "consulate;embassy"     )) then
+      object.tags["amenity"]    = "embassy"
+      object.tags["diplomatic"] = nil
+      object.tags["office"]     = nil
    end
 
-   if (( object.tags["diplomatic"] == "permanent_mission"     ) or
-       ( object.tags["diplomatic"] == "ambassadors_residence" ) or
-       ( object.tags["diplomatic"] == "trade_delegation"      )) then
+   if (((  object.tags["diplomatic"] == "embassy"              )  and
+        (( object.tags["embassy"]    == "residence"           )   or
+         ( object.tags["embassy"]    == "branch_embassy"      )   or
+         ( object.tags["embassy"]    == "mission"             ))) or
+       ((  object.tags["diplomatic"] == "consulate"            )  and
+        (( object.tags["consulate"]  == "consular_office"     )   or
+         ( object.tags["consulate"]  == "residence"           )   or
+         ( object.tags["consulate"]  == "consular_agency"     ))) or
+       (   object.tags["diplomatic"] == "permanent_mission"     ) or
+       (   object.tags["diplomatic"] == "trade_delegation"      ) or
+       (   object.tags["diplomatic"] == "liaison"               ) or
+       (   object.tags["diplomatic"] == "non_diplomatic"        ) or
+       (   object.tags["diplomatic"] == "mission"               ) or
+       (   object.tags["diplomatic"] == "trade_mission"         )) then
       if ( object.tags["amenity"] == "embassy" ) then
          object.tags["amenity"] = nil
       end
+
+      object.tags["diplomatic"] = nil
+
+-- ----------------------------------------------------------------------------
+-- "office" is set to something that will definitely display here, just in case
+-- it was set to some value that would not.
+-- ----------------------------------------------------------------------------
       object.tags["office"] = "yes"
    end
 
@@ -560,6 +589,8 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "holy_well" ) and
        ( object.tags["natural"] == "spring"    )) then
+      object.tags["amenity"] = nil
+
       if ( object.tags["name"] == nil ) then
          object.tags["name"] = "(holy spring)"
       else
@@ -569,6 +600,7 @@ function process_all(object)
 
    if ( object.tags["place_of_worship"] == "holy_well" ) then
       object.tags["natural"] = "spring"
+      object.tags["amenity"] = nil
 
       if ( object.tags["name"] == nil ) then
          object.tags["name"] = "(holy well)"

@@ -10,6 +10,39 @@ function process_all(object)
 -- Some changes based on style.lua
 -- ----------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------
+-- Treat "was:" as "disused:"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["was:amenity"]     ~= nil ) and
+       ( object.tags["disused:amenity"] == nil )) then
+      object.tags["disused:amenity"] = object.tags["was:amenity"]
+   end
+
+   if (( object.tags["was:waterway"]     ~= nil ) and
+       ( object.tags["disused:waterway"] == nil )) then
+      object.tags["disused:waterway"] = object.tags["was:waterway"]
+   end
+
+   if (( object.tags["was:railway"]     ~= nil ) and
+       ( object.tags["disused:railway"] == nil )) then
+      object.tags["disused:railway"] = object.tags["was:railway"]
+   end
+
+   if (( object.tags["was:aeroway"]     ~= nil ) and
+       ( object.tags["disused:aeroway"] == nil )) then
+      object.tags["disused:aeroway"] = object.tags["was:aeroway"]
+   end
+
+   if (( object.tags["was:landuse"]     ~= nil ) and
+       ( object.tags["disused:landuse"] == nil )) then
+      object.tags["disused:landuse"] = object.tags["was:landuse"]
+   end
+
+   if (( object.tags["was:shop"]     ~= nil ) and
+       ( object.tags["disused:shop"] == nil )) then
+      object.tags["disused:shop"] = object.tags["was:shop"]
+   end
+
+-- ----------------------------------------------------------------------------
 -- Woodland - append B, C or M based on leaf_type.
 -- If there is no name after this procedure Garmins will show "Woods" instead.
 -- ----------------------------------------------------------------------------
@@ -112,6 +145,11 @@ function process_all(object)
       object.tags["landuse"] = "industrial"
    end
 
+   if ( object.tags["man_made"]   == "reservoir_covered" ) then
+      object.tags["building"] = "roof"
+      object.tags["landuse"]  = "industrial"
+   end
+
    if ( object.tags["parking"]   == "depot" ) then
       object.tags["parking"] = nil
       object.tags["landuse"] = "industrial"
@@ -201,8 +239,10 @@ function process_all(object)
 -- Stones that are not boundary stones.
 -- Note that "marker=boundary_stone" are handled elsewhere.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["marker"]   == "stone" ) or
-       ( object.tags["natural"]  == "stone" )) then
+   if (( object.tags["marker"]   == "stone"          ) or
+       ( object.tags["natural"]  == "stone"          ) or
+       ( object.tags["man_made"] == "stone"          ) or
+       ( object.tags["man_made"] == "standing_stone" )) then
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
@@ -265,8 +305,7 @@ function process_all(object)
    if ((   object.tags["historic"]           == "standing_stone"        ) or
        ((  object.tags["historic"]           == "archaeological_site"  )  and
         (( object.tags["site_type"]          == "standing_stone"      )   or
-         ( object.tags["site_type"]          == "megalith"            )   or
-         ( object.tags["Canmore_Site_Type"]  == "Standing Stone"      )))) then
+         ( object.tags["site_type"]          == "megalith"            )))) then
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
@@ -462,7 +501,6 @@ function process_all(object)
 -- Mappings to shop=car
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]    == "car;car_repair"  )  or
-       ( object.tags["shop"]    == "car;bicycle"     )  or
        ( object.tags["shop"]    == "cars"            )  or
        ( object.tags["shop"]    == "car_showroom"    )  or
        ( object.tags["shop"]    == "vehicle"         )) then
@@ -481,7 +519,6 @@ function process_all(object)
 -- Map amenity=car_repair etc. to shop=car_repair
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "car_repair"         )  or
-       ( object.tags["craft"]   == "car_repair"         )  or
        ( object.tags["craft"]   == "coachbuilder"       )  or
        ( object.tags["shop"]    == "car_service"        )  or
        ( object.tags["shop"]    == "car_inspection"     )  or
@@ -2894,9 +2931,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
 
       object.tags["barrier"] = nil
       if ( object.tags['name'] == nil ) then
-         object.tags.name = '(flood bank)'
+         object.tags.name = '(embankment)'
       else
-         object.tags.name = object.tags['name'] .. ' (flood bank)'
+         object.tags.name = object.tags['name'] .. ' (embankment)'
       end
    end
 
@@ -2914,9 +2951,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
        (   object.tags["bridge"]     ~= "yes"             ) and
        (   object.tags["tunnel"]     ~= "yes"             )) then
       if ( object.tags['name'] == nil ) then
-         object.tags.name = '(flood bank)'
+         object.tags.name = '(embankment)'
       else
-         object.tags.name = object.tags['name'] .. ' (flood bank)'
+         object.tags.name = object.tags['name'] .. ' (embankment)'
       end
    end
 
@@ -3240,11 +3277,8 @@ function ott.process_way(object)
 -- "track" will be changed into something else lower down 
 -- (path, pathwide or track_graded).
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["highway"] == "byway"       ) or
-       (  object.tags["highway"] == "gallop"      ) or
-       (  object.tags["highway"] == "unsurfaced"  ) or
-       (( object.tags["golf"]    == "track"      )  and
-        ( object.tags["highway"] == nil         ))) then
+   if (( object.tags["golf"]    == "track"     )  and
+       ( object.tags["highway"] == nil         )) then
       object.tags["highway"] = "track"
    end
 
@@ -3264,7 +3298,7 @@ function ott.process_way(object)
 -- Where a wide width is specified on a normally narrow path, show as wider
 --
 -- Note that "steps" and "footwaysteps" are unchanged by the 
--- pathwide / path choice below:
+-- track / path choice below:
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "footway"   ) or 
        ( object.tags["highway"] == "bridleway" ) or 

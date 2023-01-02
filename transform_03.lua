@@ -626,7 +626,6 @@ function process_all(object)
 -- Beer gardens etc.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "beer_garden" ) or
-       ( object.tags["landuse"] == "beer_garden" ) or
        ( object.tags["leisure"] == "beer_garden" )) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "garden"
@@ -634,14 +633,20 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Show unnamed amenity=biergarten as gardens, which is all they likely are.
+-- Show amenity=biergarten as gardens, which is all they likely are.
+-- Unlike with style.lua (web maps) we don't send named "biergartens" through
+-- as both amenity and leisure.
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["amenity"] == "biergarten"   )  and
-       (( object.tags["name"]    == nil           )   or
-        ( object.tags["name"]    == "Beer Garden" ))) then
+   if ( object.tags["amenity"] == "biergarten" ) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "garden"
       object.tags["garden"]  = "beer_garden"
+
+      if ( keyvalues["name"] == nil ) then
+         keyvalues["name"] = "(beer garden)"
+      else
+         keyvalues["name"] = keyvalues["name"] .. " (beer garden)"
+      end
    end
 
 -- ----------------------------------------------------------------------------
@@ -746,7 +751,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- These all map to meadow in the web maps
 -- ----------------------------------------------------------------------------
-if ( object.tags["landuse"]   == "meadow" ) then
+   if ( object.tags["landuse"]   == "meadow" ) then
       object.tags["leisure"] = "park"
 
       if ( object.tags["name"] == nil ) then
@@ -756,10 +761,14 @@ if ( object.tags["landuse"]   == "meadow" ) then
       end
    end
 
-if (( object.tags["amenity"] == "showground"   ) or
-    ( object.tags["leisure"] == "showground"   ) or
-    ( object.tags["amenity"] == "show_ground"  ) or
-    ( object.tags["amenity"] == "show_grounds" )) then
+-- ----------------------------------------------------------------------------
+-- Various tags for showgrounds
+-- Other tags are suppressed to prevent them appearing ahead of "landuse"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "showground"   ) or
+       ( object.tags["leisure"] == "showground"   ) or
+       ( object.tags["amenity"] == "show_ground"  ) or
+       ( object.tags["amenity"] == "show_grounds" )) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "park"
 
@@ -770,7 +779,7 @@ if (( object.tags["amenity"] == "showground"   ) or
       end
    end
 
-if ( object.tags["amenity"]   == "festival_grounds" ) then
+   if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "park"
 
@@ -815,6 +824,9 @@ if ( object.tags["amenity"]   == "festival_grounds" ) then
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Scout camps etc.
+-- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]   == "scout_camp"     ) or
        ( object.tags["landuse"]   == "scout_camp"     )) then
       object.tags["leisure"] = "park"

@@ -642,10 +642,10 @@ function process_all(object)
       object.tags["leisure"] = "garden"
       object.tags["garden"]  = "beer_garden"
 
-      if ( keyvalues["name"] == nil ) then
-         keyvalues["name"] = "(beer garden)"
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(beer garden)"
       else
-         keyvalues["name"] = keyvalues["name"] .. " (beer garden)"
+         object.tags["name"] = object.tags["name"] .. " (beer garden)"
       end
    end
 
@@ -977,14 +977,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Handle mistagged pubs
--- ----------------------------------------------------------------------------
-   if ( object.tags["tourism"]  == "pub;hotel" ) then
-      object.tags["amenity"] = "pub"
-      object.tags["tourism"] = nil
-   end
-
--- ----------------------------------------------------------------------------
 -- Things that are both hotels, B&Bs etc. and pubs should show as pubs, 
 -- because I'm far more likely to be looking for the latter than the former.
 -- This is done by removing the tourism tag for them.
@@ -1026,8 +1018,10 @@ function process_all(object)
       object.tags["tourism"] = nil
    end
 
-   if (( object.tags["leisure"]     == "outdoor_seating" ) and
-       ( object.tags["beer_garden"] == "yes"             )) then
+   if ((  object.tags["leisure"]         == "outdoor_seating" ) and
+       (( object.tags["surface"]         == "grass"          ) or
+        ( object.tags["beer_garden"]     == "yes"            ) or
+        ( object.tags["outdoor_seating"] == "garden"         ))) then
       object.tags["leisure"] = "garden"
       object.tags["garden"] = "beer_garden"
    end
@@ -1084,17 +1078,6 @@ function process_all(object)
         ( object.tags["leisure"]   == nil   )  and
         ( object.tags["club"]      == nil   ))) then
       object.tags["real_ale"] = nil
-   end
-
--- ----------------------------------------------------------------------------
--- Change some common semicolon values to the first in the list.
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "bar;restaurant" ) then
-      object.tags["amenity"] = "bar"
-   end
-
-   if ( object.tags["shop"] == "butcher;greengrocer" ) then
-      object.tags["shop"] = "butcher"
    end
 
 -- ----------------------------------------------------------------------------
@@ -1184,7 +1167,6 @@ function process_all(object)
    if ((  object.tags["amenity"]               == "pub"        ) and
        (( object.tags["opening_hours:covid19"] == "off"       ) or
         ( object.tags["opening_hours:covid19"] == "closed"    ) or
-        ( object.tags["opening_hours:covid19"] == "Mu-Su off" ) or
         ( object.tags["access:covid19"]        == "no"        ))) then
       object.tags["disused:amenity"] = "pub"
       object.tags["amenity"] = nil
@@ -1465,6 +1447,7 @@ function process_all(object)
 -- that something else.
 -- ----------------------------------------------------------------------------
    if ((( object.tags["healthcare"]            == "vaccination_centre" )  or
+        ( object.tags["healthcare"]            == "sample_collection"  )  or
         ( object.tags["healthcare:speciality"] == "vaccination"        )) and
        (  object.tags["amenity"]               == nil                   ) and
        (  object.tags["leisure"]               == nil                   ) and
@@ -1677,7 +1660,6 @@ function process_all(object)
           ( object.tags["vending"] == "photos"          )  or
           ( object.tags["vending"] == "maps"            )  or
           ( object.tags["vending"] == "newspapers"      )) then
-         
          if ( object.tags['name'] == nil ) then
             object.tags.name = "(" .. object.tags["vending"] .. ")"
          else

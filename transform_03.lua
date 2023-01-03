@@ -2321,6 +2321,9 @@ function process_all(object)
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Historic markers
+-- ----------------------------------------------------------------------------
    if ((   object.tags["historic"]    == "marker"          )  or
        (   object.tags["historic"]    == "plaque"          )  or
        (   object.tags["historic"]    == "memorial_plaque" )  or
@@ -2375,8 +2378,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ((( object.tags["hazard"]  == "plant"                    )  or
         ( object.tags["hazard"]  == "toxic_plant"              )) and
-       (( object.tags["species"] == "giant_hogweed"            )  or
-        ( object.tags["species"] == "Heracleum mantegazzianum" )  or
+       (( object.tags["species"] == "Heracleum mantegazzianum" )  or
         ( object.tags["taxon"]   == "Heracleum mantegazzianum" ))) then
       object.tags["man_made"] = "thing"
 
@@ -2524,8 +2526,7 @@ function process_all(object)
 -- Railway ventilation shaft nodes.
 -- Nodes of these are rendered as a stubby black tower
 -- ----------------------------------------------------------------------------
-   if (( object.tags["man_made"]   == "ventilation_shaft" ) or
-       ( object.tags["building"]   == "air_shaft"         ) or
+   if (( object.tags["building"]   == "air_shaft"         ) or
        ( object.tags["man_made"]   == "air_shaft"         ) or
        ( object.tags["tunnel"]     == "air_shaft"         ) or
        ( object.tags["historic"]   == "air_shaft"         ) or
@@ -2535,8 +2536,7 @@ function process_all(object)
        ( object.tags["building"]   == "ventilation_shaft" ) or
        ( object.tags["building"]   == "vent_shaft"        ) or
        ( object.tags["man_made"]   == "vent_shaft"        ) or
-       ( object.tags["tower:type"] == "vent"              ) or
-       ( object.tags["man_made"]   == "tunnel_vent"       )) then
+       ( object.tags["tower:type"] == "vent"              )) then
       object.tags["man_made"] = "thing"
 
       if ( object.tags["name"] == nil ) then
@@ -2551,10 +2551,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]  == "mounting_block"       ) or
        ( object.tags["amenity"]   == "mounting_block"       ) or
-       ( object.tags["bridleway"] == "mounting_block"       ) or
        ( object.tags["historic"]  == "mounting_block"       ) or
-       ( object.tags["horse"]     == "mounting_block"       ) or
-       ( object.tags["horse"]     == "mounting block"       ) or
        ( object.tags["amenity"]   == "mounting_step"        ) or
        ( object.tags["amenity"]   == "mounting_steps"       ) or
        ( object.tags["amenity"]   == "horse_dismount_block" )) then
@@ -3679,7 +3676,6 @@ function ott.process_way(object)
    if ( object.tags["waterway"] == "brook" ) then
       object.tags["waterway"] = "stream"
    end
-
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways

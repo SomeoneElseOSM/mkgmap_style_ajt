@@ -1852,8 +1852,9 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- Handle razed railways and old inclined_planes as dismantled.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["railway"]  == "razed"          ) or
-       ( object.tags["historic"] == "inclined_plane" )) then
+   if (( object.tags["railway:historic"] == "rail"           ) or
+       ( object.tags["railway"]          == "razed"          ) or
+       ( object.tags["historic"]         == "inclined_plane" )) then
       object.tags["railway"] = "dismantled"
    end
 
@@ -1888,7 +1889,7 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Lock gtes
+-- Lock gates
 -- ----------------------------------------------------------------------------
    if ( object.tags["waterway"] == "lock_gate" ) then
       if ( object.tags['name'] == nil ) then

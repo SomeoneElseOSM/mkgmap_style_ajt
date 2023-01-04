@@ -2406,6 +2406,30 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Bridge types - only "yes" is checked below.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["bridge"] == "viaduct"     ) or
+       ( object.tags["bridge"] == "aqueduct"    ) or
+       ( object.tags["bridge"] == "movable"     ) or
+       ( object.tags["bridge"] == "boardwalk"   ) or
+       ( object.tags["bridge"] == "swing"       ) or
+       ( object.tags["bridge"] == "cantilever"  ) or
+       ( object.tags["bridge"] == "footbridge"  ) or
+       ( object.tags["bridge"] == "undefined"   ) or
+       ( object.tags["bridge"] == "covered"     ) or
+       ( object.tags["bridge"] == "cantilever"  ) or
+       ( object.tags["bridge"] == "gangway"     ) or
+       ( object.tags["bridge"] == "foot"        ) or
+       ( object.tags["bridge"] == "plank"       ) or
+       ( object.tags["bridge"] == "rope"        ) or
+       ( object.tags["bridge"] == "pontoon"     ) or
+       ( object.tags["bridge"] == "pier"        ) or
+       ( object.tags["bridge"] == "chain"       ) or
+       ( object.tags["bridge"] == "trestle"     )) then
+      object.tags["bridge"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
 -- If set, move bridge:name to bridge_name
 -- ----------------------------------------------------------------------------
    if ( object.tags["bridge:name"] ~= nil ) then
@@ -2680,6 +2704,15 @@ function process_all(object)
       else
          object.tags["name"] = object.tags["name"] .. " (advertising column)"
       end
+   end
+
+-- ----------------------------------------------------------------------------
+-- highway=escape to service
+-- There aren't many escape lanes mapped, but they do exist
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"]   == "escape" ) then
+      object.tags["highway"] = "service"
+      object.tags["access"]  = "destination"
    end
 
 -- ----------------------------------------------------------------------------
@@ -2980,6 +3013,59 @@ function process_all(object)
          object.tags.name = object.tags['name'] .. ' (embankment)'
       end
    end
+
+-- ----------------------------------------------------------------------------
+-- map "fences that are really hedges" as fences.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"]    == "fence" ) and
+       ( object.tags["fence_type"] == "hedge" )) then
+      object.tags["barrier"] = "hedge"
+   end
+
+-- ----------------------------------------------------------------------------
+-- barrier=ditch; handle as waterway=ditch.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"] == "ditch" ) then
+      object.tags["waterway"] = "ditch"
+      object.tags["barrier"]  = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- barrier=kissing_gate is handled in the style "points" file.
+-- For gates, choose which of the two gate icons to used based on tagging.
+-- "sally_port" is mapped to gate largely because of misuse in the data.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["barrier"]   == "turnstile"              )  or
+       (  object.tags["barrier"]   == "full-height_turnstile"  )  or
+       (  object.tags["barrier"]   == "kissing_gate;gate"      )  or
+       (( object.tags["barrier"]   == "gate"                  )   and
+        ( object.tags["gate"]      == "kissing"               ))) then
+      object.tags["barrier"] = "kissing_gate"
+   end
+
+-- ----------------------------------------------------------------------------
+-- gates
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"]   == "gate"                  )  or
+       ( object.tags["barrier"]   == "swing_gate"            )  or
+       ( object.tags["barrier"]   == "footgate"              )  or
+       ( object.tags["barrier"]   == "wicket_gate"           )  or
+       ( object.tags["barrier"]   == "hampshire_gate"        )  or
+       ( object.tags["barrier"]   == "bump_gate"             )  or
+       ( object.tags["barrier"]   == "lych_gate"             )  or
+       ( object.tags["barrier"]   == "lytch_gate"            )  or
+       ( object.tags["barrier"]   == "flood_gate"            )  or
+       ( object.tags["barrier"]   == "sally_port"            )  or
+       ( object.tags["barrier"]   == "pengate"               )  or
+       ( object.tags["barrier"]   == "pengates"              )  or
+       ( object.tags["barrier"]   == "gate;stile"            )  or
+       ( object.tags["barrier"]   == "cattle_grid;gate"      )  or
+       ( object.tags["barrier"]   == "gate;kissing_gate"     )  or
+       ( object.tags["barrier"]   == "pull_apart_gate"       )  or
+       ( object.tags["barrier"]   == "snow_gate"             )) then
+      object.tags["barrier"] = "gate"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

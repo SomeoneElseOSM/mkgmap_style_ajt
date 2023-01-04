@@ -214,7 +214,6 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "boundary_stone"  )  or
        ( object.tags["historic"] == "boundary_marker" )  or
-       ( object.tags["historic"] == "boundary_post"   )  or
        ( object.tags["marker"]   == "boundary_stone"  )  or
        ( object.tags["boundary"] == "marker"          )) then
       object.tags["man_made"] = "marker"

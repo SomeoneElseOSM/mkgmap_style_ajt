@@ -3065,6 +3065,455 @@ function process_all(object)
       object.tags["barrier"] = "gate"
    end
 
+-- ----------------------------------------------------------------------------
+-- lift gates
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"] == "border_control"   ) or
+       ( object.tags["barrier"] == "ticket_barrier"   ) or
+       ( object.tags["barrier"] == "ticket"           ) or
+       ( object.tags["barrier"] == "security_control" ) or
+       ( object.tags["barrier"] == "checkpoint"       ) or
+       ( object.tags["barrier"] == "gatehouse"        )) then
+      object.tags["barrier"] = "lift_gate"
+   end
+
+-- ----------------------------------------------------------------------------
+-- render barrier=bar as barrier=horse_stile (Norfolk)
+-- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"] == "bar" ) then
+      object.tags["barrier"] = "horse_stile"
+   end
+
+-- ----------------------------------------------------------------------------
+-- render various cycle barrier synonyms
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"]   == "chicane"               )  or
+       ( object.tags["barrier"]   == "squeeze"               )  or
+       ( object.tags["barrier"]   == "motorcycle_barrier"    )  or
+       ( object.tags["barrier"]   == "horse_barrier"         )  or
+       ( object.tags["barrier"]   == "a_frame"               )) then
+      object.tags["barrier"] = "cycle_barrier"
+   end
+
+-- ----------------------------------------------------------------------------
+-- render various synonyms for stile as barrier=stile
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"]   == "squeeze_stile"   )  or
+       ( object.tags["barrier"]   == "ramblers_gate"   )  or
+       ( object.tags["barrier"]   == "squeeze_point"   )  or
+       ( object.tags["barrier"]   == "step_over"       )  or
+       ( object.tags["barrier"]   == "stile;gate"      )) then
+      object.tags["barrier"] = "stile"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Don't show "standing benches" as benches.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "bench"          ) and
+       ( object.tags["bench"]   == "stand_up_bench" )) then
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Ogham stones mapped without other tags
+-- ----------------------------------------------------------------------------
+   if ( object.tags["historic"]   == "ogham_stone" ) then
+      object.tags["man_made"] = "marker"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(ogham stone)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (ogham stone)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Memorial plates
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["historic"]      == "memorial"  ) and
+       (( object.tags["memorial"]      == "plate"    )  or
+        ( object.tags["memorial:type"] == "plate"    ))) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(memorial plate)'
+      else
+          object.tags.name = object.tags['name'] .. ' (memorial plate)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Memorial graves and graveyards
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["historic"]   == "memorial"     ) and
+       (( object.tags["memorial"]   == "grave"       )  or
+        ( object.tags["memorial"]   == "graveyard"   ))) then
+      object.tags["historic"] = "memorialgrave"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(memorial grave)'
+      else
+          object.tags.name = object.tags['name'] .. ' (memorial grave)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render shop=newsagent as shop=convenience
+-- It's near enough in meaning I think.  Likewise kiosk (bit of a stretch,
+-- but nearer than anything else)
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "newsagent"           ) or
+       ( object.tags["shop"]   == "kiosk"               ) or
+       ( object.tags["shop"]   == "forecourt"           ) or
+       ( object.tags["shop"]   == "food"                ) or
+       ( object.tags["shop"]   == "grocery"             ) or
+       ( object.tags["shop"]   == "grocer"              ) or
+       ( object.tags["shop"]   == "frozen_food"         ) or
+       ( object.tags["shop"]   == "convenience;alcohol" )) then
+      object.tags["shop"] = "convenience"
+   end
+
+-- ----------------------------------------------------------------------------
+-- shoe shops
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "shoes"        ) or
+       ( object.tags["shop"] == "shoe"         ) or
+       ( object.tags["shop"] == "footwear"     )) then
+      object.tags["shop"] = "shoes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- "clothes" consolidation.  "baby_goods" is here because there will surely
+-- be some clothes there!
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "fashion"      ) or
+       ( object.tags["shop"] == "boutique"     ) or
+       ( object.tags["shop"] == "vintage"      ) or
+       ( object.tags["shop"] == "bridal"       ) or
+       ( object.tags["shop"] == "wedding"      ) or
+       ( object.tags["shop"] == "lingerie"     ) or
+       ( object.tags["shop"] == "baby_goods"   ) or
+       ( object.tags["shop"] == "baby"         ) or
+       ( object.tags["shop"] == "dance"        ) or
+       ( object.tags["shop"] == "clothes_hire" ) or
+       ( object.tags["shop"] == "clothing"     ) or
+       ( object.tags["shop"] == "hat"          ) or
+       ( object.tags["shop"] == "hats"         ) or
+       ( object.tags["shop"] == "wigs"         )) then
+      object.tags["shop"] = "clothes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- "department_store" consolidation.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"] == "department" ) then
+      object.tags["shop"] = "department_store"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Before potentially using brand or operator as a bracketed suffix after the
+-- name, explicitly exclude some "non-brands" - "Independent", etc.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["brand"]   == "Independent"            ) or
+       ( object.tags["brand"]   == "independent"            ) or
+       ( object.tags["brand"]   == "Independant"            ) or
+       ( object.tags["brand"]   == "independant"            ) or
+       ( object.tags["brand"]   == "independant"            ) or
+       ( object.tags["brand"]   == "Traditional Free House" )) then
+      object.tags["brand"] = nil
+   end
+
+   if (( object.tags["operator"]   == "Independent"             ) or
+       ( object.tags["operator"]   == "independent"             ) or
+       ( object.tags["operator"]   == "Independant"             ) or
+       ( object.tags["operator"]   == "independant"             ) or
+       ( object.tags["operator"]   == "Free House"              ) or
+       ( object.tags["operator"]   == "Free house"              ) or
+       ( object.tags["operator"]   == "free house"              ) or
+       ( object.tags["operator"]   == "free_house"              ) or
+       ( object.tags["operator"]   == "independent free house"  ) or
+       ( object.tags["operator"]   == "(free_house)"            )) then
+      object.tags["operator"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If no name use brand or operator on amenity=fuel, among others.  
+-- If there is brand or operator, use that with name.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]   == "atm"              ) or
+       ( object.tags["amenity"]   == "fuel"             ) or
+       ( object.tags["amenity"]   == "charging_station" ) or
+       ( object.tags["amenity"]   == "bicycle_rental"   ) or
+       ( object.tags["amenity"]   == "scooter_rental"   ) or
+       ( object.tags["amenity"]   == "vending_machine"  ) or
+       ( object.tags["amenity"]   == "pub"              ) or
+       ( object.tags["amenity"]   == "cafe"             ) or
+       ( object.tags["amenity"]   == "restaurant"       ) or
+       ( object.tags["amenity"]   == "doctors"          ) or
+       ( object.tags["amenity"]   == "pharmacy"         ) or
+       ( object.tags["amenity"]   == "parcel_locker"    ) or
+       ( object.tags["amenity"]   == "veterinary"       ) or
+       ( object.tags["amenity"]   == "animal_boarding"  ) or
+       ( object.tags["amenity"]   == "cattery"          ) or
+       ( object.tags["amenity"]   == "kennels"          ) or
+       ( object.tags["amenity"]   == "animal_shelter"   ) or
+       ( object.tags["animal"]    == "shelter"          ) or
+       ( object.tags["craft"]      ~= nil               ) or
+       ( object.tags["emergency"]  ~= nil               ) or
+       ( object.tags["industrial"] ~= nil               ) or
+       ( object.tags["man_made"]   ~= nil               ) or
+       ( object.tags["office"]     ~= nil               ) or
+       ( object.tags["shop"]       ~= nil               ) or
+       ( object.tags["tourism"]    == "hotel"           ) or
+       ( object.tags["military"]   == "barracks"        )) then
+      if ( object.tags["name"] == nil ) then
+         if ( object.tags["brand"] ~= nil ) then
+            object.tags["name"] = object.tags["brand"]
+            object.tags["brand"] = nil
+         else
+            if ( object.tags["operator"] ~= nil ) then
+               object.tags["name"] = object.tags["operator"]
+               object.tags["operator"] = nil
+            end
+         end
+      else
+         if (( object.tags["brand"] ~= nil                )  and
+             ( object.tags["brand"] ~= object.tags["name"]  )) then
+            object.tags["name"] = object.tags["name"] .. " (" .. object.tags["brand"] .. ")"
+            object.tags["brand"] = nil
+	 else
+            if (( object.tags["operator"] ~= nil                )  and
+                ( object.tags["operator"] ~= object.tags["name"]  )) then
+               object.tags["name"] = object.tags["name"] .. " (" .. object.tags["operator"] .. ")"
+               object.tags["operator"] = nil
+            end
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- plant_nursery and lawnmower etc. to garden_centre
+-- Add unnamedcommercial landuse to give non-building areas a background.
+-- Usage suggests shop=nursery means plant_nursery.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"] == "plant_nursery"              ) or
+       ( object.tags["shop"]    == "plant_nursery"              ) or
+       ( object.tags["shop"]    == "plant_centre"               ) or
+       ( object.tags["shop"]    == "nursery"                    ) or
+       ( object.tags["shop"]    == "lawn_mower"                 ) or
+       ( object.tags["shop"]    == "lawnmowers"                 ) or
+       ( object.tags["shop"]    == "garden_furniture"           ) or
+       ( object.tags["shop"]    == "garden_machinery"           ) or
+       ( object.tags["shop"]    == "gardening"                  ) or
+       ( object.tags["shop"]    == "garden_equipment"           ) or
+       ( object.tags["shop"]    == "garden_tools"               ) or
+       ( object.tags["shop"]    == "garden"                     ) or
+       ( object.tags["shop"]    == "doityourself;garden_centre" ) or
+       ( object.tags["shop"]    == "garden_machines"            )) then
+      object.tags["landuse"] = "unnamedcommercial"
+      object.tags["shop"]    = "garden_centre"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render shop=hardware stores etc. as shop=doityourself
+-- Add unnamedcommercial landuse to give non-building areas a background.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "hardware"             ) or
+       ( object.tags["shop"]    == "tool_hire"            ) or
+       ( object.tags["shop"]    == "equipment_hire"       ) or
+       ( object.tags["shop"]    == "diy"                  ) or
+       ( object.tags["shop"]    == "tools"                ) or
+       ( object.tags["shop"]    == "hardware_rental"      ) or
+       ( object.tags["shop"]    == "builders_merchant"    ) or
+       ( object.tags["shop"]    == "builders_merchants"   ) or
+       ( object.tags["shop"]    == "timber"               ) or
+       ( object.tags["shop"]    == "fencing"              ) or
+       ( object.tags["shop"]    == "plumbers_merchant"    ) or
+       ( object.tags["shop"]    == "building_supplies"    ) or
+       ( object.tags["shop"]    == "industrial_supplies"  ) or
+       ( object.tags["office"]  == "industrial_supplies"  ) or
+       ( object.tags["shop"]    == "plant_hire"           ) or
+       ( object.tags["amenity"] == "plant_hire;tool_hire" ) or
+       ( object.tags["shop"]    == "signs"                ) or
+       ( object.tags["shop"]    == "sign"                 ) or
+       ( object.tags["shop"]    == "signwriter"           ) or
+       ( object.tags["craft"]   == "signmaker"            ) or
+       ( object.tags["craft"]   == "roofer"               ) or
+       ( object.tags["shop"]    == "roofing"              ) or
+       ( object.tags["craft"]   == "floorer"              ) or
+       ( object.tags["shop"]    == "building_materials"   )) then
+      object.tags["shop"]    = "doityourself"
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- hairdresser;beauty
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"] == "hairdresser;beauty" ) then
+      object.tags["shop"] = "hairdresser"
+   end
+
+-- ----------------------------------------------------------------------------
+-- sports
+-- the name is usually characteristic, but try and use an icon.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "golf"              ) or
+       ( object.tags["shop"]   == "scuba_diving"      ) or
+       ( object.tags["shop"]   == "water_sports"      ) or
+       ( object.tags["shop"]   == "watersports"       ) or
+       ( object.tags["shop"]   == "fishing"           ) or
+       ( object.tags["shop"]   == "fishing_tackle"    ) or
+       ( object.tags["shop"]   == "angling"           ) or
+       ( object.tags["shop"]   == "fitness_equipment" )) then
+      object.tags["shop"] = "sports"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various not-really-clothes things best rendered as clothes shops
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "tailor"                  ) or
+       ( object.tags["craft"]   == "tailor"                  ) or
+       ( object.tags["craft"]   == "dressmaker"              )) then
+      object.tags["shop"] = "clothes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Currently handle beauty salons etc. as just generic beauty.  Also "chemist"
+-- Mostly these have names that describe the business, so less need for a
+-- specific icon.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]         == "beauty_salon"      ) or
+       ( object.tags["leisure"]      == "spa"               ) or
+       ( object.tags["shop"]         == "spa"               ) or
+       ( object.tags["amenity"]      == "spa"               ) or
+       ( object.tags["tourism"]      == "spa"               ) or
+       (( object.tags["club"]    == "health"               )  and
+        ( object.tags["leisure"] == nil                    )  and
+        ( object.tags["amenity"] == nil                    )  and
+        ( object.tags["name"]    ~= nil                    )) or
+       ( object.tags["shop"]         == "salon"             ) or
+       ( object.tags["shop"]         == "nails"             ) or
+       ( object.tags["shop"]         == "nail_salon"        ) or
+       ( object.tags["shop"]         == "nail"              ) or
+       ( object.tags["shop"]         == "chemist"           ) or
+       ( object.tags["shop"]         == "soap"              ) or
+       ( object.tags["shop"]         == "toiletries"        ) or
+       ( object.tags["shop"]         == "beauty_products"   ) or
+       ( object.tags["shop"]         == "beauty_treatment"  ) or
+       ( object.tags["shop"]         == "perfumery"         ) or
+       ( object.tags["shop"]         == "cosmetics"         ) or
+       ( object.tags["shop"]         == "tanning"           ) or
+       ( object.tags["shop"]         == "tan"               ) or
+       ( object.tags["shop"]         == "suntan"            ) or
+       ( object.tags["leisure"]      == "tanning_salon"     ) or
+       ( object.tags["shop"]         == "health_and_beauty" ) or
+       ( object.tags["shop"]         == "beautician"        )) then
+      object.tags["shop"] = "beauty"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Computer
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"]  == "computer_repair" ) then
+      object.tags["shop"] = "computer"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show pastry shops as bakeries
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"] == "pastry" ) then
+      object.tags["shop"] = "bakery"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Other "homeware-like" shops.  These, e.g. chandlery, that are a bit of a
+-- stretch get the shopnonspecific icon.
+-- Add unnamedcommercial landuse to give non-building areas a background.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "upholsterer"                 ) or
+       ( object.tags["shop"]   == "chair"                       ) or
+       ( object.tags["shop"]   == "luggage"                     ) or
+       ( object.tags["shop"]   == "clock"                       ) or
+       ( object.tags["shop"]   == "clocks"                      ) or
+       ( object.tags["shop"]   == "home_improvement"            ) or
+       ( object.tags["shop"]   == "decorating"                  ) or
+       ( object.tags["shop"]   == "bed;carpet"                  ) or
+       ( object.tags["shop"]   == "country_store"               ) or
+       ( object.tags["shop"]   == "equestrian"                  ) or
+       ( object.tags["shop"]   == "kitchen"                     ) or
+       ( object.tags["shop"]   == "kitchen;bathroom"            ) or
+       ( object.tags["shop"]   == "kitchen;bathroom_furnishing" ) or
+       ( object.tags["shop"]   == "bedroom"                     ) or
+       ( object.tags["shop"]   == "bathroom"                    ) or
+       ( object.tags["shop"]   == "glaziery"                    ) or
+       ( object.tags["craft"]  == "glaziery"                    ) or
+       ( object.tags["shop"]   == "glazier"                     ) or
+       ( object.tags["craft"]  == "glazier"                     ) or
+       ( object.tags["shop"]   == "glazing"                     ) or
+       ( object.tags["shop"]   == "stone"                       ) or
+       ( object.tags["shop"]   == "brewing"                     ) or
+       ( object.tags["shop"]   == "gates"                       ) or
+       ( object.tags["shop"]   == "sheds"                       ) or
+       ( object.tags["shop"]   == "shed"                        ) or
+       ( object.tags["shop"]   == "ironmonger"                  ) or
+       ( object.tags["shop"]   == "furnace"                     ) or
+       ( object.tags["shop"]   == "plumbing"                    ) or
+       ( object.tags["craft"]  == "plumber"                     ) or
+       ( object.tags["craft"]  == "carpenter"                   ) or
+       ( object.tags["craft"]  == "decorator"                   ) or
+       ( object.tags["shop"]   == "bed"                         ) or
+       ( object.tags["shop"]   == "beds"                        ) or
+       ( object.tags["shop"]   == "mattress"                    ) or
+       ( object.tags["shop"]   == "waterbed"                    ) or
+       ( object.tags["shop"]   == "glass"                       ) or
+       ( object.tags["shop"]   == "garage"                      ) or
+       ( object.tags["shop"]   == "conservatory"                ) or
+       ( object.tags["shop"]   == "conservatories"              ) or
+       ( object.tags["shop"]   == "bathrooms"                   ) or
+       ( object.tags["shop"]   == "swimming_pool"               ) or
+       ( object.tags["shop"]   == "fitted_furniture"            ) or
+       ( object.tags["shop"]   == "upholstery"                  ) or
+       ( object.tags["shop"]   == "chandler"                    ) or
+       ( object.tags["shop"]   == "chandlers"                   ) or
+       ( object.tags["shop"]   == "chandlery"                   ) or
+       ( object.tags["shop"]   == "ship_chandler"               ) or
+       ( object.tags["craft"]  == "boatbuilder"                 ) or
+       ( object.tags["shop"]   == "saddlery"                    )) then
+      object.tags["shop"] = "furniture"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Car parts
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["shop"]    == "trade"                       )  and
+        ( object.tags["trade"]   == "car_parts"                   )) or
+       (  object.tags["shop"]    == "car_accessories"              )  or
+       (  object.tags["shop"]    == "tyres"                        )  or
+       (  object.tags["shop"]    == "automotive"                   )  or
+       (  object.tags["shop"]    == "battery"                      )  or
+       (  object.tags["shop"]    == "batteries"                    )  or
+       (  object.tags["shop"]    == "number_plate"                 )  or
+       (  object.tags["shop"]    == "number_plates"                )  or
+       (  object.tags["shop"]    == "license_plates"               )  or
+       (  object.tags["shop"]    == "car_audio"                    )  or
+       (  object.tags["shop"]    == "motor"                        )  or
+       (  object.tags["shop"]    == "motoring"                     )  or
+       (  object.tags["shop"]    == "motor_spares"                 )  or
+       (  object.tags["shop"]    == "motor_accessories"            )  or
+       (  object.tags["shop"]    == "car_parts;car_repair"         )  or
+       (  object.tags["shop"]    == "bicycle;car_parts"            )  or
+       (  object.tags["shop"]    == "car_parts;bicycle"            )) then
+      object.tags["shop"] = "car_parts"
+   end
+
+-- ----------------------------------------------------------------------------
+-- If a quarry is disused, it's still likely a hole in the ground, so render it
+-- ----------------------------------------------------------------------------
+   if (( object.tags["disused:landuse"] == "quarry" ) and
+       ( object.tags["landuse"]         == nil      )) then
+      object.tags["landuse"] = "quarry"
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects
@@ -3659,6 +4108,14 @@ function ott.process_way(object)
             object.tags.name = '(wall)'
         else
             object.tags.name = object.tags['name'] .. ' (wall)'
+        end
+    end
+
+    if ( object.tags['natural'] == 'tree_row' ) then
+        if ( object.tags['name'] == nil ) then
+            object.tags.name = '(tree_row)'
+        else
+            object.tags.name = object.tags['name'] .. ' (tree_row)'
         end
     end
 

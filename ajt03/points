@@ -122,32 +122,7 @@ landuse=reservoir [0x650f resolution 21]
 landuse=village_green & name=* [0x2c06 resolution 21]
 landuse=wood & name=* [0x6618 resolution 21]
 
-(highway=bus_stop | railway=tram_stop | railway=halt | railway=station | public_transport=station )
-& lit=yes & (shelter=yes | covered=yes)
-{
-  set ref='${ref|def:}(${route_ref})';
-  name '${name|def:} ${ref|def:}*${operator|def:}';
-}
-(highway=bus_stop | railway=tram_stop | railway=halt | railway=station)
-& (shelter=yes | covered=yes)
-{
-  set ref='${ref|def:}(${route_ref})';
-  name '${name|def:} ${ref|def:}+${operator|def:}';
-}
-(highway=bus_stop | railway=tram_stop | railway=halt | railway=station)
-& (shelter=no | covered=no)
-{
-  set ref='${ref|def:}(${route_ref})';
-  name '${name|def:} ${ref|def:}-${operator|def:}';
-}
-(highway=bus_stop | railway=tram_stop | railway=halt | railway=station)
-& (name=*|ref=*|operator=*|route_ref=*)
-{
-  set ref='${ref|def:}(${route_ref})';
-  name '${name|def:} ${ref|def:} ${operator|def:}';
-}
-
-highway=bus_stop [0x2f17 resolution 20]
+highway=bus_stop {name '${name}'} [0x2f17 resolution 20]
 
 barrier=gate [0x2f0f resolution 23 default_name 'Gate']
 barrier=kissing_gate [0x2f0f resolution 23 default_name 'Kissing Gate']

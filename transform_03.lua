@@ -622,6 +622,20 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=water_tap
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"] == "water_tap" ) and
+       ( object.tags["amenity"]  == nil         )) then
+      object.tags["natural"] = "spring"
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(tap)"
+      else
+         object.tags["name"] = object.tags["name"] .. " (tap)"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Beer gardens etc.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "beer_garden" ) or
@@ -1543,13 +1557,16 @@ function process_all(object)
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Clock towers
+-- ----------------------------------------------------------------------------
    if (((  object.tags["man_made"]   == "tower"        )  and
         (( object.tags["tower:type"] == "clock"       )   or
          ( object.tags["building"]   == "clock_tower" )   or
          ( object.tags["amenity"]    == "clock"       ))) or
        ((  object.tags["amenity"]    == "clock"        )  and
         (  object.tags["support"]    == "tower"        ))) then
-      object.tags["man_made"] = "thing"
+      object.tags["man_made"] = "tower"
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -1569,12 +1586,149 @@ function process_all(object)
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then
-         object.tags.name = '(clockpedestal)'
+         object.tags.name = '(pedestal clock)'
       else
-         object.tags.name = object.tags['name'] .. ' (clockpedestal)'
+         object.tags.name = object.tags['name'] .. ' (pedestal clock)'
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Aircraft control towers
+-- ----------------------------------------------------------------------------
+   if (((  object.tags["man_made"]   == "tower"             )   and
+        (( object.tags["tower:type"] == "aircraft_control" )    or
+         ( object.tags["service"]    == "aircraft_control" )))  or
+       (   object.tags["aeroway"]    == "control_tower"      )) then
+      object.tags["man_made"] = "tower"
+      object.tags["building"] = "yes"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(control tower)'
+      else
+         object.tags.name = object.tags['name'] .. ' (control tower)'
+      end
+   end
+
+   if ((( object.tags["man_made"]   == "tower"              )   or
+        ( object.tags["man_made"]   == "monitoring_station" ))  and
+       (( object.tags["tower:type"] == "radar"              )   or
+        ( object.tags["tower:type"] == "weather_radar"      ))) then
+      object.tags["man_made"] = "tower"
+      object.tags["building"] = "yes"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(radar tower)'
+      else
+         object.tags.name = object.tags['name'] .. ' (radar tower)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- All the domes in the UK are radomes.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]            == "tower"   ) and
+       (( object.tags["tower:construction"] == "dome"   )  or
+        ( object.tags["tower:construction"] == "dish"   ))) then
+      object.tags["man_made"] = "tower"
+      object.tags["building"] = "yes"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(radar dome)'
+      else
+         object.tags.name = object.tags['name'] .. ' (radar dome)'
+      end
+   end
+
+   if (( object.tags["man_made"]   == "tower"                ) and
+       ( object.tags["tower:type"] == "firefighter_training" )) then
+      object.tags["man_made"] = "tower"
+      object.tags["building"] = "yes"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(firefighter)'
+      else
+         object.tags.name = object.tags['name'] .. ' (firefighter)'
+      end
+   end
+
+   if ((((  object.tags["man_made"]    == "tower"             )  and
+         (( object.tags["tower:type"]  == "church"           )   or
+          ( object.tags["tower:type"]  == "square"           )   or
+          ( object.tags["tower:type"]  == "campanile"        )   or
+          ( object.tags["tower:type"]  == "bell_tower"       ))) or
+        (   object.tags["man_made"]    == "campanile"          )) and
+       ((   object.tags["amenity"]     == nil                  )  or
+        (   object.tags["amenity"]     ~= "place_of_worship"   ))) then
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(church tower)'
+      else
+         object.tags.name = object.tags['name'] .. ' (church tower)'
+      end
+   end
+
+   if ((( object.tags["man_made"]      == "tower"            ) or
+        ( object.tags["building"]      == "tower"            ) or
+        ( object.tags["building:part"] == "yes"              )) and
+       ((  object.tags["tower:type"]   == "spire"            )  or
+        (  object.tags["tower:type"]   == "steeple"          )  or
+        (  object.tags["tower:type"]   == "minaret"          )  or
+        (  object.tags["tower:type"]   == "round"            )) and
+       (( object.tags["amenity"]       == nil                )  or
+        ( object.tags["amenity"]       ~= "place_of_worship" ))) then
+      object.tags["man_made"] = "tower"
+      object.tags["building"] = "yes"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(church spire)'
+      else
+         object.tags.name = object.tags['name'] .. ' (church spire)'
+      end
+   end
+
+   if (( object.tags["man_made"] == "phone_mast"           ) or
+       ( object.tags["man_made"] == "radio_mast"           ) or
+       ( object.tags["man_made"] == "communications_mast"  ) or
+       ( object.tags["man_made"] == "tower"                ) or
+       ( object.tags["man_made"] == "communications_tower" ) or
+       ( object.tags["man_made"] == "transmitter"          ) or
+       ( object.tags["man_made"] == "antenna"              ) or
+       ( object.tags["man_made"] == "mast"                 )) then
+      object.tags["man_made"] = "mast"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(phone mast)'
+      else
+         object.tags.name = object.tags['name'] .. ' (phone mast)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- man_made=maypole
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"] == "maypole"   ) or
+       (  object.tags["man_made"] == "may_pole"  ) or
+       (( object.tags["man_made"] == "pole"     )  and
+        ( object.tags["pole"]      == "maypole" )) or
+       (  object.tags["historic"] == "maypole"   )) then
+      object.tags["man_made"] = "mast"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(mapypole)'
+      else
+         object.tags.name = object.tags['name'] .. ' (maypole)'
+      end
+   end
+   
 -- ----------------------------------------------------------------------------
 -- Left luggage
 -- ----------------------------------------------------------------------------
@@ -2362,7 +2516,7 @@ function process_all(object)
        (  object.tags["building"]   == "chimney"  ) or
        (( object.tags["building"]   == "tower"   )  and
         ( object.tags["tower:type"] == "chimney" ))) then
-      object.tags["man_made"] = "thing"
+      object.tags["man_made"] = "tower"
       object.tags["historic"] = nil
 
       if ( object.tags['name'] == nil ) then
@@ -3512,6 +3666,151 @@ function process_all(object)
    if (( object.tags["disused:landuse"] == "quarry" ) and
        ( object.tags["landuse"]         == nil      )) then
       object.tags["landuse"] = "quarry"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Masts etc.  Consolidate various sorts of masts and towers into the "mast"
+-- group.  Note that this includes "tower" temporarily, and "campanile" is in 
+-- here as a sort of tower (only 2 mapped in UK currently).
+-- Also remove any "tourism" tags (which may be semi-valid mapping but are
+-- often just "for the renderer").
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"]  == "tower"   )  and
+       ( object.tags["tower:type"] == "chimney" )) then
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(chimney)'
+      else
+          object.tags.name = object.tags['name'] .. ' (chimney)'
+      end
+   end
+
+   if (( object.tags["man_made"]   == "tower"   )  and
+       ( object.tags["tower:type"] == "cooling" )) then
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(cooling tower)'
+      else
+          object.tags.name = object.tags['name'] .. ' (cooling tower)'
+      end
+   end
+
+   if (( object.tags["man_made"]   == "tower"    ) and
+       ( object.tags["tower:type"] == "lighting" )) then
+      object.tags["man_made"] = "thing"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(illumination tower)'
+      else
+          object.tags.name = object.tags['name'] .. ' (illumination tower)'
+      end
+   end
+
+   if ((   object.tags["man_made"]           == "tower"       ) and
+       ((  object.tags["tower:type"]         == "defensive"  )  or
+        (( object.tags["tower:type"]         == nil         )   and
+         ( object.tags["tower:construction"] == "stone"     )))) then
+      object.tags["man_made"] = "thing"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(defensive tower)'
+      else
+          object.tags.name = object.tags['name'] .. ' (defensive tower)'
+      end
+   end
+
+   if (( object.tags["man_made"]   == "tower"       ) and
+       ( object.tags["tower:type"] == "observation" )) then
+      object.tags["man_made"] = "thing"
+      object.tags["tourism"] = nil
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(observation tower)'
+      else
+          object.tags.name = object.tags['name'] .. ' (observation tower)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Concatenate a couple of names for bus stops so that the most useful ones
+-- are displayed.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "bus_stop" ) then
+      if (( object.tags["name"]             ~= nil ) and
+          ( object.tags["naptan:Indicator"] ~= nil )) then
+         object.tags["name"] = object.tags["name"] .. " " .. object.tags["naptan:Indicator"]
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Some people tag waste_basket on bus_stop.  We render just bus_stop.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "bus_stop"     ) and
+       ( object.tags["amenity"] == "waste_basket" )) then
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Remove icon for public transport and animal field shelters and render as
+-- "roof" (if they are a way).
+-- "roof" isn't rendered for nodes, so this has the effect of suppressing
+-- public_transport shelters and shopping_cart shelters on nodes.
+-- shopping_cart, parking and animal_shelter aren't really a "shelter" type 
+-- that we are interested in (for humans).  There are no field or parking 
+-- shelters on nodes in GB/IE.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]      == "shelter"            ) and
+       (( object.tags["shelter_type"] == "public_transport" )  or
+        ( object.tags["shelter_type"] == "field_shelter"    )  or
+        ( object.tags["shelter_type"] == "shopping_cart"    )  or
+        ( object.tags["shelter_type"] == "trolley_park"     )  or
+        ( object.tags["shelter_type"] == "parking"          )  or
+        ( object.tags["shelter_type"] == "animal_shelter"   ))) then
+      object.tags["amenity"] = nil
+      if ( object.tags["building"] == nil ) then
+         object.tags["building"] = "roof"
+      end
+   end
+
+  if (( object.tags["amenity"]      == "shelter"            ) and
+      ( object.tags["shelter_type"] == "bicycle_parking"    )) then
+      object.tags["amenity"] = "bicycle_parking"
+      if ( object.tags["building"] == nil ) then
+         object.tags["building"] = "roof"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Drop some highway areas - "track" etc. areas wherever I have seen them are 
+-- garbage.
+-- "footway" (pedestrian areas) and "service" (e.g. petrol station forecourts)
+-- tend to be OK.  Other options tend not to occur.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["highway"] == "track"          )  or
+        ( object.tags["highway"] == "leisuretrack"   )  or
+        ( object.tags["highway"] == "gallop"         )  or
+        ( object.tags["highway"] == "residential"    )  or
+        ( object.tags["highway"] == "unclassified"   )  or
+        ( object.tags["highway"] == "tertiary"       )) and
+       (  object.tags["area"]    == "yes"             )) then
+      object.tags["highway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- addr:unit
+-- ----------------------------------------------------------------------------
+   if ( object.tags["addr:unit"] ~= nil ) then
+      if ( object.tags["addr:housenumber"] ~= nil ) then
+         object.tags["addr:housenumber"] = object.tags["addr:unit"] .. ", " .. object.tags["addr:housenumber"]
+      else
+         object.tags["addr:housenumber"] = object.tags["addr:unit"]
+      end
    end
 
 

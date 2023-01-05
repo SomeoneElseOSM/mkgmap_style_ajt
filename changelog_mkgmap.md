@@ -2,6 +2,10 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Removed some more unused tag key/value combinations from the ajt03 style.
+Apply more tag processing from raster web maps style.lua file, including shops.
+
+## 04/01/2023
 Removed some more unused tag key/value combinations from the ajt02 style.
 Added support for more military landuse for the ajt03 style.
 Added support for levees, either with highways on them or not, in ajt03.

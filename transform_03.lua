@@ -3813,6 +3813,29 @@ function process_all(object)
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Climbing features (boulders, stones, etc.)
+-- Deliberately only use this for outdoor features that would not otherwise
+-- display, so not cliffs etc.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["sport"]    == "climbing"      ) and
+       ( object.tags["natural"]  ~= "peak"          ) and
+       ( object.tags["natural"]  ~= "cliff"         ) and
+       ( object.tags["leisure"]  ~= "sports_centre" ) and
+       ( object.tags["leisure"]  ~= "climbing_wall" ) and
+       ( object.tags["shop"]     ~= "sports"        ) and
+       ( object.tags["tourism"]  ~= "attraction"    ) and
+       ( object.tags["building"] == nil             ) and
+       ( object.tags["man_made"] ~= "tower"         ) and
+       ( object.tags["barrier"]  ~= "wall"          )) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(climbing)'
+      else
+         object.tags.name = object.tags['name'] .. ' (climbing)'
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Quality Control tagging on all objects

@@ -2257,6 +2257,92 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Render historic=wayside_cross and wayside_shrine as historic=memorialcross
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["historic"]   == "wayside_cross"    ) or
+       (   object.tags["historic"]   == "wayside_shrine"   ) or
+       ((  object.tags["historic"]   == "memorial"        )  and
+        (( object.tags["memorial"]   == "cross"          )   or
+         ( object.tags["memorial"]   == "mercat_cross"   )))) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(cross)'
+      else
+         object.tags.name = object.tags['name'] .. ' (cross)'
+      end
+   end
+
+   if (( object.tags["historic"]   == "memorial"     ) and
+       ( object.tags["memorial"]   == "war_memorial" )) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(war memorial)'
+      else
+         object.tags.name = object.tags['name'] .. ' (war memorial)'
+      end
+   end
+
+   if ((  object.tags["historic"]      == "memorial"     ) and
+       (( object.tags["memorial"]      == "plaque"      )  or
+        ( object.tags["memorial"]      == "blue_plaque" )  or
+        ( object.tags["memorial:type"] == "plaque"      ))) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(plaque)'
+      else
+         object.tags.name = object.tags['name'] .. ' (plaque)'
+      end
+   end
+
+   if (( object.tags["historic"]   == "memorial"        ) and
+       ( object.tags["memorial"]   == "pavement plaque" )) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(pavement plaque)'
+      else
+         object.tags.name = object.tags['name'] .. ' (pavement plaque)'
+      end
+   end
+
+   if ((  object.tags["historic"]      == "memorial"  ) and
+       (( object.tags["memorial"]      == "statue"   )  or
+        ( object.tags["memorial:type"] == "statue"   ))) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(memorial statue)'
+      else
+         object.tags.name = object.tags['name'] .. ' (memorial statue)'
+      end
+   end
+
+   if (( object.tags["historic"]   == "memorial"    ) and
+       ( object.tags["memorial"]   == "sculpture"   )) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(memorial sculpture)'
+      else
+         object.tags.name = object.tags['name'] .. ' (memorial sculpture)'
+      end
+   end
+
+   if (( object.tags["historic"]   == "memorial"    ) and
+       ( object.tags["memorial"]   == "stone"       )) then
+      object.tags["historic"] = "memorial"
+
+      if ( object.tags['name'] == nil ) then
+         object.tags.name = '(memorial stone)'
+      else
+         object.tags.name = object.tags['name'] .. ' (memorial stone)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- historic=monument
 -- ----------------------------------------------------------------------------
    if ( object.tags["historic"]   == "monument"     ) then

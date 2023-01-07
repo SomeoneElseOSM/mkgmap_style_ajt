@@ -1728,6 +1728,27 @@ function process_all(object)
          object.tags.name = object.tags['name'] .. ' (maypole)'
       end
    end
+
+-- ----------------------------------------------------------------------------
+-- highway=streetlamp
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "street_lamp" ) then
+      object.tags["man_made"] = "thing"
+
+      if ( object.tags["lamp_type"] == "gaslight" ) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(gas lamp)'
+         else
+            object.tags.name = object.tags['name'] .. ' (gas lamp)'
+         end
+      else
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(streetlight)'
+         else
+            object.tags.name = object.tags['name'] .. ' (streetlight)'
+         end
+      end
+   end
    
 -- ----------------------------------------------------------------------------
 -- Left luggage

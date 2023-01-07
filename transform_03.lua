@@ -46,29 +46,25 @@ function process_all(object)
 -- Woodland - append B, C or M based on leaf_type.
 -- If there is no name after this procedure Garmins will show "Woods" instead.
 -- ----------------------------------------------------------------------------
-    if ( object.tags['natural'] == 'wood' ) then
-        leaf_type_appendix = ''
+   if ( object.tags['natural'] == 'wood' ) then
+      leaf_type_appendix = ''
 
-        if ( object.tags['leaf_type'] == 'broadleaved' ) then
-            leaf_type_appendix = 'B'
-        end
+      if ( object.tags['leaf_type'] == 'broadleaved' ) then
+         leaf_type_appendix = 'B'
+      end
 
-        if ( object.tags['leaf_type'] == 'needleleaved' ) then
-            leaf_type_appendix = 'C'
-        end
+      if ( object.tags['leaf_type'] == 'needleleaved' ) then
+         leaf_type_appendix = 'C'
+      end
 
-        if ( object.tags['leaf_type'] == 'mixed' ) then
-            leaf_type_appendix = 'M'
-        end
+      if ( object.tags['leaf_type'] == 'mixed' ) then
+         leaf_type_appendix = 'M'
+      end
 
-        if ( leaf_type_appendix ~= nil ) then
-            if ( object.tags['name'] == nil ) then
-                object.tags.name = '(' .. leaf_type_appendix .. ')'
-            else
-                object.tags.name = object.tags['name'] .. ' (' .. leaf_type_appendix .. ')'
-            end
-        end
-    end
+      if ( leaf_type_appendix ~= nil ) then
+         object = append_nonqa( object, leaf_type_appendix ) 
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Mistaggings for wastewater_plant
@@ -92,11 +88,7 @@ function process_all(object)
          object.tags["building"] = "yes"
       end
 
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(el.sub.)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (el.sub.)"
-      end
+      object = append_nonqa( object, "el.sub" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -105,11 +97,7 @@ function process_all(object)
    if ( object.tags["man_made"]   == "wastewater_plant" ) then
       object.tags["man_made"] = nil
       object.tags["landuse"] = "industrial"
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(sewage)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (sewage)"
-      end
+      object = append_nonqa( object, "sewage" )
    end
 
    if (( object.tags["man_made"]   == "reservoir_covered"      ) or 
@@ -184,12 +172,7 @@ function process_all(object)
        ( object.tags["waterway"] == "milestone" )  or
        ( object.tags["railway"]  == "milestone" )) then
       object.tags["man_made"] = "marker"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(milestone)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (milestone)"
-      end
+      object = append_nonqa( object, "milestone" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -199,12 +182,7 @@ function process_all(object)
        ( object.tags["marker"]   == "pipeline"        ) or
        ( object.tags["man_made"] == "pipeline_marker" )) then
       object.tags["man_made"] = "marker"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(pipeline marker)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (pipeline marker)"
-      end
+      object = append_nonqa( object, "pipeline marker" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -220,18 +198,10 @@ function process_all(object)
       object.tags["tourism"]  = nil
 
       if ( object.tags["inscription"] ~= nil ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = object.tags["inscription"]
-         else
-            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
-         end
+         object = append_nonqa( object, object.tags["inscription"] )
       end
 
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(boundary stone)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (boundary stone)"
-      end
+      object = append_nonqa( object, "boundary stone" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -245,25 +215,13 @@ function process_all(object)
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = object.tags["inscription"]
-         else
-            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
-         end
+         object = append_nonqa( object, object.tags["inscription"] )
       end
 
       if ( object.tags["stone_type"]   == "ogham_stone" ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(ogham stone)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (ogham stone)"
-         end
+         object = append_nonqa( object, "ogham stone" )
       else
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(historic stone)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (historic stone)"
-         end
+         object = append_nonqa( object, "historic stone" )
       end
    end
 
@@ -271,32 +229,16 @@ function process_all(object)
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = object.tags["inscription"]
-         else
-            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
-         end
+         object = append_nonqa( object, object.tags["inscription"] )
       end
 
       if ( object.tags["stone_type"]   == "ogham_stone" ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(ogham stone)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (ogham stone)"
-         end
+         object = append_nonqa( object, "ogham stone" )
       else
          if ( object.tags["historic:stone"]   == "standing_stone" ) then
-            if ( object.tags["name"] == nil ) then
-               object.tags["name"] = "(standing stone)"
-            else
-               object.tags["name"] = object.tags["name"] .. " (standing stone)"
-            end
+            object = append_nonqa( object, "standing stone" )
          else
-            if ( object.tags["name"] == nil ) then
-               object.tags["name"] = "(historic stone)"
-            else
-               object.tags["name"] = object.tags["name"] .. " (historic stone)"
-            end
+            object = append_nonqa( object, "historic stone" )
          end
       end
    end
@@ -308,25 +250,13 @@ function process_all(object)
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = object.tags["inscription"]
-         else
-            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
-         end
+         object = append_nonqa( object, object.tags["inscription"] )
       end
 
       if ( object.tags["stone_type"]   == "ogham_stone" ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(ogham stone)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (ogham stone)"
-         end
+         object = append_nonqa( object, "ogham stone" )
       else
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(standing stone)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (standing stone)"
-         end
+         object = append_nonqa( object, "standing stone" )
       end
 
       object.tags["tourism"] = nil
@@ -336,29 +266,16 @@ function process_all(object)
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = object.tags["inscription"]
-         else
-            object.tags["name"] = object.tags["name"] .. " " .. object.tags["inscription"]
-         end
+         object = append_nonqa( object, object.tags["inscription"] )
       end
 
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(standing stone)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (standing stone)"
-      end
+      object = append_nonqa( object, "standing stone" )
    end
 
    if ( object.tags["place_of_worship"]   == "mass_rock" ) then
       object.tags["man_made"] = "marker"
       object.tags["amenity"]  = nil
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(mass rock)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (mass rock)"
-      end
+      object = append_nonqa( object, "mass rock" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -402,68 +319,33 @@ function process_all(object)
       else
          if ( object.tags["emergency"] == "defibrillator" ) then
             object.tags["amenity"] = "telephone"
-
-	    if ( object.tags["name"] == nil ) then
-               object.tags["name"] = "(fmr phone defib)"
-	    else
-               object.tags["name"] = object.tags["name"] .. " (fmr phone defib)"
-	    end
+      	    object = append_nonqa( object, "fmr phone defib" )
          else
             if (( object.tags["amenity"] == "public_bookcase" )  or
                 ( object.tags["amenity"] == "book_exchange"   )  or
                 ( object.tags["amenity"] == "library"         )) then
                object.tags["amenity"] = "telephone"
-
-	       if ( object.tags["name"] == nil ) then
-                  object.tags["name"] = "(fmr phone book exchange)"
-	       else
-                  object.tags["name"] = object.tags["name"] .. " (fmr phone book exchange)"
-	       end
+      	       object = append_nonqa( object, "fmr phone book exchange" )
             else
                if ( object.tags["amenity"] == "bicycle_repair_station" ) then
                   object.tags["amenity"] = "telephone"
-
-	          if ( object.tags["name"] == nil ) then
-                     object.tags["name"] = "(fmr phone bicycle repair)"
-	          else
-                     object.tags["name"] = object.tags["name"] .. " (fmr phone bicycle repair)"
-	          end
+      	       	  object = append_nonqa( object, "fmr phone bicycle repair" )
                else
                   if ( object.tags["amenity"] == "atm" ) then
                      object.tags["amenity"] = "telephone"
-
-	             if ( object.tags["name"] == nil ) then
-                        object.tags["name"] = "(fmr phone atm)"
-	             else
-                        object.tags["name"] = object.tags["name"] .. " (fmr phone atm)"
-	             end
+      	       	     object = append_nonqa( object, "fmr phone atm" )
                   else
                      if ( object.tags["tourism"] == "information" ) then
                         object.tags["amenity"] = "telephone"
-
-	                if ( object.tags["name"] == nil ) then
-                           object.tags["name"] = "(fmr phone tourist info)"
-	                else
-                           object.tags["name"] = object.tags["name"] .. " (fmr phone tourist info)"
-	                end
+      	       	     	object = append_nonqa( object, "fmr phone tourist info" )
                      else
                         if ( object.tags["tourism"] == "artwork" ) then
                            object.tags["amenity"] = "telephone"
-
-	                   if ( object.tags["name"] == nil ) then
-                              object.tags["name"] = "(fmr phone artwork)"
-	                   else
-                              object.tags["name"] = object.tags["name"] .. " (fmr phone artwork)"
-	                   end
+      	       	     	   object = append_nonqa( object, "fmr phone artwork" )
                         else
                            if ( object.tags["tourism"] == "museum" ) then
                               object.tags["amenity"] = "telephone"
-
-	                      if ( object.tags["name"] == nil ) then
-                                 object.tags["name"] = "(fmr phone museum)"
-	                      else
-                                 object.tags["name"] = object.tags["name"] .. " (fmr phone museum)"
-	                      end
+      	       	     	      object = append_nonqa( object, "fmr phone museum" )
 		  	   else
                               if (( object.tags["disused:amenity"]    == "telephone"        )  or
                                   ( object.tags["removed:amenity"]    == "telephone"        )  or
@@ -479,12 +361,7 @@ function process_all(object)
                                   ( object.tags["amenity:old"]        == "telephone"        )  or
                                   ( object.tags["historic"]           == "telephone"        )) then
                                  object.tags["amenity"] = "telephone"
-
-	                         if ( object.tags["name"] == nil ) then
-                                    object.tags["name"] = "(fmr phone)"
-	                         else
-                                    object.tags["name"] = object.tags["name"] .. " (fmr phone)"
-	                         end
+      	       	     	      	 object = append_nonqa( object, "fmr phone" )
                               end
                            end
 			end
@@ -589,23 +466,13 @@ function process_all(object)
    if (( object.tags["amenity"] == "holy_well" ) and
        ( object.tags["natural"] == "spring"    )) then
       object.tags["amenity"] = nil
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(holy spring)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (holy spring)"
-      end
+      object = append_nonqa( object, "holy spring" )
    end
 
    if ( object.tags["place_of_worship"] == "holy_well" ) then
       object.tags["natural"] = "spring"
       object.tags["amenity"] = nil
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(holy well)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (holy well)"
-      end
+      object = append_nonqa( object, "holy well" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -613,12 +480,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "water_well" ) then
       object.tags["natural"] = "spring"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(well)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (well)"
-      end
+      object = append_nonqa( object, "well" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -627,12 +489,7 @@ function process_all(object)
    if (( object.tags["man_made"] == "water_tap" ) and
        ( object.tags["amenity"]  == nil         )) then
       object.tags["natural"] = "spring"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(tap)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (tap)"
-      end
+      object = append_nonqa( object, "tap" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -654,12 +511,7 @@ function process_all(object)
       object.tags["amenity"] = nil
       object.tags["leisure"] = "garden"
       object.tags["garden"]  = "beer_garden"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(beer garden)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (beer garden)"
-      end
+      object = append_nonqa( object, "beer garden" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -692,73 +544,40 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"]   == "common" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(common)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (common)"
-      end
+      object = append_nonqa( object, "common" )
    end
 
    if ( object.tags["leisure"]   == "garden" ) then
       object.tags["leisure"] = "park"
 
       if ( object.tags["garden"] == "beer_garden" ) then
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(beer_garden)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (beer_garden)"
-         end
+      	 object = append_nonqa( object, "beer garden" )
       else
-         if ( object.tags["name"] == nil ) then
-            object.tags["name"] = "(garden)"
-         else
-            object.tags["name"] = object.tags["name"] .. " (garden)"
-         end
+      	 object = append_nonqa( object, "garden" )
       end
    end
 
    if (( object.tags["leisure"]   == "outdoor_seating" ) and
        ( object.tags["surface"]   == "grass"           )) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(outdoor grass)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (outdoor grass)"
-      end
+      object = append_nonqa( object, "outdoor grass" )
    end
 
    if (( object.tags["landuse"] == "recreation_ground" ) or
        ( object.tags["leisure"] == "recreation_ground" )) then
       object.tags["leisure"] = "park"
       object.tags["landuse"] = nil
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(rec)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (rec)"
-      end
+      object = append_nonqa( object, "rec" )
    end
 
    if ( object.tags["landuse"]   == "grass" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(grass)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (grass)"
-      end
+      object = append_nonqa( object, "grass" )
    end
 
    if ( object.tags["landuse"]   == "greenfield" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(greenfield)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (greenfield)"
-      end
+      object = append_nonqa( object, "greenfield" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -766,12 +585,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["landuse"]   == "meadow" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(meadow)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (meadow)"
-      end
+      object = append_nonqa( object, "meadow" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -784,34 +598,19 @@ function process_all(object)
        ( object.tags["amenity"] == "show_grounds" )) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(showground)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (showground)"
-      end
+      object = append_nonqa( object, "showground" )
    end
 
    if ( object.tags["amenity"]   == "festival_grounds" ) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(festival grounds)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (festival grounds)"
-      end
+      object = append_nonqa( object, "festival grounds" )
    end
 
    if ( object.tags["amenity"]   == "car_boot_sale" ) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(car boot sale)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (car boot sale)"
-      end
+      object = append_nonqa( object, "car boot sale" )
    end
 -- ----------------------------------------------------------------------------
 -- (end of list that maps to meadow)
@@ -819,22 +618,12 @@ function process_all(object)
 
    if ( object.tags["leisure"]   == "playground" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(playground)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (playground)"
-      end
+      object = append_nonqa( object, "playground" )
    end
 
    if ( object.tags["landuse"]   == "village_green" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(village green)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (village green)"
-      end
+      object = append_nonqa( object, "village green" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -843,32 +632,17 @@ function process_all(object)
    if (( object.tags["amenity"]   == "scout_camp"     ) or
        ( object.tags["landuse"]   == "scout_camp"     )) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(scout camp)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (scout camp)"
-      end
+      object = append_nonqa( object, "scout camp" )
    end
 
    if ( object.tags["leisure"]   == "fishing" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(fishing)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (fishing)"
-      end
+      object = append_nonqa( object, "fishing" )
    end
 
    if ( object.tags["leisure"]   == "outdoor_centre" ) then
       object.tags["leisure"] = "park"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(outdoor centre)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (outdoor centre)"
-      end
+      object = append_nonqa( object, "outdoor centre" )
    end
 -- ----------------------------------------------------------------------------
 -- (end of things that map to park)
@@ -878,11 +652,7 @@ function process_all(object)
 -- These all map to farmyard in the web maps
 -- ----------------------------------------------------------------------------
    if ( object.tags["landuse"]   == "farmyard" ) then
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(farmyard)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (farmyard)"
-      end
+      object = append_nonqa( object, "farmyard" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -890,12 +660,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if (object.tags["landuse"]   == "greenhouse_horticulture") then
       object.tags["landuse"] = "farmyard"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(greenhouse horticulture)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (greenhouse horticulture)"
-      end
+      object = append_nonqa( object, "greenhouse horticulture" )
    end
 -- ----------------------------------------------------------------------------
 -- (end of things that map to farmyard)
@@ -916,22 +681,12 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"] == "bird_hide" ) then
       object.tags["tourism"] = "information"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(bird hide)'
-      else
-         object.tags.name = object.tags['name'] .. ' (bird hide)'
-      end
+      object = append_nonqa( object, "bird hide" )
    end
 
    if ( object.tags["leisure"] == "wildlife_hide" ) then
       object.tags["tourism"] = "information"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(wildlife hide)'
-      else
-         object.tags.name = object.tags['name'] .. ' (wildlife hide)'
-      end
+      object = append_nonqa( object, "wildlife hide" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1183,13 +938,7 @@ function process_all(object)
         ( object.tags["access:covid19"]        == "no"        ))) then
       object.tags["disused:amenity"] = "pub"
       object.tags["amenity"] = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(closed covid)'
-      else
-         object.tags.name = object.tags['name'] .. ' (closed covid)'
-      end
-
+      object = append_nonqa( object, "closed covid" )
       object.tags["real_ale"] = nil
    end
 
@@ -1317,11 +1066,7 @@ function process_all(object)
       end
 
       if ( beer_appendix ~= '' ) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(' .. beer_appendix .. ')'
-         else
-            object.tags.name = object.tags['name'] .. ' (' .. beer_appendix .. ')'
-         end
+         object = append_nonqa( object, beer_appendix )
       end
    end
 
@@ -1335,17 +1080,9 @@ function process_all(object)
    if ( object.tags["amenity"] == "restaurant" ) then
       if (( object.tags["accommodation"] ~= nil  ) and
           ( object.tags["accommodation"] ~= "no" )) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(rest accomm)'
-         else
-            object.tags.name = object.tags['name'] .. ' (rest accomm)'
-         end
+         object = append_nonqa( object, "rest accomm" )
       else
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(rest)'
-         else
-            object.tags.name = object.tags['name'] .. ' (rest)'
-         end
+         object = append_nonqa( object, "rest" )
       end
    end
 
@@ -1368,17 +1105,9 @@ function process_all(object)
    if ( object.tags["amenity"] == "cafe" ) then
       if (( object.tags["accommodation"] ~= nil  ) and
           ( object.tags["accommodation"] ~= "no" )) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(cafe accomm)'
-         else
-            object.tags.name = object.tags['name'] .. ' (cafe accomm)'
-         end
+         object = append_nonqa( object, "cafe accomm" )
       else
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(cafe)'
-         else
-            object.tags.name = object.tags['name'] .. ' (cafe)'
-         end
+         object = append_nonqa( object, "cafe" )
       end
    end
 
@@ -1396,11 +1125,7 @@ function process_all(object)
 -- Add suffix to ATMS
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "atm" ) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(atm)'
-      else
-         object.tags.name = object.tags['name'] .. ' (atm)'
-      end
+      object = append_nonqa( object, "atm" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1432,12 +1157,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "dentist" ) then
       object.tags["amenity"] = "doctors"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(dentist)'
-      else
-         object.tags.name = object.tags['name'] .. ' (dentist)'
-      end
+      object = append_nonqa( object, "dentist" )
    end
 
    if (( object.tags["healthcare"] == "hospital" ) and
@@ -1446,11 +1166,7 @@ function process_all(object)
    end
 
    if ( object.tags["amenity"] == "hospital" ) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(hospital)'
-      else
-         object.tags.name = object.tags['name'] .. ' (hospital)'
-      end
+      object = append_nonqa( object, "hospital" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1736,17 +1452,9 @@ function process_all(object)
       object.tags["man_made"] = "thing"
 
       if ( object.tags["lamp_type"] == "gaslight" ) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(gas lamp)'
-         else
-            object.tags.name = object.tags['name'] .. ' (gas lamp)'
-         end
+      	 object = append_nonqa(object,"gas lamp")
       else
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(streetlight)'
-         else
-            object.tags.name = object.tags['name'] .. ' (streetlight)'
-         end
+      	 object = append_nonqa(object,"streetlight")
       end
    end
    
@@ -1759,12 +1467,7 @@ function process_all(object)
       object.tags["man_made"]  = "thing"
       object.tags["amenity"] = nil
       object.tags["shop"]    = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(left luggage)'
-      else
-         object.tags.name = object.tags['name'] .. ' (left luggage)'
-      end
+      object = append_nonqa(object,"left luggage")
    end
 
 -- ----------------------------------------------------------------------------
@@ -1780,12 +1483,7 @@ function process_all(object)
        (   object.tags["amenity"]         == "parcel_pickup"                   )) then
       object.tags["man_made"]  = "thing"
       object.tags["amenity"]  = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(parcel locker)'
-      else
-         object.tags.name = object.tags['name'] .. ' (parcel locker)'
-      end
+      object = append_nonqa(object,"parcel locker")
    end
 
 -- ----------------------------------------------------------------------------
@@ -1795,12 +1493,7 @@ function process_all(object)
        ( object.tags["vending"] == "excrement_bags"  )) then
       object.tags["man_made"]  = "thing"
       object.tags["amenity"]  = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(excrement bags)'
-      else
-         object.tags.name = object.tags['name'] .. ' (excrement bags)'
-      end
+      object = append_nonqa(object,"excrement bags")
    end
 
 -- ----------------------------------------------------------------------------
@@ -1840,11 +1533,7 @@ function process_all(object)
             object.tags["name"] = object.tags['name'] .. " (" .. object.tags["vending"] .. ")"
          end
       else
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(vending)'
-         else
-            object.tags.name = object.tags['name'] .. ' (vending)'
-         end
+         object = append_nonqa(object,"vending")
       end
    end
 
@@ -1854,23 +1543,13 @@ function process_all(object)
    if ( object.tags["amenity"] == "piano" ) then
       object.tags["man_made"]  = "thing"
       object.tags["amenity"]  = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(piano)'
-      else
-         object.tags.name = object.tags['name'] .. ' (piano)'
-      end
+      object = append_nonqa(object,"piano")
    end
 
    if ( object.tags["amenity"] == "musical_instrument" ) then
       object.tags["man_made"]  = "thing"
       object.tags["amenity"]  = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(musical instrument)'
-      else
-         object.tags.name = object.tags['name'] .. ' (musical instrument)'
-      end
+      object = append_nonqa(object,"musical instrument")
    end
 
 -- ----------------------------------------------------------------------------
@@ -1879,12 +1558,7 @@ function process_all(object)
    if (( object.tags["amenity"] == "parking"    )  and
        ( object.tags["parking"] == "motorcycle" )) then
       object.tags["man_made"] = "thing"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(motorcycle parking)'
-      else
-         object.tags.name = object.tags['name'] .. ' (motorcycle parking)'
-      end
+      object = append_nonqa(object,"motorcycle parking")
    end
 
 -- ----------------------------------------------------------------------------
@@ -1917,11 +1591,7 @@ function process_all(object)
         ( object.tags["fee"]     ~= "Free"    )  and
         ( object.tags["fee"]     ~= "free"    )  and
         ( object.tags["fee"]     ~= "0"       ))) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(pay)'
-      else
-         object.tags.name = object.tags['name'] .. ' (pay)'
-      end
+      object = append_nonqa(object,"pay")
    end
 
 -- ----------------------------------------------------------------------------
@@ -1930,12 +1600,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "bicycle_parking" ) then
       object.tags["man_made"] = "thing"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(bicycle parking)'
-      else
-         object.tags.name = object.tags['name'] .. ' (bicycle parking)'
-      end
+      object = append_nonqa(object,"bicycle parking")
 
       if (( object.tags["fee"]     ~= nil               )  and
           ( object.tags["fee"]     ~= "no"              )  and
@@ -1945,11 +1610,7 @@ function process_all(object)
           ( object.tags["fee"]     ~= "Free"            )  and
           ( object.tags["fee"]     ~= "free"            )  and
           ( object.tags["fee"]     ~= "0"               )) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(pay)'
-         else
-            object.tags.name = object.tags['name'] .. ' (pay)'
-         end
+         object = append_nonqa(object,"pay")
       end
    end
 
@@ -1968,49 +1629,25 @@ function process_all(object)
           ( object.tags["fee"]     ~= "0"       )) then
          if (( object.tags["male"]   == "yes" ) and
              ( object.tags["female"] ~= "yes" )) then
-            if ( object.tags['name'] == nil ) then
-               object.tags.name = '(pay m)'
-            else
-               object.tags.name = object.tags['name'] .. ' (pay m)'
-            end
+            object = append_nonqa(object,"pay m")
          else
             if (( object.tags["female"] == "yes"       ) and
                 ( object.tags["male"]   ~= "yes"       )) then
-               if ( object.tags['name'] == nil ) then
-                  object.tags.name = '(pay w)'
-               else
-                  object.tags.name = object.tags['name'] .. ' (pay w)'
-               end
+               object = append_nonqa(object,"pay w")
             else
-               if ( object.tags['name'] == nil ) then
-                  object.tags.name = '(pay)'
-               else
-                  object.tags.name = object.tags['name'] .. ' (pay)'
-               end
+               object = append_nonqa(object,"pay")
             end
          end
       else
          if (( object.tags["male"]   == "yes" ) and
              ( object.tags["female"] ~= "yes" )) then
-            if ( object.tags['name'] == nil ) then
-               object.tags.name = '(free m)'
-            else
-               object.tags.name = object.tags['name'] .. ' (free m)'
-            end
+	    object = append_nonqa(object,"free m")
          else
             if (( object.tags["female"] == "yes"       ) and
                 ( object.tags["male"]   ~= "yes"       )) then
-               if ( object.tags['name'] == nil ) then
-                  object.tags.name = '(free w)'
-               else
-                  object.tags.name = object.tags['name'] .. ' (free w)'
-               end
+	       object = append_nonqa(object,"free w")
             else
-               if ( object.tags['name'] == nil ) then
-                  object.tags.name = '(free)'
-               else
-                  object.tags.name = object.tags['name'] .. ' (free)'
-               end
+	       object = append_nonqa(object,"free")
             end
          end
       end
@@ -2066,11 +1703,7 @@ function process_all(object)
 -- Lock gates
 -- ----------------------------------------------------------------------------
    if ( object.tags["waterway"] == "lock_gate" ) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(lock gate)'
-      else
-         object.tags.name = object.tags['name'] .. ' (lock gate)'
-      end
+      object = append_nonqa(object,"lock gate")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2081,12 +1714,7 @@ function process_all(object)
        (( object.tags["waterway"]     == "flow_control"    )  and
         ( object.tags["flow_control"] == "sluice_gate"     ))) then
       object.tags["man_made"] = "thing"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(sluice)'
-      else
-         object.tags.name = object.tags['name'] .. ' (sluice)'
-      end
+      object = append_nonqa(object,"sluice")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2095,43 +1723,24 @@ function process_all(object)
 -- appropriate suffix.
 -- ----------------------------------------------------------------------------
    if ( object.tags["railway"] == "abandoned" ) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(abrly)'
-      else
-         object.tags.name = object.tags['name'] .. ' (abrly)'
-      end
+      object = append_nonqa(object,"abrly")
    end
 
    if (( object.tags["railway:historic"] == "rail"           ) or
        ( object.tags["railway"]          == "dismantled"     ) or
        ( object.tags["historic"]         == "inclined_plane" )) then
       object.tags["railway"] = "abandoned"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(dismrly)'
-      else
-         object.tags.name = object.tags['name'] .. ' (dismrly)'
-      end
+      object = append_nonqa(object,"dismrly")
    end
 
    if ( object.tags["railway"] == "disused" ) then
       object.tags["railway"] = "abandoned"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(disurly)'
-      else
-         object.tags.name = object.tags['name'] .. ' (disurly)'
-      end
+      object = append_nonqa(object,"disurly")
    end
 
    if ( object.tags["railway"] == "construction" ) then
       object.tags["railway"] = "abandoned"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(consturly)'
-      else
-         object.tags.name = object.tags['name'] .. ' (consturly)'
-      end
+      object = append_nonqa(object,"constrly")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2140,12 +1749,7 @@ function process_all(object)
    if (object.tags["highway"] == "bus_guideway") then
       object.tags["highway"] = nil
       object.tags["railway"] = "abandoned"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(bus guideway)'
-      else
-         object.tags.name = object.tags['name'] .. ' (bus guideway)'
-      end
+      object = append_nonqa(object,"bus guideway")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2188,9 +1792,7 @@ function process_all(object)
 -- If the derelict canal still has no name at this point, give it one.
 -- ----------------------------------------------------------------------------
    if ( object.tags["waterway"] == "derelict_canal" ) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(derelict canal)'
-      end
+      object = append_nonqa(object,"derelict canal")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2199,11 +1801,7 @@ function process_all(object)
    if ((( object.tags["waterway"] ~= nil      )   or
         ( object.tags["natural"]  ~= nil      ))  and
        (  object.tags["intermittent"] == "yes" )) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(int)'
-      else
-         object.tags.name = object.tags['name'] .. ' (int)'
-      end
+      object = append_nonqa(object,"int")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2229,13 +1827,7 @@ function process_all(object)
        ( object.tags["man_made"]   == "aeroplane"        ) or
        ( object.tags["man_made"]   == "helicopter"       )) then
       object.tags["building"] = "yes"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(' .. object.tags["man_made"] .. ')'
-      else
-         object.tags.name = object.tags['name'] .. ' (' .. object.tags["man_made"] .. ')'
-      end
-
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["man_made"] = nil
    end
 
@@ -2286,23 +1878,13 @@ function process_all(object)
         (( object.tags["memorial"]   == "cross"          )   or
          ( object.tags["memorial"]   == "mercat_cross"   )))) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(cross)'
-      else
-         object.tags.name = object.tags['name'] .. ' (cross)'
-      end
+      object = append_nonqa(object,"cross")
    end
 
    if (( object.tags["historic"]   == "memorial"     ) and
        ( object.tags["memorial"]   == "war_memorial" )) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(war memorial)'
-      else
-         object.tags.name = object.tags['name'] .. ' (war memorial)'
-      end
+      object = append_nonqa(object,"war memorial")
    end
 
    if ((  object.tags["historic"]      == "memorial"     ) and
@@ -2310,57 +1892,32 @@ function process_all(object)
         ( object.tags["memorial"]      == "blue_plaque" )  or
         ( object.tags["memorial:type"] == "plaque"      ))) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(plaque)'
-      else
-         object.tags.name = object.tags['name'] .. ' (plaque)'
-      end
+      object = append_nonqa(object,"plaque")
    end
 
    if (( object.tags["historic"]   == "memorial"        ) and
        ( object.tags["memorial"]   == "pavement plaque" )) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(pavement plaque)'
-      else
-         object.tags.name = object.tags['name'] .. ' (pavement plaque)'
-      end
+      object = append_nonqa(object,"pavement plaque")
    end
 
    if ((  object.tags["historic"]      == "memorial"  ) and
        (( object.tags["memorial"]      == "statue"   )  or
         ( object.tags["memorial:type"] == "statue"   ))) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(memorial statue)'
-      else
-         object.tags.name = object.tags['name'] .. ' (memorial statue)'
-      end
+      object = append_nonqa(object,"memorial statue")
    end
 
    if (( object.tags["historic"]   == "memorial"    ) and
        ( object.tags["memorial"]   == "sculpture"   )) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(memorial sculpture)'
-      else
-         object.tags.name = object.tags['name'] .. ' (memorial sculpture)'
-      end
+      object = append_nonqa(object,"memorial sculpture")
    end
 
    if (( object.tags["historic"]   == "memorial"    ) and
        ( object.tags["memorial"]   == "stone"       )) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(memorial stone)'
-      else
-         object.tags.name = object.tags['name'] .. ' (memorial stone)'
-      end
+      object = append_nonqa(object,"memorial stone")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2368,60 +1925,30 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["historic"]   == "monument"     ) then
       object.tags["historic"] = "memorial"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(monument)'
-      else
-         object.tags.name = object.tags['name'] .. ' (monument)'
-      end
+      object = append_nonqa(object,"monument")
    end
 
    if ( object.tags["tourism"] == "gallery" ) then
       object.tags["amenity"] = nil
       object.tags["tourism"] = "museum"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(gallery)'
-      else
-         object.tags.name = object.tags['name'] .. ' (gallery)'
-      end
+      object = append_nonqa(object,"gallery")
    end
 
    if ( object.tags["tourism"] == "museum" ) then
       object.tags["amenity"] = nil
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(museum)'
-      else
-         object.tags.name = object.tags['name'] .. ' (museum)'
-      end
+      object = append_nonqa(object,"museum")
    end
 
    if ( object.tags["tourism"] == "attraction" ) then
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(tourist attraction)'
-      else
-         object.tags.name = object.tags['name'] .. ' (tourist attraction)'
-      end
+      object = append_nonqa(object,"tourist attraction")
    end
 
    if ( object.tags["tourism"] == "artwork" ) then
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(artwork)'
-      else
-         object.tags.name = object.tags['name'] .. ' (artwork)'
-      end
+      object = append_nonqa(object,"artwork")
    end
 
    if ( object.tags["amenity"] == "arts_centre" ) then
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(arts centre)'
-      else
-         object.tags.name = object.tags['name'] .. ' (arts centre)'
-      end
+      object = append_nonqa(object,"arts centre")
    end
 
 -- ----------------------------------------------------------------------------
@@ -2438,12 +1965,7 @@ function process_all(object)
       object.tags["historic"] = "ruins"
       object.tags["man_made"] = nil
       object.tags["tourism"]  = nil
- 
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(historic mine)'
-      else
-         object.tags.name = object.tags['name'] .. ' (historic mine)'
-      end
+      object = append_nonqa(object,"historic mine") 
    end
 
 -- ----------------------------------------------------------------------------
@@ -2453,19 +1975,7 @@ function process_all(object)
        ( object.tags["man_made"] == "mineshaft"  )  or
        ( object.tags["man_made"] == "mine_shaft" )) then
       object.tags["man_made"] = "thing"
-
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(mine)'
-      else
-         object.tags.name = object.tags['name'] .. ' (mine)'
-      end
-   end
-
--- ----------------------------------------------------------------------------
--- palaeolontological_site
--- ----------------------------------------------------------------------------
-   if ( object.tags["geological"] == "palaeontological_site" ) then
-      object.tags["historic"] = "palaeontological_site"
+      object = append_nonqa(object,"mine") 
    end
 
 -- ----------------------------------------------------------------------------
@@ -2573,12 +2083,18 @@ function process_all(object)
       object.tags["tourism"] = nil
 
       if ( object.tags["megalith_type"] == "standing_stone" ) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(standing stone)'
-         else
-            object.tags.name = object.tags['name'] .. ' (standing stone)'
-         end
+         object = append_nonqa(object,"standing stone") 
+      else
+         object = append_nonqa(object,"archaeological") 
       end
+   end
+
+-- ----------------------------------------------------------------------------
+-- palaeolontological_site
+-- ----------------------------------------------------------------------------
+   if ( object.tags["geological"] == "palaeontological_site" ) then
+      object.tags["historic"] = "archaeological_site"
+      object = append_nonqa(object,"palaeontological") 
    end
 
 -- ----------------------------------------------------------------------------
@@ -3960,6 +3476,7 @@ function process_all(object)
     return object
 end
 
+
 -- ----------------------------------------------------------------------------
 -- "node" function
 -- ----------------------------------------------------------------------------
@@ -4210,6 +3727,7 @@ function ott.process_node(object)
 
     return object.tags
 end
+
 
 -- ----------------------------------------------------------------------------
 -- "way" function
@@ -4862,10 +4380,25 @@ function ott.process_way(object)
     return object.tags
 end
 
+
 -- ----------------------------------------------------------------------------
 -- "relation" function
 -- ----------------------------------------------------------------------------
 function ott.process_relation(object)
     object = process_all(object)
     return object.tags
+end
+
+
+-- ----------------------------------------------------------------------------
+-- "append non QA information" function
+-- ----------------------------------------------------------------------------
+function append_nonqa(object,appendage)
+    if ( object.tags['name'] == nil ) then
+      object.tags.name = '(' .. appendage .. ')'
+    else
+      object.tags.name = object.tags['name'] .. ' (' .. appendage .. ')'
+    end
+
+    return object
 end

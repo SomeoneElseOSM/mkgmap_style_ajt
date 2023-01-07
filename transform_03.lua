@@ -537,6 +537,19 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Render various synonyms for leisure=common.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"]          == "common"   ) or
+       ( object.tags["leisure"]          == "common"   ) or
+       ( object.tags["designation"]      == "common"   ) or
+       ( object.tags["amenity"]          == "common"   ) or
+       ( object.tags["protection_title"] == "common"   )) then
+      object.tags["leisure"] = "common"
+      object.tags["landuse"] = nil
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Map various landuse to park
 --
 -- All handled in the style like this:
@@ -568,6 +581,17 @@ function process_all(object)
       object.tags["leisure"] = "park"
       object.tags["landuse"] = nil
       object = append_nonqa( object, "rec" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Treat landcover=grass as landuse=grass
+-- Also landuse=college_court, flowerbed
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landcover"] == "grass"         ) or
+       ( object.tags["landuse"]   == "college_court" ) or
+       ( object.tags["landuse"]   == "flowerbed"     )) then
+      object.tags["landcover"] = nil
+      object.tags["landuse"] = "grass"
    end
 
    if ( object.tags["landuse"]   == "grass" ) then
@@ -3757,36 +3781,48 @@ function ott.process_way(object)
 -- ----------------------------------------------------------------------------
 -- Designation tagging on ways
 -- ----------------------------------------------------------------------------
-    designation_appendix = ''
+   designation_appendix = ''
 
-    if (( object.tags['designation'] == 'public_footpath'  ) or
-        ( object.tags['designation'] == 'footpath'         )) then
-        designation_appendix = 'PF'
-    end
+   if (( object.tags['designation'] == 'public_footpath'  ) or
+       ( object.tags['designation'] == 'footpath'         )) then
+      designation_appendix = 'PF'
+   end
 
-    if ( object.tags['designation'] == 'core_path'  ) then
-        designation_appendix = 'CP'
-    end
+   if ( object.tags['designation'] == 'core_path'  ) then
+      designation_appendix = 'CP'
+   end
 
-    if (( object.tags['designation'] == 'public_bridleway' ) or
-        ( object.tags['designation'] == 'bridleway'        )) then
-        designation_appendix = 'PB'
-    end
+   if (( object.tags['designation'] == 'public_bridleway' ) or
+       ( object.tags['designation'] == 'bridleway'        )) then
+      designation_appendix = 'PB'
+   end
 
-    if (( object.tags['designation'] == 'restricted_byway'    ) or
-        ( object.tags['designation'] == 'public_right_of_way' )) then
-        designation_appendix = 'RB'
-    end
+   if (( object.tags['designation'] == 'restricted_byway'    ) or
+       ( object.tags['designation'] == 'public_right_of_way' )) then
+      designation_appendix = 'RB'
+   end
 
-    if (( object.tags['designation'] == 'byway_open_to_all_traffic'  ) or
-        ( object.tags['designation'] == 'public_byway'               ) or
-        ( object.tags['designation'] == 'byway'                      )) then
-        designation_appendix = 'BY'
-    end
+   if (( object.tags['designation'] == 'byway_open_to_all_traffic'  ) or
+       ( object.tags['designation'] == 'public_byway'               ) or
+       ( object.tags['designation'] == 'byway'                      )) then
+      designation_appendix = 'BY'
+   end
+
+   if (( object.tags['designation'] == 'quiet_lane'                      ) or
+       ( object.tags['designation'] == 'quiet_lane;unclassified_highway' ) or
+       ( object.tags['designation'] == 'unclassified_highway;quiet_lane' ) or
+       ( object.tags['designation'] == 'restricted_byway;quiet_lane'     )) then
+      if ( designation_appendix == '' ) then
+         designation_appendix = 'QL'
+      else
+         object.tags.name = designation_appendix .. ' QL'
+      end
+   end
 
    if ( designation_appendix ~= '' ) then
       object = append_nonqa( object, designation_appendix )
    end
+
 -- ----------------------------------------------------------------------------
 -- End Designation tagging on ways
 -- ----------------------------------------------------------------------------

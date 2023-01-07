@@ -4402,21 +4402,43 @@ function ott.process_way(object)
         end
     end
 
-    if ( object.tags['barrier'] == 'wall' ) then
-        if ( object.tags['name'] == nil ) then
+-- ----------------------------------------------------------------------------
+-- Show castle_wall and citywalls as walls with a "city wall" suffix,
+-- and regular walls with "wall".
+-- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"] == "wall" ) then
+      if ( object.tags["wall"] == "castle_wall" ) then
+         if ( object.tags['name'] == nil ) then
+            object.tags.name = '(castle wall)'
+         else
+            object.tags.name = object.tags['name'] .. ' (castle wall)'
+         end
+      else
+         if ( object.tags['name'] == nil ) then
             object.tags.name = '(wall)'
-        else
+         else
             object.tags.name = object.tags['name'] .. ' (wall)'
-        end
-    end
+         end
+      end
+   end
 
-    if ( object.tags['natural'] == 'tree_row' ) then
-        if ( object.tags['name'] == nil ) then
-            object.tags.name = '(tree_row)'
-        else
-            object.tags.name = object.tags['name'] .. ' (tree_row)'
-        end
-    end
+   if ( object.tags["historic"] == "citywalls" ) then
+      object.tags["barrier"] = "wall"
+
+      if ( object.tags['name'] == nil ) then
+          object.tags.name = '(city wall)'
+      else
+          object.tags.name = object.tags['name'] .. ' (city wall)'
+      end
+   end
+
+   if ( object.tags['natural'] == 'tree_row' ) then
+       if ( object.tags['name'] == nil ) then
+           object.tags.name = '(tree_row)'
+       else
+           object.tags.name = object.tags['name'] .. ' (tree_row)'
+       end
+   end
 
 -- ----------------------------------------------------------------------------
 -- Linear weirs are sent through as "county lines" with a name of "weir"

@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Removed some more unused tag key/value combinations from the ajt03 style.
 Apply more tag processing from raster web maps style.lua file, including shops.
+Handle various sorts of walls.
 
 ## 04/01/2023
 Removed some more unused tag key/value combinations from the ajt02 style.

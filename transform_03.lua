@@ -738,6 +738,17 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Show skate parks etc. (that aren't skate shops) as pitches.
+-- For leisure=pitch, the "polygons" file does the equivalent of 
+-- 'object = append_nonqa( object, "skateboard" )'
+-- ----------------------------------------------------------------------------
+   if (( object.tags["sport"]   == "skateboard" )  and
+       ( object.tags["shop"]    == nil          )  and
+       ( object.tags["leisure"] == nil          )) then
+      object.tags["leisure"] = "pitch"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Bird hides and similar features
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"] == "bird_hide" ) then

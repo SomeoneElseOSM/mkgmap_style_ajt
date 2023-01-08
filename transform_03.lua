@@ -662,6 +662,32 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Things without icons - add "commercial" landuse to include a name 
+-- (if one exists) too.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"]      == "churchyard"               ) or
+       ( object.tags["landuse"]      == "religious"                ) or
+       ( object.tags["leisure"]      == "racetrack"                ) or
+       ( object.tags["landuse"]      == "aquaculture"              ) or
+       ( object.tags["landuse"]      == "fishfarm"                 ) or
+       ( object.tags["seamark:type"] == "marine_farm"              )) then
+      object.tags["landuse"] = "commercial"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Shop groups - just treat as retail landuse.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "mall"            ) or
+       ( object.tags["amenity"] == "marketplace"     ) or
+       ( object.tags["shop"]    == "market"          ) or
+       ( object.tags["amenity"] == "market"          ) or
+       ( object.tags["amenity"] == "food_court"      ) or
+       ( object.tags["shop"]    == "shopping_centre" )) then
+      object.tags["landuse"] = "retail"
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Scout camps etc.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]   == "scout_camp"     ) or

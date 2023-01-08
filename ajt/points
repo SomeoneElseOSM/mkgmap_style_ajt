@@ -247,7 +247,6 @@ shop=mall [0x2e04 resolution 20]
 shop=organic [0x2e0a resolution 20]
 shop=shoes [0x2e07 resolution 20]
 shop=supermarket [0x2e02 resolution 20 default_name 'Supermarket' ]
-shop=tires [0x2f07 resolution 20]
 shop=tyres [0x2f07 resolution 20]
 shop=* [0x2e0c resolution 20]
 

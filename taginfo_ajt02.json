@@ -305,7 +305,6 @@
     { "key": "shop", "value": "organic", "description": "Show shops" },
     { "key": "shop", "value": "shoes", "description": "Show shops" },
     { "key": "shop", "value": "supermarket", "description": "Show shops" },
-    { "key": "shop", "value": "tires", "description": "Show shops" },
     { "key": "shop", "value": "tyres", "description": "Show shops" },
     { "key": "smoothness", "description": "Consider low smoothness" },
     { "key": "smoothness", "value": "bad", "description": "Consider low smoothness" },

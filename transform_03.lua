@@ -67,6 +67,30 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Remove "real_ale" tag on industrial and craft breweries that aren't also
+-- a pub, bar, restaurant, cafe etc. or hotel.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["industrial"] == "brewery" ) or
+        ( object.tags["craft"]      == "brewery" )) and
+       (  object.tags["real_ale"]   ~= nil        ) and
+       (  object.tags["real_ale"]   ~= "maybe"    ) and
+       (  object.tags["real_ale"]   ~= "no"       ) and
+       (  object.tags["amenity"]    == nil        ) and
+       (  object.tags["tourism"]    ~= "hotel"    )) then
+      object.tags["real_ale"] = nil
+      object.tags["real_cider"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- and ensure that the brewery gets shown on the map with a suffix "brewery".
+-- ----------------------------------------------------------------------------
+   if (( object.tags["industrial"] == "brewery" ) or
+       ( object.tags["craft"]      == "brewery" )) then
+      object.tags["craft"] = "brewery"
+      object = append_nonqa( object, "brewery" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Mistaggings for wastewater_plant
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "sewage_works"      ) or
@@ -618,6 +642,14 @@ function process_all(object)
    if (( object.tags["harbour"] == "yes" ) and
        ( object.tags["landuse"] == nil   )) then
       object.tags["landuse"] = "harbour"
+   end
+
+-- ----------------------------------------------------------------------------
+-- landuse=field is rarely used.  I tried unsuccessfully to change the colour 
+-- in the stylesheet so am mapping it here.
+-- ----------------------------------------------------------------------------
+   if (object.tags["landuse"]   == "field") then
+      object.tags["landuse"] = "farmland"
    end
 
 -- ----------------------------------------------------------------------------

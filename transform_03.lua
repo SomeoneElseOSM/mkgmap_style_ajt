@@ -2477,6 +2477,39 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Waste transfer stations
+-- First, try and identify mistagged ones.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "waste_transfer_station" ) and
+       ( object.tags["recycling_type"] == "centre"          )) then
+      object.tags["amenity"] = "recycling"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Next, treat "real" waste transfer stations as industrial.  We remove the 
+-- amenity tag here because there's no icon for amenity=waste_transfer_station;
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "waste_transfer_station" ) then
+      object.tags["amenity"] = nil
+      object.tags["landuse"] = "industrial"
+      object = append_nonqa( object, "waste transfer station" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Recycling bins and recycling centres.
+-- Recycling bins are only shown from z19.  Recycling centres are shown from
+-- z16 and have a characteristic icon.  Any object without recycling_type
+-- is assumed to be a bin.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "recycling" ) then
+      if ( object.tags["recycling_type"] == "centre" ) then
+         object = append_nonqa( object, "recycling centre" )
+      else
+         object = append_nonqa( object, "recycling bins" )
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Golf ball washers
 -- ----------------------------------------------------------------------------
    if ( object.tags["golf"] == "ball_washer" ) then

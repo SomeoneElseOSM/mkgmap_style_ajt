@@ -613,6 +613,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Treat harbour=yes as landuse=harbour, if not already landuse.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["harbour"] == "yes" ) and
+       ( object.tags["landuse"] == nil   )) then
+      object.tags["landuse"] = "harbour"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various tags for showgrounds
 -- Other tags are suppressed to prevent them appearing ahead of "landuse"
 -- ----------------------------------------------------------------------------

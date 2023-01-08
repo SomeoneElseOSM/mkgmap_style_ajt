@@ -651,6 +651,17 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- highway=services is translated to commercial landuse - any overlaid parking
+-- can then be seen.
+--
+-- highway=rest_area is translated lower down to amenity=parking.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "services" ) then
+      object.tags["highway"] = nil
+      object.tags["landuse"] = "commercial"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Scout camps etc.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]   == "scout_camp"     ) or

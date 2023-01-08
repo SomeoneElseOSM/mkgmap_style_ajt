@@ -3411,6 +3411,27 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Things that are both viewpoints or attractions and monuments or memorials 
+-- should render as the latter.
+-- Also handle some other combinations.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["tourism"]   == "viewpoint"     )  or
+        ( object.tags["tourism"]   == "attraction"    )) and
+       (( object.tags["historic"]  == "memorial"      )  or
+        ( object.tags["historic"]  == "monument"      )  or
+        ( object.tags["natural"]   == "tree"          )  or
+        ( object.tags["leisure"]   == "park"          ))) then
+      object.tags["tourism"] = nil
+   end
+
+   if ((  object.tags["tourism"] == "attraction"  ) and
+       (( object.tags["shop"]    ~= nil          )  or
+        ( object.tags["amenity"] ~= nil          )  or
+        ( object.tags["leisure"] == "park"       ))) then
+      object.tags["tourism"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- We have left tourist attactions until the end, because many other features
 -- other can cause the "tourism" tag to be removed.
 -- ----------------------------------------------------------------------------

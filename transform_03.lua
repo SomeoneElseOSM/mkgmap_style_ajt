@@ -1886,10 +1886,6 @@ function process_all(object)
       object = append_nonqa(object,"museum")
    end
 
-   if ( object.tags["tourism"] == "attraction" ) then
-      object = append_nonqa(object,"tourist attraction")
-   end
-
    if ( object.tags["tourism"] == "artwork" ) then
       object = append_nonqa(object,"artwork")
    end
@@ -2214,6 +2210,19 @@ function process_all(object)
    if ( object.tags["amenity"]  == "charging_station" ) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "charging" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render windmill buildings and former windmills as windmills.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["man_made"] == "windmill"        )  or
+        ( object.tags["building"] == "windmill"        )  or
+        ( object.tags["building"] == "former_windmill" )) and
+       (  object.tags["amenity"]  == nil                )) then
+      object.tags["man_made"] = "thing"
+      object.tags["building"] = "windmill"
+      object.tags["tourism"] = nil
+      object = append_nonqa( object, "windmill" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3366,6 +3375,14 @@ function process_all(object)
        ( object.tags["barrier"]  ~= "wall"          )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "climbing" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- We have left tourist attactions until the end, because many other features
+-- other can cause the "tourism" tag to be removed.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "attraction" ) then
+      object = append_nonqa(object,"tourist attraction")
    end
 
 -- ----------------------------------------------------------------------------

@@ -2133,6 +2133,90 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Remove some combinations of bridge
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["bridge"]  == "yes"          ) and
+       (( object.tags["barrier"] == "cattle_grid" )  or
+        ( object.tags["barrier"] == "stile"       ))) then
+      object.tags["barrier"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Alleged petrol stations that only do fuel:electricity are probably 
+-- actually charging stations.
+--
+-- The combination of "amenity=fuel, electricity, no diesel" is as good as
+-- we can make  it without guessing based on brand.  "fuel, electricity,
+-- some sort of petrol, no diesel" is not a thing in the UK/IE data currently.
+-- Similarly, electric waterway=fuel are charging stations.
+--
+-- Show vending machines that sell petrol as fuel.
+-- One UK/IE example, on an airfield, and "UL91" finds it.
+--
+-- Show aeroway=fuel as amenity=fuel.  All so far in UK/IE are 
+-- general aviation.
+--
+-- Show waterway=fuel as fuel as well.
+--
+-- Once we've got those out of the way, detect amenity=fuel that also sell
+-- electricity, hydrogen and LPG.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]          == "fuel" ) and
+       ( object.tags["fuel:electricity"] == "yes"  )  and
+       ( object.tags["fuel:diesel"]      == nil    )) then
+      object.tags["amenity"] = "charging_station"
+   end
+
+   if (( object.tags["waterway"]         == "fuel" ) and
+       ( object.tags["fuel:electricity"] == "yes"  )) then
+      object.tags["amenity"] = "charging_station"
+      object.tags["waterway"] = nil
+   end
+
+   if (( object.tags["amenity"] == "vending_machine" ) and
+       ( object.tags["vending"] == "fuel"            )  and
+       ( object.tags["fuel"]    == "UL91"            )) then
+      object.tags["amenity"] = "fuel"
+   end
+
+   if ( object.tags["aeroway"] == "fuel" ) then
+      object.tags["aeroway"] = nil
+      object.tags["amenity"] = "fuel"
+   end
+
+   if ( object.tags["waterway"] == "fuel" ) then
+      object.tags["amenity"] = "fuel"
+      object.tags["waterway"] = nil
+   end
+
+   if (( object.tags["amenity"]          == "fuel" ) and
+       ( object.tags["fuel:electricity"] == "yes"  )  and
+       ( object.tags["fuel:diesel"]      == "yes"  )) then
+      object = append_nonqa( object, "E" )
+   end
+
+   if ((  object.tags["amenity"]  == "fuel"  ) and
+       (( object.tags["fuel:H2"]  == "yes"  )  or
+        ( object.tags["fuel:LH2"] == "yes"  ))) then
+      object = append_nonqa( object, "H2" )
+   end
+
+   if ((  object.tags["amenity"]  == "fuel"  ) and
+       (( object.tags["LPG"]      == "yes"  )  or
+        ( object.tags["fuel"]     == "lpg"  )  or
+        ( object.tags["fuel:lpg"] == "yes"  ))) then
+      object = append_nonqa( object, "LPG" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Change amenity=charging_station to something we can show
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"]  == "charging_station" ) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "charging" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- If set, move bridge:name to bridge_name
 -- ----------------------------------------------------------------------------
    if ( object.tags["bridge:name"] ~= nil ) then

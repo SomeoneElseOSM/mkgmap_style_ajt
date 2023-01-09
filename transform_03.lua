@@ -836,6 +836,15 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=pier is translated to commercial landusein order to avoid it 
+-- falling into a "catch-all" for man_made.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "pier" ) then
+      object.tags["man_made"] = nil
+      object.tags["landuse"] = "commercial"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things without icons - add "commercial" landuse to include a name 
 -- (if one exists) too.
 -- ----------------------------------------------------------------------------
@@ -1994,6 +2003,15 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "goods_conveyor" ) then
       object.tags["railway"] = "narrow_gauge"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Slipways
+-- Linear slipways are handled in "lines" as "default linear thing" 0x1d.
+-- Point slipways are changed elsewhere to "man_made=thing"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "slipway" ) then
+      object = append_nonqa( object, "slipway" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3818,6 +3836,15 @@ end
 -- ----------------------------------------------------------------------------
 function ott.process_node(object)
     object = process_all(object)
+
+-- ----------------------------------------------------------------------------
+-- Slipways
+-- Linear slipways are handled in "lines" as "default linear thing" 0x1d.
+-- Point slipways are mapped to "man_made=thing".
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "slipway" ) then
+      object.tags["man_made"] = "thing"
+   end
 
 -- ----------------------------------------------------------------------------
 -- Render amenity=information as tourism

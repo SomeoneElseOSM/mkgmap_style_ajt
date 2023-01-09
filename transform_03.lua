@@ -43,6 +43,129 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- If we have an est_width but no width, use the est_width
+-- ----------------------------------------------------------------------------
+   if (( object.tags["width"]     == nil  ) and
+       ( object.tags["est_width"] ~= nil  )) then
+      object.tags["width"] = object.tags["est_width"]
+   end
+
+-- ----------------------------------------------------------------------------
+-- If name does not exist but name:en does, use it.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["name"]    == nil ) and
+       ( object.tags["name:en"] ~= nil )) then
+      object.tags["name"] = object.tags["name:en"]
+   end
+
+-- ----------------------------------------------------------------------------
+-- Move refs to consider as "official" to official_ref
+-- ----------------------------------------------------------------------------
+   if (( object.tags["official_ref"]          == nil ) and
+       ( object.tags["highway_authority_ref"] ~= nil )) then
+      object.tags["official_ref"]          = object.tags["highway_authority_ref"]
+      object.tags["highway_authority_ref"] = nil
+   end
+
+   if (( object.tags["official_ref"] == nil ) and
+       ( object.tags["highway_ref"]  ~= nil )) then
+      object.tags["official_ref"] = object.tags["highway_ref"]
+      object.tags["highway_ref"]  = nil
+   end
+
+   if (( object.tags["official_ref"] == nil ) and
+       ( object.tags["admin_ref"]    ~= nil )) then
+      object.tags["official_ref"] = object.tags["admin_ref"]
+      object.tags["admin_ref"]    = nil
+   end
+
+   if (( object.tags["official_ref"] == nil ) and
+       ( object.tags["admin:ref"]    ~= nil )) then
+      object.tags["official_ref"] = object.tags["admin:ref"]
+      object.tags["admin:ref"]    = nil
+   end
+
+   if (( object.tags["official_ref"] == nil              ) and
+       ( object.tags["loc_ref"]      ~= nil              ) and
+       ( object.tags["loc_ref"]      ~= object.tags["ref"] )) then
+      object.tags["official_ref"] = object.tags["loc_ref"]
+      object.tags["loc_ref"]    = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Move unsigned road refs to the name, in brackets.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "motorway"          ) or
+       ( object.tags["highway"] == "motorway_link"     ) or
+       ( object.tags["highway"] == "trunk"             ) or
+       ( object.tags["highway"] == "trunk_link"        ) or
+       ( object.tags["highway"] == "primary"           ) or
+       ( object.tags["highway"] == "primary_link"      ) or
+       ( object.tags["highway"] == "secondary"         ) or
+       ( object.tags["highway"] == "secondary_link"    ) or
+       ( object.tags["highway"] == "tertiary"          ) or
+       ( object.tags["highway"] == "tertiary_link"     ) or
+       ( object.tags["highway"] == "unclassified"      ) or
+       ( object.tags["highway"] == "unclassified_link" ) or
+       ( object.tags["highway"] == "residential"       ) or
+       ( object.tags["highway"] == "residential_link"  ) or
+       ( object.tags["highway"] == "service"           ) or
+       ( object.tags["highway"] == "road"              ) or
+       ( object.tags["highway"] == "track"             ) or
+       ( object.tags["highway"] == "cycleway"          ) or
+       ( object.tags["highway"] == "bridleway"         ) or
+       ( object.tags["highway"] == "footway"           ) or
+       ( object.tags["highway"] == "path"              )) then
+      if ( object.tags["name"] == nil   ) then
+         if (( object.tags["ref"]        ~= nil  ) and
+             ( object.tags["ref:signed"] == "no" )) then
+            object.tags["name"]       = "(" .. object.tags["ref"] .. ")"
+            object.tags["ref"]        = nil
+            object.tags["ref:signed"] = nil
+	 else
+            if ( object.tags["official_ref"] ~= nil  ) then
+               object.tags["name"]         = "(" .. object.tags["official_ref"] .. ")"
+               object.tags["official_ref"] = nil
+            end
+         end
+      else
+         if (( object.tags["name:signed"] == "no"   ) or
+             ( object.tags["unsigned"]    == "yes"  )) then
+            object.tags["name"] = "(" .. object.tags["name"]
+            object.tags["name:signed"] = nil
+
+            if ( object.tags["ref:signed"] == "no" ) then
+               if ( object.tags["ref"] ~= nil ) then
+                  object.tags["name"]       = object.tags["name"] .. ", " .. object.tags["ref"]
+               end
+
+               object.tags["ref"]        = nil
+               object.tags["ref:signed"] = nil
+            else
+               if ( object.tags["official_ref"] ~= nil  ) then
+                  object.tags["name"]         = object.tags["name"] .. ", " .. object.tags["official_ref"]
+                  object.tags["official_ref"] = nil
+               end
+            end
+
+            object.tags["name"] = object.tags["name"] .. ")"
+         else
+            if (( object.tags["ref"]        ~= nil  ) and
+                ( object.tags["ref:signed"] == "no" )) then
+               object.tags["name"]       = object.tags["name"] .. " (" .. object.tags["ref"] .. ")"
+               object.tags["ref"]        = nil
+               object.tags["ref:signed"] = nil
+            else
+               if ( object.tags["official_ref"] ~= nil  ) then
+                  object.tags["name"]         = object.tags["name"] .. " (" .. object.tags["official_ref"] .. ")"
+                  object.tags["official_ref"] = nil
+               end
+            end
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Woodland - append B, C or M based on leaf_type.
 -- If there is no name after this procedure Garmins will show "Woods" instead.
 -- ----------------------------------------------------------------------------
@@ -79,6 +202,17 @@ function process_all(object)
        (  object.tags["tourism"]    ~= "hotel"    )) then
       object.tags["real_ale"] = nil
       object.tags["real_cider"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Remove "shop" tag on industrial or craft breweries.
+-- We pick one thing to display them as, and in this case it's "brewery".
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["industrial"] == "brewery" ) or
+        ( object.tags["craft"]      == "brewery" ) or
+        ( object.tags["craft"]      == "cider"   )) and
+       (  object.tags["shop"]       ~= nil        )) then
+      object.tags["shop"] = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -857,6 +991,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Suppress historic tag on pubs.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]  == "pub"     ) and
+       ( object.tags["historic"] ~= nil       )) then
+      object.tags["historic"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both hotels, B&Bs etc. and pubs should show as pubs, 
 -- because I'm far more likely to be looking for the latter than the former.
 -- This is done by removing the tourism tag for them.
@@ -1588,15 +1730,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Motorcycle parking
--- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "parking"    )  and
-       ( object.tags["parking"] == "motorcycle" )) then
-      object.tags["man_made"] = "thing"
-      object = append_nonqa(object,"motorcycle parking")
-   end
-
--- ----------------------------------------------------------------------------
 -- Show amenity=layby as parking.
 -- highway=rest_area is used a lot in the UK for laybies, so map that over too.
 -- ----------------------------------------------------------------------------
@@ -1636,6 +1769,28 @@ function process_all(object)
    if ( object.tags["amenity"] == "bicycle_parking" ) then
       object.tags["man_made"] = "thing"
       object = append_nonqa(object,"bicycle parking")
+
+      if (( object.tags["fee"]     ~= nil               )  and
+          ( object.tags["fee"]     ~= "no"              )  and
+          ( object.tags["fee"]     ~= "No"              )  and
+          ( object.tags["fee"]     ~= "none"            )  and
+          ( object.tags["fee"]     ~= "None"            )  and
+          ( object.tags["fee"]     ~= "Free"            )  and
+          ( object.tags["fee"]     ~= "free"            )  and
+          ( object.tags["fee"]     ~= "0"               )) then
+         object = append_nonqa(object,"pay")
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show motorcycle_parking areas, and 
+-- show for-pay motorcycle_parking areas differently.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "motorcycle_parking"  ) or
+       (( object.tags["amenity"] == "parking"            )  and
+        ( object.tags["parking"] == "motorcycle"         ))) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "motorcycle parking" )
 
       if (( object.tags["fee"]     ~= nil               )  and
           ( object.tags["fee"]     ~= "no"              )  and
@@ -1693,6 +1848,68 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "leisure_centre" ) then
       object.tags["leisure"] = "sports_centre"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Golf (and sandpits)
+-- ----------------------------------------------------------------------------
+   if (( object.tags["golf"]    == "bunker" )  and
+       ( object.tags["natural"] == nil      )) then
+      object.tags["natural"] = "sand"
+      object = append_nonqa(object,"bunker")
+   end
+
+   if (( object.tags["playground"] == "sandpit" )  and
+       ( object.tags["natural"]    == nil       )) then
+      object.tags["natural"] = "sand"
+      object = append_nonqa(object,"sandpit")
+   end
+
+   if ( object.tags["golf"] == "tee" ) then
+      object.tags["leisure"] = "garden"
+      object.tags["name"] = object.tags["ref"]
+      object = append_nonqa(object,"tee")
+   end
+
+   if ( object.tags["golf"] == "green" ) then
+      object.tags["leisure"] = "garden"
+      object.tags["name"] = object.tags["ref"]
+      object = append_nonqa(object,"green")
+   end
+
+   if ( object.tags["golf"] == "fairway" ) then
+      object.tags["leisure"] = "garden"
+      object.tags["name"] = object.tags["ref"]
+      object = append_nonqa(object,"fairway")
+   end
+
+   if ( object.tags["golf"] == "pin" ) then
+      object.tags["man_made"] = "thing"
+      object.tags["name"] = object.tags["ref"]
+      object = append_nonqa(object,"pin")
+   end
+
+   if (( object.tags["golf"]    == "rough" ) and
+       ( object.tags["natural"] == nil     )) then
+      object.tags["natural"] = "scrub"
+      object = append_nonqa(object,"golf rough")
+   end
+
+   if (( object.tags["golf"]    == "driving_range" ) and
+       ( object.tags["leisure"] == nil             )) then
+      object.tags["leisure"] = "pitch"
+      object = append_nonqa(object,"driving range")
+   end
+
+   if (( object.tags["golf"]    == "path" ) and
+       ( object.tags["highway"] == nil    )) then
+      object.tags["highway"] = "path"
+   end
+
+   if (( object.tags["golf"]    == "practice" ) and
+       ( object.tags["leisure"] == nil        )) then
+      object.tags["leisure"] = "garden"
+      object = append_nonqa(object,"golf practice")
    end
 
 -- ----------------------------------------------------------------------------
@@ -3806,14 +4023,6 @@ function ott.process_way(object)
    if (( object.tags["name:left"]  ~= nil ) and
        ( object.tags["name:right"] ~= nil )) then
       object.tags["name"] = object.tags["name:left"] .. " / " .. object.tags["name:right"]
-   end
-
--- ----------------------------------------------------------------------------
--- If name does not exist but name:en does, use it.
--- ----------------------------------------------------------------------------
-   if (( object.tags["name"]    == nil ) and
-       ( object.tags["name:en"] ~= nil )) then
-      object.tags["name"] = object.tags["name:en"]
    end
 
 -- ----------------------------------------------------------------------------

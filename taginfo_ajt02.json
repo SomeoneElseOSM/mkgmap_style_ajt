@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt02.json",
-  "data_updated": "20230101T104900Z",
+  "data_updated": "20230114T235800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT2 basic mkgmap maps",
     "description": "This map style is designed for England and Wales-based rural pedestrians.  It shows public rights of way and long distance paths.",
@@ -111,7 +111,6 @@
     { "key": "foot", "value": "no", "description": "Consider foot access" },
     { "key": "healthcare", "description": "Show healthcare" },
     { "key": "highway", "description": "Show most highways" },
-    { "key": "highway", "value": "access", "description": "Show most highways" },
     { "key": "highway", "value": "bridleway", "description": "Show most highways" },
     { "key": "highway", "value": "bus_stop", "description": "Show most highways" },
     { "key": "highway", "value": "construction", "description": "Show most highways" },

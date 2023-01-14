@@ -127,7 +127,6 @@ highway=service & designation=byway_open_to_all_traffic {add foot = yes; name '$
 highway=service & designation!=* {add access = no; add foot = yes; name '${name}' | '' } [0x06 road_class=0 road_speed=2 resolution 22]
 highway=service & designation=* {add access = no; add foot = yes; name '${name} (FO)' | '(FO)' } [0x06 road_class=0 road_speed=2 resolution 22]
 
-highway=access [0x06 road_class=0 road_speed=2 resolution 22]
 highway=raceway [0x06 road_class=0 road_speed=2 resolution 22]
 highway=cycleway {add access = no; add bicycle = yes; add foot = yes} [0x16 road_class=0 road_speed=1 resolution 23]
 

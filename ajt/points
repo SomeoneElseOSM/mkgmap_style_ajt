@@ -119,7 +119,6 @@ landuse=cemetery [0x6403 resolution 21]
 landuse=military [0x640b resolution 21]
 landuse=reservoir [0x650f resolution 21]
 landuse=village_green & name=* [0x2c06 resolution 21]
-landuse=wood & name=* [0x6618 resolution 21]
 
 healthcare=* [0x3002 resolution 20]
 

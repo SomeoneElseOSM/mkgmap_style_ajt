@@ -169,7 +169,6 @@
     { "key": "landuse", "value": "retail", "description": "Show landuse" },
     { "key": "landuse", "value": "village_green", "description": "Show landuse" },
     { "key": "landuse", "value": "vineyard", "description": "Show landuse" },
-    { "key": "landuse", "value": "wood", "description": "Show landuse" },
     { "key": "leisure", "description": "Show leisure" },
     { "key": "leisure", "value": "common", "description": "Show leisure" },
     { "key": "leisure", "value": "garden", "description": "Show leisure" },

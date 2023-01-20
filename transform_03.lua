@@ -4218,6 +4218,22 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Treat access=permit as access=no (which is what we have set "private" to 
+-- above).
+-- ----------------------------------------------------------------------------
+   if (( object.tags["access"]  == "permit"       ) or
+       ( object.tags["access"]  == "agricultural" ) or
+       ( object.tags["access"]  == "forestry"     ) or
+       ( object.tags["access"]  == "delivery"     ) or
+       ( object.tags["access"]  == "military"     )) then
+      object.tags["access"] = "no"
+   end
+
+   if ( object.tags["access"]  == "customers" ) then
+      object.tags["access"] = "destination"
+   end
+
+-- ----------------------------------------------------------------------------
 -- The extra information "and"ed with "public_footpath" below checks that
 -- "It's access=private and designation=public_footpath, and ordinarily we'd
 -- just remove the access=private tag as you ought to be able to walk there,
@@ -4460,6 +4476,15 @@ function ott.process_way(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["waterway"] == "brook" ) then
       object.tags["waterway"] = "stream"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handle "waterway=mill_pond" as water.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["waterway"] == "mill_pond" ) then
+      object.tags["natural"] = "water"
+      object.tags["waterway"] = nil
+      object = append_nonqa( object, "mill pond" )
    end
 
 -- ----------------------------------------------------------------------------

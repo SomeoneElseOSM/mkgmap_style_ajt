@@ -164,6 +164,6 @@ waterway=ditch {name '${name}'} [0x18 resolution 22]
 waterway=derelict_canal {name '${name}'} [0x1d resolution 18]
 leisure=slipway {name '${name}'} [0x1d resolution 18]
 
-man_made=pipeline {name '${operator}'} [0x28 resolution 23]
+man_made=pipeline {name '${name}'} [0x28 resolution 23]
 man_made=levee {name '${name}'} [0x1d resolution 18]
 

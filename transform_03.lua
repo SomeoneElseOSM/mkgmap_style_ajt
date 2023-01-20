@@ -4488,6 +4488,27 @@ function ott.process_way(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Pipelines
+-- These are handled in "lines".
+-- If we know the operator or substance, append those to the name.
+-- If still no name, assign "(pipeline)".
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "pipeline" ) then
+
+      if ( object.tags["operator"] ~= nil ) then
+         object = append_nonqa( object, object.tags["operator"] )
+      end
+
+      if ( object.tags["substance"] ~= nil ) then
+         object = append_nonqa( object, object.tags["substance"] )
+      end
+
+      if ( object.tags["name"] == nil ) then
+         object.tags.name = '(pipeline)'
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways
 --
 -- Append M to roads if no speed limit defined

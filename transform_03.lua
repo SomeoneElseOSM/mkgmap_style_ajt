@@ -1509,6 +1509,16 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Things that are both towers and monuments or memorials 
+-- should render as the latter.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"]  == "tower"     ) and
+       (( object.tags["historic"]  == "memorial" )  or
+        ( object.tags["historic"]  == "monument" ))) then
+      object.tags["man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Clock towers
 -- ----------------------------------------------------------------------------
    if (((  object.tags["man_made"]   == "tower"        )  and
@@ -2249,6 +2259,9 @@ function process_all(object)
       object = append_nonqa(object,"monument")
    end
 
+-- ----------------------------------------------------------------------------
+-- Things that are both galleries / museums and arts_centres.
+-- ----------------------------------------------------------------------------
    if ( object.tags["tourism"] == "gallery" ) then
       object.tags["amenity"] = nil
       object.tags["tourism"] = "museum"
@@ -2412,6 +2425,17 @@ function process_all(object)
    if ( object.tags["geological"] == "palaeontological_site" ) then
       object.tags["historic"] = "archaeological_site"
       object = append_nonqa(object,"palaeontological") 
+   end
+
+-- ----------------------------------------------------------------------------
+-- historic=icon shouldn't supersede amenity or tourism tags.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "icon" ) and
+       ( object.tags["amenity"]  == nil    ) and
+       ( object.tags["tourism"]  == nil    )) then
+      object.tags["historic"] = nil
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "historic icon" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2669,6 +2693,32 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["tpuk_ref"] ~= nil ) then
       object.tags["name"] = "(" .. object.tags["tpuk_ref"] .. ")"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Disused railway platforms
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"] == "platform" ) and
+       ( object.tags["disused"] == "yes"       )) then
+      object.tags["railway"] = nil
+      object.tags["disused:railway"] = "platform"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Suppress Underground railway platforms
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"]  == "platform"    ) and
+       ( object.tags["location"] == "underground" )) then
+      object.tags["railway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- If railway platforms have a ref, use it.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"] == "platform" ) and
+       ( object.tags["ref"]     ~= nil        )) then
+      object = append_nonqa( object, "Platform " .. object.tags["ref"] )
+      object.tags["ref"]  = nil
    end
 
 -- ----------------------------------------------------------------------------

@@ -3884,6 +3884,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=footwear_decontamination
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "footwear_decontamination" ) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "footwear decontamination" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both viewpoints or attractions and monuments or memorials 
 -- should render as the latter.
 -- Also handle some other combinations.

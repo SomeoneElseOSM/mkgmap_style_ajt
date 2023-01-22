@@ -3370,6 +3370,18 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Memorial obelisks
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["man_made"]      == "obelisk"     ) or
+       (   object.tags["landmark"]      == "obelisk"     ) or
+       ((  object.tags["historic"]      == "memorial"   ) and
+        (( object.tags["memorial"]      == "obelisk"   )  or
+         ( object.tags["memorial:type"] == "obelisk"   )))) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "obelisk" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Render shop=newsagent as shop=convenience
 -- It's near enough in meaning I think.  Likewise kiosk (bit of a stretch,
 -- but nearer than anything else)

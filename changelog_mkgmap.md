@@ -9,6 +9,7 @@ Show man_made=boundary_stone.
 Show breakwaters and groynes.
 Show man_made=bunker_silo and other farm-related items as farmyard, with an appropriate suffix.
 Show military and other flagpoles.
+Added man_made=obelisk.
 
 ## 22/01/2023
 Removed some more unused tag key/value combinations from the ajt03 style.

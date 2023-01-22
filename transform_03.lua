@@ -267,8 +267,7 @@ function process_all(object)
       object = append_nonqa( object, "sewage" )
    end
 
-   if (( object.tags["man_made"]   == "reservoir_covered"      ) or 
-       ( object.tags["industrial"] == "warehouse"              ) or
+   if (( object.tags["industrial"] == "warehouse"              ) or
        ( object.tags["industrial"] == "brewery"                ) or 
        ( object.tags["industrial"] == "distillery"             ) or 
        ( object.tags["craft"]      == "distillery"             ) or
@@ -294,14 +293,8 @@ function process_all(object)
        ( object.tags["man_made"]   == "gas_station"            ) or
        ( object.tags["man_made"]   == "gas_works"              ) or
        ( object.tags["man_made"]   == "water_treatment"        ) or
-       ( object.tags["man_made"]   == "pumping_station"        ) or
        ( object.tags["man_made"]   == "water_works"            )) then
       object.tags["landuse"] = "industrial"
-   end
-
-   if ( object.tags["man_made"]   == "reservoir_covered" ) then
-      object.tags["building"] = "roof"
-      object.tags["landuse"]  = "industrial"
    end
 
    if ( object.tags["parking"]   == "depot" ) then
@@ -641,6 +634,24 @@ function process_all(object)
    if ( object.tags["man_made"] == "petroleum_well" ) then
       object = append_nonqa( object, "petroleum well" )
       object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- man_made=pumping_station
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "pumping_station" ) then
+      object = append_nonqa( object, "pumping station" )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- man_made=reservoir_covered
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "reservoir_covered" ) then
+      object = append_nonqa( object, "reservoir covered" )
+      object.tags["building"] = "yes"
    end
 
 -- ----------------------------------------------------------------------------
@@ -2773,10 +2784,18 @@ function process_all(object)
 -- Add "water" to some "wet" features for rendering.
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "wastewater_reservoir"  ) or
-       ( object.tags["man_made"]   == "lagoon"                ) or
-       ( object.tags["man_made"]   == "lake"                  ) or
-       ( object.tags["man_made"]   == "reservoir"             ) or
        ( object.tags["basin"]      == "wastewater"            )) then
+      object.tags["natural"] = "water"
+      object = append_nonqa( object, "wastewater" )
+   end
+
+   if ( object.tags["man_made"]   == "reservoir"  ) then
+      object.tags["natural"] = "water"
+      object = append_nonqa( object, "reservoir" )
+   end
+
+   if (( object.tags["man_made"]   == "lagoon"                ) or
+       ( object.tags["man_made"]   == "lake"                  )) then
       object.tags["natural"] = "water"
    end
 

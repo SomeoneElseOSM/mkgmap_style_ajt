@@ -627,6 +627,21 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=observatory
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "observatory" ) then
+      object = append_nonqa( object, "observatory" )
+
+      if (( object.tags["building"] == nil  ) or
+          ( object.tags["building"] == "no" )) then
+         object.tags["landuse"] = "industrial"
+      else
+         object.tags["building"] = "yes"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Holy wells might be natural=spring or something else.
 -- Make sure that we set "amenity" to something other than "place_of_worship"
 -- The one existing "holy_well" is actually a spring.

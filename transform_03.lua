@@ -3423,6 +3423,24 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=flagpole
+-- A different suffix is used depending on whether they are military or not.
+-- "operator" is cleared before being picked up by the "operator" logic below.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "flagpole" ) then
+      object.tags["man_made"] = "thing"
+
+      if (( object.tags["operator"] == "Ministry of Defence" )   or
+          ( object.tags["operator"] == "MOD"                 )) then
+         object = append_nonqa(object,"military flagpole")
+      else
+         object = append_nonqa(object,"flagpole")
+      end
+
+      object.tags["operator"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Before potentially using brand or operator as a bracketed suffix after the
 -- name, explicitly exclude some "non-brands" - "Independent", etc.
 -- ----------------------------------------------------------------------------

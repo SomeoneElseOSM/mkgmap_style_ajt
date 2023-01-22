@@ -82,9 +82,7 @@ place=islet & name=* [0x53 resolution 20]
 shop=* [0x08 resolution 20]
 
 # squares and plazas
-highway=pedestrian & area=yes [0x17 resolution 20]
-# other highways that have area=yes set must be parking lots
-highway=* & area=yes [0x05 resolution 21]
+highway=pedestrian & area=yes {name '${name}'} [0x05 resolution 20]
 
 # railway platforms
 railway=platform & area=yes {name '${name}'} [0x05 resolution 20]

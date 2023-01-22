@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Show railway platform ref if no name.
 Show railway platforms as pedestrian areas.
+No longer show pedestrian areas as leisure=park(!).
 
 ## 22/01/2023
 Removed some more unused tag key/value combinations from the ajt03 style.

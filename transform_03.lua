@@ -166,6 +166,15 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Add "area=yes" if "place=square" - we can't rely on a list of polygon tags
+-- to do that for us.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["place"]   == "square" ) and
+       ( object.tags["highway"] ~= nil      )) then
+      object.tags["area"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Woodland - append B, C or M based on leaf_type.
 -- If there is no name after this procedure Garmins will show "Woods" instead.
 -- ----------------------------------------------------------------------------

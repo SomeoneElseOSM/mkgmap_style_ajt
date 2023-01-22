@@ -359,6 +359,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "boundary_stone"  )  or
        ( object.tags["historic"] == "boundary_marker" )  or
+       ( object.tags["man_made"] == "boundary_marker" )  or
        ( object.tags["marker"]   == "boundary_stone"  )  or
        ( object.tags["boundary"] == "marker"          )) then
       object.tags["man_made"] = "marker"
@@ -915,6 +916,25 @@ function process_all(object)
       object.tags["landuse"] = "farmyard"
       object = append_nonqa( object, "greenhouse horticulture" )
    end
+
+-- ----------------------------------------------------------------------------
+-- Also map man_made=bunker_silo through to farmyard here
+-- ----------------------------------------------------------------------------
+   if (object.tags["man_made"]   == "bunker_silo") then
+      object.tags["landuse"] = "farmyard"
+      object = append_nonqa( object, "bunker silo" )
+   end
+
+   if (object.tags["amenity"]   == "feeding_place") then
+      object.tags["landuse"] = "farmyard"
+      object = append_nonqa( object, "feeding place" )
+   end
+
+   if (object.tags["animal"]   == "horse_walker") then
+      object.tags["landuse"] = "farmyard"
+      object = append_nonqa( object, "horse walker" )
+   end
+
 -- ----------------------------------------------------------------------------
 -- (end of things that map to farmyard)
 -- ----------------------------------------------------------------------------
@@ -4456,6 +4476,19 @@ function ott.process_way(object)
 
    if ( object.tags['barrier'] == 'hedge' ) then
       object = append_nonqa( object, "hedge" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Some other things we map through to fence, with a different suffix
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"]   == "breakwater" ) then
+      object.tags["barrier"] = "fence"
+      object = append_nonqa( object, "breakwater" )
+   end
+
+   if ( object.tags["man_made"]   == "groyne" ) then
+      object.tags["barrier"] = "fence"
+      object = append_nonqa( object, "groyne" )
    end
 
 -- ----------------------------------------------------------------------------

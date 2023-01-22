@@ -5,6 +5,9 @@ This page describes changes made to the "03" map style [here](https://github.com
 Show railway platform ref if no name.
 Show railway platforms as pedestrian areas.
 No longer show pedestrian areas as leisure=park(!).
+Show man_made=boundary_stone.
+Show breakwaters and groynes.
+Show man_made=bunker_silo and other farm-related items as farmyard, with an appropriate suffix.
 
 ## 22/01/2023
 Removed some more unused tag key/value combinations from the ajt03 style.

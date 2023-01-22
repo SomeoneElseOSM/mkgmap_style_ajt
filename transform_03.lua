@@ -3558,7 +3558,6 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Render shop=hardware stores etc. as shop=doityourself
--- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]    == "hardware"             ) or
        ( object.tags["shop"]    == "tool_hire"            ) or
@@ -3670,7 +3669,6 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- Other "homeware-like" shops.  These, e.g. chandlery, that are a bit of a
 -- stretch get the shopnonspecific icon.
--- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "upholsterer"                 ) or
        ( object.tags["shop"]   == "chair"                       ) or

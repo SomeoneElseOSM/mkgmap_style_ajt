@@ -268,7 +268,6 @@ function process_all(object)
    end
 
    if (( object.tags["man_made"]   == "reservoir_covered"      ) or 
-       ( object.tags["man_made"]   == "petroleum_well"         ) or 
        ( object.tags["industrial"] == "warehouse"              ) or
        ( object.tags["industrial"] == "brewery"                ) or 
        ( object.tags["industrial"] == "distillery"             ) or 
@@ -632,13 +631,16 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "observatory" ) then
       object = append_nonqa( object, "observatory" )
+      object = building_or_landuse( object )
+   end
 
-      if (( object.tags["building"] == nil  ) or
-          ( object.tags["building"] == "no" )) then
-         object.tags["landuse"] = "industrial"
-      else
-         object.tags["building"] = "yes"
-      end
+-- ----------------------------------------------------------------------------
+-- man_made=petroleum_well
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "petroleum_well" ) then
+      object = append_nonqa( object, "petroleum well" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4858,7 +4860,7 @@ end
 -- ----------------------------------------------------------------------------
 -- "append non QA information" function
 -- ----------------------------------------------------------------------------
-function append_nonqa(object,appendage)
+function append_nonqa( object, appendage )
     if ( object.tags['name'] == nil ) then
       object.tags.name = '(' .. appendage .. ')'
     else
@@ -4866,4 +4868,21 @@ function append_nonqa(object,appendage)
     end
 
     return object
+end
+
+
+-- ----------------------------------------------------------------------------
+-- "building or landuse" function
+-- Many tags (for example, man_made=observatory) may be applied either to a 
+-- building or a wider landuse area.
+-- ----------------------------------------------------------------------------
+function building_or_landuse( object )
+   if (( object.tags["building"] == nil  ) or
+       ( object.tags["building"] == "no" )) then
+      object.tags["landuse"] = "industrial"
+   else
+      object.tags["building"] = "yes"
+   end
+
+   return object
 end

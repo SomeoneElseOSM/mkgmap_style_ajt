@@ -2,6 +2,10 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Show railway platform ref if no name.
+Show railway platforms as pedestrian areas.
+
+## 22/01/2023
 Removed some more unused tag key/value combinations from the ajt03 style.
 Apply more tag processing from raster web maps style.lua file, including shops.
 Handle various sorts of walls.
@@ -10,7 +14,6 @@ Show name, operator, substance on pipelines.
 Handle things that are both towers and monuments or memorials.
 historic=icon shouldn't supersede amenity or tourism tags.
 Suppress disused railway platforms.
-Show railway platform ref.
 
 ## 04/01/2023
 Removed some more unused tag key/value combinations from the ajt02 style.

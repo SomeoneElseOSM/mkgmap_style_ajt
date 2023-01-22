@@ -86,6 +86,9 @@ highway=pedestrian & area=yes [0x17 resolution 20]
 # other highways that have area=yes set must be parking lots
 highway=* & area=yes [0x05 resolution 21]
 
+# railway platforms
+railway=platform & area=yes {name '${name}'} [0x05 resolution 20]
+
 waterway=riverbank [0x46 resolution 20]
 
 historic=museum | historic=memorial [0x1e resolution 20]
@@ -93,12 +96,12 @@ historic=archaeological_site | historic=ruins [0x1e resolution 21]
 
 # Catch-alls added in case people have omitted "building="
 amenity=* {name '${name}'} [0x13 resolution 24]
-leisure=* [0x13 resolution 24]
+leisure=* {name '${name}'} [0x13 resolution 24]
 man_made=* {name '${name}'} [0x13 resolution 24]
-railway=* [0x13 resolution 24]
-shop=* [0x13 resolution 24]
-sport=* [0x13 resolution 24]
-tourism=* [0x13 resolution 24]
+railway=* {name '${name}'} [0x13 resolution 24]
+shop=* {name '${name}'} [0x13 resolution 24]
+sport=* {name '${name}'} [0x13 resolution 24]
+tourism=* {name '${name}'} [0x13 resolution 24]
 
 # building tag should be last
 building=* {name '${name}'} [0x13 resolution 24]

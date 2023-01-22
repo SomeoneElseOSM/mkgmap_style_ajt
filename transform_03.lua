@@ -2713,9 +2713,11 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- If railway platforms have a ref, use it.
+-- If railway platforms have no name but do have a ref, use it.
+-- Railway platforms with a name probably don't need to have the ref appended.
 -- ----------------------------------------------------------------------------
    if (( object.tags["railway"] == "platform" ) and
+       ( object.tags["name"]    == nil        ) and
        ( object.tags["ref"]     ~= nil        )) then
       object = append_nonqa( object, "Platform " .. object.tags["ref"] )
       object.tags["ref"]  = nil

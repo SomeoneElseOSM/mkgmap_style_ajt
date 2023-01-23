@@ -293,8 +293,7 @@ function process_all(object)
        ( object.tags["power"]      == "plant"                  ) or
        ( object.tags["man_made"]   == "gas_station"            ) or
        ( object.tags["man_made"]   == "gas_works"              ) or
-       ( object.tags["man_made"]   == "water_treatment"        ) or
-       ( object.tags["man_made"]   == "water_works"            )) then
+       ( object.tags["man_made"]   == "water_treatment"        )) then
       object.tags["landuse"] = "industrial"
    end
 
@@ -648,11 +647,20 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- man_made=reservoir_covered
--- This might be either a building or not.
+-- Always treat as a building.
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "reservoir_covered" ) then
       object = append_nonqa( object, "reservoir covered" )
       object.tags["building"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
+-- man_made=water_works
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "water_works" ) then
+      object = append_nonqa( object, "water works" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

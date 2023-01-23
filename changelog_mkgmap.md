@@ -15,6 +15,7 @@ Added function "building_or_landuse( object )" for use with other observatory-ty
 Handle man_made=reservoir_covered as building, with suffix.
 Added man_made=telephone_exchange, as either a building or landuse, depending on whether a building tag is present.
 Handle man_made=water_tower as tower, with a suffix.
+Now that all man_made items are explicitly handled, remove catch-all.
 
 ## 22/01/2023
 Removed some more unused tag key/value combinations from the ajt03 style.

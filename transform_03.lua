@@ -664,6 +664,15 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=works
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "works" ) then
+      object = append_nonqa( object, "works" )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Holy wells might be natural=spring or something else.
 -- Make sure that we set "amenity" to something other than "place_of_worship"
 -- The one existing "holy_well" is actually a spring.
@@ -3512,6 +3521,15 @@ function process_all(object)
       object.tags["operator"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Windsocks
+-- ----------------------------------------------------------------------------
+   if (( object.tags["aeroway"]  == "windsock" ) or
+       ( object.tags["landmark"] == "windsock" )) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa(object,"windsock")
+   end
+   
 -- ----------------------------------------------------------------------------
 -- Before potentially using brand or operator as a bracketed suffix after the
 -- name, explicitly exclude some "non-brands" - "Independent", etc.

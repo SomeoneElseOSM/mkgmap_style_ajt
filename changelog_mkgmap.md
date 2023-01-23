@@ -13,6 +13,7 @@ Added man_made=obelisk.
 Added man_made=observatory, as either a building or landuse, depending on whether a building tag is present.
 Added function "building_or_landuse( object )" for use with other observatory-type things.
 Handle man_made=reservoir_covered as building, with suffix.
+Added man_made=telephone_exchange, as either a building or landuse, depending on whether a building tag is present.
 
 ## 22/01/2023
 Removed some more unused tag key/value combinations from the ajt03 style.

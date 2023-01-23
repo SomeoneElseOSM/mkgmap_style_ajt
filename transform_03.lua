@@ -235,6 +235,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Mistaggings for wastewater_plant
+-- "(sewage)" is appended below.
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "sewage_works"      ) or
        ( object.tags["man_made"]   == "wastewater_works"  )) then
@@ -2102,7 +2103,7 @@ function process_all(object)
        (( object.tags["waterway"]     == "flow_control"    )  and
         ( object.tags["flow_control"] == "sluice_gate"     ))) then
       object.tags["man_made"] = "thing"
-      object = append_nonqa(object,"sluice")
+      object = append_nonqa( object, "sluice" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2194,6 +2195,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Various man_made things as normal buildings
+-- The man_made tag is appended to the name.
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "storage_tank"     ) or
        ( object.tags["man_made"]   == "silo"             ) or
@@ -3780,6 +3782,23 @@ function process_all(object)
        (  object.tags["shop"]    == "bicycle;car_parts"            )  or
        (  object.tags["shop"]    == "car_parts;bicycle"            )) then
       object.tags["shop"] = "car_parts"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Telephone Exchanges
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["man_made"]   == "telephone_exchange"  )  or
+       (   object.tags["amenity"]    == "telephone_exchange"  )  or
+       ((  object.tags["building"]   == "telephone_exchange" )   and
+        (( object.tags["amenity"]    == nil                 )    and
+         ( object.tags["man_made"]   == nil                 )    and
+         ( object.tags["office"]     == nil                 ))   or
+        (  object.tags["telecom"]    ~= nil                  ))) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"]  = "Telephone Exchange"
+      end
+
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

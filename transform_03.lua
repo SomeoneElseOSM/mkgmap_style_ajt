@@ -1675,14 +1675,27 @@ function process_all(object)
    if (( object.tags["man_made"] == "phone_mast"           ) or
        ( object.tags["man_made"] == "radio_mast"           ) or
        ( object.tags["man_made"] == "communications_mast"  ) or
-       ( object.tags["man_made"] == "tower"                ) or
        ( object.tags["man_made"] == "communications_tower" ) or
        ( object.tags["man_made"] == "transmitter"          ) or
        ( object.tags["man_made"] == "antenna"              ) or
        ( object.tags["man_made"] == "mast"                 )) then
       object.tags["man_made"] = "mast"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "phone mast" )
+      object = append_nonqa( object, "phone/radio mast" )
+   end
+
+   if ( object.tags["man_made"] == "tower" ) then
+      object.tags["tourism"] = nil
+      object = append_nonqa( object, "tower" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- water towers
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "water_tower" ) then
+      object.tags["man_made"] = "tower"
+      object.tags["building"] = "yes"
+      object = append_nonqa( object, "water tower" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2843,6 +2856,7 @@ function process_all(object)
        ( object.tags["man_made"]   == "air_shaft"         ) or
        ( object.tags["tunnel"]     == "air_shaft"         ) or
        ( object.tags["historic"]   == "air_shaft"         ) or
+       ( object.tags["man_made"]   == "ventilation_shaft" ) or
        ( object.tags["railway"]    == "ventilation_shaft" ) or
        ( object.tags["tunnel"]     == "ventilation_shaft" ) or
        ( object.tags["tunnel"]     == "ventilation shaft" ) or

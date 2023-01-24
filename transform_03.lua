@@ -3474,6 +3474,7 @@ function process_all(object)
 -- "electronics"
 -- Looking at the tagging of shop=electronics, there's a fair crossover with 
 -- electrical.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if ( object.tags["craft"]   == "electronics_repair" ) then
       object.tags["shop"] = object.tags["craft"]
@@ -3494,6 +3495,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- "electrical" consolidation
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (( object.tags["trade"]   == "electrical"              ) or
        ( object.tags["name"]    == "City Electrical Factors" )) then
@@ -3767,6 +3769,7 @@ function process_all(object)
 -- gift and other tat shops
 -- There is no matching Garmin searchable shop type, so just map to 
 -- landuse or building (with suitable suffix)
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "gift"                ) or
        ( object.tags["shop"]   == "souvenir"            ) or
@@ -3795,6 +3798,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Various alcohol shops
+-- "0x2e13" is searchable via "Shopping / Wine & Liquor"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]    == "alcohol"         ) or
        ( object.tags["shop"]    == "beer"            ) or
@@ -3816,8 +3820,7 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Other "homeware-like" shops.  These, e.g. chandlery, that are a bit of a
--- stretch get the shopnonspecific icon.
+-- Other "homeware-like" shops.  
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "upholsterer"                 ) or
        ( object.tags["shop"]   == "chair"                       ) or
@@ -3862,17 +3865,13 @@ function process_all(object)
        ( object.tags["shop"]   == "swimming_pool"               ) or
        ( object.tags["shop"]   == "fitted_furniture"            ) or
        ( object.tags["shop"]   == "upholstery"                  ) or
-       ( object.tags["shop"]   == "chandler"                    ) or
-       ( object.tags["shop"]   == "chandlers"                   ) or
-       ( object.tags["shop"]   == "chandlery"                   ) or
-       ( object.tags["shop"]   == "ship_chandler"               ) or
-       ( object.tags["craft"]  == "boatbuilder"                 ) or
        ( object.tags["shop"]   == "saddlery"                    )) then
       object.tags["shop"] = "furniture"
    end
 
 -- ----------------------------------------------------------------------------
 -- health_food etc., and also "non-medical medical" and "woo" shops.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]       == "health_food"             ) or
        ( object.tags["shop"]       == "healthfood"              ) or
@@ -3921,6 +3920,7 @@ function process_all(object)
 -- We try and use an appropriate suffixe in each case, by first appending a 
 -- suffix based on what "shop" is, then setting "shop" to whatever tag is 
 -- characteristic for rendering and 
+-- "0x2f02" is searchable via "Auto Services / Auto Rental"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "car_rental"                   ) or
        ( object.tags["amenity"] == "van_rental"                   ) or
@@ -3939,6 +3939,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Car parts
+-- "0x2f07" is searchable via "Auto Services / Dealer or Auto Parts"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]    == "trade"                       )  and
        ( object.tags["trade"]   == "car_parts"                   )) then
@@ -3970,6 +3971,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Map amenity=car_repair etc. to shop=car_repair
+-- "0x2f03" is searchable via "Auto Services / Auto Repair"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "car_repair"         ) then
       object.tags["shop"] = object.tags["amenity"]
@@ -3999,6 +4001,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- driving school, mapped to "specialty" is a bit of an oddity here.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "driving_school" ) then
       object.tags["shop"] = "specialty"
@@ -4008,6 +4011,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Mappings to shop=car
+-- "0x2f07" is searchable via "Auto Services / Dealer or Auto Parts"
 -- ----------------------------------------------------------------------------
    if  ((  object.tags["shop"]    == "agrarian"                                           ) and
         (( object.tags["agrarian"] == "agricultural_machinery"                           )  or
@@ -4031,7 +4035,6 @@ function process_all(object)
        ( object.tags["shop"]    == "vehicle"                      )  or
        ( object.tags["shop"]    == "caravan"                      ) or
        ( object.tags["shop"]    == "motorhome"                    ) or
-       ( object.tags["shop"]    == "boat"                         ) or
        ( object.tags["shop"]    == "truck"                        ) or
        ( object.tags["shop"]    == "commercial_vehicles"          ) or
        ( object.tags["shop"]    == "commercial_vehicle"           ) or
@@ -4042,6 +4045,26 @@ function process_all(object)
        ( object.tags["shop"]    == "forklift_repair"              )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Mappings to shop=boat
+-- "0x2f09" is searchable via "Others / Marine Services"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]  == "boatbuilder" ) then
+      object.tags["shop"] = object.tags["craft"]
+      object.tags["craft"] = nil
+   end
+
+   if (( object.tags["shop"] == "boat"           )  or
+       ( object.tags["shop"] == "boatbuilder"    ) or
+       ( object.tags["shop"] == "chandler"       ) or
+       ( object.tags["shop"] == "chandlers"      ) or
+       ( object.tags["shop"] == "chandlery"      ) or
+       ( object.tags["shop"] == "ship_chandler"  )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "boat"
       object = building_or_landuse( object )
    end
 

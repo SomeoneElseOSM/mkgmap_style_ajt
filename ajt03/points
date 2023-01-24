@@ -197,15 +197,17 @@ railway=tram_stop [0x2f17 resolution 21]
 shop=specialty {name '${name}'} [0x2e0a resolution 20]
 shop=alcohol {name '${name}'} [0x2e13 resolution 20]
 
+# The use of these values has been checked
 shop=car_rental {name '${name}'} [0x2f02 resolution 20]
 shop=car_repair {name '${name}'} [0x2f03 resolution 20]
 shop=car {name '${name}'} [0x2f07 resolution 20]
 shop=car_parts {name '${name}'} [0x2f07 resolution 20]
+shop=boat {name '${name}'} [0x2f09 resolution 20]
 
+# The use of these values has not yet been checked
 shop=bakery {name '${name}'} [0x2e02 resolution 20]
 shop=beauty {name '${name}'} [0x2f10 resolution 20]
 shop=bicycle {name '${name}'} [0x2f13 resolution 20]
-shop=boat {name '${name}'} [0x2f09 resolution 20]
 shop=butcher {name '${name}'} [0x2e0c resolution 20]
 shop=car_wrecker {name '${name}'} [0x2f0a resolution 20]
 shop=chemist {name '${name}'} [0x2e05 resolution 20]

@@ -532,16 +532,6 @@ function process_all(object)
          end
       end
    end
-   
--- ----------------------------------------------------------------------------
--- Mappings to shop=car
--- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]    == "car;car_repair"  )  or
-       ( object.tags["shop"]    == "cars"            )  or
-       ( object.tags["shop"]    == "car_showroom"    )  or
-       ( object.tags["shop"]    == "vehicle"         )) then
-      object.tags["shop"] = "car"
-   end
 
 -- ----------------------------------------------------------------------------
 -- Mappings to shop=bicycle
@@ -549,22 +539,6 @@ function process_all(object)
    if (( object.tags["shop"] == "bicycle_repair"   ) or
        ( object.tags["shop"] == "electric_bicycle" )) then
       object.tags["shop"] = "bicycle"
-   end
-
--- ----------------------------------------------------------------------------
--- Map amenity=car_repair etc. to shop=car_repair
--- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "car_repair"         )  or
-       ( object.tags["craft"]   == "coachbuilder"       )  or
-       ( object.tags["shop"]    == "car_service"        )  or
-       ( object.tags["shop"]    == "car_inspection"     )  or
-       ( object.tags["shop"]    == "car_bodyshop"       )  or
-       ( object.tags["shop"]    == "vehicle_inspection" )  or
-       ( object.tags["shop"]    == "mechanic"           )  or
-       ( object.tags["shop"]    == "car_repair;car"     )  or
-       ( object.tags["shop"]    == "car_repair;tyres"   )  or
-       ( object.tags["shop"]    == "auto_repair"        )) then
-      object.tags["shop"] = "car_repair"
    end
 
 -- ----------------------------------------------------------------------------
@@ -3873,10 +3847,39 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Nonspecific car and related shops.
+-- On Garmin, car_rental, car_repair,
+-- and car_dealer/car_parts are all separate features.
+-- 
+-- We try and use an appropriate suffixe in each case, by first appending a 
+-- suffix based on what "shop" is, then setting "shop" to whatever tag is 
+-- characteristic for rendering and 
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "car_rental"                   ) or
+       ( object.tags["amenity"] == "van_rental"                   ) or
+       ( object.tags["amenity"] == "car_rental;bicycle_rental"    )) then
+      object.tags["shop"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
+   if (( object.tags["shop"]    == "car_rental"                   ) or
+       ( object.tags["shop"]    == "van_rental"                   ) or
+       ( object.tags["shop"]    == "car_rental;bicycle_rental"    )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "car_rental"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Car parts
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["shop"]    == "trade"                       )  and
-        ( object.tags["trade"]   == "car_parts"                   )) or
+   if (( object.tags["shop"]    == "trade"                       )  and
+       ( object.tags["trade"]   == "car_parts"                   )) then
+      object.tags["shop"] = object.tags["trade"]
+      object.tags["trade"] = nil
+   end
+
+   if ((  object.tags["shop"]    == "car_parts"                    )  or
        (  object.tags["shop"]    == "car_accessories"              )  or
        (  object.tags["shop"]    == "tyres"                        )  or
        (  object.tags["shop"]    == "automotive"                   )  or
@@ -3893,7 +3896,86 @@ function process_all(object)
        (  object.tags["shop"]    == "car_parts;car_repair"         )  or
        (  object.tags["shop"]    == "bicycle;car_parts"            )  or
        (  object.tags["shop"]    == "car_parts;bicycle"            )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_parts"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Map amenity=car_repair etc. to shop=car_repair
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "car_repair"         ) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if ( object.tags["craft"]   == "coachbuilder" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["shop"]    == "car_repair"         )  or
+       ( object.tags["shop"]    == "coachbuilder"       )  or
+       ( object.tags["shop"]    == "car_service"        )  or
+       ( object.tags["shop"]    == "car_inspection"     )  or
+       ( object.tags["shop"]    == "car_bodyshop"       )  or
+       ( object.tags["shop"]    == "vehicle_inspection" )  or
+       ( object.tags["shop"]    == "mechanic"           )  or
+       ( object.tags["shop"]    == "car_repair;car"     )  or
+       ( object.tags["shop"]    == "car_repair;tyres"   )  or
+       ( object.tags["shop"]    == "auto_repair"        )  or
+       ( object.tags["shop"]    == "tractor_repair"     )  or
+       ( object.tags["shop"]    == "tractor_parts"      )  or
+       ( object.tags["shop"]    == "truck_repair"       )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "car_repair"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- driving school, mapped to "specialty" is a bit of an oddity here.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "driving_school" ) then
+      object.tags["shop"] = "specialty"
+      object = append_nonqa( object, "driving school" )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Mappings to shop=car
+-- ----------------------------------------------------------------------------
+   if  ((  object.tags["shop"]    == "agrarian"                                           ) and
+        (( object.tags["agrarian"] == "agricultural_machinery"                           )  or
+         ( object.tags["agrarian"] == "machine_parts;agricultural_machinery;tools"       )  or
+         ( object.tags["agrarian"] == "agricultural_machinery;machine_parts;tools"       )  or
+         ( object.tags["agrarian"] == "agricultural_machinery;feed"                      )  or
+         ( object.tags["agrarian"] == "agricultural_machinery;machine_parts;tools;signs" )  or
+         ( object.tags["agrarian"] == "agricultural_machinery;machine_parts"             )  or
+         ( object.tags["agrarian"] == "agricultural_machinery;seed"                      )  or
+         ( object.tags["agrarian"] == "machine_parts;agricultural_machinery"             ))) then
+      object.tags["shop"] = "car"
+      object = append_nonqa( object, "agricultural machinery" )
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["shop"]    == "car"                          )  or
+       ( object.tags["shop"]    == "car;car_repair"               )  or
+       ( object.tags["shop"]    == "car"                          )  or
+       ( object.tags["shop"]    == "cars"                         )  or
+       ( object.tags["shop"]    == "car_showroom"                 )  or
+       ( object.tags["shop"]    == "vehicle"                      )  or
+       ( object.tags["shop"]    == "caravan"                      ) or
+       ( object.tags["shop"]    == "motorhome"                    ) or
+       ( object.tags["shop"]    == "boat"                         ) or
+       ( object.tags["shop"]    == "truck"                        ) or
+       ( object.tags["shop"]    == "commercial_vehicles"          ) or
+       ( object.tags["shop"]    == "commercial_vehicle"           ) or
+       ( object.tags["shop"]    == "agricultural_vehicles"        ) or
+       ( object.tags["shop"]    == "tractor"                      ) or
+       ( object.tags["shop"]    == "tractors"                     ) or
+       ( object.tags["shop"]    == "van"                          ) or
+       ( object.tags["shop"]    == "forklift_repair"              )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "car"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

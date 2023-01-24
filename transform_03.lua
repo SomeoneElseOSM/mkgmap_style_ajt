@@ -3870,19 +3870,45 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- fabric and wool etc.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "fabric"               ) or
+       ( object.tags["shop"]   == "fabrics"              ) or
+       ( object.tags["shop"]   == "linen"                ) or
+       ( object.tags["shop"]   == "linens"               ) or
+       ( object.tags["shop"]   == "haberdashery"         ) or
+       ( object.tags["shop"]   == "haberdasher"          ) or
+       ( object.tags["shop"]   == "sewing"               ) or
+       ( object.tags["shop"]   == "needlecraft"          ) or
+       ( object.tags["shop"]   == "embroidery"           ) or
+       ( object.tags["shop"]   == "knitting"             ) or
+       ( object.tags["shop"]   == "wool"                 ) or
+       ( object.tags["shop"]   == "yarn"                 ) or
+       ( object.tags["shop"]   == "alteration"           ) or
+       ( object.tags["shop"]   == "clothing_alterations" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- health_food etc., and also "non-medical medical" and "woo" shops.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["name"] == "Holland and Barrett" ) then
+      object.tags["shop"] = "health_food"
+   end
+
    if (( object.tags["shop"]       == "health_food"             ) or
        ( object.tags["shop"]       == "healthfood"              ) or
        ( object.tags["shop"]       == "health"                  ) or
        ( object.tags["shop"]       == "organic"                 ) or
        ( object.tags["shop"]       == "supplements"             ) or
        ( object.tags["shop"]       == "nutrition_supplements"   ) or
-       ( object.tags["shop"]       == "dietary_supplements"     ) or
-       ( object.tags["name"]       == "Holland and Barrett"     )) then
+       ( object.tags["shop"]       == "dietary_supplements"     )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = append_nonqa( object, "health food" )
       object = building_or_landuse( object )
 
       if (( object.tags["zero_waste"]         == "yes"                )  or

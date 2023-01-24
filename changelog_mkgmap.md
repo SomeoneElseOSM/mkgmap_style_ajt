@@ -6,9 +6,10 @@ Show vacant shops as "(vacant: name)" as either a building or landuse, depending
 Show gift shops as either a building or landuse.
 Show non-government (commercial) offices that you might visit for a service as either a building or landuse.
 Show car repair etc. as either a building or landuse.
-Show electrical and elecroncs shops as specialty with either a building or landuse.
+Show electrical and elecroncs shops as "specialty" with either a building or landuse.
 Show shop=alcohol as "wine and liquor" with either a building or landuse.
 Show shop=boat with either a building or landuse.
+Show fabric and wool shops as "specialty" with either a building or landuse.
 
 ## 24/01/2023
 Show railway platform ref if no name.

@@ -3738,6 +3738,36 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- gift and other tat shops
+-- There is no matching Garmin searchable shop type, so just map to 
+-- landuse or building (with suitable suffix)
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "souvenir"            ) or
+       ( object.tags["shop"]   == "souvenirs"           ) or
+       ( object.tags["shop"]   == "leather"             ) or
+       ( object.tags["shop"]   == "luxury"              ) or
+       ( object.tags["shop"]   == "candle"              ) or
+       ( object.tags["shop"]   == "candles"             ) or
+       ( object.tags["shop"]   == "sunglasses"          ) or
+       ( object.tags["shop"]   == "tourist"             ) or
+       ( object.tags["shop"]   == "tourism"             ) or
+       ( object.tags["shop"]   == "bag"                 ) or
+       ( object.tags["shop"]   == "bags"                ) or
+       ( object.tags["shop"]   == "balloon"             ) or
+       ( object.tags["shop"]   == "accessories"         ) or
+       ( object.tags["shop"]   == "beach"               ) or
+       ( object.tags["shop"]   == "magic"               ) or
+       ( object.tags["shop"]   == "party"               ) or
+       ( object.tags["shop"]   == "party_goods"         ) or
+       ( object.tags["shop"]   == "christmas"           ) or
+       ( object.tags["shop"]   == "fashion_accessories" ) or
+       ( object.tags["shop"]   == "gift"                )) then
+      object.tags["shop"] = nil
+      object = append_nonqa( object, "gift shop" )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show pastry shops as bakeries
 -- ----------------------------------------------------------------------------
    if ( object.tags["shop"] == "pastry" ) then

@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.
+Show gift shops" as either a building or landuse.
 
 ## 24/01/2023
 Show railway platform ref if no name.

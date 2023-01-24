@@ -3913,6 +3913,57 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- A special case to check before the "vacant shops" check below - potentially
+-- remove disused:amenity=graveyard
+-- ----------------------------------------------------------------------------
+   if (( object.tags["disused:amenity"] == "grave_yard" ) and
+       ( object.tags["landuse"]         == "cemetery"   )) then
+      object.tags["disused:amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Names for vacant shops
+-- ----------------------------------------------------------------------------
+   if (((( object.tags["disused:shop"]    ~= nil        )   or
+         ( object.tags["disused:amenity"] ~= nil        ))  and
+         ( object.tags["disused:amenity"] ~= "fountain"  )  and
+         ( object.tags["disused:amenity"] ~= "parking"   )  and
+         ( object.tags["shop"]            == nil         )  and
+         ( object.tags["amenity"]         == nil         )) or
+       (   object.tags["office"]          == "vacant"     ) or
+       (   object.tags["office"]          == "disused"    ) or
+       (   object.tags["shop"]            == "disused"    ) or
+       (   object.tags["shop"]            == "empty"      ) or
+       (   object.tags["shop"]            == "closed"     ) or
+       (   object.tags["shop"]            == "abandoned"  ) or
+       ((  object.tags["shop"]            ~= nil         )  and
+        (  object.tags["opening_hours"]   == "closed"    ))) then
+      object.tags["shop"] = "vacant"
+   end
+
+   if ( object.tags["shop"] == "vacant" ) then
+      if (( object.tags["name"]     == nil ) and
+          ( object.tags["old_name"] ~= nil )) then
+         object.tags["name"]     = object.tags["old_name"]
+         object.tags["old_name"] = nil
+      end
+
+      if (( object.tags["name"]     == nil ) and
+          ( object.tags["former_name"] ~= nil )) then
+         object.tags["name"]     = object.tags["former_name"]
+         object.tags["former_name"] = nil
+      end
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["name"] = "(vacant)"
+      else
+         object.tags["name"] = "(vacant: " .. object.tags["name"] .. ")"
+      end
+
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Remove icon for public transport and animal field shelters and render as
 -- "roof" (if they are a way).
 -- "roof" isn't rendered for nodes, so this has the effect of suppressing

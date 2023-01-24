@@ -3768,7 +3768,8 @@ function process_all(object)
 -- There is no matching Garmin searchable shop type, so just map to 
 -- landuse or building (with suitable suffix)
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]   == "souvenir"            ) or
+   if (( object.tags["shop"]   == "gift"                ) or
+       ( object.tags["shop"]   == "souvenir"            ) or
        ( object.tags["shop"]   == "souvenirs"           ) or
        ( object.tags["shop"]   == "leather"             ) or
        ( object.tags["shop"]   == "luxury"              ) or
@@ -3786,10 +3787,24 @@ function process_all(object)
        ( object.tags["shop"]   == "party"               ) or
        ( object.tags["shop"]   == "party_goods"         ) or
        ( object.tags["shop"]   == "christmas"           ) or
-       ( object.tags["shop"]   == "fashion_accessories" ) or
-       ( object.tags["shop"]   == "gift"                )) then
-      object.tags["shop"] = "specialty"
+       ( object.tags["shop"]   == "fashion_accessories" )) then
       object = append_nonqa( object, "gift shop" )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various alcohol shops
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "alcohol"         ) or
+       ( object.tags["shop"]    == "beer"            ) or
+       ( object.tags["shop"]    == "off_licence"     ) or
+       ( object.tags["shop"]    == "off_license"     ) or
+       ( object.tags["shop"]    == "offlicence"      ) or
+       ( object.tags["shop"]    == "wine"            ) or
+       ( object.tags["shop"]    == "whisky"          )) then
+      object = append_nonqa( object, "alcohol" )
+      object.tags["shop"] = "alcohol"
       object = building_or_landuse( object )
    end
 

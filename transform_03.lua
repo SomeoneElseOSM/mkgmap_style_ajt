@@ -3762,7 +3762,7 @@ function process_all(object)
        ( object.tags["shop"]   == "christmas"           ) or
        ( object.tags["shop"]   == "fashion_accessories" ) or
        ( object.tags["shop"]   == "gift"                )) then
-      object.tags["shop"] = nil
+      object.tags["shop"] = "specialty"
       object = append_nonqa( object, "gift shop" )
       object = building_or_landuse( object )
    end
@@ -3828,6 +3828,48 @@ function process_all(object)
        ( object.tags["craft"]  == "boatbuilder"                 ) or
        ( object.tags["shop"]   == "saddlery"                    )) then
       object.tags["shop"] = "furniture"
+   end
+
+-- ----------------------------------------------------------------------------
+-- health_food etc., and also "non-medical medical" and "woo" shops.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]       == "health_food"             ) or
+       ( object.tags["shop"]       == "healthfood"              ) or
+       ( object.tags["shop"]       == "health"                  ) or
+       ( object.tags["shop"]       == "organic"                 ) or
+       ( object.tags["shop"]       == "supplements"             ) or
+       ( object.tags["shop"]       == "nutrition_supplements"   ) or
+       ( object.tags["shop"]       == "dietary_supplements"     ) or
+       ( object.tags["name"]       == "Holland and Barrett"     )) then
+      object.tags["shop"] = "specialty"
+      object = append_nonqa( object, "health food" )
+      object = building_or_landuse( object )
+
+      if (( object.tags["zero_waste"]         == "yes"                )  or
+          ( object.tags["zero_waste"]         == "only"               )  or
+          ( object.tags["bulk_purchase"]      == "yes"                )  or
+          ( object.tags["bulk_purchase"]      == "only"               )  or
+          ( object.tags["reusable_packaging"] == "yes"                )) then
+         object.tags["shop"] = "ecohealth_food"
+         object = append_nonqa( object, "zero waste" )
+      end
+   end
+
+   if (( object.tags["shop"]       == "alternative_medicine"    ) or
+       ( object.tags["shop"]       == "massage"                 ) or
+       ( object.tags["shop"]       == "herbalist"               ) or
+       ( object.tags["shop"]       == "herbal_medicine"         ) or
+       ( object.tags["shop"]       == "chinese_medicine"        ) or
+       ( object.tags["shop"]       == "new_age"                 ) or
+       ( object.tags["shop"]       == "alternative_health"      ) or
+       ( object.tags["healthcare"] == "alternative"             ) or
+       ( object.tags["shop"]       == "acupuncture"             ) or
+       ( object.tags["healthcare"] == "acupuncture"             ) or
+       ( object.tags["shop"]       == "aromatherapy"            ) or
+       ( object.tags["shop"]       == "meditation"              )) then
+      object.tags["shop"] = "specialty"
+      object = append_nonqa( object, "alt health" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4070,6 +4112,7 @@ function process_all(object)
          object.tags["name"] = "(vacant: " .. object.tags["name"] .. ")"
       end
 
+      object.tags["shop"] = nil
       object = building_or_landuse( object )
    end
 

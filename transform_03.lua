@@ -3471,6 +3471,58 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- "electronics"
+-- Looking at the tagging of shop=electronics, there's a fair crossover with 
+-- electrical.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]   == "electronics_repair" ) then
+      object.tags["shop"] = object.tags["craft"]
+      object.tags["craft"] = nil
+   end
+
+   if ( object.tags["amenity"]   == "electronics_repair" ) then
+      object.tags["shop"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
+   if (( object.tags["shop"]    == "electronics"             ) or
+       ( object.tags["shop"]    == "electronics_repair"      )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- "electrical" consolidation
+-- ----------------------------------------------------------------------------
+   if (( object.tags["trade"]   == "electrical"              ) or
+       ( object.tags["name"]    == "City Electrical Factors" )) then
+      object = append_nonqa( object, "electrical" )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["shop"]    == "electrical"              ) or
+       ( object.tags["shop"]    == "radiotechnics"           ) or
+       ( object.tags["shop"]    == "appliance"               ) or
+       ( object.tags["shop"]    == "electrical_supplies"     ) or
+       ( object.tags["shop"]    == "electrical_repair"       ) or
+       ( object.tags["shop"]    == "tv_repair"               ) or
+       ( object.tags["shop"]    == "alarm"                   ) or
+       ( object.tags["shop"]    == "gadget"                  ) or
+       ( object.tags["shop"]    == "appliances"              ) or
+       ( object.tags["shop"]    == "vacuum_cleaner"          ) or
+       ( object.tags["shop"]    == "sewing_machines"         ) or
+       ( object.tags["shop"]    == "domestic_appliances"     ) or
+       ( object.tags["shop"]    == "white_goods"             ) or
+       ( object.tags["shop"]    == "electricial"             ) or
+       ( object.tags["shop"]    == "electricals"             )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- "department_store" consolidation.
 -- ----------------------------------------------------------------------------
    if ( object.tags["shop"] == "department" ) then

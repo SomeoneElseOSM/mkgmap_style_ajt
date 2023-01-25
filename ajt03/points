@@ -65,7 +65,6 @@ amenity=police [0x3001 resolution 21]
 amenity=post_box [0x2f05 resolution 23 default_name 'Postbox']
 amenity=post_office [0x2f05 resolution 20 default_name 'Postoffice']
 amenity=prison [0x3007 resolution 21]
-amenity=pub {name '${name} (${operator})' | '${name}' } [0x2a11 resolution 20]
 disused:amenity=pub {name '${name}'} [0x4f00 resolution 21 default_name 'Former Pub' ]
 amenity=public_building [0x3007 resolution 21]
 amenity=recycling {name '${name}'} [0x2f15 resolution 20]
@@ -195,6 +194,9 @@ railway=station [0x2f08 resolution 20]
 railway=tram_stop [0x2f17 resolution 21]
 
 # The use of these values has been checked
+shop=bakery {name '${name}'} [0x2a05 resolution 20]
+amenity=pub {name '${name} (${operator})' | '${name}' } [0x2a11 resolution 20]
+
 shop=clothes {name '${name}'} [0x2e07 resolution 20]
 shop=specialty {name '${name}'} [0x2e0a resolution 20]
 shop=computer {name '${name}'} [0x2e0b resolution 20]
@@ -208,7 +210,6 @@ shop=car_parts {name '${name}'} [0x2f07 resolution 20]
 shop=boat {name '${name}'} [0x2f09 resolution 20]
 
 # The use of these values has not yet been checked
-shop=bakery {name '${name}'} [0x2e02 resolution 20]
 shop=beauty {name '${name}'} [0x2f10 resolution 20]
 shop=bicycle {name '${name}'} [0x2f13 resolution 20]
 shop=butcher {name '${name}'} [0x2e0c resolution 20]

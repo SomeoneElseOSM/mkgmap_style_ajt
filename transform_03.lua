@@ -3861,9 +3861,13 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Show pastry shops as bakeries
+-- "0x2a05" is searchable via "Food and Drink / Deli or Bakery"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["shop"] == "pastry" ) then
+   if (( object.tags["shop"] == "bakery" ) or
+       ( object.tags["shop"] == "pastry" )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "bakery"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

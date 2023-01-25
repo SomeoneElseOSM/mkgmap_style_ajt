@@ -3452,13 +3452,14 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- "clothes" consolidation.  "baby_goods" is here because there will surely
 -- be some clothes there!
+-- "0x2e07" is searchable via "Shopping / Apparel"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"] == "fashion"      ) or
+   if (( object.tags["shop"] == "clothes"      ) or
+       ( object.tags["shop"] == "fashion"      ) or
        ( object.tags["shop"] == "boutique"     ) or
        ( object.tags["shop"] == "vintage"      ) or
        ( object.tags["shop"] == "bridal"       ) or
        ( object.tags["shop"] == "wedding"      ) or
-       ( object.tags["shop"] == "lingerie"     ) or
        ( object.tags["shop"] == "baby_goods"   ) or
        ( object.tags["shop"] == "baby"         ) or
        ( object.tags["shop"] == "dance"        ) or
@@ -3467,7 +3468,9 @@ function process_all(object)
        ( object.tags["shop"] == "hat"          ) or
        ( object.tags["shop"] == "hats"         ) or
        ( object.tags["shop"] == "wigs"         )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "clothes"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4014,6 +4017,24 @@ function process_all(object)
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if ( object.tags["shop"]   == "antiques" ) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Art etc.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]  == "pottery" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["shop"]   == "art"            ) or
+       ( object.tags["shop"]   == "craft"          ) or
+       ( object.tags["shop"]   == "crafts"         ) or
+       ( object.tags["shop"]   == "art_supplies"   ) or
+       ( object.tags["shop"]   == "pottery"        )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( object )

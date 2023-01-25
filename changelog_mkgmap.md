@@ -11,6 +11,8 @@ Show shop=alcohol as "wine and liquor" with either a building or landuse.
 Show shop=boat with either a building or landuse.
 Show fabric and wool shops as "specialty" with either a building or landuse.
 Show betting shops etc. as "specialty" with either a building or landuse.
+Show sports shops etc. as "specialty" with either a building or landuse.
+Show pet shops etc. as "specialty" with either a building or landuse.
 
 ## 24/01/2023
 Show railway platform ref if no name.

@@ -3702,17 +3702,20 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- sports
--- the name is usually characteristic, but try and use an icon.
+-- the name is often characteristic,
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]   == "golf"              ) or
+   if (( object.tags["shop"]   == "sports"            ) or
+       ( object.tags["shop"]   == "golf"              ) or
        ( object.tags["shop"]   == "scuba_diving"      ) or
        ( object.tags["shop"]   == "water_sports"      ) or
-       ( object.tags["shop"]   == "watersports"       ) or
        ( object.tags["shop"]   == "fishing"           ) or
        ( object.tags["shop"]   == "fishing_tackle"    ) or
        ( object.tags["shop"]   == "angling"           ) or
        ( object.tags["shop"]   == "fitness_equipment" )) then
-      object.tags["shop"] = "sports"
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3976,6 +3979,64 @@ function process_all(object)
        ( object.tags["shop"]       == "meditation"              )) then
       object.tags["shop"] = "specialty"
       object = append_nonqa( object, "alt health" )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- pets and pet services
+-- Often the names are punningly characteristic (e.g. "Bark-in-Style" 
+-- dog grooming).
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "dog_grooming"            ) or
+       ( object.tags["amenity"] == "veterinary"              ) or
+       ( object.tags["amenity"] == "animal_boarding"         ) or
+       ( object.tags["amenity"] == "cattery"                 ) or
+       ( object.tags["amenity"] == "kennels"                 ) or
+       ( object.tags["amenity"] == "animal_shelter"          )) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if (( object.tags["animal"]  == "shelter"                 ) or
+       ( object.tags["animal"]  == "wellness"                )) then
+      object.tags["shop"] = "animal " .. object.tags["animal"]
+   end
+
+   if ( object.tags["craft"]   == "dog_grooming" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["shop"]    == "pet"                     ) or
+       ( object.tags["shop"]    == "pets"                    ) or
+       ( object.tags["shop"]    == "pet;garden"              ) or
+       ( object.tags["shop"]    == "pet;florist"             ) or
+       ((  object.tags["shop"]     == "agrarian"                        )  and
+        (( object.tags["agrarian"] == "feed"                           )  or
+         ( object.tags["agrarian"] == "yes"                            )  or
+         ( object.tags["agrarian"] == "feed;fertilizer;seed;pesticide" )  or
+         ( object.tags["agrarian"] == "feed;seed"                      )  or
+         ( object.tags["agrarian"] == "feed;pesticide;seed"            )  or
+         ( object.tags["agrarian"] == "feed;tools"                     )  or
+         ( object.tags["agrarian"] == "feed;tools;fuel;firewood"       ))) or
+       ( object.tags["shop"]    == "aquatics"                ) or
+       ( object.tags["shop"]    == "aquarium"                ) or
+       ( object.tags["shop"]    == "pet_supplies"            ) or
+       ( object.tags["shop"]    == "pet_care"                ) or
+       ( object.tags["shop"]    == "pet_food"                ) or
+       ( object.tags["shop"]    == "petfood"                 ) or
+       ( object.tags["shop"]    == "pet_grooming"            ) or
+       ( object.tags["shop"]    == "dog_grooming"            ) or
+       ( object.tags["shop"]    == "pet;corn"                ) or
+       ( object.tags["shop"]    == "animal_feed"             ) or
+       ( object.tags["shop"]    == "veterinary"              ) or
+       ( object.tags["shop"]    == "animal_boarding"         ) or
+       ( object.tags["shop"]    == "cattery"                 ) or
+       ( object.tags["shop"]    == "kennels"                 ) or
+       ( object.tags["shop"]    == "animal_shelter"          ) or
+       ( object.tags["shop"]    == "animal shelter"          ) or
+       ( object.tags["shop"]    == "animal wellness"         )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( object )
    end
 

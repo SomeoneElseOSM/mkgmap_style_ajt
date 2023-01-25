@@ -3760,9 +3760,50 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Computer
+-- "0x2e0b" is searchable via "Shopping / Computer or Software"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["shop"]  == "computer_repair" ) then
+   if (( object.tags["shop"]  == "computer"        ) or
+       ( object.tags["shop"]  == "computer_repair" )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "computer"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Betting Shops etc.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "betting"             ) or
+       ( object.tags["amenity"] == "gambling"            ) or
+       ( object.tags["amenity"] == "lottery"             ) or
+       ( object.tags["amenity"] == "amusements"          ) or
+       ( object.tags["amenity"] == "amusement"           ) or
+       ( object.tags["amenity"] == "casino"              )) then
+      object.tags["shop"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
+   if (( object.tags["leisure"] == "gambling"            ) or
+       ( object.tags["leisure"] == "amusement_arcade"    ) or
+       ( object.tags["leisure"] == "video_arcade"        ) or
+       ( object.tags["leisure"] == "adult_gaming_centre" )) then
+      object.tags["shop"] = object.tags["leisure"]
+      object.tags["leisure"] = nil
+   end
+
+   if (( object.tags["shop"]    == "bookmaker"           ) or
+       ( object.tags["shop"]    == "betting"             ) or
+       ( object.tags["shop"]    == "gambling"            ) or
+       ( object.tags["shop"]    == "lottery"             ) or
+       ( object.tags["shop"]    == "amusements"          ) or
+       ( object.tags["shop"]    == "amusement"           ) or
+       ( object.tags["shop"]    == "casino"              ) or
+       ( object.tags["shop"]    == "amusement_arcade"    ) or
+       ( object.tags["shop"]    == "video_arcade"        ) or
+       ( object.tags["shop"]    == "adult_gaming_centre" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3791,7 +3832,7 @@ function process_all(object)
        ( object.tags["shop"]   == "party_goods"         ) or
        ( object.tags["shop"]   == "christmas"           ) or
        ( object.tags["shop"]   == "fashion_accessories" )) then
-      object = append_nonqa( object, "gift shop" )
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( object )
    end
@@ -3807,7 +3848,7 @@ function process_all(object)
        ( object.tags["shop"]    == "offlicence"      ) or
        ( object.tags["shop"]    == "wine"            ) or
        ( object.tags["shop"]    == "whisky"          )) then
-      object = append_nonqa( object, "alcohol" )
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "alcohol"
       object = building_or_landuse( object )
    end

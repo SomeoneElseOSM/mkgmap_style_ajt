@@ -198,6 +198,7 @@ railway=tram_stop [0x2f17 resolution 21]
 shop=specialty {name '${name}'} [0x2e0a resolution 20]
 shop=computer {name '${name}'} [0x2e0b resolution 20]
 shop=alcohol {name '${name}'} [0x2e13 resolution 20]
+shop=books {name '${name}'} [0x2e14 resolution 20]
 
 shop=car_rental {name '${name}'} [0x2f02 resolution 20]
 shop=car_repair {name '${name}'} [0x2f03 resolution 20]

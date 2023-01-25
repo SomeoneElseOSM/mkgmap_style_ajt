@@ -3983,6 +3983,32 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- books
+-- the name is often characteristic
+-- "0x2e14" is searchable via "Shopping / Book Store"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "books"           ) or
+       ( object.tags["shop"]   == "comics"          ) or
+       ( object.tags["shop"]   == "comic"           ) or
+       ( object.tags["shop"]   == "anime"           ) or
+       ( object.tags["shop"]   == "maps"            )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "books"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- stationery
+-- the name is often characteristic
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"]   == "office_supplies" ) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- pets and pet services
 -- Often the names are punningly characteristic (e.g. "Bark-in-Style" 
 -- dog grooming).

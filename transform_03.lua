@@ -534,47 +534,118 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Map various diplomatic things to embassy.
--- Pedants may claim that some of these aren't legally embassies, and they'd
--- be correct, but I use the same icon for all of these currently.
+-- amenity=public_building
+-- This is just sent through as "office"
+-- Doing this (and prison below) allows us to use "0x3007" for embassies.
 -- ----------------------------------------------------------------------------
-   if (((  object.tags["diplomatic"] == "embassy"            )  and
-        (( object.tags["embassy"]    == nil                 )   or
-         ( object.tags["embassy"]    == "yes"               )   or
-         ( object.tags["embassy"]    == "high_commission"   )   or
-         ( object.tags["embassy"]    == "nunciature"        )   or
-         ( object.tags["embassy"]    == "delegation"        )   or
-         ( object.tags["embassy"]    == "embassy"           ))) or
-       ((  object.tags["diplomatic"] == "consulate"          )  and
-        (( object.tags["consulate"]  == nil                 )   or
-         ( object.tags["consulate"]  == "consulate_general" )   or
-         ( object.tags["consulate"]  == "yes"               ))) or
+   if ( object.tags["amenity"] == "public_building" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"]    = nil
+      object.tags["office"]     = "yes"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- amenity=prison
+-- This is just sent through as "office"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "prison" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"]    = nil
+      object.tags["office"]     = "yes"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show various diplomatic things
+-- Embassies and embassy-adjacent things first.
+-- "0x3007" is searchable via "Community / Government Office"
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["diplomatic"] == "embassy"            )  and
+       (( object.tags["embassy"]    == nil                 )   or
+        ( object.tags["embassy"]    == "yes"               ))) then
+      object.tags["diplomatic"] = "embassy"
+   end
+
+   if ((  object.tags["diplomatic"] == "embassy"            )  and
+       (( object.tags["embassy"]    == "high_commission"   )   or
+        ( object.tags["embassy"]    == "nunciature"        )   or
+        ( object.tags["embassy"]    == "delegation"        )   or
+        ( object.tags["embassy"]    == "embassy"           ))) then
+      object.tags["diplomatic"] = object.tags["embassy"]
+   end
+
+   if ((  object.tags["diplomatic"] == "consulate"          )  and
+       (( object.tags["consulate"]  == nil                 )   or
+        ( object.tags["consulate"]  == "yes"               ))) then
+      object.tags["diplomatic"] = "consulate"
+   end
+
+   if ( object.tags["consulate"]  == "consulate_general" ) then
+      object.tags["diplomatic"] = object.tags["consulate"]
+   end
+
+   if (( object.tags["diplomatic"] == "embassy"               ) or
+       ( object.tags["diplomatic"] == "consulate"             ) or
+       ( object.tags["diplomatic"] == "high_commission"       ) or
+       ( object.tags["diplomatic"] == "nunciature"            ) or
+       ( object.tags["diplomatic"] == "delegation"            ) or
+       ( object.tags["diplomatic"] == "consulate_general"     ) or
        ( object.tags["diplomatic"] == "embassy;consulate"     ) or
        ( object.tags["diplomatic"] == "embassy;mission"       ) or
        ( object.tags["diplomatic"] == "consulate;embassy"     )) then
-      object.tags["amenity"]    = "embassy"
+
+      if ( object.tags["country"] == nil ) then
+         object.tags["country"] = "unknown"
+      end
+
+      object = append_nonqa( object, object.tags["diplomatic"] .. " " .. object.tags["country"] )
+      object.tags["amenity"] = "public_building"
       object.tags["diplomatic"] = nil
       object.tags["office"]     = nil
+      object = building_or_landuse( object )
    end
 
-   if (((  object.tags["diplomatic"] == "embassy"              )  and
-        (( object.tags["embassy"]    == "residence"           )   or
-         ( object.tags["embassy"]    == "branch_embassy"      )   or
-         ( object.tags["embassy"]    == "mission"             ))) or
-       ((  object.tags["diplomatic"] == "consulate"            )  and
-        (( object.tags["consulate"]  == "consular_office"     )   or
-         ( object.tags["consulate"]  == "residence"           )   or
-         ( object.tags["consulate"]  == "consular_agency"     ))) or
-       (   object.tags["diplomatic"] == "permanent_mission"     ) or
+-- ----------------------------------------------------------------------------
+-- More diplomatic things
+-- Offices and office-adjacent things next.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["diplomatic"] == "embassy"              )  and
+       ( object.tags["embassy"]     == "residence"            )) then
+      object.tags["diplomatic"] = "residence"
+   end
+
+   if ((  object.tags["diplomatic"] == "embassy"              )  and
+       (( object.tags["embassy"]     == "branch_embassy"     )   or
+        ( object.tags["embassy"]    == "mission"             ))) then
+      object.tags["diplomatic"] = object.tags["embassy"]
+   end
+
+   if ((  object.tags["diplomatic"] == "consulate"            )  and
+       (( object.tags["consulate"]  == "consular_office"     )   or
+        ( object.tags["consulate"]  == "residence"           )   or
+        ( object.tags["consulate"]  == "consular_agency"     ))) then
+      object.tags["diplomatic"] = object.tags["consulate"]
+   end
+
+   if ((   object.tags["diplomatic"] == "permanent_mission"     ) or
        (   object.tags["diplomatic"] == "trade_delegation"      ) or
        (   object.tags["diplomatic"] == "liaison"               ) or
        (   object.tags["diplomatic"] == "non_diplomatic"        ) or
        (   object.tags["diplomatic"] == "mission"               ) or
-       (   object.tags["diplomatic"] == "trade_mission"         )) then
-      if ( object.tags["amenity"] == "embassy" ) then
-         object.tags["amenity"] = nil
+       (   object.tags["diplomatic"] == "trade_mission"         ) or
+       (   object.tags["diplomatic"] == "residence"             ) or
+       (   object.tags["diplomatic"] == "branch_embassy"        ) or
+       (   object.tags["diplomatic"] == "consulate"             ) or
+       (   object.tags["diplomatic"] == "consular_office"       ) or
+       (   object.tags["diplomatic"] == "consular_agency"       )) then
+
+      if ( object.tags["country"] == nil ) then
+         object.tags["country"] = "unknown"
       end
 
+      object = append_nonqa( object, object.tags["diplomatic"] .. " " .. object.tags["country"] )
+      object.tags["amenity"]    = nil
       object.tags["diplomatic"] = nil
 
 -- ----------------------------------------------------------------------------
@@ -582,6 +653,7 @@ function process_all(object)
 -- it was set to some value that would not.
 -- ----------------------------------------------------------------------------
       object.tags["office"] = "yes"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

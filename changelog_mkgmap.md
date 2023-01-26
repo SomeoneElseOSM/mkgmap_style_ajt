@@ -23,6 +23,8 @@ Show banks, atms, building socienties etc. as banks with an appropriate suffix, 
 Show beauty salons with either a building or landuse.
 Added Shopmobility.
 Mapped shop=convenience to 0x2e0e
+Show public buildings and prisons as offices rather than government buildings.
+Show diplomatic embassies as government buildings, and diplomatic non-embassies as offices.
 
 ## 24/01/2023
 Show railway platform ref if no name.

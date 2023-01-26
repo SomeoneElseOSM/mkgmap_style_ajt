@@ -1424,19 +1424,25 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Show building societies as banks.  Also shop=bank and credit unions.
--- No suffix added to name.
+-- Also ATMs, and things that are both banks and ATMs.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "building_society" ) or
-       ( object.tags["shop"]    == "bank"             ) or
-       ( object.tags["amenity"] == "credit_union"     )) then
-      object.tags["amenity"] = "bank"
+   if (( object.tags["amenity"] == "bank"             ) or
+       ( object.tags["amenity"] == "building_society" ) or
+       ( object.tags["amenity"] == "credit_union"     ) or
+       ( object.tags["amenity"] == "atm"              ) or
+       ( object.tags["amenity"] == "bank;atm"         )) then
+      object.tags["shop"] = object.tags["amenity"]
    end
 
--- ----------------------------------------------------------------------------
--- Add suffix to ATMS
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "atm" ) then
-      object = append_nonqa( object, "atm" )
+   if (( object.tags["shop"] == "bank"             ) or
+       ( object.tags["shop"] == "building_society" ) or
+       ( object.tags["shop"] == "credit_union"     ) or
+       ( object.tags["shop"] == "atm"              ) or
+       ( object.tags["shop"] == "bank;atm"         )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["amenity"] = "bank"
+      object.tags["shop"] = nil
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

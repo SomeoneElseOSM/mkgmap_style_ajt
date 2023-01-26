@@ -534,14 +534,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Mappings to shop=bicycle
--- ----------------------------------------------------------------------------
-   if (( object.tags["shop"] == "bicycle_repair"   ) or
-       ( object.tags["shop"] == "electric_bicycle" )) then
-      object.tags["shop"] = "bicycle"
-   end
-
--- ----------------------------------------------------------------------------
 -- Map various diplomatic things to embassy.
 -- Pedants may claim that some of these aren't legally embassies, and they'd
 -- be correct, but I use the same icon for all of these currently.
@@ -4010,6 +4002,18 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Shops that sell coffee etc.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "beverages"       ) or
+       ( object.tags["shop"]    == "coffee"          ) or
+       ( object.tags["shop"]    == "tea"             )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- fabric and wool etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
@@ -4192,6 +4196,18 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Mappings to shop=bicycle
+-- "0x2f13" is searchable via "Others / Repair Services"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "bicycle"          ) or
+       ( object.tags["shop"] == "bicycle_repair"   ) or
+       ( object.tags["shop"] == "electric_bicycle" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "bicycle"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Nonspecific car and related shops.
 -- On Garmin, car_rental, car_repair,
 -- and car_dealer/car_parts are all separate features.
@@ -4256,7 +4272,8 @@ function process_all(object)
       object.tags["shop"] = object.tags["amenity"]
    end
 
-   if ( object.tags["craft"]   == "coachbuilder" ) then
+   if (( object.tags["craft"]   == "car_repair"   ) or
+       ( object.tags["craft"]   == "coachbuilder" )) then
       object.tags["shop"] = object.tags["craft"]
    end
 
@@ -4324,6 +4341,39 @@ function process_all(object)
        ( object.tags["shop"]    == "forklift_repair"              )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Shopmobility
+-- Note that "shop=mobility" is something that _sells_ mobility aids, and is
+-- handled as shop=nonspecific for now.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["amenity"]  == "mobility"                 ) or
+       (   object.tags["amenity"]  == "mobility_equipment_hire"  ) or
+       (   object.tags["amenity"]  == "mobility_aids_hire"       ) or
+       (   object.tags["amenity"]  == "shop_mobility"            )) then
+      object.tags["shop"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
+   if (((( object.tags["shop"]     == "yes"                    )   or
+         ( object.tags["shop"]     == "mobility"               )   or
+         ( object.tags["building"] == "yes"                    )   or
+         ( object.tags["building"] == "unit"                   ))  and
+        (( object.tags["name"]     == "Shopmobility"           )   or
+         ( object.tags["name"]     == "Shop Mobility"          )))) then
+      object.tags["shop"] = "shopmobility"
+   end
+
+   if ((   object.tags["shop"]  == "mobility"                    ) or
+       (   object.tags["shop"]  == "mobility_equipment_hire"     ) or
+       (   object.tags["shop"]  == "mobility_aids_hire"          ) or
+       (   object.tags["shop"]  == "shop_mobility"               ) or
+       (   object.tags["shop"]  == "shopmobility"                )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( object )
    end
 

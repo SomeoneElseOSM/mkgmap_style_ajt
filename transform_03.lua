@@ -3426,8 +3426,10 @@ function process_all(object)
 -- Render shop=newsagent as shop=convenience
 -- It's near enough in meaning I think.  Likewise kiosk (bit of a stretch,
 -- but nearer than anything else)
+-- "0x2e0e" is searchable via "Shopping / Convenience"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]   == "newsagent"           ) or
+   if (( object.tags["shop"]   == "convenience"         ) or
+       ( object.tags["shop"]   == "newsagent"           ) or
        ( object.tags["shop"]   == "kiosk"               ) or
        ( object.tags["shop"]   == "forecourt"           ) or
        ( object.tags["shop"]   == "food"                ) or
@@ -3435,7 +3437,9 @@ function process_all(object)
        ( object.tags["shop"]   == "grocer"              ) or
        ( object.tags["shop"]   == "frozen_food"         ) or
        ( object.tags["shop"]   == "convenience;alcohol" )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "convenience"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

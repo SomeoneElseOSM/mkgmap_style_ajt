@@ -22,6 +22,7 @@ Show bakeries as "deli or bakery" with either a building or landuse.
 Show banks, atms, building socienties etc. as banks with an appropriate suffix, and with either building or landuse as appropriate.
 Show beauty salons with either a building or landuse.
 Added Shopmobility.
+Mapped shop=convenience to 0x2e0e
 
 ## 24/01/2023
 Show railway platform ref if no name.

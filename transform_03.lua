@@ -3741,15 +3741,29 @@ function process_all(object)
 -- Mostly these have names that describe the business, so less need for a
 -- specific icon.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]         == "beauty_salon"      ) or
-       ( object.tags["leisure"]      == "spa"               ) or
+   if ( object.tags["amenity"]      == "spa" ) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if (( object.tags["club"]    == "health"               )  and
+       ( object.tags["leisure"] == nil                    )  and
+       ( object.tags["amenity"] == nil                    )  and
+       ( object.tags["name"]    ~= nil                    )) then
+      object.tags["shop"] = "health club"
+   end
+
+   if (( object.tags["leisure"]      == "spa"               ) or
+       ( object.tags["leisure"]      == "tanning_salon"     )) then
+      object.tags["shop"] = object.tags["leisure"]
+   end
+
+   if ( object.tags["tourism"]      == "spa" ) then
+      object.tags["shop"] = object.tags["tourism"]
+   end
+
+   if (( object.tags["shop"]         == "beauty"            ) or
+       ( object.tags["shop"]         == "beauty_salon"      ) or
        ( object.tags["shop"]         == "spa"               ) or
-       ( object.tags["amenity"]      == "spa"               ) or
-       ( object.tags["tourism"]      == "spa"               ) or
-       (( object.tags["club"]    == "health"               )  and
-        ( object.tags["leisure"] == nil                    )  and
-        ( object.tags["amenity"] == nil                    )  and
-        ( object.tags["name"]    ~= nil                    )) or
        ( object.tags["shop"]         == "salon"             ) or
        ( object.tags["shop"]         == "nails"             ) or
        ( object.tags["shop"]         == "nail_salon"        ) or
@@ -3764,10 +3778,13 @@ function process_all(object)
        ( object.tags["shop"]         == "tanning"           ) or
        ( object.tags["shop"]         == "tan"               ) or
        ( object.tags["shop"]         == "suntan"            ) or
-       ( object.tags["leisure"]      == "tanning_salon"     ) or
        ( object.tags["shop"]         == "health_and_beauty" ) or
-       ( object.tags["shop"]         == "beautician"        )) then
-      object.tags["shop"] = "beauty"
+       ( object.tags["shop"]         == "beautician"        ) or
+       ( object.tags["shop"]         == "health club"       ) or
+       ( object.tags["shop"]         == "tanning_salon"     )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "chemist"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

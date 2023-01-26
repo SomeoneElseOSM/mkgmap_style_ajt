@@ -20,6 +20,7 @@ Show other shops as "specialty" with either a building or landuse.
 Show clothes shops with either a building or landuse.
 Show bakeries as "deli or bakery" with either a building or landuse.
 Show banks, atms, building socienties etc. as banks with an appropriate suffix, and with either building or landuse as appropriate.
+Show beauty salons with either a building or landuse.
 
 ## 24/01/2023
 Show railway platform ref if no name.

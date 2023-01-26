@@ -3877,8 +3877,75 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Other "homeware-like" shops.  
+-- Various "homeware" shops.  The icon for these is a generic "room interior".
+-- "0x2e09" is searchable via "Shopping / Home Furnishings"
 -- ----------------------------------------------------------------------------
+   if (( object.tags["craft"]  == "window_construction"         ) or
+       ( object.tags["craft"]  == "framing"                     )) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["shop"]   == "floor"                       ) or
+       ( object.tags["shop"]   == "flooring"                    ) or
+       ( object.tags["shop"]   == "floors"                      ) or
+       ( object.tags["shop"]   == "floor_covering"              ) or
+       ( object.tags["shop"]   == "homeware"                    ) or
+       ( object.tags["shop"]   == "homewares"                   ) or
+       ( object.tags["shop"]   == "home"                        ) or
+       ( object.tags["shop"]   == "carpet"                      ) or
+       ( object.tags["shop"]   == "carpet;bed"                  ) or
+       ( object.tags["shop"]   == "interior_decoration"         ) or
+       ( object.tags["shop"]   == "household"                   ) or
+       ( object.tags["shop"]   == "houseware"                   ) or
+       ( object.tags["shop"]   == "bathroom_furnishing"         ) or
+       ( object.tags["shop"]   == "paint"                       ) or
+       ( object.tags["shop"]   == "curtain"                     ) or
+       ( object.tags["shop"]   == "furnishings"                 ) or
+       ( object.tags["shop"]   == "furnishing"                  ) or
+       ( object.tags["shop"]   == "fireplace"                   ) or
+       ( object.tags["shop"]   == "fireplaces"                  ) or
+       ( object.tags["shop"]   == "lighting"                    ) or
+       ( object.tags["shop"]   == "blinds"                      ) or
+       ( object.tags["shop"]   == "window_blind"                ) or
+       ( object.tags["shop"]   == "kitchenware"                 ) or
+       ( object.tags["shop"]   == "interior_design"             ) or
+       ( object.tags["shop"]   == "interior"                    ) or
+       ( object.tags["shop"]   == "interiors"                   ) or
+       ( object.tags["shop"]   == "stoves"                      ) or
+       ( object.tags["shop"]   == "stove"                       ) or
+       ( object.tags["shop"]   == "lamps"                       ) or
+       ( object.tags["shop"]   == "tiles"                       ) or
+       ( object.tags["shop"]   == "tile"                        ) or
+       ( object.tags["shop"]   == "ceramics"                    ) or
+       ( object.tags["shop"]   == "windows"                     ) or
+       ( object.tags["shop"]   == "frame"                       ) or
+       ( object.tags["shop"]   == "framing"                     ) or
+       ( object.tags["shop"]   == "picture_framing"             ) or
+       ( object.tags["shop"]   == "picture_frames"              ) or
+       ( object.tags["shop"]   == "picture_framer"              ) or
+       ( object.tags["shop"]   == "bedding"                     ) or
+       ( object.tags["shop"]   == "cookware"                    ) or
+       ( object.tags["shop"]   == "glassware"                   ) or
+       ( object.tags["shop"]   == "cookery"                     ) or
+       ( object.tags["shop"]   == "window_construction"         ) or
+       ( object.tags["shop"]   == "framing"                     )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "doityourself"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Other "homeware-like" shops.  
+-- "0x2e09" is searchable via "Shopping / Home Furnishings"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["craft"]  == "glaziery"                    ) or
+       ( object.tags["craft"]  == "glazier"                     ) or
+       ( object.tags["craft"]  == "plumber"                     ) or
+       ( object.tags["craft"]  == "carpenter"                   ) or
+       ( object.tags["craft"]  == "decorator"                   )) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
    if (( object.tags["shop"]   == "upholsterer"                 ) or
        ( object.tags["shop"]   == "chair"                       ) or
        ( object.tags["shop"]   == "luggage"                     ) or
@@ -3895,9 +3962,7 @@ function process_all(object)
        ( object.tags["shop"]   == "bedroom"                     ) or
        ( object.tags["shop"]   == "bathroom"                    ) or
        ( object.tags["shop"]   == "glaziery"                    ) or
-       ( object.tags["craft"]  == "glaziery"                    ) or
        ( object.tags["shop"]   == "glazier"                     ) or
-       ( object.tags["craft"]  == "glazier"                     ) or
        ( object.tags["shop"]   == "glazing"                     ) or
        ( object.tags["shop"]   == "stone"                       ) or
        ( object.tags["shop"]   == "brewing"                     ) or
@@ -3907,9 +3972,6 @@ function process_all(object)
        ( object.tags["shop"]   == "ironmonger"                  ) or
        ( object.tags["shop"]   == "furnace"                     ) or
        ( object.tags["shop"]   == "plumbing"                    ) or
-       ( object.tags["craft"]  == "plumber"                     ) or
-       ( object.tags["craft"]  == "carpenter"                   ) or
-       ( object.tags["craft"]  == "decorator"                   ) or
        ( object.tags["shop"]   == "bed"                         ) or
        ( object.tags["shop"]   == "beds"                        ) or
        ( object.tags["shop"]   == "mattress"                    ) or
@@ -3922,8 +3984,12 @@ function process_all(object)
        ( object.tags["shop"]   == "swimming_pool"               ) or
        ( object.tags["shop"]   == "fitted_furniture"            ) or
        ( object.tags["shop"]   == "upholstery"                  ) or
-       ( object.tags["shop"]   == "saddlery"                    )) then
-      object.tags["shop"] = "furniture"
+       ( object.tags["shop"]   == "saddlery"                    ) or
+       ( object.tags["shop"]   == "carpenter"                   ) or
+       ( object.tags["shop"]   == "decorator"                   )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "doityourself"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

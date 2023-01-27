@@ -47,11 +47,14 @@ landuse=residential [0x10 resolution 23-18]
 landuse=retail {name '${name}'} [0x08 resolution 20]
 landuse=vineyard [0x4e resolution 20]
 
-leisure=golf_course [0x18 resolution 20]
+# The use of these values has been checked
+leisure=park {name '${name}'} [0x17 resolution 20]
+leisure=golf_course {name '${name}'} [0x18 resolution 20]
+
+# The use of these values has not yet been checked
 leisure=ice_rink [0x19 resolution 21]
 leisure=marina [0x09 resolution 20]
 leisure=nature_reserve {name '${name}'} [0x16 resolution 18]
-leisure=park {name '${name}'} [0x17 resolution 20]
 leisure=pitch { name '${name} (${sport})' | '${name}' } [0x19 resolution 20]
 leisure=sports_center | leisure=sports_centre { name '${name} (${sport})' | '${name}' } [0x19 resolution 20]
 leisure=stadium { name '${name} (${sport})' | '${name}' } [0x19 resolution 19]

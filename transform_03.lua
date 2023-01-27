@@ -215,7 +215,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Remove "shop" tag on industrial or craft breweries.
--- We pick one thing to display them as, and in this case it's "brewery".
+-- We pick one thing to display them as, and in this case it's "brewery"...
 -- ----------------------------------------------------------------------------
    if ((( object.tags["industrial"] == "brewery" ) or
         ( object.tags["craft"]      == "brewery" ) or
@@ -225,7 +225,7 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- and ensure that the brewery gets shown on the map with a suffix "brewery".
+-- ...and ensure that the brewery gets shown on the map with a suffix "brewery".
 -- ----------------------------------------------------------------------------
    if (( object.tags["industrial"] == "brewery" ) or
        ( object.tags["craft"]      == "brewery" )) then
@@ -752,6 +752,7 @@ function process_all(object)
       object.tags["amenity"] = nil
       object.tags["leisure"] = "garden"
       object.tags["garden"]  = "beer_garden"
+      object = append_nonqa( object, "beer garden" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -962,6 +963,7 @@ function process_all(object)
        ( object.tags["shop"]    == "shopping_centre" )) then
       object.tags["landuse"] = "retail"
       object.tags["amenity"] = nil
+      object.tags["shop"]    = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -1031,11 +1033,13 @@ function process_all(object)
    if (( object.tags["leisure"] == "dog_park" ) or
        ( object.tags["leisure"] == "court"    )) then
       object.tags["leisure"] = "pitch"
+      object = append_nonqa( object, "dog park" )
    end
 
 -- ----------------------------------------------------------------------------
 -- Show skate parks etc. (that aren't skate shops) as pitches.
--- For leisure=pitch, the "polygons" file does the equivalent of 
+-- For leisure=pitch, the "polygons" file appends "sport" if present 
+-- and so does the equivalent of 
 -- 'object = append_nonqa( object, "skateboard" )'
 -- ----------------------------------------------------------------------------
    if (( object.tags["sport"]   == "skateboard" )  and
@@ -1167,6 +1171,7 @@ function process_all(object)
         ( object.tags["outdoor_seating"] == "garden"         ))) then
       object.tags["leisure"] = "garden"
       object.tags["garden"] = "beer_garden"
+      object = append_nonqa( object, "beer garden" )
    end
 
    if ((  object.tags["abandoned:amenity"] == "pub"             )   or
@@ -1315,6 +1320,7 @@ function process_all(object)
       object.tags["amenity"] = nil
       object = append_nonqa( object, "closed covid" )
       object.tags["real_ale"] = nil
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1382,6 +1388,8 @@ function process_all(object)
             object.tags.name = object.tags['name'] .. ' (' .. beer_appendix .. ')'
          end
       end
+
+      object = building_or_landuse( object )
    end
 
    if ((( object.tags["amenity"] == "bar" )  or
@@ -1443,22 +1451,28 @@ function process_all(object)
       if ( beer_appendix ~= '' ) then
          object = append_nonqa( object, beer_appendix )
       end
+
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
 -- Restaurants
 -- Different sorts of restaurants get mapped to different sorts of features
 -- in the garmin map.  Visually they are very alike, but searching for e.g.
--- "restaurants / chinese" will find chinese restaurants.
+-- "restaurants / chinese" will find chinese restaurants - this is done by
+-- the cuisine selection in the "points" file.
 -- As with the web map, restaurants with accommodation are shown differently.
+-- (in this case with a different suffix)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "restaurant" ) then
       if (( object.tags["accommodation"] ~= nil  ) and
           ( object.tags["accommodation"] ~= "no" )) then
-         object = append_nonqa( object, "rest accomm" )
+         object = append_nonqa( object, "restaurant with rooms" )
       else
-         object = append_nonqa( object, "rest" )
+         object = append_nonqa( object, "restaurant" )
       end
+
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1480,10 +1494,12 @@ function process_all(object)
    if ( object.tags["amenity"] == "cafe" ) then
       if (( object.tags["accommodation"] ~= nil  ) and
           ( object.tags["accommodation"] ~= "no" )) then
-         object = append_nonqa( object, "cafe accomm" )
+         object = append_nonqa( object, "cafe with rooms" )
       else
          object = append_nonqa( object, "cafe" )
       end
+
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1510,37 +1526,37 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- doctors
 -- Various mistagging, comma and semicolon healthcare
 -- Note that health centres currently appear as "health nonspecific".
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "doctors; pharmacy"       ) or
+   if (( object.tags["amenity"] == "doctors"                 ) or
+       ( object.tags["amenity"] == "doctors; pharmacy"       ) or
        ( object.tags["amenity"] == "surgery"                 ) or
        ( object.tags["amenity"] == "doctor"                  )) then
       object.tags["amenity"] = "doctors"
-   end
-
-   if ( object.tags["amenity"] == "doctors" ) then
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(doctors)'
-      else
-         object.tags.name = object.tags['name'] .. ' (doctors)'
-      end
-   end
-
-   if (( object.tags["healthcare"] == "dentist" ) and
-       ( object.tags["amenity"]    == nil       )) then
-      object.tags["amenity"] = "dentist"
+      object = append_nonqa( object, "doctors" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
 -- Dentists were not previously handled but are now passed through as doctors 
 -- with a suffix.
 -- ----------------------------------------------------------------------------
+   if (( object.tags["healthcare"] == "dentist" ) and
+       ( object.tags["amenity"]    == nil       )) then
+      object.tags["amenity"] = "dentist"
+   end
+
    if ( object.tags["amenity"] == "dentist" ) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "dentist" )
+      object = building_or_landuse( object )
    end
 
+-- ----------------------------------------------------------------------------
+-- Hospitals
+-- ----------------------------------------------------------------------------
    if (( object.tags["healthcare"] == "hospital" ) and
        ( object.tags["amenity"]    == nil        )) then
       object.tags["amenity"] = "hospital"
@@ -1548,6 +1564,7 @@ function process_all(object)
 
    if ( object.tags["amenity"] == "hospital" ) then
       object = append_nonqa( object, "hospital" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1572,6 +1589,7 @@ function process_all(object)
    if ( object.tags["amenity"] == "clinic" ) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "clinic" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1583,6 +1601,9 @@ function process_all(object)
       object.tags["amenity"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Pharmacies
+-- ----------------------------------------------------------------------------
    if ((( object.tags["healthcare"] == "pharmacy"                   )  and
         ( object.tags["amenity"]    == nil                          )) or
        (( object.tags["shop"]       == "cosmetics"                  )  and
@@ -1594,6 +1615,7 @@ function process_all(object)
        (( object.tags["amenity"]    == "clinic"                     )  and
         ( object.tags["pharmacy"]   == "yes"                        ))) then
       object.tags["amenity"] = "pharmacy"
+      object = building_or_landuse( object )
    end
 
    if ( object.tags["amenity"] == "pharmacy" ) then
@@ -1602,19 +1624,23 @@ function process_all(object)
 
    if ( object.tags["shop"] == "chemist" ) then
       object = append_nonqa( object, "chemist" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
 -- Add suffix to libraries and public bookcases
+-- "0x2c03" is searchable via "Community / Library"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "library" ) then
       object = append_nonqa( object, "library" )
+      object = building_or_landuse( object )
    end
 
    if (( object.tags["amenity"] == "book_exchange"   ) or
        ( object.tags["amenity"] == "public_bookcase" )) then
       object.tags["amenity"] = "library"
       object = append_nonqa( object, "book exchange" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

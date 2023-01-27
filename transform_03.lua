@@ -1654,6 +1654,51 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Theme parks
+-- "0x2c01" is searchable via "Attractions / Amusement Park or T"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "theme_park" ) then
+      object = append_nonqa( object, "theme park" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- tourism=zoo and tourism=aquarium (both are in "points")
+-- "0x2c07" is searchable via "Attractions / Zoo or Aquarium"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tourism"] == "zoo"      ) or
+       ( object.tags["tourism"] == "aquarium" )) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- amenity=conference_centre
+-- "0x2c09" is searchable via "Attractions / Hall or Auditorium"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "conference_Centre" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- landuse=vineyard and landuse=allotments
+-- Mapped through to "0x4e" ("orchard"), append suffix.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"] == "vineyard"   ) or
+       ( object.tags["landuse"] == "allotments" )) then
+      object = append_nonqa( object, object.tags["landuse"] )
+   end
+
+-- ----------------------------------------------------------------------------
+-- craft=winery
+-- "0x2c0a" is searchable via "Attractions / Winery"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["craft"] == "winery" ) then
+      object = append_nonqa( object, object.tags["craft"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both towers and monuments or memorials 
 -- should render as the latter.
 -- ----------------------------------------------------------------------------
@@ -2412,6 +2457,7 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- historic=monument
+-- "0x2c02" is searchable via "Attractions / Museum or Historical"
 -- ----------------------------------------------------------------------------
    if ( object.tags["historic"]   == "monument"     ) then
       object.tags["historic"] = "memorial"

@@ -28,9 +28,7 @@ amenity=university [0x0a resolution 18]
 
 healthcare=* [0x0b resolution 21]
 
-landuse=allotments {name '${name}'} [0x4e resolution 20]
 landuse=basin [0x3f resolution 18]
-landuse=cemetary [0x1a resolution 18]
 landuse=cemetery [0x1a resolution 18]
 landuse=commercial {name '${name}'} [0x0c resolution 18]
 landuse=construction {name '${name}'} [0x0c resolution 20]
@@ -45,11 +43,12 @@ landuse=reservoir [0x3f resolution 18]
 # on resolution 24, display building=* instead of landuse=residential
 landuse=residential [0x10 resolution 23-18]
 landuse=retail {name '${name}'} [0x08 resolution 20]
-landuse=vineyard [0x4e resolution 20]
 
 # The use of these values has been checked
 leisure=park {name '${name}'} [0x17 resolution 20]
 leisure=golf_course {name '${name}'} [0x18 resolution 20]
+landuse=allotments {name '${name}'} [0x4e resolution 20]
+landuse=vineyard {name '${name}'} [0x4e resolution 20]
 
 # The use of these values has not yet been checked
 leisure=ice_rink [0x19 resolution 21]

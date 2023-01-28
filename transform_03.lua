@@ -4143,6 +4143,19 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Record,CD,Video and Music shops
+-- "0x2e11" is searchable via "Shopping / Record/CD/Video"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "music"               ) or
+       ( object.tags["shop"]   == "music;video"         ) or
+       ( object.tags["shop"]   == "records"             ) or
+       ( object.tags["shop"]   == "record"              )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "music"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various alcohol shops
 -- "0x2e13" is searchable via "Shopping / Wine & Liquor"
 -- ----------------------------------------------------------------------------

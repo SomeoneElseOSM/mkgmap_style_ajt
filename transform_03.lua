@@ -2369,13 +2369,23 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- Map man_made=monument to historic=monument (handled below) if no better tag
 -- exists.
--- Also handle geoglyphs in this way.
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["man_made"] == "monument" )  and
-        ( object.tags["historic"]  == nil       )) or
-       (  object.tags["man_made"] == "geoglyph"  )) then
-      object.tags["historic"] = "monument"
+   if (( object.tags["man_made"] == "monument" )  and
+       ( object.tags["historic"] == nil       )) then
+      object.tags["historic"] = "memorial"
       object.tags["man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Map geoglyphs to memorials.
+-- "0x2c02" points are searchable via "Attractions / Museum or Historical"
+-- "0x0d" polygons don't appear to be searchable directly, but the 
+-- "map polygons to points" logic means they're searchable as points.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "geoglyph" ) then
+      object.tags["historic"] = "memorial"
+      object.tags["man_made"] = nil
+      object = append_nonqa( object,"geoglyph" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2406,6 +2416,9 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Render historic=wayside_cross and wayside_shrine as historic=memorialcross
+-- "0x2c02" points are searchable via "Attractions / Museum or Historical"
+-- "0x0d" polygons don't appear to be searchable directly, but the 
+-- "map polygons to points" logic means they're searchable as points.
 -- ----------------------------------------------------------------------------
    if ((   object.tags["historic"]   == "wayside_cross"    ) or
        (   object.tags["historic"]   == "wayside_shrine"   ) or
@@ -2413,7 +2426,7 @@ function process_all(object)
         (( object.tags["memorial"]   == "cross"          )   or
          ( object.tags["memorial"]   == "mercat_cross"   )))) then
       object.tags["historic"] = "memorial"
-      object = append_nonqa(object,"cross")
+      object = append_nonqa( object,"cross" )
    end
 
    if (( object.tags["historic"]   == "memorial"     ) and
@@ -2457,11 +2470,13 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- historic=monument
--- "0x2c02" is searchable via "Attractions / Museum or Historical"
+-- "0x2c02" points are searchable via "Attractions / Museum or Historical"
+-- "0x0d" polygons don't appear to be searchable directly, but the 
+-- "map polygons to points" logic means they're searchable as points.
 -- ----------------------------------------------------------------------------
    if ( object.tags["historic"]   == "monument"     ) then
       object.tags["historic"] = "memorial"
-      object = append_nonqa(object,"monument")
+      object = append_nonqa( object,"monument" )
    end
 
 -- ----------------------------------------------------------------------------

@@ -31,7 +31,6 @@ amenity=school [0x2c05 resolution 20]
 amenity=social_club [0x4f00 resolution 21 default_name 'Social Club' ]
 amenity=licensed_club [0x4f00 resolution 21 default_name 'Licensed Club' ]
 amenity=working_mens_club [0x4f00 resolution 21 default_name 'Working Mens Club' ]
-amenity=supermarket [0x2e02 resolution 20]
 amenity=telephone {name '${name}'} [0x5100 resolution 21 default_name 'Telephone']
 amenity=toilets & tourism=information [0x2f0c resolution 20]
 amenity=toilets {name '${name}'}  [0x4e00 resolution 21]
@@ -93,6 +92,7 @@ place=island [0x650c resolution 20]
 
 
 # The use of these values has been checked
+
 amenity=restaurant & cuisine=american {name '${name}'} [0x2a01 resolution 20]
 amenity=restaurant & cuisine=asian {name '${name}'} [0x2a02 resolution 20]
 amenity=restaurant & cuisine=bagel {name '${name}'} [0x2a0d resolution 20]
@@ -172,7 +172,9 @@ sport=multi {name '${name}'} [0x2d0a resolution 20]
 leisure=sports_center | leisure=sports_centre { name '${name} (${sport})' | '${name}' } [0x2d0a resolution 20]
 sport=airport {name '${name}'} [0x2d0b resolution 19]
 
-# 0x2e01-0x2e04 are untested below
+shop=department_store {name '${name}'} [0x2e01 resolution 19]
+shop=supermarket {name '${name}'} [0x2e02 resolution 20 default_name 'Supermarket' ]
+# 0x2e03-0x2e04 are untested below
 shop=chemist {name '${name}'} [0x2e05 resolution 20]
 amenity=pharmacy {name '${name}'} [0x2e05 resolution 20]
 amenity=fuel & shop=convenience {name '${name}'} [ 0x2e06 resolution 19 ]
@@ -237,8 +239,6 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 natural=wood & name=* [0x6618 resolution 21]
 
 # The use of these values has not yet been checked
-shop=department_store {name '${name}'} [0x2e01 resolution 19]
-shop=supermarket {name '${name}'} [0x2e02 resolution 20 default_name 'Supermarket' ]
 shop=general {name '${name}'} [0x2e03 resolution 20]
 shop=mall {name '${name}'} [0x2e04 resolution 20]
 shop=garden_centre {name '${name}'} [0x2e08 resolution 20]

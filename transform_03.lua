@@ -1642,12 +1642,48 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- "department_store" consolidation.
+-- "0x2e01" is searchable as "Shopping / Department"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "department_store" ) or
+       ( object.tags["shop"] == "department"       )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "department_store"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- If something is mapped both as a supermarket and a pharmacy, suppress the
 -- tags for the latter.
+-- "0x2e02" is searchable as "Shopping / Grocery"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]    == "supermarket" ) and
        ( object.tags["amenity"] == "pharmacy"    )) then
       object.tags["amenity"] = nil
+   end
+
+   if ( object.tags["shop"] == "supermarket" ) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object = append_eco( object )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- General Stores
+-- This is a subset of the "Shops that we don't know the type of" 
+-- "shopnonspecific" mappings from style.lua.
+-- "0x2e03" is searchable as "Shopping / General Merchandise"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "general"       ) or
+       ( object.tags["shop"] == "general_store" ) or
+       ( object.tags["shop"] == "unknown"       ) or
+       ( object.tags["shop"] == "retail"        ) or
+       ( object.tags["shop"] == "misc"          ) or
+       ( object.tags["shop"] == "fixme"         )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object = append_eco( object )
+      object.tags["shop"] = "general"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3798,13 +3834,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- "department_store" consolidation.
--- ----------------------------------------------------------------------------
-   if ( object.tags["shop"] == "department" ) then
-      object.tags["shop"] = "department_store"
-   end
-
--- ----------------------------------------------------------------------------
 -- man_made=flagpole
 -- A different suffix is used depending on whether they are military or not.
 -- "operator" is cleared before being picked up by the "operator" logic below.
@@ -4349,17 +4378,9 @@ function process_all(object)
        ( object.tags["shop"]       == "nutrition_supplements"   ) or
        ( object.tags["shop"]       == "dietary_supplements"     )) then
       object = append_nonqa( object, object.tags["shop"] )
+      object = append_eco( object )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( object )
-
-      if (( object.tags["zero_waste"]         == "yes"                )  or
-          ( object.tags["zero_waste"]         == "only"               )  or
-          ( object.tags["bulk_purchase"]      == "yes"                )  or
-          ( object.tags["bulk_purchase"]      == "only"               )  or
-          ( object.tags["reusable_packaging"] == "yes"                )) then
-         object.tags["shop"] = "ecohealth_food"
-         object = append_nonqa( object, "zero waste" )
-      end
    end
 
    if (( object.tags["shop"]       == "alternative_medicine"    ) or
@@ -6048,6 +6069,21 @@ function ott.process_relation(object)
     return object.tags
 end
 
+
+-- ----------------------------------------------------------------------------
+-- "append eco information if relevant" function
+-- ----------------------------------------------------------------------------
+function append_eco( object )
+      if (( object.tags["zero_waste"]         == "yes"                )  or
+          ( object.tags["zero_waste"]         == "only"               )  or
+          ( object.tags["bulk_purchase"]      == "yes"                )  or
+          ( object.tags["bulk_purchase"]      == "only"               )  or
+          ( object.tags["reusable_packaging"] == "yes"                )) then
+         object = append_nonqa( object, "zero waste" )
+      end
+
+    return object
+end
 
 -- ----------------------------------------------------------------------------
 -- "append non QA information" function

@@ -4470,7 +4470,8 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]  == "florist" ) or
        ( object.tags["shop"]  == "flower"  )) then
-      object.tags["shop"] = object.tags["shop"]
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "florist"
       object = building_or_landuse( object )
    end
 

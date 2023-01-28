@@ -3980,7 +3980,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- sports
 -- the name is often characteristic,
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- "0x2e12" is searchable via "Shopping / Sporting Goods"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "sports"            ) or
        ( object.tags["shop"]   == "golf"              ) or
@@ -3991,7 +3991,7 @@ function process_all(object)
        ( object.tags["shop"]   == "angling"           ) or
        ( object.tags["shop"]   == "fitness_equipment" )) then
       object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
+      object.tags["shop"] = "sports"
       object = building_or_landuse( object )
    end
 

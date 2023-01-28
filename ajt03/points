@@ -194,6 +194,7 @@ shop=convenience {name '${name}'} [0x2e0e resolution 20]
 shop=florist {name '${name}'} [0x2e0f resolution 20]
 shop=gift {name '${name}'} [0x2e10 resolution 20]
 shop=music {name '${name}'} [0x2e11 resolution 20]
+shop=sports {name '${name}'} [0x2e12 resolution 20]
 
 shop=alcohol {name '${name}'} [0x2e13 resolution 20]
 shop=books {name '${name}'} [0x2e14 resolution 20]

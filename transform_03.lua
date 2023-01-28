@@ -3343,7 +3343,7 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Tag ta centres as military landuse, if not already.
+-- Tag TA centres as military landuse, if not already.
 -- ----------------------------------------------------------------------------
    if ( object.tags["military"] == "ta centre" ) then
       if ( object.tags['landuse'] == nil ) then
@@ -3376,24 +3376,30 @@ function process_all(object)
       object = append_nonqa( object, "shooting range" )
    end
 
-
 -- ----------------------------------------------------------------------------
--- Nightclubs wouldn't ordinarily be rendered - render them as bar
+-- Nightclubs
+-- "0x2d02" is searchable via "Entertainment / Bar or Nightclub"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"]   == "nightclub"   ) then
-      object.tags["amenity"] = "bar"
-      object = append_nonqa( object, "nightclub" )
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
    end
 
+-- ----------------------------------------------------------------------------
+-- Concert halls, theatres as concert halls, and music venues
+-- "0x2c09" is searchable via "Attractions / Hall or Auditorium"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "theatre"      )  and
+       ( object.tags["theatre"] == "concert_hall" )) then
+      object.tags["amenity"] = object.tags["theatre"]
+      object = building_or_landuse( object )
+   end
 
--- ----------------------------------------------------------------------------
--- Render concert hall theatres as concert halls with the nightclub icon
--- ----------------------------------------------------------------------------
-   if ((( object.tags["amenity"] == "theatre"      )  and
-        ( object.tags["theatre"] == "concert_hall" )) or
+   if ((  object.tags["amenity"] == "concert_hall"  ) or
        (  object.tags["amenity"] == "music_venue"   )) then
+      object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = "concert_hall"
-      object = append_nonqa( object, "music venue" )
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

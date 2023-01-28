@@ -8,7 +8,8 @@ Show nightclubs and music venues.
 Distinguish camp sites from caravan sites with a suffix.
 Distinguish aeroway features with a suffix.
 Distinguish ground transportation features with a suffix.
-Add car sharing features with a suffix.
+Added car sharing features with a suffix.
+Added emergency phones.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

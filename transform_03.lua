@@ -4468,9 +4468,28 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- Car Sharing
+-- "0x2f0d" is searchable via "Auto Services / Automobile Club"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "car_sharing" ) then
       object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Car Wash
+-- "0x2f0e" is searchable via "Auto Services / Car Wash"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "car_wash" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Emergency phones
+-- "0x2f12" is searchable via "Others / Communications"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["emergency"] == "phone" ) then
+      object = append_nonqa( object, object.tags["emergency"] )
       object = building_or_landuse( object )
    end
 

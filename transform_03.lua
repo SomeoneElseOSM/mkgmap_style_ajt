@@ -3269,18 +3269,15 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Render historic railway stations.
+-- Show historic railway stations.
+-- "0x2f14" is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["abandoned:railway"] == "station" )  or
        ( object.tags["historic:railway"]  == "station" )  or
        ( object.tags["disused:railway"]   == "station" )) then
+      object = append_nonqa( object, "historic station" )
       object.tags["man_made"] = "thing"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(historic station)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (historic station)"
-      end
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

@@ -1540,8 +1540,20 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Post Offices and postboxes
+-- "0x2f05" is searchable as "Community / Post Office"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "post_office" ) or
+       ( object.tags["amenity"] == "post_box"    )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = "post_office"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show building societies as banks.  Also shop=bank and credit unions.
 -- Also ATMs, and things that are both banks and ATMs.
+-- "0x2f06" is searchable as "Community / Bank or ATM"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "bank"             ) or
        ( object.tags["amenity"] == "building_society" ) or
@@ -3204,6 +3216,7 @@ function process_all(object)
 -- Recycling bins are only shown from z19.  Recycling centres are shown from
 -- z16 and have a characteristic icon.  Any object without recycling_type
 -- is assumed to be a bin.
+-- "0x2f15" is searchable via "Community / Utility"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "recycling" ) then
       if ( object.tags["recycling_type"] == "centre" ) then

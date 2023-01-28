@@ -10,6 +10,7 @@ Distinguish aeroway features with a suffix.
 Distinguish ground transportation features with a suffix.
 Added car sharing features with a suffix.
 Added emergency phones.
+Use a suffix for post offices and postboxes.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

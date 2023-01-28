@@ -1734,6 +1734,18 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Airports etc.
+-- "0x2f04" is searchable via "Transportation / Air Transportation"
+-- These 3 values are all also in "points", as the same Garmin ID
+-- ----------------------------------------------------------------------------
+   if (( object.tags["aeroway"] == "airport" ) or
+       ( object.tags["aeroway"] == "aerodrome" ) or
+       ( object.tags["aeroway"] == "terminal" )) then
+      object = append_nonqa( object, object.tags["aeroway"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Aircraft control towers
 -- ----------------------------------------------------------------------------
    if (((  object.tags["man_made"]   == "tower"             )   and
@@ -3200,22 +3212,23 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Render guest houses subtagged as B&B as B&B
+-- B&Bs
+-- "0x2b02" is searchable via "Lodging / Bed and Breakfast or"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["tourism"] == "bed_and_breakfast" ) then
-      object.tags["tourism"] = "guest_house"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(B&B)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (B&B)"
-      end
+   if ((  object.tags["tourism"]     == "bed_and_breakfast"  ) or
+       (( object.tags["tourism"]     == "guest_house"       ) and
+        ( object.tags["guest_house"] == "bed_and_breakfast" ))) then
+      object = append_nonqa( object, "bed and breakfast" )
+      object.tags["tourism"] = "bed_and_breakfast"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
--- Also "self_catering" et al (used occasionally) as guest_house.
+-- Various guest house synonyms
+-- "0x2b02" is searchable via "Lodging / Bed and Breakfast or"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["tourism"]   == "self_catering"           ) or
+   if (( object.tags["tourism"]   == "guest_house"             ) or
+       ( object.tags["tourism"]   == "self_catering"           ) or
        ( object.tags["tourism"]   == "apartment"               ) or
        ( object.tags["tourism"]   == "apartments"              ) or
        ( object.tags["tourism"]   == "holiday_cottage"         ) or
@@ -3230,7 +3243,9 @@ function process_all(object)
        ( object.tags["tourism"]   == "Holiday Lodges"          ) or
        ( object.tags["tourism"]   == "guesthouse"              ) or
        ( object.tags["tourism"]   == "aparthotel"              )) then
+      object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "guest_house"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------

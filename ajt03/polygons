@@ -55,6 +55,7 @@ historic=ruins {name '${name}'} [0x1e resolution 21]
 
 landuse=allotments {name '${name}'} [0x4e resolution 20]
 landuse=vineyard {name '${name}'} [0x4e resolution 20]
+natural=scrub {name '${name}'} [0x4f resolution 20]
 
 # The use of these values has not yet been checked
 leisure=ice_rink [0x19 resolution 21]
@@ -75,7 +76,6 @@ natural=glacier {name '${name}'} [0x4d resolution 16]
 natural=marsh {name '${name}'} [0x51 resolution 20]
 natural=mud {name '${name}'} [0x51 resolution 20]
 natural=wetland {name '${name}'} [0x51 resolution 20]
-natural=scrub {name '${name}'} [0x4f resolution 20]
 natural=water {name '${name}'} [0x3c resolution 20]
 natural=waterfall | waterway=waterfall {name '${name}'} [0x47 resolution 21]
 natural=sea [0x32 resolution 10]

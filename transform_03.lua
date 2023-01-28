@@ -3234,23 +3234,35 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Render alternative taggings of camp_site etc.
+-- camp_sites etc.
+-- "0x2b03" is searchable via "Lodging / Campground"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["tourism"] == "camping"  ) then
+   if (( object.tags["tourism"] == "camp_site"  ) or
+       ( object.tags["tourism"] == "camping"    )) then
+      object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "camp_site"
    end
 
-   if (( object.tags["tourism"] == "caravan_site;camp_site"    ) or
+   if (( object.tags["tourism"] == "caravan_site"              ) or
+       ( object.tags["tourism"] == "caravan_site;camp_site"    ) or
        ( object.tags["tourism"] == "caravan_site;camping_site" )) then
+      object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "caravan_site"
    end
 
-   if ( object.tags["tourism"] == "adventure_holiday"  ) then
+-- ----------------------------------------------------------------------------
+-- hostels and similar
+-- "0x2b02" is searchable via "Lodging / Bed and Breakfast or""
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tourism"] == "hostel"             ) or
+       ( object.tags["tourism"] == "adventure_holiday"  )) then
+      object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "hostel"
    end
 
 -- ----------------------------------------------------------------------------
 -- Beacons - render historic ones, not radio ones.
+-- "0x2f14" is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if ((( object.tags["man_made"] == "beacon"        )  or
         ( object.tags["man_made"] == "signal_beacon" )  or
@@ -3452,6 +3464,15 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- map "alleged shrubberies" as scrub, with a suffix
+-- "0x4f" comes through as a different green to most other ones.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "shrubbery" ) then
+      object = append_nonqa( object, object.tags["natural"] )
+      object.tags["natural"] = "scrub"
+   end
+
+-- ----------------------------------------------------------------------------
 -- barrier=ditch; handle as waterway=ditch.
 -- ----------------------------------------------------------------------------
    if ( object.tags["barrier"] == "ditch" ) then
@@ -3460,20 +3481,44 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- barrier=kissing_gate is handled in the style "points" file.
--- For gates, choose which of the two gate icons to used based on tagging.
--- "sally_port" is mapped to gate largely because of misuse in the data.
+-- Each of the three gate types is handled in the style "points" file as the 
+-- same value with a "G" symbol.
+-- "0x2f0f" is searchable via "Others / Garmin Dealer"
+-- For each gate, choose which of the two gate icons to used based on tagging.
+-- A suffix is always used for kissing gates
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["barrier"]   == "turnstile"              )  or
+   if  (( object.tags["barrier"]   == "gate"                  )   and
+        ( object.tags["gate"]      == "kissing"               )) then
+      object.tags["barrier"] = "kissing_gate"
+   end
+
+   if ((  object.tags["barrier"]   == "kissing_gate"           )  or
+       (  object.tags["barrier"]   == "turnstile"              )  or
        (  object.tags["barrier"]   == "full-height_turnstile"  )  or
-       (  object.tags["barrier"]   == "kissing_gate;gate"      )  or
-       (( object.tags["barrier"]   == "gate"                  )   and
-        ( object.tags["gate"]      == "kissing"               ))) then
+       (  object.tags["barrier"]   == "kissing_gate;gate"      )) then
+      object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "kissing_gate"
    end
 
 -- ----------------------------------------------------------------------------
--- gates
+-- lift gates
+-- A suffix is always used for lift gates
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"] == "lift_gate"        ) or
+       ( object.tags["barrier"] == "border_control"   ) or
+       ( object.tags["barrier"] == "ticket_barrier"   ) or
+       ( object.tags["barrier"] == "ticket"           ) or
+       ( object.tags["barrier"] == "security_control" ) or
+       ( object.tags["barrier"] == "checkpoint"       ) or
+       ( object.tags["barrier"] == "gatehouse"        )) then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"] = "lift_gate"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Other gates
+-- "sally_port" is mapped to gate largely because of misuse in the data.
+-- A suffix is used for other gates if they are not just "barrier=gate"
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"]   == "gate"                  )  or
        ( object.tags["barrier"]   == "swing_gate"            )  or
@@ -3492,19 +3537,12 @@ function process_all(object)
        ( object.tags["barrier"]   == "gate;kissing_gate"     )  or
        ( object.tags["barrier"]   == "pull_apart_gate"       )  or
        ( object.tags["barrier"]   == "snow_gate"             )) then
-      object.tags["barrier"] = "gate"
-   end
 
--- ----------------------------------------------------------------------------
--- lift gates
--- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"] == "border_control"   ) or
-       ( object.tags["barrier"] == "ticket_barrier"   ) or
-       ( object.tags["barrier"] == "ticket"           ) or
-       ( object.tags["barrier"] == "security_control" ) or
-       ( object.tags["barrier"] == "checkpoint"       ) or
-       ( object.tags["barrier"] == "gatehouse"        )) then
-      object.tags["barrier"] = "lift_gate"
+      if ( object.tags["barrier"] ~= "gate" ) then
+         object = append_nonqa( object, object.tags["barrier"] )
+      end
+
+      object.tags["barrier"] = "gate"
    end
 
 -- ----------------------------------------------------------------------------
@@ -3516,12 +3554,15 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- render various cycle barrier synonyms
+-- "0x2f14" is searchable as "Others / 
 -- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"]   == "chicane"               )  or
+   if (( object.tags["barrier"]   == "cycle_barrier"         )  or
+       ( object.tags["barrier"]   == "chicane"               )  or
        ( object.tags["barrier"]   == "squeeze"               )  or
        ( object.tags["barrier"]   == "motorcycle_barrier"    )  or
        ( object.tags["barrier"]   == "horse_barrier"         )  or
        ( object.tags["barrier"]   == "a_frame"               )) then
+      object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "cycle_barrier"
    end
 

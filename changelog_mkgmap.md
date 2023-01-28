@@ -5,6 +5,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 Map geoglyph polygons through to "Native American Reservation " rather than "State Park1", with a suffix of "geoglyph".
 Show historic railway stations as generic item with either a building or landuse.
 Show nightclubs and music venues.
+Distinguish camp sites from caravan sites with a suffix.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

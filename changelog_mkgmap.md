@@ -14,6 +14,7 @@ Use a suffix for post offices and postboxes.
 Moved gift shops from Specialty so that they are searchable as Gift in the Garmin menus.
 Added shop=music to be searchable as Record/CD/Video.
 Moved sports shops from Specialty so that they are searchable as Sporting Goods in the Garmin menus.
+Added hairdressers as Specialty so that they are searchable in the Garmin menus.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

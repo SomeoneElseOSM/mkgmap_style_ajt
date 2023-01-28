@@ -3968,12 +3968,12 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- hairdresser;beauty
--- "0x2e0d" is searchable as "Shopping / Other"
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"] == "hairdresser"        ) or
        ( object.tags["shop"] == "hairdresser;beauty" )) then
       object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "hairdresser"
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( object )
    end
 

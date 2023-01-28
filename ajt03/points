@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-shop=hairdresser {name '${name}'} [0x2e0d resolution 20]
-
 aeroway=helipad {name '${name}'} [0x5904 resolution 20]
 
 amenity=biergarten {name '${name}'} [0x2a11 resolution 20]
@@ -33,7 +31,6 @@ amenity=school [0x2c05 resolution 20]
 amenity=social_club [0x4f00 resolution 21 default_name 'Social Club' ]
 amenity=licensed_club [0x4f00 resolution 21 default_name 'Licensed Club' ]
 amenity=working_mens_club [0x4f00 resolution 21 default_name 'Working Mens Club' ]
-# amenity=supermarket is superceded by shop=supermarket
 amenity=supermarket [0x2e02 resolution 20]
 amenity=telephone {name '${name}'} [0x5100 resolution 21 default_name 'Telephone']
 amenity=toilets & tourism=information [0x2f0c resolution 20]
@@ -195,7 +192,6 @@ shop=florist {name '${name}'} [0x2e0f resolution 20]
 shop=gift {name '${name}'} [0x2e10 resolution 20]
 shop=music {name '${name}'} [0x2e11 resolution 20]
 shop=sports {name '${name}'} [0x2e12 resolution 20]
-
 shop=alcohol {name '${name}'} [0x2e13 resolution 20]
 shop=books {name '${name}'} [0x2e14 resolution 20]
 

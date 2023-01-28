@@ -11,6 +11,7 @@ Distinguish ground transportation features with a suffix.
 Added car sharing features with a suffix.
 Added emergency phones.
 Use a suffix for post offices and postboxes.
+Moved gift shops from Specialty so that they are searchable as Gift in the Garmin menus.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

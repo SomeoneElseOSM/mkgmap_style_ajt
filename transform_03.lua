@@ -3968,9 +3968,13 @@ function process_all(object)
 
 -- ----------------------------------------------------------------------------
 -- hairdresser;beauty
+-- "0x2e0d" is searchable as "Shopping / Other"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["shop"] == "hairdresser;beauty" ) then
+   if (( object.tags["shop"] == "hairdresser"        ) or
+       ( object.tags["shop"] == "hairdresser;beauty" )) then
+      object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "hairdresser"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4100,11 +4104,13 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- gift and other tat shops
--- There is no matching Garmin searchable shop type, so just map to 
--- landuse or building (with suitable suffix)
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- gift and other tat shops, antiques, art.
+-- "0x2e10" is searchable via "Shopping / Gift/Antique/Art"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]  == "pottery" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
    if (( object.tags["shop"]   == "gift"                ) or
        ( object.tags["shop"]   == "souvenir"            ) or
        ( object.tags["shop"]   == "souvenirs"           ) or
@@ -4124,9 +4130,15 @@ function process_all(object)
        ( object.tags["shop"]   == "party"               ) or
        ( object.tags["shop"]   == "party_goods"         ) or
        ( object.tags["shop"]   == "christmas"           ) or
-       ( object.tags["shop"]   == "fashion_accessories" )) then
+       ( object.tags["shop"]   == "fashion_accessories" ) or
+       ( object.tags["shop"]   == "antiques"            ) or
+       ( object.tags["shop"]   == "art"                 ) or
+       ( object.tags["shop"]   == "craft"               ) or
+       ( object.tags["shop"]   == "crafts"              ) or
+       ( object.tags["shop"]   == "art_supplies"        ) or
+       ( object.tags["shop"]   == "pottery"             )) then
       object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
+      object.tags["shop"] = "gift"
       object = building_or_landuse( object )
    end
 
@@ -4382,34 +4394,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- antiques
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
--- ----------------------------------------------------------------------------
-   if ( object.tags["shop"]   == "antiques" ) then
-      object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
-   end
-
--- ----------------------------------------------------------------------------
--- Art etc.
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
--- ----------------------------------------------------------------------------
-   if ( object.tags["craft"]  == "pottery" ) then
-      object.tags["shop"] = object.tags["craft"]
-   end
-
-   if (( object.tags["shop"]   == "art"            ) or
-       ( object.tags["shop"]   == "craft"          ) or
-       ( object.tags["shop"]   == "crafts"         ) or
-       ( object.tags["shop"]   == "art_supplies"   ) or
-       ( object.tags["shop"]   == "pottery"        )) then
-      object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
-   end
-
--- ----------------------------------------------------------------------------
 -- pets and pet services
 -- Often the names are punningly characteristic (e.g. "Bark-in-Style" 
 -- dog grooming).
@@ -4464,6 +4448,16 @@ function process_all(object)
        ( object.tags["shop"]    == "animal wellness"         )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Florists
+-- "0x2e0f" is searchable via "Shopping / Florist"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]  == "florist" ) or
+       ( object.tags["shop"]  == "flower"  )) then
+      object.tags["shop"] = object.tags["shop"]
       object = building_or_landuse( object )
    end
 
@@ -5020,13 +5014,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Remove icon for public transport and animal field shelters and render as
--- "roof" (if they are a way).
--- "roof" isn't rendered for nodes, so this has the effect of suppressing
--- public_transport shelters and shopping_cart shelters on nodes.
--- shopping_cart, parking and animal_shelter aren't really a "shelter" type 
--- that we are interested in (for humans).  There are no field or parking 
--- shelters on nodes in GB/IE.
+-- amenity-bench
+-- No logic needed here (no need to append suffix)
+-- "0x2f10" is searchable as "Others / Personal Service"
+-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- public transport and animal field shelters
+-- "0x2f10" is searchable as "Others / Personal Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]      == "shelter"            ) and
        (( object.tags["shelter_type"] == "public_transport" )  or
@@ -5035,10 +5030,8 @@ function process_all(object)
         ( object.tags["shelter_type"] == "trolley_park"     )  or
         ( object.tags["shelter_type"] == "parking"          )  or
         ( object.tags["shelter_type"] == "animal_shelter"   ))) then
-      object.tags["amenity"] = nil
-      if ( object.tags["building"] == nil ) then
-         object.tags["building"] = "roof"
-      end
+      object = append_nonqa( object, object.tags["shelter_type"] )
+      object = building_or_landuse( object )
    end
 
   if (( object.tags["amenity"]      == "shelter"            ) and

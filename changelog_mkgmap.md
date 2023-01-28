@@ -16,6 +16,7 @@ Added shop=music to be searchable as Record/CD/Video.
 Moved sports shops from Specialty so that they are searchable as Sporting Goods in the Garmin menus.
 Added hairdressers as Specialty so that they are searchable in the Garmin menus.
 Added shop=florist to be searchable as Shopping / Florist.
+Split out General Stores (which have their own category on Garmin).  Also added appendage for eco shops.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

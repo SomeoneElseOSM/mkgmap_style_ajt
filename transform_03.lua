@@ -1106,6 +1106,43 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Various ground transportation features
+-- "0x2f08" is searchable via "Transportation / Ground Transportation"
+-- These values are all also in "points", as the same Garmin ID
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"] == "halt"    ) or
+       ( object.tags["railway"] == "station" )) then
+      object = append_nonqa( object, object.tags["railway"] )
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["amenity"] == "bus_station"    ) or
+       ( object.tags["amenity"] == "ferry_terminal" )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various "transit" features
+-- "0x2f17" is searchable via "Transportation / Transit"
+-- These values are all also in "points", as the same Garmin ID
+-- ----------------------------------------------------------------------------
+   if ( object.tags["railway"] == "tram_stop" ) then
+      object = append_nonqa( object, object.tags["railway"] )
+      object = building_or_landuse( object )
+   end
+
+   if ( object.tags["highway"] == "bus_stop" ) then
+      object = append_nonqa( object, object.tags["highway"] )
+      object = building_or_landuse( object )
+   end
+
+   if ( object.tags["amenity"] == "taxi" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Don't show pubs, cafes or restaurants if you can't actually get to them.
 -- ----------------------------------------------------------------------------
    if ((( object.tags["amenity"] == "pub"        ) or

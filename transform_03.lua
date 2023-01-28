@@ -4467,6 +4467,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Car Sharing
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "car_sharing" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Nonspecific car and related shops.
 -- On Garmin, car_rental, car_repair,
 -- and car_dealer/car_parts are all separate features.

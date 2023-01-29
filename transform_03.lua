@@ -3790,8 +3790,14 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
 -- "clothes" consolidation.  "baby_goods" is here because there will surely
 -- be some clothes there!
+-- Various not-really-clothes things best rendered as clothes are also here.
 -- "0x2e07" is searchable via "Shopping / Apparel"
 -- ----------------------------------------------------------------------------
+   if (( object.tags["craft"]   == "tailor"                  ) or
+       ( object.tags["craft"]   == "dressmaker"              )) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
    if (( object.tags["shop"] == "clothes"      ) or
        ( object.tags["shop"] == "fashion"      ) or
        ( object.tags["shop"] == "boutique"     ) or
@@ -3805,7 +3811,9 @@ function process_all(object)
        ( object.tags["shop"] == "clothing"     ) or
        ( object.tags["shop"] == "hat"          ) or
        ( object.tags["shop"] == "hats"         ) or
-       ( object.tags["shop"] == "wigs"         )) then
+       ( object.tags["shop"] == "wigs"         ) or
+       ( object.tags["shop"] == "tailor"       ) or
+       ( object.tags["shop"] == "dressmaker"   )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "clothes"
       object = building_or_landuse( object )
@@ -3974,6 +3982,346 @@ function process_all(object)
       object.tags["shop"] = "specialty"
       object = building_or_landuse( object )
    end
+
+-- ----------------------------------------------------------------------------
+-- "fast_food" consolidation of lesser used tags.  
+-- Also render fish and chips etc. with a unique icon.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "fast_food" ) or
+       ( object.tags["shop"] == "take_away" ) or
+       ( object.tags["shop"] == "takeaway"  )) then
+      object.tags["amenity"] = "fast_food"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Cuisine tagging.  
+-- Garmin's default categories only has one "Fast Food", but in UK/IE there is
+-- more variety of fast food than there is of restaurants.
+-- In order to use all the categories there are some "deliberately misfiled"
+--
+-- Menu entry      ID      Maps to                           Which means
+-- American	   0x2a01  amenity=fast_food_burger          Burger-led fast food
+-- Asian	   0x2a02  				     Not currently used
+-- Barbeque	   0x2a03  amenity=fast_food_chicken         Chicken-led fast food
+-- Chinese	   0x2a04  amenity=fast_food_chinese         Chinese or similar fast food
+-- Deli or Bakery  0x2a05  shop=bakery		             Bakery
+-- International   0x2a06  amenity=fast_food_kebab	     Kebab-led fast food
+-- Fast Food	   0x2a07  fast_food_pie	     	     Pie-led fast food
+-- Italian	   0x2a08  amenity=restaurant_italian        Italian Restaurant
+-- Mexican	   0x2a09  amenity=fast_food_indian          Curry-led fast food
+-- Pizza	   0x2a0a  amenity=fast_food_pizza           Italian or similar fast food
+-- Seafood	   0x2a0b  amenity=fast_food_fish_and_chips  Fish and Chips-led fast food
+-- Steak or Grill  0x2a0c  amenity=restaurant_steak    	     Steak Restaurant
+-- Bagel or Donut  0x2a0d  fast_food_ice_cream		     Ice Cream Parlours
+-- Cafe or Diner   0x2a0e  amenity=cafe etc.		     Cafe
+-- French	   0x2a0f  amenity=restaurant_indian  	     Indian Restaurant
+-- German	   0x2a10  amenity=restaurant_chinese  	     Chinese or similar Restaurant
+-- British Isles   0x2a11  amenity=pub;amenity=bar	     Pubs and bars
+--                         amenity=biergarten
+-- Other	   0x2a12  				     Not currently used
+--                 0x2a14  amenity=restaurant {name '${name}'} [0x2a00 resolution 20]
+-- ----------------------------------------------------------------------------
+-- American	   0x2a01  amenity=fast_food_burger    Burger-led fast food
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["amenity"] == "fast_food"                           )   or
+        ( object.tags["amenity"] == "restaurant"                          ))  and
+       (( object.tags["cuisine"] == "burger"                              )   or
+        ( object.tags["cuisine"] == "american"                            )   or
+        ( object.tags["cuisine"] == "diner"                               )   or
+        ( object.tags["cuisine"] == "burger;sandwich"                     )   or
+        ( object.tags["cuisine"] == "burger;kebab;pizza"                  )   or
+        ( object.tags["cuisine"] == "burger;fish_and_chips;kebab;pizza"   )   or
+        ( object.tags["cuisine"] == "burger;fish_and_chips"               )   or
+        ( object.tags["cuisine"] == "burger;indian;kebab;pizza"           )   or
+        ( object.tags["cuisine"] == "burger;pizza"                        )   or
+        ( object.tags["cuisine"] == "burger;kebab"                        )   or
+        ( object.tags["cuisine"] == "burger;chicken"                      )   or
+        ( object.tags["cuisine"] == "burger;chicken;kebab"                )   or
+        ( object.tags["cuisine"] == "burger;chicken;pizza"                )   or
+        ( object.tags["cuisine"] == "burger;chicken;fish_and_chips;kebab" )   or
+        ( object.tags["cuisine"] == "burger;pizza;kebab"                  )   or
+        ( object.tags["cuisine"] == "burger;chicken;indian;kebab;pizza"   )   or
+        ( object.tags["cuisine"] == "burger;chicken;kebab;pizza"          ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_burger"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Asian	   0x2a02  				     Not currently used
+-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- Barbeque	   0x2a03  amenity=fast_food_chicken   Chicken-led fast food
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"               )  and
+       (( object.tags["cuisine"] == "chicken"                )   or
+        ( object.tags["cuisine"] == "chicken;portuguese"     )   or
+        ( object.tags["cuisine"] == "chicken;pizza"          )   or
+        ( object.tags["cuisine"] == "chicken;burger;pizza"   )   or
+        ( object.tags["cuisine"] == "chicken;kebab"          )   or
+        ( object.tags["cuisine"] == "chicken;grill"          )   or
+        ( object.tags["cuisine"] == "chicken;fish_and_chips" )   or
+        ( object.tags["cuisine"] == "fried_chicken"          ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_chicken"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Chinese	   0x2a04  amenity=fast_food_chinese   Chinese or similar fast food
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"               )  and
+       (( object.tags["cuisine"] == "chinese"                )   or
+        ( object.tags["cuisine"] == "thai"                   )   or
+        ( object.tags["cuisine"] == "chinese;thai"           )   or
+        ( object.tags["cuisine"] == "chinese;thai;malaysian" )   or
+        ( object.tags["cuisine"] == "thai;chinese"           )   or
+        ( object.tags["cuisine"] == "asian"                  )   or
+        ( object.tags["cuisine"] == "japanese"               )   or
+        ( object.tags["cuisine"] == "japanese;sushi"         )   or
+        ( object.tags["cuisine"] == "sushi;japanese"         )   or
+        ( object.tags["cuisine"] == "japanese;korean"        )   or
+        ( object.tags["cuisine"] == "korean;japanese"        )   or
+        ( object.tags["cuisine"] == "vietnamese"             )   or
+        ( object.tags["cuisine"] == "korean"                 )   or
+        ( object.tags["cuisine"] == "ramen"                  )   or
+        ( object.tags["cuisine"] == "noodle"                 )   or
+        ( object.tags["cuisine"] == "noodle;ramen"           )   or
+        ( object.tags["cuisine"] == "malaysian"              )   or
+        ( object.tags["cuisine"] == "malaysian;chinese"      )   or
+        ( object.tags["cuisine"] == "indonesian"             )   or
+        ( object.tags["cuisine"] == "cantonese"              )   or
+        ( object.tags["cuisine"] == "chinese;cantonese"      )   or
+        ( object.tags["cuisine"] == "chinese;asian"          )   or
+        ( object.tags["cuisine"] == "oriental"               )   or
+        ( object.tags["cuisine"] == "chinese;english"        )   or
+        ( object.tags["cuisine"] == "chinese;japanese"       )   or
+        ( object.tags["cuisine"] == "sushi"                  ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_chinese"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- International   0x2a06  amenity=fast_food_kebab	     Kebab-led fast food
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"             ) and
+       (( object.tags["cuisine"] == "kebab"                )  or
+        ( object.tags["cuisine"] == "kebab;pizza"          )  or
+        ( object.tags["cuisine"] == "kebab;pizza;burger"   )  or
+        ( object.tags["cuisine"] == "kebab;burger;pizza"   )  or
+        ( object.tags["cuisine"] == "kebab;burger;chicken" )  or
+        ( object.tags["cuisine"] == "kebab;burger"         )  or
+        ( object.tags["cuisine"] == "kebab;fish_and_chips" )  or
+        ( object.tags["cuisine"] == "turkish"              ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_kebab"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Fast Food	   0x2a07  fast_food_pie	     	     Pie-led fast food
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"      )  and
+       (( object.tags["cuisine"] == "pasties"       )   or
+        ( object.tags["cuisine"] == "pasty"         )   or
+        ( object.tags["cuisine"] == "cornish_pasty" )   or
+        ( object.tags["cuisine"] == "pie"           )   or
+        ( object.tags["cuisine"] == "pies"          ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_pie"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Italian Restaurants
+-- Italian	   0x2a08  amenity=restaurant_italian  Italian Restaurant
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "restaurant"  )  and
+       (( object.tags["cuisine"] == "italian"    )   or
+        ( object.tags["cuisine"] == "pizza"      ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "restaurant_italian"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Mexican	   0x2a09  amenity=fast_food_indian    Curry-led fast food
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"            ) and
+       (( object.tags["cuisine"] == "indian"              )  or
+        ( object.tags["cuisine"] == "curry"               )  or
+        ( object.tags["cuisine"] == "nepalese"            )  or
+        ( object.tags["cuisine"] == "nepalese;indian"     )  or
+        ( object.tags["cuisine"] == "indian;nepalese"     )  or
+        ( object.tags["cuisine"] == "bangladeshi"         )  or
+        ( object.tags["cuisine"] == "indian;bangladeshi"  )  or
+        ( object.tags["cuisine"] == "bangladeshi;indian"  )  or
+        ( object.tags["cuisine"] == "indian;curry"        )  or
+        ( object.tags["cuisine"] == "indian;kebab"        )  or
+        ( object.tags["cuisine"] == "indian;kebab;burger" )  or
+        ( object.tags["cuisine"] == "indian;thai"         )  or
+        ( object.tags["cuisine"] == "curry;indian"        )  or
+        ( object.tags["cuisine"] == "pakistani"           )  or
+        ( object.tags["cuisine"] == "indian;pakistani"    )  or
+        ( object.tags["cuisine"] == "tandoori"            )  or
+        ( object.tags["cuisine"] == "afghan"              )  or
+        ( object.tags["cuisine"] == "sri_lankan"          )  or
+        ( object.tags["cuisine"] == "punjabi"             )  or
+        ( object.tags["cuisine"] == "indian;pizza"        ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_indian"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Italian Fast Food
+-- Pizza	   0x2a0a  amenity=fast_food_pizza   Italian or similar fast food
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"                   )  and
+       (( object.tags["cuisine"] == "pizza"                      )   or
+        ( object.tags["cuisine"] == "italian"                    )   or
+        ( object.tags["cuisine"] == "pasta"                      )   or
+        ( object.tags["cuisine"] == "pizza;pasta"                )   or
+        ( object.tags["cuisine"] == "pizza;italian"              )   or
+        ( object.tags["cuisine"] == "italian;pizza"              )   or
+        ( object.tags["cuisine"] == "pizza;kebab"                )   or
+        ( object.tags["cuisine"] == "pizza;burger"               )   or
+        ( object.tags["cuisine"] == "pizza;chicken"              )   or
+        ( object.tags["cuisine"] == "pizza;indian"               )   or
+        ( object.tags["cuisine"] == "pizza;fish_and_chips"       )   or
+        ( object.tags["cuisine"] == "pizza;kebab;burger"         )   or
+        ( object.tags["cuisine"] == "pizza;kebab;burger;chicken" )   or
+        ( object.tags["cuisine"] == "pizza;kebab;chicken"        )   or
+        ( object.tags["cuisine"] == "pizza;burger;kebab"         )   or
+        ( object.tags["cuisine"] == "italian_pizza"              ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_pizza"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Seafood	   0x2a0b  amenity=fast_food_fish_and_chips  Fish and Chips-led fast food
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["amenity"] == "fast_food"                         )  or
+        ( object.tags["amenity"] == "restaurant"                        )) and
+       (( object.tags["cuisine"] == "fish_and_chips"                    )  or
+        ( object.tags["cuisine"] == "chinese;fish_and_chips"            )  or
+        ( object.tags["cuisine"] == "fish"                              )  or
+        ( object.tags["cuisine"] == "fish_and_chips;chinese"            )  or
+        ( object.tags["cuisine"] == "fish_and_chips;indian"             )  or
+        ( object.tags["cuisine"] == "fish_and_chips;kebab"              )  or
+        ( object.tags["cuisine"] == "fish_and_chips;pizza;kebab"        )  or
+        ( object.tags["cuisine"] == "fish_and_chips;pizza;burger;kebab" )  or
+        ( object.tags["cuisine"] == "fish_and_chips;pizza"              ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_fish_and_chips"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Steak Restaurants
+-- Steak or Grill  0x2a0c  amenity=restaurant_steak    	     Steak Restaurant
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "restaurant"  )  and
+       ( object.tags["cuisine"] == "steak_house" )) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "restaurant_steak"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Bagel or Donut  0x2a0d  fast_food_ice_cream		     Ice Cream Parlours
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["shop"]    == "ice_cream"                        )  or
+       (  object.tags["amenity"] == "ice_cream"                        )) then
+      object.tags["amenity"] = "fast_food"
+      object.tags["cuisine"] = "ice_cream"
+      object.tags["shop"] = nil
+   end
+
+   if ((  object.tags["amenity"] == "fast_food"                        )  and
+       (( object.tags["cuisine"] == "ice_cream"                       )   or
+        ( object.tags["cuisine"] == "ice_cream;cake;coffee"           )   or
+        ( object.tags["cuisine"] == "ice_cream;cake;sandwich"         )   or
+        ( object.tags["cuisine"] == "ice_cream;coffee_shop"           )   or
+        ( object.tags["cuisine"] == "ice_cream;coffee;waffle"         )   or
+        ( object.tags["cuisine"] == "ice_cream;coffee;waffles;crepes" )   or
+        ( object.tags["cuisine"] == "ice_cream;donut"                 )   or
+        ( object.tags["cuisine"] == "ice_cream;pizza"                 )   or
+        ( object.tags["cuisine"] == "ice_cream;sandwich"              )   or
+        ( object.tags["cuisine"] == "ice_cream;tea;coffee"            ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "fast_food_ice_cream"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- What web maps show as "amenity=fast_food_coffee"
+-- Cafe or Diner   0x2a0e  amenity=cafe etc.		     Cafe
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"                  )  and
+       (( object.tags["cuisine"] == "coffee"                    )   or
+        ( object.tags["cuisine"] == "coffee_shop"               )   or
+        ( object.tags["cuisine"] == "coffee_shop;sandwich"      )   or
+        ( object.tags["cuisine"] == "coffee_shop;local"         )   or
+        ( object.tags["cuisine"] == "coffee_shop;regional"      )   or
+        ( object.tags["cuisine"] == "coffee_shop;cake"          )   or
+        ( object.tags["cuisine"] == "coffee_shop;sandwich;cake" )   or
+        ( object.tags["cuisine"] == "coffee_shop;breakfast"     )   or
+        ( object.tags["cuisine"] == "coffee_shop;italian"       )   or
+        ( object.tags["cuisine"] == "cake;coffee_shop"          )   or
+        ( object.tags["cuisine"] == "coffee_shop;ice_cream"     ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "cafe"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- What web maps show as "amenity=fast_food_sandwich"
+-- Cafe or Diner   0x2a0e  amenity=cafe etc.		     Cafe
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "fast_food"             )  and
+       (( object.tags["cuisine"] == "sandwich"             )   or
+        ( object.tags["cuisine"] == "sandwich;bakery"      )   or
+        ( object.tags["cuisine"] == "sandwiches"           )   or
+        ( object.tags["cuisine"] == "sandwich;coffee_shop" ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "cafe"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Indian Restaurants
+-- French	   0x2a0f  amenity=restaurant_indian  Indian Restaurant
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "restaurant"  )  and
+       ( object.tags["cuisine"] == "indian"      )) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "restaurant_indian"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Chinese or similar Restaurants
+-- German	   0x2a10  amenity=restaurant_indian  Chinese or similar Restaurant
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "restaurant"  ) and
+       (( object.tags["cuisine"] == "chinese"    )  or
+        ( object.tags["cuisine"] == "thai"       )  or
+        ( object.tags["cuisine"] == "asian"      )  or
+        ( object.tags["cuisine"] == "japanese"   )  or
+        ( object.tags["cuisine"] == "vietnamese" )  or
+        ( object.tags["cuisine"] == "korean"     ))) then
+      object = append_nonqa( object, object.tags["cuisine"] )
+      object.tags["amenity"] = "restaurant_chinese"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Other	   0x2a12  				     Not currently used
+-- ----------------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------------
 -- man_made=flagpole
@@ -4282,15 +4630,6 @@ function process_all(object)
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "sports"
       object = building_or_landuse( object )
-   end
-
--- ----------------------------------------------------------------------------
--- Various not-really-clothes things best rendered as clothes shops
--- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]    == "tailor"                  ) or
-       ( object.tags["craft"]   == "tailor"                  ) or
-       ( object.tags["craft"]   == "dressmaker"              )) then
-      object.tags["shop"] = "clothes"
    end
 
 -- ----------------------------------------------------------------------------

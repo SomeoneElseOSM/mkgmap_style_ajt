@@ -21,6 +21,7 @@ Added more missing shops as "specialty".
 Remapped the food menus to match UK/IE usage.
 Fixed boat_rental_suffix.
 Tidied code formatting somewhat.
+If a marketplace doesn't have a name, don't include it.
 
 ## 28/01/2023
 Show vacant shops as "(vacant: name)" as either a building or landuse, depending on whether a building tag is present.

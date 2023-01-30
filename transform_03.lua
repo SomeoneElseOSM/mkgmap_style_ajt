@@ -1692,9 +1692,10 @@ function process_all(object)
 -- Shop groups
 -- "0x2e04" is searchable as "Shopping / Shopping Center"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "marketplace"     ) or
-       ( object.tags["amenity"] == "market"          ) or
-       ( object.tags["amenity"] == "food_court"      )) then
+   if ((( object.tags["amenity"] == "marketplace"    )  and
+        ( object.tags["name"]    ~= nil              )) or
+       (  object.tags["amenity"] == "market"          ) or
+       (  object.tags["amenity"] == "food_court"      )) then
       object.tags["shop"] = object.tags["amenity"]
       object.tags["amenity"] = nil
    end

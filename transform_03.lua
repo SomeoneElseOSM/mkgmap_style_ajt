@@ -3885,25 +3885,49 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Various single food item and other food shops
+-- "funeral" consolidation.  All of these spellings currently in use in the UK
+-- The value is only set for use in "and other shops" below
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "funeral"             ) or
+       ( object.tags["office"]  == "funeral_director"    ) or
+       ( object.tags["office"]  == "funeral_directors"   ) or
+       ( object.tags["amenity"] == "funeral"             ) or
+       ( object.tags["amenity"] == "funeral_directors"   ) or
+       ( object.tags["amenity"] == "undertaker"          ) or
+       ( object.tags["shop"]    == "undertaker"          )) then
+      object.tags["shop"] = "funeral_directors"
+      object.tags["amenity"] = nil
+      object.tags["office"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various single food item, other food and other shops
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]   == "cake"            ) or
-       ( object.tags["shop"]   == "chocolate"       ) or
-       ( object.tags["shop"]   == "milk"            ) or
-       ( object.tags["shop"]   == "cheese"          ) or
-       ( object.tags["shop"]   == "cheese;wine"     ) or
-       ( object.tags["shop"]   == "wine;cheese"     ) or
-       ( object.tags["shop"]   == "dairy"           ) or
-       ( object.tags["shop"]   == "eggs"            ) or
-       ( object.tags["shop"]   == "catering"        ) or
-       ( object.tags["shop"]   == "fishmonger"      ) or
-       ( object.tags["shop"]   == "spice"           ) or
-       ( object.tags["shop"]   == "nuts"            ) or
-       ( object.tags["shop"]   == "delicatessen"    ) or
-       ( object.tags["shop"]   == "deli"            )) then
+   if (( object.tags["shop"]   == "cake"              ) or
+       ( object.tags["shop"]   == "chocolate"         ) or
+       ( object.tags["shop"]   == "milk"              ) or
+       ( object.tags["shop"]   == "cheese"            ) or
+       ( object.tags["shop"]   == "cheese;wine"       ) or
+       ( object.tags["shop"]   == "wine;cheese"       ) or
+       ( object.tags["shop"]   == "dairy"             ) or
+       ( object.tags["shop"]   == "eggs"              ) or
+       ( object.tags["shop"]   == "catering"          ) or
+       ( object.tags["shop"]   == "fishmonger"        ) or
+       ( object.tags["shop"]   == "spice"             ) or
+       ( object.tags["shop"]   == "nuts"              ) or
+       ( object.tags["shop"]   == "delicatessen"      ) or
+       ( object.tags["shop"]   == "deli"              ) or
+       ( object.tags["shop"]   == "outdoor"           ) or
+       ( object.tags["shop"]   == "sweets"            ) or
+       ( object.tags["shop"]   == "sweet"             ) or
+       ( object.tags["shop"]   == "confectionery"     ) or
+       ( object.tags["shop"]   == "charity"           ) or
+       ( object.tags["shop"]   == "funeral_directors" ) or
+       ( object.tags["shop"]   == "greengrocer"       )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
+      object = append_eco( object )
       object = building_or_landuse( object )
    end
 
@@ -3934,6 +3958,64 @@ function process_all(object)
        ( object.tags["shop"] == "money_lender"       ) or
        ( object.tags["shop"] == "loan_shark"         ) or
        ( object.tags["shop"] == "cash"               )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- toys and games etc.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "model"          ) or
+       ( object.tags["shop"]   == "models"         ) or
+       ( object.tags["shop"]   == "games"          ) or
+       ( object.tags["shop"]   == "computer_games" ) or
+       ( object.tags["shop"]   == "video_games"    ) or
+       ( object.tags["shop"]   == "hobby"          ) or
+       ( object.tags["shop"]   == "fancy_dress"    )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- office=estate_agent.  Also letting_agent
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "estate_agent"      ) then
+      object.tags["shop"] = "estate_agent"
+      object.tags["amenity"] = nil
+      object.tags["office"] = nil
+   end
+
+   if (( object.tags["office"]  == "estate_agent"      ) or
+       ( object.tags["office"]  == "letting_agent"     )) then
+      object.tags["shop"] = "estate_agent"
+      object.tags["amenity"] = nil
+      object.tags["office"] = nil
+   end
+
+   if (( object.tags["shop"]    == "estate_agent"      ) or
+       ( object.tags["shop"]    == "letting_agent"     ) or
+       ( object.tags["shop"]    == "council_house"     )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- travel agents
+-- the name is usually characteristic
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["office"] == "travel_agent"  ) then
+      object.tags["shop"] = "travel_agent"
+   end
+
+   if (( object.tags["shop"]   == "travel_agent"  ) or
+       ( object.tags["shop"]   == "travel_agency" ) or
+       ( object.tags["shop"]   == "travel"        )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( object )

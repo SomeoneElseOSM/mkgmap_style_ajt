@@ -207,8 +207,8 @@ shop=sports {name '${name}'} [0x2e12 resolution 20]
 shop=alcohol {name '${name}'} [0x2e13 resolution 20]
 shop=books {name '${name}'} [0x2e14 resolution 20]
 
-shop=* {name '${name}'} [0x2e0c resolution 20]
-office=* {name '${name}'} [0x2e0c resolution 20]
+shop=* {name '${name}'} [0x2e15 resolution 20]
+office=* {name '${name}'} [0x2e15 resolution 20]
 
 amenity=fuel {name '${name}'} [0x2f01 resolution 19 ]
 shop=car_rental {name '${name}'} [0x2f02 resolution 20]

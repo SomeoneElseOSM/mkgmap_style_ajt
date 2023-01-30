@@ -2950,6 +2950,29 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- If we still have an amenity=fuel with a shop, what sort of shop is it?
+--
+-- If it's one that should appear as Garmin's combined fuel / convenience shop,
+-- ensure it does.
+-- "0x2e06" is searchable via "Fuel Service / Convenience" and 
+-- "Shopping / Convenience 1" ("Convenience" is on that menu twice).
+--
+-- If the shop type is one of the wackier combinations, surpress it.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "fuel" ) then
+      if (( object.tags["shop"]     == "yes"                  )  or
+          ( object.tags["shop"]     == "kiosk"                )  or
+          ( object.tags["shop"]     == "supermarket"          )  or
+          ( object.tags["shop"]     == "newsagent"            )  or
+          ( object.tags["shop"]     == "convenience;alcohol"  )) then
+         object.tags["shop"] = "convenience"
+      else
+         object.tags["shop"] = nil
+      end
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Change amenity=charging_station to something we can show
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"]  == "charging_station" ) then
@@ -4022,6 +4045,171 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Shopmobility
+-- Note that "shop=mobility" is something that _sells_ mobility aids, and is
+-- handled as shop=nonspecific for now.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["amenity"]  == "mobility"                 ) or
+       (   object.tags["amenity"]  == "mobility_equipment_hire"  ) or
+       (   object.tags["amenity"]  == "mobility_aids_hire"       ) or
+       (   object.tags["amenity"]  == "shop_mobility"            )) then
+      object.tags["shop"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
+   if (((( object.tags["shop"]     == "yes"                    )   or
+         ( object.tags["shop"]     == "mobility"               )   or
+         ( object.tags["building"] == "yes"                    )   or
+         ( object.tags["building"] == "unit"                   ))  and
+        (( object.tags["name"]     == "Shopmobility"           )   or
+         ( object.tags["name"]     == "Shop Mobility"          )))) then
+      object.tags["shop"] = "shopmobility"
+   end
+
+   if ((   object.tags["shop"]  == "mobility"                    ) or
+       (   object.tags["shop"]  == "mobility_equipment_hire"     ) or
+       (   object.tags["shop"]  == "mobility_aids_hire"          ) or
+       (   object.tags["shop"]  == "shop_mobility"               ) or
+       (   object.tags["shop"]  == "shopmobility"                )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Mappings to shop=boat
+-- "0x2f09" is searchable via "Others / Marine Services"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]  == "boatbuilder" ) then
+      object.tags["shop"] = object.tags["craft"]
+      object.tags["craft"] = nil
+   end
+
+   if (( object.tags["shop"] == "boat"           )  or
+       ( object.tags["shop"] == "boatbuilder"    ) or
+       ( object.tags["shop"] == "chandler"       ) or
+       ( object.tags["shop"] == "chandlers"      ) or
+       ( object.tags["shop"] == "chandlery"      ) or
+       ( object.tags["shop"] == "ship_chandler"  )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "boat"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Other shops
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "gallery"                 ) or
+       ( object.tags["amenity"] == "art_gallery"             ) or
+       ( object.tags["amenity"] == "internet_cafe"           ) or
+       ( object.tags["amenity"] == "training"                ) or
+       ( object.tags["amenity"] == "tutoring_centre"         ) or
+       ( object.tags["amenity"] == "stripclub"               ) or
+       ( object.tags["amenity"] == "courier"                 )) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if (( object.tags["craft"]   == "cobbler"                 ) or
+       ( object.tags["craft"]   == "shoemaker"               ) or
+       ( object.tags["craft"]   == "gunsmith"                )) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["office"]  == "auctioneer" ) or
+       ( object.tags["office"]  == "tutoring"   )) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if ( object.tags["tourism"] == "gallery" ) then
+      object.tags["shop"] = object.tags["tourism"]
+   end
+
+   if ((  object.tags["amenity"]  == nil                   )  and
+       (( object.tags["training"] == "dance"              )   or
+        ( object.tags["training"] == "language"           )   or
+        ( object.tags["training"] == "performing_arts"    ))) then
+      object.tags["shop"] = object.tags["training"] .. " training"
+   end
+
+   if (( object.tags["shop"]    == "card"                     ) or
+       ( object.tags["shop"]    == "cards"                    ) or
+       ( object.tags["shop"]    == "greeting_card"            ) or
+       ( object.tags["shop"]    == "greeting_cards"           ) or
+       ( object.tags["shop"]    == "greetings_cards"          ) or
+       ( object.tags["shop"]    == "greetings"                ) or
+       ( object.tags["shop"]    == "card;gift"                ) or
+       ( object.tags["shop"]    == "shoemaker"                ) or
+       ( object.tags["shop"]    == "watch_repair"             ) or
+       ( object.tags["shop"]    == "cleaning"                 ) or
+       ( object.tags["shop"]    == "collector"                ) or
+       ( object.tags["shop"]    == "collectables"             ) or
+       ( object.tags["shop"]    == "coins"                    ) or
+       ( object.tags["shop"]    == "video"                    ) or
+       ( object.tags["shop"]    == "audio_video"              ) or
+       ( object.tags["shop"]    == "erotic"                   ) or
+       ( object.tags["shop"]    == "service"                  ) or
+       ( object.tags["shop"]    == "tobacco"                  ) or
+       ( object.tags["shop"]    == "tobacconist"              ) or
+       ( object.tags["shop"]    == "ticket"                   ) or
+       ( object.tags["shop"]    == "insurance"                ) or
+       ( object.tags["shop"]    == "gallery"                  ) or
+       ( object.tags["shop"]    == "plumber"                  ) or
+       ( object.tags["shop"]    == "builder"                  ) or
+       ( object.tags["shop"]    == "builders"                 ) or
+       ( object.tags["shop"]    == "trophy"                   ) or
+       ( object.tags["shop"]    == "communication"            ) or
+       ( object.tags["shop"]    == "communications"           ) or
+       ( object.tags["shop"]    == "internet"                 ) or
+       ( object.tags["shop"]    == "internet_cafe"            ) or
+       ( object.tags["shop"]    == "recycling"                ) or
+       ( object.tags["shop"]    == "gun"                      ) or
+       ( object.tags["shop"]    == "guns"                     ) or
+       ( object.tags["shop"]    == "weapons"                  ) or
+       ( object.tags["shop"]    == "pyrotechnics"             ) or
+       ( object.tags["shop"]    == "hunting"                  ) or
+       ( object.tags["shop"]    == "military_surplus"         ) or
+       ( object.tags["shop"]    == "army_surplus"             ) or
+       ( object.tags["shop"]    == "fireworks"                ) or
+       ( object.tags["shop"]    == "auction"                  ) or
+       ( object.tags["shop"]    == "auction_house"            ) or
+       ( object.tags["shop"]    == "religion"                 ) or
+       ( object.tags["shop"]    == "gas"                      ) or
+       ( object.tags["shop"]    == "fuel"                     ) or
+       ( object.tags["shop"]    == "energy"                   ) or
+       ( object.tags["shop"]    == "coal_merchant"            ) or
+       ( object.tags["shop"]    == "ironing"                  ) or
+       ( object.tags["shop"]    == "gallery"                  ) or
+       ( object.tags["shop"]    == "art_gallery"              ) or
+       ( object.tags["shop"]    == "internet_cafe"            ) or
+       ( object.tags["shop"]    == "training"                 ) or
+       ( object.tags["shop"]    == "tutoring_centre"          ) or
+       ( object.tags["shop"]    == "stripclub"                ) or
+       ( object.tags["shop"]    == "courier"                  ) or
+       ( object.tags["shop"]    == "cobbler"                  ) or
+       ( object.tags["shop"]    == "shoemaker"                ) or
+       ( object.tags["shop"]    == "gunsmith"                 ) or
+       ( object.tags["shop"]    == "auctioneer"               ) or
+       ( object.tags["shop"]    == "tutoring"                 ) or
+       ( object.tags["shop"]    == "dance training"           ) or
+       ( object.tags["shop"]    == "language training"        ) or
+       ( object.tags["shop"]    == "performing_arts training" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Suppress unnamed shop=yes.
+-- There are surprisingly many of these.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]    == "yes" ) and
+       ( object.tags["name"]    == nil   )) then
+      object.tags["shop"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Shops that we don't know the type of.  Things such as "hire" are here 
 -- because we don't know "hire of what".
 -- "wood" is here because it's used for different sorts of shops.
@@ -4032,7 +4220,7 @@ function process_all(object)
    end
 
    if ( object.tags["craft"]   == "yes"             ) then
-      object.tags["shop"] = object.tags["craft"]
+      object.tags["shop"] = "unknown craft"
    end
 
    if ( object.tags["office"]  == "rental"          ) then
@@ -4049,6 +4237,7 @@ function process_all(object)
    end
 
    if (( object.tags["shop"]    == "unknown"         ) or
+       ( object.tags["shop"]    == "unknown craft"   ) or
        ( object.tags["shop"]    == "hire"            ) or
        ( object.tags["shop"]    == "rental"          ) or
        ( object.tags["shop"]    == "second_hand"     ) or
@@ -4896,6 +5085,17 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Farm shops
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "farm"      ) or
+       ( object.tags["shop"] == "farm_shop" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show pastry shops as bakeries
 -- "0x2a05" is searchable via "Food and Drink / Deli or Bakery"
 -- ----------------------------------------------------------------------------
@@ -5127,6 +5327,22 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Storage Rental
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["shop"]    == "storage" ) then
+      object.tags["amenity"] = "storage"
+   end
+
+   if (( object.tags["amenity"] == "storage"              ) or
+       ( object.tags["amenity"] == "self_storage"         ) or
+       ( object.tags["amenity"] == "storage_rental"       )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Nonspecific car and related shops.
 -- On Garmin, car_rental, car_repair,
 -- and car_dealer/car_parts are all separate features.
@@ -5264,162 +5480,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- Shopmobility
--- Note that "shop=mobility" is something that _sells_ mobility aids, and is
--- handled as shop=nonspecific for now.
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
--- ----------------------------------------------------------------------------
-   if ((   object.tags["amenity"]  == "mobility"                 ) or
-       (   object.tags["amenity"]  == "mobility_equipment_hire"  ) or
-       (   object.tags["amenity"]  == "mobility_aids_hire"       ) or
-       (   object.tags["amenity"]  == "shop_mobility"            )) then
-      object.tags["shop"] = object.tags["amenity"]
-      object.tags["amenity"] = nil
-   end
-
-   if (((( object.tags["shop"]     == "yes"                    )   or
-         ( object.tags["shop"]     == "mobility"               )   or
-         ( object.tags["building"] == "yes"                    )   or
-         ( object.tags["building"] == "unit"                   ))  and
-        (( object.tags["name"]     == "Shopmobility"           )   or
-         ( object.tags["name"]     == "Shop Mobility"          )))) then
-      object.tags["shop"] = "shopmobility"
-   end
-
-   if ((   object.tags["shop"]  == "mobility"                    ) or
-       (   object.tags["shop"]  == "mobility_equipment_hire"     ) or
-       (   object.tags["shop"]  == "mobility_aids_hire"          ) or
-       (   object.tags["shop"]  == "shop_mobility"               ) or
-       (   object.tags["shop"]  == "shopmobility"                )) then
-      object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
-   end
-
--- ----------------------------------------------------------------------------
--- Mappings to shop=boat
--- "0x2f09" is searchable via "Others / Marine Services"
--- ----------------------------------------------------------------------------
-   if ( object.tags["craft"]  == "boatbuilder" ) then
-      object.tags["shop"] = object.tags["craft"]
-      object.tags["craft"] = nil
-   end
-
-   if (( object.tags["shop"] == "boat"           )  or
-       ( object.tags["shop"] == "boatbuilder"    ) or
-       ( object.tags["shop"] == "chandler"       ) or
-       ( object.tags["shop"] == "chandlers"      ) or
-       ( object.tags["shop"] == "chandlery"      ) or
-       ( object.tags["shop"] == "ship_chandler"  )) then
-      object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "boat"
-      object = building_or_landuse( object )
-   end
-
--- ----------------------------------------------------------------------------
--- Other shops
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
--- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "gallery"                 ) or
-       ( object.tags["amenity"] == "art_gallery"             ) or
-       ( object.tags["amenity"] == "internet_cafe"           ) or
-       ( object.tags["amenity"] == "training"                ) or
-       ( object.tags["amenity"] == "tutoring_centre"         ) or
-       ( object.tags["amenity"] == "stripclub"               ) or
-       ( object.tags["amenity"] == "courier"                 )) then
-      object.tags["shop"] = object.tags["amenity"]
-   end
-
-   if (( object.tags["craft"]   == "cobbler"                 ) or
-       ( object.tags["craft"]   == "shoemaker"               ) or
-       ( object.tags["craft"]   == "gunsmith"                )) then
-      object.tags["shop"] = object.tags["craft"]
-   end
-
-   if (( object.tags["office"]  == "auctioneer" ) or
-       ( object.tags["office"]  == "tutoring"   )) then
-      object.tags["shop"] = object.tags["office"]
-   end
-
-   if ( object.tags["tourism"] == "gallery" ) then
-      object.tags["shop"] = object.tags["tourism"]
-   end
-
-   if ((  object.tags["amenity"]  == nil                   )  and
-       (( object.tags["training"] == "dance"              )   or
-        ( object.tags["training"] == "language"           )   or
-        ( object.tags["training"] == "performing_arts"    ))) then
-      object.tags["shop"] = object.tags["training"] .. " training"
-   end
-
-   if (( object.tags["shop"]    == "card"                     ) or
-       ( object.tags["shop"]    == "cards"                    ) or
-       ( object.tags["shop"]    == "greeting_card"            ) or
-       ( object.tags["shop"]    == "greeting_cards"           ) or
-       ( object.tags["shop"]    == "greetings_cards"          ) or
-       ( object.tags["shop"]    == "greetings"                ) or
-       ( object.tags["shop"]    == "card;gift"                ) or
-       ( object.tags["shop"]    == "shoemaker"                ) or
-       ( object.tags["shop"]    == "watch_repair"             ) or
-       ( object.tags["shop"]    == "cleaning"                 ) or
-       ( object.tags["shop"]    == "collector"                ) or
-       ( object.tags["shop"]    == "collectables"             ) or
-       ( object.tags["shop"]    == "coins"                    ) or
-       ( object.tags["shop"]    == "video"                    ) or
-       ( object.tags["shop"]    == "audio_video"              ) or
-       ( object.tags["shop"]    == "erotic"                   ) or
-       ( object.tags["shop"]    == "service"                  ) or
-       ( object.tags["shop"]    == "tobacco"                  ) or
-       ( object.tags["shop"]    == "tobacconist"              ) or
-       ( object.tags["shop"]    == "ticket"                   ) or
-       ( object.tags["shop"]    == "insurance"                ) or
-       ( object.tags["shop"]    == "gallery"                  ) or
-       ( object.tags["shop"]    == "plumber"                  ) or
-       ( object.tags["shop"]    == "builder"                  ) or
-       ( object.tags["shop"]    == "builders"                 ) or
-       ( object.tags["shop"]    == "trophy"                   ) or
-       ( object.tags["shop"]    == "communication"            ) or
-       ( object.tags["shop"]    == "communications"           ) or
-       ( object.tags["shop"]    == "internet"                 ) or
-       ( object.tags["shop"]    == "internet_cafe"            ) or
-       ( object.tags["shop"]    == "recycling"                ) or
-       ( object.tags["shop"]    == "gun"                      ) or
-       ( object.tags["shop"]    == "guns"                     ) or
-       ( object.tags["shop"]    == "weapons"                  ) or
-       ( object.tags["shop"]    == "pyrotechnics"             ) or
-       ( object.tags["shop"]    == "hunting"                  ) or
-       ( object.tags["shop"]    == "military_surplus"         ) or
-       ( object.tags["shop"]    == "army_surplus"             ) or
-       ( object.tags["shop"]    == "fireworks"                ) or
-       ( object.tags["shop"]    == "auction"                  ) or
-       ( object.tags["shop"]    == "auction_house"            ) or
-       ( object.tags["shop"]    == "religion"                 ) or
-       ( object.tags["shop"]    == "gas"                      ) or
-       ( object.tags["shop"]    == "fuel"                     ) or
-       ( object.tags["shop"]    == "energy"                   ) or
-       ( object.tags["shop"]    == "coal_merchant"            ) or
-       ( object.tags["shop"]    == "ironing"                  ) or
-       ( object.tags["shop"]    == "gallery"                  ) or
-       ( object.tags["shop"]    == "art_gallery"              ) or
-       ( object.tags["shop"]    == "internet_cafe"            ) or
-       ( object.tags["shop"]    == "training"                 ) or
-       ( object.tags["shop"]    == "tutoring_centre"          ) or
-       ( object.tags["shop"]    == "stripclub"                ) or
-       ( object.tags["shop"]    == "courier"                  ) or
-       ( object.tags["shop"]    == "cobbler"                  ) or
-       ( object.tags["shop"]    == "shoemaker"                ) or
-       ( object.tags["shop"]    == "gunsmith"                 ) or
-       ( object.tags["shop"]    == "auctioneer"               ) or
-       ( object.tags["shop"]    == "tutoring"                 ) or
-       ( object.tags["shop"]    == "dance training"           ) or
-       ( object.tags["shop"]    == "language training"        ) or
-       ( object.tags["shop"]    == "performing_arts training" )) then
-      object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
-   end
-
--- ----------------------------------------------------------------------------
 -- Non-government (commercial) offices that you might visit for a service.
 -- "communication" below seems to be used for marketing / commercial PR.
 -- Add unnamedcommercial landuse to give non-building areas a background.
@@ -5491,7 +5551,8 @@ function process_all(object)
        ( object.tags["amenity"]     == "monastery"               ) or
        ( object.tags["amenity"]     == "convent"                 ) or
        ( object.tags["amenity"]     == "music_school"            ) or
-       ( object.tags["amenity"]     == "cooking_school"          )) then
+       ( object.tags["amenity"]     == "cooking_school"          ) or
+       ( object.tags["office"]      == "charity"                 )) then
       object.tags["amenity"] = nil
       object.tags["office"] = nil
       object.tags["shop"] = nil
@@ -5513,6 +5574,24 @@ function process_all(object)
          object.tags["name"]  = "Telephone Exchange"
       end
 
+      object.tags["amenity"] = nil
+      object.tags["man_made"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Offices that we don't know the type of.  
+-- ----------------------------------------------------------------------------
+   if (( object.tags["office"]     == "company"           ) or
+       ( object.tags["shop"]       == "office"            ) or
+       ( object.tags["amenity"]    == "office"            ) or
+       ( object.tags["office"]     == "research"          ) or
+       ( object.tags["office"]     == "yes"               ) or
+       ( object.tags["commercial"] == "office"            )) then
+      object.tags["amenity"] = nil
+      object.tags["man_made"] = nil
+      object.tags["office"] = nil
       object = building_or_landuse( object )
    end
 

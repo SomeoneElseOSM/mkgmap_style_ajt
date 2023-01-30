@@ -197,7 +197,7 @@ shop=doityourself {name '${name}'} [0x2e09 resolution 20]
 shop=specialty {name '${name}'} [0x2e0a resolution 20]
 shop=computer {name '${name}'} [0x2e0b resolution 20]
 shop=butcher {name '${name}'} [0x2e0c resolution 20]
-# 0x2e0c is also used for wildcards, see below
+# 0x2e0c may also be used for wildcards, see below
 # 0x2e0d is Shopping / Shopping Center (like 0x2e04)
 shop=convenience {name '${name}'} [0x2e0e resolution 20]
 shop=florist {name '${name}'} [0x2e0f resolution 20]
@@ -206,6 +206,8 @@ shop=music {name '${name}'} [0x2e11 resolution 20]
 shop=sports {name '${name}'} [0x2e12 resolution 20]
 shop=alcohol {name '${name}'} [0x2e13 resolution 20]
 shop=books {name '${name}'} [0x2e14 resolution 20]
+# 0x2e15 may be used for wildcards, see below
+# 0x2e15 (presumably through to 0x2e2f) appears in "All POIs" but not on any menu.
 
 shop=* {name '${name}'} [0x2e15 resolution 20]
 office=* {name '${name}'} [0x2e15 resolution 20]
@@ -225,6 +227,8 @@ railway=station {name '${name}'} [0x2f08 resolution 20]
 amenity=bus_station {name '${name}'} [0x2f08 resolution 20 default_name 'Bus Station']
 amenity=ferry_terminal {name '${name}'} [0x2f08 resolution 19]
 shop=boat {name '${name}'} [0x2f09 resolution 20]
+# 0x2f0a ("Wrecker Service") can be used to isolate wildcard values
+shop=car_wrecker {name '${name}'} [0x2f0a resolution 20]
 amenity=parking {name '${name}'} [0x2f0b resolution 21 default_name 'Parking']
 amenity=car_sharing {name '${name}'} [0x2f0d resolution 20]
 amenity=car_wash {name '${name}'} [0x2f0e resolution 21 default_name 'Car Wash']
@@ -257,7 +261,6 @@ natural=wood & name=* [0x6618 resolution 21]
 # The use of these values has not yet been checked
 
 craft=brewery {name '${name}'} [0x2f07 resolution 20]
-shop=car_wrecker {name '${name}'} [0x2f0a resolution 20]
 
 tourism=attraction & historic=* {name '${name}'} [0x2c02 resolution 20]
 tourism=information {name '${name} - ${description} (${operator})'|

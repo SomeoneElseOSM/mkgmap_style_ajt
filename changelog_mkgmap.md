@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Mop up some of the values previously treated as wildcards.
+
 ## 30/01/2023
 Map geoglyph polygons through to "Native American Reservation " rather than "State Park1", with a suffix of "geoglyph".
 Show historic railway stations as generic item with either a building or landuse.

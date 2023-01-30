@@ -3899,7 +3899,9 @@ function process_all(object)
        ( object.tags["shop"]   == "catering"        ) or
        ( object.tags["shop"]   == "fishmonger"      ) or
        ( object.tags["shop"]   == "spice"           ) or
-       ( object.tags["shop"]   == "nuts"            )) then
+       ( object.tags["shop"]   == "nuts"            ) or
+       ( object.tags["shop"]   == "delicatessen"    ) or
+       ( object.tags["shop"]   == "deli"            )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( object )

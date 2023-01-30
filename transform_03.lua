@@ -5361,7 +5361,8 @@ function process_all(object)
 
    if (( object.tags["shop"]    == "car_rental"                   ) or
        ( object.tags["shop"]    == "van_rental"                   ) or
-       ( object.tags["shop"]    == "car_rental;bicycle_rental"    )) then
+       ( object.tags["shop"]    == "car_rental;bicycle_rental"    ) or
+       ( object.tags["shop"]    == "motorcycle_rental"            )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_rental"
       object = building_or_landuse( object )
@@ -5393,7 +5394,8 @@ function process_all(object)
        (  object.tags["shop"]    == "motor_accessories"            )  or
        (  object.tags["shop"]    == "car_parts;car_repair"         )  or
        (  object.tags["shop"]    == "bicycle;car_parts"            )  or
-       (  object.tags["shop"]    == "car_parts;bicycle"            )) then
+       (  object.tags["shop"]    == "car_parts;bicycle"            )  or
+       (  object.tags["shop"]    == "motorcycle_parts"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_parts"
       object = building_or_landuse( object )
@@ -5424,7 +5426,8 @@ function process_all(object)
        ( object.tags["shop"]    == "auto_repair"        )  or
        ( object.tags["shop"]    == "tractor_repair"     )  or
        ( object.tags["shop"]    == "tractor_parts"      )  or
-       ( object.tags["shop"]    == "truck_repair"       )) then
+       ( object.tags["shop"]    == "truck_repair"       )  or
+       ( object.tags["shop"]    == "motorcycle_repair"  )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_repair"
       object = building_or_landuse( object )
@@ -5473,7 +5476,9 @@ function process_all(object)
        ( object.tags["shop"]    == "tractor"                      ) or
        ( object.tags["shop"]    == "tractors"                     ) or
        ( object.tags["shop"]    == "van"                          ) or
-       ( object.tags["shop"]    == "forklift_repair"              )) then
+       ( object.tags["shop"]    == "forklift_repair"              ) or
+       ( object.tags["shop"]    == "motorcycle"                   ) or
+       ( object.tags["shop"]    == "atv"                          )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car"
       object = building_or_landuse( object )

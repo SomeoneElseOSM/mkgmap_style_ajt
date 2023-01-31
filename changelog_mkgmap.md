@@ -6,6 +6,7 @@ Mop up some of the values previously treated as wildcards.
 Add motorcycle (and repair, rental, parts), and atv.
 Categorise tourist railway stations as tourist attractions.
 Only show "real" airports as airports; include the rest in "Recreation / public-sport-airport".
+Show name on forests.
 
 ## 30/01/2023
 Map geoglyph polygons through to "Native American Reservation " rather than "State Park1", with a suffix of "geoglyph".

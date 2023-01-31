@@ -178,19 +178,19 @@ function process_all(object)
 -- Woodland - append B, C or M based on leaf_type.
 -- If there is no name after this procedure Garmins will show "Woods" instead.
 -- ----------------------------------------------------------------------------
-   if ( object.tags['natural'] == 'wood' ) then
-      leaf_type_appendix = ''
+   if ( object.tags["natural"] == "wood" ) then
+      leaf_type_appendix = ""
 
-      if ( object.tags['leaf_type'] == 'broadleaved' ) then
-         leaf_type_appendix = 'B'
+      if ( object.tags["leaf_type"] == "broadleaved" ) then
+         leaf_type_appendix = "B"
       end
 
-      if ( object.tags['leaf_type'] == 'needleleaved' ) then
-         leaf_type_appendix = 'C'
+      if ( object.tags["leaf_type"] == "needleleaved" ) then
+         leaf_type_appendix = "C"
       end
 
-      if ( object.tags['leaf_type'] == 'mixed' ) then
-         leaf_type_appendix = 'M'
+      if ( object.tags["leaf_type"] == "mixed" ) then
+         leaf_type_appendix = "M"
       end
 
       if ( leaf_type_appendix ~= nil ) then

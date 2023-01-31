@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Mop up some of the values previously treated as wildcards.
 Add motorcycle (and repair, rental, parts), and atv.
+Categorise tourist railway stations as tourist attractions.
 
 ## 30/01/2023
 Map geoglyph polygons through to "Native American Reservation " rather than "State Park1", with a suffix of "geoglyph".

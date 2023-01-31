@@ -1865,13 +1865,77 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Disused aerodromes etc. - handle disused=yes.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["aeroway"]        == "aerodrome" ) and
+       ( object.tags["disused"]        == "yes"       )) then
+      object.tags["aeroway"] = nil
+      object.tags["disused:aeroway"] = "aerodrome"
+   end
+
+   if (( object.tags["aeroway"]        == "runway" ) and
+       ( object.tags["disused"]        == "yes"       )) then
+      object.tags["aeroway"] = nil
+      object.tags["disused:aeroway"] = "runway"
+   end
+
+   if (( object.tags["aeroway"]        == "taxiway" ) and
+       ( object.tags["disused"]        == "yes"       )) then
+      object.tags["aeroway"] = nil
+      object.tags["disused:aeroway"] = "taxiway"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Aerodrome size.
+-- Large public airports should be shown as "real airports".  Others should not.
+-- "0x2f04" is searchable via "Transportation / Air Transportation"
+-- "0x2d0b" is searchable via "Recreation / public-sport-airport"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["aeroway"] == "aerodrome" ) or
+       ( object.tags["aeroway"] == "airport"   )) then
+      if (( object.tags["iata"]           ~= nil         ) and
+          ( object.tags["aerodrome:type"] ~= "military"  ) and
+          ( object.tags["military"]       == nil         )) then
+         object = append_nonqa( object, object.tags["iata"] )
+         object = append_nonqa( object, object.tags["aeroway"] )
+      else
+         object = append_nonqa( object, "airstrip" )
+         object.tags["sport"] = "airport"
+         object.tags["aeroway"] = nil
+      end
+
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Grass aerodrome features are rendered less prominently.
+-- Currently this does not include runways.
+-- ----------------------------------------------------------------------------
+--   if (( object.tags["aeroway"] == "runway" ) and
+--       ( object.tags["surface"] == "grass"  )) then
+--      object.tags["aeroway"] = "grass_runway"
+--   end
+
+   if (( object.tags["aeroway"] == "apron"  ) and
+       ( object.tags["surface"] == "grass"  )) then
+      object.tags["landuse"] = "grass"
+      object.tags["aeroway"] = nil
+   end
+
+   if (( object.tags["aeroway"] == "taxiway"  ) and
+       ( object.tags["surface"] == "grass"    )) then
+      object.tags["highway"] = "track"
+      object.tags["aeroway"] = nil
+   end
+
+
+-- ----------------------------------------------------------------------------
 -- Airports etc.
 -- "0x2f04" is searchable via "Transportation / Air Transportation"
--- These 3 values are all also in "points", as the same Garmin ID
+-- "airport", "aerodrome", "terminal" are all also in "points", 
+-- as the same Garmin ID
 -- ----------------------------------------------------------------------------
-   if (( object.tags["aeroway"] == "airport" ) or
-       ( object.tags["aeroway"] == "aerodrome" ) or
-       ( object.tags["aeroway"] == "terminal" )) then
+   if ( object.tags["aeroway"] == "terminal" ) then
       object = append_nonqa( object, object.tags["aeroway"] )
       object = building_or_landuse( object )
    end

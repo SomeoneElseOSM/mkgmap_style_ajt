@@ -1785,6 +1785,15 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Passing places
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "passing_place" ) then
+      object = append_nonqa( object, object.tags["highway"] )
+      object.tags["man_made"] = "thing"
+      object.tags["highway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Theme parks
 -- "0x2c01" is searchable via "Attractions / Amusement Park or T"
 -- ----------------------------------------------------------------------------

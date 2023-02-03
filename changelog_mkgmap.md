@@ -9,8 +9,11 @@ Only show "real" airports as airports; include the rest in "Recreation / public-
 Show name on forests.
 Show passing places.
 
+## 03/02/2023
+Updated the map legend to explain the shop mappings below.
+
 ## 30/01/2023
-Map geoglyph polygons through to "Native American Reservation " rather than "State Park1", with a suffix of "geoglyph".
+Map geoglyph polygons through to "Native American Reservation " rather than "State Park", with a suffix of "geoglyph".
 Show historic railway stations as generic item with either a building or landuse.
 Show nightclubs and music venues.
 Distinguish camp sites from caravan sites with a suffix.

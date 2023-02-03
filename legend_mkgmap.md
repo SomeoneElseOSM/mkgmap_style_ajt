@@ -165,14 +165,36 @@ NCN route markers are shown with "NCN", the marker type and the sustrans referen
 
 Broadleaved woodland has "B" appended; needleleaved has "C" and mixed "M".
 
-### Shops
+### Shops and Amenities
 
-Some rarer tags are consolidated into "shop=car", "shop=car_repair" and "shop=bicycle".
-Building societies are consolidated into banks.
-ATMs have "(ATM)" added as a suffix.
+OSM shops and amenities are matched to items on the Garmin search menus, so for example "Shopping / General" shows general stores and also catalogue shops.  "Shopping / Apparel" shows all clothes shops, add also shoes etc.  Suffixes are added to show what the original OSM tag was (e.g. "(Clothes)", "(Shoes)" with "Apparel").
+
 Unnamed farm shops with particular produce are shown as farm "vending machines".
 
-### Pubs, restaurants etc.
+### Food and Drink
+
+Garmin's menus here are very American (you can have "International", but you can't get a curry).  Fast food and "proper restaurants" are all lumped together.  I've tried to make the best use of the catagories as a can, which results in some odd mappings:
+
+* American: Burger fast food and restaurants.
+* Asian: Not much use on its own, as its a composite including "Chinese".
+* Barbeque: Chicken-based fast food.
+* Chinese: Chinese and other Asian fast food.
+* Deli and Bakery: Bakeries and sandwich shops.
+* International: Kebab-led fast food.
+* Fast Food: Pie- and pasty-led fast food.
+* Italian: Itelian and pizza restaturants.
+* Mexican: Indian, Pakistani and Bangladeshi etc. fast food.
+* Pizza: Pizza and itelian fast food.
+* Seafood: Fish and Chips fast food.
+* Steak or Grill: Steakhouses (restaurants).
+* Bagel or Donut: Ice cream-led fast food.
+* Cafe or Diner: Cafes.
+* French: Indian, Pakistani and Bangladeshi etc. restaurants.
+* German: Chinese and other Asian restaurants.
+* British: Pubs and bars.  See below.
+* Other: All other restaurants.
+
+### Pubs and bars
 
 Pubs that are inaccessible (e.g. "access=no") are hidden.
 Things that are both hotels and pubs are treated as pubs that do accommodation.
@@ -196,17 +218,25 @@ Pubs that are allegedly still "closed due to covid" have an appropriate suffix a
 
 Restaurants have "(rest)" added as a suffix, or "(rest accomm)" if they have rooms.
 
-### Healthcare
+### Transportation
 
-An appropriate suffix is added for doctors, dentists, hospitals and clinics.
-Vaccination centres are shown as clinics if no other tag applies.
-Pharmacies and chemists have a suffix added.
+On the Garmin menus, "Transportation / Air Transportation" only includes "proper airports" (i.e. not gliding clubs and not military facilities).
+
+"Transportation / Ground Transportation" includes regular bus and train stations, but not e.g. a station on a park miniature railway.  A suffix is added to show which is which.
+
+"Transportation / Transit Service" includes bus stops, taxi stands etc.
 
 ### Railways
 
 Razed railways and old inclined_planes are shown as dismantled.
 Miniature railways (not handled in the style file) are shown as narrow_gauge.
 Render historic railway stations.
+
+### Healthcare
+
+An appropriate suffix is added for doctors, dentists, hospitals and clinics.
+Vaccination centres are shown as clinics if no other tag applies.
+Pharmacies and chemists have a suffix added.
 
 ### Water features
 

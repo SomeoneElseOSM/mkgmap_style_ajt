@@ -3426,6 +3426,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- railway=transfer_station - show as "halt"
+-- This is for Manulla Junction, https://www.openstreetmap.org/node/5524753168
+-- ----------------------------------------------------------------------------
+   if ( object.tags["railway"] == "transfer_station" ) then
+      object.tags["railway"] = "halt"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Advertising Columns
 -- ----------------------------------------------------------------------------
    if ( object.tags["advertising"] == "column" ) then

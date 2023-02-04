@@ -8,6 +8,7 @@ Categorise tourist railway stations as tourist attractions.
 Only show "real" airports as airports; include the rest in "Recreation / public-sport-airport".
 Show name on forests.
 Show passing places.
+Added horse jumps (ways and nodes).
 
 ## 03/02/2023
 Updated the map legend to explain the shop mappings below.

@@ -6202,6 +6202,15 @@ function ott.process_node(object)
       object = append_nonqa( object, "weir" )
    end
 
+-- ----------------------------------------------------------------------------
+-- Point horse_jumps are sent through as "thing" with a suffix
+-- ----------------------------------------------------------------------------
+   if ( object.tags['barrier'] == "horse_jump" ) then
+      object.tags["man_made"] = "thing"
+      object.tags["barrier"] = nil
+      object = append_nonqa( object, "horse_jump" )
+   end
+
    return object.tags
 end
 
@@ -6653,6 +6662,15 @@ function ott.process_way(object)
       if ( object.tags["name"] == nil ) then
          object.tags.name = '(pipeline)'
       end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Line horse_jumps are sent through as "fence" with a suffix
+-- ----------------------------------------------------------------------------
+   if ( object.tags['barrier'] == "horse_jump" ) then
+      object.tags["man_made"] = "fence"
+      object.tags["barrier"] = nil
+      object = append_nonqa( object, "horse_jump" )
    end
 
 -- ----------------------------------------------------------------------------

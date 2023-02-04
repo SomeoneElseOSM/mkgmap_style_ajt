@@ -1283,6 +1283,13 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Change some common semicolon values to the first in the list - bar
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "bar;restaurant" ) then
+      object.tags["amenity"] = "bar"
+   end
+
+-- ----------------------------------------------------------------------------
 -- If something has been tagged both as a brewery and a pub or bar, show as
 -- a pub with a microbrewery.
 -- ----------------------------------------------------------------------------

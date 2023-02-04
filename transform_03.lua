@@ -3202,6 +3202,14 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Suppress "name" on riverbanks mapped as "natural=water"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["natural"]   == "water"  ) and
+       ( object.tags["water"]     == "river"  )) then
+      object.tags["name"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show wind turbines and wind pumps
 -- ----------------------------------------------------------------------------
    if ((   object.tags["man_made"]         == "wind_turbine"   ) or

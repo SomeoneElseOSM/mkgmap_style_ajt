@@ -9,6 +9,7 @@ Only show "real" airports as airports; include the rest in "Recreation / public-
 Show name on forests.
 Show passing places.
 Added horse jumps (ways and nodes).
+Map breweries to "Shopping / Specialty"
 
 ## 03/02/2023
 Updated the map legend to explain the shop mappings below.

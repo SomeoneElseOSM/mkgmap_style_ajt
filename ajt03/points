@@ -195,6 +195,7 @@ shop=shoes {name '${name}'} [0x2e07 resolution 20]
 shop=garden_centre {name '${name}'} [0x2e08 resolution 20]
 shop=doityourself {name '${name}'} [0x2e09 resolution 20]
 shop=specialty {name '${name}'} [0x2e0a resolution 20]
+craft=brewery {name '${name}'} [0x2e0a resolution 20]
 shop=computer {name '${name}'} [0x2e0b resolution 20]
 shop=butcher {name '${name}'} [0x2e0c resolution 20]
 # 0x2e0c may also be used for wildcards, see below
@@ -259,8 +260,6 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 natural=wood & name=* [0x6618 resolution 21]
 
 # The use of these values has not yet been checked
-
-craft=brewery {name '${name}'} [0x2f07 resolution 20]
 
 tourism=attraction & historic=* {name '${name}'} [0x2c02 resolution 20]
 tourism=information {name '${name} - ${description} (${operator})'|

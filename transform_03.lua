@@ -6211,6 +6211,17 @@ function ott.process_node(object)
       object = append_nonqa( object, "horse_jump" )
    end
 
+-- ----------------------------------------------------------------------------
+-- If lcn_ref exists (for example as a location in a local cycling network),
+-- render it via a "man_made" tag if there's no other name tag on that node.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["lcn_ref"] ~= nil ) and
+       ( object.tags["name"]    == nil )) then
+      object.tags["man_made"] = "thing"
+      object.tags["name"] = object.tags["lcn_ref"]
+      object = append_nonqa( object, "lcn_ref" )
+   end
+
    return object.tags
 end
 

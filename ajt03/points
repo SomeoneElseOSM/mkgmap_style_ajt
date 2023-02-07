@@ -257,7 +257,7 @@ amenity=public_building {name '${name}'} [0x3007 resolution 21]
 
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]
-natural=wood & name=* [0x6618 resolution 21]
+natural=wood {name '${name}'} [0x6618 resolution 21]
 
 # The use of these values has not yet been checked
 

@@ -2,7 +2,9 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
-Added a name parameter to the "natural=woods" entry in "points" to avoid "Woods" appearing.
+Added a name parameter to the "natural=wood" entry in "points" to avoid "Woods" appearing.
+Added a name parameter to the "natural=wetland" entry in "points" to avoid "Swamp" appearing.
+Mapped volcano across to "peak" rather than "hot springs"(!).
 
 ## 06/02/2032
 Mop up some of the values previously treated as wildcards.

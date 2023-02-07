@@ -68,11 +68,11 @@ natural=col {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18
 natural=rocks {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 man_made=survey_point {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 
-natural=rock [0x6614 resolution 21]
-natural=stream [0x6512 resolution 21]
-natural=volcano [0x2c0c resolution 21]
-natural=water & name=* [0x6603 resolution 21]
-natural=wetland & name=* [0x6513 resolution 21]
+natural=rock {name '${name}'} [0x6614 resolution 21]
+natural=stream {name '${name}'} [0x6512 resolution 21]
+natural=volcano {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
+natural=water & name=* {name '${name}'} [0x6603 resolution 21]
+natural=wetland & name=* {name '${name}'} [0x6513 resolution 21]
 
 place=city [0x0400 resolution 17]
 place=town [0x0800 resolution 18]

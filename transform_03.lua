@@ -225,15 +225,6 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
--- ...and ensure that the brewery gets shown on the map with a suffix "brewery".
--- ----------------------------------------------------------------------------
-   if (( object.tags["industrial"] == "brewery" ) or
-       ( object.tags["craft"]      == "brewery" )) then
-      object.tags["craft"] = "brewery"
-      object = append_nonqa( object, "brewery" )
-   end
-
--- ----------------------------------------------------------------------------
 -- Mistaggings for wastewater_plant
 -- "(sewage)" is appended below.
 -- ----------------------------------------------------------------------------
@@ -269,7 +260,6 @@ function process_all(object)
    end
 
    if (( object.tags["industrial"] == "warehouse"              ) or
-       ( object.tags["industrial"] == "brewery"                ) or 
        ( object.tags["industrial"] == "distillery"             ) or 
        ( object.tags["craft"]      == "distillery"             ) or
        ( object.tags["craft"]      == "bakery"                 ) or
@@ -1301,6 +1291,41 @@ function process_all(object)
       object.tags["microbrewery"]  = "yes"
       object.tags["craft"]  = nil
       object.tags["industrial"]  = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Craft Cider
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["craft"]   == "cider"    ) or
+       (( object.tags["craft"]   == "brewery" )  and
+        ( object.tags["product"] == "cider"   ))) then
+      object = append_nonqa( object, "craft cider" )
+      object.tags["shop"] = "specialty"
+      object.tags["craft"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Craft breweries
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["craft"] == "brewery"       ) or
+       ( object.tags["craft"] == "brewery;cider" )) then
+      object = append_nonqa( object, "craft brewery" )
+      object.tags["shop"] = "specialty"
+      object.tags["craft"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Industrial breweries
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["industrial"] == "brewery" ) then
+      object = append_nonqa( object, "industrial brewery" )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4020,6 +4045,44 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- shop=tattoo
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "tattoo"          ) or
+       ( object.tags["shop"]   == "piercing"        ) or
+       ( object.tags["shop"]   == "tattoo;piercing" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- shop=musical_instrument
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"]   == "musical_instrument" ) or
+       ( object.tags["shop"]   == "piano"              )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- shop=locksmith
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["craft"] == "locksmith" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["shop"]   == "locksmith"  ) or
+       ( object.tags["shop"]   == "locksmiths" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- "funeral" consolidation.  All of these spellings currently in use in the UK
 -- The value is only set for use in "and other shops" below
 -- ----------------------------------------------------------------------------
@@ -4153,6 +4216,280 @@ function process_all(object)
        ( object.tags["shop"]   == "travel"        )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Stonemasons etc., and funeral_directors
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "funeral"           ) or
+       ( object.tags["amenity"] == "funeral_directors" ) or
+       ( object.tags["amenity"] == "undertaker"        )) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if ( object.tags["craft"]   == "stonemason" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["office"]  == "funeral_director"  ) or
+       ( object.tags["office"]  == "funeral_directors" )) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if (( object.tags["shop"]    == "funeral_directors" ) or
+       ( object.tags["shop"]    == "gravestone"        ) or
+       ( object.tags["shop"]    == "monumental_mason"  ) or
+       ( object.tags["shop"]    == "memorials"         ) or
+       ( object.tags["shop"]    == "funeral"           ) or
+       ( object.tags["shop"]    == "undertaker"        ) or
+       ( object.tags["shop"]    == "stonemason"        ) or
+       ( object.tags["shop"]    == "funeral_director"  )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"]   = nil
+      object.tags["office"]  = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- "jewellery" consolidation.  "jewelry" is most popular in the database.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["shop"] == "jewelry"   ) or
+       ( object.tags["shop"] == "jewellery" ) or
+       ( object.tags["shop"] == "watch"     ) or
+       ( object.tags["shop"] == "watches"   )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- "optician" consolidation
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "optician"    ) or
+       ( object.tags["amenity"] == "optometrist" )) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if ( object.tags["craft"] == "optician" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if ( object.tags["healthcare"]  == "optometrist" ) then
+      object.tags["shop"] = object.tags["healthcare"]
+   end
+
+   if ( object.tags["office"] == "optician" ) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if (( object.tags["shop"] == "optician"    ) or
+       ( object.tags["shop"] == "opticians"   ) or
+       ( object.tags["shop"] == "optometrist" )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- chiropodists etc.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"]         == nil                     )  and
+       (( object.tags["social_facility"] == "group_home"           )   or
+        ( object.tags["social_facility"] == "nursing_home"         )   or
+        ( object.tags["social_facility"] == "assisted_living"      )   or
+        ( object.tags["social_facility"] == "care_home"            )   or
+        ( object.tags["social_facility"] == "shelter"              )   or
+        ( object.tags["social_facility"] == "day_care"             )   or
+        ( object.tags["social_facility"] == "day_centre"           )   or
+        ( object.tags["social_facility"] == "residential_home"     ))) then
+      object = append_nonqa( object, object.tags["social_facility"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["amenity"]     == "chiropodist"                  ) or
+       ( object.tags["amenity"]     == "chiropractor"                 ) or
+       ( object.tags["amenity"]     == "physiotherapist"              ) or
+       ( object.tags["amenity"]     == "podiatrist"                   ) or
+       ( object.tags["amenity"]     == "healthcare"                   ) or
+       ( object.tags["amenity"]     == "clinic"                       ) or
+       ( object.tags["amenity"]     == "social_facility"              ) or
+       ( object.tags["amenity"]     == "nursing_home"                 ) or
+       ( object.tags["amenity"]     == "care_home"                    ) or
+       ( object.tags["amenity"]     == "retirement_home"              ) or
+       ( object.tags["amenity"]     == "residential_home"             ) or
+       ( object.tags["amenity"]     == "sheltered_housing"            ) or
+       ( object.tags["amenity"]     == "childcare"                    ) or
+       ( object.tags["amenity"]     == "childrens_centre"             ) or
+       ( object.tags["amenity"]     == "preschool"                    ) or
+       ( object.tags["amenity"]     == "nursery"                      ) or
+       ( object.tags["amenity"]     == "nursery_school"               ) or
+       ( object.tags["amenity"]     == "health_centre"                ) or
+       ( object.tags["amenity"]     == "medical_centre"               ) or
+       ( object.tags["amenity"]     == "hospice"                      ) or
+       ( object.tags["amenity"]     == "daycare"                      )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["building"]    == "nursing_home"                 ) or
+       ( object.tags["building"]    == "residential_home"             ) or
+       ( object.tags["building"]    == "preschool"                    ) or
+       ( object.tags["building"]    == "health_centre"                ) or
+       ( object.tags["building"]    == "medical_centre"               )) then
+      object = append_nonqa( object, object.tags["building"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if ( object.tags["craft"]       == "counsellor"                   ) then
+      object = append_nonqa( object, object.tags["craft"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["healthcare"]  == "chiropodist"                  ) or
+       ( object.tags["healthcare"]  == "chiropractor"                 ) or
+       ( object.tags["healthcare"]  == "osteopath"                    ) or
+       ( object.tags["healthcare"]  == "physiotherapist"              ) or
+       ( object.tags["healthcare"]  == "physiotherapy"                ) or
+       ( object.tags["healthcare"]  == "psychotherapist"              ) or
+       ( object.tags["healthcare"]  == "therapy"                      ) or
+       ( object.tags["healthcare"]  == "podiatrist"                   ) or
+       ( object.tags["healthcare"]  == "podiatrist;chiropodist"       ) or
+       ( object.tags["healthcare"]  == "clinic"                       ) or
+       ( object.tags["healthcare"]  == "centre"                       ) or
+       ( object.tags["healthcare"]  == "counselling"                  ) or
+       ( object.tags["healthcare"]  == "hospice"                      ) or
+       ( object.tags["healthcare"]  == "cosmetic"                     ) or
+       ( object.tags["healthcare"]  == "cosmetic_surgery"             ) or
+       ( object.tags["healthcare"]  == "cosmetic_treatments"          ) or
+       ( object.tags["healthcare"]  == "dentures"                     ) or
+       ( object.tags["healthcare"]  == "blood_donation"               ) or
+       ( object.tags["healthcare"]  == "blood_bank"                   ) or
+       ( object.tags["healthcare"]  == "sports_massage_therapist"     ) or
+       ( object.tags["healthcare"]  == "massage"                      ) or
+       ( object.tags["healthcare"]  == "rehabilitation"               ) or
+       ( object.tags["healthcare"]  == "drug_rehabilitation"          ) or
+       ( object.tags["healthcare"]  == "occupational_therapist"       ) or
+       ( object.tags["healthcare"]  == "tattoo_removal"               ) or
+       ( object.tags["healthcare"]  == "trichologist"                 ) or
+       ( object.tags["healthcare"]  == "ocular_prosthetics"           ) or
+       ( object.tags["healthcare"]  == "audiologist"                  ) or
+       ( object.tags["healthcare"]  == "hearing"                      ) or
+       ( object.tags["healthcare"]  == "mental_health"                )) then
+      object = append_nonqa( object, object.tags["healthcare"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if ( object.tags["office"]      == "medical_supply"               ) then
+      object = append_nonqa( object, object.tags["office"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["residential"] == "nursing_home"                 ) or
+       ( object.tags["residential"] == "care_home"                    ) or
+       ( object.tags["residential"] == "residential_home"             ) or
+       ( object.tags["residential"] == "sheltered_housing"            )) then
+      object = append_nonqa( object, object.tags["residential"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["shop"]        == "hearing_aids"                 ) or
+       ( object.tags["shop"]        == "medical_supply"               ) or
+       ( object.tags["shop"]        == "mobility"                     ) or
+       ( object.tags["shop"]        == "disability"                   ) or
+       ( object.tags["shop"]        == "chiropodist"                  ) or
+       ( object.tags["shop"]        == "osteopath"                    ) or
+       ( object.tags["shop"]        == "physiotherapist"              ) or
+       ( object.tags["shop"]        == "physiotherapy"                ) or
+       ( object.tags["shop"]        == "clinic"                       ) or
+       ( object.tags["shop"]        == "dentures"                     ) or
+       ( object.tags["shop"]        == "denture"                      )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["healthcare"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Defibrillators etc.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["emergency"] == "defibrillator" ) then
+      object = append_nonqa( object, object.tags["emergency"] )
+      object.tags["man_made"] = "thing"
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["emergency"]        == "rescue_equipment" )  and
+       ( object.tags["rescue_equipment"] == "lifering"         )) then
+      object = append_nonqa( object, object.tags["rescue_equipment"] )
+      object.tags["man_made"] = "thing"
+      object = building_or_landuse( object )
+   end
+
+   if ((  object.tags["waterway"] == "life_ring" ) or
+       (  object.tags["waterway"] == "life_belt" )) then
+      object = append_nonqa( object, object.tags["waterway"] )
+      object.tags["man_made"] = "thing"
+      object = building_or_landuse( object )
+   end
+
+   if ( object.tags["emergency"] == "life_ring" ) then
+      object = append_nonqa( object, object.tags["emergency"] )
+      object.tags["man_made"] = "thing"
+      object = building_or_landuse( object )
+   end
+
+   if ( object.tags["emergency"] == "fire_extinguisher" ) then
+      object = append_nonqa( object, object.tags["emergency"] )
+      object.tags["man_made"] = "thing"
       object = building_or_landuse( object )
    end
 
@@ -5451,6 +5788,58 @@ function process_all(object)
        ( object.tags["amenity"] == "storage_rental"       )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Timpson and similar shops.
+-- Timpson is brand:wikidata=Q7807658, but all of those are name=Timpson.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["craft"]   == "key_cutter"                         ) or
+       ( object.tags["craft"]   == "shoe_repair"                        ) or
+       ( object.tags["craft"]   == "key_cutter;shoe_repair"             )) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["shop"]    == "shoe_repair"                        ) or
+       ( object.tags["shop"]    == "keys"                               ) or
+       ( object.tags["shop"]    == "key"                                ) or
+       ( object.tags["shop"]    == "cobblers"                           ) or
+       ( object.tags["shop"]    == "cobbler"                            ) or
+       ( object.tags["shop"]    == "key_cutting"                        ) or
+       ( object.tags["shop"]    == "keys_shoerepair"                    ) or
+       ( object.tags["shop"]    == "key_cutting;shoe_repair"            ) or
+       ( object.tags["shop"]    == "shoe_repair;key_cutting"            ) or
+       ( object.tags["shop"]    == "locksmith;dry_cleaning;shoe_repair" ) or
+       ( object.tags["shop"]    == "key_cutter"                         ) or
+       ( object.tags["shop"]    == "key_cutter;shoe_repair"             )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Taxi offices
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "taxi_office" ) or
+       ( object.tags["amenity"] == "minicab"     )) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if (( object.tags["office"]  == "taxi"    ) or
+       ( object.tags["office"]  == "minicab" )) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if (( object.tags["shop"]    == "taxi_office" ) or
+       ( object.tags["shop"]    == "taxi"        ) or
+       ( object.tags["shop"]    == "minicab"     )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["office"]  = nil
       object = building_or_landuse( object )
    end
 

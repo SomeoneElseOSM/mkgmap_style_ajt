@@ -5,6 +5,9 @@ This page describes changes made to the "03" map style [here](https://github.com
 Added a name parameter to the "natural=wood" entry in "points" to avoid "Woods" appearing.
 Added a name parameter to the "natural=wetland" entry in "points" to avoid "Swamp" appearing.
 Mapped volcano across to "peak" rather than "hot springs"(!).
+Various other nonspecific shops are mapped to "Specialty".
+Nonspecific healthcare is handled via a suffix.
+Map craft and industrial breweries to "Specialty" with a suffix.
 
 ## 06/02/2032
 Mop up some of the values previously treated as wildcards.

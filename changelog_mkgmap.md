@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 09/02/2023
 Added a name parameter to the "natural=wood" entry in "points" to avoid "Woods" appearing.
 Added a name parameter to the "natural=wetland" entry in "points" to avoid "Swamp" appearing.
 Mapped volcano across to "peak" rather than "hot springs"(!).
@@ -10,7 +10,7 @@ Nonspecific healthcare is handled via a suffix.
 Map craft and industrial breweries to "Specialty" with a suffix.
 Handle more shop types from style.lua, mostly as "Specialty" with a suffix.
 
-## 06/02/2032
+## 06/02/2023
 Mop up some of the values previously treated as wildcards.
 Add motorcycle (and repair, rental, parts), and atv.
 Categorise tourist railway stations as tourist attractions.

@@ -8,6 +8,7 @@ Mapped volcano across to "peak" rather than "hot springs"(!).
 Various other nonspecific shops are mapped to "Specialty".
 Nonspecific healthcare is handled via a suffix.
 Map craft and industrial breweries to "Specialty" with a suffix.
+Handle more shop types from style.lua, mostly as "Specialty" with a suffix.
 
 ## 06/02/2032
 Mop up some of the values previously treated as wildcards.

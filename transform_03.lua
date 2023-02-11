@@ -4193,7 +4193,8 @@ function process_all(object)
 -- toys and games etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]   == "model"          ) or
+   if (( object.tags["shop"]   == "toys"           ) or
+       ( object.tags["shop"]   == "model"          ) or
        ( object.tags["shop"]   == "models"         ) or
        ( object.tags["shop"]   == "games"          ) or
        ( object.tags["shop"]   == "computer_games" ) or
@@ -5651,6 +5652,39 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- Copyshops
+-- Various photo, camera, copy and print shops
+-- Various "printer" offices
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"]    == "printer"           ) then
+      object.tags["shop"] = object.tags["amenity"]
+   end
+
+   if ( object.tags["craft"]      == "printer"           ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
+   if (( object.tags["office"]     == "printer"           ) or
+       ( object.tags["office"]     == "design"            )) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if (( object.tags["shop"]    == "printing"           ) or
+       ( object.tags["shop"]    == "print"              ) or
+       ( object.tags["shop"]    == "printer"            ) or
+       ( object.tags["shop"]    == "copyshop"           ) or
+       ( object.tags["shop"]    == "printer_cartridges" ) or
+       ( object.tags["shop"]    == "printer_ink"        ) or
+       ( object.tags["shop"]    == "ink_cartridge"      ) or
+       ( object.tags["shop"]    == "printers"           ) or
+       ( object.tags["shop"]    == "design"             )) then
+      object = append_nonqa( object, object.tags["shop"] )
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- fabric and wool etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
@@ -6170,17 +6204,133 @@ function process_all(object)
    end
 
 -- ----------------------------------------------------------------------------
+-- If we know that something is a building=office, and it has a name, but is
+-- not already known as an amenity, office or shop, add office=nonspecific.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["building"] == "office" ) and
+       ( object.tags["name"]     ~= nil      ) and
+       ( object.tags["amenity"]  == nil      ) and
+       ( object.tags["office"]   == nil      ) and
+       ( object.tags["shop"]     == nil      )) then
+      object = append_nonqa( object, "office building" )
+      object.tags["man_made"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Offices that we don't know the type of.  
 -- ----------------------------------------------------------------------------
-   if (( object.tags["office"]     == "company"           ) or
+   if (( object.tags["amenity"]    == "office"            ) or
+       ( object.tags["commercial"] == "office"            ) or
        ( object.tags["shop"]       == "office"            ) or
-       ( object.tags["amenity"]    == "office"            ) or
+       ( object.tags["office"]     == "yes"               )) then
+      object.tags["office"] = "office"
+   end
+
+   if (( object.tags["office"]     == "company"           ) or
        ( object.tags["office"]     == "research"          ) or
-       ( object.tags["office"]     == "yes"               ) or
-       ( object.tags["commercial"] == "office"            )) then
+       ( object.tags["office"]     == "office"            )) then
+      object = append_nonqa( object, object.tags["office"] )
       object.tags["amenity"] = nil
       object.tags["man_made"] = nil
       object.tags["office"] = nil
+      object.tags["shop"] = nil
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Sometimes lifeboats are mapped in the see separately to the 
+-- lifeboat station, and sometimes they're tagged _on_ the lifeboat station.
+-- If the latter, show the lifeboat station.
+-- Also detect lifeboats and coastguards tagged only as seamarks.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["seamark:rescue_station:category"] == "lifeboat_on_mooring" ) and
+       ( object.tags["amenity"]                         == nil                   )) then
+      object = append_nonqa( object, "lifeboat" )
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["seamark:type"] == "coastguard_station" ) and
+       ( object.tags["amenity"]      == nil                  )) then
+      object = append_nonqa( object, "coastguard station" )
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["amenity"]   == "lifeboat"         ) and
+       ( object.tags["emergency"] == "lifeboat_station" )) then
+      object = append_nonqa( object, "lifeboat station" )
+      object = building_or_landuse( object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Similarly, various government offices.  Job Centres first.
+-- Add unnamedcommercial landuse to give non-building areas a background.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"]    == "job_centre"              ) or
+       (  object.tags["amenity"]    == "jobcentre"               ) or
+       (  object.tags["amenity"]    == "public_building"         ) or
+       (  object.tags["amenity"]    == "courthouse"              ) or
+       (  object.tags["amenity"]    == "register_office"         ) or
+       (  object.tags["amenity"]    == "townhall"                ) or
+       (  object.tags["amenity"]    == "village_hall"            ) or
+       (  object.tags["amenity"]    == "crematorium"             ) or
+       (  object.tags["amenity"]    == "hall"                    ) or
+       (  object.tags["amenity"]    == "fire_station"            ) or
+       (  object.tags["amenity"]    == "lifeboat_station"        ) or
+       (  object.tags["amenity"]    == "coast_guard"             ) or
+       (  object.tags["amenity"]    == "archive"                 )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+   if (  object.tags["building"]   == "village_hall"            ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( object )
+   end
+
+   if ((  object.tags["emergency"]  == "coast_guard"             ) or
+       (  object.tags["emergency"]  == "fire_station"            ) or
+       (  object.tags["emergency"]  == "lifeboat_station"        ) or
+       (  object.tags["emergency"]  == "lifeguard_tower"         )) then
+      object = append_nonqa( object, object.tags["emergency"] )
+      object = building_or_landuse( object )
+   end
+
+   if (  object.tags["government"] == "police"                  ) then
+      object = append_nonqa( object, object.tags["government"] )
+      object = building_or_landuse( object )
+   end
+
+   if ((  object.tags["name"]       == "Jobcentre Plus"          ) or
+       (  object.tags["name"]       == "JobCentre Plus"          ) or
+       (  object.tags["name"]       == "Job Centre Plus"         )) then
+      object = append_nonqa( object, "job centre" )
+      object = building_or_landuse( object )
+   end
+
+   if ((  object.tags["office"]     == "government"              ) or
+       (  object.tags["office"]     == "police"                  ) or
+       (  object.tags["office"]     == "administrative"          ) or
+       (  object.tags["office"]     == "register"                ) or
+       (  object.tags["office"]     == "council"                 ) or
+       (  object.tags["office"]     == "drainage_board"          ) or
+       (  object.tags["office"]     == "forestry"                ) or
+       (  object.tags["office"]     == "justice"                 )) then
+      object = append_nonqa( object, object.tags["office"] )
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["emergency"]  == "lifeguard"              )  and
+       (( object.tags["lifeguard"] == "base"                  )   or
+        ( object.tags["lifeguard"] == "tower"                 ))) then
+      object = append_nonqa( object, "lifeguard" )
+      object = building_or_landuse( object )
+   end
+
+   if (( object.tags["emergency_service"] == "air"             )  and
+       ( object.tags["office"]            == nil               )  and
+       ( object.tags["building"]          ~= nil               )) then
+      object = append_nonqa( object, "air emergency" )
       object = building_or_landuse( object )
    end
 

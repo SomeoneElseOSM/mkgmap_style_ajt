@@ -5,7 +5,7 @@
 -- ----------------------------------------------------------------------------
 -- "all" function
 -- ----------------------------------------------------------------------------
-function process_all(object)
+function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Some changes based on style.lua
 -- ----------------------------------------------------------------------------
@@ -532,7 +532,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"]    = nil
       object.tags["office"]     = "yes"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -543,7 +543,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"]    = nil
       object.tags["office"]     = "yes"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -593,7 +593,7 @@ function process_all(object)
       object.tags["amenity"] = "public_building"
       object.tags["diplomatic"] = nil
       object.tags["office"]     = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -643,7 +643,7 @@ function process_all(object)
 -- it was set to some value that would not.
 -- ----------------------------------------------------------------------------
       object.tags["office"] = "yes"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -652,7 +652,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "observatory" ) then
       object = append_nonqa( object, "observatory" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -661,7 +661,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "petroleum_well" ) then
       object = append_nonqa( object, "petroleum well" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -670,7 +670,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "pumping_station" ) then
       object = append_nonqa( object, "pumping station" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -688,7 +688,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "water_works" ) then
       object = append_nonqa( object, "water works" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -697,7 +697,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "works" ) then
       object = append_nonqa( object, "works" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1105,13 +1105,13 @@ function process_all(object)
          object.tags["railway"] = nil
       end
 
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["amenity"] == "bus_station"    ) or
        ( object.tags["amenity"] == "ferry_terminal" )) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1121,17 +1121,17 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["railway"] == "tram_stop" ) then
       object = append_nonqa( object, object.tags["railway"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["highway"] == "bus_stop" ) then
       object = append_nonqa( object, object.tags["highway"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["amenity"] == "taxi" ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1227,7 +1227,7 @@ function process_all(object)
        (  object.tags["former_amenity"]    == "old_pub"         )   or
        (  object.tags["former:amenity"]    == "pub"             )   or
        (  object.tags["old_amenity"]       == "pub"             )) then
-      object.tags["disused:amenity"] = "pub"
+      object.tags["amenity"] = "disused_pub"
       object.tags["amenity:disused"] = nil
       object.tags["disused"] = nil
       object.tags["disused:pub"] = nil
@@ -1303,7 +1303,7 @@ function process_all(object)
       object = append_nonqa( object, "craft cider" )
       object.tags["shop"] = "specialty"
       object.tags["craft"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1315,7 +1315,7 @@ function process_all(object)
       object = append_nonqa( object, "craft brewery" )
       object.tags["shop"] = "specialty"
       object.tags["craft"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1325,7 +1325,7 @@ function process_all(object)
    if ( object.tags["industrial"] == "brewery" ) then
       object = append_nonqa( object, "industrial brewery" )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1406,7 +1406,7 @@ function process_all(object)
       object.tags["amenity"] = nil
       object = append_nonqa( object, "closed covid" )
       object.tags["real_ale"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1475,7 +1475,7 @@ function process_all(object)
          end
       end
 
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ((( object.tags["amenity"] == "bar" )  or
@@ -1538,7 +1538,7 @@ function process_all(object)
          object = append_nonqa( object, beer_appendix )
       end
 
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1558,7 +1558,7 @@ function process_all(object)
          object = append_nonqa( object, "restaurant" )
       end
 
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1572,7 +1572,7 @@ function process_all(object)
          object = append_nonqa( object, "cafe" )
       end
 
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1583,7 +1583,7 @@ function process_all(object)
        ( object.tags["amenity"] == "post_box"    )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = "post_office"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1625,7 +1625,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["amenity"] = "bank"
       object.tags["shop"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1639,7 +1639,7 @@ function process_all(object)
        ( object.tags["amenity"] == "doctor"                  )) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "doctors" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1654,7 +1654,7 @@ function process_all(object)
    if ( object.tags["amenity"] == "dentist" ) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "dentist" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1667,7 +1667,7 @@ function process_all(object)
 
    if ( object.tags["amenity"] == "hospital" ) then
       object = append_nonqa( object, "hospital" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1692,7 +1692,7 @@ function process_all(object)
    if ( object.tags["amenity"] == "clinic" ) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "clinic" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1703,7 +1703,7 @@ function process_all(object)
        ( object.tags["shop"] == "department"       )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "department_store"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1719,7 +1719,7 @@ function process_all(object)
    if ( object.tags["shop"] == "supermarket" ) then
       object = append_nonqa( object, object.tags["shop"] )
       object = append_eco( object )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1733,7 +1733,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["shop"] )
       object = append_eco( object )
       object.tags["shop"] = "general"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1748,7 +1748,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["shop"] )
       object = append_eco( object )
       object.tags["shop"] = "general"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1776,7 +1776,7 @@ function process_all(object)
        ( object.tags["shop"] == "retail area"     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"]    = "mall"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1793,7 +1793,7 @@ function process_all(object)
        (( object.tags["amenity"]    == "clinic"                     )  and
         ( object.tags["pharmacy"]   == "yes"                        ))) then
       object.tags["amenity"] = "pharmacy"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["amenity"] == "pharmacy" ) then
@@ -1802,7 +1802,7 @@ function process_all(object)
 
    if ( object.tags["shop"] == "chemist" ) then
       object = append_nonqa( object, "chemist" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1811,14 +1811,14 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "library" ) then
       object = append_nonqa( object, "library" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["amenity"] == "book_exchange"   ) or
        ( object.tags["amenity"] == "public_bookcase" )) then
       object.tags["amenity"] = "library"
       object = append_nonqa( object, "book exchange" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1855,7 +1855,7 @@ function process_all(object)
    if (( object.tags["tourism"] == "zoo"      ) or
        ( object.tags["tourism"] == "aquarium" )) then
       object = append_nonqa( object, object.tags["tourism"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1864,7 +1864,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "conference_Centre" ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1882,7 +1882,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["craft"] == "winery" ) then
       object = append_nonqa( object, object.tags["craft"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1960,7 +1960,7 @@ function process_all(object)
          object.tags["aeroway"] = nil
       end
 
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1993,7 +1993,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["aeroway"] == "terminal" ) then
       object = append_nonqa( object, object.tags["aeroway"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3511,7 +3511,7 @@ function process_all(object)
         ( object.tags["guest_house"] == "bed_and_breakfast" ))) then
       object = append_nonqa( object, "bed and breakfast" )
       object.tags["tourism"] = "bed_and_breakfast"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3536,7 +3536,7 @@ function process_all(object)
        ( object.tags["tourism"]   == "aparthotel"              )) then
       object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "guest_house"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3595,7 +3595,7 @@ function process_all(object)
        ( object.tags["disused:railway"]   == "station" )) then
       object = append_nonqa( object, "historic station" )
       object.tags["man_made"] = "thing"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3700,7 +3700,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"]   == "nightclub"   ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3710,14 +3710,14 @@ function process_all(object)
    if (( object.tags["amenity"] == "theatre"      )  and
        ( object.tags["theatre"] == "concert_hall" )) then
       object.tags["amenity"] = object.tags["theatre"]
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ((  object.tags["amenity"] == "concert_hall"  ) or
        (  object.tags["amenity"] == "music_venue"   )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = "concert_hall"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3948,7 +3948,7 @@ function process_all(object)
        ( object.tags["shop"]   == "convenience;alcohol" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "convenience"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3960,7 +3960,7 @@ function process_all(object)
        ( object.tags["shop"] == "footwear"     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "shoes"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3992,7 +3992,7 @@ function process_all(object)
        ( object.tags["shop"] == "dressmaker"   )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "clothes"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4015,7 +4015,7 @@ function process_all(object)
        ( object.tags["shop"]    == "electronics_repair"      )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4026,7 +4026,7 @@ function process_all(object)
        ( object.tags["name"]    == "City Electrical Factors" )) then
       object = append_nonqa( object, "electrical" )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["shop"]    == "electrical"              ) or
@@ -4046,7 +4046,7 @@ function process_all(object)
        ( object.tags["shop"]    == "electricals"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4056,7 +4056,7 @@ function process_all(object)
    if ( object.tags["amenity"]   == "boat_rental" ) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4068,7 +4068,7 @@ function process_all(object)
        ( object.tags["shop"]   == "tattoo;piercing" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4079,7 +4079,7 @@ function process_all(object)
        ( object.tags["shop"]   == "piano"              )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4094,7 +4094,7 @@ function process_all(object)
        ( object.tags["shop"]   == "locksmiths" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4120,7 +4120,7 @@ function process_all(object)
        ( object.tags["shop"]    == "funeral_directors"   )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4153,7 +4153,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = append_eco( object )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4172,7 +4172,7 @@ function process_all(object)
        ( object.tags["shop"]    == "photographer"       )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4186,7 +4186,7 @@ function process_all(object)
        ( object.tags["shop"] == "cash"               )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4203,7 +4203,7 @@ function process_all(object)
        ( object.tags["shop"]   == "fancy_dress"    )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4226,7 +4226,7 @@ function process_all(object)
        ( object.tags["shop"]    == "council_house"     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4243,7 +4243,7 @@ function process_all(object)
        ( object.tags["shop"]   == "travel"        )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4278,7 +4278,7 @@ function process_all(object)
       object.tags["amenity"] = nil
       object.tags["craft"]   = nil
       object.tags["office"]  = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4291,7 +4291,7 @@ function process_all(object)
        ( object.tags["shop"] == "watches"   )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4324,7 +4324,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4346,7 +4346,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["amenity"]     == "chiropodist"                  ) or
@@ -4376,7 +4376,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["building"]    == "nursing_home"                 ) or
@@ -4390,7 +4390,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["craft"]       == "counsellor"                   ) then
@@ -4400,7 +4400,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["healthcare"]  == "chiropodist"                  ) or
@@ -4439,7 +4439,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["office"]      == "medical_supply"               ) then
@@ -4449,7 +4449,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["residential"] == "nursing_home"                 ) or
@@ -4462,7 +4462,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["shop"]        == "hearing_aids"                 ) or
@@ -4482,7 +4482,7 @@ function process_all(object)
       object.tags["craft"] = nil
       object.tags["healthcare"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4491,33 +4491,33 @@ function process_all(object)
    if ( object.tags["emergency"] == "defibrillator" ) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["man_made"] = "thing"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["emergency"]        == "rescue_equipment" )  and
        ( object.tags["rescue_equipment"] == "lifering"         )) then
       object = append_nonqa( object, object.tags["rescue_equipment"] )
       object.tags["man_made"] = "thing"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ((  object.tags["waterway"] == "life_ring" ) or
        (  object.tags["waterway"] == "life_belt" )) then
       object = append_nonqa( object, object.tags["waterway"] )
       object.tags["man_made"] = "thing"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["emergency"] == "life_ring" ) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["man_made"] = "thing"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["emergency"] == "fire_extinguisher" ) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["man_made"] = "thing"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4550,7 +4550,7 @@ function process_all(object)
        (   object.tags["shop"]  == "shopmobility"                )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4570,7 +4570,7 @@ function process_all(object)
        ( object.tags["shop"] == "ship_chandler"  )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "boat"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4673,7 +4673,7 @@ function process_all(object)
        ( object.tags["shop"]    == "performing_arts training" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4730,7 +4730,7 @@ function process_all(object)
        ( object.tags["shop"]    == "specialist_shop" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4793,7 +4793,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "burger;chicken;kebab;pizza"          ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_burger"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4814,7 +4814,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "fried_chicken"          ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_chicken"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4849,7 +4849,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "sushi"                  ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_chinese"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4866,7 +4866,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "turkish"              ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_kebab"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4880,7 +4880,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "pies"          ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_pie"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4892,7 +4892,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "pizza"      ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "restaurant_italian"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4921,7 +4921,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "indian;pizza"        ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_indian"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4947,7 +4947,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "italian_pizza"              ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_pizza"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4966,7 +4966,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "fish_and_chips;pizza"              ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_fish_and_chips"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -4977,7 +4977,7 @@ function process_all(object)
        ( object.tags["cuisine"] == "steak_house" )) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "restaurant_steak"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5003,7 +5003,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "ice_cream;tea;coffee"            ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_ice_cream"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5024,7 +5024,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "coffee_shop;ice_cream"     ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "cafe"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5038,7 +5038,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "sandwich;coffee_shop" ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "cafe"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5049,7 +5049,7 @@ function process_all(object)
        ( object.tags["cuisine"] == "indian"      )) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "restaurant_indian"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5065,7 +5065,7 @@ function process_all(object)
         ( object.tags["cuisine"] == "korean"     ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "restaurant_chinese"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5233,7 +5233,7 @@ function process_all(object)
        ( object.tags["shop"]    == "garden_machines"            )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"]    = "garden_centre"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5376,7 +5376,7 @@ function process_all(object)
        ( object.tags["shop"]   == "windows"                     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"]    = "doityourself"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5387,7 +5387,7 @@ function process_all(object)
        ( object.tags["shop"] == "hairdresser;beauty" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5405,7 +5405,7 @@ function process_all(object)
        ( object.tags["shop"]   == "fitness_equipment" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "sports"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5417,7 +5417,7 @@ function process_all(object)
        ( object.tags["shop"]   == "e-cigarette" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5468,7 +5468,7 @@ function process_all(object)
        ( object.tags["shop"]         == "tanning_salon"     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "chemist"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5505,7 +5505,7 @@ function process_all(object)
        ( object.tags["shop"]    == "adult_gaming_centre" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5518,7 +5518,7 @@ function process_all(object)
        ( object.tags["shop"]  == "hifi"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5535,7 +5535,7 @@ function process_all(object)
        ( object.tags["shop"]  == "telephone"       )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "computer"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5546,7 +5546,7 @@ function process_all(object)
        ( object.tags["shop"]  == "butcher;greengrocer" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "butcher"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5585,7 +5585,7 @@ function process_all(object)
        ( object.tags["shop"]   == "pottery"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "gift"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5598,7 +5598,7 @@ function process_all(object)
        ( object.tags["shop"]   == "record"              )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "music"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5614,7 +5614,7 @@ function process_all(object)
        ( object.tags["shop"]    == "whisky"          )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "alcohol"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5625,7 +5625,7 @@ function process_all(object)
        ( object.tags["shop"] == "farm_shop" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5636,7 +5636,7 @@ function process_all(object)
        ( object.tags["shop"] == "pastry" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "bakery"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5648,7 +5648,7 @@ function process_all(object)
        ( object.tags["shop"]    == "tea"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5681,7 +5681,7 @@ function process_all(object)
        ( object.tags["shop"]    == "design"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5704,7 +5704,7 @@ function process_all(object)
        ( object.tags["shop"]   == "clothing_alterations" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5725,7 +5725,7 @@ function process_all(object)
       object = append_nonqa( object, object.tags["shop"] )
       object = append_eco( object )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["shop"]       == "alternative_medicine"    ) or
@@ -5742,7 +5742,7 @@ function process_all(object)
        ( object.tags["shop"]       == "meditation"              )) then
       object = append_nonqa( object, "alt health" )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5757,7 +5757,7 @@ function process_all(object)
        ( object.tags["shop"]   == "maps"            )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "books"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5769,7 +5769,7 @@ function process_all(object)
        ( object.tags["shop"]   == "office_supplies" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5827,7 +5827,7 @@ function process_all(object)
        ( object.tags["shop"]    == "animal wellness"         )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5839,7 +5839,7 @@ function process_all(object)
        ( object.tags["shop"] == "outpost"   )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "catalogue"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5850,7 +5850,7 @@ function process_all(object)
        ( object.tags["shop"]  == "flower"  )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "florist"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5862,7 +5862,7 @@ function process_all(object)
        ( object.tags["shop"] == "electric_bicycle" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "bicycle"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5871,7 +5871,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "car_sharing" ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5880,7 +5880,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "car_wash" ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5889,7 +5889,7 @@ function process_all(object)
 -- ----------------------------------------------------------------------------
    if ( object.tags["emergency"] == "phone" ) then
       object = append_nonqa( object, object.tags["emergency"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5905,7 +5905,7 @@ function process_all(object)
        ( object.tags["amenity"] == "storage_rental"       )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5933,7 +5933,7 @@ function process_all(object)
        ( object.tags["shop"]    == "key_cutter;shoe_repair"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5957,7 +5957,7 @@ function process_all(object)
       object.tags["shop"] = "specialty"
       object.tags["amenity"] = nil
       object.tags["office"]  = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -5983,7 +5983,7 @@ function process_all(object)
        ( object.tags["shop"]    == "motorcycle_rental"            )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_rental"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6016,7 +6016,7 @@ function process_all(object)
        (  object.tags["shop"]    == "motorcycle_parts"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_parts"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6048,7 +6048,7 @@ function process_all(object)
        ( object.tags["shop"]    == "motorcycle_repair"  )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car_repair"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6058,7 +6058,7 @@ function process_all(object)
    if ( object.tags["amenity"] == "driving_school" ) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6076,7 +6076,7 @@ function process_all(object)
          ( object.tags["agrarian"] == "machine_parts;agricultural_machinery"             ))) then
       object.tags["shop"] = "car"
       object = append_nonqa( object, "agricultural machinery" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["shop"]    == "car"                          )  or
@@ -6099,7 +6099,7 @@ function process_all(object)
        ( object.tags["shop"]    == "atv"                          )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "car"
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6180,7 +6180,7 @@ function process_all(object)
       object.tags["office"] = nil
       object.tags["shop"] = nil
       object = append_nonqa( object, "office" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6200,7 +6200,7 @@ function process_all(object)
       object.tags["amenity"] = nil
       object.tags["man_made"] = nil
       object.tags["office"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6214,7 +6214,7 @@ function process_all(object)
        ( object.tags["shop"]     == nil      )) then
       object = append_nonqa( object, "office building" )
       object.tags["man_made"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6235,7 +6235,7 @@ function process_all(object)
       object.tags["man_made"] = nil
       object.tags["office"] = nil
       object.tags["shop"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6247,19 +6247,24 @@ function process_all(object)
    if (( object.tags["seamark:rescue_station:category"] == "lifeboat_on_mooring" ) and
        ( object.tags["amenity"]                         == nil                   )) then
       object = append_nonqa( object, "lifeboat" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["seamark:type"] == "coastguard_station" ) and
        ( object.tags["amenity"]      == nil                  )) then
       object = append_nonqa( object, "coastguard station" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["amenity"]   == "lifeboat"         ) and
-       ( object.tags["emergency"] == "lifeboat_station" )) then
-      object = append_nonqa( object, "lifeboat station" )
-      object = building_or_landuse( object )
+   if ( object.tags["amenity"]   == "lifeboat" ) then
+      if ( object.tags["emergency"] == "lifeboat_station" ) then
+         object = append_nonqa( object, "lifeboat station" )
+      else
+         object.tags["man_made"] = "thing"
+         object = append_nonqa( object, "lifeboat" )
+      end
+
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6280,12 +6285,12 @@ function process_all(object)
        (  object.tags["amenity"]    == "coast_guard"             ) or
        (  object.tags["amenity"]    == "archive"                 )) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (  object.tags["building"]   == "village_hall"            ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ((  object.tags["emergency"]  == "coast_guard"             ) or
@@ -6293,19 +6298,19 @@ function process_all(object)
        (  object.tags["emergency"]  == "lifeboat_station"        ) or
        (  object.tags["emergency"]  == "lifeguard_tower"         )) then
       object = append_nonqa( object, object.tags["emergency"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (  object.tags["government"] == "police"                  ) then
       object = append_nonqa( object, object.tags["government"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ((  object.tags["name"]       == "Jobcentre Plus"          ) or
        (  object.tags["name"]       == "JobCentre Plus"          ) or
        (  object.tags["name"]       == "Job Centre Plus"         )) then
       object = append_nonqa( object, "job centre" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if ((  object.tags["office"]     == "government"              ) or
@@ -6317,21 +6322,21 @@ function process_all(object)
        (  object.tags["office"]     == "forestry"                ) or
        (  object.tags["office"]     == "justice"                 )) then
       object = append_nonqa( object, object.tags["office"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["emergency"]  == "lifeguard"              )  and
        (( object.tags["lifeguard"] == "base"                  )   or
         ( object.tags["lifeguard"] == "tower"                 ))) then
       object = append_nonqa( object, "lifeguard" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
    if (( object.tags["emergency_service"] == "air"             )  and
        ( object.tags["office"]            == nil               )  and
        ( object.tags["building"]          ~= nil               )) then
       object = append_nonqa( object, "air emergency" )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6454,7 +6459,7 @@ function process_all(object)
       end
 
       object.tags["shop"] = nil
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -6475,7 +6480,7 @@ function process_all(object)
         ( object.tags["shelter_type"] == "parking"          )  or
         ( object.tags["shelter_type"] == "animal_shelter"   ))) then
       object = append_nonqa( object, object.tags["shelter_type"] )
-      object = building_or_landuse( object )
+      object = building_or_landuse( objtype, object )
    end
 
   if (( object.tags["amenity"]      == "shelter"            ) and
@@ -6589,8 +6594,8 @@ end
 -- ----------------------------------------------------------------------------
 -- "node" function
 -- ----------------------------------------------------------------------------
-function ott.process_node(object)
-    object = process_all(object)
+function ott.process_node( object )
+    object = process_all( 'n', object )
 
 -- ----------------------------------------------------------------------------
 -- Slipways
@@ -6851,8 +6856,8 @@ end
 -- ----------------------------------------------------------------------------
 -- "way" function
 -- ----------------------------------------------------------------------------
-function ott.process_way(object)
-    object = process_all(object)
+function ott.process_way( object )
+    object = process_all( 'w', object )
 
 -- ----------------------------------------------------------------------------
 -- From style.lua
@@ -7502,8 +7507,8 @@ end
 -- ----------------------------------------------------------------------------
 -- "relation" function
 -- ----------------------------------------------------------------------------
-function ott.process_relation(object)
-    object = process_all(object)
+function ott.process_relation( object )
+    object = process_all( 'r', object )
     return object.tags
 end
 
@@ -7539,15 +7544,43 @@ end
 
 -- ----------------------------------------------------------------------------
 -- "building or landuse" function
+--
+-- nodes with no other tag are mapped to "man_made=thing"
+-- "0x2f14" is searchable as "Others / Social Service"
+--
 -- Many tags (for example, man_made=observatory) may be applied either to a 
--- building or a wider landuse area.
+-- building or a wider landuse area.  
+-- If there is a no building tag, set a landuse tag that will appear.
 -- ----------------------------------------------------------------------------
-function building_or_landuse( object )
-   if (( object.tags["building"] == nil  ) or
-       ( object.tags["building"] == "no" )) then
-      object.tags["landuse"] = "industrial"
+function building_or_landuse( objtype, object )
+   if ( objtype == 'n' ) then
+      if (( object.tags["aeroway"]   == nil  ) and
+          ( object.tags["amenity"]   == nil  ) and
+          ( object.tags["barrier"]   == nil  ) and
+          ( object.tags["craft"]     == nil  ) and
+          ( object.tags["emergency"] == nil  ) and
+          ( object.tags["highway"]   == nil  ) and
+          ( object.tags["historic"]  == nil  ) and
+          ( object.tags["landuse"]   == nil  ) and
+          ( object.tags["leisure"]   == nil  ) and
+          ( object.tags["man_made"]  == nil  ) and
+          ( object.tags["natural"]   == nil  ) and
+          ( object.tags["office"]    == nil  ) and
+          ( object.tags["place"]     == nil  ) and
+          ( object.tags["railway"]   == nil  ) and
+          ( object.tags["shop"]      == nil  ) and
+          ( object.tags["sport"]     == nil  ) and
+          ( object.tags["tourism"]   == nil  ) and
+          ( object.tags["waterway"]  == nil  )) then
+         object.tags["man_made"] = "thing"
+      end
    else
-      object.tags["building"] = "yes"
+      if (( object.tags["building"] == nil  ) or
+          ( object.tags["building"] == "no" )) then
+         object.tags["landuse"] = "industrial"
+      else
+         object.tags["building"] = "yes"
+      end
    end
 
    return object

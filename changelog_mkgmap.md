@@ -1,6 +1,10 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## 12/02/2023
+Handle more office types from style.lua, with a suffix.
+Append "man_made=thing" (which comes through as "Others / Social Service") to nodes we have named with no other tag.
+
 ## 09/02/2023
 Added a name parameter to the "natural=wood" entry in "points" to avoid "Woods" appearing.
 Added a name parameter to the "natural=wetland" entry in "points" to avoid "Swamp" appearing.
@@ -9,7 +13,6 @@ Various other nonspecific shops are mapped to "Specialty".
 Nonspecific healthcare is handled via a suffix.
 Map craft and industrial breweries to "Specialty" with a suffix.
 Handle more shop types from style.lua, mostly as "Specialty" with a suffix.
-Handle more office types from style.lua, with a suffix.
 
 ## 06/02/2023
 Mop up some of the values previously treated as wildcards.

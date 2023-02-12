@@ -82,20 +82,17 @@ Various other stones are consolidated into "man_made=marker" and any inscription
 Mass rocks are consolidated into "man_made=marker" and "(mass rock)" is appended to the name.
 Clocks (tower, pedestal and sundial) are shown as a dot with an appropriate suffix.
 Left luggage, parcel lockers and vending machines are all shown as a dot with an appropriate suffix.
-Pianos and musical instruments are shown.
+Pianos and musical instruments are shown with a suffix.
 Motorcycle and bicycle parking are shown, with a suffix if for pay.  
 Laybies are shown as parking.
 Toilets are shown with a suffix indicating pay or free, male or female etc.
-Show historic=monument, with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre", information offices, audioguides.
-Show historic mines as ruins.  Also show non-historic mines.
-Show plaques and cairns.
-Show chimneys.
-Show hogweed.
-Various the references of various points, including trig points.
-Show wind turbines and wind pumps.
-Show vent shafts.
-Show horse mounting blocks.
-Show B&Bs and self catering etc.
+"historic=monument" are shown with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre", information offices, audioguides.
+Historic mines are shown as ruins.  Also show non-historic mines are shown.
+Plaques and cairns, chimneys, and hogweed are all shown.
+Various points that have references (e.g. trig points) have that "ref" shown.
+Wind turbines and wind pumps, vent shafts and horse mounting blocks are all shown with an appropriate suffix.
+B&Bs and self catering etc. are shown.
+If we've named a node, and it has no other useful tag, it'll appear as a named point (actually searchable via "Others / Social Service").
 
 ### Former telephone boxes
 

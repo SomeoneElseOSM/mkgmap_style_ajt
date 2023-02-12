@@ -6289,7 +6289,7 @@ function process_all( objtype, object )
    end
 
    if (  object.tags["building"]   == "village_hall"            ) then
-      object = append_nonqa( object, object.tags["amenity"] )
+      object = append_nonqa( object, "village hall" )
       object = building_or_landuse( objtype, object )
    end
 

@@ -793,6 +793,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Send parks through with "park" as a suffix.
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "park" ) then
+      object = append_nonqa( object, "park" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Map various landuse to park
 --
 -- All handled in the style like this:
@@ -1000,6 +1008,19 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- (end of things that map to farmyard)
 -- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- Send pitches through with "pitch" as a suffix, 
+-- with the sport appended to the name.
+-- 0x2c08 is searchable via "Attractions / Arena or Track"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "pitch" ) then
+      object = append_nonqa( object, "pitch" )
+
+      if ( object.tags["sport"] ~= nil ) then
+         object = append_nonqa( object, object.tags["sport"] )
+      end
+   end
 
 -- ----------------------------------------------------------------------------
 -- leisure=dog_park is used a few times.  Map to pitch to differentiate from
@@ -1842,10 +1863,16 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Theme parks
+-- We only bother with these if they have a name.  Ones without a name may be
+-- "amusement" areas in e.g. a larger holiday park.
 -- "0x2c01" is searchable via "Attractions / Amusement Park or T"
 -- ----------------------------------------------------------------------------
    if ( object.tags["tourism"] == "theme_park" ) then
-      object = append_nonqa( object, "theme park" )
+      if ( object.tags["name"] == nil ) then
+         object.tags["tourism"] = nil
+      else
+         object = append_nonqa( object, "theme park" )
+      end
    end
 
 -- ----------------------------------------------------------------------------
@@ -1943,7 +1970,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Aerodrome size.
--- Large public airports should be shown as "real airports".  Others should not.
+-- Large public airports should be shown as "real airports".  
+-- Others should not - gliding clubs etc. should appear as public sport 
+-- airports; miltiary ones do not, but all go through "building_or_landuse" at
+-- the end.
 -- "0x2f04" is searchable via "Transportation / Air Transportation"
 -- "0x2d0b" is searchable via "Recreation / public-sport-airport"
 -- ----------------------------------------------------------------------------
@@ -1955,9 +1985,12 @@ function process_all( objtype, object )
          object = append_nonqa( object, object.tags["iata"] )
          object = append_nonqa( object, object.tags["aeroway"] )
       else
-         object = append_nonqa( object, "airstrip" )
-         object.tags["sport"] = "airport"
-         object.tags["aeroway"] = nil
+         if (( object.tags["aerodrome:type"] ~= "military"  ) and
+             ( object.tags["military"]       == nil         )) then
+            object = append_nonqa( object, "airstrip" )
+            object.tags["sport"] = "airport"
+            object.tags["aeroway"] = nil
+         end
       end
 
       object = building_or_landuse( objtype, object )
@@ -2328,15 +2361,26 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Render amenity=leisure_centre as leisure=sports_centre
+-- Handle potentially conflicting leisure tags.
+-- Remove sport tags from genuinely disused facilities
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "leisure_centre" ) then
-      object.tags["leisure"] = "sports_centre"
+   if (( object.tags["leisure"]         ~= nil  ) and
+       ( object.tags["disused:leisure"] ~= nil  )) then
+      object.tags["disused:leisure"] = nil
+   end
+
+   if ( object.tags["disused:leisure"] ~= nil  ) then
+      object.tags["sport"] = nil
    end
 
 -- ----------------------------------------------------------------------------
 -- Golf (and sandpits)
+-- "0x2d05" is searchable via "Recreation / Golf Course
 -- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "golf_course"  ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+   end
+
    if (( object.tags["golf"]    == "bunker" )  and
        ( object.tags["natural"] == nil      )) then
       object.tags["natural"] = "sand"
@@ -2394,6 +2438,74 @@ function process_all( objtype, object )
        ( object.tags["leisure"] == nil        )) then
       object.tags["leisure"] = "garden"
       object = append_nonqa( object, "golf practice" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Skiing
+-- "0x2d06" is searchable via "Recreation / Skiing Center or Reso
+-- ----------------------------------------------------------------------------
+   if ( object.tags["sport"] == "skiing" ) then
+      object = append_nonqa( object, object.tags["sport"] )
+      object.tags["landuse"] = nil
+      object.tags["leisure"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Bowling Alleys
+-- "0x2d07" is searchable via "Recreation / Bowling Center
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "bowling_alley" ) then
+      object.tags["sport"] = object.tags["leisure"]
+   end
+
+   if (( object.tags["sport"] == "9pin"          ) or
+       ( object.tags["sport"] == "10pin"         ) or
+       ( object.tags["sport"] == "bowling_alley" )) then
+      object = append_nonqa( object, object.tags["sport"] )
+      object.tags["leisure"] = nil
+      object.tags["sport"] = "10pin"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Ice Skating
+-- "0x2d08" is searchable via "Recreation / Ice Skating"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "ice_rink"  ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["sport"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["sport"] == "ice_skating" ) then
+      object.tags["leisure"] = "ice_rink"
+      object = append_nonqa( object, object.tags["sport"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Swimming pools
+-- "0x2d09" is searchable via "Recreation / Swimming Pool"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["sport"] == "swimming"  ) then
+      object = append_nonqa( object, object.tags["sport"] )
+      object.tags["leisure"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- leisure centres and sports centres
+-- "0x2d0a" is searchable via "Recreation / Sport or Fitness Cen"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "leisure_centre" ) then
+      object.tags["leisure"] = object.tags["amenity"]
+   end
+
+   if (( object.tags["leisure"] == "sports_centre"  ) or
+       ( object.tags["leisure"] == "leisure_centre" )) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------

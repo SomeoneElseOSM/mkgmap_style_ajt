@@ -2679,6 +2679,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["sport"] == "skiing" ) then
       object = append_nonqa( object, object.tags["sport"] )
+      object.tags["amenity"] = nil
       object.tags["landuse"] = nil
       object.tags["leisure"] = nil
       object = building_or_landuse( objtype, object )
@@ -2692,10 +2693,13 @@ function process_all( objtype, object )
       object.tags["sport"] = object.tags["leisure"]
    end
 
-   if (( object.tags["sport"] == "9pin"          ) or
+   if (( object.tags["sport"] == "bowls"         ) or
+       ( object.tags["sport"] == "9pin"          ) or
        ( object.tags["sport"] == "10pin"         ) or
+       ( object.tags["sport"] == "bowling"       ) or
        ( object.tags["sport"] == "bowling_alley" )) then
       object = append_nonqa( object, object.tags["sport"] )
+      object.tags["amenity"] = nil
       object.tags["leisure"] = nil
       object.tags["sport"] = "10pin"
       object = building_or_landuse( objtype, object )
@@ -2707,11 +2711,13 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"] == "ice_rink"  ) then
       object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["amenity"] = nil
       object.tags["sport"] = nil
       object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["sport"] == "ice_skating" ) then
+      object.tags["amenity"] = nil
       object.tags["leisure"] = "ice_rink"
       object = append_nonqa( object, object.tags["sport"] )
       object = building_or_landuse( objtype, object )
@@ -2723,12 +2729,15 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["sport"] == "swimming"  ) then
       object = append_nonqa( object, object.tags["sport"] )
+      object.tags["amenity"] = nil
       object.tags["leisure"] = nil
       object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
 -- leisure centres and sports centres
+-- If an actual sport is more appropriate, it should have been handled above,
+-- and "amenity" and "leisure" cleared so as not to drop into here.
 -- "0x2d0a" is searchable via "Recreation / Sport or Fitness Cen"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "dojo"           ) or

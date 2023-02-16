@@ -3638,7 +3638,6 @@ function process_all( objtype, object )
        ( object.tags["tourism"]   == "cottage"                 ) or
        ( object.tags["tourism"]   == "holiday_village"         ) or
        ( object.tags["tourism"]   == "holiday_park"            ) or
-       ( object.tags["tourism"]   == "spa_resort"              ) or
        ( object.tags["tourism"]   == "accommodation"           ) or
        ( object.tags["tourism"]   == "holiday_accommodation"   ) or
        ( object.tags["tourism"]   == "holiday_lets"            ) or
@@ -3670,12 +3669,33 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- hostels and similar
--- "0x2b02" is searchable via "Lodging / Bed and Breakfast or""
+-- "0x2b02" is searchable via "Lodging / Bed and Breakfast or"
 -- ----------------------------------------------------------------------------
    if (( object.tags["tourism"] == "hostel"             ) or
        ( object.tags["tourism"] == "adventure_holiday"  )) then
       object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "hostel"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Resorts
+-- "0x2b04" is searchable via "Lodging / Resort"
+-- As well as "actual resorts" this also contains oddities like wilderness_hut.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tourism"]  == "wilderness_hut" ) or
+       ( object.tags["tourism"]  == "cabin"          ) or
+       ( object.tags["tourism"]  == "resort"         ) or
+       ( object.tags["tourism"]  == "spa_resort"     )) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["tourism"] = "resort"
+      object = building_or_landuse( objtype, object )
+   end
+
+   if (( object.tags["leisure"] == "water_park"  ) or
+       ( object.tags["leisure"] == "summer_camp" )) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["tourism"] = "resort"
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------

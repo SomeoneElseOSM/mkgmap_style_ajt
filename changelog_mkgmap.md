@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Substantially improve the mapping of "community" data - both the mapping ("community / community center" rather than "shop / specialty") and the suffix (if there is "social_facility", use that).
+
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.
 Don't show unnamed theme parks.

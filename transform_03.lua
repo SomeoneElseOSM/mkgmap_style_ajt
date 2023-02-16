@@ -1862,6 +1862,110 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Other nonspecific leisure.  
+-- qqq these will all need handling eventually, but no code here yet
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]  == "youth_club"           ) or
+       ( object.tags["amenity"]  == "youth_centre"         ) or
+       ( object.tags["amenity"]  == "social_club"          ) or
+       ( object.tags["leisure"]  == "social_club"          ) or
+       ( object.tags["amenity"]  == "working_mens_club"    ) or
+       ( object.tags["amenity"]  == "club"                 ) or
+       ( object.tags["amenity"]  == "gym"                  ) or
+       ( object.tags["leisure"]  == "fitness_centre"       ) or
+       ( object.tags["shop"]     == "fitness"              ) or
+       ( object.tags["amenity"]  == "scout_hut"            ) or
+       ( object.tags["building"] == "scout_hut"            ) or
+       ( object.tags["name"]     == "Scout Hut"            ) or
+       ( object.tags["name"]     == "Scout hut"            ) or
+       ( object.tags["amenity"]  == "scout_hall"           ) or
+       ( object.tags["name"]     == "Scout Hall"           ) or
+       ( object.tags["club"]     == "scout"                ) or
+       ( object.tags["club"]     == "scouts"               ) or
+       ( object.tags["club"]     == "sport"                ) or
+       ((( object.tags["club"]    == "yes"               )   or
+         ( object.tags["club"]    == "social"            )   or
+         ( object.tags["club"]    == "freemasonry"       )   or
+         ( object.tags["club"]    == "sailing"           )   or
+         ( object.tags["club"]    == "youth"             )   or
+         ( object.tags["club"]    == "politics"          )   or
+         ( object.tags["club"]    == "veterans"          )   or
+         ( object.tags["club"]    == "social_club"       )   or
+         ( object.tags["club"]    == "music"             )   or
+         ( object.tags["club"]    == "working_men"       )   or
+         ( object.tags["club"]    == "yachting"          )   or
+         ( object.tags["club"]    == "tennis"            )   or
+         ( object.tags["club"]    == "army_cadets"       )   or
+         ( object.tags["club"]    == "sports"            )   or
+         ( object.tags["club"]    == "rowing"            )   or
+         ( object.tags["club"]    == "football"          )   or
+         ( object.tags["club"]    == "snooker"           )   or
+         ( object.tags["club"]    == "fishing"           )   or
+         ( object.tags["club"]    == "sea_scout"         )   or
+         ( object.tags["club"]    == "conservative"      )   or
+         ( object.tags["club"]    == "golf"              )   or
+         ( object.tags["club"]    == "cadet"             )   or
+         ( object.tags["club"]    == "youth_movement"    )   or
+         ( object.tags["club"]    == "bridge"            )   or
+         ( object.tags["club"]    == "bowling"           )   or
+         ( object.tags["club"]    == "air_cadets"        )   or
+         ( object.tags["club"]    == "scuba_diving"      )   or
+         ( object.tags["club"]    == "model_railway"     )   or
+         ( object.tags["club"]    == "boat"              )   or
+         ( object.tags["club"]    == "card_games"        )   or
+         ( object.tags["club"]    == "girlguiding"       )   or
+         ( object.tags["club"]    == "guide"             )   or
+         ( object.tags["club"]    == "photography"       )   or
+         ( object.tags["club"]    == "sea_cadets"        )   or
+         ( object.tags["club"]    == "theatre"           )   or
+         ( object.tags["club"]    == "women"             )   or
+         ( object.tags["club"]    == "charity"           )   or
+         ( object.tags["club"]    == "bowls"             )   or
+         ( object.tags["club"]    == "military"          )   or
+         ( object.tags["club"]    == "model_aircraft"    )   or
+         ( object.tags["club"]    == "labour_club"       )   or
+         ( object.tags["club"]    == "boxing"            )   or
+         ( object.tags["club"]    == "game"              )   or
+         ( object.tags["club"]    == "automobile"        ))  and
+        (  object.tags["leisure"] == nil                  )  and
+        (  object.tags["amenity"] == nil                  )  and
+        (  object.tags["shop"]    == nil                  )  and
+        (  object.tags["name"]    ~= nil                  )) or
+       ((  object.tags["club"]    == "cricket"            )  and
+        (  object.tags["leisure"] == nil                  )  and
+        (  object.tags["amenity"] == nil                  )  and
+        (  object.tags["shop"]    == nil                  )  and
+        (  object.tags["landuse"] == nil                  )  and
+        (  object.tags["name"]    ~= nil                  )) or
+       ( object.tags["amenity"]  == "clubhouse"            ) or
+       ( object.tags["building"] == "clubhouse"            ) or
+       ( object.tags["amenity"]  == "club_house"           ) or
+       ( object.tags["building"] == "club_house"           ) or
+       ( object.tags["amenity"]  == "dancing_school"       ) or
+       ( object.tags["leisure"]  == "club"                 ) or
+       ( object.tags["leisure"]  == "dance"                ) or
+       (( object.tags["leisure"]        == nil            )  and
+        ( object.tags["amenity"]        == nil            )  and
+        ( object.tags["shop"]           == nil            )  and
+        ( object.tags["dance:teaching"] == "yes"          )) or
+       ( object.tags["leisure"]  == "climbing"             ) or
+       ( object.tags["leisure"]  == "high_ropes_course"    ) or
+       ( object.tags["sport"]    == "laser_tag"            ) or
+       ( object.tags["leisure"]  == "hackerspace"          ) or
+       ( object.tags["leisure"]  == "sailing_club"         ) or
+       ( object.tags["sport"]    == "model_aerodrome"      ) or
+       ( object.tags["leisure"]  == "firepit"              ) or
+       ( object.tags["amenity"]  == "public_bath"          ) or
+       ( object.tags["tourism"]  == "trail_riding_station" ) or
+       (( object.tags["building"] == "yes"                )  and
+        ( object.tags["amenity"]  == nil                  )  and
+        ( object.tags["sport"]    ~= nil                  )) or
+       (( object.tags["sport"]    == "yoga"               )  and
+        ( object.tags["shop"]     == nil                  )  and
+        ( object.tags["amenity"]  == nil                  ))) then
+   end
+
+-- ----------------------------------------------------------------------------
 -- Theme parks
 -- We only bother with these if they have a name.  Ones without a name may be
 -- "amusement" areas in e.g. a larger holiday park.
@@ -1886,10 +1990,18 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- amenity=conference_centre
+-- amenity=conference_centre etc.
 -- "0x2c09" is searchable via "Attractions / Hall or Auditorium"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "conference_Centre" ) then
+   if (( object.tags["amenity"]  == "events_venue"         ) or
+       ( object.tags["amenity"]  == "exhibition_centre"    ) or
+       ( object.tags["amenity"]  == "function_room"        ) or
+       ( object.tags["amenity"]  == "community_hall"       ) or
+       ( object.tags["amenity"]  == "church_hall"          ) or
+       ( object.tags["amenity"]  == "community_centre"     ) or
+       ( object.tags["building"] == "community_centre"     ) or
+       ( object.tags["amenity"]  == "social_centre"        ) or
+       ( object.tags["amenity"]  == "conference_centre"    )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object = building_or_landuse( objtype, object )
    end
@@ -2377,6 +2489,14 @@ function process_all( objtype, object )
 -- Golf (and sandpits)
 -- "0x2d05" is searchable via "Recreation / Golf Course
 -- ----------------------------------------------------------------------------
+   if (( object.tags["leisure"]  == "miniature_golf"       ) or
+       (( object.tags["leisure"] == "indoor_golf"         )  and
+        ( object.tags["amenity"]  == nil                  ))) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["leisure"] = "golf_course"
+      object = building_or_landuse( objtype, object )
+   end
+
    if ( object.tags["leisure"] == "golf_course"  ) then
       object = append_nonqa( object, object.tags["leisure"] )
    end
@@ -2498,13 +2618,17 @@ function process_all( objtype, object )
 -- leisure centres and sports centres
 -- "0x2d0a" is searchable via "Recreation / Sport or Fitness Cen"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "leisure_centre" ) then
+   if (( object.tags["amenity"] == "dojo"           ) or
+       ( object.tags["amenity"] == "leisure_centre" )) then
       object.tags["leisure"] = object.tags["amenity"]
    end
 
    if (( object.tags["leisure"] == "sports_centre"  ) or
-       ( object.tags["leisure"] == "leisure_centre" )) then
+       ( object.tags["leisure"] == "leisure_centre" ) or
+       ( object.tags["leisure"] == "dojo"           )) then
       object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["leisure"] = "sports_centre"
+      object.tags["amenity"] = nil
       object = building_or_landuse( objtype, object )
    end
 
@@ -2870,10 +2994,6 @@ function process_all( objtype, object )
 
    if ( object.tags["tourism"] == "artwork" ) then
       object = append_nonqa( object, "artwork" )
-   end
-
-   if ( object.tags["amenity"] == "arts_centre" ) then
-      object = append_nonqa( object, "arts centre" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3691,8 +3811,11 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["leisure"] == "water_park"  ) or
-       ( object.tags["leisure"] == "summer_camp" )) then
+   if (( object.tags["leisure"] == "resort"         ) or
+       ( object.tags["leisure"] == "beach_resort"   ) or
+       ( object.tags["leisure"] == "adventure_park" ) or
+       ( object.tags["leisure"] == "water_park"     ) or
+       ( object.tags["leisure"] == "summer_camp"    )) then
       object = append_nonqa( object, object.tags["leisure"] )
       object.tags["tourism"] = "resort"
       object = building_or_landuse( objtype, object )
@@ -3838,6 +3961,12 @@ function process_all( objtype, object )
    if (( object.tags["amenity"] == "theatre"      ) and
        ( object.tags["theatre"] ~= "concert_hall" )) then
       object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["amenity"] == "arts_centre" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = "theatre"
       object = building_or_landuse( objtype, object )
    end
 
@@ -4210,6 +4339,10 @@ function process_all( objtype, object )
 -- amenity=boat_rental
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["shop"] == "boat_rental" ) then
+      object.tags["amenity"] = object.tags["shop"]
+   end
+
    if ( object.tags["amenity"]   == "boat_rental" ) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"] = "specialty"
@@ -6114,6 +6247,54 @@ function process_all( objtype, object )
       object.tags["shop"] = "specialty"
       object.tags["amenity"] = nil
       object.tags["office"]  = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Leisure mappings to "specialty retail" where it is the least worst fit:
+-- Things that are leisure and are retail but are not sport 
+-- and not an existing category
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"]  == "bingo"        ) or
+       ( object.tags["amenity"]  == "escape_game"  ) or
+       ( object.tags["amenity"]  == "brothel"      )) then
+      object.tags["leisure"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
+   if ( object.tags["gambling"] == "bingo" ) then
+      object.tags["leisure"] = object.tags["gambling"]
+      object.tags["amenity"] = nil
+   end
+
+   if ((( object.tags["name"]     == "Bingo Hall"           )  or
+        ( object.tags["name"]     == "Gala Bingo"           )  or
+        ( object.tags["name"]     == "Gala Bingo Hall"      )  or
+        ( object.tags["name"]     == "Mecca Bingo"          )  or
+        ( object.tags["name"]     == "Castle Bingo"         )) and
+       (( object.tags["amenity"]  == nil                    )  and
+        ( object.tags["leisure"]  == nil                    )  and
+        ( object.tags["office"]   == nil                    )  and
+        ( object.tags["shop"]     == nil                    ))) then
+      object.tags["leisure"] = "bingo"
+   end
+
+   if (( object.tags["leisure"]  == "bingo"                ) or
+       ( object.tags["leisure"]  == "bingo_hall"           ) or
+       ( object.tags["leisure"]  == "indoor_play"          ) or
+       ( object.tags["leisure"]  == "soft_play"            ) or
+       ( object.tags["leisure"]  == "escape_game"          ) or
+       ( object.tags["leisure"]  == "trampoline_park"      ) or
+       ( object.tags["leisure"]  == "trampoline"           ) or
+       ( object.tags["leisure"]  == "inflatable_park"      ) or
+       ( object.tags["leisure"]  == "brothel"              ) or
+       ( object.tags["leisure"]  == "sauna"                ) or
+       ( object.tags["leisure"]  == "horse_riding"         )) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["leisure"]  = nil
       object = building_or_landuse( objtype, object )
    end
 

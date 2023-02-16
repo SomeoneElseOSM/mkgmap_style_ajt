@@ -7,6 +7,7 @@ Don't show unnamed theme parks.
 Don't show military airfields as public sport airports.
 Show cinemas, theatres and concert halls with a suffix.
 Show resorts, water parks and things like wilderness_hut as resorts with a suffix.
+Show some retail non-sport leisure as "shop=specialty" with a suffix.
 
 ## 12/02/2023
 Handle more office types from style.lua, with a suffix.

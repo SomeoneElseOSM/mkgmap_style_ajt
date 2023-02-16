@@ -6,6 +6,8 @@ Substantially improve the mapping of "community" data - both the mapping ("commu
 There is a category for casinos, so use it.
 Expand the items mapped through to government offices beyond just diplomatic ones.
 Ensure that usage=tourism stations aren't also detected as tourist attractions.
+Ensure that sports are handled before leisure centres, so that the sport item is categorised properly.
+Ensure that mini golf only gets one suffix (mini golf) not two (mini golf and golf).
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

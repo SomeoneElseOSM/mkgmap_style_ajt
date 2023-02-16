@@ -524,29 +524,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- amenity=public_building
--- This is just sent through as "office"
--- Doing this (and prison below) allows us to use "0x3007" for embassies.
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "public_building" ) then
-      object = append_nonqa( object, object.tags["amenity"] )
-      object.tags["amenity"]    = nil
-      object.tags["office"]     = "yes"
-      object = building_or_landuse( objtype, object )
-   end
-
--- ----------------------------------------------------------------------------
--- amenity=prison
--- This is just sent through as "office"
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "prison" ) then
-      object = append_nonqa( object, object.tags["amenity"] )
-      object.tags["amenity"]    = nil
-      object.tags["office"]     = "yes"
-      object = building_or_landuse( objtype, object )
-   end
-
--- ----------------------------------------------------------------------------
 -- Community Centres etc.
 -- "0x3005" is searchable via "Community / Community Center"
 -- ----------------------------------------------------------------------------
@@ -706,6 +683,58 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- government=customs
+-- "0x3006" is searchable via "Community / Border Crossing"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["government"]  == "customs" ) then
+      object = append_nonqa( object, object.tags["government"] )
+      object.tags["government"] = "customs"
+      object.tags["amenity"] = nil
+      object.tags["office"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Government offices
+-- "0x3007" is searchable via "Community / Government Office"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["office"] == "government"     ) or
+       ( object.tags["office"] == "police"         ) or
+       ( object.tags["office"] == "administrative" ) or
+       ( object.tags["office"] == "register"       ) or
+       ( object.tags["office"] == "council"        ) or
+       ( object.tags["office"] == "drainage_board" ) or
+       ( object.tags["office"] == "forestry"       ) or
+       ( object.tags["office"] == "justice"        )) then
+      object = append_nonqa( object, object.tags["office"] )
+      object.tags["amenity"] = nil
+      object.tags["office"] = "government"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- amenity=public_building
+-- "0x3007" is searchable via "Community / Government Office"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "public_building" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"]    = nil
+      object.tags["office"]     = "government"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- amenity=prison
+-- "0x3007" is searchable via "Community / Government Office"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "prison" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"]    = nil
+      object.tags["office"]     = "government"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show various diplomatic things
 -- Embassies and embassy-adjacent things first.
 -- "0x3007" is searchable via "Community / Government Office"
@@ -749,9 +778,9 @@ function process_all( objtype, object )
       end
 
       object = append_nonqa( object, object.tags["diplomatic"] .. " " .. object.tags["country"] )
-      object.tags["amenity"] = "public_building"
+      object.tags["amenity"]    = nil
       object.tags["diplomatic"] = nil
-      object.tags["office"]     = nil
+      object.tags["office"]     = "government"
       object = building_or_landuse( objtype, object )
    end
 
@@ -878,6 +907,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Ordinary wells
+-- 0x6511 is searchable via "Geographic Points / Water Features"
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "water_well" ) then
       object.tags["natural"] = "spring"
@@ -2554,6 +2584,24 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Cinemas
+-- "0x2d03" is searchable via "Entertainment / Movie Theater"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"]   == "cinema"   ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Casinos
+-- "0x2d04" is searchable via "Entertainment / Casino"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"]   == "casino"   ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Golf (and sandpits)
 -- "0x2d05" is searchable via "Recreation / Golf Course
 -- ----------------------------------------------------------------------------
@@ -4048,15 +4096,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Cinemas
--- "0x2d03" is searchable via "Entertainment / Movie Theater"
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"]   == "cinema"   ) then
-      object = append_nonqa( object, object.tags["amenity"] )
-      object = building_or_landuse( objtype, object )
-   end
-
--- ----------------------------------------------------------------------------
 -- Concert halls, theatres as concert halls, and music venues
 -- "0x2c09" is searchable via "Attractions / Hall or Auditorium"
 -- Note that there normal theatres are above.
@@ -4811,29 +4850,10 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Defibrillators etc.
+-- Defibrillators and other emergency features
+-- "0x2f14" is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if ( object.tags["emergency"] == "defibrillator" ) then
-      object = append_nonqa( object, object.tags["emergency"] )
-      object.tags["man_made"] = "thing"
-      object = building_or_landuse( objtype, object )
-   end
-
-   if (( object.tags["emergency"]        == "rescue_equipment" )  and
-       ( object.tags["rescue_equipment"] == "lifering"         )) then
-      object = append_nonqa( object, object.tags["rescue_equipment"] )
-      object.tags["man_made"] = "thing"
-      object = building_or_landuse( objtype, object )
-   end
-
-   if ((  object.tags["waterway"] == "life_ring" ) or
-       (  object.tags["waterway"] == "life_belt" )) then
-      object = append_nonqa( object, object.tags["waterway"] )
-      object.tags["man_made"] = "thing"
-      object = building_or_landuse( objtype, object )
-   end
-
-   if ( object.tags["emergency"] == "life_ring" ) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["man_made"] = "thing"
       object = building_or_landuse( objtype, object )
@@ -4842,6 +4862,31 @@ function process_all( objtype, object )
    if ( object.tags["emergency"] == "fire_extinguisher" ) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["man_made"] = "thing"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Water emergency features are sent through as springs with 
+-- an appropriate suffix.
+-- 0x6511 is searchable via "Geographic Points / Water Features"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["emergency"]        == "rescue_equipment" )  and
+       ( object.tags["rescue_equipment"] == "lifering"         )) then
+      object = append_nonqa( object, object.tags["rescue_equipment"] )
+      object.tags["natural"] = "spring"
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ((  object.tags["waterway"] == "life_ring" ) or
+       (  object.tags["waterway"] == "life_belt" )) then
+      object = append_nonqa( object, object.tags["waterway"] )
+      object.tags["natural"] = "spring"
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["emergency"] == "life_ring" ) then
+      object = append_nonqa( object, object.tags["emergency"] )
+      object.tags["natural"] = "spring"
       object = building_or_landuse( objtype, object )
    end
 
@@ -5799,13 +5844,13 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Betting Shops etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- See also "casino", which is elsewhere.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "betting"             ) or
        ( object.tags["amenity"] == "gambling"            ) or
        ( object.tags["amenity"] == "lottery"             ) or
        ( object.tags["amenity"] == "amusements"          ) or
-       ( object.tags["amenity"] == "amusement"           ) or
-       ( object.tags["amenity"] == "casino"              )) then
+       ( object.tags["amenity"] == "amusement"           )) then
       object.tags["shop"] = object.tags["amenity"]
       object.tags["amenity"] = nil
    end
@@ -6686,18 +6731,6 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if ((  object.tags["office"]     == "government"              ) or
-       (  object.tags["office"]     == "police"                  ) or
-       (  object.tags["office"]     == "administrative"          ) or
-       (  object.tags["office"]     == "register"                ) or
-       (  object.tags["office"]     == "council"                 ) or
-       (  object.tags["office"]     == "drainage_board"          ) or
-       (  object.tags["office"]     == "forestry"                ) or
-       (  object.tags["office"]     == "justice"                 )) then
-      object = append_nonqa( object, object.tags["office"] )
-      object = building_or_landuse( objtype, object )
-   end
-
    if (( object.tags["emergency"]  == "lifeguard"              )  and
        (( object.tags["lifeguard"] == "base"                  )   or
         ( object.tags["lifeguard"] == "tower"                 ))) then
@@ -7194,10 +7227,11 @@ function ott.process_node( object )
    end
 
 -- ----------------------------------------------------------------------------
--- Point weirs are sent through as points with a name of "weir"
+-- Point weirs are sent through as springs with a name of "weir"
+-- 0x6511 is searchable via "Geographic Points / Water Features"
 -- ----------------------------------------------------------------------------
    if ( object.tags['waterway'] == 'weir' ) then
-      object.tags["man_made"] = "thing"
+      object.tags["natural"] = "spring"
       object.tags["waterway"] = nil
       object = append_nonqa( object, "weir" )
    end

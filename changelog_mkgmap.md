@@ -1,13 +1,16 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Don't show sports facilities if the leisure faciity they are part of is disused.
+Don't show unnamed theme parks.
+Don't show military airfields as public sport airports.
+Show cinemas, theatres and concert halls with a suffix.
+
 ## 12/02/2023
 Handle more office types from style.lua, with a suffix.
 Append "man_made=thing" (which comes through as "Others / Social Service") to nodes we have named with no other tag.
 Send leisure=pitch, leisure=park, leisure=ice_rink, swimming pools, bowling alleys, skiing, golf courses with a suffix and the name.
-Don't show sports facilities if the leisure faciity they are part of is disused.
-Don't show unnamed theme parks.
-Don't show military airfields as public sport airports.
 
 ## 09/02/2023
 Added a name parameter to the "natural=wood" entry in "points" to avoid "Woods" appearing.

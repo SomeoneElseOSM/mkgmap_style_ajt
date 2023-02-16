@@ -3807,6 +3807,21 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Theatres
+-- "0x2d01" is searchable via "Entertainment / Live Theater"
+-- Note that there is a special case for concert halls below.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["theatre:type"] == "concert_hall" ) then
+      object.tags["theatre"] = object.tags["theatre:type"]
+   end
+
+   if (( object.tags["amenity"] == "theatre"      ) and
+       ( object.tags["theatre"] ~= "concert_hall" )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Nightclubs
 -- "0x2d02" is searchable via "Entertainment / Bar or Nightclub"
 -- ----------------------------------------------------------------------------
@@ -3816,8 +3831,18 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Cinemas
+-- "0x2d03" is searchable via "Entertainment / Movie Theater"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"]   == "cinema"   ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Concert halls, theatres as concert halls, and music venues
 -- "0x2c09" is searchable via "Attractions / Hall or Auditorium"
+-- Note that there normal theatres are above.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "theatre"      )  and
        ( object.tags["theatre"] == "concert_hall" )) then

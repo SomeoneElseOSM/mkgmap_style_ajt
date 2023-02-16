@@ -5,6 +5,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 Substantially improve the mapping of "community" data - both the mapping ("community / community center" rather than "shop / specialty") and the suffix (if there is "social_facility", use that).
 There is a category for casinos, so use it.
 Expand the items mapped through to government offices beyond just diplomatic ones.
+Ensure that usage=tourism stations aren't also detected as tourist attractions.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

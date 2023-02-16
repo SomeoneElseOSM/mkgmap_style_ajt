@@ -1311,8 +1311,8 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["railway"] )
 
       if ( object.tags["usage"] == "tourism" ) then
-         object.tags["tourism"] = "attraction"
-         object.tags["railway"] = nil
+         object.tags["railway"] = "tourismstation"
+         object.tags["tourism"] = nil
       end
 
       object = building_or_landuse( objtype, object )
@@ -2054,10 +2054,7 @@ function process_all( objtype, object )
 -- Other nonspecific leisure.  
 -- qqq these will all need handling eventually, but no code here yet
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"]  == "gym"                  ) or
-       ( object.tags["leisure"]  == "fitness_centre"       ) or
-       ( object.tags["shop"]     == "fitness"              ) or
-       ( object.tags["name"]     == "Scout Hut"            ) or
+   if (( object.tags["name"]     == "Scout Hut"            ) or
        ( object.tags["name"]     == "Scout hut"            ) or
        ( object.tags["name"]     == "Scout Hall"           ) or
        ( object.tags["sport"]    == "laser_tag"            ) or
@@ -2735,13 +2732,16 @@ function process_all( objtype, object )
 -- "0x2d0a" is searchable via "Recreation / Sport or Fitness Cen"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "dojo"           ) or
-       ( object.tags["amenity"] == "leisure_centre" )) then
+       ( object.tags["amenity"] == "leisure_centre" ) or
+       ( object.tags["amenity"] == "gym"            )) then
       object.tags["leisure"] = object.tags["amenity"]
    end
 
    if (( object.tags["leisure"] == "sports_centre"  ) or
        ( object.tags["leisure"] == "leisure_centre" ) or
-       ( object.tags["leisure"] == "dojo"           )) then
+       ( object.tags["leisure"] == "dojo"           ) or
+       ( object.tags["leisure"] == "gym"            ) or
+       ( object.tags["leisure"] == "fitness_centre" )) then
       object = append_nonqa( object, object.tags["leisure"] )
       object.tags["leisure"] = "sports_centre"
       object.tags["amenity"] = nil
@@ -5772,7 +5772,8 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "fishing"           ) or
        ( object.tags["shop"]   == "fishing_tackle"    ) or
        ( object.tags["shop"]   == "angling"           ) or
-       ( object.tags["shop"]   == "fitness_equipment" )) then
+       ( object.tags["shop"]   == "fitness_equipment" ) or
+       ( object.tags["shop"]   == "fitness"           )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "sports"
       object = building_or_landuse( objtype, object )

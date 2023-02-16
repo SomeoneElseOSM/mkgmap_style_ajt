@@ -1993,13 +1993,16 @@ function process_all( objtype, object )
 -- amenity=conference_centre etc.
 -- "0x2c09" is searchable via "Attractions / Hall or Auditorium"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["building"] == "community_centre"     ) then
+      object.tags["amenity"] = object.tags["building"]
+   end
+
    if (( object.tags["amenity"]  == "events_venue"         ) or
        ( object.tags["amenity"]  == "exhibition_centre"    ) or
        ( object.tags["amenity"]  == "function_room"        ) or
        ( object.tags["amenity"]  == "community_hall"       ) or
        ( object.tags["amenity"]  == "church_hall"          ) or
        ( object.tags["amenity"]  == "community_centre"     ) or
-       ( object.tags["building"] == "community_centre"     ) or
        ( object.tags["amenity"]  == "social_centre"        ) or
        ( object.tags["amenity"]  == "conference_centre"    )) then
       object = append_nonqa( object, object.tags["amenity"] )

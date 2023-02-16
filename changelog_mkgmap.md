@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.
 Don't show unnamed theme parks.
 Don't show military airfields as public sport airports.

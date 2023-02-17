@@ -1328,14 +1328,18 @@ function process_all( objtype, object )
 -- Various "transit" features
 -- "0x2f17" is searchable via "Transportation / Transit"
 -- These values are all also in "points", as the same Garmin ID
+-- Some people tag shelter or waste_basket on bus_stop.  
+-- We render just bus_stop.
 -- ----------------------------------------------------------------------------
    if ( object.tags["railway"] == "tram_stop" ) then
       object = append_nonqa( object, object.tags["railway"] )
+      object.tags["amenity"] = nil
       object = building_or_landuse( objtype, object )
    end
 
    if ( object.tags["highway"] == "bus_stop" ) then
       object = append_nonqa( object, object.tags["highway"] )
+      object.tags["amenity"] = nil
       object = building_or_landuse( objtype, object )
    end
 
@@ -6838,14 +6842,6 @@ function process_all( objtype, object )
           ( object.tags["naptan:Indicator"] ~= nil )) then
          object.tags["name"] = object.tags["name"] .. " " .. object.tags["naptan:Indicator"]
       end
-   end
-
--- ----------------------------------------------------------------------------
--- Some people tag waste_basket on bus_stop.  We render just bus_stop.
--- ----------------------------------------------------------------------------
-   if (( object.tags["highway"] == "bus_stop"     ) and
-       ( object.tags["amenity"] == "waste_basket" )) then
-      object.tags["amenity"] = nil
    end
 
 -- ----------------------------------------------------------------------------

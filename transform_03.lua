@@ -4274,28 +4274,24 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- render barrier=bar as barrier=horse_stile (Norfolk)
--- ----------------------------------------------------------------------------
-   if ( object.tags["barrier"] == "bar" ) then
-      object.tags["barrier"] = "horse_stile"
-   end
-
--- ----------------------------------------------------------------------------
 -- render various cycle barrier synonyms
--- "0x2f14" is searchable as "Others / 
+-- 0x2f14 is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"]   == "cycle_barrier"         )  or
        ( object.tags["barrier"]   == "chicane"               )  or
        ( object.tags["barrier"]   == "squeeze"               )  or
        ( object.tags["barrier"]   == "motorcycle_barrier"    )  or
        ( object.tags["barrier"]   == "horse_barrier"         )  or
-       ( object.tags["barrier"]   == "a_frame"               )) then
+       ( object.tags["barrier"]   == "horse_stile"           )  or
+       ( object.tags["barrier"]   == "a_frame"               )  or
+       ( object.tags["barrier"]   == "bar"                   )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "cycle_barrier"
    end
 
 -- ----------------------------------------------------------------------------
 -- render various synonyms for stile as barrier=stile
+-- 0x2f14 is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"]   == "squeeze_stile"   )  or
        ( object.tags["barrier"]   == "ramblers_gate"   )  or

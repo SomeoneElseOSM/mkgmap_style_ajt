@@ -13,6 +13,7 @@ Append the name of the sport as a suffix to sports shops if set.
 Don't set mall on landuse if shop already set.
 Suppress amenity=shelter or amenity=waste_basket on bus stops.
 As well as restaurants without known cuisine, also send fast food without known cuisine through as "other".
+Ensure barriers get a suffix, not just a default value.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

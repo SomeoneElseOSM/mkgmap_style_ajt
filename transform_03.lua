@@ -3594,12 +3594,24 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Ensure natural=water gets a suffix
+-- 0x3c
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "water"  ) then
+      if ( object.tags["water"] ~= nil  ) then
+         object = append_nonqa( object, object.tags["water"] )
+      end
+
+      object.tags["natural"] = "water"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Add "water" to some "wet" features for rendering.
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "wastewater_reservoir"  ) or
        ( object.tags["basin"]      == "wastewater"            )) then
-      object.tags["natural"] = "water"
       object = append_nonqa( object, "wastewater" )
+      object.tags["natural"] = "water"
    end
 
    if ( object.tags["man_made"]   == "reservoir"  ) then

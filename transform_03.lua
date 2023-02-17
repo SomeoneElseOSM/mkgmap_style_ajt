@@ -1974,7 +1974,8 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["landuse"] == "retail" ) and
-       ( object.tags["name"]    ~= nil      )) then
+       ( object.tags["name"]    ~= nil      ) and
+       ( object.tags["shop"]    == nil      )) then
       object.tags["shop"] = "retail area"
    end
 

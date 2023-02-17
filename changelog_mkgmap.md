@@ -10,6 +10,7 @@ Ensure that sports are handled before leisure centres, so that the sport item is
 Ensure that mini golf only gets one suffix (mini golf) not two (mini golf and golf).
 Add a suffix for hotels, motels, etc.
 Append the name of the sport as a suffix to sports shops if set.
+Don't set mall on landuse if shop already set.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

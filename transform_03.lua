@@ -835,6 +835,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- amenity=fire_station
+-- "0x3008" is searchable via "Community / Fire Department"
+-- ----------------------------------------------------------------------------
+   if (  object.tags["emergency"]  == "fire_station" ) then
+      object.tags["amenity"] = object.tags["emergency"]
+   end
+
+   if ( object.tags["amenity"]  == "fire_station" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["office"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- man_made=observatory
 -- This might be either a building or not.
 -- ----------------------------------------------------------------------------
@@ -6757,7 +6771,6 @@ function process_all( objtype, object )
        (  object.tags["amenity"]    == "village_hall"            ) or
        (  object.tags["amenity"]    == "crematorium"             ) or
        (  object.tags["amenity"]    == "hall"                    ) or
-       (  object.tags["amenity"]    == "fire_station"            ) or
        (  object.tags["amenity"]    == "lifeboat_station"        ) or
        (  object.tags["amenity"]    == "coast_guard"             ) or
        (  object.tags["amenity"]    == "archive"                 )) then
@@ -6771,7 +6784,6 @@ function process_all( objtype, object )
    end
 
    if ((  object.tags["emergency"]  == "coast_guard"             ) or
-       (  object.tags["emergency"]  == "fire_station"            ) or
        (  object.tags["emergency"]  == "lifeboat_station"        ) or
        (  object.tags["emergency"]  == "lifeguard_tower"         )) then
       object = append_nonqa( object, object.tags["emergency"] )

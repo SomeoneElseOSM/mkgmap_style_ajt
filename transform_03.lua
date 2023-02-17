@@ -5149,6 +5149,7 @@ function process_all( objtype, object )
 -- In order to use all the categories there are some "deliberately misfiled"
 --
 -- Menu entry      ID      Maps to                           Which means
+-- n/a             0x2a00  amenity=restaurant                Restaurants not elsewhere
 -- American	   0x2a01  amenity=fast_food_burger          Burger-led fast food
 -- Asian	   0x2a02  				     Not currently used
 -- Barbeque	   0x2a03  amenity=fast_food_chicken         Chicken-led fast food
@@ -5167,7 +5168,8 @@ function process_all( objtype, object )
 -- German	   0x2a10  amenity=restaurant_chinese  	     Chinese or similar Restaurant
 -- British Isles   0x2a11  amenity=pub;amenity=bar	     Pubs and bars
 -- Other	   0x2a12  				     Not currently used
---                 0x2a14  amenity=restaurant {name '${name}'} [0x2a00 resolution 20]
+--                 0x2a13                                    Not currently used
+--                 0x2a14                                    Not currently used
 -- ----------------------------------------------------------------------------
 -- American	   0x2a01  amenity=fast_food_burger    Burger-led fast food
 -- ----------------------------------------------------------------------------
@@ -5464,6 +5466,19 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "korean"     ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "restaurant_chinese"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Other Restaurants and fast food.
+-- Anything with a recognisable cuisine will have had 
+-- a different amenity tag set above.
+-- 0x2a00  amenity=fast_food  amenity=restaurant
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "fast_food"  )  or
+       ( object.tags["amenity"] == "restaurant" )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = "restaurant"
       object = building_or_landuse( objtype, object )
    end
 

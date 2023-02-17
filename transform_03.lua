@@ -3862,6 +3862,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Hotels
+-- "0x2b01" is searchable via "Lodging / Motel or Motel"
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["tourism"]    == "hotel"  ) or
+       ( object.tags["tourism"]     == "motel"  )) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["tourism"] = "hotel"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- B&Bs
 -- "0x2b02" is searchable via "Lodging / Bed and Breakfast or"
 -- ----------------------------------------------------------------------------
@@ -3915,24 +3926,12 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- hostels and similar
--- "0x2b02" is searchable via "Lodging / Bed and Breakfast or"
--- ----------------------------------------------------------------------------
-   if (( object.tags["tourism"] == "hostel"             ) or
-       ( object.tags["tourism"] == "adventure_holiday"  )) then
-      object = append_nonqa( object, object.tags["tourism"] )
-      object.tags["tourism"] = "hostel"
-   end
-
--- ----------------------------------------------------------------------------
 -- Resorts
 -- "0x2b04" is searchable via "Lodging / Resort"
--- As well as "actual resorts" this also contains oddities like wilderness_hut.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["tourism"]  == "wilderness_hut" ) or
-       ( object.tags["tourism"]  == "cabin"          ) or
-       ( object.tags["tourism"]  == "resort"         ) or
-       ( object.tags["tourism"]  == "spa_resort"     )) then
+   if (( object.tags["tourism"]  == "resort"         ) or
+       ( object.tags["tourism"]  == "spa_resort"     ) or
+       ( object.tags["tourism"]  == "chalet"         )) then
       object = append_nonqa( object, object.tags["tourism"] )
       object.tags["tourism"] = "resort"
       object = building_or_landuse( objtype, object )
@@ -3946,6 +3945,20 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["leisure"] )
       object.tags["tourism"] = "resort"
       object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- hostels and similar
+-- "0x2b05" is searchable via "Lodging / Campground"
+-- (GPSMap64s; FWIW this seems like a bug)
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tourism"] == "hostel"             ) or
+       ( object.tags["tourism"] == "adventure_holiday"  ) or
+       ( object.tags["tourism"] == "wilderness_hut"     ) or
+       ( object.tags["tourism"] == "cabin"              ) or
+       ( object.tags["tourism"] == "alpine_hut"         )) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["tourism"] = "hostel"
    end
 
 -- ----------------------------------------------------------------------------

@@ -8,6 +8,7 @@ Expand the items mapped through to government offices beyond just diplomatic one
 Ensure that usage=tourism stations aren't also detected as tourist attractions.
 Ensure that sports are handled before leisure centres, so that the sport item is categorised properly.
 Ensure that mini golf only gets one suffix (mini golf) not two (mini golf and golf).
+Add a suffix for hotels, motels, etc.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

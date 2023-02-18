@@ -2060,7 +2060,27 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Various educational institutions
+-- "0x2c03" is searchable via "Community / School"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "childcare"        ) or
+       ( object.tags["amenity"] == "childrens_centre" ) or
+       ( object.tags["amenity"] == "preschool"        ) or
+       ( object.tags["amenity"] == "kindergarten"     ) or
+       ( object.tags["amenity"] == "nursery"          ) or
+       ( object.tags["amenity"] == "nursery_school"   ) or
+       ( object.tags["amenity"] == "school"           ) or
+       ( object.tags["amenity"] == "college"          ) or
+       ( object.tags["amenity"] == "univerity"        ) or
+       ( object.tags["amenity"] == "education_centre" )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = "school"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various clocks
+-- "0x2f14" is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "clock"   )  and
        ( object.tags["display"] == "sundial" )) then

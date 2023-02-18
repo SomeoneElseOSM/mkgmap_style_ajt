@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Show names and types of schools, universities, etc.
+
 ## 18/02/2023
 Prevent military airfields dropping through without processing; ensure they get a suffix of something.
 Moved wildcards down in "points" file and commented out; fixed bug that prevented car repair from appearing.

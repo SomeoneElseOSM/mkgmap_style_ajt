@@ -2892,13 +2892,14 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Sluice gates - send through as man_made=thing and append name
+-- 0x6511 is searchable via "Geographic Points / Water Features"
 -- ----------------------------------------------------------------------------
    if ((  object.tags["waterway"]     == "sluice_gate"      ) or
        (  object.tags["waterway"]     == "sluice"           ) or
        (( object.tags["waterway"]     == "flow_control"    )  and
         ( object.tags["flow_control"] == "sluice_gate"     ))) then
-      object.tags["man_made"] = "thing"
       object = append_nonqa( object, "sluice" )
+      object.tags["natural"] = "spring"
    end
 
 -- ----------------------------------------------------------------------------
@@ -3730,18 +3731,14 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Water monitoring stations
+-- 0x6511 is searchable via "Geographic Points / Water Features"
 -- ----------------------------------------------------------------------------
    if ((  object.tags["man_made"]                  == "monitoring_station"  ) and
        (( object.tags["monitoring:water_level"]    == "yes"                )  or
         ( object.tags["monitoring:water_flow"]     == "yes"                )  or
         ( object.tags["monitoring:water_velocity"] == "yes"                ))) then
-      object.tags["man_made"] = "thing"
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "(water monitoring)"
-      else
-         object.tags["name"] = object.tags["name"] .. " (water monitoring)"
-      end
+      object = append_nonqa( object, "water monitoring" )
+      object.tags["natural"] = "spring"
    end
 
 -- ----------------------------------------------------------------------------

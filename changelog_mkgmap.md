@@ -23,6 +23,7 @@ As well as restaurants without known cuisine, also send fast food without known 
 Ensure barriers get a suffix, not just a default value.
 Add a suffix for natural=water type.
 Map fire stations through as fire stations, not government offices.
+Handle chalets as either "single chalets" or "resorts" depending on other tags.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

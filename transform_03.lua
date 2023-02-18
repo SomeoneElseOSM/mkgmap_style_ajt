@@ -3929,6 +3929,7 @@ function process_all( objtype, object )
    if ((  object.tags["tourism"]    == "hotel"  ) or
        ( object.tags["tourism"]     == "motel"  )) then
       object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "hotel"
       object = building_or_landuse( objtype, object )
    end
@@ -3941,6 +3942,7 @@ function process_all( objtype, object )
        (( object.tags["tourism"]     == "guest_house"       ) and
         ( object.tags["guest_house"] == "bed_and_breakfast" ))) then
       object = append_nonqa( object, "bed and breakfast" )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "bed_and_breakfast"
       object = building_or_landuse( objtype, object )
    end
@@ -3965,6 +3967,7 @@ function process_all( objtype, object )
        ( object.tags["tourism"]   == "guesthouse"              ) or
        ( object.tags["tourism"]   == "aparthotel"              )) then
       object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "guest_house"
       object = building_or_landuse( objtype, object )
    end
@@ -3976,6 +3979,7 @@ function process_all( objtype, object )
    if (( object.tags["tourism"] == "camp_site"  ) or
        ( object.tags["tourism"] == "camping"    )) then
       object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "camp_site"
    end
 
@@ -3983,6 +3987,7 @@ function process_all( objtype, object )
        ( object.tags["tourism"] == "caravan_site;camp_site"    ) or
        ( object.tags["tourism"] == "caravan_site;camping_site" )) then
       object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "caravan_site"
    end
 
@@ -3991,9 +3996,9 @@ function process_all( objtype, object )
 -- "0x2b04" is searchable via "Lodging / Resort"
 -- ----------------------------------------------------------------------------
    if (( object.tags["tourism"]  == "resort"         ) or
-       ( object.tags["tourism"]  == "spa_resort"     ) or
-       ( object.tags["tourism"]  == "chalet"         )) then
+       ( object.tags["tourism"]  == "spa_resort"     )) then
       object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "resort"
       object = building_or_landuse( objtype, object )
    end
@@ -4004,7 +4009,47 @@ function process_all( objtype, object )
        ( object.tags["leisure"] == "water_park"     ) or
        ( object.tags["leisure"] == "summer_camp"    )) then
       object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "resort"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Chalets
+--
+-- Depending on other tags, these will be treated as singlechalet 0x2b02
+-- or as resort 0x2b04
+--
+-- We assume that tourism=chalet on a node is a self-contained chalet or 
+-- chalet park, and deserves one entry on the search menu as some sort of 
+-- accommodation that is not "resort".
+--
+-- We assume that tourism=chalet on a way with no building tag is a 
+-- self-contained chalet park, and deserves one entry on the search menu as 
+-- "resort".
+--
+-- We assume that tourism=chalet on a way with a building tag is a 
+-- self-contained chalet or chalet within a resort, and deserves one entry on 
+-- the search menu as some sort of accommodation that is not "resort".
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "chalet" ) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
+
+      if ( object.tags["name"] == nil ) then
+         object.tags["tourism"] = "singlechalet"
+      else
+         if ( objtype == 'n' ) then
+            object.tags["tourism"] = "singlechalet"
+         else
+            if ( object.tags["building"] == nil ) then
+               object.tags["tourism"] = "resort"
+            else
+               object.tags["tourism"] = "singlechalet"
+            end
+         end
+      end
+
       object = building_or_landuse( objtype, object )
    end
 
@@ -4019,6 +4064,7 @@ function process_all( objtype, object )
        ( object.tags["tourism"] == "cabin"              ) or
        ( object.tags["tourism"] == "alpine_hut"         )) then
       object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
       object.tags["tourism"] = "hostel"
    end
 

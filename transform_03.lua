@@ -2148,6 +2148,25 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- amenity=place_of_worship
+-- "0x2c0b" is searchable via "Community / Place of Worship"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "place_of_worship" ) then
+
+      if ( object.tags["religion"] == nil ) then
+         object = append_nonqa( object, object.tags["amenity"] )
+      else
+         object = append_nonqa( object, object.tags["religion"] )
+      end
+
+      if ( object.tags["denomination"] ~= nil ) then
+         object = append_nonqa( object, object.tags["denomination"] )
+      end
+
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both towers and monuments or memorials 
 -- should render as the latter.
 -- ----------------------------------------------------------------------------

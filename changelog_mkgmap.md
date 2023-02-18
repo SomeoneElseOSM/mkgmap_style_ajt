@@ -20,6 +20,7 @@ Prevent military airfields dropping through without processing; ensure they get 
 Moved wildcards down in "points" file and commented out; fixed bug that prevented car repair from appearing.
 Move sluices and water monitoring to water features.
 Add a suffix to amenity=police objects.
+Show name of places of worship, and append religion and denomination as suffixes.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

@@ -16,6 +16,7 @@ As well as restaurants without known cuisine, also send fast food without known 
 Ensure barriers get a suffix, not just a default value.
 Add a suffix for natural=water type.
 Map fire stations through as fire stations, not government offices.
+Prevent military airfields dropping through without processing; ensure they get a suffix of something.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

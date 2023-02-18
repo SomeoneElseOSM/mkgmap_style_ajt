@@ -2197,11 +2197,12 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Aerodrome size.
 -- Large public airports should be shown as "real airports".  
--- Others should not - gliding clubs etc. should appear as public sport 
--- airports; miltiary ones do not, but all go through "building_or_landuse" at
--- the end.
+-- gliding clubs etc. should appear as public sport airports; 
+-- miltiary ones appear as generic tourist attractions.
+-- all go through "building_or_landuse" at the end.
 -- "0x2f04" is searchable via "Transportation / Air Transportation"
 -- "0x2d0b" is searchable via "Recreation / public-sport-airport"
+-- "0x2c04" is searchable via "Attractions / Landmark"
 -- ----------------------------------------------------------------------------
    if (( object.tags["aeroway"] == "aerodrome" ) or
        ( object.tags["aeroway"] == "airport"   )) then
@@ -2216,6 +2217,10 @@ function process_all( objtype, object )
             object = append_nonqa( object, "airstrip" )
             object.tags["sport"] = "airport"
             object.tags["aeroway"] = nil
+         else
+            object = append_nonqa( object, "military" )
+            object = append_nonqa( object, object.tags["aeroway"] )
+            object.tags["aeroway"] = "military"
          end
       end
 

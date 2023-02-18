@@ -6461,10 +6461,11 @@ function process_all( objtype, object )
 -- On Garmin, car_rental, car_repair,
 -- and car_dealer/car_parts are all separate features.
 -- 
--- We try and use an appropriate suffixe in each case, by first appending a 
+-- We try and use an appropriate suffix in each case, by first appending a 
 -- suffix based on what "shop" is, then setting "shop" to whatever tag is 
--- characteristic for rendering and 
--- "0x2f02" is searchable via "Auto Services / Auto Rental"
+-- characteristic for rendering for that item.
+-- "0x2f02" is supposed to be searchable via "Auto Services / Auto Rental"
+-- "0x2f17" is searchable via "Transportation / Transport Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "car_rental"                   ) or
        ( object.tags["amenity"] == "van_rental"                   ) or

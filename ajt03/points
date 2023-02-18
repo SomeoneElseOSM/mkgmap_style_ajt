@@ -208,9 +208,6 @@ shop=books {name '${name}'} [0x2e14 resolution 20]
 # 0x2e15 may be used for wildcards, see below
 # 0x2e15 (presumably through to 0x2e2f) appears in "All POIs" but not on any menu.
 
-shop=* {name '${name}'} [0x2e15 resolution 20]
-office=* {name '${name}'} [0x2e15 resolution 20]
-
 amenity=fuel {name '${name}'} [0x2f01 resolution 19 ]
 shop=car_rental {name '${name}'} [0x2f02 resolution 20]
 shop=car_repair {name '${name}'} [0x2f03 resolution 20]
@@ -256,6 +253,10 @@ amenity=fire_station {name '${name}'} [0x3008 resolution 21]
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]
 natural=wood {name '${name}'} [0x6618 resolution 21]
+
+# Wildcards
+#shop=* {name '${name}'} [0x2e15 resolution 20]
+#office=* {name '${name}'} [0x2e15 resolution 20]
 
 # The use of these values has not yet been checked
 

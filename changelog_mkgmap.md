@@ -1,6 +1,14 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unlreleased
+Map fire stations through as fire stations, not government offices.
+Prevent military airfields dropping through without processing; ensure they get a suffix of something.
+Moved wildcards down in "points" file and commented out; fixed bug that prevented car repair from appearing.
+Move sluices and water monitoring to water features.
+Add a suffix to amenity=police objects.
+Show name of places of worship, and append religion and denomination as suffixes.
+
 ## 18/02/2023
 Substantially improve the mapping of "community" data - both the mapping ("community / community center" rather than "shop / specialty") and the suffix (if there is "social_facility", use that).
 There is a category for casinos, so use it.
@@ -15,12 +23,6 @@ Suppress amenity=shelter or amenity=waste_basket on bus stops.
 As well as restaurants without known cuisine, also send fast food without known cuisine through as "other".
 Ensure barriers get a suffix, not just a default value.
 Add a suffix for natural=water type.
-Map fire stations through as fire stations, not government offices.
-Prevent military airfields dropping through without processing; ensure they get a suffix of something.
-Moved wildcards down in "points" file and commented out; fixed bug that prevented car repair from appearing.
-Move sluices and water monitoring to water features.
-Add a suffix to amenity=police objects.
-Show name of places of worship, and append religion and denomination as suffixes.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

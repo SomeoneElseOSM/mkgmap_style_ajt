@@ -19,6 +19,7 @@ Map fire stations through as fire stations, not government offices.
 Prevent military airfields dropping through without processing; ensure they get a suffix of something.
 Moved wildcards down in "points" file and commented out; fixed bug that prevented car repair from appearing.
 Move sluices and water monitoring to water features.
+Add a suffix to amenity=police objects.
 
 ## 16/02/2023
 Don't show sports facilities if the leisure faciity they are part of is disused.

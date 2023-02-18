@@ -1859,7 +1859,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- doctors
 -- Various mistagging, comma and semicolon healthcare
--- Note that health centres currently appear as "health nonspecific".
+-- 0x3002 
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "doctors"                 ) or
        ( object.tags["amenity"] == "doctors; pharmacy"       ) or
@@ -1867,6 +1867,15 @@ function process_all( objtype, object )
        ( object.tags["amenity"] == "doctor"                  )) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "doctors" )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- police
+-- 0x3001 is searchable via "Community / Police Station"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "police" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
       object = building_or_landuse( objtype, object )
    end
 

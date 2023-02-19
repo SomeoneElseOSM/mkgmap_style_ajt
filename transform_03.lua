@@ -1122,7 +1122,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- highway=services is translated to commercial landuse - any overlaid parking
--- can then be seen.
+-- can then be seen in QMapShack.
 --
 -- highway=rest_area is translated lower down to amenity=parking.
 -- ----------------------------------------------------------------------------

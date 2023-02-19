@@ -2593,6 +2593,9 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Render for-pay toilets differently to free ones, and if male vs female is
 -- known, show that too.
+-- 0x2f0c is searchable via "Auto Services / Rest Area or Tourist I"
+-- An alterntive, 0x4e00 is searchable via "Geographic Points / Man Made",
+-- but lots of other things also appear in there.
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "toilets" ) then
       if (( object.tags["fee"]     ~= nil       )  and
@@ -2691,9 +2694,13 @@ function process_all( objtype, object )
    end
 
    if ( object.tags["golf"] == "tee" ) then
-      object.tags["leisure"] = "garden"
-      object.tags["name"] = object.tags["ref"]
       object = append_nonqa( object, "tee" )
+
+      if ( object.tags["ref"] ~= nil ) then
+         object = append_nonqa( object, object.tags["ref"] )
+      end
+
+      object.tags["leisure"] = "garden"
    end
 
    if ( object.tags["golf"] == "green" ) then

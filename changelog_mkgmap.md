@@ -4,6 +4,8 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Show names and types of schools, universities, etc.
 Show names and types of memorials.
+Make toilets more searchable, via "Auto Services / Rest Area" rather than among all the other stuff in "Geographic Points / Man Made".
+If a name is used for golf tees, ensure it appears.
 
 ## 18/02/2023
 Prevent military airfields dropping through without processing; ensure they get a suffix of something.

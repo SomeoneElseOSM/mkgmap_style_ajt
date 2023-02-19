@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Show names and types of schools, universities, etc.
+Show names and types of memorials.
 
 ## 18/02/2023
 Prevent military airfields dropping through without processing; ensure they get a suffix of something.

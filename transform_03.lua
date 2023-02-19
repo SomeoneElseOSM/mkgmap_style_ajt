@@ -2187,16 +2187,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Things that are both towers and monuments or memorials 
--- should render as the latter.
--- ----------------------------------------------------------------------------
-   if ((  object.tags["man_made"]  == "tower"     ) and
-       (( object.tags["historic"]  == "memorial" )  or
-        ( object.tags["historic"]  == "monument" ))) then
-      object.tags["man_made"] = nil
-   end
-
--- ----------------------------------------------------------------------------
 -- Clock towers
 -- ----------------------------------------------------------------------------
    if (((  object.tags["man_made"]   == "tower"        )  and
@@ -3076,18 +3066,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Map geoglyphs to memorials.
--- "0x2c02" points are searchable via "Attractions / Museum or Historical"
--- "0x0d" polygons don't appear to be searchable directly, but the 
--- "map polygons to points" logic means they're searchable as points.
--- ----------------------------------------------------------------------------
-   if ( object.tags["man_made"] == "geoglyph" ) then
-      object.tags["historic"] = "memorial"
-      object.tags["man_made"] = nil
-      object = append_nonqa( object,"geoglyph" )
-   end
-
--- ----------------------------------------------------------------------------
 -- Things that are both peaks and memorials should render as the latter.
 -- ----------------------------------------------------------------------------
    if (( object.tags["natural"]   == "peak"     ) and
@@ -3114,57 +3092,49 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Render historic=wayside_cross and wayside_shrine as historic=memorialcross
+-- Render historic=memorial, wayside_cross and wayside_shrine
 -- "0x2c02" points are searchable via "Attractions / Museum or Historical"
 -- "0x0d" polygons don't appear to be searchable directly, but the 
 -- "map polygons to points" logic means they're searchable as points.
 -- ----------------------------------------------------------------------------
-   if ((   object.tags["historic"]   == "wayside_cross"    ) or
-       (   object.tags["historic"]   == "wayside_shrine"   ) or
-       ((  object.tags["historic"]   == "memorial"        )  and
-        (( object.tags["memorial"]   == "cross"          )   or
-         ( object.tags["memorial"]   == "mercat_cross"   )))) then
-      object.tags["historic"] = "memorial"
-      object = append_nonqa( object,"cross" )
+   if ( object.tags["historic"]   == "memorial" ) then
+      object = append_nonqa( object, object.tags["historic"] )
+
+      if (( object.tags["memorial:type"] ~= nil )  and
+          ( object.tags["memorial"]      == nil )) then
+         object.tags["memorial"] = object.tags["memorial:type"]
+      end
+
+      if (( object.tags["memorial"] == "cross"           )  or
+          ( object.tags["memorial"] == "mercat_cross"    )  or
+          ( object.tags["memorial"] == "war_memorial"    )  or
+          ( object.tags["memorial"] == "plaque"          )  or
+          ( object.tags["memorial"] == "blue_plaque"     )  or
+          ( object.tags["memorial"] == "pavement plaque" )  or
+          ( object.tags["memorial"] == "statue"          )  or
+          ( object.tags["memorial"] == "sculpture"       )  or
+          ( object.tags["memorial"] == "stone"           )) then
+         object = append_nonqa( object, object.tags["memorial"] )
+         object.tags["historic"] = "memorial"
+      end
    end
 
-   if (( object.tags["historic"]   == "memorial"     ) and
-       ( object.tags["memorial"]   == "war_memorial" )) then
+   if (( object.tags["historic"] == "wayside_cross"  ) or
+       ( object.tags["historic"] == "wayside_shrine" )) then
+      object = append_nonqa( object, object.tags["historic"] )
       object.tags["historic"] = "memorial"
-      object = append_nonqa( object, "war memorial" )
    end
 
-   if ((  object.tags["historic"]      == "memorial"     ) and
-       (( object.tags["memorial"]      == "plaque"      )  or
-        ( object.tags["memorial"]      == "blue_plaque" )  or
-        ( object.tags["memorial:type"] == "plaque"      ))) then
+-- ----------------------------------------------------------------------------
+-- Map geoglyphs to memorials.
+-- "0x2c02" points are searchable via "Attractions / Museum or Historical"
+-- "0x0d" polygons don't appear to be searchable directly, but the 
+-- "map polygons to points" logic means they're searchable as points.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "geoglyph" ) then
+      object = append_nonqa( object,object.tags["man_made"] )
       object.tags["historic"] = "memorial"
-      object = append_nonqa( object, "plaque" )
-   end
-
-   if (( object.tags["historic"]   == "memorial"        ) and
-       ( object.tags["memorial"]   == "pavement plaque" )) then
-      object.tags["historic"] = "memorial"
-      object = append_nonqa( object, "pavement plaque" )
-   end
-
-   if ((  object.tags["historic"]      == "memorial"  ) and
-       (( object.tags["memorial"]      == "statue"   )  or
-        ( object.tags["memorial:type"] == "statue"   ))) then
-      object.tags["historic"] = "memorial"
-      object = append_nonqa( object, "memorial statue" )
-   end
-
-   if (( object.tags["historic"]   == "memorial"    ) and
-       ( object.tags["memorial"]   == "sculpture"   )) then
-      object.tags["historic"] = "memorial"
-      object = append_nonqa( object, "memorial sculpture" )
-   end
-
-   if (( object.tags["historic"]   == "memorial"    ) and
-       ( object.tags["memorial"]   == "stone"       )) then
-      object.tags["historic"] = "memorial"
-      object = append_nonqa( object, "memorial stone" )
+      object.tags["man_made"] = nil
    end
 
 -- ----------------------------------------------------------------------------

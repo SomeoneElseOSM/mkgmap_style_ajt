@@ -3502,6 +3502,7 @@ function process_all( objtype, object )
 
       if ( object.tags["shop"] ~= nil  ) then
          object = append_nonqa( object, object.tags["shop"] )
+         object.tags["shop"] = nil
       end
 
       object = building_or_landuse( objtype, object )

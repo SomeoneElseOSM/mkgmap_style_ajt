@@ -3431,6 +3431,10 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- The code to handle various sorts of ways of supplying electricity is 
+-- borrowed from the web maps' "style.lua".  We later move these to appropriate
+-- Garmin menus.
+--
 -- Alleged petrol stations that only do fuel:electricity are probably 
 -- actually charging stations.
 --
@@ -3478,6 +3482,31 @@ function process_all( objtype, object )
       object.tags["waterway"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- amenity=fuel and shop=convenience
+--
+-- Garmin has two codes for amenity=fuel:
+-- 0x2e06 for amenity=fuel & shop=convenience ("Shopping / Convenience" and
+-- "Fuel Services / Convenience")
+-- 0x2f01 for just amenity=fuel on its own. ("Fuel Services / Auto Fuel")
+-- Both are labelled "convenience", which is confusing, since
+-- 0x2e0e is just shop=convenience on its own.
+--
+-- We ensure all our combined amenity=fuel and shop=convenience appear under
+-- "Fuel Services / Auto Fuel", but append the shop type as a suffix.
+-- We append "fuel" as a suffix here and (if appropriate) other alternative 
+-- fuel types too.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "fuel" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+
+      if ( object.tags["shop"] ~= nil  ) then
+         object = append_nonqa( object, object.tags["shop"] )
+      end
+
+      object = building_or_landuse( objtype, object )
+   end
+
    if (( object.tags["amenity"]          == "fuel" ) and
        ( object.tags["fuel:electricity"] == "yes"  )  and
        ( object.tags["fuel:diesel"]      == "yes"  )) then
@@ -3498,34 +3527,13 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- If we still have an amenity=fuel with a shop, what sort of shop is it?
---
--- If it's one that should appear as Garmin's combined fuel / convenience shop,
--- ensure it does.
--- "0x2e06" is searchable via "Fuel Service / Convenience" and 
--- "Shopping / Convenience 1" ("Convenience" is on that menu twice).
---
--- If the shop type is one of the wackier combinations, surpress it.
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "fuel" ) then
-      if (( object.tags["shop"]     == "yes"                  )  or
-          ( object.tags["shop"]     == "kiosk"                )  or
-          ( object.tags["shop"]     == "supermarket"          )  or
-          ( object.tags["shop"]     == "newsagent"            )  or
-          ( object.tags["shop"]     == "convenience;alcohol"  )) then
-         object.tags["shop"] = "convenience"
-      else
-         object.tags["shop"] = nil
-      end
-   end
-
-
--- ----------------------------------------------------------------------------
--- Change amenity=charging_station to something we can show
+-- Change amenity=charging_station to amenity=fuel so that it is searchable
+-- 0x2f01 is searchable via "Fuel Services / Auto Fuel"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"]  == "charging_station" ) then
-      object.tags["man_made"] = "thing"
-      object = append_nonqa( object, "charging" )
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = "fuel"
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------

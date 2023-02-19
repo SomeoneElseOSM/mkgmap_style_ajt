@@ -1222,6 +1222,7 @@ function process_all( objtype, object )
 
       if ( object.tags["sport"] ~= nil ) then
          object = append_nonqa( object, object.tags["sport"] )
+	 object.tags["sport"] = nil
       end
    end
 
@@ -2758,6 +2759,8 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Bowling Alleys
+-- Pitches are handled above (see "0x2c08"); any sport tags used there 
+-- have been removed.
 -- "0x2d07" is searchable via "Recreation / Bowling Center
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"] == "bowling_alley" ) then

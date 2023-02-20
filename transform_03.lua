@@ -1771,26 +1771,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Restaurants
--- Different sorts of restaurants get mapped to different sorts of features
--- in the garmin map.  Visually they are very alike, but searching for e.g.
--- "restaurants / chinese" will find chinese restaurants - this is done by
--- the cuisine selection in the "points" file.
--- As with the web map, restaurants with accommodation are shown differently.
--- (in this case with a different suffix)
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "restaurant" ) then
-      if (( object.tags["accommodation"] ~= nil  ) and
-          ( object.tags["accommodation"] ~= "no" )) then
-         object = append_nonqa( object, "restaurant with rooms" )
-      else
-         object = append_nonqa( object, "restaurant" )
-      end
-
-      object = building_or_landuse( objtype, object )
-   end
-
--- ----------------------------------------------------------------------------
 -- Cafes with accommodation and without
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "cafe" ) then
@@ -5300,6 +5280,7 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "burger;chicken;indian;kebab;pizza"   )   or
         ( object.tags["cuisine"] == "burger;chicken;kebab;pizza"          ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
+      object = append_accomm( object )
       object.tags["amenity"] = "fast_food_burger"
       object = building_or_landuse( objtype, object )
    end
@@ -5319,7 +5300,8 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "chicken;kebab"          )   or
         ( object.tags["cuisine"] == "chicken;grill"          )   or
         ( object.tags["cuisine"] == "chicken;fish_and_chips" )   or
-        ( object.tags["cuisine"] == "fried_chicken"          ))) then
+        ( object.tags["cuisine"] == "fried_chicken"          )   or
+        ( object.tags["cuisine"] == "wings"                  ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "fast_food_chicken"
       object = building_or_landuse( objtype, object )
@@ -5395,10 +5377,12 @@ function process_all( objtype, object )
 -- Italian Restaurants
 -- Italian	   0x2a08  amenity=restaurant_italian  Italian Restaurant
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["amenity"] == "restaurant"  )  and
-       (( object.tags["cuisine"] == "italian"    )   or
-        ( object.tags["cuisine"] == "pizza"      ))) then
+   if ((  object.tags["amenity"] == "restaurant"     )  and
+       (( object.tags["cuisine"] == "italian"       )   or
+        ( object.tags["cuisine"] == "pizza"         )   or
+        ( object.tags["cuisine"] == "mediterranean" ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
+      object = append_accomm( object )
       object.tags["amenity"] = "restaurant_italian"
       object = building_or_landuse( objtype, object )
    end
@@ -5473,6 +5457,7 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "fish_and_chips;pizza;burger;kebab" )  or
         ( object.tags["cuisine"] == "fish_and_chips;pizza"              ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
+      object = append_accomm( object )
       object.tags["amenity"] = "fast_food_fish_and_chips"
       object = building_or_landuse( objtype, object )
    end
@@ -5481,8 +5466,11 @@ function process_all( objtype, object )
 -- Steak Restaurants
 -- Steak or Grill  0x2a0c  amenity=restaurant_steak    	     Steak Restaurant
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "restaurant"  )  and
-       ( object.tags["cuisine"] == "steak_house" )) then
+   if ((  object.tags["amenity"] == "restaurant"   )  and
+       (( object.tags["cuisine"] == "steak_house" )   or
+        ( object.tags["cuisine"] == "grill"       )   or
+        ( object.tags["cuisine"] == "brazilian"   )   or
+        ( object.tags["cuisine"] == "argentinian" ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "restaurant_steak"
       object = building_or_landuse( objtype, object )
@@ -5556,6 +5544,7 @@ function process_all( objtype, object )
    if (( object.tags["amenity"] == "restaurant"  )  and
        ( object.tags["cuisine"] == "indian"      )) then
       object = append_nonqa( object, object.tags["cuisine"] )
+      object = append_accomm( object )
       object.tags["amenity"] = "restaurant_indian"
       object = building_or_landuse( objtype, object )
    end
@@ -5564,27 +5553,35 @@ function process_all( objtype, object )
 -- Chinese or similar Restaurants
 -- German	   0x2a10  amenity=restaurant_indian  Chinese or similar Restaurant
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["amenity"] == "restaurant"  ) and
-       (( object.tags["cuisine"] == "chinese"    )  or
-        ( object.tags["cuisine"] == "thai"       )  or
-        ( object.tags["cuisine"] == "asian"      )  or
-        ( object.tags["cuisine"] == "japanese"   )  or
-        ( object.tags["cuisine"] == "vietnamese" )  or
-        ( object.tags["cuisine"] == "korean"     ))) then
+   if ((  object.tags["amenity"] == "restaurant"      ) and
+       (( object.tags["cuisine"] == "chinese"        )  or
+        ( object.tags["cuisine"] == "thai"           )  or
+        ( object.tags["cuisine"] == "asian"          )  or
+        ( object.tags["cuisine"] == "japanese"       )  or
+        ( object.tags["cuisine"] == "vietnamese"     )  or
+        ( object.tags["cuisine"] == "korean"         )  or
+        ( object.tags["cuisine"] == "sushi;japanese" ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
+      object = append_accomm( object )
       object.tags["amenity"] = "restaurant_chinese"
       object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
 -- Other Restaurants and fast food.
--- Anything with a recognisable cuisine will have had 
--- a different amenity tag set above.
+-- Anything with a recognisable cuisine that we want to handle separately will 
+-- have had a different amenity tag set above.
 -- 0x2a00  amenity=fast_food  amenity=restaurant
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "fast_food"  )  or
        ( object.tags["amenity"] == "restaurant" )) then
       object = append_nonqa( object, object.tags["amenity"] )
+
+      if ( object.tags["cuisine"] ~= nil ) then
+         object = append_nonqa( object, object.tags["cuisine"] )
+      end
+
+      object = append_accomm( object )
       object.tags["amenity"] = "restaurant"
       object = building_or_landuse( objtype, object )
    end
@@ -8080,6 +8077,18 @@ function append_eco( object )
           ( object.tags["bulk_purchase"]      == "only"               )  or
           ( object.tags["reusable_packaging"] == "yes"                )) then
          object = append_nonqa( object, "zero waste" )
+      end
+
+    return object
+end
+
+-- ----------------------------------------------------------------------------
+-- "append accommodation if relevant" function
+-- ----------------------------------------------------------------------------
+function append_accomm( object )
+      if (( object.tags["accommodation"] ~= nil  ) and
+          ( object.tags["accommodation"] ~= "no" )) then
+         object = append_nonqa( object, "accomm" )
       end
 
     return object

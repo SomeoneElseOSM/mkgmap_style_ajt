@@ -9,6 +9,7 @@ If a name is used for golf tees, ensure it appears.
 Suppress a second "bowls" suffix from appearing on bowls pitches.
 Show all amenity=fuel and shop=convenience in one menu each, not two, to avoid confusion.
 Make charging stations searchable via "Fuel Services / Auto Fuel" as well as other fuel.
+Append cuisine to other restaurants and fast food.
 
 ## 18/02/2023
 Prevent military airfields dropping through without processing; ensure they get a suffix of something.

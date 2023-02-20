@@ -3962,25 +3962,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- camp_sites etc.
--- "0x2b03" is searchable via "Lodging / Campground"
--- ----------------------------------------------------------------------------
-   if (( object.tags["tourism"] == "camp_site"  ) or
-       ( object.tags["tourism"] == "camping"    )) then
-      object = append_nonqa( object, object.tags["tourism"] )
-      object.tags["leisure"] = nil
-      object.tags["tourism"] = "camp_site"
-   end
-
-   if (( object.tags["tourism"] == "caravan_site"              ) or
-       ( object.tags["tourism"] == "caravan_site;camp_site"    ) or
-       ( object.tags["tourism"] == "caravan_site;camping_site" )) then
-      object = append_nonqa( object, object.tags["tourism"] )
-      object.tags["leisure"] = nil
-      object.tags["tourism"] = "caravan_site"
-   end
-
--- ----------------------------------------------------------------------------
 -- Resorts
 -- "0x2b04" is searchable via "Lodging / Resort"
 -- ----------------------------------------------------------------------------
@@ -4001,6 +3982,25 @@ function process_all( objtype, object )
       object.tags["leisure"] = nil
       object.tags["tourism"] = "resort"
       object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- camp_sites etc.
+-- "0x2b05" is searchable via "Lodging / Campground"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tourism"] == "camp_site"  ) or
+       ( object.tags["tourism"] == "camping"    )) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
+      object.tags["tourism"] = "camp_site"
+   end
+
+   if (( object.tags["tourism"] == "caravan_site"              ) or
+       ( object.tags["tourism"] == "caravan_site;camp_site"    ) or
+       ( object.tags["tourism"] == "caravan_site;camping_site" )) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["leisure"] = nil
+      object.tags["tourism"] = "caravan_site"
    end
 
 -- ----------------------------------------------------------------------------

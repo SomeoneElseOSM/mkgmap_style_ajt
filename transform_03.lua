@@ -2131,21 +2131,28 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- landuse=vineyard and landuse=allotments
+-- landuse=allotments
 -- Mapped through to "0x4e" ("orchard"), append suffix.
+-- See also "vineyard" below.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["landuse"] == "vineyard"   ) or
-       ( object.tags["landuse"] == "allotments" )) then
+   if ( object.tags["landuse"] == "allotments" ) then
       object = append_nonqa( object, object.tags["landuse"] )
    end
 
 -- ----------------------------------------------------------------------------
 -- craft=winery
 -- "0x2c0a" is searchable via "Attractions / Winery"
+-- That is in "points" for craft=winery and landuse=vineyard.
+-- In addition there is 0x4e ("orchard") in polygons, used for 
+-- landuse=allotments and landuse=vineyard
 -- ----------------------------------------------------------------------------
    if ( object.tags["craft"] == "winery" ) then
       object = append_nonqa( object, object.tags["craft"] )
       object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["landuse"] == "vineyard" ) then
+      object = append_nonqa( object, object.tags["landuse"] )
    end
 
 -- ----------------------------------------------------------------------------

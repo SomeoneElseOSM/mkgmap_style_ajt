@@ -156,6 +156,7 @@ leisure=track { name '${name} (${sport})' | '${name}' } [0x2c08 resolution 21]
 amenity=concert_hall {name '${name}'} [0x2c09 resolution 20]
 amenity=conference_centre {name '${name}'} [0x2c09 resolution 20]
 craft=winery {name '${name}'} [0x2c0a resolution 20]
+landuse=vineyard {name '${name}'} [0x2c0a resolution 20]
 amenity=place_of_worship {name '${name}'} [0x2c0b resolution 21]
 
 amenity=theatre {name '${name}'} [0x2d01 resolution 21]

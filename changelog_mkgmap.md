@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 19/02/2023
 Show names and types of schools, universities, etc.
 Show names and types of memorials.
 Make toilets more searchable, via "Auto Services / Rest Area" rather than among all the other stuff in "Geographic Points / Man Made".
@@ -12,6 +12,7 @@ Make charging stations searchable via "Fuel Services / Auto Fuel" as well as oth
 Append cuisine to other restaurants and fast food.
 Move caravan_site and camp_site to 0x2b05 ("Campground")
 Ensure names are displayed for all places.
+Add "landuse=vineyard" to the things that appear under "Attractions / Winery"
 
 ## 18/02/2023
 Prevent military airfields dropping through without processing; ensure they get a suffix of something.

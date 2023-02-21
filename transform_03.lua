@@ -1213,12 +1213,14 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------------
--- Send pitches through with "pitch" as a suffix, 
+-- Send stadiums and pitches through with e.g. "pitch" as a suffix, 
 -- with the sport appended to the name.
 -- 0x2c08 is searchable via "Attractions / Arena or Track"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["leisure"] == "pitch" ) then
-      object = append_nonqa( object, "pitch" )
+   if (( object.tags["leisure"] == "stadium" ) or
+       ( object.tags["leisure"] == "pitch"   ) or
+       ( object.tags["leisure"] == "track"   )) then
+      object = append_nonqa( object, object.tags["leisure"] )
 
       if ( object.tags["sport"] ~= nil ) then
          object = append_nonqa( object, object.tags["sport"] )
@@ -1243,9 +1245,10 @@ function process_all( objtype, object )
 -- and so does the equivalent of 
 -- 'object = append_nonqa( object, "skateboard" )'
 -- ----------------------------------------------------------------------------
-   if (( object.tags["sport"]   == "skateboard" )  and
-       ( object.tags["shop"]    == nil          )  and
-       ( object.tags["leisure"] == nil          )) then
+   if ((( object.tags["sport"]   == "skateboard" )   or
+        ( object.tags["sport"]   == "skating"    ))  and
+       (  object.tags["shop"]    == nil           )  and
+       (  object.tags["leisure"] == nil           )) then
       object.tags["leisure"] = "pitch"
    end
 
@@ -2810,6 +2813,12 @@ function process_all( objtype, object )
        ( object.tags["leisure"] == "gym"            ) or
        ( object.tags["leisure"] == "fitness_centre" )) then
       object = append_nonqa( object, object.tags["leisure"] )
+
+      if ( object.tags["sport"] ~= nil ) then
+         object = append_nonqa( object, object.tags["sport"] )
+	 object.tags["sport"] = nil
+      end
+
       object.tags["leisure"] = "sports_centre"
       object.tags["amenity"] = nil
       object = building_or_landuse( objtype, object )
@@ -5915,7 +5924,9 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- sports
--- the name is often characteristic,
+-- The name is often characteristic,
+-- If it's definitely a shop, clear "sport" here so that no sport in "points"
+-- is accidentally matched.
 -- "0x2e12" is searchable via "Shopping / Sporting Goods"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "sports"            ) or
@@ -5935,6 +5946,7 @@ function process_all( objtype, object )
       end
 
       object.tags["shop"] = "sports"
+      object.tags["sport"] = nil
       object = building_or_landuse( objtype, object )
    end
 

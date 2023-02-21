@@ -2,6 +2,10 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Ensure sport is shown on more leisure facilities, if set.
+Ensure sports shops aren't accidentally processed as sports facilities.
+
+## 20/02/2023
 Ensure historic ruins have a "historic" suffix.
 Show vending machines in the "Shopping / Specialty Retail" menu with a suffix of "vending").
 

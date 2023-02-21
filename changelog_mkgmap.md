@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Ensure historic ruins have a "historic" suffix.
+Show vending machines in the "Shopping / Specialty Retail" menu with a suffix of "vending").
 
 ## 19/02/2023
 Show names and types of schools, universities, etc.

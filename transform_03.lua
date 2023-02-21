@@ -2449,8 +2449,8 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- If a farm shop doesn't have a name but does have named produce, map across
--- to vending machine, and also the produce into "vending" for consideration 
--- below.
+-- to vending machine (handled immediately below), and also the produce into
+-- "vending" for consideration  below.
 -- ----------------------------------------------------------------------------
    if ((  object.tags["shop"]    == "farm" ) and
        (  object.tags["name"]    == nil    ) and
@@ -2462,10 +2462,13 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Some vending machines get the thing sold as the label.
+-- These are mapped through to "specialty retail" with a "vending" suffix.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (  object.tags["amenity"] == "vending_machine"  ) then
-      object.tags["man_made"]  = "thing"
+      object.tags["shop"] = "specialty"
       object.tags["amenity"]  = nil
+      object = append_nonqa( object, "vending" )
 
       if (( object.tags["vending"] == "milk"            )  or
           ( object.tags["vending"] == "eggs"            )  or
@@ -2478,13 +2481,7 @@ function process_all( objtype, object )
           ( object.tags["vending"] == "photos"          )  or
           ( object.tags["vending"] == "maps"            )  or
           ( object.tags["vending"] == "newspapers"      )) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = "(" .. object.tags["vending"] .. ")"
-         else
-            object.tags["name"] = object.tags['name'] .. " (" .. object.tags["vending"] .. ")"
-         end
-      else
-         object = append_nonqa( object, "vending" )
+         object = append_nonqa( object, object.tags["vending"] )
       end
    end
 

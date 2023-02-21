@@ -219,7 +219,7 @@ amenity=ferry_terminal {name '${name}'} [0x2f08 resolution 19]
 shop=boat {name '${name}'} [0x2f09 resolution 20]
 # 0x2f0a ("Wrecker Service") can be used to isolate wildcard values
 shop=car_wrecker {name '${name}'} [0x2f0a resolution 20]
-amenity=parking {name '${name}'} [0x2f0b resolution 21 default_name 'Parking']
+amenity=parking {name '${name}'} [0x2f0b resolution 21]
 amenity=car_sharing {name '${name}'} [0x2f0d resolution 20]
 amenity=car_wash {name '${name}'} [0x2f0e resolution 21 default_name 'Car Wash']
 barrier=gate [0x2f0f resolution 23 default_name 'Gate']

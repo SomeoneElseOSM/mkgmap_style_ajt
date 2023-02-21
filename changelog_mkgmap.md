@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Ensure sport is shown on more leisure facilities, if set.
 Ensure sports shops aren't accidentally processed as sports facilities.
+Use an appropriate suffix for parking.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

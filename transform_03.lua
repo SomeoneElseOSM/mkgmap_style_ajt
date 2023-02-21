@@ -2504,15 +2504,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Show amenity=layby as parking.
--- highway=rest_area is used a lot in the UK for laybies, so map that over too.
--- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "layby"     ) or
-       ( object.tags["highway"] == "rest_area" )) then
-      object.tags["amenity"] = "parking"
-   end
-
--- ----------------------------------------------------------------------------
 -- Lose any "access=permissive" on parking; it should not be greyed out as it
 -- is "somewhere we can park".
 -- ----------------------------------------------------------------------------
@@ -2522,27 +2513,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Show for-pay parking areas differently.
+-- Show motorcycle_parking areas, and 
+-- show for-pay motorcycle_parking areas differently.
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["amenity"] == "parking"  ) and
-       (( object.tags["fee"]     ~= nil       )  and
-        ( object.tags["fee"]     ~= "no"      )  and
-        ( object.tags["fee"]     ~= "No"      )  and
-        ( object.tags["fee"]     ~= "none"    )  and
-        ( object.tags["fee"]     ~= "None"    )  and
-        ( object.tags["fee"]     ~= "Free"    )  and
-        ( object.tags["fee"]     ~= "free"    )  and
-        ( object.tags["fee"]     ~= "0"       ))) then
-      object = append_nonqa( object, "pay" )
-   end
-
--- ----------------------------------------------------------------------------
--- Show bicycle_parking areas, and 
--- show for-pay bicycle_parking areas differently.
--- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "bicycle_parking" ) then
+   if ((  object.tags["amenity"] == "motorcycle_parking"  ) or
+       (( object.tags["amenity"] == "parking"            )  and
+        ( object.tags["parking"] == "motorcycle"         ))) then
       object.tags["man_made"] = "thing"
-      object = append_nonqa( object, "bicycle parking" )
+      object = append_nonqa( object, "motorcycle parking" )
 
       if (( object.tags["fee"]     ~= nil               )  and
           ( object.tags["fee"]     ~= "no"              )  and
@@ -2557,14 +2535,53 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Show motorcycle_parking areas, and 
--- show for-pay motorcycle_parking areas differently.
+-- Show e-scooter parking areas
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["amenity"] == "motorcycle_parking"  ) or
-       (( object.tags["amenity"] == "parking"            )  and
-        ( object.tags["parking"] == "motorcycle"         ))) then
+   if (( object.tags["amenity"]                == "parking"               )  and
+       ( object.tags["parking"]                == "e-scooter"             )) then
+      object = append_nonqa( object, "e-scooter parking" )
       object.tags["man_made"] = "thing"
-      object = append_nonqa( object, "motorcycle parking" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show amenity=layby as parking.
+-- highway=rest_area is used a lot in the UK for laybies, so map that over too.
+-- Show for-pay parking areas differently.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "rest_area" ) then
+      object.tags["amenity"] = object.tags["highway"]
+   end
+
+   if (( object.tags["amenity"] == "parking"   ) or
+       ( object.tags["amenity"] == "layby"     ) or
+       ( object.tags["amenity"] == "rest_area" )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+
+      if ((  object.tags["amenity"] == "parking"  ) and
+          (( object.tags["fee"]     ~= nil       )  and
+           ( object.tags["fee"]     ~= "no"      )  and
+           ( object.tags["fee"]     ~= "No"      )  and
+           ( object.tags["fee"]     ~= "none"    )  and
+           ( object.tags["fee"]     ~= "None"    )  and
+           ( object.tags["fee"]     ~= "Free"    )  and
+           ( object.tags["fee"]     ~= "free"    )  and
+           ( object.tags["fee"]     ~= "0"       ))) then
+         object = append_nonqa( object, "pay" )
+      end
+
+      object.tags["amenity"] = "parking"
+   end
+
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
+-- Show bicycle_parking areas, and 
+-- show for-pay bicycle_parking areas differently.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "bicycle_parking" ) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "bicycle parking" )
 
       if (( object.tags["fee"]     ~= nil               )  and
           ( object.tags["fee"]     ~= "no"              )  and
@@ -5643,12 +5660,6 @@ function process_all( objtype, object )
        (  object.tags["amenity"]                == "kick-scooter_rental"    ) or
        (  object.tags["amenity"]                == "small_electric_vehicle" )) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object.tags["man_made"] = "thing"
-   end
-
-   if (( object.tags["amenity"]                == "parking"               )  and
-       ( object.tags["parking"]                == "e-scooter"             )) then
-      object = append_nonqa( object, "e-scooter parking" )
       object.tags["man_made"] = "thing"
    end
 

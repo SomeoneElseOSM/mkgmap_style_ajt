@@ -1312,20 +1312,17 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Various ground transportation features
 --
--- Railway, bus, ferry:
+-- Railway, bus, ferry, bicycle_rental:
 -- "0x2f08" is searchable via "Transportation / Ground Transportation"
 -- These values are all also in "points", as the same Garmin ID
+-- "bicycle_rental" is also in the brand / operator logic below.
 --
 -- "Tourism:
 -- "0x2c04" is searchable via "Attractions / Landmark"
 -- ----------------------------------------------------------------------------
    if (( object.tags["railway"] == "halt"    ) or
        ( object.tags["railway"] == "station" )) then
-
-      if ( object.tags["name"] == nil ) then
-         object.tags["name"] = "railway"
-      end
-
+      object = append_nonqa( object, "railway" )
       object = append_nonqa( object, object.tags["railway"] )
 
       if ( object.tags["usage"] == "tourism" ) then
@@ -1336,8 +1333,9 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["amenity"] == "bus_station"    ) or
-       ( object.tags["amenity"] == "ferry_terminal" )) then
+   if (( object.tags["amenity"] == "bus_station"    )  or
+       ( object.tags["amenity"] == "ferry_terminal" )  or
+       ( object.tags["amenity"] == "bicycle_rental" )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object = building_or_landuse( objtype, object )
    end

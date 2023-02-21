@@ -5,6 +5,8 @@ This page describes changes made to the "03" map style [here](https://github.com
 Ensure sport is shown on more leisure facilities, if set.
 Ensure sports shops aren't accidentally processed as sports facilities.
 Use an appropriate suffix for parking.
+Add "railway" as a suffix for railway stations before "station" or "halt".
+Show amenity=bicycle_rental as ground transportation.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

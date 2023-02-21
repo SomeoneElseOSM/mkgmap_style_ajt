@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Ensure historic ruins have a "historic" suffix.
+
 ## 19/02/2023
 Show names and types of schools, universities, etc.
 Show names and types of memorials.

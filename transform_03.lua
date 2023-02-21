@@ -3195,7 +3195,8 @@ function process_all( objtype, object )
 -- There's no distinction here between building / almost a building / 
 -- not a building as there is with the web maps.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["historic"] == "building"           ) or
+   if (( object.tags["historic"] == "ruins"              ) or
+       ( object.tags["historic"] == "building"           ) or
        ( object.tags["historic"] == "heritage_building"  ) or
        ( object.tags["historic"] == "protected_building" ) or
        ( object.tags["historic"] == "watermill"          ) or

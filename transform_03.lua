@@ -4413,6 +4413,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Other barriers that otherwise would not have a suffix
+-- 0x660f appears in "points" for each.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"]   == "bollard"         )  or
+       ( object.tags["barrier"]   == "bus_trap"        )  or
+       ( object.tags["barrier"]   == "block"           )) then
+      object = append_nonqa( object, object.tags["barrier"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- render various synonyms for stile as barrier=stile
 -- 0x2f14 is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------

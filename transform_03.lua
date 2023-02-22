@@ -3676,16 +3676,21 @@ function process_all( objtype, object )
        ( object.tags["basin"]      == "wastewater"            )) then
       object = append_nonqa( object, "wastewater" )
       object.tags["natural"] = "water"
+      object.tags["man_made"] = nil
    end
 
-   if ( object.tags["man_made"]   == "reservoir"  ) then
+   if (( object.tags["man_made"]   == "reservoir"  ) or
+       ( object.tags["man_made"]   == "lagoon"     ) or
+       ( object.tags["man_made"]   == "lake"       )) then
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["natural"] = "water"
-      object = append_nonqa( object, "reservoir" )
+      object.tags["man_made"] = nil
    end
 
-   if (( object.tags["man_made"]   == "lagoon"                ) or
-       ( object.tags["man_made"]   == "lake"                  )) then
+   if ( object.tags["landuse"]   == "basin"  ) then
+      object = append_nonqa( object, object.tags["landuse"] )
       object.tags["natural"] = "water"
+      object.tags["landuse"] = nil
    end
 
 -- ----------------------------------------------------------------------------

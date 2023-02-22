@@ -9,10 +9,12 @@ Add "railway" as a suffix for railway stations before "station" or "halt".
 Show amenity=bicycle_rental as ground transportation.
 Don't show private swimming pools.
 Because restaurant and fast food burger joints are shown together, append restaurant as a suffix on actual restaurants.
+Show vending machines with a suffix of the vend product.
+Show a suffix for landuse=basin water features.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.
-Show vending machines in the "Shopping / Specialty Retail" menu with a suffix of "vending").
+Show vending machines in the "Shopping / Specialty Retail" menu with a suffix of "vending".
 
 ## 19/02/2023
 Show names and types of schools, universities, etc.

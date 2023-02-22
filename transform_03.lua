@@ -2801,9 +2801,17 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Swimming pools
+-- Some swimming pools do not have "sport=swimming", so set that here.
 -- "0x2d09" is searchable via "Recreation / Swimming Pool"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["sport"] == "swimming"  ) then
+   if (( object.tags["leisure"] == "swimming_pool"  ) and
+       ( object.tags["sport"]   == nil              )) then
+      object.tags["sport"] = "swimming"
+   end
+
+   if (( object.tags["sport"]  == "swimming"  ) and
+       ( object.tags["access"] ~= "private"   ) and
+       ( object.tags["access"] ~= "no"        )) then
       object = append_nonqa( object, object.tags["sport"] )
       object.tags["amenity"] = nil
       object.tags["leisure"] = nil

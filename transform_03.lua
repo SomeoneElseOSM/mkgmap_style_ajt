@@ -2471,17 +2471,7 @@ function process_all( objtype, object )
       object.tags["amenity"]  = nil
       object = append_nonqa( object, "vending" )
 
-      if (( object.tags["vending"] == "milk"            )  or
-          ( object.tags["vending"] == "eggs"            )  or
-          ( object.tags["vending"] == "potatoes"        )  or
-          ( object.tags["vending"] == "honey"           )  or
-          ( object.tags["vending"] == "cheese"          )  or
-          ( object.tags["vending"] == "vegetables"      )  or
-          ( object.tags["vending"] == "fruit"           )  or
-          ( object.tags["vending"] == "food"            )  or
-          ( object.tags["vending"] == "photos"          )  or
-          ( object.tags["vending"] == "maps"            )  or
-          ( object.tags["vending"] == "newspapers"      )) then
+      if ( object.tags["vending"] ~= nil ) then
          object = append_nonqa( object, object.tags["vending"] )
       end
    end

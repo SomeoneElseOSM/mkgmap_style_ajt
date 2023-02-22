@@ -5316,6 +5316,11 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "burger;pizza;kebab"                  )   or
         ( object.tags["cuisine"] == "burger;chicken;indian;kebab;pizza"   )   or
         ( object.tags["cuisine"] == "burger;chicken;kebab;pizza"          ))) then
+
+      if ( object.tags["amenity"] == "restaurant" ) then
+         object = append_nonqa( object, object.tags["amenity"] )
+      end
+
       object = append_nonqa( object, object.tags["cuisine"] )
       object = append_accomm( object )
       object.tags["amenity"] = "fast_food_burger"
@@ -5493,6 +5498,11 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "fish_and_chips;pizza;kebab"        )  or
         ( object.tags["cuisine"] == "fish_and_chips;pizza;burger;kebab" )  or
         ( object.tags["cuisine"] == "fish_and_chips;pizza"              ))) then
+
+      if ( object.tags["amenity"] == "restaurant" ) then
+         object = append_nonqa( object, object.tags["amenity"] )
+      end
+
       object = append_nonqa( object, object.tags["cuisine"] )
       object = append_accomm( object )
       object.tags["amenity"] = "fast_food_fish_and_chips"

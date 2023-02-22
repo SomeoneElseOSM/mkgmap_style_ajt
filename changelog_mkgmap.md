@@ -8,6 +8,7 @@ Use an appropriate suffix for parking.
 Add "railway" as a suffix for railway stations before "station" or "halt".
 Show amenity=bicycle_rental as ground transportation.
 Don't show private swimming pools.
+Because restaurant and fast food burger joints are shown together, append restaurant as a suffix on actual restaurants.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

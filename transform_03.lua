@@ -2231,8 +2231,7 @@ function process_all( objtype, object )
 -- "0x2d0b" is searchable via "Recreation / public-sport-airport"
 -- "0x2c04" is searchable via "Attractions / Landmark"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["aeroway"] == "aerodrome" ) or
-       ( object.tags["aeroway"] == "airport"   )) then
+   if ( object.tags["aeroway"] == "aerodrome" ) then
       if (( object.tags["iata"]           ~= nil         ) and
           ( object.tags["aerodrome:type"] ~= "military"  ) and
           ( object.tags["military"]       == nil         )) then
@@ -2279,7 +2278,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Airports etc.
 -- "0x2f04" is searchable via "Transportation / Air Transportation"
--- "airport", "aerodrome", "terminal" are all also in "points", 
+-- "aerodrome", "terminal" are all also in "points", 
 -- as the same Garmin ID
 -- ----------------------------------------------------------------------------
    if ( object.tags["aeroway"] == "terminal" ) then

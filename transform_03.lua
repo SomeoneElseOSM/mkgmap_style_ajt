@@ -1538,6 +1538,19 @@ function process_all( objtype, object )
       object.tags["disused:amenity"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Note that any "disused:amenity=pub" that has survived to here will be 
+-- handled by the vacant shops logic below; no need to explicitly handle it 
+-- here.
+--
+-- It will then go through "building_or_landuse" and "man_made=thing" will be
+-- assigned to nodes (which would not otherwise appear).  
+-- Ways with a building tag will not be searchable, even on "All POIs" but
+-- will appear as buildings.
+-- Ways without a building tag will not be searchable, even on "All POIs" but
+-- will appear as landuse.
+-- ----------------------------------------------------------------------------
+
    if ((  object.tags["real_ale"]  ~= nil    ) and
        (( object.tags["amenity"]   == nil   )  and
         ( object.tags["shop"]      == nil   )  and
@@ -8228,12 +8241,16 @@ end
 -- ----------------------------------------------------------------------------
 -- "building or landuse" function
 --
--- nodes with no other tag are mapped to "man_made=thing"
--- "0x2f14" is searchable as "Others / Social Service"
+-- nodes with no other appropriate tags are mapped to "man_made=thing".
+-- For those, "0x2f14" is searchable as "Others / Social Service"
 --
 -- Many tags (for example, man_made=observatory) may be applied either to a 
--- building or a wider landuse area.  
--- If there is a no building tag, set a landuse tag that will appear.
+-- building or a wider landuse area.  A building or landuse tag is applied:
+--
+-- Ways with a building tag will not be searchable, even on "All POIs" but
+-- will appear as buildings.
+-- Ways without a building tag will not be searchable, even on "All POIs" but
+-- will appear as landuse.
 -- ----------------------------------------------------------------------------
 function building_or_landuse( objtype, object )
    if ( objtype == 'n' ) then

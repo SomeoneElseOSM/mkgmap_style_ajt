@@ -19,6 +19,7 @@ Handle barrier=border_control as government=customs.
 Split out amenity=courthouse and add comment.
 Add amenity=drinking_water to lua and map man_made=water_tap to same, better icon, same menu.
 Add suffix for graveyards and cemeteries.
+Remove "amenity=disused_pub" from "points" (no longer used) and improve comments re vacant/disused handling, which follows how the web map's "style.lua" does it, not the old Garmin process.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

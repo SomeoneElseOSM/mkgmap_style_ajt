@@ -13,6 +13,7 @@ Show vending machines with a suffix of the vend product.
 Show a suffix for landuse=basin water features.
 Append barrier type as suffix for barrier=block etc.; not yet displayed.
 Remove references to aeroway=airport as it no longer appears in the data.
+Split large, military and small heliports.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

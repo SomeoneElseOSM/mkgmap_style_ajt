@@ -2223,17 +2223,32 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Aerodrome size.
--- Large public airports should be shown as "real airports".  
+--
+-- Large public airports with an iata code should be shown as "real airports".  
 -- gliding clubs etc. should appear as public sport airports; 
 -- miltiary ones appear as generic tourist attractions.
 -- all go through "building_or_landuse" at the end.
 -- "0x2f04" is searchable via "Transportation / Air Transportation"
 -- "0x2d0b" is searchable via "Recreation / public-sport-airport"
 -- "0x2c04" is searchable via "Attractions / Landmark"
+--
+-- Heliports are similar to airports, except an icao code (present on many
+-- more airports) can also determine that a heliport is "public".
 -- ----------------------------------------------------------------------------
+   if ( object.tags["aeroway"] == "heliport" ) then
+      object = append_nonqa( object, object.tags["aeroway"] )
+      object.tags["aeroway"] = "aerodrome"
+
+      if (( object.tags["iata"]  == nil )  and
+          ( object.tags["icao"]  ~= nil )) then
+         object.tags["iata"] = object.tags["icao"]
+      end
+   end
+
    if ( object.tags["aeroway"] == "aerodrome" ) then
       if (( object.tags["iata"]           ~= nil         ) and
           ( object.tags["aerodrome:type"] ~= "military"  ) and
+          ( object.tags["landuse"]        ~= "military"  ) and
           ( object.tags["military"]       == nil         )) then
          object = append_nonqa( object, object.tags["iata"] )
          object = append_nonqa( object, object.tags["aeroway"] )

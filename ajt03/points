@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-aeroway=helipad {name '${name}'} [0x5904 resolution 20]
-amenity=border_control | barrier=border_control [0x3006 resolution 18]
 amenity=courthouse {name '${name}'} [0x3004 resolution 20]
 amenity=drinking_water [0x5000 resolution 23 default_name 'Water']
 amenity=grave_yard [0x6403 resolution 21]
@@ -243,9 +241,12 @@ amenity=doctors {name '${name}'} [0x3002 resolution 20]
 amenity=hospital {name '${name}'} [0x3002 resolution 20]
 amenity=townhall {name '${name}'} [0x3003 resolution 21]
 amenity=community_centre {name '${name}'} [0x3005 resolution 20]
+barrier=border_control {name '${name}'} [0x3006 resolution 18]
 government=customs {name '${name}'} [0x3006 resolution 20]
 office=government {name '${name}'} [0x3007 resolution 21]
 amenity=fire_station {name '${name}'} [0x3008 resolution 21]
+
+aeroway=helipad {name '${name}'} [0x5904 resolution 20]
 
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]

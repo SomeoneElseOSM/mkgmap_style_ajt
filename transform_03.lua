@@ -683,9 +683,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- barrier=border_control
 -- government=customs
+-- Both are in "points" as "0x3006" 
 -- "0x3006" is searchable via "Community / Border Crossing"
+-- A unique icon appears on GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"] == "border_control"   ) then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object = building_or_landuse( objtype, object )
+   end
+
    if ( object.tags["government"]  == "customs" ) then
       object = append_nonqa( object, object.tags["government"] )
       object.tags["government"] = "customs"
@@ -4380,7 +4388,6 @@ function process_all( objtype, object )
 -- A suffix is always used for lift gates
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "lift_gate"        ) or
-       ( object.tags["barrier"] == "border_control"   ) or
        ( object.tags["barrier"] == "ticket_barrier"   ) or
        ( object.tags["barrier"] == "ticket"           ) or
        ( object.tags["barrier"] == "security_control" ) or

@@ -8,19 +8,17 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-amenity=grave_yard [0x6403 resolution 21]
 amenity=disused_pub {name '${name}'} [0x4f00 resolution 21 default_name 'Former Pub' ]
-amenity=social_club [0x4f00 resolution 21 default_name 'Social Club' ]
-amenity=licensed_club [0x4f00 resolution 21 default_name 'Licensed Club' ]
-amenity=working_mens_club [0x4f00 resolution 21 default_name 'Working Mens Club' ]
+amenity=social_club {name '${name}'} [0x4f00 resolution 21 default_name 'Social Club' ]
+amenity=licensed_club {name '${name}'} [0x4f00 resolution 21 default_name 'Licensed Club' ]
+amenity=working_mens_club {name '${name}'} [0x4f00 resolution 21 default_name 'Working Mens Club' ]
 amenity=telephone {name '${name}'} [0x5100 resolution 21 default_name 'Telephone']
 amenity=toilets {name '${name}'} [0x2f0c resolution 20]
 
 landuse=forest & name=* [0x6618 resolution 21]
-landuse=basin [0x650f resolution 21]
-landuse=cemetery [0x6403 resolution 21]
-landuse=military [0x640b resolution 21]
-landuse=reservoir [0x650f resolution 21]
+landuse=basin {name '${name}'} [0x650f resolution 21]
+landuse=military {name '${name}'} [0x640b resolution 21]
+landuse=reservoir {name '${name}'} [0x650f resolution 21]
 
 barrier=ford [0x6512 resolution 21]
 waterway=lock_gate {name '${name}'} [0x1607 resolution 21]
@@ -248,6 +246,8 @@ amenity=fire_station {name '${name}'} [0x3008 resolution 21]
 amenity=drinking_water {name '${name}'} [0x5000 resolution 23]
 aeroway=helipad {name '${name}'} [0x5904 resolution 20]
 
+amenity=grave_yard {name '${name}'} [0x6403 resolution 21]
+landuse=cemetery {name '${name}'} [0x6403 resolution 21]
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]
 natural=wood {name '${name}'} [0x6618 resolution 21]

@@ -527,7 +527,7 @@ function process_all( objtype, object )
 -- amenity=courthouse
 -- In "points" as "0x3004"
 -- "0x3004" is searchable via "Community / Court House"
--- A "public building" icon appears on GPSMAP64s
+-- A "public building" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (  object.tags["amenity"] == "courthouse" ) then
       object = append_nonqa( object, object.tags["amenity"] )
@@ -698,7 +698,7 @@ function process_all( objtype, object )
 -- government=customs
 -- Both are in "points" as "0x3006" 
 -- "0x3006" is searchable via "Community / Border Crossing"
--- A unique icon appears on GPSMAP64s
+-- A unique icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["barrier"] == "border_control"   ) then
       object = append_nonqa( object, object.tags["barrier"] )
@@ -951,7 +951,7 @@ function process_all( objtype, object )
 -- amenity=drinking_water
 -- In "points" as "0x5000"
 -- "0x5000" is searchable via "Geographic Points / Water Features"
--- A "water tap" icon appears on GPSMAP64s
+-- A "water tap" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "drinking_water" ) then
       object = append_nonqa( object, object.tags["amenity"] )
@@ -966,6 +966,21 @@ function process_all( objtype, object )
       object.tags["amenity"] = "drinking_water"
       object.tags["man_made"] = nil
       object = append_nonqa( object, "tap" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- amenity=grave_yard
+-- landuse=cemetery
+-- Both are in "points" as "0x6403" 
+-- "0x6403" is searchable via "Geographic Points / Man Made",
+-- A gravestone icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "grave_yard" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+   end
+
+   if ( object.tags["landuse"] == "cemetery" ) then
+      object = append_nonqa( object, object.tags["landuse"] )
    end
 
 -- ----------------------------------------------------------------------------

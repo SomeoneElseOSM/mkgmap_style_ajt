@@ -8,7 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-amenity=drinking_water [0x5000 resolution 23 default_name 'Water']
 amenity=grave_yard [0x6403 resolution 21]
 amenity=disused_pub {name '${name}'} [0x4f00 resolution 21 default_name 'Former Pub' ]
 amenity=social_club [0x4f00 resolution 21 default_name 'Social Club' ]
@@ -246,6 +245,7 @@ government=customs {name '${name}'} [0x3006 resolution 20]
 office=government {name '${name}'} [0x3007 resolution 21]
 amenity=fire_station {name '${name}'} [0x3008 resolution 21]
 
+amenity=drinking_water {name '${name}'} [0x5000 resolution 23]
 aeroway=helipad {name '${name}'} [0x5904 resolution 20]
 
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]

@@ -17,6 +17,7 @@ Split large, military and small heliports.
 Added suffix for helipads.
 Handle barrier=border_control as government=customs.
 Split out amenity=courthouse and add comment.
+Add amenity=drinking_water to lua and map man_made=water_tap to same, better icon, same menu.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

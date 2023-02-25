@@ -948,11 +948,23 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- amenity=drinking_water
+-- In "points" as "0x5000"
+-- "0x5000" is searchable via "Geographic Points / Water Features"
+-- A "water tap" icon appears on GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "drinking_water" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- man_made=water_tap
+-- Mapped through to amenity=drinking_water (in "points", see elsewhere).
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"] == "water_tap" ) and
        ( object.tags["amenity"]  == nil         )) then
-      object.tags["natural"] = "spring"
+      object.tags["amenity"] = "drinking_water"
+      object.tags["man_made"] = nil
       object = append_nonqa( object, "tap" )
    end
 

@@ -2222,6 +2222,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Helipads
+-- aeroway=helipad is in "points"
+-- 0x5904 is searchable via "Geographic Points / Manmade Places"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["aeroway"] == "helipad" ) then
+      object = append_nonqa( object, object.tags["aeroway"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Aerodrome size.
 --
 -- Large public airports with an iata code should be shown as "real airports".  

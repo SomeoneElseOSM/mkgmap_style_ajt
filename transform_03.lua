@@ -524,6 +524,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- amenity=courthouse
+-- In "points" as "0x3004"
+-- "0x3004" is searchable via "Community / Court House"
+-- A "public building" icon appears on GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if (  object.tags["amenity"] == "courthouse" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Community Centres etc.
 -- "0x3005" is searchable via "Community / Community Center"
 -- ----------------------------------------------------------------------------
@@ -6928,7 +6939,6 @@ function process_all( objtype, object )
    if ((  object.tags["amenity"]    == "job_centre"              ) or
        (  object.tags["amenity"]    == "jobcentre"               ) or
        (  object.tags["amenity"]    == "public_building"         ) or
-       (  object.tags["amenity"]    == "courthouse"              ) or
        (  object.tags["amenity"]    == "register_office"         ) or
        (  object.tags["amenity"]    == "townhall"                ) or
        (  object.tags["amenity"]    == "village_hall"            ) or

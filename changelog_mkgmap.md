@@ -16,6 +16,7 @@ Remove references to aeroway=airport as it no longer appears in the data.
 Split large, military and small heliports.
 Added suffix for helipads.
 Handle barrier=border_control as government=customs.
+Split out amenity=courthouse and add comment.
 
 ## 20/02/2023
 Ensure historic ruins have a "historic" suffix.

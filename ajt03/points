@@ -8,9 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-amenity=social_club {name '${name}'} [0x4f00 resolution 21 default_name 'Social Club' ]
-amenity=licensed_club {name '${name}'} [0x4f00 resolution 21 default_name 'Licensed Club' ]
-amenity=working_mens_club {name '${name}'} [0x4f00 resolution 21 default_name 'Working Mens Club' ]
 amenity=telephone {name '${name}'} [0x5100 resolution 21 default_name 'Telephone']
 amenity=toilets {name '${name}'} [0x2f0c resolution 20]
 
@@ -34,7 +31,6 @@ historic=castle {name '${name}'} [0x2c02 resolution 20]
 
 leisure=marina {name '${name}'} [0x4300 resolution 21]
 leisure=nature_reserve & name=* {name '${name}'} [0x6612 resolution 18]
-leisure=social_club {name '${name}'} [0x4f00 resolution 21]
 
 man_made=tower {name '${name}'} [0x6411 resolution 21]
 man_made=mast {name '${name}'} [0x6411 resolution 21]
@@ -241,6 +237,9 @@ barrier=border_control {name '${name}'} [0x3006 resolution 18]
 government=customs {name '${name}'} [0x3006 resolution 20]
 office=government {name '${name}'} [0x3007 resolution 21]
 amenity=fire_station {name '${name}'} [0x3008 resolution 21]
+
+# The lua file translates this to amenity=community_centre
+# leisure=social_club {name '${name}'} [0x4f00 resolution 21]
 
 amenity=drinking_water {name '${name}'} [0x5000 resolution 23]
 aeroway=helipad {name '${name}'} [0x5904 resolution 20]

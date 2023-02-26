@@ -4268,91 +4268,37 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Retag military bunkers as buildings
+-- landuse=military, and other military things
+-- landuse=military is in "points" as "0x640b" and in polygons as "0x04"
+-- "0x640b" is searchable via "Geographic Points / Man Made" 
+-- A unique "tank" icon appears on a GPSMAP64s.  Landuse appears as dark grey.
+--
+-- First, add a "landuse=military" tag if no pre-existing landuse tag on 
+-- military things.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"]  == nil )  and
+       ( object.tags["military"] ~= nil )) then
+      object.tags["landuse"] = "military"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Ensure that military bunkers are also buildings
 -- ----------------------------------------------------------------------------
    if ( object.tags["military"] == "bunker" )  then
       object.tags["building"] = "yes"
-      object = append_nonqa( object, "bunker" )
    end
 
 -- ----------------------------------------------------------------------------
--- Tag military barracks as military landuse, if a landuse is not set already.
+-- Apply suffixes to military items
 -- ----------------------------------------------------------------------------
-   if ( object.tags["military"] == "barracks" )  then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
+   if ( object.tags["landuse"] == "military" )  then
+      object = append_nonqa( object, object.tags["landuse"] )
+
+      if ( object.tags['military'] ~= nil ) then
+         object = append_nonqa( object, object.tags["military"] )
       end
 
-      object = append_nonqa( object, object.tags["military"] )
-   end
-
--- ----------------------------------------------------------------------------
--- Tag military offices as military landuse, if not already.
--- ----------------------------------------------------------------------------
-   if (( object.tags["military"] == "office"                             ) or
-       ( object.tags["military"] == "offices"                            ) or
-       ( object.tags["military"] == "registration_and_enlistment_office" ))  then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
-      end
-
-      object = append_nonqa( object, "military office" )
-   end
-
--- ----------------------------------------------------------------------------
--- Tag naval bases as military landuse, if not already.
--- ----------------------------------------------------------------------------
-   if ( object.tags["military"] == "naval_base" ) then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
-      end
-
-      object = append_nonqa( object, "naval base" )
-   end
-
--- ----------------------------------------------------------------------------
--- Tag military depots as military landuse, if not already.
--- ----------------------------------------------------------------------------
-   if ( object.tags["military"] == "depot" ) then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
-      end
-
-      object = append_nonqa( object, "military depot" )
-   end
-
--- ----------------------------------------------------------------------------
--- Tag TA centres as military landuse, if not already.
--- ----------------------------------------------------------------------------
-   if ( object.tags["military"] == "ta centre" ) then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
-      end
-
-      object = append_nonqa( object, "TA centre" )
-   end
-
--- ----------------------------------------------------------------------------
--- Tag military checkpoints as military landuse, if not already.
--- ----------------------------------------------------------------------------
-   if ( object.tags["military"] == "checkpoint" ) then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
-      end
-
-      object = append_nonqa( object, "military checkpoint" )
-   end
-
--- ----------------------------------------------------------------------------
--- Tag shooting ranges as military landuse, if not already.
--- ----------------------------------------------------------------------------
-   if (( object.tags["hazard"] == "shooting_range" )  or
-       ( object.tags["sport"]  == "shooting_range" )) then
-      if ( object.tags['landuse'] == nil ) then
-         object.tags.landuse = "military"
-      end
-
-      object = append_nonqa( object, "shooting range" )
+      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -8345,7 +8291,9 @@ function building_or_landuse( objtype, object )
    else
       if (( object.tags["building"] == nil  ) or
           ( object.tags["building"] == "no" )) then
-         object.tags["landuse"] = "industrial"
+         if ( object.tags["landuse"] == nil ) then
+            object.tags["landuse"] = "industrial"
+         end
       else
          object.tags["building"] = "yes"
       end

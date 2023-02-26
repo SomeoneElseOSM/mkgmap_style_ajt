@@ -67,11 +67,6 @@ leisure=stadium { name '${name} (${sport})' | '${name}' } [0x19 resolution 19]
 leisure=track { name '${name} (${sport})' | '${name}' } [0x19 resolution 18]
 leisure=water_park [0x09 resolution 18]
 
-military=airfield [0x04 resolution 18]
-military=barracks [0x04 resolution 18]
-military=danger_area [0x04 resolution 18]
-military=range [0x04 resolution 18]
-
 natural=glacier {name '${name}'} [0x4d resolution 16]
 natural=marsh {name '${name}'} [0x51 resolution 20]
 natural=mud {name '${name}'} [0x51 resolution 20]

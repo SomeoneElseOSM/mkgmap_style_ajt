@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-amenity=toilets {name '${name}'} [0x2f0c resolution 20]
-
 landuse=forest & name=* [0x6618 resolution 21]
 landuse=basin {name '${name}'} [0x650f resolution 21]
 landuse=military {name '${name}'} [0x640b resolution 21]
@@ -209,6 +207,7 @@ shop=boat {name '${name}'} [0x2f09 resolution 20]
 # 0x2f0a ("Wrecker Service") can be used to isolate wildcard values
 shop=car_wrecker {name '${name}'} [0x2f0a resolution 20]
 amenity=parking {name '${name}'} [0x2f0b resolution 21]
+amenity=toilets {name '${name}'} [0x2f0c resolution 20]
 amenity=car_sharing {name '${name}'} [0x2f0d resolution 20]
 amenity=car_wash {name '${name}'} [0x2f0e resolution 21]
 barrier=gate [0x2f0f resolution 23 default_name 'Gate']

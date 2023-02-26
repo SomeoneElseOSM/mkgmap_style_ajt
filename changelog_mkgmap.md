@@ -4,6 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Add a suffix to stiles to replace the now removed default name.
 Map cattle grids through to "man_made=thing", with a suffix.
+Add a suffix to telephones that are mapped through.
 
 ## 24/02/2023
 Ensure sport is shown on more leisure facilities, if set.

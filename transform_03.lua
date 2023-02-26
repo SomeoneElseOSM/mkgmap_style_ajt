@@ -3767,8 +3767,63 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Ensure natural=water gets a suffix
--- 0x3c
+-- natural=water
+-- In points as "0x650d", in polygons as "0x3c"
+-- QMapShack doesn't seem to understand "0x650d" 
+-- but "0x3c" appears as "large lake"
+-- On a GPSMAP64s, "0x650d" appears in "Geographic Points / Water Features"
+--
+-- landuse=reservoir
+-- In points as "0x650f", in polygons as "0x3f"
+-- QMapShack understands "0x650f" and "0x3f" as "medium lake"
+-- On a GPSMAP64s, "0x650f" appears in "Geographic Points / Water Features"
+--
+-- landuse=basin
+-- In points as "0x6603", in polygons as "0x3f"
+-- QMapShack understands "0x6603" and "0x3f" as water.
+-- On a GPSMAP64s, "0x6603" appears in "Geographic Points / Land Features"
+--
+-- Firstly, let's reorganise tags if needed so that the rest of the lua can 
+-- understand what we are dealing with:
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "lagoon"  ) then
+      object.tags["natural"] = "water"
+      object.tags["water"] = "lagoon"
+      object.tags["landuse"] = nil
+      object.tags["man_made"] = nil
+   end
+
+   if ((( object.tags["natural"]  == "water"     )  and
+        ( object.tags["water"]    == "reservoir" )) or
+       (  object.tags["man_made"] == "reservoir"  )) then
+      object.tags["landuse"] = "reservoir"
+      object.tags["natural"] = nil
+      object.tags["man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Suppress "name" on riverbanks mapped as "natural=water"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["natural"]   == "water"  ) and
+       ( object.tags["water"]     == "river"  )) then
+      object.tags["name"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Next, handle wastewater as a suffix, if necessary.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"]       == "wastewater_reservoir"  ) or
+       (  object.tags["basin"]          == "wastewater"            ) or
+       (( object.tags["landuse"]        == "reservoir"            )  and
+        ( object.tags["reservoir_type"] == "sewage"               ))) then
+      object = append_nonqa( object, "wastewater" )
+      object.tags["landuse"] = "reservoir"
+      object.tags["man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Finally append water type or landuse suffix if appropriate.
+-- Regular natural=water without a water type doesn't get a suffix.
 -- ----------------------------------------------------------------------------
    if ( object.tags["natural"] == "water"  ) then
       if ( object.tags["water"] ~= nil  ) then
@@ -3778,36 +3833,9 @@ function process_all( objtype, object )
       object.tags["natural"] = "water"
    end
 
--- ----------------------------------------------------------------------------
--- Add "water" to some "wet" features for rendering.
--- ----------------------------------------------------------------------------
-   if (( object.tags["man_made"]   == "wastewater_reservoir"  ) or
-       ( object.tags["basin"]      == "wastewater"            )) then
-      object = append_nonqa( object, "wastewater" )
-      object.tags["natural"] = "water"
-      object.tags["man_made"] = nil
-   end
-
-   if (( object.tags["man_made"]   == "reservoir"  ) or
-       ( object.tags["man_made"]   == "lagoon"     ) or
-       ( object.tags["man_made"]   == "lake"       )) then
-      object = append_nonqa( object, object.tags["man_made"] )
-      object.tags["natural"] = "water"
-      object.tags["man_made"] = nil
-   end
-
-   if ( object.tags["landuse"]   == "basin"  ) then
+   if (( object.tags["landuse"]   == "reservoir"  ) or
+       ( object.tags["landuse"]   == "basin"      )) then
       object = append_nonqa( object, object.tags["landuse"] )
-      object.tags["natural"] = "water"
-      object.tags["landuse"] = nil
-   end
-
--- ----------------------------------------------------------------------------
--- Suppress "name" on riverbanks mapped as "natural=water"
--- ----------------------------------------------------------------------------
-   if (( object.tags["natural"]   == "water"  ) and
-       ( object.tags["water"]     == "river"  )) then
-      object.tags["name"] = nil
    end
 
 -- ----------------------------------------------------------------------------

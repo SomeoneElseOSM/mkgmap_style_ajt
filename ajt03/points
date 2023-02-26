@@ -8,7 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-landuse=forest & name=* [0x6618 resolution 21]
 landuse=basin {name '${name}'} [0x650f resolution 21]
 landuse=military {name '${name}'} [0x640b resolution 21]
 landuse=reservoir {name '${name}'} [0x650f resolution 21]
@@ -247,6 +246,7 @@ amenity=grave_yard {name '${name}'} [0x6403 resolution 21]
 landuse=cemetery {name '${name}'} [0x6403 resolution 21]
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]
+landuse=forest {name '${name}'} [0x6618 resolution 21]
 natural=wood {name '${name}'} [0x6618 resolution 21]
 
 # Wildcards

@@ -175,9 +175,28 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Woodland - append B, C or M based on leaf_type.
--- If there is no name after this procedure Garmins will show "Woods" instead.
+-- landuse=forest
+-- natural=wood
+-- (and a few outlier tags for the same thing)
+-- Both are in "points" as "0x6618" 
+-- On landuse=forest, append main tag and operator (if set)
+-- On natural=wood, append B, C, M or just "()", based on leaf_type.
+-- "0x6618" is searchable via "Geographic Points / Man Made"
+-- A "woodland" land cover appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "forest" ) then
+      object.tags["landuse"] = "forest"
+   end
+
+   if (( object.tags["landuse"] == "forest"   ) or
+       ( object.tags["landuse"] == "forestry" )) then
+      object = append_nonqa( object, object.tags["landuse"] )
+
+      if ( object.tags["operator"] ~= nil ) then
+         object = append_nonqa( object, object.tags["operator"] )
+      end
+   end
+
    if ( object.tags["natural"] == "wood" ) then
       leaf_type_appendix = ""
 
@@ -2211,6 +2230,7 @@ function process_all( objtype, object )
 -- That is in "points" for craft=winery and landuse=vineyard.
 -- In addition there is 0x4e ("orchard") in polygons, used for 
 -- landuse=allotments and landuse=vineyard
+-- A "woodland" land cover appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["craft"] == "winery" ) then
       object = append_nonqa( object, object.tags["craft"] )

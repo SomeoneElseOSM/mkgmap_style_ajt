@@ -4276,13 +4276,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Tag military barracks as military landuse, if not already.
+-- Tag military barracks as military landuse, if a landuse is not set already.
 -- ----------------------------------------------------------------------------
    if ( object.tags["military"] == "barracks" )  then
       if ( object.tags['landuse'] == nil ) then
          object.tags.landuse = "military"
       end
-      object = append_nonqa( object, "barracks" )
+
+      object = append_nonqa( object, object.tags["military"] )
    end
 
 -- ----------------------------------------------------------------------------

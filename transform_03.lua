@@ -4495,6 +4495,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- barrier=cattle_grid
+-- "man_made=thing" is in "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"]   == "cattle_grid" ) then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["man_made"] = "thing"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Other barriers that otherwise would not have a suffix
 -- 0x660f appears in "points" for each.
 -- ----------------------------------------------------------------------------
@@ -4540,8 +4551,8 @@ function process_all( objtype, object )
    if ((  object.tags["historic"]      == "memorial"  ) and
        (( object.tags["memorial"]      == "plate"    )  or
         ( object.tags["memorial:type"] == "plate"    ))) then
-      object.tags["man_made"] = "thing"
       object = append_nonqa( object, "memorial plate" )
+      object.tags["man_made"] = "thing"
    end
 
 -- ----------------------------------------------------------------------------

@@ -429,7 +429,12 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Former telephone boxes
+-- Telephone boxes and former telephone boxes
+--
+-- amenity=telephone
+-- In "points" as "0x5100"
+-- "0x5100" is searchable via "Geographic Points / Man Made",
+-- A "telephone" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((( object.tags["covered"]         == "booth"          )   and
         ( object.tags["booth"]           ~= "K1"             )   and
@@ -463,6 +468,7 @@ function process_all( objtype, object )
           (  object.tags["tourism"]   ~= "information"   ) and
           (  object.tags["tourism"]   ~= "artwork"       ) and
           (  object.tags["tourism"]   ~= "museum"        )) then
+      	 object = append_nonqa( object, object.tags["amenity"] )
          object.tags["amenity"] = "telephone"
          object.tags["tourism"] = nil
          object.tags["emergency"] = nil

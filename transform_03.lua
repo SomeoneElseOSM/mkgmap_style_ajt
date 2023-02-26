@@ -4508,11 +4508,13 @@ function process_all( objtype, object )
 -- render various synonyms for stile as barrier=stile
 -- 0x2f14 is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"]   == "squeeze_stile"   )  or
+   if (( object.tags["barrier"]   == "stile"           )  or
+       ( object.tags["barrier"]   == "squeeze_stile"   )  or
        ( object.tags["barrier"]   == "ramblers_gate"   )  or
        ( object.tags["barrier"]   == "squeeze_point"   )  or
        ( object.tags["barrier"]   == "step_over"       )  or
        ( object.tags["barrier"]   == "stile;gate"      )) then
+      object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "stile"
    end
 

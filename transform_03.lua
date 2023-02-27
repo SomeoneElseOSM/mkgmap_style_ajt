@@ -3338,6 +3338,10 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Mineshafts
 -- First make sure that we treat historic ones as historic
+--
+-- historic=ruins is in "points" as "0x2c02"
+-- "0x2c02" is searchable via "Attractions / Museum or Historical"
+-- A "museum" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((( object.tags["man_made"] == "mine"       )  or
         ( object.tags["man_made"] == "mineshaft"  )  or
@@ -3366,6 +3370,10 @@ function process_all( objtype, object )
 -- Ensure historic things are shown.
 -- There's no distinction here between building / almost a building / 
 -- not a building as there is with the web maps.
+--
+-- historic=ruins is in "points" as "0x2c02"
+-- "0x2c02" is searchable via "Attractions / Museum or Historical"
+-- A "museum" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "ruins"              ) or
        ( object.tags["historic"] == "building"           ) or

@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-historic=museum {name '${name}'} [0x2c02 resolution 20]
-historic=archaeological_site | historic=ruins {name '${name}'} [0x2c02 resolution 21]
 historic=ruins {name '${name}'} [0x2c02 resolution 20]
 historic=castle {name '${name}'} [0x2c02 resolution 20]
 
@@ -110,9 +108,10 @@ tourism=camp_site {name '${name}'} [0x2b05 resolution 20]
 tourism=caravan_site {name '${name}'} [0x2b05 resolution 20]
 tourism=hostel {name '${name}'} [0x2b05 resolution 20]
 
-tourism=theme_park {name '${name}'} [0x2c01 resolution 20 default_name 'Theme Park' ]
-tourism=museum {name '${name}'} [0x2c02 resolution 20 default_name 'Museum' ]
+tourism=theme_park {name '${name}'} [0x2c01 resolution 20]
+tourism=museum {name '${name}'} [0x2c02 resolution 20]
 historic=memorial {name '${name}'} [0x2c02 resolution 20]
+historic=archaeological_site {name '${name}'} [0x2c02 resolution 21]
 amenity=library {name '${name}'} [0x2c03 resolution 21]
 amenity=arts_centre {name '${name}'} [0x2c04 resolution 20]
 tourism=artwork {name '${name}'} [0x2c04 resolution 20]

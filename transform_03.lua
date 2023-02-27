@@ -3463,6 +3463,12 @@ function process_all( objtype, object )
       object.tags["place"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- historic=archaeological_site
+-- In "points" as "0x2c02"
+-- "0x2c02" is searchable via "Attractions / Museum or Historical"
+-- A "museum" icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "archaeological_site" )  and
        ( object.tags["landuse"]  == nil                   )) then
       object.tags["tourism"] = nil

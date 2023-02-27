@@ -3047,7 +3047,10 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Lock gates
+-- waterway=lock_gate
+-- In points file as "0x1607"
+-- "0x1607" does not appear in All POIs and is not searchable
+-- A unique icon ("a white exclamation mark") appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["waterway"] == "lock_gate" ) then
       object = append_nonqa( object, "lock gate" )

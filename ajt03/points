@@ -8,9 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-highway=motorway_junction { name '${ref} ${name}' | '${ref}' | '${name}' }
-highway=motorway_junction [0x2000 resolution 20]
-
 highway=services {name '${name}'} [0x210f resolution 20]
 
 historic=museum {name '${name}'} [0x2c02 resolution 20]
@@ -53,6 +50,8 @@ place=island [0x650c resolution 20]
 # The use of these values has been checked
 
 waterway=lock_gate {name '${name}'} [0x1607 resolution 21]
+
+highway=motorway_junction {name '${name}'} [0x2000 resolution 20]
 
 amenity=restaurant {name '${name}'} [0x2a00 resolution 20]
 amenity=fast_food_burger {name '${name}'} [0x2a01 resolution 20]

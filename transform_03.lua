@@ -2165,6 +2165,26 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- highway=motorway_junction
+-- In points as "0x2000"
+-- QMapShack understands "0x2000" and displays the text
+-- Does not appear to be searchable or in All POIs on a GPSMAP64s
+-- No icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "motorway_junction" ) then
+      if ( object.tags["name:signed"] == "no" ) then
+         object.tags["name"] = nil
+      end
+
+      object = append_nonqa( object, object.tags["highway"] )
+
+      if (( object.tags["ref"]        ~= nil  ) and
+          ( object.tags["ref:signed"] ~= "no" )) then
+         object = append_nonqa( object, object.tags["ref"] )
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Other nonspecific leisure.  
 -- qqq these will all need handling eventually, but no code here yet
 -- ----------------------------------------------------------------------------

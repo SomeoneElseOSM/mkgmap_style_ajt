@@ -1192,8 +1192,13 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- highway=services is translated to commercial landuse - any overlaid parking
--- can then be seen in QMapShack.
+-- highway=services 
+-- This is translated to commercial landuse - any overlaid parking
+-- can then be seen in QMapShack 
+-- and will be searchable via "Auto Services / Parking" on a GPSMap64s.
+-- landuse=commercial is in polygons as "0x0c"
+-- "0x0c" is not searchable via All POIs
+-- The name and suffix are visible in QMapShack and on a GPSMAP64s
 --
 -- highway=rest_area is translated lower down to amenity=parking.
 -- ----------------------------------------------------------------------------

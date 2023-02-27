@@ -8,7 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-leisure=marina {name '${name}'} [0x4300 resolution 21]
 leisure=nature_reserve & name=* {name '${name}'} [0x6612 resolution 18]
 
 man_made=tower {name '${name}'} [0x6411 resolution 21]
@@ -224,6 +223,7 @@ government=customs {name '${name}'} [0x3006 resolution 20]
 office=government {name '${name}'} [0x3007 resolution 21]
 amenity=fire_station {name '${name}'} [0x3008 resolution 21]
 
+leisure=marina {name '${name}'} [0x4300 resolution 21]
 # The lua file translates this to amenity=community_centre, hence commented out here
 # leisure=social_club {name '${name}'} [0x4f00 resolution 21]
 

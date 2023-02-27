@@ -893,6 +893,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- leisure=marina
+-- In "points" as "0x4300", in "polygons" as "0x09"
+-- "0x4300" is searchable via "Geographic Points / Water Features"
+-- An "anchor" icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"]  == "marina" ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- man_made=observatory
 -- This might be either a building or not.
 -- ----------------------------------------------------------------------------
@@ -3316,8 +3326,8 @@ function process_all( objtype, object )
       object.tags["historic"] = "memorial"
       object = append_nonqa( object,"monument" )
    end
--
-- ----------------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------------
 -- tourism=museum is in "points" as "0x2c02"
 -- "0x2c02" is searchable via "Attractions / Museum or Historical"
 -- A "museum" icon appears on a GPSMAP64s

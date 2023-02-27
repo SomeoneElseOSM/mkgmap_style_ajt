@@ -3316,19 +3316,21 @@ function process_all( objtype, object )
       object.tags["historic"] = "memorial"
       object = append_nonqa( object,"monument" )
    end
+-
+- ----------------------------------------------------------------------------
+-- tourism=museum is in "points" as "0x2c02"
+-- "0x2c02" is searchable via "Attractions / Museum or Historical"
+-- A "museum" icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "museum" ) then
+      object.tags["amenity"] = nil
+      object = append_nonqa( object, "museum" )
+   end
 
--- ----------------------------------------------------------------------------
--- Things that are both galleries / museums and arts_centres.
--- ----------------------------------------------------------------------------
    if ( object.tags["tourism"] == "gallery" ) then
       object.tags["amenity"] = nil
       object.tags["tourism"] = "museum"
       object = append_nonqa( object, "gallery" )
-   end
-
-   if ( object.tags["tourism"] == "museum" ) then
-      object.tags["amenity"] = nil
-      object = append_nonqa( object, "museum" )
    end
 
    if ( object.tags["tourism"] == "artwork" ) then

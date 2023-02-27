@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-historic=castle {name '${name}'} [0x2c02 resolution 20]
-
 leisure=marina {name '${name}'} [0x4300 resolution 21]
 leisure=nature_reserve & name=* {name '${name}'} [0x6612 resolution 18]
 

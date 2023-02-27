@@ -8,7 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-barrier=ford [0x6512 resolution 21]
 waterway=lock_gate {name '${name}'} [0x1607 resolution 21]
 
 highway=motorway_junction { name '${ref} ${name}' | '${ref}' | '${name}' }
@@ -40,7 +39,6 @@ natural=rocks {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 
 man_made=survey_point {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 
 natural=rock {name '${name}'} [0x6614 resolution 21]
-natural=stream {name '${name}'} [0x6512 resolution 21]
 natural=volcano {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 natural=wetland & name=* {name '${name}'} [0x6513 resolution 21]
 
@@ -245,6 +243,8 @@ waterway=waterfall {name '${name}'} [0x6508 resolution 21]
 natural=water {name '${name}'} [0x650d resolution 21]
 landuse=reservoir {name '${name}'} [0x650f resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]
+# This isn't in the data, hence commented out here
+# barrier=ford [0x6512 resolution 21]
 
 landuse=basin {name '${name}'} [0x6603 resolution 21]
 landuse=forest {name '${name}'} [0x6618 resolution 21]

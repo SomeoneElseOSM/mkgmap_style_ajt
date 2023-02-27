@@ -8,6 +8,7 @@ Add a suffix to telephones that are mapped through.
 Add suffix for landuse=forest.
 Send natural=water, landuse=reservoir and landuse=basin (and their synonyms) through separately.  They appear on different search menus.
 Ensure landuse=military and military objects have appropriate suffixes.
+Added suffix to ford=yes ways and nodes.
 
 ## 24/02/2023
 Ensure sport is shown on more leisure facilities, if set.

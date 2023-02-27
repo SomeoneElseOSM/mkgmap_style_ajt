@@ -252,7 +252,6 @@ natural=wood {name '${name}'} [0x6618 resolution 21]
 
 # The use of these values has not yet been checked
 
-tourism=attraction & historic=* {name '${name}'} [0x2c02 resolution 20]
 tourism=information {name '${name} - ${description} (${operator})'|
 '${name} - (${description})' | '${name}' | '${description}' |
 '${operator}' | '${ref}'} [0x4c00 resolution 20]

@@ -3384,6 +3384,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "watermill"          ) or
        ( object.tags["historic"] == "windmill"           ) or
        ( object.tags["historic"] == "church"             ) or
+       ( object.tags["historic"] == "oratory"            ) or
        ( object.tags["historic"] == "wayside_chapel"     ) or
        ( object.tags["historic"] == "chapel"             ) or
        ( object.tags["historic"] == "gate_house"         ) or
@@ -3413,6 +3414,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "stone_circle"      ) or
        ( object.tags["historic"] == "castle"            ) or
        ( object.tags["historic"] == "mill"              ) or
+       ( object.tags["historic"] == "grinding_mill"     ) or
        ( object.tags["historic"] == "mound"             ) or
        ( object.tags["historic"] == "manor"             ) or
        ( object.tags["historic"] == "country_mansion"   ) or
@@ -3437,12 +3439,14 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "gate"              ) or
        ( object.tags["historic"] == "pinfold"           ) or
        ( object.tags["historic"] == "prison"            ) or
+       ( object.tags["historic"] == "jail"              ) or
        ( object.tags["historic"] == "theatre"           ) or
        ( object.tags["historic"] == "shelter"           ) or
        ( object.tags["historic"] == "grave"             ) or
        ( object.tags["historic"] == "grave_yard"        ) or
        ( object.tags["historic"] == "statue"            ) or
        ( object.tags["historic"] == "cross"             ) or
+       ( object.tags["historic"] == "high_cross"        ) or
        ( object.tags["historic"] == "market_cross"      ) or
        ( object.tags["historic"] == "stocks"            ) or
        ( object.tags["historic"] == "folly"             ) or
@@ -3452,7 +3456,13 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "sawmill"           ) or
        ( object.tags["historic"] == "well"              ) or
        ( object.tags["historic"] == "cannon"            ) or
-       ( object.tags["historic"] == "icon"              )) then
+       ( object.tags["historic"] == "icon"              ) or
+       ( object.tags["historic"] == "bunker"            ) or
+       ( object.tags["historic"] == "baths"             ) or
+       ( object.tags["historic"] == "residence"         ) or
+       ( object.tags["historic"] == "smithy"            ) or
+       ( object.tags["historic"] == "naval_mine"        ) or
+       ( object.tags["historic"] == "sound_mirror"      )) then
       object.tags["tourism"] = nil
 
       if ( object.tags['name'] == nil ) then

@@ -13,6 +13,7 @@ Made suffixes for highway=motorway_junction depend on whether tag:signed=no is n
 Expanded comments to explain the handling of highway=services.
 Add comments to explain how historic=archaeological_site and historic=ruins appear.
 Process galleries before museums, and explain the handling of tourism=museum.
+Expand the "historic" list and remove the "historic and tourist attraction" points entry.
 
 ## 24/02/2023
 Ensure sport is shown on more leisure facilities, if set.

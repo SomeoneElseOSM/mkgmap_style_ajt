@@ -903,6 +903,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- leisure=nature_reserve
+-- In "points" as "0x6612", in "polygons" as "0x18"
+-- "0x6612" is searchable via "Geographic Points / Land Features"
+-- An dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"]  == "nature_reserve" ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- man_made=observatory
 -- This might be either a building or not.
 -- ----------------------------------------------------------------------------

@@ -2307,6 +2307,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Clock towers
+-- man_made=tower
+-- In "points" as "0x6411"
+-- "0x6411" is searchable via "Others / Social Service".
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (((  object.tags["man_made"]   == "tower"        )  and
         (( object.tags["tower:type"] == "clock"       )   or
@@ -2314,9 +2318,9 @@ function process_all( objtype, object )
          ( object.tags["amenity"]    == "clock"       ))) or
        ((  object.tags["amenity"]    == "clock"        )  and
         (  object.tags["support"]    == "tower"        ))) then
+      object = append_nonqa( object, "clocktower" )
       object.tags["man_made"] = "tower"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "clocktower" )
    end
 
    if ((  object.tags["amenity"]    == "clock"         )  and
@@ -2325,9 +2329,9 @@ function process_all( objtype, object )
         ( object.tags["support"]    == "stone_pillar" )   or
         ( object.tags["support"]    == "plinth"       )   or
         ( object.tags["support"]    == "column"       ))) then
-      object.tags["man_made"] = "thing"
-      object.tags["tourism"] = nil
       object = append_nonqa( object, "pedestal clock" )
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -2443,25 +2447,29 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Aircraft control towers
+-- man_made=tower
+-- In "points" as "0x6411"
+-- "0x6411" is searchable via "Others / Social Service".
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (((  object.tags["man_made"]   == "tower"             )   and
         (( object.tags["tower:type"] == "aircraft_control" )    or
          ( object.tags["service"]    == "aircraft_control" )))  or
        (   object.tags["aeroway"]    == "control_tower"      )) then
+      object = append_nonqa( object, "control tower" )
       object.tags["man_made"] = "tower"
       object.tags["building"] = "yes"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "control tower" )
    end
 
    if ((( object.tags["man_made"]   == "tower"              )   or
         ( object.tags["man_made"]   == "monitoring_station" ))  and
        (( object.tags["tower:type"] == "radar"              )   or
         ( object.tags["tower:type"] == "weather_radar"      ))) then
+      object = append_nonqa( object, "radar tower" )
       object.tags["man_made"] = "tower"
       object.tags["building"] = "yes"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "radar tower" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2470,18 +2478,18 @@ function process_all( objtype, object )
    if (( object.tags["man_made"]            == "tower"   ) and
        (( object.tags["tower:construction"] == "dome"   )  or
         ( object.tags["tower:construction"] == "dish"   ))) then
+      object = append_nonqa( object, "radar dome" )
       object.tags["man_made"] = "tower"
       object.tags["building"] = "yes"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "radar dome" )
    end
 
    if (( object.tags["man_made"]   == "tower"                ) and
        ( object.tags["tower:type"] == "firefighter_training" )) then
+      object = append_nonqa( object, "firefighter tower" )
       object.tags["man_made"] = "tower"
       object.tags["building"] = "yes"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "firefighter tower" )
    end
 
    if ((((  object.tags["man_made"]    == "tower"             )  and
@@ -2492,9 +2500,9 @@ function process_all( objtype, object )
         (   object.tags["man_made"]    == "campanile"          )) and
        ((   object.tags["amenity"]     == nil                  )  or
         (   object.tags["amenity"]     ~= "place_of_worship"   ))) then
+      object = append_nonqa( object, "church tower" )
       object.tags["man_made"] = "tower"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "church tower" )
    end
 
    if ((( object.tags["man_made"]      == "tower"            ) or
@@ -2506,12 +2514,18 @@ function process_all( objtype, object )
         (  object.tags["tower:type"]   == "round"            )) and
        (( object.tags["amenity"]       == nil                )  or
         ( object.tags["amenity"]       ~= "place_of_worship" ))) then
+      object = append_nonqa( object, "church spire" )
       object.tags["man_made"] = "tower"
       object.tags["building"] = "yes"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "church spire" )
    end
 
+-- ----------------------------------------------------------------------------
+-- man_made=mast
+-- In "points" as "0x6411"
+-- "0x6411" is searchable via "Others / Social Service".
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
    if (( object.tags["man_made"] == "phone_mast"           ) or
        ( object.tags["man_made"] == "radio_mast"           ) or
        ( object.tags["man_made"] == "communications_mast"  ) or
@@ -2519,9 +2533,9 @@ function process_all( objtype, object )
        ( object.tags["man_made"] == "transmitter"          ) or
        ( object.tags["man_made"] == "antenna"              ) or
        ( object.tags["man_made"] == "mast"                 )) then
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["man_made"] = "mast"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "phone/radio mast" )
    end
 
    if ( object.tags["man_made"] == "tower" ) then
@@ -2533,9 +2547,9 @@ function process_all( objtype, object )
 -- water towers
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "water_tower" ) then
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["man_made"] = "tower"
       object.tags["building"] = "yes"
-      object = append_nonqa( object, "water tower" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2546,9 +2560,9 @@ function process_all( objtype, object )
        (( object.tags["man_made"] == "pole"     )  and
         ( object.tags["pole"]      == "maypole" )) or
        (  object.tags["historic"] == "maypole"   )) then
+      object = append_nonqa( object, "maypole" )
       object.tags["man_made"] = "mast"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "maypole" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3571,9 +3585,9 @@ function process_all( objtype, object )
        (  object.tags["building"]   == "chimney"  ) or
        (( object.tags["building"]   == "tower"   )  and
         ( object.tags["tower:type"] == "chimney" ))) then
+      object = append_nonqa( object, "chimney" )
       object.tags["man_made"] = "tower"
       object.tags["historic"] = nil
-      object = append_nonqa( object, "chimney" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3943,7 +3957,7 @@ function process_all( objtype, object )
          ( object.tags["plant:source"]     == "wind"         )   or
          ( object.tags["generator:type"]   == "wind"         )   or
          ( object.tags["generator:method"] == "wind"         )))) then
-      object.tags["man_made"] = "thing"
+      object.tags["man_made"] = "tower"
 
       if ( object.tags["name"] == nil ) then
          object.tags["name"] = "(wind turbine)"
@@ -7150,39 +7164,39 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ((  object.tags["man_made"]  == "tower"   )  and
        ( object.tags["tower:type"] == "chimney" )) then
+      object = append_nonqa( object, "chimney" )
       object.tags["man_made"] = "tower"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "chimney" )
    end
 
    if (( object.tags["man_made"]   == "tower"   )  and
        ( object.tags["tower:type"] == "cooling" )) then
+      object = append_nonqa( object, "cooling tower" )
       object.tags["man_made"] = "tower"
       object.tags["tourism"] = nil
-      object = append_nonqa( object, "cooling tower" )
    end
 
    if (( object.tags["man_made"]   == "tower"    ) and
        ( object.tags["tower:type"] == "lighting" )) then
-      object.tags["man_made"] = "thing"
-      object.tags["tourism"] = nil
       object = append_nonqa( object, "illumination tower" )
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
    end
 
    if ((   object.tags["man_made"]           == "tower"       ) and
        ((  object.tags["tower:type"]         == "defensive"  )  or
         (( object.tags["tower:type"]         == nil         )   and
          ( object.tags["tower:construction"] == "stone"     )))) then
-      object.tags["man_made"] = "thing"
-      object.tags["tourism"] = nil
       object = append_nonqa( object, "defensive tower" )
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
    end
 
    if (( object.tags["man_made"]   == "tower"       ) and
        ( object.tags["tower:type"] == "observation" )) then
-      object.tags["man_made"] = "thing"
-      object.tags["tourism"] = nil
       object = append_nonqa( object, "observation tower" )
+      object.tags["man_made"] = "tower"
+      object.tags["tourism"] = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -7320,8 +7334,8 @@ function process_all( objtype, object )
        ( object.tags["building"] == nil             ) and
        ( object.tags["man_made"] ~= "tower"         ) and
        ( object.tags["barrier"]  ~= "wall"          )) then
-      object.tags["man_made"] = "thing"
       object = append_nonqa( object, "climbing" )
+      object.tags["man_made"] = "thing"
    end
 
 -- ----------------------------------------------------------------------------

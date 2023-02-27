@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-man_made=tower {name '${name}'} [0x6411 resolution 21]
-man_made=mast {name '${name}'} [0x6411 resolution 21]
 man_made=marker {name '${name}'}  [0x4c00 resolution 20]
 man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 
@@ -231,6 +229,8 @@ aeroway=helipad {name '${name}'} [0x5904 resolution 20]
 
 amenity=grave_yard {name '${name}'} [0x6403 resolution 21]
 landuse=cemetery {name '${name}'} [0x6403 resolution 21]
+man_made=tower {name '${name}'} [0x6411 resolution 21]
+man_made=mast {name '${name}'} [0x6411 resolution 21]
 landuse=military {name '${name}'} [0x640b resolution 21]
 
 waterway=waterfall {name '${name}'} [0x6508 resolution 21]

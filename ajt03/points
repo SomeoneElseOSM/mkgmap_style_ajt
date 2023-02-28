@@ -8,8 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-man_made=thing {name '${name}'}  [0x2f14 resolution 20]
-
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
 natural=beach [0x6604 resolution 21]
 natural=cave_entrance [0x6601 resolution 19]
@@ -202,6 +200,7 @@ emergency=phone {name '${name}'} [0x2f12 resolution 21 default_name 'Emergency P
 shop=bicycle {name '${name}'} [0x2f13 resolution 20]
 barrier=stile {name '${name}'} [0x2f14 resolution 23]
 barrier=cycle_barrier {name '${name}'} [0x2f14 resolution 23]
+man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 amenity=recycling {name '${name}'} [0x2f15 resolution 20]
 railway=tram_stop {name '${name}'} [0x2f17 resolution 21]
 highway=bus_stop {name '${name}'} [0x2f17 resolution 20]

@@ -2176,7 +2176,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Various clocks
+-- man_made=thing
+-- In "points" as "0x2f14"
 -- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "clock"   )  and
        ( object.tags["display"] == "sundial" )) then

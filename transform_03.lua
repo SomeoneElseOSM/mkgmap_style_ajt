@@ -3962,9 +3962,16 @@ function process_all( objtype, object )
 -- QMapShack understands "0x6601"
 -- On a GPSMAP64s, "0x6601" appears in "Geographic Points / Land Features"
 -- A dot is used.
+--
+-- natural=cliff
+-- In points as "0x6607", not in lines.
+-- QMapShack understands "0x6607"
+-- On a GPSMAP64s, "0x6607" appears in "Geographic Points / Land Features"
+-- A dot is used.
 -- ----------------------------------------------------------------------------
    if (( object.tags["natural"]   == "beach"         ) or 
-       ( object.tags["natural"]   == "cave_entrance" )) then
+       ( object.tags["natural"]   == "cave_entrance" ) or
+       ( object.tags["natural"]   == "cliff"         )) then
       object = append_nonqa( object, object.tags["natural"] )
    end
 

@@ -334,6 +334,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Handle various sorts of milestones.
+-- man_made=marker
+-- In "points" as "0x4c00"
+-- "0x4c00" is searchable via "Geographic Points / Manmade Places"
+-- A "tourist information" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "milestone" )  or
        ( object.tags["historic"] == "milepost"  )  or
@@ -1350,15 +1354,16 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Bird hides and similar features
+-- tourism=information
+-- In "points" as "0x4c00"
+-- "0x4c00" is searchable via "Geographic Points / Manmade Places"
+-- A "tourist information" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ( object.tags["leisure"] == "bird_hide" ) then
+   if (( object.tags["leisure"] == "bird_hide"     )  or
+       ( object.tags["leisure"] == "wildlife_hide" )) then
+      object = append_nonqa( object, object.tags["leisure"] )
       object.tags["tourism"] = "information"
-      object = append_nonqa( object, "bird hide" )
-   end
-
-   if ( object.tags["leisure"] == "wildlife_hide" ) then
-      object.tags["tourism"] = "information"
-      object = append_nonqa( object, "wildlife hide" )
+      object.tags["leisure"] = nil
    end
 
 -- ----------------------------------------------------------------------------

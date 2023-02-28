@@ -8,7 +8,6 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-man_made=marker {name '${name}'}  [0x4c00 resolution 20]
 man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
@@ -220,6 +219,8 @@ office=government {name '${name}'} [0x3007 resolution 21]
 amenity=fire_station {name '${name}'} [0x3008 resolution 21]
 
 leisure=marina {name '${name}'} [0x4300 resolution 21]
+man_made=marker {name '${name}'}  [0x4c00 resolution 20]
+tourism=information {name '${name}'} [0x4c00 resolution 20]
 # The lua file translates this to amenity=community_centre, hence commented out here
 # leisure=social_club {name '${name}'} [0x4f00 resolution 21]
 
@@ -251,9 +252,6 @@ natural=wood {name '${name}'} [0x6618 resolution 21]
 
 # The use of these values has not yet been checked
 
-tourism=information {name '${name} - ${description} (${operator})'|
-'${name} - (${description})' | '${name}' | '${description}' |
-'${operator}' | '${ref}'} [0x4c00 resolution 20]
 tourism=picnic_site {name '${name}'} [0x4a00 resolution 20 default_name 'Picnic Site' ]
 
 barrier=bollard | barrier=bus_trap

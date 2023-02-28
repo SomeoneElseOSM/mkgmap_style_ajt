@@ -9,7 +9,6 @@
 # for more information.
 
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
-natural=beach [0x6604 resolution 21]
 natural=cave_entrance [0x6601 resolution 19]
 natural=cliff [0x6607 resolution 21]
 natural=glacier [0x650a resolution 21]
@@ -241,6 +240,7 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 # barrier=ford [0x6512 resolution 21]
 
 landuse=basin {name '${name}'} [0x6603 resolution 21]
+natural=beach {name '${name}'} [0x6604 resolution 21]
 leisure=nature_reserve {name '${name}'} [0x6612 resolution 18]
 landuse=forest {name '${name}'} [0x6618 resolution 21]
 natural=wood {name '${name}'} [0x6618 resolution 21]

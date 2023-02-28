@@ -16,6 +16,7 @@ Process galleries before museums, and explain the handling of tourism=museum.
 Expand the "historic" list and remove the "historic and tourist attraction" points entry.
 Added suffix for leisure=marina and leisure=nature_reserve and added comments.
 Expand the comments around the handling of towers and masts, and tourist info and markers.
+Added suffix for beaches.
 
 ## 24/02/2023
 Ensure sport is shown on more leisure facilities, if set.

@@ -3951,6 +3951,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- natural=beach
+-- In points as "0x6604", not in polygons.
+-- QMapShack understands "0x6604"
+-- On a GPSMAP64s, "0x6604" appears in "Geographic Points / Land Features"
+-- A "desert icon" is used.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"]   == "beach"      ) then
+      object = append_nonqa( object, object.tags["natural"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Show wind turbines and wind pumps
 -- ----------------------------------------------------------------------------
    if ((   object.tags["man_made"]         == "wind_turbine"   ) or

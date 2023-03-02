@@ -178,10 +178,11 @@ function process_all( objtype, object )
 -- landuse=forest
 -- natural=wood
 -- (and a few outlier tags for the same thing)
--- Both are in "points" as "0x6618" 
+-- Both are in "points" as "0x6618" and in polygons as "0x50"
 -- On landuse=forest, append main tag and operator (if set)
 -- On natural=wood, append B, C, M or just "()", based on leaf_type.
 -- "0x6618" is searchable via "Geographic Points / Man Made"
+-- A mid-green colour is used in QMapShack.
 -- A "woodland" land cover appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["natural"] == "forest" ) then
@@ -348,13 +349,18 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Aerial markers for pipelines etc.
+-- man_made=marker etc.  Aerial markers for pipelines etc.
+-- In "points" as "0x4c00"
+-- "0x4c00" is searchable via "Geographic Points / Manmade Places"
+-- No icon is visible in QMapShack
+-- A "tourist information" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["marker"]   == "aerial"          ) or
+   if (( object.tags["man_made"] == "marker"          ) or
+       ( object.tags["marker"]   == "aerial"          ) or
        ( object.tags["marker"]   == "pipeline"        ) or
        ( object.tags["man_made"] == "pipeline_marker" )) then
-      object.tags["man_made"] = "marker"
       object = append_nonqa( object, "pipeline marker" )
+      object.tags["man_made"] = "marker"
    end
 
 -- ----------------------------------------------------------------------------
@@ -457,6 +463,7 @@ function process_all( objtype, object )
 -- amenity=telephone
 -- In "points" as "0x5100"
 -- "0x5100" is searchable via "Geographic Points / Man Made",
+-- No icon appears in QMapShack
 -- A "telephone" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((( object.tags["covered"]         == "booth"          )   and
@@ -3117,6 +3124,7 @@ function process_all( objtype, object )
 -- waterway=lock_gate
 -- In points file as "0x1607"
 -- "0x1607" does not appear in All POIs and is not searchable
+-- No icon visible in QMapShack
 -- A unique icon ("a white exclamation mark") appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["waterway"] == "lock_gate" ) then
@@ -3124,8 +3132,11 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Sluice gates - send through as man_made=thing and append name
--- 0x6511 is searchable via "Geographic Points / Water Features"
+-- waterway=sluice_gate etc. - send through as man_made=thing and append name
+-- In points as "0x6511".
+-- "0x6511" is searchable via "Geographic Points / Water Features"
+-- No icon appears in QMapShack
+- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((  object.tags["waterway"]     == "sluice_gate"      ) or
        (  object.tags["waterway"]     == "sluice"           ) or

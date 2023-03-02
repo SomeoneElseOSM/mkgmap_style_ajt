@@ -236,6 +236,12 @@ natural=cave_entrance {name '${name}'} [0x6601 resolution 19]
 landuse=basin {name '${name}'} [0x6603 resolution 21]
 natural=beach {name '${name}'} [0x6604 resolution 21]
 natural=cliff {name '${name}'} [0x6607 resolution 21]
+
+barrier=bollard
+    {add access = no; add bicycle = yes; add foot = yes name '${name}'} [0x660f resolution 21]
+barrier=cycle_barrier | barrier=stile
+    {add access = no; add foot = yes name '${name}'} [0x660f resolution 21]
+
 leisure=nature_reserve {name '${name}'} [0x6612 resolution 18]
 natural=wetland {name '${name}'} [0x6513 resolution 21]
 natural=rock {name '${name}'} [0x6614 resolution 21]
@@ -251,9 +257,3 @@ natural=wood {name '${name}'} [0x6618 resolution 21]
 #shop=* {name '${name}'} [0x2e15 resolution 20]
 #office=* {name '${name}'} [0x2e15 resolution 20]
 
-# The use of these values has not yet been checked
-
-barrier=bollard
-    {add access = no; add bicycle = yes; add foot = yes name '${name}'} [0x660f resolution 21]
-barrier=cycle_barrier | barrier=stile
-    {add access = no; add foot = yes name '${name}'} [0x660f resolution 21]

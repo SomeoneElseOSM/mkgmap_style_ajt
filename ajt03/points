@@ -188,8 +188,8 @@ amenity=shelter {name '${name}'} [0x2f10 resolution 20 default_name 'shelter']
 
 emergency=phone {name '${name}'} [0x2f12 resolution 21 default_name 'Emergency Phone']
 shop=bicycle {name '${name}'} [0x2f13 resolution 20]
-barrier=stile {name '${name}'} [0x2f14 resolution 23]
-barrier=cycle_barrier {name '${name}'} [0x2f14 resolution 23]
+# barrier=stile {name '${name}'} [0x2f14 resolution 23]
+# barrier=cycle_barrier {name '${name}'} [0x2f14 resolution 23]
 man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 amenity=recycling {name '${name}'} [0x2f15 resolution 20]
 railway=tram_stop {name '${name}'} [0x2f17 resolution 21]
@@ -253,7 +253,7 @@ natural=wood {name '${name}'} [0x6618 resolution 21]
 
 # The use of these values has not yet been checked
 
-barrier=bollard | barrier=bus_trap
-    {add access = no; add bicycle = yes; add foot = yes} [0x660f resolution 21]
-barrier=block | barrier=cycle_barrier | barrier=stile | barrier=kissing_gate
-    {add access = no; add foot = yes} [0x660f resolution 21]
+barrier=bollard
+    {add access = no; add bicycle = yes; add foot = yes name '${name}'} [0x660f resolution 21]
+barrier=cycle_barrier | barrier=stile
+    {add access = no; add foot = yes name '${name}'} [0x660f resolution 21]

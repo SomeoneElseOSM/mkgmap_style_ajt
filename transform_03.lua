@@ -4670,8 +4670,11 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- render various cycle barrier synonyms
--- 0x2f14 is searchable via "Others / Social Service"
+-- barrier=cycle_barrier etc.  Render various cycle barrier synonyms
+-- In points at "0x660f"
+-- "0x660f" is searchable in "Geographic Points / Land Features"
+-- No icon appears in QMapShack
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"]   == "cycle_barrier"         )  or
        ( object.tags["barrier"]   == "chicane"               )  or
@@ -4697,8 +4700,11 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Other barriers that otherwise would not have a suffix
--- 0x660f appears in "points" for each.
+-- barrier=bollard (etc.) that otherwise would not have a suffix
+-- In "points" as "0x660f".
+-- "0x660f" is searchable in "Geographic Points / Land Features"
+-- No icon appears in QMapShack
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"]   == "bollard"         )  or
        ( object.tags["barrier"]   == "bus_trap"        )  or
@@ -4707,8 +4713,12 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- render various synonyms for stile as barrier=stile
--- 0x2f14 is searchable via "Others / Social Service"
+-- ----------------------------------------------------------------------------
+-- barrier=stile etc.  Render various stile synonyms
+-- In points at "0x660f"
+-- "0x660f" is searchable in "Geographic Points / Land Features"
+-- No icon appears in QMapShack
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"]   == "stile"           )  or
        ( object.tags["barrier"]   == "squeeze_stile"   )  or

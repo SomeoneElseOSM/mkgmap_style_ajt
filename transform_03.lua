@@ -3327,6 +3327,18 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- place=island
+-- In points as "0x650c".  Normally it would appear in polygons as "0x53", but
+-- this is removed so that the "island of Great Britain" is not displayed over
+-- the top of everything else.
+-- "0x650c" is searchable via "Geographic Points / Water Features". 
+-- "0x650c" appears as a dot.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["place"] == "island" ) then
+      object = append_nonqa( object, object.tags["place"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both towers and monuments or memorials 
 -- should render as the latter.
 -- ----------------------------------------------------------------------------

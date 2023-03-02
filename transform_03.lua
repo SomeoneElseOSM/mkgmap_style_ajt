@@ -3306,12 +3306,19 @@ function process_all( objtype, object )
 -- In points as "0x6614"
 -- "0x6614" is searchable via "Geographic Points / Land Features"
 -- A dot is used.
+--
+-- natural=wetland
+-- In points as "0x6613", in polygons as "0x51"
+-- "0x6613" is searchable via "Geographic Points / Water Features". 
+-- "0x6613" appears as a dot.  "0x51" appears as marsh in QMapShack and 
+-- on a GPSMAP64s.
 -- ----------------------------------------------------------------------------
    if (( object.tags["natural"]   == "peak"    )  or
        ( object.tags["natural"]   == "volcano" )  or
        ( object.tags["natural"]   == "col"     )  or
        ( object.tags["natural"]   == "rocks"   )  or
-       ( object.tags["natural"]   == "rock"    )) then
+       ( object.tags["natural"]   == "rock"    )  or
+       ( object.tags["natural"]   == "wetland" )) then
       object = append_nonqa( object, object.tags["natural"] )
    end
 

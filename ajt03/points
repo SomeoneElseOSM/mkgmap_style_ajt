@@ -10,13 +10,8 @@
 
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
 natural=glacier [0x650a resolution 21]
-natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
-natural=col {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
-natural=rocks {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
-man_made=survey_point {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 
 natural=rock {name '${name}'} [0x6614 resolution 21]
-natural=volcano {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 natural=wetland & name=* {name '${name}'} [0x6513 resolution 21]
 
 place=city {name '${name}'} [0x0400 resolution 17]
@@ -242,6 +237,11 @@ landuse=basin {name '${name}'} [0x6603 resolution 21]
 natural=beach {name '${name}'} [0x6604 resolution 21]
 natural=cliff {name '${name}'} [0x6607 resolution 21]
 leisure=nature_reserve {name '${name}'} [0x6612 resolution 18]
+natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
+natural=volcano {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
+natural=col {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
+natural=rocks {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
+man_made=survey_point {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 landuse=forest {name '${name}'} [0x6618 resolution 21]
 natural=wood {name '${name}'} [0x6618 resolution 21]
 

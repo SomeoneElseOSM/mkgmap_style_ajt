@@ -3293,6 +3293,15 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- natural=peak
+-- In points as "0x6616"
+-- "0x6616" is searchable via "Geographic Points / Land Features"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"]   == "peak" ) then
+      object = append_nonqa( object, object.tags["natural"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both towers and monuments or memorials 
 -- should render as the latter.
 -- ----------------------------------------------------------------------------

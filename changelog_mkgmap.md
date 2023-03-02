@@ -18,6 +18,7 @@ Added suffix for leisure=marina and leisure=nature_reserve and added comments.
 Expand the comments around the handling of towers and masts, and tourist info and markers.
 Added suffix for beaches and cave entrances.
 Added suffix for cliffs mapped as nodes, and also added them as lines.
+Added suffix to peaks.
 
 ## 24/02/2023
 Ensure sport is shown on more leisure facilities, if set.

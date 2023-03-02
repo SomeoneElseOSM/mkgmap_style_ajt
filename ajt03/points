@@ -1,6 +1,5 @@
 # -------------------------------------------------------------------
-# This is a copy of the default mkgmap style file for converting OSM nodes
-# into Garmin POIs.
+# This is a mkgmap style file for converting OSM nodes into Garmin POIs.
 # Any line prefaced with # is a comment and will not be applied.
 # Each line is a rule, of the generalised format:
 #  OSM_tag(s)_to_match  [Garmin_type_code resolution]

@@ -22,6 +22,7 @@ Added suffix to peaks and similar and some other natural items.
 Added suffix to island, and explained why it's in points and not polygons.
 Added suffix to picnic site.
 Added explanatory comments around stile, cycle_barrier etc.
+Added name or ref and suffix to runways and taxiways.
 
 ## 24/02/2023
 Ensure sport is shown on more leisure facilities, if set.

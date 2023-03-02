@@ -1,6 +1,5 @@
 # -------------------------------------------------------------------
-# This is a copy of the default mkgmap style file for converting OSM ways
-# into Garmin lines.
+# This is a mkgmap style file for converting OSM ways into Garmin lines.
 # Any line prefaced with # is a comment and will not be applied.
 # Each line is a rule, of the generalised format:
 #  OSM_tag(s)_to_match  [Garmin_type_code resolution]
@@ -8,15 +7,14 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-# -------------------------------------------------------------------
-# Stuff at the top is processed first, so in order to see e.g. 
-# bridges rather than just highways some lines would be here.
-# However, I've omitted these for now in case it breaks routing.
-# -------------------------------------------------------------------
+# The use of these values has been checked
+
 route=hiking {name '${name} (${route_ref})' | '(${route_ref})' }
-#
-aeroway=runway [0x27 resolution 20]
-aeroway=taxiway [0x27 resolution 24]
+
+aeroway=runway {name '${name}'} [0x27 resolution 20]
+aeroway=taxiway {name '${name}'} [0x27 resolution 24]
+
+# The use of these values has not yet been checked
 
 # Contours take their name from the elevation setting.
 contour=elevation & contour_ext=elevation_minor

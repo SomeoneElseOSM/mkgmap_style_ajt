@@ -2428,14 +2428,8 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Grass aerodrome features are rendered less prominently.
--- Currently this does not include runways.
+-- Grass aprons and taxiways are not shown as regular aprons and taxiways.
 -- ----------------------------------------------------------------------------
---   if (( object.tags["aeroway"] == "runway" ) and
---       ( object.tags["surface"] == "grass"  )) then
---      object.tags["aeroway"] = "grass_runway"
---   end
-
    if (( object.tags["aeroway"] == "apron"  ) and
        ( object.tags["surface"] == "grass"  )) then
       object.tags["landuse"] = "grass"
@@ -2448,6 +2442,22 @@ function process_all( objtype, object )
       object.tags["aeroway"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- aeroway=runway
+-- aeroway=taxiway
+-- In "lines as "0x27"
+-- "0x27" is not searchable, even via "All POIs"
+-- Visible as a red line in QMapShack
+-- A white line appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if (( object.tags["aeroway"] == "runway"  ) or
+       ( object.tags["aeroway"] == "taxiway" )) then
+      if ( object.tags["ref"] ~= nil ) then
+         object = append_nonqa( object, object.tags["ref"] )
+      end
+
+      object = append_nonqa( object, object.tags["aeroway"] )
+   end
 
 -- ----------------------------------------------------------------------------
 -- Airports etc.
@@ -3136,7 +3146,7 @@ function process_all( objtype, object )
 -- In points as "0x6511".
 -- "0x6511" is searchable via "Geographic Points / Water Features"
 -- No icon appears in QMapShack
-- A dot appears on a GPSMAP64s
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((  object.tags["waterway"]     == "sluice_gate"      ) or
        (  object.tags["waterway"]     == "sluice"           ) or

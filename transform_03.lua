@@ -3340,6 +3340,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- tourism=picnic_site
+-- In points as "0x4a00".  
+-- Does not appear in QMapShack.
+-- "0x4a00" is searchable via "Geographic Points / Manmade Places". 
+-- "0x4a00" appears as a picnic site on GPSMap64s.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["tourism"] == "picnic_site" ) then
+      object = append_nonqa( object, object.tags["tourism"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Things that are both towers and monuments or memorials 
 -- should render as the latter.
 -- ----------------------------------------------------------------------------

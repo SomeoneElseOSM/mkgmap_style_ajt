@@ -208,6 +208,7 @@ office=government {name '${name}'} [0x3007 resolution 21]
 amenity=fire_station {name '${name}'} [0x3008 resolution 21]
 
 leisure=marina {name '${name}'} [0x4300 resolution 21]
+tourism=picnic_site {name '${name}'} [0x4a00 resolution 20]
 man_made=marker {name '${name}'}  [0x4c00 resolution 20]
 tourism=information {name '${name}'} [0x4c00 resolution 20]
 # The lua file translates this to amenity=community_centre, hence commented out here
@@ -251,8 +252,6 @@ natural=wood {name '${name}'} [0x6618 resolution 21]
 #office=* {name '${name}'} [0x2e15 resolution 20]
 
 # The use of these values has not yet been checked
-
-tourism=picnic_site {name '${name}'} [0x4a00 resolution 20 default_name 'Picnic Site' ]
 
 barrier=bollard | barrier=bus_trap
     {add access = no; add bicycle = yes; add foot = yes} [0x660f resolution 21]

@@ -3328,11 +3328,12 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- place=island
--- In points as "0x650c".  Normally it would appear in polygons as "0x53", but
+-- In points as "0x650c".  Normally it would be in polygons as "0x53", but
 -- this is removed so that the "island of Great Britain" is not displayed over
 -- the top of everything else.
+-- Does not appear in QMapShack.
 -- "0x650c" is searchable via "Geographic Points / Water Features". 
--- "0x650c" appears as a dot.
+-- "0x650c" appears as a dot on GPSMap64s.
 -- ----------------------------------------------------------------------------
    if ( object.tags["place"] == "island" ) then
       object = append_nonqa( object, object.tags["place"] )

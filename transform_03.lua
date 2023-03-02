@@ -3964,10 +3964,10 @@ function process_all( objtype, object )
 -- A dot is used.
 --
 -- natural=cliff
--- In points as "0x6607", not in lines.
--- QMapShack understands "0x6607"
+-- In points as "0x6607", in lines as "0x1d" ("county border").
+-- QMapShack understands "0x6607" and "0x1d".
 -- On a GPSMAP64s, "0x6607" appears in "Geographic Points / Land Features"
--- A dot is used.
+-- A dot is used for nodes.  Ways appear as a narrow solid line.
 -- ----------------------------------------------------------------------------
    if (( object.tags["natural"]   == "beach"         ) or 
        ( object.tags["natural"]   == "cave_entrance" ) or

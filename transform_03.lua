@@ -3294,11 +3294,20 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- natural=peak
+-- natural=col
+-- natural=rocks
+-- man_made=survey_point
 -- In points as "0x6616"
 -- "0x6616" is searchable via "Geographic Points / Land Features"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["natural"]   == "peak" ) then
+   if (( object.tags["natural"]   == "peak"  )  or
+       ( object.tags["natural"]   == "col"   )  or
+       ( object.tags["natural"]   == "rocks" )) then
       object = append_nonqa( object, object.tags["natural"] )
+   end
+
+   if ( object.tags["man_made"]   == "survey_point"  )  then
+      object = append_nonqa( object, object.tags["man_made"] )
    end
 
 -- ----------------------------------------------------------------------------

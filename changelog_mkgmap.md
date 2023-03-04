@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 03/03/2023
 Add a suffix to stiles to replace the now removed default name.
 Map cattle grids through to "man_made=thing", with a suffix.
 Add a suffix to telephones that are mapped through.

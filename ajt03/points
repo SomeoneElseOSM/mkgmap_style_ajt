@@ -99,11 +99,12 @@ aeroway=military {name '${name}'} [0x2c04 resolution 20]
 railway=tourismstation {name '${name}'} [0x2c04 resolution 20]
 tourism=viewpoint {name '${name} - ${description}' | '${name}'} [0x2c04 resolution 20]
 amenity=school {name '${name}'} [0x2c05 resolution 20]
-landuse=village_green {name '${name}'} [0x2c06 resolution 21]
-leisure=common {name '${name}'} [0x2c06 resolution 21]
-leisure=garden {name '${name}'} [0x2c06 resolution 21]
+
+# One of these will be chosen in lua depending on whether a name is present
+# Lots of other green landuse are mapped through to these.
 leisure=park {name '${name}'} [0x2c06 resolution 21]
-leisure=playground {name '${name}'} [0x2c06 resolution 21]
+leisure=unnamed_park {name '${name}'} [0x6600 resolution 21]
+
 tourism=zoo {name '${name}'} [0x2c07 resolution 20]
 tourism=aquarium {name '${name}'} [0x2c07 resolution 20]
 leisure=pitch { name '${name}' } [0x2c08 resolution 21]
@@ -231,6 +232,7 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 # This isn't in the data, hence commented out here
 # barrier=ford [0x6512 resolution 21]
 
+# 0x6600 is used for leisure=unnamed_park above
 natural=cave_entrance {name '${name}'} [0x6601 resolution 19]
 landuse=basin {name '${name}'} [0x6603 resolution 21]
 natural=beach {name '${name}'} [0x6604 resolution 21]

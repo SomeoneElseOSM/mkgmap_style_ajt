@@ -1041,13 +1041,13 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Beer gardens etc.
+-- Set tags so that these can be handled below.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "beer_garden" ) or
        ( object.tags["leisure"] == "beer_garden" )) then
       object.tags["amenity"] = nil
       object.tags["leisure"] = "garden"
       object.tags["garden"]  = "beer_garden"
-      object = append_nonqa( object, "beer garden" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1059,7 +1059,6 @@ function process_all( objtype, object )
       object.tags["amenity"] = nil
       object.tags["leisure"] = "garden"
       object.tags["garden"]  = "beer_garden"
-      object = append_nonqa( object, "beer garden" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1085,6 +1084,39 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Send parks through with "park" as a suffix.
+--
+-- In points:
+-- "park" has a single tree icon
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+--
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+--
+-- In polygons both are mapped to 0x17 resolution 20
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "park" ) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
+      object = append_nonqa( object, "park" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Map various landuse to "park" or "unnamed_park"
+--
+-- In points:
+-- "park" has a single tree icon
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+--
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+--
+-- In polygons both are mapped to 0x17 resolution 20
+-- ----------------------------------------------------------------------------
 -- Render various synonyms for leisure=common.
 -- ----------------------------------------------------------------------------
    if (( object.tags["landuse"]          == "common"   ) or
@@ -1092,32 +1124,43 @@ function process_all( objtype, object )
        ( object.tags["designation"]      == "common"   ) or
        ( object.tags["amenity"]          == "common"   ) or
        ( object.tags["protection_title"] == "common"   )) then
-      object.tags["leisure"] = "common"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
       object.tags["landuse"] = nil
       object.tags["amenity"] = nil
-   end
-
--- ----------------------------------------------------------------------------
--- Send parks through with "park" as a suffix.
--- 0x2c06 is searchable via "Attractions / Park or Garden"
--- ----------------------------------------------------------------------------
-   if ( object.tags["leisure"] == "park" ) then
-      object = append_nonqa( object, "park" )
-   end
-
--- ----------------------------------------------------------------------------
--- Map various landuse to park
---
--- All handled in the style like this:
--- leisure=park {name '${name}'} [0x17 resolution 20]
--- ----------------------------------------------------------------------------
-   if ( object.tags["leisure"]   == "common" ) then
-      object.tags["leisure"] = "park"
       object = append_nonqa( object, "common" )
    end
 
+-- ----------------------------------------------------------------------------
+-- Map various landuse to "park" or "unnamed_park"
+--
+-- In points:
+-- "park" has a single tree icon
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+--
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+--
+-- In polygons both are mapped to 0x17 resolution 20
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["leisure"]         == "outdoor_seating" ) and
+       (( object.tags["surface"]         == "grass"          ) or
+        ( object.tags["beer_garden"]     == "yes"            ) or
+        ( object.tags["outdoor_seating"] == "garden"         ))) then
+      object.tags["leisure"] = "garden"
+      object.tags["garden"] = "beer_garden"
+   end
+
    if ( object.tags["leisure"]   == "garden" ) then
-      object.tags["leisure"] = "park"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
 
       if ( object.tags["garden"] == "beer_garden" ) then
       	 object = append_nonqa( object, "beer garden" )
@@ -1128,45 +1171,131 @@ function process_all( objtype, object )
 
    if (( object.tags["leisure"]   == "outdoor_seating" ) and
        ( object.tags["surface"]   == "grass"           )) then
-      object.tags["leisure"] = "park"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
       object = append_nonqa( object, "outdoor grass" )
    end
 
+-- ----------------------------------------------------------------------------
+-- recreation grounds
+--
+-- In points:
+-- "park" has a single tree icon
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+--
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+--
+-- In polygons both are mapped to 0x17 resolution 20
+-- ----------------------------------------------------------------------------
    if (( object.tags["landuse"] == "recreation_ground" ) or
        ( object.tags["leisure"] == "recreation_ground" )) then
-      object.tags["leisure"] = "park"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
       object.tags["landuse"] = nil
       object = append_nonqa( object, "rec" )
    end
 
 -- ----------------------------------------------------------------------------
--- Treat landcover=grass as landuse=grass
--- Also landuse=college_court, flowerbed
+-- Various sorts of grass (and similar)
+--
+-- In points:
+-- "park" has a single tree icon
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+--
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+--
+-- In polygons both are mapped to 0x17 resolution 20
 -- ----------------------------------------------------------------------------
-   if (( object.tags["landcover"] == "grass"         ) or
-       ( object.tags["landuse"]   == "college_court" ) or
-       ( object.tags["landuse"]   == "flowerbed"     )) then
+   if ( object.tags["landcover"] == "grass" ) then
       object.tags["landcover"] = nil
       object.tags["landuse"] = "grass"
    end
 
-   if ( object.tags["landuse"]   == "grass" ) then
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "grass" )
+   if ( object.tags["leisure"] == "playground" ) then
+      object.tags["landuse"] = object.tags["leisure"]
    end
 
-   if ( object.tags["landuse"]   == "greenfield" ) then
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "greenfield" )
+   if (( object.tags["landuse"]   == "grass"         ) or
+       ( object.tags["landuse"]   == "college_court" ) or
+       ( object.tags["landuse"]   == "flowerbed"     ) or
+       ( object.tags["landuse"]   == "greenfield"    ) or
+       ( object.tags["landuse"]   == "meadow"        ) or
+       ( object.tags["landuse"]   == "playground"    ) or
+       ( object.tags["landuse"]   == "village_green" )) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
+      object = append_nonqa( object, object.tags["landuse"] )
+      object.tags["landuse"] = nil
    end
 
 -- ----------------------------------------------------------------------------
 -- These all map to meadow in the web maps
 -- ----------------------------------------------------------------------------
-   if ( object.tags["landuse"]   == "meadow" ) then
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "meadow" )
+-- ----------------------------------------------------------------------------
+-- Various tags for showgrounds
+--
+-- In points:
+-- "park" has a single tree icon
+-- 0x2c06 is searchable via "Attractions / Park or Garden"
+--
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+--
+-- In polygons both are mapped to 0x17 resolution 20
+-- Other tags are suppressed to prevent them appearing ahead of "landuse"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "showground"   ) or
+       ( object.tags["leisure"] == "showground"   ) or
+       ( object.tags["amenity"] == "show_ground"  ) or
+       ( object.tags["amenity"] == "show_grounds" )) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
+      object.tags["amenity"] = nil
+      object = append_nonqa( object, "showground" )
    end
+
+   if ( object.tags["amenity"]   == "festival_grounds" ) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
+      object.tags["amenity"] = nil
+      object = append_nonqa( object, "festival grounds" )
+   end
+
+   if ( object.tags["amenity"]   == "car_boot_sale" ) then
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
+      object.tags["amenity"] = nil
+      object = append_nonqa( object, "car boot sale" )
+   end
+-- ----------------------------------------------------------------------------
+-- (end of list that maps to meadow)
+-- ----------------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------------
 -- Treat harbour=yes as landuse=harbour, if not already landuse.
@@ -1182,44 +1311,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (object.tags["landuse"]   == "field") then
       object.tags["landuse"] = "farmland"
-   end
-
--- ----------------------------------------------------------------------------
--- Various tags for showgrounds
--- Other tags are suppressed to prevent them appearing ahead of "landuse"
--- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "showground"   ) or
-       ( object.tags["leisure"] == "showground"   ) or
-       ( object.tags["amenity"] == "show_ground"  ) or
-       ( object.tags["amenity"] == "show_grounds" )) then
-      object.tags["amenity"] = nil
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "showground" )
-   end
-
-   if ( object.tags["amenity"]   == "festival_grounds" ) then
-      object.tags["amenity"] = nil
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "festival grounds" )
-   end
-
-   if ( object.tags["amenity"]   == "car_boot_sale" ) then
-      object.tags["amenity"] = nil
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "car boot sale" )
-   end
--- ----------------------------------------------------------------------------
--- (end of list that maps to meadow)
--- ----------------------------------------------------------------------------
-
-   if ( object.tags["leisure"]   == "playground" ) then
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "playground" )
-   end
-
-   if ( object.tags["landuse"]   == "village_green" ) then
-      object.tags["leisure"] = "park"
-      object = append_nonqa( object, "village green" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -1265,17 +1356,32 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]   == "scout_camp"     ) or
        ( object.tags["landuse"]   == "scout_camp"     )) then
-      object.tags["leisure"] = "park"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
       object = append_nonqa( object, "scout camp" )
    end
 
    if ( object.tags["leisure"]   == "fishing" ) then
-      object.tags["leisure"] = "park"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
       object = append_nonqa( object, "fishing" )
    end
 
    if ( object.tags["leisure"]   == "outdoor_centre" ) then
-      object.tags["leisure"] = "park"
+      if ( object.tags["name"] == nil ) then
+         object.tags["leisure"] = "unnamed_park"
+      else
+         object.tags["leisure"] = "park"
+      end
+
       object = append_nonqa( object, "outdoor centre" )
    end
 -- ----------------------------------------------------------------------------
@@ -1545,15 +1651,6 @@ function process_all( objtype, object )
       object.tags["accommodation"] = "yes"
       object.tags["amenity"] = "pub"
       object.tags["tourism"] = nil
-   end
-
-   if ((  object.tags["leisure"]         == "outdoor_seating" ) and
-       (( object.tags["surface"]         == "grass"          ) or
-        ( object.tags["beer_garden"]     == "yes"            ) or
-        ( object.tags["outdoor_seating"] == "garden"         ))) then
-      object.tags["leisure"] = "garden"
-      object.tags["garden"] = "beer_garden"
-      object = append_nonqa( object, "beer garden" )
    end
 
    if ((  object.tags["abandoned:amenity"] == "pub"             )   or
@@ -2886,17 +2983,17 @@ function process_all( objtype, object )
          object = append_nonqa( object, object.tags["ref"] )
       end
 
-      object.tags["leisure"] = "garden"
+      object.tags["leisure"] = "unnamed_park"
    end
 
    if ( object.tags["golf"] == "green" ) then
-      object.tags["leisure"] = "garden"
+      object.tags["leisure"] = "unnamed_park"
       object.tags["name"] = object.tags["ref"]
       object = append_nonqa( object, "green" )
    end
 
    if ( object.tags["golf"] == "fairway" ) then
-      object.tags["leisure"] = "garden"
+      object.tags["leisure"] = "unnamed_park"
       object.tags["name"] = object.tags["ref"]
       object = append_nonqa( object, "fairway" )
    end
@@ -2926,7 +3023,7 @@ function process_all( objtype, object )
 
    if (( object.tags["golf"]    == "practice" ) and
        ( object.tags["leisure"] == nil        )) then
-      object.tags["leisure"] = "garden"
+      object.tags["leisure"] = "unnamed_park"
       object = append_nonqa( object, "golf practice" )
    end
 

@@ -48,6 +48,7 @@ landuse=retail {name '${name}'} [0x08 resolution 20]
 historic=memorial {name '${name}'} [0x0d resolution 20]
 
 leisure=park {name '${name}'} [0x17 resolution 20]
+leisure=unnamed_park {name '${name}'} [0x17 resolution 20]
 leisure=golf_course {name '${name}'} [0x18 resolution 20]
 historic=museum {name '${name}'} [0x1e resolution 20]
 historic=archaeological_site {name '${name}'} [0x1e resolution 21]

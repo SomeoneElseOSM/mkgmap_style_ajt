@@ -3198,13 +3198,16 @@ function process_all( objtype, object )
 -- The "OpenRailwayMap" crowd prefer the less popular railway:preserved=yes
 -- instead of railway=preserved (which has the advantage of still allowing
 -- e.g. narrow_gauge in addition to rail).
+-- After this change a suffix will be added in ott.process_way
 -- ----------------------------------------------------------------------------
-   if ( object.tags["railway:preserved"] == "yes" ) then
+   if (( object.tags["railway:preserved"] == "yes" ) and
+       ( object.tags["railway"]           == nil   )) then
       object.tags["railway"] = "preserved"
    end
 
 -- ----------------------------------------------------------------------------
 -- Change miniature railways (not handled in the style file) to narrow_gauge.
+-- After this change a suffix will be added in ott.process_way
 -- ----------------------------------------------------------------------------
    if ( object.tags["railway"] == "miniature" ) then
       object.tags["railway"] = "narrow_gauge"
@@ -3212,6 +3215,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Goods Conveyors - render as narrow_gauge railway.
+-- After this change a suffix will be added in ott.process_way
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "goods_conveyor" ) then
       object.tags["railway"] = "narrow_gauge"
@@ -7909,10 +7913,23 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- trams and railways
+-- 0x14 is used for these in "lines"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"] == "tram"         ) or
+       ( object.tags["railway"] == "subway"       ) or
+       ( object.tags["railway"] == "rail"         ) or
+       ( object.tags["railway"] == "preserved"    ) or
+       ( object.tags["railway"] == "narrow_guage" )) then
+      object = append_nonqa( object, object.tags["railway"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- map highway=bus_guideway on ways to railway=tram
 -- ----------------------------------------------------------------------------
    if ( object.tags["highway"] == "bus_guideway" ) then
       object.tags["railway"] = "tram"
+      object.tags["highway"] = nil
       object = append_nonqa( object, object.tags["highway"] )
    end
 
@@ -8210,14 +8227,12 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
--- Fence, hedge, wall
+-- Fences and hedges.  For walls see below.
+-- These are handled in "lines" as "default linear thing" 0x1d.
 -- ----------------------------------------------------------------------------
-   if ( object.tags['barrier'] == 'fence' ) then
-      object = append_nonqa( object, "fence" )
-   end
-
-   if ( object.tags['barrier'] == 'hedge' ) then
-      object = append_nonqa( object, "hedge" )
+   if (( object.tags['barrier'] == 'fence' ) or
+       ( object.tags['barrier'] == 'hedge' )) then
+      object = append_nonqa( object, object.tags['barrier'] )
    end
 
 -- ----------------------------------------------------------------------------
@@ -8236,6 +8251,8 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- Show castle_wall and citywalls as walls with a "city wall" suffix,
 -- and regular walls with "wall".
+-- Also show tree rows.
+-- These are handled in "lines" as "default linear thing" 0x1d.
 -- ----------------------------------------------------------------------------
    if ( object.tags["barrier"] == "wall" ) then
       if ( object.tags["wall"] == "castle_wall" ) then

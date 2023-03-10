@@ -1,6 +1,9 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Show powerlines in a similar way to pipelines.
+
 ## 08/03/2023
 Map parks etc. without names to a "green" landuse without a tree icon rather than the usual park "tree" icon.
 Show highway=emergency_bay with a suffix.

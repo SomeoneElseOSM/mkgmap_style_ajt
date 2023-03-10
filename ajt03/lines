@@ -14,14 +14,7 @@ route=hiking {name '${name} (${route_ref})' | '(${route_ref})' }
 aeroway=runway {name '${name}'} [0x27 resolution 20]
 aeroway=taxiway {name '${name}'} [0x27 resolution 24]
 
-# Hide unaccessible tunnels
-highway=* & tunnel=yes & (access=no)
-& foot!=* & bicycle!=* {delete highway;delete junction}
-# Disable dead-end-checks for unaccessible oneways
-highway=* & oneway=yes & (access=no)
-{add mkgmap:dead-end-check=false}
-
-# Hide unaccessible tunnels
+# Hide inaccessible tunnels
 highway=* & tunnel=yes & (access=no)
 & foot!=* & bicycle!=* {delete highway;delete junction}
 # Disable dead-end-checks for unaccessible oneways
@@ -112,12 +105,8 @@ highway=road { add mkgmap:dead-end-check = false} [0x06 road_class=0 road_speed=
 
 # The use of these values has not yet been checked
 
-# Mop up any unrecognised highway types
-highway=* & area!=yes [0x07 ]
-
 natural=coastline [0x15 resolution 12]
-# qqq Power lines removed - see how this pans out:
-#power=line [0x29 resolution 20]
+power=line [0x29 resolution 20]
 
 barrier=wall {name '${name}'} [0x1d resolution 20]
 barrier=fence {name '${name}'} [0x1d resolution 20]

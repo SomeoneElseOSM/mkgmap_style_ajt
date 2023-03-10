@@ -2293,9 +2293,10 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Passing places
+-- Passing places and emergency parking bays
 -- ----------------------------------------------------------------------------
-   if ( object.tags["highway"] == "passing_place" ) then
+   if (( object.tags["highway"] == "passing_place" ) or
+       ( object.tags["highway"] == "emergency_bay" )) then
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["man_made"] = "thing"
       object.tags["highway"] = nil
@@ -3102,7 +3103,7 @@ function process_all( objtype, object )
 -- leisure centres and sports centres
 -- If an actual sport is more appropriate, it should have been handled above,
 -- and "amenity" and "leisure" cleared so as not to drop into here.
--- "0x2d0a" is searchable via "Recreation / Sport or Fitness Cen"
+-- "0x2d0a" is searchable via "Recreation / Sports or Fitness Cen"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "dojo"           ) or
        ( object.tags["amenity"] == "leisure_centre" ) or
@@ -3110,11 +3111,16 @@ function process_all( objtype, object )
       object.tags["leisure"] = object.tags["amenity"]
    end
 
+   if ( object.tags["highway"] == "trailhead" ) then
+      object.tags["leisure"] = object.tags["highway"]
+   end
+
    if (( object.tags["leisure"] == "sports_centre"  ) or
        ( object.tags["leisure"] == "leisure_centre" ) or
        ( object.tags["leisure"] == "dojo"           ) or
        ( object.tags["leisure"] == "gym"            ) or
-       ( object.tags["leisure"] == "fitness_centre" )) then
+       ( object.tags["leisure"] == "fitness_centre" ) or
+       ( object.tags["leisure"] == "trailhead"      )) then
       object = append_nonqa( object, object.tags["leisure"] )
 
       if ( object.tags["sport"] ~= nil ) then
@@ -7485,6 +7491,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- public transport and animal field shelters
+-- amenity=shelter is in points as "0x2f10"
 -- "0x2f10" is searchable as "Others / Personal Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]      == "shelter"            ) and
@@ -7893,6 +7900,32 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- highway=turning_loop on ways to service road
+-- "turning_loop" is mostly used on nodes, with one way in UK/IE data.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "turning_loop" ) then
+      object.tags["highway"] = "service"
+      object.tags["service"] = "driveway"
+   end
+
+-- ----------------------------------------------------------------------------
+-- map highway=bus_guideway on ways to railway=tram
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "bus_guideway" ) then
+      object.tags["railway"] = "tram"
+      object = append_nonqa( object, object.tags["highway"] )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Show bus-only service roads tagged as "highway=busway", and escape lanes, 
+-- as service roads.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "busway" ) or
+       ( object.tags["highway"] == "escape" )) then
+      object.tags["highway"] = "service"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Different names on each side of the street
 -- ----------------------------------------------------------------------------
    if (( object.tags["name:left"]  ~= nil ) and
@@ -8067,13 +8100,6 @@ function ott.process_way( object )
        ((( tonumber(object.tags["width"])    or 4 ) <=  3 ) or
         (( tonumber(object.tags["maxwidth"]) or 4 ) <=  3 ))) then
       object.tags["highway"] = "unclassified"
-   end
-
--- ----------------------------------------------------------------------------
--- Show bus-only service roads tagged as "highway=busway" as service roads.
--- ----------------------------------------------------------------------------
-   if (object.tags["highway"] == "busway") then
-      object.tags["highway"] = "service"
    end
 
 -- ----------------------------------------------------------------------------

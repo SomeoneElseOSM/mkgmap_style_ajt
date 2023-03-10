@@ -3,6 +3,10 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## 08/03/2023
 Map parks etc. without names to a "green" landuse without a tree icon rather than the usual park "tree" icon.
+Show highway=emergency_bay with a suffix.
+Show highway=trailhead with a trailhead and make it searchable via "Recreation / Sports or Fitness Cen"
+Show highway=turning_loop, highway=escape and highway=busway as service roads.
+Show higyway=bus_guideway as tram.
 
 ## 03/03/2023
 Add a suffix to stiles to replace the now removed default name.

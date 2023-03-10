@@ -7,6 +7,7 @@ Show highway=emergency_bay with a suffix.
 Show highway=trailhead with a trailhead and make it searchable via "Recreation / Sports or Fitness Cen"
 Show highway=turning_loop, highway=escape and highway=busway as service roads.
 Show higyway=bus_guideway as tram.
+Show highway=proposed as a line.
 
 ## 03/03/2023
 Add a suffix to stiles to replace the now removed default name.

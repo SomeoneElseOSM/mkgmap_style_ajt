@@ -122,7 +122,7 @@ railway=rail & !(tunnel=yes) {name '${name}'} [0x14 resolution 17]
 railway=subway & !(tunnel=yes) {name '${name}'} [0x14 resolution 17]
 railway=tram & !(tunnel=yes) {name '${name}'} [0x14 resolution 18]
 
-route=ferry {add mkgmap:ferry=1} [0x1b road_class=3 road_speed=0 resolution 18]
+route=ferry {add mkgmap:ferry=1 name '${name}'} [0x1b road_class=3 road_speed=0 resolution 18]
 
 waterway=canal {name '${name}'} [0x1f resolution 18]
 waterway=lock {name '${name}'} [0x1f resolution 18]

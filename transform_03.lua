@@ -1408,16 +1408,19 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (object.tags["man_made"]   == "bunker_silo") then
       object.tags["landuse"] = "farmyard"
+      object.tags["man_made"] = nil
       object = append_nonqa( object, "bunker silo" )
    end
 
    if (object.tags["amenity"]   == "feeding_place") then
       object.tags["landuse"] = "farmyard"
+      object.tags["amenity"] = nil
       object = append_nonqa( object, "feeding place" )
    end
 
    if (object.tags["animal"]   == "horse_walker") then
       object.tags["landuse"] = "farmyard"
+      object.tags["animal"] = nil
       object = append_nonqa( object, "horse walker" )
    end
 
@@ -7396,11 +7399,21 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Add a suffix for landuse=quarry
+-- 0x0c is used in polygons
+-- Appears as light grey in QMapShack
+-- ----------------------------------------------------------------------------
+   if ( object.tags["landuse"] == "quarry" ) then
+      object = append_nonqa( object, "quarry" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- If a quarry is disused, it's still likely a hole in the ground, so render it
 -- ----------------------------------------------------------------------------
    if (( object.tags["disused:landuse"] == "quarry" ) and
        ( object.tags["landuse"]         == nil      )) then
       object.tags["landuse"] = "quarry"
+      object = append_nonqa( object, "disused quarry" )
    end
 
 -- ----------------------------------------------------------------------------

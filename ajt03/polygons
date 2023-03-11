@@ -8,26 +8,26 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-aeroway=aerodrome {name '${name}'} [0x07 resolution 18]
-aeroway=terminal {name '${name}'} [0x13 resolution 20]
-aeroway=helipad {name '${name}'} [0x0e resolution 20]
-
-# Various educational establishments are sent through here.
-amenity=school {name '${name}'} [0x0a resolution 20]
-
-amenity=cafe | amenity=fast_food | amenity=restaurant | amenity=food_court [0x08 resolution 20]
-amenity=supermarket [0x08 resolution 21]
-landuse=retail {name '${name}'} [0x08 resolution 20]
-# 0x08 is also used as a wildcard below
-
-amenity=grave_yard {name '${name}'} [0x1a resolution 18]
-landuse=cemetery {name '${name}'} [0x1a resolution 18]
-
-amenity=hospital {name '${name}'} [0x0b resolution 18]
-# Also used for healthcare wildcard below
 
 parking=underground | parking=multi-storey {name '${name}'} [0x06 resolution 21]
 
+# Not yet been checked
+
+landuse=commercial {name '${name}'} [0x0c resolution 18]
+landuse=construction {name '${name}'} [0x0c resolution 20]
+landuse=farmyard {name '${name}'} [0x0c resolution 18]
+landuse=industrial {name '${name}'} [0x0c resolution 18]
+landuse=landfill {name '${name}'} [0x0c resolution 18]
+landuse=quarry {name '${name}'} [0x0c resolution 18]
+
+landuse=forest {name '${name}'} [0x50 resolution 18]
+
+landuse=military {name '${name}'} [0x04 resolution 18]
+# on resolution 24, display building=* instead of landuse=residential
+landuse=residential [0x10 resolution 23-18]
+
+# The use of these values has been checked
+amenity=prison {name '${name}'} [0x04 resolution 20]
 amenity=parking | parking=surface {name '${name}'} [0x05 resolution 21]
 
 # squares and plazas
@@ -36,34 +36,36 @@ highway=pedestrian & area=yes {name '${name}'} [0x05 resolution 20]
 # railway platforms
 railway=platform & area=yes {name '${name}'} [0x05 resolution 20]
 
-amenity=prison {name '${name}'} [0x04 resolution 20]
+aeroway=aerodrome {name '${name}'} [0x07 resolution 18]
 
-# Most healthcare is mapped to something else in the lua.
+amenity=cafe | amenity=fast_food | amenity=restaurant | amenity=food_court [0x08 resolution 20]
+amenity=supermarket [0x08 resolution 21]
+landuse=retail {name '${name}'} [0x08 resolution 20]
+# 0x08 is also used as a wildcard below
+
+# Various educational establishments are sent through here.
+amenity=school {name '${name}'} [0x0a resolution 20]
+
+amenity=hospital {name '${name}'} [0x0b resolution 18]
+# Most healthcare is mapped to something else in the lua, so no healthcare wildcare here:
 # healthcare=* {name '${name}'} [0x0b resolution 21]
 
-landuse=basin {name '${name}'} [0x3f resolution 18]
-landuse=reservoir {name '${name}'} [0x3f resolution 18]
-landuse=commercial {name '${name}'} [0x0c resolution 18]
-landuse=construction {name '${name}'} [0x0c resolution 20]
-landuse=farm {name '${name}'} [0x0c resolution 18]
-landuse=farmyard {name '${name}'} [0x0c resolution 18]
-landuse=forest {name '${name}'} [0x50 resolution 18]
-landuse=industrial {name '${name}'} [0x0c resolution 18]
-landuse=landfill {name '${name}'} [0x0c resolution 18]
-landuse=military {name '${name}'} [0x04 resolution 18]
-landuse=quarry {name '${name}'} [0x0c resolution 18]
-# on resolution 24, display building=* instead of landuse=residential
-landuse=residential [0x10 resolution 23-18]
-
-# The use of these values has been checked
 historic=memorial {name '${name}'} [0x0d resolution 20]
+aeroway=helipad {name '${name}'} [0x0e resolution 20]
 
+aeroway=terminal {name '${name}'} [0x13 resolution 20]
 leisure=park {name '${name}'} [0x17 resolution 20]
 leisure=unnamed_park {name '${name}'} [0x17 resolution 20]
 leisure=golf_course {name '${name}'} [0x18 resolution 20]
+amenity=grave_yard {name '${name}'} [0x1a resolution 18]
+landuse=cemetery {name '${name}'} [0x1a resolution 18]
 historic=museum {name '${name}'} [0x1e resolution 20]
 historic=archaeological_site {name '${name}'} [0x1e resolution 21]
 historic=ruins {name '${name}'} [0x1e resolution 21]
+
+# The lua code maps various reservoir tags to these:
+landuse=basin {name '${name}'} [0x3f resolution 18]
+landuse=reservoir {name '${name}'} [0x3f resolution 18]
 
 landuse=allotments {name '${name}'} [0x4e resolution 20]
 landuse=vineyard {name '${name}'} [0x4e resolution 20]

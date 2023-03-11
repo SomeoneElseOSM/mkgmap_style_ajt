@@ -20,7 +20,9 @@ amenity=supermarket [0x08 resolution 21]
 landuse=retail {name '${name}'} [0x08 resolution 20]
 # 0x08 is also used as a wildcard below
 
-amenity=grave_yard [0x1a resolution 18]
+amenity=grave_yard {name '${name}'} [0x1a resolution 18]
+landuse=cemetery {name '${name}'} [0x1a resolution 18]
+
 amenity=hospital [0x0b resolution 18]
 amenity=nursing_home [0x0b resolution 21]
 parking=underground | parking=multi-storey [0x06 resolution 21]
@@ -30,7 +32,6 @@ amenity=prison [0x04 resolution 20]
 healthcare=* [0x0b resolution 21]
 
 landuse=basin {name '${name}'} [0x3f resolution 18]
-landuse=cemetery {name '${name}'} [0x1a resolution 18]
 landuse=commercial {name '${name}'} [0x0c resolution 18]
 landuse=construction {name '${name}'} [0x0c resolution 20]
 landuse=farm {name '${name}'} [0x0c resolution 18]

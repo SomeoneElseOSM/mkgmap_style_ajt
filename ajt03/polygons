@@ -10,14 +10,11 @@
 
 parking=underground | parking=multi-storey {name '${name}'} [0x06 resolution 21]
 
-# Not yet been checked
-
-landuse=military {name '${name}'} [0x04 resolution 18]
-# on resolution 24, display building=* instead of landuse=residential
-landuse=residential [0x10 resolution 23-18]
-
 # The use of these values has been checked
+
 amenity=prison {name '${name}'} [0x04 resolution 20]
+landuse=military {name '${name}'} [0x04 resolution 18]
+
 amenity=parking | parking=surface {name '${name}'} [0x05 resolution 21]
 
 # squares and plazas
@@ -48,6 +45,12 @@ landuse=quarry {name '${name}'} [0x0c resolution 18]
 
 historic=memorial {name '${name}'} [0x0d resolution 20]
 aeroway=helipad {name '${name}'} [0x0e resolution 20]
+
+# In QMapShack, and possibly on older devices, at resolution 24, 
+# display building=* instead of landuse=residential.
+# Nothing in lua and no need because the QMapShack representation is characteristic.
+# On GPSMAP64s and presumably all later devices this does not appear.
+landuse=residential {name '${name}'} [0x10 resolution 23-18]
 
 aeroway=terminal {name '${name}'} [0x13 resolution 20]
 leisure=park {name '${name}'} [0x17 resolution 20]

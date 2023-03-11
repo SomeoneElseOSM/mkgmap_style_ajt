@@ -285,10 +285,13 @@ function process_all( objtype, object )
 -- tags that map through.
 -- This tag is also used by the building_or_landuse function (no suffix there
 -- obviously as it's not representing industrial landuse there)
--- 0x0c is used in polygons
+--
+-- Also append suffix for landuse=construction
+-- 0x0c is used in polygons for these
 -- ----------------------------------------------------------------------------
    if (( object.tags["landuse"]    == "industrial"             ) or
-       ( object.tags["landuse"]    == "depot"                  )) then
+       ( object.tags["landuse"]    == "depot"                  ) or
+       ( object.tags["landuse"]    == "construction"           )) then
       object = append_nonqa( object, object.tags["landuse"] )
       object.tags["landuse"] = "industrial"
    end
@@ -1358,6 +1361,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Append suffix for landuse=commercial
+-- 0x0c is used in polygons
+-- ----------------------------------------------------------------------------
+   if (object.tags["landuse"]   == "commercial") then
+      object = append_nonqa( object, object.tags["landuse"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- highway=services 
 -- This is translated to commercial landuse - any overlaid parking
 -- can then be seen in QMapShack 
@@ -1369,8 +1380,9 @@ function process_all( objtype, object )
 -- highway=rest_area is translated lower down to amenity=parking.
 -- ----------------------------------------------------------------------------
    if ( object.tags["highway"] == "services" ) then
-      object.tags["highway"] = nil
+      object = append_nonqa( object, object.tags["highway"] )
       object.tags["landuse"] = "commercial"
+      object.tags["highway"] = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -1378,21 +1390,32 @@ function process_all( objtype, object )
 -- falling into a "catch-all" for man_made.
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "pier" ) then
-      object.tags["man_made"] = nil
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["landuse"] = "commercial"
+      object.tags["man_made"] = nil
    end
 
 -- ----------------------------------------------------------------------------
--- Things without icons - add "commercial" landuse to include a name 
--- (if one exists) too.
+-- Other mappings to "commercial" landuse 
 -- ----------------------------------------------------------------------------
    if (( object.tags["landuse"]      == "churchyard"               ) or
        ( object.tags["landuse"]      == "religious"                ) or
-       ( object.tags["leisure"]      == "racetrack"                ) or
        ( object.tags["landuse"]      == "aquaculture"              ) or
-       ( object.tags["landuse"]      == "fishfarm"                 ) or
-       ( object.tags["seamark:type"] == "marine_farm"              )) then
+       ( object.tags["landuse"]      == "fishfarm"                 )) then
+      object = append_nonqa( object, object.tags["landuse"] )
       object.tags["landuse"] = "commercial"
+   end
+
+   if ( object.tags["leisure"]      == "racetrack"                ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["landuse"] = "commercial"
+      object.tags["leisure"] = nil
+   end
+
+   if ( object.tags["seamark:type"] == "marine_farm"              ) then
+      object = append_nonqa( object, object.tags["seamark:type"] )
+      object.tags["landuse"] = "commercial"
+      object.tags["seamark:type"] = nil
    end
 
 -- ----------------------------------------------------------------------------

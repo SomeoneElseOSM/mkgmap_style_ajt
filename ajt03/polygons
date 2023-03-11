@@ -38,9 +38,11 @@ railway=platform & area=yes {name '${name}'} [0x05 resolution 20]
 
 amenity=prison {name '${name}'} [0x04 resolution 20]
 
-healthcare=* {name '${name}'} [0x0b resolution 21]
+# Most healthcare is mapped to something else in the lua.
+# healthcare=* {name '${name}'} [0x0b resolution 21]
 
 landuse=basin {name '${name}'} [0x3f resolution 18]
+landuse=reservoir {name '${name}'} [0x3f resolution 18]
 landuse=commercial {name '${name}'} [0x0c resolution 18]
 landuse=construction {name '${name}'} [0x0c resolution 20]
 landuse=farm {name '${name}'} [0x0c resolution 18]
@@ -50,7 +52,6 @@ landuse=industrial {name '${name}'} [0x0c resolution 18]
 landuse=landfill {name '${name}'} [0x0c resolution 18]
 landuse=military {name '${name}'} [0x04 resolution 18]
 landuse=quarry {name '${name}'} [0x0c resolution 18]
-landuse=reservoir [0x3f resolution 18]
 # on resolution 24, display building=* instead of landuse=residential
 landuse=residential [0x10 resolution 23-18]
 

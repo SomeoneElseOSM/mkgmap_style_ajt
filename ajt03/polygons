@@ -30,6 +30,9 @@ amenity=supermarket [0x08 resolution 21]
 landuse=retail {name '${name}'} [0x08 resolution 20]
 # 0x08 is also used as a "shop" wildcard below
 
+leisure=marina {name '${name}'} [0x09 resolution 20]
+leisure=water_park {name '${name}'} [0x09 resolution 18]
+
 # Various educational establishments are sent through here.
 amenity=school {name '${name}'} [0x0a resolution 20]
 
@@ -53,9 +56,19 @@ aeroway=helipad {name '${name}'} [0x0e resolution 20]
 landuse=residential {name '${name}'} [0x10 resolution 23-18]
 
 aeroway=terminal {name '${name}'} [0x13 resolution 20]
+leisure=nature_reserve {name '${name}'} [0x16 resolution 18]
+
 leisure=park {name '${name}'} [0x17 resolution 20]
 leisure=unnamed_park {name '${name}'} [0x17 resolution 20]
+
 leisure=golf_course {name '${name}'} [0x18 resolution 20]
+
+leisure=ice_rink [0x19 resolution 21]
+leisure=pitch { name '${name}' } [0x19 resolution 20]
+leisure=sports_centre { name '${name}' } [0x19 resolution 20]
+leisure=stadium { name '${name}' } [0x19 resolution 19]
+leisure=track { name '${name}' } [0x19 resolution 18]
+
 amenity=grave_yard {name '${name}'} [0x1a resolution 18]
 landuse=cemetery {name '${name}'} [0x1a resolution 18]
 historic=museum {name '${name}'} [0x1e resolution 20]
@@ -74,14 +87,6 @@ natural=wood {name '${name}'} [0x50 resolution 18]
 landuse=forest {name '${name}'} [0x50 resolution 18]
 
 # The use of these values has not yet been checked
-leisure=ice_rink [0x19 resolution 21]
-leisure=marina [0x09 resolution 20]
-leisure=nature_reserve {name '${name}'} [0x16 resolution 18]
-leisure=pitch { name '${name} (${sport})' | '${name}' } [0x19 resolution 20]
-leisure=sports_center | leisure=sports_centre { name '${name} (${sport})' | '${name}' } [0x19 resolution 20]
-leisure=stadium { name '${name} (${sport})' | '${name}' } [0x19 resolution 19]
-leisure=track { name '${name} (${sport})' | '${name}' } [0x19 resolution 18]
-leisure=water_park [0x09 resolution 18]
 
 natural=glacier {name '${name}'} [0x4d resolution 16]
 natural=marsh {name '${name}'} [0x51 resolution 20]

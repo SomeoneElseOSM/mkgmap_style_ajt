@@ -4667,9 +4667,14 @@ function process_all( objtype, object )
 -- "0x640b" is searchable via "Geographic Points / Man Made" 
 -- A unique "tank" icon appears on a GPSMAP64s.  Landuse appears as dark grey.
 --
--- First, add a "landuse=military" tag if no pre-existing landuse tag on 
+-- If a "landuse=military" tag already exists, add a suffix for it.
+-- Also add a "landuse=military" tag if no pre-existing landuse tag on 
 -- military things.
 -- ----------------------------------------------------------------------------
+   if ( object.tags["landuse"]  == "military" )  then
+      object = append_nonqa( object, object.tags["landuse"] )
+   end
+
    if (( object.tags["landuse"]  == nil )  and
        ( object.tags["military"] ~= nil )) then
       object.tags["landuse"] = "military"
@@ -4684,10 +4689,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Apply suffixes to military items
+-- Things that were already "landuse=military" will have had a "military" 
+-- suffix added above; this adds a suffix for the particular military tag.
 -- ----------------------------------------------------------------------------
    if ( object.tags["landuse"] == "military" )  then
-      object = append_nonqa( object, object.tags["landuse"] )
-
       if ( object.tags['military'] ~= nil ) then
          object = append_nonqa( object, object.tags["military"] )
       end

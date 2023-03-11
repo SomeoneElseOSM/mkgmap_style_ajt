@@ -124,15 +124,13 @@ railway=tram & !(tunnel=yes) {name '${name}'} [0x14 resolution 18]
 
 route=ferry {add mkgmap:ferry=1 name '${name}'} [0x1b road_class=3 road_speed=0 resolution 18]
 
-waterway=canal {name '${name}'} [0x1f resolution 18]
-waterway=lock {name '${name}'} [0x1f resolution 18]
-waterway=drain {name '${name}'} [0x1f resolution 18]
 waterway=river {name '${name}'} [0x1f resolution 18]
 waterway=stream {name '${name}'} [0x18 resolution 22]
-waterway=ditch {name '${name}'} [0x18 resolution 22]
 waterway=derelict_canal {name '${name}'} [0x1d resolution 18]
 leisure=slipway {name '${name}'} [0x1d resolution 18]
 
 man_made=pipeline {name '${name}'} [0x28 resolution 23]
+
+# Most man_made=levee are assigned in the lua rather then being in the data.
 man_made=levee {name '${name}'} [0x1d resolution 18]
 

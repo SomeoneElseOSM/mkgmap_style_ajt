@@ -4734,6 +4734,29 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- waterway=ditch, waterway=stream
+-- Apparently there are a few "waterway=brook" in the UK.  Render as stream.
+-- 0x18 is used in lines.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["waterway"] == "ditch"  ) or
+       ( object.tags["waterway"] == "stream" ) or
+       ( object.tags["waterway"] == "brook"  )) then
+      object = append_nonqa( object, object.tags["waterway"] )
+      object.tags["waterway"] = "stream"
+   end
+
+-- ----------------------------------------------------------------------------
+-- waterway=drain, waterway=canal.
+-- 0x1f is used in lines.
+-- waterway=river: Also 0x1f, but no name suffix written.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["waterway"] == "drain" ) or
+       ( object.tags["waterway"] == "canal" )) then
+      object = append_nonqa( object, object.tags["waterway"] )
+      object.tags["waterway"] = "river"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Each of the three gate types is handled in the style "points" file as the 
 -- same value with a "G" symbol.
 -- "0x2f0f" is searchable via "Others / Garmin Dealer"
@@ -8322,13 +8345,6 @@ function ott.process_way( object )
       object.tags["natural"] = "water"
       object.tags["man_made"] = nil
       object = append_nonqa( object, "spillway" )
-   end
-
--- ----------------------------------------------------------------------------
--- Apparently there are a few "waterway=brook" in the UK.  Render as stream.
--- ----------------------------------------------------------------------------
-   if ( object.tags["waterway"] == "brook" ) then
-      object.tags["waterway"] = "stream"
    end
 
 -- ----------------------------------------------------------------------------

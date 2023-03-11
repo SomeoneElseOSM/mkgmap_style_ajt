@@ -23,8 +23,9 @@ landuse=retail {name '${name}'} [0x08 resolution 20]
 amenity=grave_yard {name '${name}'} [0x1a resolution 18]
 landuse=cemetery {name '${name}'} [0x1a resolution 18]
 
-amenity=hospital [0x0b resolution 18]
-amenity=nursing_home [0x0b resolution 21]
+amenity=hospital {name '${name}'} [0x0b resolution 18]
+# Also used for healthcare wildcard below
+
 parking=underground | parking=multi-storey [0x06 resolution 21]
 amenity=parking | parking=surface [0x05 resolution 21]
 amenity=prison [0x04 resolution 20]

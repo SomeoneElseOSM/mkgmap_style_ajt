@@ -5,6 +5,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 Show powerlines in a similar way to pipelines.
 Add a suffix for trams and railways, and to ferry routes.
 Add a suffix to stream, ditch, drain, etc.
+Add a name to hospitals areas.
 
 ## 08/03/2023
 Map parks etc. without names to a "green" landuse without a tree icon rather than the usual park "tree" icon.

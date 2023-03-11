@@ -279,44 +279,88 @@ function process_all( objtype, object )
       object = append_nonqa( object, "sewage" )
    end
 
+-- ----------------------------------------------------------------------------
+-- Various industrial landuse
+-- Add a suffix for any existing landuse=industrial, and also for some other
+-- tags that map through.
+-- This tag is also used by the building_or_landuse function (no suffix there
+-- obviously as it's not representing industrial landuse there)
+-- 0x0c is used in polygons
+-- ----------------------------------------------------------------------------
+   if (( object.tags["landuse"]    == "industrial"             ) or
+       ( object.tags["landuse"]    == "depot"                  )) then
+      object = append_nonqa( object, object.tags["landuse"] )
+      object.tags["landuse"] = "industrial"
+   end
+
+   if (( object.tags["amenity"]    == "depot"                  ) or
+       ( object.tags["amenity"]    == "bus_depot"              ) or
+       ( object.tags["amenity"]    == "fuel_depot"             ) or
+       ( object.tags["amenity"]    == "scrapyard"              )) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = nil
+      object.tags["landuse"] = "industrial"
+   end
+
+   if (( object.tags["craft"]      == "distillery"             ) or
+       ( object.tags["craft"]      == "bakery"                 ) or
+       ( object.tags["craft"]      == "sawmill"                )) then
+      object = append_nonqa( object, object.tags["craft"] )
+      object.tags["craft"] = nil
+      object.tags["landuse"] = "industrial"
+   end
+
    if (( object.tags["industrial"] == "warehouse"              ) or
        ( object.tags["industrial"] == "distillery"             ) or 
-       ( object.tags["craft"]      == "distillery"             ) or
-       ( object.tags["craft"]      == "bakery"                 ) or
-       ( object.tags["craft"]      == "sawmill"                ) or
        ( object.tags["industrial"] == "sawmill"                ) or
        ( object.tags["industrial"] == "factory"                ) or 
        ( object.tags["industrial"] == "yes"                    ) or 
        ( object.tags["industrial"] == "depot"                  ) or 
-       ( object.tags["landuse"]    == "depot"                  ) or
-       ( object.tags["amenity"]    == "depot"                  ) or
-       ( object.tags["amenity"]    == "bus_depot"              ) or
-       ( object.tags["amenity"]    == "fuel_depot"             ) or
-       ( object.tags["amenity"]    == "scrapyard"              ) or 
        ( object.tags["industrial"] == "scrap_yard"             ) or 
        ( object.tags["industrial"] == "scrapyard"              ) or 
        ( object.tags["industrial"] == "yard"                   ) or 
        ( object.tags["industrial"] == "engineering"            ) or
        ( object.tags["industrial"] == "machine_shop"           ) or
        ( object.tags["industrial"] == "packaging"              ) or
-       ( object.tags["industrial"] == "haulage"                ) or
-       ( object.tags["power"]      == "plant"                  ) or
-       ( object.tags["man_made"]   == "gas_station"            ) or
+       ( object.tags["industrial"] == "haulage"                )) then
+      object = append_nonqa( object, object.tags["industrial"] )
+   end
+
+   if (( object.tags["man_made"]   == "gas_station"            ) or
        ( object.tags["man_made"]   == "gas_works"              ) or
        ( object.tags["man_made"]   == "water_treatment"        )) then
+      object = append_nonqa( object, object.tags["man_made"] )
+      object.tags["man_made"] = nil
+      object.tags["landuse"] = "industrial"
+   end
+
+   if ( object.tags["power"]      == "plant"                  ) then
+      object = append_nonqa( object, object.tags["power"] )
+      object.tags["power"] = nil
       object.tags["landuse"] = "industrial"
    end
 
    if ( object.tags["parking"]   == "depot" ) then
-      object.tags["parking"] = nil
+      object = append_nonqa( object, object.tags["parking"] )
       object.tags["landuse"] = "industrial"
+      object.tags["parking"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Add suffix for landfill
+-- 0x0c is used in polygons
+-- ----------------------------------------------------------------------------
+   if ( object.tags["landuse"] == "landfill" ) then
+      object = append_nonqa( object, object.tags["landuse"] )
    end
 
 -- ----------------------------------------------------------------------------
 -- Handle spoil heaps as landfill
 -- ----------------------------------------------------------------------------
    if ( object.tags["man_made"] == "spoil_heap" ) then
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["landuse"] = "landfill"
+      object.tags["man_made"] = nil
    end
 
 -- ----------------------------------------------------------------------------

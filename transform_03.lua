@@ -2190,7 +2190,8 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Shop groups
--- "0x2e04" is searchable as "Shopping / Shopping Center"
+-- "0x2e04" in points is searchable as "Shopping / Shopping Center"
+-- 0x08 is used in polygons for most shops and landuse=retail
 -- ----------------------------------------------------------------------------
    if ((( object.tags["amenity"] == "marketplace"    )  and
         ( object.tags["name"]    ~= nil              )) or

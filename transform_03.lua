@@ -175,6 +175,15 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- natural=tree
+-- in "points" as "0x6600"
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "tree" ) then
+      object = append_nonqa( object, object.tags["natural"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- landuse=forest
 -- natural=wood
 -- (and a few outlier tags for the same thing)
@@ -1939,57 +1948,57 @@ function process_all( objtype, object )
    if (( object.tags["real_ale"] ~= nil     ) and
        ( object.tags["real_ale"] ~= "maybe" ) and
        ( object.tags["real_ale"] ~= "no"    )) then
-      beer_appendix = ''
+      beer_appendix = ""
 
       if ( object.tags["amenity"] == "bar" ) then
-         beer_appendix = 'B'
+         beer_appendix = "B"
       else
          if ( object.tags["amenity"] == "pub" ) then
-            beer_appendix = 'P'
+            beer_appendix = "P"
          end
       end
 
       if ( beer_appendix == nil ) then
-         beer_appendix = 'QR'
+         beer_appendix = "QR"
       else
-         beer_appendix = beer_appendix .. 'QR'
+         beer_appendix = beer_appendix .. "QR"
       end
 
       if (( object.tags["food"] ~= nil  ) and
           ( object.tags["food"] ~= "no" )) then
-         beer_appendix = beer_appendix .. 'F'
+         beer_appendix = beer_appendix .. "F"
       end
 
       if ( object.tags["noncarpeted"] == "yes"  ) then
-         beer_appendix = beer_appendix .. 'L'
+         beer_appendix = beer_appendix .. "L"
       end
 
       if ( object.tags["microbrewery"] == "yes"  ) then
-         beer_appendix = beer_appendix .. 'UB'
+         beer_appendix = beer_appendix .. "UB"
       end
 
       if ( object.tags["micropub"] == "yes"  ) then
-         beer_appendix = beer_appendix .. 'UP'
+         beer_appendix = beer_appendix .. "UP"
       end
 
       if (( object.tags["accommodation"] ~= nil  ) and
           ( object.tags["accommodation"] ~= "no" )) then
-         beer_appendix = beer_appendix .. 'A'
+         beer_appendix = beer_appendix .. "A"
       end
 
       if ( object.tags["beer_garden"] == "yes" ) then
-         beer_appendix = beer_appendix .. 'G'
+         beer_appendix = beer_appendix .. "G"
       else
          if ( object.tags["outdoor_seating"] == "yes" ) then
-            beer_appendix = beer_appendix .. 'O'
+            beer_appendix = beer_appendix .. "O"
          end
       end
 
-      if ( beer_appendix ~= '' ) then
-         if ( object.tags['name'] == nil ) then
-            object.tags.name = '(' .. beer_appendix .. ')'
+      if ( beer_appendix ~= "" ) then
+         if ( object.tags["name"] == nil ) then
+            object.tags.name = "(" .. beer_appendix .. ")"
          else
-            object.tags.name = object.tags['name'] .. ' (' .. beer_appendix .. ')'
+            object.tags.name = object.tags["name"] .. " (" .. beer_appendix .. ")"
          end
       end
 
@@ -2000,59 +2009,59 @@ function process_all( objtype, object )
         ( object.tags["amenity"] == "pub" )) and
        (( object.tags["real_ale"] == "no" )  or
         ( object.tags["real_ale"] == nil  ))) then
-      beer_appendix = ''
+      beer_appendix = ""
 
       if ( object.tags["amenity"] == "bar" ) then
-         beer_appendix = 'B'
+         beer_appendix = "B"
       else
          if ( object.tags["amenity"] == "pub" ) then
-            beer_appendix = 'P'
+            beer_appendix = "P"
          end
       end
 
       if ( beer_appendix == nil ) then
-         beer_appendix = 'Q'
+         beer_appendix = "Q"
       else
-         beer_appendix = beer_appendix .. 'Q'
+         beer_appendix = beer_appendix .. "Q"
       end
 
       if (  object.tags["real_ale"] == "no" ) then
-         beer_appendix = beer_appendix .. 'N'
+         beer_appendix = beer_appendix .. "N"
       else
-         beer_appendix = beer_appendix .. 'V'
+         beer_appendix = beer_appendix .. "V"
       end
 
       if (( object.tags["food"] ~= nil  ) and
           ( object.tags["food"] ~= "no" )) then
-         beer_appendix = beer_appendix .. 'F'
+         beer_appendix = beer_appendix .. "F"
       end
 
       if ( object.tags["noncarpeted"] == "yes"  ) then
-         beer_appendix = beer_appendix .. 'L'
+         beer_appendix = beer_appendix .. "L"
       end
 
       if ( object.tags["microbrewery"] == "yes"  ) then
-         beer_appendix = beer_appendix .. 'UB'
+         beer_appendix = beer_appendix .. "UB"
       end
 
       if ( object.tags["micropub"] == "yes"  ) then
-         beer_appendix = beer_appendix .. 'UP'
+         beer_appendix = beer_appendix .. "UP"
       end
 
       if (( object.tags["accommodation"] ~= nil  ) and
           ( object.tags["accommodation"] ~= "no" )) then
-         beer_appendix = beer_appendix .. 'A'
+         beer_appendix = beer_appendix .. "A"
       end
 
       if ( object.tags["beer_garden"] == "yes" ) then
-         beer_appendix = beer_appendix .. 'G'
+         beer_appendix = beer_appendix .. "G"
       else
          if ( object.tags["outdoor_seating"] == "yes" ) then
-            beer_appendix = beer_appendix .. 'O'
+            beer_appendix = beer_appendix .. "O"
          end
       end
 
-      if ( beer_appendix ~= '' ) then
+      if ( beer_appendix ~= "" ) then
          object = append_nonqa( object, beer_appendix )
       end
 
@@ -3345,7 +3354,7 @@ function process_all( objtype, object )
    if ( object.tags["ford"] == "yes" ) then
       object = append_nonqa( object, "ford" )
 
-      if ( objtype == 'n' ) then
+      if ( objtype == "n" ) then
          object.tags["man_made"] = "thing"
       end
    end
@@ -3764,10 +3773,10 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "sound_mirror"      )) then
       object.tags["tourism"] = nil
 
-      if ( object.tags['name'] == nil ) then
-         object.tags.name = '(historic ' .. object.tags["historic"] .. ')'
+      if ( object.tags["name"] == nil ) then
+         object.tags.name = "(historic " .. object.tags["historic"] .. ")"
       else
-         object.tags.name = object.tags['name'] .. ' (historic ' .. object.tags["historic"] .. ')'
+         object.tags.name = object.tags["name"] .. " (historic " .. object.tags["historic"] .. ")"
       end
 
       object.tags["historic"] = "ruins"
@@ -4591,7 +4600,7 @@ function process_all( objtype, object )
       if ( object.tags["name"] == nil ) then
          object.tags["tourism"] = "singlechalet"
       else
-         if ( objtype == 'n' ) then
+         if ( objtype == "n" ) then
             object.tags["tourism"] = "singlechalet"
          else
             if ( object.tags["building"] == nil ) then
@@ -4693,7 +4702,7 @@ function process_all( objtype, object )
 -- suffix added above; this adds a suffix for the particular military tag.
 -- ----------------------------------------------------------------------------
    if ( object.tags["landuse"] == "military" )  then
-      if ( object.tags['military'] ~= nil ) then
+      if ( object.tags["military"] ~= nil ) then
          object = append_nonqa( object, object.tags["military"] )
       end
 
@@ -7713,12 +7722,12 @@ function process_all( objtype, object )
 -- Quality Control tagging on all objects
 -- Append something to end of name for fixme tags
 -- ----------------------------------------------------------------------------
-    if (( object.tags['fixme'] ~= nil  ) or
-        ( object.tags['FIXME'] ~= nil  )) then
-        if ( object.tags['name'] == nil ) then
-            object.tags.name = '[fix]'
+    if (( object.tags["fixme"] ~= nil  ) or
+        ( object.tags["FIXME"] ~= nil  )) then
+        if ( object.tags["name"] == nil ) then
+            object.tags.name = "[fix]"
         else
-            object.tags.name = object.tags['name'] .. ' [fix]'
+            object.tags.name = object.tags["name"] .. " [fix]"
         end
     end
 
@@ -7730,7 +7739,7 @@ end
 -- "node" function
 -- ----------------------------------------------------------------------------
 function ott.process_node( object )
-    object = process_all( 'n', object )
+    object = process_all( "n", object )
 
 -- ----------------------------------------------------------------------------
 -- Slipways
@@ -7828,18 +7837,18 @@ function ott.process_node( object )
 -- ----------------------------------------------------------------------------
 -- Information guideposts, route markers, boards
 -- ----------------------------------------------------------------------------
-   information_appendix = ''
+   information_appendix = ""
 
    if ( object.tags["tourism"] == "information" ) then
       if (( object.tags["information"] == "guidepost"                        )   or
           ( object.tags["information"] == "fingerpost"                       )   or
           ( object.tags["information"] == "marker"                           )) then
-         information_appendix = 'GP'
+         information_appendix = "GP"
       end
 
       if (( object.tags["information"] == "route_marker"                     )  or
           ( object.tags["information"] == "trail_blaze"                      )) then
-         information_appendix = 'RM'
+         information_appendix = "RM"
       end
 
       if (( object.tags["information"] == "board"                            )  or
@@ -7870,11 +7879,11 @@ function ott.process_node( object )
           ( object.tags["information"] == "leaflets"                         )  or
           ( object.tags["information"] == "departure times and destinations" )  or
           ( object.tags["information"] == "board;map"                        )) then
-         information_appendix = 'B'
+         information_appendix = "B"
       end
 
       if ( object.tags["information"] == "sign" ) then
-         information_appendix = 'S'
+         information_appendix = "S"
       end
 
       if (( object.tags["operator"]  == "Peak & Northern Footpaths Society"                                )  or
@@ -7882,62 +7891,62 @@ function ott.process_node( object )
           ( object.tags["operator"]  == "Peak District & Northern Counties Footpaths Preservation Sciety"  ) or
           ( object.tags["operator"]  == "Peak District & Northern Counties Footpaths Preservation Society" )) then
          if ( information_appendix == nil ) then
-             information_appendix = 'PNFS'
+             information_appendix = "PNFS"
          else
-             information_appendix = information_appendix .. ' PNFS'
+             information_appendix = information_appendix .. " PNFS"
          end
       end
 
       if ( object.tags["operator:type"] == "military" ) then
          if ( information_appendix == nil ) then
-             information_appendix = 'MIL'
+             information_appendix = "MIL"
          else
-             information_appendix = information_appendix .. ' MIL'
+             information_appendix = information_appendix .. " MIL"
          end
       end
 
       if ( object.tags["guide_type"] == "intermediary" ) then
          if ( information_appendix == nil ) then
-             information_appendix = 'INT'
+             information_appendix = "INT"
          else
-             information_appendix = information_appendix .. ' INT'
+             information_appendix = information_appendix .. " INT"
          end
       end
 
       if ( object.tags["guide_type"] == "destination" ) then
          if ( information_appendix == nil ) then
-             information_appendix = 'DEST'
+             information_appendix = "DEST"
          else
-             information_appendix = information_appendix .. ' DEST'
+             information_appendix = information_appendix .. " DEST"
          end
       end
 
       if ( object.tags["guidepost_type"] == "PROW" ) then
          if ( information_appendix == nil ) then
-             information_appendix = 'PROW'
+             information_appendix = "PROW"
          else
-             information_appendix = information_appendix .. ' PROW'
+             information_appendix = information_appendix .. " PROW"
          end
       end
 
       if ( object.tags["guidepost_type"] == "route_marker" ) then
          if ( information_appendix == nil ) then
-             information_appendix = 'ROUTE'
+             information_appendix = "ROUTE"
          else
-             information_appendix = information_appendix .. ' ROUTE'
+             information_appendix = information_appendix .. " ROUTE"
          end
       end
 
       if ( object.tags["guidepost_type"] == "route_marker;PROW" ) then
          if ( information_appendix == nil ) then
-             information_appendix = 'ROUTE PROW'
+             information_appendix = "ROUTE PROW"
          else
-             information_appendix = information_appendix .. ' ROUTE PROW'
+             information_appendix = information_appendix .. " ROUTE PROW"
          end
       end
    end
 
-   if ( information_appendix ~= '' ) then
+   if ( information_appendix ~= "" ) then
       object = append_nonqa( object, information_appendix )
    end
 
@@ -7959,7 +7968,7 @@ function ott.process_node( object )
 -- Point weirs are sent through as springs with a name of "weir"
 -- 0x6511 is searchable via "Geographic Points / Water Features"
 -- ----------------------------------------------------------------------------
-   if ( object.tags['waterway'] == 'weir' ) then
+   if ( object.tags["waterway"] == "weir" ) then
       object.tags["natural"] = "spring"
       object.tags["waterway"] = nil
       object = append_nonqa( object, "weir" )
@@ -7968,7 +7977,7 @@ function ott.process_node( object )
 -- ----------------------------------------------------------------------------
 -- Point horse_jumps are sent through as "thing" with a suffix
 -- ----------------------------------------------------------------------------
-   if ( object.tags['barrier'] == "horse_jump" ) then
+   if ( object.tags["barrier"] == "horse_jump" ) then
       object.tags["man_made"] = "thing"
       object.tags["barrier"] = nil
       object = append_nonqa( object, "horse_jump" )
@@ -7993,7 +8002,7 @@ end
 -- "way" function
 -- ----------------------------------------------------------------------------
 function ott.process_way( object )
-    object = process_all( 'w', object )
+    object = process_all( "w", object )
 
 -- ----------------------------------------------------------------------------
 -- From style.lua
@@ -8004,7 +8013,7 @@ function ott.process_way( object )
 -- indoor=corridor as a closed way.  highway=corridor is not documented there
 -- but is used for corridors.  We'll only process layer or level 0 (or nil)
 -- ----------------------------------------------------------------------------
-    if (( object.tags['highway'] == 'corridor'  ) and
+    if (( object.tags["highway"] == "corridor"  ) and
         (( object.tags["level"]  == nil         )  or
          ( object.tags["level"]  == "0"         )) and
         (( object.tags["layer"]  == nil         )  or
@@ -8276,45 +8285,45 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- Designation tagging on ways
 -- ----------------------------------------------------------------------------
-   designation_appendix = ''
+   designation_appendix = ""
 
-   if (( object.tags['designation'] == 'public_footpath'  ) or
-       ( object.tags['designation'] == 'footpath'         )) then
-      designation_appendix = 'PF'
+   if (( object.tags["designation"] == "public_footpath"  ) or
+       ( object.tags["designation"] == "footpath"         )) then
+      designation_appendix = "PF"
    end
 
-   if ( object.tags['designation'] == 'core_path'  ) then
-      designation_appendix = 'CP'
+   if ( object.tags["designation"] == "core_path"  ) then
+      designation_appendix = "CP"
    end
 
-   if (( object.tags['designation'] == 'public_bridleway' ) or
-       ( object.tags['designation'] == 'bridleway'        )) then
-      designation_appendix = 'PB'
+   if (( object.tags["designation"] == "public_bridleway" ) or
+       ( object.tags["designation"] == "bridleway"        )) then
+      designation_appendix = "PB"
    end
 
-   if (( object.tags['designation'] == 'restricted_byway'    ) or
-       ( object.tags['designation'] == 'public_right_of_way' )) then
-      designation_appendix = 'RB'
+   if (( object.tags["designation"] == "restricted_byway"    ) or
+       ( object.tags["designation"] == "public_right_of_way" )) then
+      designation_appendix = "RB"
    end
 
-   if (( object.tags['designation'] == 'byway_open_to_all_traffic'  ) or
-       ( object.tags['designation'] == 'public_byway'               ) or
-       ( object.tags['designation'] == 'byway'                      )) then
-      designation_appendix = 'BY'
+   if (( object.tags["designation"] == "byway_open_to_all_traffic"  ) or
+       ( object.tags["designation"] == "public_byway"               ) or
+       ( object.tags["designation"] == "byway"                      )) then
+      designation_appendix = "BY"
    end
 
-   if (( object.tags['designation'] == 'quiet_lane'                      ) or
-       ( object.tags['designation'] == 'quiet_lane;unclassified_highway' ) or
-       ( object.tags['designation'] == 'unclassified_highway;quiet_lane' ) or
-       ( object.tags['designation'] == 'restricted_byway;quiet_lane'     )) then
-      if ( designation_appendix == '' ) then
-         designation_appendix = 'QL'
+   if (( object.tags["designation"] == "quiet_lane"                      ) or
+       ( object.tags["designation"] == "quiet_lane;unclassified_highway" ) or
+       ( object.tags["designation"] == "unclassified_highway;quiet_lane" ) or
+       ( object.tags["designation"] == "restricted_byway;quiet_lane"     )) then
+      if ( designation_appendix == "" ) then
+         designation_appendix = "QL"
       else
-         object.tags.name = designation_appendix .. ' QL'
+         object.tags.name = designation_appendix .. " QL"
       end
    end
 
-   if ( designation_appendix ~= '' ) then
+   if ( designation_appendix ~= "" ) then
       object = append_nonqa( object, designation_appendix )
    end
 
@@ -8324,14 +8333,14 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- Informal footway-service
 -- ----------------------------------------------------------------------------
-   if ((( object.tags['highway']  == 'footway'   ) or
-         ( object.tags['highway']  == 'path'      ) or
-         ( object.tags['highway']  == 'steps'     ) or
-         ( object.tags['highway']  == 'bridleway' ) or
-         ( object.tags['highway']  == 'cycleway'  ) or
-         ( object.tags['highway']  == 'track'     ) or
-         ( object.tags['highway']  == 'service'   )) and
-        (  object.tags['informal'] == 'yes'        )) then
+   if ((( object.tags["highway"]  == "footway"   ) or
+         ( object.tags["highway"]  == "path"      ) or
+         ( object.tags["highway"]  == "steps"     ) or
+         ( object.tags["highway"]  == "bridleway" ) or
+         ( object.tags["highway"]  == "cycleway"  ) or
+         ( object.tags["highway"]  == "track"     ) or
+         ( object.tags["highway"]  == "service"   )) and
+        (  object.tags["informal"] == "yes"        )) then
       object = append_nonqa( object, "I" )
    end
 
@@ -8339,9 +8348,13 @@ function ott.process_way( object )
 -- Fences and hedges.  For walls see below.
 -- These are handled in "lines" as "default linear thing" 0x1d.
 -- ----------------------------------------------------------------------------
-   if (( object.tags['barrier'] == 'fence' ) or
-       ( object.tags['barrier'] == 'hedge' )) then
-      object = append_nonqa( object, object.tags['barrier'] )
+   if ( object.tags["natural"] == "hedge" ) then
+      object.tags["barrier"] = object.tags["natural"]
+   end
+
+   if (( object.tags["barrier"] == "fence" ) or
+       ( object.tags["barrier"] == "hedge" )) then
+      object = append_nonqa( object, object.tags["barrier"] )
    end
 
 -- ----------------------------------------------------------------------------
@@ -8376,7 +8389,7 @@ function ott.process_way( object )
       object = append_nonqa( object, "city wall" )
    end
 
-   if ( object.tags['natural'] == 'tree_row' ) then
+   if ( object.tags["natural"] == "tree_row" ) then
       object = append_nonqa( object, "tree row" )
    end
 
@@ -8384,13 +8397,13 @@ function ott.process_way( object )
 -- Linear weirs are sent through as "county lines" with a name of "weir"
 -- Likewise floating barriers.
 -- ----------------------------------------------------------------------------
-   if ( object.tags['waterway'] == 'weir' ) then
+   if ( object.tags["waterway"] == "weir" ) then
       object.tags["barrier"] = "wall"
       object.tags["waterway"] = nil
       object = append_nonqa( object, "weir" )
    end
 
-   if ( object.tags['waterway'] == 'floating_barrier' ) then
+   if ( object.tags["waterway"] == "floating_barrier" ) then
       object.tags["barrier"] = "wall"
       object.tags["waterway"] = nil
       object = append_nonqa( object, "floating barrier" )
@@ -8459,14 +8472,14 @@ function ott.process_way( object )
       end
 
       if ( object.tags["name"] == nil ) then
-         object.tags.name = '(pipeline)'
+         object.tags.name = "(pipeline)"
       end
    end
 
 -- ----------------------------------------------------------------------------
 -- Line horse_jumps are sent through as "fence" with a suffix
 -- ----------------------------------------------------------------------------
-   if ( object.tags['barrier'] == "horse_jump" ) then
+   if ( object.tags["barrier"] == "horse_jump" ) then
       object.tags["man_made"] = "fence"
       object.tags["barrier"] = nil
       object = append_nonqa( object, "horse_jump" )
@@ -8480,74 +8493,74 @@ function ott.process_way( object )
 -- Append S if not known if sidewalk
 -- Append V no sidewalk, but not known if verge
 -- ----------------------------------------------------------------------------
-    street_appendix = ''
+    street_appendix = ""
 
-    if (( object.tags['highway'] == 'unclassified'  ) or
-        ( object.tags['highway'] == 'living_street' ) or
-        ( object.tags['highway'] == 'residential'   ) or
-        ( object.tags['highway'] == 'tertiary'      ) or
-        ( object.tags['highway'] == 'secondary'     ) or
-        ( object.tags['highway'] == 'primary'       ) or
-        ( object.tags['highway'] == 'trunk'         )) then
-        if ( object.tags['maxspeed'] == nil ) then
-            street_appendix = 'M'
+    if (( object.tags["highway"] == "unclassified"  ) or
+        ( object.tags["highway"] == "living_street" ) or
+        ( object.tags["highway"] == "residential"   ) or
+        ( object.tags["highway"] == "tertiary"      ) or
+        ( object.tags["highway"] == "secondary"     ) or
+        ( object.tags["highway"] == "primary"       ) or
+        ( object.tags["highway"] == "trunk"         )) then
+        if ( object.tags["maxspeed"] == nil ) then
+            street_appendix = "M"
         end
     end
 
-    if (( object.tags['highway'] == 'unclassified'  ) or
-        ( object.tags['highway'] == 'living_street' ) or
-        ( object.tags['highway'] == 'residential'   ) or
-        ( object.tags['highway'] == 'service'       ) or
-        ( object.tags['highway'] == 'tertiary'      ) or
-        ( object.tags['highway'] == 'secondary'     ) or
-        ( object.tags['highway'] == 'primary'       ) or
-        ( object.tags['highway'] == 'trunk'         )) then
-        if ( object.tags['lit'] == nil ) then
+    if (( object.tags["highway"] == "unclassified"  ) or
+        ( object.tags["highway"] == "living_street" ) or
+        ( object.tags["highway"] == "residential"   ) or
+        ( object.tags["highway"] == "service"       ) or
+        ( object.tags["highway"] == "tertiary"      ) or
+        ( object.tags["highway"] == "secondary"     ) or
+        ( object.tags["highway"] == "primary"       ) or
+        ( object.tags["highway"] == "trunk"         )) then
+        if ( object.tags["lit"] == nil ) then
             if ( street_appendix == nil ) then
-                street_appendix = 'L'
+                street_appendix = "L"
             else
-                street_appendix = street_appendix .. 'L'
+                street_appendix = street_appendix .. "L"
             end
         end
 
-        if ( object.tags['sidewalk'] == nil ) then
-            if ( object.tags['verge'] == nil ) then
+        if ( object.tags["sidewalk"] == nil ) then
+            if ( object.tags["verge"] == nil ) then
                 if ( street_appendix == nil ) then
-                    street_appendix = 'S'
+                    street_appendix = "S"
                 else
-                    street_appendix = street_appendix .. 'S'
+                    street_appendix = street_appendix .. "S"
                 end
             end
         else
-            if (( object.tags['sidewalk'] == 'no'   ) or
-                ( object.tags['sidewalk'] == 'none' )) then
-                if ( object.tags['verge'] == nil ) then
+            if (( object.tags["sidewalk"] == "no"   ) or
+                ( object.tags["sidewalk"] == "none" )) then
+                if ( object.tags["verge"] == nil ) then
                     if ( street_appendix == nil ) then
-                        street_appendix = 'V'
+                        street_appendix = "V"
                     else
-                        street_appendix = street_appendix .. 'V'
+                        street_appendix = street_appendix .. "V"
                     end
                 end
             end
         end
     end
 
-    if ( street_appendix ~= '' ) then
-        if ( object.tags['name'] == nil ) then
-            object.tags.name = '[' .. street_appendix .. ']'
+    if ( street_appendix ~= "" ) then
+        if ( object.tags["name"] == nil ) then
+            object.tags.name = "[" .. street_appendix .. "]"
         else
-            object.tags.name = object.tags['name'] .. ' [' .. street_appendix .. ']'
+            object.tags.name = object.tags["name"] .. " [" .. street_appendix .. "]"
         end
     end
 
 -- ----------------------------------------------------------------------------
 -- Append (RD) to roads tagged as highway=road
 -- ----------------------------------------------------------------------------
-    if ( object.tags['highway'] == 'road'  ) then
-        if ( object.tags['name'] == nil ) then
-            object.tags.name = '[RD]'
+    if ( object.tags["highway"] == "road"  ) then
+        if ( object.tags["name"] == nil ) then
+            object.tags.name = "[RD]"
         else
-            object.tags.name = object.tags['name'] .. ' [RD]'
+            object.tags.name = object.tags["name"] .. " [RD]"
         end
     end
 
@@ -8555,22 +8568,22 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- QA for footway-bridleway
 -- ----------------------------------------------------------------------------
-    if (( object.tags['highway'] == 'footway'   ) or
-        ( object.tags['highway'] == 'path'      ) or
-        ( object.tags['highway'] == 'bridleway' )) then
+    if (( object.tags["highway"] == "footway"   ) or
+        ( object.tags["highway"] == "path"      ) or
+        ( object.tags["highway"] == "bridleway" )) then
 -- ----------------------------------------------------------------------------
 -- Append (A) if an expected foot tag is missing 
 -- on things that aren't obviously sidewalks
 -- ----------------------------------------------------------------------------
-        if (( object.tags['foot']     == nil        ) and
-            ( object.tags['footway']  ~= 'sidewalk' ) and
-            ( object.tags['cycleway'] ~= 'sidewalk' ) and
-            ( object.tags['path']     ~= 'sidewalk' ) and
-            ( object.tags['informal'] ~= 'yes'      )) then
-            if ( object.tags['name'] == nil ) then
-                object.tags.name = '[A]'
+        if (( object.tags["foot"]     == nil        ) and
+            ( object.tags["footway"]  ~= "sidewalk" ) and
+            ( object.tags["cycleway"] ~= "sidewalk" ) and
+            ( object.tags["path"]     ~= "sidewalk" ) and
+            ( object.tags["informal"] ~= "yes"      )) then
+            if ( object.tags["name"] == nil ) then
+                object.tags.name = "[A]"
             else
-                object.tags.name = object.tags['name'] .. ' [A]'
+                object.tags.name = object.tags["name"] .. " [A]"
             end
         end
 
@@ -8578,26 +8591,26 @@ function ott.process_way( object )
 -- Append U to roads if no surface defined
 -- Append O if no smoothness (on non-long fords)
 -- ----------------------------------------------------------------------------
-        track_appendix = ''
+        track_appendix = ""
 
-        if ( object.tags['surface'] == nil ) then
-            track_appendix = 'U'
+        if ( object.tags["surface"] == nil ) then
+            track_appendix = "U"
         end
 
-        if (( object.tags['smoothness'] == nil ) and
-            ( object.tags['ford']       == nil )) then
+        if (( object.tags["smoothness"] == nil ) and
+            ( object.tags["ford"]       == nil )) then
             if ( track_appendix == nil ) then
-                track_appendix = 'O'
+                track_appendix = "O"
             else
-                track_appendix = track_appendix .. 'O'
+                track_appendix = track_appendix .. "O"
             end
         end
 
-        if ( track_appendix ~= '' ) then
-            if ( object.tags['name'] == nil ) then
-                object.tags.name = '[' .. track_appendix .. ']'
+        if ( track_appendix ~= "" ) then
+            if ( object.tags["name"] == nil ) then
+                object.tags.name = "[" .. track_appendix .. "]"
             else
-                object.tags.name = object.tags['name'] .. ' [' .. track_appendix .. ']'
+                object.tags.name = object.tags["name"] .. " [" .. track_appendix .. "]"
             end
         end
     end
@@ -8608,16 +8621,16 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- QA for track
 -- ----------------------------------------------------------------------------
-    if ( object.tags['highway'] == 'track' ) then
+    if ( object.tags["highway"] == "track" ) then
 -- ----------------------------------------------------------------------------
 -- Append (A) if an expected foot tag is missing
 -- ----------------------------------------------------------------------------
-        if (( object.tags['foot']     == nil   ) and
-            ( object.tags['informal'] ~= 'yes' )) then
-            if ( object.tags['name'] == nil ) then
-                object.tags.name = '[A]'
+        if (( object.tags["foot"]     == nil   ) and
+            ( object.tags["informal"] ~= "yes" )) then
+            if ( object.tags["name"] == nil ) then
+                object.tags.name = "[A]"
             else
-                object.tags.name = object.tags['name'] .. ' [A]'
+                object.tags.name = object.tags["name"] .. " [A]"
             end
         end
 
@@ -8626,34 +8639,34 @@ function ott.process_way( object )
 -- Append G if no tracktype
 -- Append O if no smoothness (on non-long fords)
 -- ----------------------------------------------------------------------------
-        track_appendix = ''
+        track_appendix = ""
 
-        if ( object.tags['surface'] == nil ) then
-            track_appendix = 'U'
+        if ( object.tags["surface"] == nil ) then
+            track_appendix = "U"
         end
 
-        if ( object.tags['tracktype'] == nil ) then
+        if ( object.tags["tracktype"] == nil ) then
             if ( track_appendix == nil ) then
-                track_appendix = 'G'
+                track_appendix = "G"
             else
-                track_appendix = track_appendix .. 'G'
+                track_appendix = track_appendix .. "G"
             end
         end
 
-        if (( object.tags['smoothness'] == nil ) and
-            ( object.tags['ford']       == nil )) then
+        if (( object.tags["smoothness"] == nil ) and
+            ( object.tags["ford"]       == nil )) then
             if ( track_appendix == nil ) then
-                track_appendix = 'O'
+                track_appendix = "O"
             else
-                track_appendix = track_appendix .. 'O'
+                track_appendix = track_appendix .. "O"
             end
         end
 
-        if ( track_appendix ~= '' ) then
-            if ( object.tags['name'] == nil ) then
-                object.tags.name = '[' .. track_appendix .. ']'
+        if ( track_appendix ~= "" ) then
+            if ( object.tags["name"] == nil ) then
+                object.tags.name = "[" .. track_appendix .. "]"
             else
-                object.tags.name = object.tags['name'] .. ' [' .. track_appendix .. ']'
+                object.tags.name = object.tags["name"] .. " [" .. track_appendix .. "]"
             end
         end
     end
@@ -8669,7 +8682,7 @@ end
 -- "relation" function
 -- ----------------------------------------------------------------------------
 function ott.process_relation( object )
-    object = process_all( 'r', object )
+    object = process_all( "r", object )
     return object.tags
 end
 
@@ -8705,10 +8718,10 @@ end
 -- "append non QA information" function
 -- ----------------------------------------------------------------------------
 function append_nonqa( object, appendage )
-    if ( object.tags['name'] == nil ) then
-      object.tags.name = '(' .. appendage .. ')'
+    if ( object.tags["name"] == nil ) then
+      object.tags.name = "(" .. appendage .. ")"
     else
-      object.tags.name = object.tags['name'] .. ' (' .. appendage .. ')'
+      object.tags.name = object.tags["name"] .. " (" .. appendage .. ")"
     end
 
     return object
@@ -8730,7 +8743,7 @@ end
 -- will appear as landuse.
 -- ----------------------------------------------------------------------------
 function building_or_landuse( objtype, object )
-   if ( objtype == 'n' ) then
+   if ( objtype == "n" ) then
       if (( object.tags["aeroway"]   == nil  ) and
           ( object.tags["amenity"]   == nil  ) and
           ( object.tags["barrier"]   == nil  ) and

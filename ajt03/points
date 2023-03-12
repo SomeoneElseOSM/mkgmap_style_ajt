@@ -231,8 +231,10 @@ landuse=reservoir {name '${name}'} [0x650f resolution 21]
 natural=spring {name '${name}'} [0x6511 resolution 21]
 # This isn't in the data, hence commented out here
 # barrier=ford [0x6512 resolution 21]
+natural=wetland {name '${name}'} [0x6513 resolution 21]
 
-# 0x6600 is used for leisure=unnamed_park above
+natural=tree {name '${name}'} [0x6600 resolution 21]
+# 0x6600 is also used for leisure=unnamed_park above
 natural=cave_entrance {name '${name}'} [0x6601 resolution 19]
 landuse=basin {name '${name}'} [0x6603 resolution 21]
 natural=beach {name '${name}'} [0x6604 resolution 21]
@@ -244,7 +246,6 @@ barrier=cycle_barrier | barrier=stile
     {add access = no; add foot = yes name '${name}'} [0x660f resolution 21]
 
 leisure=nature_reserve {name '${name}'} [0x6612 resolution 18]
-natural=wetland {name '${name}'} [0x6513 resolution 21]
 natural=rock {name '${name}'} [0x6614 resolution 21]
 natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]
 natural=volcano {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 18]

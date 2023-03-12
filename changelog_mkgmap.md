@@ -8,6 +8,7 @@ Add a suffix to stream, ditch, drain, etc.
 Add a name to hospitals areas.
 Added a suffix to quarries, landfill, various industrial and commerial landuse.
 Only add a "military" suffix if landuse=military, but add a "type of military" suffix if "military=(something we recognise)".
+Map natural=tree through to generic "Geographic Points / Land Features" and add a suffix.
 
 ## 08/03/2023
 Map parks etc. without names to a "green" landuse without a tree icon rather than the usual park "tree" icon.

@@ -3530,6 +3530,11 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["natural"] )
    end
 
+   if ( object.tags["natural"]   == "bare_rock"    )  then
+      object = append_nonqa( object, object.tags["natural"] )
+      object.tags["natural"] = "rock"
+   end
+
    if ( object.tags["man_made"]   == "survey_point"  )  then
       object = append_nonqa( object, object.tags["man_made"] )
    end

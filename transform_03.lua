@@ -1873,21 +1873,30 @@ function process_all( objtype, object )
 -- real_ale)
 --
 -- On the web map, the following "pub flags" are used:    mkgmap:
--- Live or dead pub?  y or 	      	     	 	  B (bar) or P (pub)
---                    n, or				  Social Club
---                    c (closed due to covid)		  Social Club (with description)
--- Real ale?          y       	   	       	  	  R
---                    n					  -
---                    d (don't know)           		  -
--- Food 	      y or d                              F
--- Noncarpeted floor  y or d                              L
--- Microbrewery	      y n or d                            UB
--- Micropub	      y n or d                            UP
--- Accommodation      y n or d                            A
--- Wheelchair	      y, l, n or d                        n/a
+-- Live or dead pub?  y (yes) or      	     	 	  B (bar) or P (pub)
+--                    n (no), or			  Shown as vacant
+--                    c (closed due to covid)		  Shown as vacant (with description)
+-- Letter to aid searching                                Q
+-- Real ale?          y (yes)  	   	       	  	  R
+--                    n	(no)				  N
+--                    d (don't know)           		  V
+-- Food 	      y (yes)                             F
+--                    d (don't know)                      -
+-- Noncarpeted floor  y (yes)                             L
+--                    d (don't know)                      -
+-- Microbrewery	      y                                   UB
+--                    n or d                              -
+-- Micropub	      y                                   UP
+--                    n or d                              -
+-- Accommodation      y                                   A
+--                    n or d                              -
 -- Beer Garden	      g (beer garden), 			  G
 --                    o (outside seating), 		  O
 --                    d (don't know)			  -
+-- Wheelchair	      y (yes)                             WY
+--                    l (limited)                         WL
+--                    n (no)                              WN
+--                    d                                   -
 -- 
 -- For mkgmap, we don't use different icons beyond "restaurant" and 
 -- "social club" (used for "not an accessible pub").  
@@ -1991,6 +2000,18 @@ function process_all( objtype, object )
       else
          if ( object.tags["outdoor_seating"] == "yes" ) then
             beer_appendix = beer_appendix .. "O"
+         end
+      end
+
+      if ( object.tags["wheelchair"] == "yes" ) then
+         beer_appendix = beer_appendix .. "WY"
+      else
+         if ( object.tags["wheelchair"] == "limited" ) then
+            beer_appendix = beer_appendix .. "WL"
+         else
+            if ( object.tags["wheelchair"] == "no" ) then
+               beer_appendix = beer_appendix .. "WN"
+            end
          end
       end
 

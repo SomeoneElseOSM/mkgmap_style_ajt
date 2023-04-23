@@ -2,6 +2,9 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).
+
+## 20/04/2023
 Show powerlines in a similar way to pipelines.
 Add a suffix for trams and railways, and to ferry routes.
 Add a suffix to stream, ditch, drain, etc.

@@ -2394,6 +2394,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Bicycle repair stations not in phone boxes.
+-- See above for phone box ones.
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "bicycle_repair_station" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["man_made"] = "thing"
+      object.tags["amenity"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Passing places and emergency parking bays
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "passing_place" ) or
@@ -5834,7 +5848,7 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Cuisine tagging.  
+-- Cuisine tagging.  'Food and Drink' menu.
 -- Garmin's default categories only has one "Fast Food", but in UK/IE there is
 -- more variety of fast food than there is of restaurants.
 -- In order to use all the categories there are some "deliberately misfiled"

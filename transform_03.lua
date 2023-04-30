@@ -7512,7 +7512,8 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Similarly, various government offices.  Job Centres first.
+-- Similarly, various government offices.  
+-- "0x3007" is searchable via "Community / Government Office"
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
    if ((  object.tags["amenity"]    == "job_centre"              ) or
@@ -7527,11 +7528,13 @@ function process_all( objtype, object )
        (  object.tags["amenity"]    == "coast_guard"             ) or
        (  object.tags["amenity"]    == "archive"                 )) then
       object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 
    if (  object.tags["building"]   == "village_hall"            ) then
       object = append_nonqa( object, "village hall" )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 
@@ -7539,11 +7542,13 @@ function process_all( objtype, object )
        (  object.tags["emergency"]  == "lifeboat_station"        ) or
        (  object.tags["emergency"]  == "lifeguard_tower"         )) then
       object = append_nonqa( object, object.tags["emergency"] )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 
    if (  object.tags["government"] == "police"                  ) then
       object = append_nonqa( object, object.tags["government"] )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 
@@ -7551,6 +7556,7 @@ function process_all( objtype, object )
        (  object.tags["name"]       == "JobCentre Plus"          ) or
        (  object.tags["name"]       == "Job Centre Plus"         )) then
       object = append_nonqa( object, "job centre" )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 
@@ -7558,6 +7564,7 @@ function process_all( objtype, object )
        (( object.tags["lifeguard"] == "base"                  )   or
         ( object.tags["lifeguard"] == "tower"                 ))) then
       object = append_nonqa( object, "lifeguard" )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 
@@ -7565,6 +7572,7 @@ function process_all( objtype, object )
        ( object.tags["office"]            == nil               )  and
        ( object.tags["building"]          ~= nil               )) then
       object = append_nonqa( object, "air emergency" )
+      object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end
 

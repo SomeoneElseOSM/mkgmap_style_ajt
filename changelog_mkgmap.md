@@ -4,7 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Show standalone bicycle repair stations in addition to those in old phone boxes.
 Show crematorium among others as government offices.
-Second draft of taginfo_ajt03.json (down to "notice_board").
+Second draft of taginfo_ajt03.json (down to "amenity=telephone_exchange").
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

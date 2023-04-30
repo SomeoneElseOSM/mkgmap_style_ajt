@@ -2321,8 +2321,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Pharmacies
+-- 0x2e05 "Shopping / Pharmacy or Chemist"
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["healthcare"] == "pharmacy"                   )  and
+   if ((  object.tags["amenity"]    == "pharmacy"                    ) or
+       (( object.tags["healthcare"] == "pharmacy"                   )  and
         ( object.tags["amenity"]    == nil                          )) or
        (( object.tags["shop"]       == "cosmetics"                  )  and
         ( object.tags["pharmacy"]   == "yes"                        )  and
@@ -2835,12 +2837,17 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Parcel lockers
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (((  object.tags["amenity"]         == "vending_machine"                )  and
-        (( object.tags["vending"]         == "parcel_pickup;parcel_mail_in"  )   or
-         ( object.tags["vending"]         == "parcel_mail_in;parcel_pickup"  )   or
-         ( object.tags["vending"]         == "parcel_mail_in"                )   or
-         ( object.tags["vending"]         == "parcel_pickup"                 )   or
+   if ((   object.tags["amenity"]         == "parcel_locker"                   )  or
+       ((  object.tags["amenity"]         == "vending_machine"                )   and
+        (( object.tags["vending"]         == "parcel_pickup;parcel_mail_in"  )    or
+         ( object.tags["vending"]         == "parcel_mail_in;parcel_pickup"  )    or
+         ( object.tags["vending"]         == "parcel_mail_in"                )    or
+         ( object.tags["vending"]         == "parcel_pickup"                 )    or
          ( object.tags["vending_machine"] == "parcel_pickup"                 )))  or
        (   object.tags["amenity"]         == "parcel_box"                      )  or
        (   object.tags["amenity"]         == "parcel_pickup"                   )) then
@@ -2889,6 +2896,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Show amenity=piano and amenity=musical_instrument
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "piano" ) then
       object.tags["man_made"]  = "thing"
@@ -2950,6 +2961,7 @@ function process_all( objtype, object )
 -- Show amenity=layby as parking.
 -- highway=rest_area is used a lot in the UK for laybies, so map that over too.
 -- Show for-pay parking areas differently.
+-- 0x2f0b "Auto Services / Parking"
 -- ----------------------------------------------------------------------------
    if ( object.tags["highway"] == "rest_area" ) then
       object.tags["amenity"] = object.tags["highway"]

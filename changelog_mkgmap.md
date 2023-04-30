@@ -4,6 +4,8 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).
 First draft of taginfo_ajt03.json (down to "noncarpeted").
+Better handling of commercial offices and office-like commercial places.
+More description in taginfo_ajt03.json of amenities.
 
 ## 20/04/2023
 Show powerlines in a similar way to pipelines.

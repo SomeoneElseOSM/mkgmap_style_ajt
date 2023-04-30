@@ -2159,7 +2159,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- doctors
 -- Various mistagging, comma and semicolon healthcare
--- 0x3002 
+-- 0x3002 appears on GPSMap64s as "Hospital" 
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "doctors"                 ) or
        ( object.tags["amenity"] == "doctors; pharmacy"       ) or
@@ -2182,6 +2182,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Dentists were not previously handled but are now passed through as doctors 
 -- with a suffix.
+-- 0x3002 appears on GPSMap64s as "Hospital" 
 -- ----------------------------------------------------------------------------
    if (( object.tags["healthcare"] == "dentist" ) and
        ( object.tags["amenity"]    == nil       )) then
@@ -2818,6 +2819,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Left luggage
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "luggage_locker"  ) or
        ( object.tags["shop"]    == "luggage_locker"  ) or
@@ -2909,6 +2914,10 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Show motorcycle_parking areas, and 
 -- show for-pay motorcycle_parking areas differently.
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((  object.tags["amenity"] == "motorcycle_parking"  ) or
        (( object.tags["amenity"] == "parking"            )  and
@@ -4346,6 +4355,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Horse mounting blocks
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]  == "mounting_block"       ) or
        ( object.tags["amenity"]   == "mounting_block"       ) or
@@ -6249,6 +6262,10 @@ function process_all( objtype, object )
 -- Scooter rental
 -- All legal scooter rental / scooter parking in UK are private; these are the
 -- the tags currently used.
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ((  object.tags["amenity"]                == "escooter_rental"        ) or
        (  object.tags["amenity"]                == "scooter_parking"        ) or

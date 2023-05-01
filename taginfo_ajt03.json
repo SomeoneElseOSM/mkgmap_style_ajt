@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20230430T011090Z",
+  "data_updated": "20230501T093100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 basic mkgmap maps",
     "description": "This map style is designed for England and Wales-based rural pedestrians.  It shows public rights of way and long distance paths.",
@@ -436,7 +436,7 @@
     { "key": "bridge:ref", "description": "Used in place of ref" },
     { "key": "bridge_name", "description": "Used in place of name" },
     { "key": "bridge_ref", "description": "Used in place of ref" },
-    { "key": "building", "description": "description" },
+    { "key": "building", "description": "Handle various sorts of buildings" },
     { "key": "building", "value": "air_shaft", "description": "description" },
     { "key": "building", "value": "chimney", "description": "description" },
     { "key": "building", "value": "clock_tower", "description": "description" },

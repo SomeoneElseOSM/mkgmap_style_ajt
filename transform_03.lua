@@ -5018,7 +5018,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- ----------------------------------------------------------------------------
 -- barrier=stile etc.  Render various stile synonyms
 -- In points at "0x660f"
 -- "0x660f" is searchable in "Geographic Points / Land Features"

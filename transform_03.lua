@@ -4342,7 +4342,10 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Railway ventilation shaft nodes.
--- Nodes of these are rendered as a stubby black tower
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["building"]   == "air_shaft"         ) or
        ( object.tags["man_made"]   == "air_shaft"         ) or

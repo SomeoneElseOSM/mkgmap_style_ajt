@@ -3,7 +3,7 @@
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
   "data_updated": "20230505T120100Z",
   "project": {
-    "name": "SomeoneElse: Rural pedestrian AJT03 basic mkgmap maps",
+    "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This map style is designed for England and Wales-based rural pedestrians.  It shows public rights of way and long distance paths.",
     "project_url": "https://github.com/SomeoneElseOSM/mkgmap_style_ajt",
     "contact_name": "Andy Townsend",

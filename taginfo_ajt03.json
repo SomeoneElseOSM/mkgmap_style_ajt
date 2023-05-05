@@ -1,13 +1,13 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20230505T120100Z",
+  "data_updated": "20230505T121800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
-    "description": "This map style is designed for England and Wales-based rural pedestrians.  It shows public rights of way and long distance paths.",
+    "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
     "project_url": "https://github.com/SomeoneElseOSM/mkgmap_style_ajt",
     "contact_name": "Andy Townsend",
-    "contact_email": "mkgmap-ajt2-taginfo@atownsend.org.uk"
+    "contact_email": "mkgmap-ajt03-taginfo@atownsend.org.uk"
   },
   "tags": [
     { "key": "FIXME", "description": "Detect fixmes and add QA note to objects with them" },

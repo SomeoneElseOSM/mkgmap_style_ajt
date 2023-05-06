@@ -6,6 +6,7 @@ Show standalone bicycle repair stations in addition to those in old phone boxes.
 Show crematorium among others as government offices.
 Next draft of taginfo_ajt03.json.  Improved some default descriptions. Detailed descriptions done down to "craft=carpenter".
 Improved taginfo_ajt03.json description.
+Removed amenity=doctor; no longer in the data.
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

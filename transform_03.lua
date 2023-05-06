@@ -2163,8 +2163,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "doctors"                 ) or
        ( object.tags["amenity"] == "doctors; pharmacy"       ) or
-       ( object.tags["amenity"] == "surgery"                 ) or
-       ( object.tags["amenity"] == "doctor"                  )) then
+       ( object.tags["amenity"] == "surgery"                 )) then
       object.tags["amenity"] = "doctors"
       object = append_nonqa( object, "doctors" )
       object = building_or_landuse( objtype, object )
@@ -7250,13 +7249,9 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Map amenity=car_repair etc. to shop=car_repair
+-- Map craft=car_repair etc. to shop=car_repair
 -- "0x2f03" is searchable via "Auto Services / Auto Repair"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "car_repair"         ) then
-      object.tags["shop"] = object.tags["amenity"]
-   end
-
    if (( object.tags["craft"]   == "car_repair"   ) or
        ( object.tags["craft"]   == "coachbuilder" )) then
       object.tags["shop"] = object.tags["craft"]

@@ -14,6 +14,8 @@ Corrected spelling of "university".
 Removed amenity=youth_centre; no longer in the data.
 Removed amenity:old; no longer in the data.
 Corrected spelling of "K4 Post Office", removed "k6" (no longer in the data).
+Removed cuisine=sandwiches; no longer in the data.
+Removed various internal-only "diplomatic" values from taginfo_ajt03.json
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

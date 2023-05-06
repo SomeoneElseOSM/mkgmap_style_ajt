@@ -6181,7 +6181,6 @@ function process_all( objtype, object )
    if ((  object.tags["amenity"] == "fast_food"             )  and
        (( object.tags["cuisine"] == "sandwich"             )   or
         ( object.tags["cuisine"] == "sandwich;bakery"      )   or
-        ( object.tags["cuisine"] == "sandwiches"           )   or
         ( object.tags["cuisine"] == "sandwich;coffee_shop" ))) then
       object = append_nonqa( object, object.tags["cuisine"] )
       object.tags["amenity"] = "cafe"

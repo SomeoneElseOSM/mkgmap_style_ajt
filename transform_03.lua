@@ -651,7 +651,6 @@ function process_all( objtype, object )
        ( object.tags["amenity"]  == "community_centre"  ) or
        ( object.tags["amenity"]  == "social_centre"     ) or
        ( object.tags["amenity"]  == "youth_club"        ) or
-       ( object.tags["amenity"]  == "youth_centre"      ) or
        ( object.tags["amenity"]  == "social_club"       ) or
        ( object.tags["amenity"]  == "working_mens_club" ) or
        ( object.tags["amenity"]  == "club"              ) or
@@ -2374,7 +2373,7 @@ function process_all( objtype, object )
        ( object.tags["amenity"] == "nursery_school"   ) or
        ( object.tags["amenity"] == "school"           ) or
        ( object.tags["amenity"] == "college"          ) or
-       ( object.tags["amenity"] == "univerity"        ) or
+       ( object.tags["amenity"] == "university"       ) or
        ( object.tags["amenity"] == "education_centre" )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = "school"
@@ -6282,8 +6281,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ((  object.tags["amenity"]                == "escooter_rental"        ) or
        (  object.tags["amenity"]                == "scooter_parking"        ) or
-       (  object.tags["amenity"]                == "micro_scooter_rental"   ) or
-       (  object.tags["amenity"]                == "scooter_hire"           ) or
        (  object.tags["amenity"]                == "kick-scooter_rental"    ) or
        (  object.tags["amenity"]                == "small_electric_vehicle" )) then
       object = append_nonqa( object, object.tags["amenity"] )
@@ -7120,8 +7117,7 @@ function process_all( objtype, object )
 -- Taxi offices
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "taxi_office" ) or
-       ( object.tags["amenity"] == "minicab"     )) then
+   if ( object.tags["amenity"] == "minicab" ) then
       object.tags["shop"] = object.tags["amenity"]
    end
 

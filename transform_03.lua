@@ -623,14 +623,18 @@ function process_all( objtype, object )
 -- Community Centres etc.
 -- "0x3005" is searchable via "Community / Community Center"
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["building"] == "community_centre"     )  or
-        ( object.tags["building"] == "scout_hut"            )  or
-        ( object.tags["building"] == "clubhouse"            )  or
-        ( object.tags["building"] == "club_house"           )) and
-       (( object.tags["amenity"]  == nil                    )  and
-        ( object.tags["leisure"]  == nil                    )  and
-        ( object.tags["office"]   == nil                    )  and
-        ( object.tags["shop"]     == nil                    ))) then
+   if (((   object.tags["building"] == "community_centre"     )  or
+        (   object.tags["building"] == "scout_hut"            )  or
+        (   object.tags["building"] == "clubhouse"            )  or
+        (   object.tags["building"] == "club_house"           )  or
+        ((  object.tags["building"] ~= nil                   )   and
+         (( object.tags["name"]     == "Scout Hut"          )    or
+          ( object.tags["name"]     == "Scout hut"          )    or
+          ( object.tags["name"]     == "Scout Hall"         )))) and
+       ((   object.tags["amenity"]  == nil                    )  and
+        (   object.tags["leisure"]  == nil                    )  and
+        (   object.tags["office"]   == nil                    )  and
+        (   object.tags["shop"]     == nil                    ))) then
       object.tags["amenity"] = object.tags["building"]
    end
 
@@ -2435,11 +2439,7 @@ function process_all( objtype, object )
 -- Other nonspecific leisure.  
 -- qqq these will all need handling eventually, but no code here yet
 -- ----------------------------------------------------------------------------
-   if (( object.tags["name"]     == "Scout Hut"            ) or
-       ( object.tags["name"]     == "Scout hut"            ) or
-       ( object.tags["name"]     == "Scout Hall"           ) or
-       ( object.tags["sport"]    == "laser_tag"            ) or
-       ( object.tags["sport"]    == "model_aerodrome"      ) or
+   if (( object.tags["sport"]    == "model_aerodrome"      ) or
        ( object.tags["leisure"]  == "firepit"              ) or
        ( object.tags["tourism"]  == "trail_riding_station" ) or
        (( object.tags["building"] == "yes"                )  and
@@ -2788,7 +2788,6 @@ function process_all( objtype, object )
 -- man_made=maypole
 -- ----------------------------------------------------------------------------
    if ((  object.tags["man_made"] == "maypole"   ) or
-       (  object.tags["man_made"] == "may_pole"  ) or
        (( object.tags["man_made"] == "pole"     )  and
         ( object.tags["pole"]      == "maypole" )) or
        (  object.tags["historic"] == "maypole"   )) then
@@ -3516,7 +3515,6 @@ function process_all( objtype, object )
        ( object.tags["man_made"]   == "waste_treatment"  ) or
        ( object.tags["man_made"]   == "lighthouse"       ) or
        ( object.tags["man_made"]   == "telescope"        ) or
-       ( object.tags["man_made"]   == "radio_telescope"  ) or
        ( object.tags["man_made"]   == "street_cabinet"   ) or
        ( object.tags["man_made"]   == "aeroplane"        ) or
        ( object.tags["man_made"]   == "helicopter"       )) then
@@ -7142,7 +7140,6 @@ function process_all( objtype, object )
 
    if ((( object.tags["name"]     == "Bingo Hall"           )  or
         ( object.tags["name"]     == "Gala Bingo"           )  or
-        ( object.tags["name"]     == "Gala Bingo Hall"      )  or
         ( object.tags["name"]     == "Mecca Bingo"          )  or
         ( object.tags["name"]     == "Castle Bingo"         )) and
        (( object.tags["amenity"]  == nil                    )  and
@@ -7163,6 +7160,14 @@ function process_all( objtype, object )
        ( object.tags["leisure"]  == "sauna"                ) or
        ( object.tags["leisure"]  == "horse_riding"         )) then
       object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["leisure"]  = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["sport"]    == "laser_tag" ) then
+      object = append_nonqa( object, object.tags["sport"] )
       object.tags["shop"] = "specialty"
       object.tags["amenity"] = nil
       object.tags["leisure"]  = nil

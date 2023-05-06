@@ -3771,16 +3771,12 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "wreck"             ) or
        ( object.tags["historic"] == "monument"          ) or
        ( object.tags["historic"] == "fort"              ) or
-       ( object.tags["historic"] == "ringfort"          ) or
        ( object.tags["historic"] == "earthworks"        ) or
-       ( object.tags["historic"] == "motte"             ) or
        ( object.tags["historic"] == "barrow"            ) or
        ( object.tags["historic"] == "tumulus"           ) or
        ( object.tags["historic"] == "tomb"              ) or
        ( object.tags["historic"] == "fortification"     ) or
        ( object.tags["historic"] == "camp"              ) or
-       ( object.tags["historic"] == "menhir"            ) or
-       ( object.tags["historic"] == "stone_circle"      ) or
        ( object.tags["historic"] == "castle"            ) or
        ( object.tags["historic"] == "mill"              ) or
        ( object.tags["historic"] == "grinding_mill"     ) or
@@ -3788,12 +3784,11 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "manor"             ) or
        ( object.tags["historic"] == "country_mansion"   ) or
        ( object.tags["historic"] == "mansion"           ) or
-       ( object.tags["historic"] == "mansion;castle"    ) or
        ( object.tags["historic"] == "hall"              ) or
        ( object.tags["historic"] == "stately_home"      ) or
        ( object.tags["historic"] == "tower_house"       ) or
        ( object.tags["historic"] == "almshouse"         ) or
-       ( object.tags["historic"] == "police_box"        ) or
+       ( object.tags["historic"] == "police_call_box"   ) or
        ( object.tags["historic"] == "bakery"            ) or
        ( object.tags["historic"] == "battlefield"       ) or
        ( object.tags["historic"] == "monastery"         ) or

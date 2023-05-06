@@ -19,6 +19,12 @@ Removed various internal-only "diplomatic" values from taginfo_ajt03.json
 Removed generator:type=wind; no longer in the data.
 Removed internal handling of "gallop" and "leisuretrack"; no longer needed here.
 Improved description of "highway=residential_link" and "highway=unclassified_link".
+Removed "historic=mansion;castle"; no longer in the data.
+Removed "historic=menhir"; no longer in the data.
+Removed "historic=motte"; no longer in the data.
+Changed "historic=police_box" to "historic=police_call_box"
+Removed "historic=ringfort"; no longer in the data.
+Removed "historic=stone_circle"; no longer in the data.
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

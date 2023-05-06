@@ -16,6 +16,9 @@ Removed amenity:old; no longer in the data.
 Corrected spelling of "K4 Post Office", removed "k6" (no longer in the data).
 Removed cuisine=sandwiches; no longer in the data.
 Removed various internal-only "diplomatic" values from taginfo_ajt03.json
+Removed generator:type=wind; no longer in the data.
+Removed internal handling of "gallop" and "leisuretrack"; no longer needed here.
+Improved description of "highway=residential_link" and "highway=unclassified_link".
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

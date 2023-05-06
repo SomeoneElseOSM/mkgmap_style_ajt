@@ -4315,7 +4315,6 @@ function process_all( objtype, object )
          ( object.tags["generator:source"] == "wind"         )   or
          ( object.tags["generator:method"] == "wind_turbine" )   or
          ( object.tags["plant:source"]     == "wind"         )   or
-         ( object.tags["generator:type"]   == "wind"         )   or
          ( object.tags["generator:method"] == "wind"         )))) then
       object.tags["man_made"] = "tower"
 
@@ -7758,8 +7757,6 @@ function process_all( objtype, object )
 -- tend to be OK.  Other options tend not to occur.
 -- ----------------------------------------------------------------------------
    if ((( object.tags["highway"] == "track"          )  or
-        ( object.tags["highway"] == "leisuretrack"   )  or
-        ( object.tags["highway"] == "gallop"         )  or
         ( object.tags["highway"] == "residential"    )  or
         ( object.tags["highway"] == "unclassified"   )  or
         ( object.tags["highway"] == "tertiary"       )) and
@@ -8190,10 +8187,6 @@ function ott.process_way( object )
 -- The "bywayness" of something should be handled by designation now.  byway
 -- isn't otherwise shown (and really should no longer be used), so change 
 -- to track (which is what it probably will be).
---
--- "gallop" makes sense as a tag (it really isn't like anything else), but for
--- our purposes change to "track".  "unsurfaced" makes less sense; change to
--- "track" also.
 --
 -- "track" will be changed into something else lower down 
 -- (path, pathwide or track_graded).

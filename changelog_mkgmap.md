@@ -25,6 +25,10 @@ Removed "historic=motte"; no longer in the data.
 Changed "historic=police_box" to "historic=police_call_box"
 Removed "historic=ringfort"; no longer in the data.
 Removed "historic=stone_circle"; no longer in the data.
+Removed "historic:stone"; no longer in the data.
+Removed "industrial=scrapyard"; no longer in the data.
+Removed "leisure=brothel"; no longer in the data.
+Removed "leisure=dance:teaching" from taginfo; only used internally.
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

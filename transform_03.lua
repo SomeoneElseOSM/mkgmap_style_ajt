@@ -329,7 +329,6 @@ function process_all( objtype, object )
        ( object.tags["industrial"] == "yes"                    ) or 
        ( object.tags["industrial"] == "depot"                  ) or 
        ( object.tags["industrial"] == "scrap_yard"             ) or 
-       ( object.tags["industrial"] == "scrapyard"              ) or 
        ( object.tags["industrial"] == "yard"                   ) or 
        ( object.tags["industrial"] == "engineering"            ) or
        ( object.tags["industrial"] == "machine_shop"           ) or
@@ -470,11 +469,7 @@ function process_all( objtype, object )
       if ( object.tags["stone_type"]   == "ogham_stone" ) then
          object = append_nonqa( object, "ogham stone" )
       else
-         if ( object.tags["historic:stone"]   == "standing_stone" ) then
-            object = append_nonqa( object, "standing stone" )
-         else
-            object = append_nonqa( object, "historic stone" )
-         end
+         object = append_nonqa( object, "historic stone" )
       end
    end
 
@@ -7165,7 +7160,6 @@ function process_all( objtype, object )
        ( object.tags["leisure"]  == "trampoline_park"      ) or
        ( object.tags["leisure"]  == "trampoline"           ) or
        ( object.tags["leisure"]  == "inflatable_park"      ) or
-       ( object.tags["leisure"]  == "brothel"              ) or
        ( object.tags["leisure"]  == "sauna"                ) or
        ( object.tags["leisure"]  == "horse_riding"         )) then
       object = append_nonqa( object, object.tags["leisure"] )

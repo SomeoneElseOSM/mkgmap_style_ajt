@@ -534,9 +534,8 @@ function process_all( objtype, object )
         ( object.tags["booth"]           ~= "oakham"         )   and
         ( object.tags["booth"]           ~= "ST6"            ))  or
        (  object.tags["booth"]           == "K2"              )  or
-       (  object.tags["booth"]           == "K4_Post_Office"  )  or
+       (  object.tags["booth"]           == "K4 Post Office"  )  or
        (  object.tags["booth"]           == "K6"              )  or
-       (  object.tags["booth"]           == "k6"              )  or
        (  object.tags["booth"]           == "K8"              )  or
        (  object.tags["telephone_kiosk"] == "K4"              )  or
        (  object.tags["telephone_kiosk"] == "K6"              )  or
@@ -600,7 +599,6 @@ function process_all( objtype, object )
                                   ( object.tags["was:amenity"]        == "telephone"        )  or
                                   ( object.tags["old:amenity"]        == "telephone"        )  or
                                   ( object.tags["amenity"]            == "former_telephone" )  or
-                                  ( object.tags["amenity:old"]        == "telephone"        )  or
                                   ( object.tags["historic"]           == "telephone"        )) then
                                  object.tags["amenity"] = "telephone"
       	       	     	      	 object = append_nonqa( object, "fmr phone" )

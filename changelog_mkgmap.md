@@ -12,6 +12,8 @@ Removed amenity=scooter_hire; no longer in the data.
 Removed amenity=taxi_office; no longer in the data.
 Corrected spelling of "university".
 Removed amenity=youth_centre; no longer in the data.
+Removed amenity:old; no longer in the data.
+Corrected spelling of "K4 Post Office", removed "k6" (no longer in the data).
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

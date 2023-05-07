@@ -5301,8 +5301,7 @@ function process_all( objtype, object )
 -- Photo shops etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["office"]  == "photo_studio"       ) or
-       ( object.tags["office"]  == "photography"        )) then
+   if ( object.tags["office"]  == "photography" ) then
       object.tags["shop"] = object.tags["office"]
    end
 

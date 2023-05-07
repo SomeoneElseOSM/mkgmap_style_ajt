@@ -34,6 +34,8 @@ Handled named scout huts etc. as other scout huts.
 Removed "Gala Bingo Hall"; no longer in the data.
 Handled laser_tag as speciality shop.
 Improved descriptions for NCN mileposists in taginfo_ajt03.json.
+Removed "noncarpeted" from taginfo; only used internally.
+Removed "office=photo_studio" from taginfo; no longer in the data.
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

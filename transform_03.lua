@@ -452,11 +452,7 @@ function process_all( objtype, object )
          object = append_nonqa( object, object.tags["inscription"] )
       end
 
-      if ( object.tags["stone_type"]   == "ogham_stone" ) then
-         object = append_nonqa( object, "ogham stone" )
-      else
-         object = append_nonqa( object, "historic stone" )
-      end
+      object = append_nonqa( object, "historic stone" )
    end
 
    if ( object.tags["historic"]   == "stone" ) then
@@ -466,11 +462,7 @@ function process_all( objtype, object )
          object = append_nonqa( object, object.tags["inscription"] )
       end
 
-      if ( object.tags["stone_type"]   == "ogham_stone" ) then
-         object = append_nonqa( object, "ogham stone" )
-      else
-         object = append_nonqa( object, "historic stone" )
-      end
+      object = append_nonqa( object, "historic stone" )
    end
 
    if ((   object.tags["historic"]           == "standing_stone"        ) or
@@ -483,12 +475,7 @@ function process_all( objtype, object )
          object = append_nonqa( object, object.tags["inscription"] )
       end
 
-      if ( object.tags["stone_type"]   == "ogham_stone" ) then
-         object = append_nonqa( object, "ogham stone" )
-      else
-         object = append_nonqa( object, "standing stone" )
-      end
-
+      object = append_nonqa( object, "standing stone" )
       object.tags["tourism"] = nil
    end
 
@@ -7100,8 +7087,7 @@ function process_all( objtype, object )
       object.tags["shop"] = object.tags["office"]
    end
 
-   if (( object.tags["shop"]    == "taxi_office" ) or
-       ( object.tags["shop"]    == "taxi"        ) or
+   if (( object.tags["shop"]    == "taxi"        ) or
        ( object.tags["shop"]    == "minicab"     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"

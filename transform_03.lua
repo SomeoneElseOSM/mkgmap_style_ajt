@@ -4295,7 +4295,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ((   object.tags["man_made"]         == "wind_turbine"   ) or
        (   object.tags["generator:method"] == "wind_turbine"   ) or
-       (   object.tags["plant_method"]     == "wind_turbine"   ) or
        (   object.tags["generator:type"]   == "wind_turbine"   ) or
        ((  object.tags["man_made"]         == "tower"         )  and
         (  object.tags["power"]            == "generator"     )  and
@@ -5759,7 +5758,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "pyrotechnics"             ) or
        ( object.tags["shop"]    == "hunting"                  ) or
        ( object.tags["shop"]    == "military_surplus"         ) or
-       ( object.tags["shop"]    == "army_surplus"             ) or
        ( object.tags["shop"]    == "fireworks"                ) or
        ( object.tags["shop"]    == "auction"                  ) or
        ( object.tags["shop"]    == "auction_house"            ) or
@@ -5781,7 +5779,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "gunsmith"                 ) or
        ( object.tags["shop"]    == "auctioneer"               ) or
        ( object.tags["shop"]    == "tutoring"                 ) or
-       ( object.tags["shop"]    == "dance training"           ) or
        ( object.tags["shop"]    == "language training"        ) or
        ( object.tags["shop"]    == "performing_arts training" )) then
       object = append_nonqa( object, object.tags["shop"] )
@@ -6445,7 +6442,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "curtain"                     ) or
        ( object.tags["shop"]   == "decorating"                  ) or
        ( object.tags["shop"]   == "decorator"                   ) or
-       ( object.tags["shop"]   == "diy"                         ) or
        ( object.tags["shop"]   == "equestrian"                  ) or
        ( object.tags["shop"]   == "equipment_hire"              ) or
        ( object.tags["shop"]   == "fencing"                     ) or
@@ -6876,7 +6872,6 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["shop"]       == "health_food"             ) or
-       ( object.tags["shop"]       == "healthfood"              ) or
        ( object.tags["shop"]       == "health"                  ) or
        ( object.tags["shop"]       == "organic"                 ) or
        ( object.tags["shop"]       == "supplements"             ) or
@@ -7006,8 +7001,7 @@ function process_all( objtype, object )
 -- Florists
 -- "0x2e0f" is searchable via "Shopping / Florist"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"]  == "florist" ) or
-       ( object.tags["shop"]  == "flower"  )) then
+   if ( object.tags["shop"]  == "florist" ) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "florist"
       object = building_or_landuse( objtype, object )
@@ -7251,7 +7245,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "mechanic"           )  or
        ( object.tags["shop"]    == "car_repair;car"     )  or
        ( object.tags["shop"]    == "car_repair;tyres"   )  or
-       ( object.tags["shop"]    == "auto_repair"        )  or
        ( object.tags["shop"]    == "tractor_repair"     )  or
        ( object.tags["shop"]    == "tractor_parts"      )  or
        ( object.tags["shop"]    == "truck_repair"       )  or
@@ -7682,7 +7675,6 @@ function process_all( objtype, object )
        (   object.tags["office"]          == "vacant"     ) or
        (   object.tags["office"]          == "disused"    ) or
        (   object.tags["shop"]            == "disused"    ) or
-       (   object.tags["shop"]            == "empty"      ) or
        (   object.tags["shop"]            == "closed"     ) or
        (   object.tags["shop"]            == "abandoned"  ) or
        ((  object.tags["shop"]            ~= nil         )  and

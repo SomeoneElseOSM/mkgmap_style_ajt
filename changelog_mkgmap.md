@@ -35,7 +35,11 @@ Removed "Gala Bingo Hall"; no longer in the data.
 Handled laser_tag as speciality shop.
 Improved descriptions for NCN mileposists in taginfo_ajt03.json.
 Removed "noncarpeted" from taginfo; only used internally.
-Removed "office=photo_studio" from taginfo; no longer in the data.
+Removed "office=photo_studio"; no longer in the data.
+Removed "plant_method"; no longer in the data.
+Removed "power_source" from taginfo; only used internally.
+Removed several internal-only shop values.
+Removed "shop=auto_repair", "shop=dance␣training", "shop=diy", "shop=empty", "shop=flower", "shop=healthfood"; no longer in the data.
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

@@ -5815,7 +5815,6 @@ function process_all( objtype, object )
 -- Some suffixes make no sense to send through, so change them here:
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]    == "yes"             ) or
-       ( object.tags["shop"]    == "other"           ) or
        ( object.tags["shop"]    == "fixme"           )) then
       object.tags["shop"] = "unknown"
    end

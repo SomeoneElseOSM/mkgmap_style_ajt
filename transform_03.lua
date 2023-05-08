@@ -4561,7 +4561,6 @@ function process_all( objtype, object )
        ( object.tags["tourism"]   == "holiday_village"         ) or
        ( object.tags["tourism"]   == "holiday_park"            ) or
        ( object.tags["tourism"]   == "accommodation"           ) or
-       ( object.tags["tourism"]   == "holiday_accommodation"   ) or
        ( object.tags["tourism"]   == "holiday_lets"            ) or
        ( object.tags["tourism"]   == "holiday_let"             ) or
        ( object.tags["tourism"]   == "Holiday Lodges"          ) or
@@ -4608,8 +4607,7 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["tourism"] == "caravan_site"              ) or
-       ( object.tags["tourism"] == "caravan_site;camp_site"    ) or
-       ( object.tags["tourism"] == "caravan_site;camping_site" )) then
+       ( object.tags["tourism"] == "caravan_site;camp_site"    )) then
       object = append_nonqa( object, object.tags["tourism"] )
       object.tags["leisure"] = nil
       object.tags["tourism"] = "caravan_site"

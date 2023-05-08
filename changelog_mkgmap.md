@@ -39,7 +39,7 @@ Removed "office=photo_studio"; no longer in the data.
 Removed "plant_method"; no longer in the data.
 Removed "power_source" from taginfo; only used internally.
 Removed several internal-only shop values.
-Removed "shop=auto_repair", "shop=dance␣training", "shop=diy", "shop=empty", "shop=flower", "shop=healthfood"; no longer in the data.
+Removed "shop=auto_repair", "shop=dance␣training", "shop=diy", "shop=empty", "shop=flower", "shop=healthfood", "shop=language␣training", "shop=luggage_lockers"; no longer in the data.
 
 ## 29/04/2023
 Add WY, WL, WN to the suffix on pubs and bars depending on wheelchair access (yes, limited, no).

@@ -105,7 +105,6 @@ highway=secondary [0x04 road_class=2 road_speed=3 resolution 20]
 highway=secondary_link [0x08 road_class=2 road_speed=1 resolution 20]
 highway=tertiary [0x05 road_class=1 road_speed=3 resolution 20]
 highway=tertiary_link [0x08 road_class=1 road_speed=1 resolution 20]
-highway=minor [0x06 road_class=1 road_speed=3 resolution 21]
 highway=unclassified [0x06 road_class=0 road_speed=3 resolution 21]
 
 highway=pedestrian & area!=yes {add access = no; add foot = yes} [0x06 road_class=0 road_speed=0 resolution 22]

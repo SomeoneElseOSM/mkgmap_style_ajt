@@ -55,7 +55,7 @@ type=route
   # apply_once way { add name='${name}' }
 }
 #
-type=route & (route=foot|route=hiking|route=multiaccess|route='foot;horse'|route=bicycle) {
+type=route & (route=foot|route=hiking|route='foot;horse'|route=bicycle) {
     add ref='${name}'; # if ref is missing, use name
     apply_once {
         set route_ref='$(route_ref),${ref}' | '${ref}';

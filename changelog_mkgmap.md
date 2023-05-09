@@ -1,7 +1,10 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## As yet unreleased.
+Removed several internal-only values, and a couple of other errors from taginfo.
+
+## 08/05/2023
 Show standalone bicycle repair stations in addition to those in old phone boxes.
 Show crematorium among others as government offices.
 Next draft of taginfo_ajt03.json.  Improved some default descriptions. Detailed descriptions done down to "craft=carpenter".

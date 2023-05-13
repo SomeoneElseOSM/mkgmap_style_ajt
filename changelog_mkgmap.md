@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased.
 Removed several internal-only values, and a couple of other errors from taginfo.
+Removed shop=locksmiths and shop=fireplaces; no longer in the data.
 
 ## 08/05/2023
 Show standalone bicycle repair stations in addition to those in old phone boxes.

@@ -1,7 +1,7 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased.
+## 13/05/2023
 Removed several internal-only values, and a couple of other errors from taginfo.
 Removed shop=locksmiths and shop=fireplaces; no longer in the data.
 

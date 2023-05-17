@@ -5076,7 +5076,6 @@ function process_all( objtype, object )
 -- "0x2e07" is searchable via "Shopping / Apparel"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"] == "shoes"        ) or
-       ( object.tags["shop"] == "shoe"         ) or
        ( object.tags["shop"] == "footwear"     )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "shoes"
@@ -5260,7 +5259,7 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "eggs"              ) or
        ( object.tags["shop"]   == "catering"          ) or
        ( object.tags["shop"]   == "fishmonger"        ) or
-       ( object.tags["shop"]   == "spice"             ) or
+       ( object.tags["shop"]   == "spices"            ) or
        ( object.tags["shop"]   == "nuts"              ) or
        ( object.tags["shop"]   == "delicatessen"      ) or
        ( object.tags["shop"]   == "deli"              ) or
@@ -5317,7 +5316,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "toys"           ) or
        ( object.tags["shop"]   == "model"          ) or
-       ( object.tags["shop"]   == "models"         ) or
        ( object.tags["shop"]   == "games"          ) or
        ( object.tags["shop"]   == "computer_games" ) or
        ( object.tags["shop"]   == "video_games"    ) or
@@ -5438,7 +5436,6 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["shop"] == "optician"    ) or
-       ( object.tags["shop"] == "opticians"   ) or
        ( object.tags["shop"] == "optometrist" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
@@ -5715,7 +5712,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "watch_repair"             ) or
        ( object.tags["shop"]    == "cleaning"                 ) or
        ( object.tags["shop"]    == "collector"                ) or
-       ( object.tags["shop"]    == "collectables"             ) or
        ( object.tags["shop"]    == "coins"                    ) or
        ( object.tags["shop"]    == "video"                    ) or
        ( object.tags["shop"]    == "audio_video"              ) or
@@ -5811,7 +5807,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "junk"            ) or
        ( object.tags["shop"]    == "retail"          ) or
        ( object.tags["shop"]    == "trade"           ) or
-       ( object.tags["shop"]    == "misc"            ) or
        ( object.tags["shop"]    == "cash_and_carry"  ) or
        ( object.tags["shop"]    == "wholesale"       ) or
        ( object.tags["shop"]    == "wood"            ) or
@@ -6401,7 +6396,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "bed;carpet"                  ) or
        ( object.tags["shop"]   == "bedding"                     ) or
        ( object.tags["shop"]   == "bedroom"                     ) or
-       ( object.tags["shop"]   == "beds"                        ) or
        ( object.tags["shop"]   == "blinds"                      ) or
        ( object.tags["shop"]   == "brewing"                     ) or
        ( object.tags["shop"]   == "builders_merchant"           ) or
@@ -6464,7 +6458,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "kitchen;bathroom"            ) or
        ( object.tags["shop"]   == "kitchen;bathroom_furnishing" ) or
        ( object.tags["shop"]   == "kitchenware"                 ) or
-       ( object.tags["shop"]   == "lamps"                       ) or
        ( object.tags["shop"]   == "lighting"                    ) or
        ( object.tags["shop"]   == "luggage"                     ) or
        ( object.tags["shop"]   == "mattress"                    ) or
@@ -6704,7 +6697,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "tourist"             ) or
        ( object.tags["shop"]   == "tourism"             ) or
        ( object.tags["shop"]   == "bag"                 ) or
-       ( object.tags["shop"]   == "bags"                ) or
        ( object.tags["shop"]   == "balloon"             ) or
        ( object.tags["shop"]   == "accessories"         ) or
        ( object.tags["shop"]   == "beach"               ) or
@@ -6716,7 +6708,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "antiques"            ) or
        ( object.tags["shop"]   == "art"                 ) or
        ( object.tags["shop"]   == "craft"               ) or
-       ( object.tags["shop"]   == "crafts"              ) or
        ( object.tags["shop"]   == "art_supplies"        ) or
        ( object.tags["shop"]   == "pottery"             )) then
       object = append_nonqa( object, object.tags["shop"] )
@@ -6757,8 +6748,7 @@ function process_all( objtype, object )
 -- Farm shops
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"] == "farm"      ) or
-       ( object.tags["shop"] == "farm_shop" )) then
+   if ( object.tags["shop"] == "farm" ) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
@@ -6825,11 +6815,9 @@ function process_all( objtype, object )
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "fabric"               ) or
-       ( object.tags["shop"]   == "fabrics"              ) or
        ( object.tags["shop"]   == "linen"                ) or
        ( object.tags["shop"]   == "linens"               ) or
        ( object.tags["shop"]   == "haberdashery"         ) or
-       ( object.tags["shop"]   == "haberdasher"          ) or
        ( object.tags["shop"]   == "sewing"               ) or
        ( object.tags["shop"]   == "needlecraft"          ) or
        ( object.tags["shop"]   == "embroidery"           ) or
@@ -6932,7 +6920,6 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["shop"]    == "pet"                     ) or
-       ( object.tags["shop"]    == "pets"                    ) or
        ( object.tags["shop"]    == "pet;garden"              ) or
        ( object.tags["shop"]    == "pet;florist"             ) or
        ((  object.tags["shop"]     == "agrarian"                        )  and
@@ -7264,7 +7251,6 @@ function process_all( objtype, object )
    if (( object.tags["shop"]    == "car"                          )  or
        ( object.tags["shop"]    == "car;car_repair"               )  or
        ( object.tags["shop"]    == "car"                          )  or
-       ( object.tags["shop"]    == "cars"                         )  or
        ( object.tags["shop"]    == "car_showroom"                 )  or
        ( object.tags["shop"]    == "vehicle"                      )  or
        ( object.tags["shop"]    == "caravan"                      ) or
@@ -7654,7 +7640,6 @@ function process_all( objtype, object )
        (   object.tags["office"]          == "vacant"     ) or
        (   object.tags["office"]          == "disused"    ) or
        (   object.tags["shop"]            == "disused"    ) or
-       (   object.tags["shop"]            == "closed"     ) or
        (   object.tags["shop"]            == "abandoned"  ) or
        ((  object.tags["shop"]            ~= nil         )  and
         (  object.tags["opening_hours"]   == "closed"    ))) then

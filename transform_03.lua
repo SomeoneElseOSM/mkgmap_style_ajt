@@ -1490,7 +1490,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Send stadiums and pitches through with e.g. "pitch" as a suffix, 
 -- with the sport appended to the name.
--- 0x2c08 is searchable via "Attractions / Arena or Track"
+-- 0x2c08 is searchable via "Recreation/Attractions / Arena or Track"
 -- ----------------------------------------------------------------------------
    if (( object.tags["leisure"] == "stadium" ) or
        ( object.tags["leisure"] == "pitch"   ) or
@@ -1507,6 +1507,7 @@ function process_all( objtype, object )
 -- leisure=dog_park is used a few times.  Map to pitch to differentiate from
 -- underlying park.
 -- Also "court" often means "pitch" (tennis, basketball).
+-- 0x2c08 is searchable via "Recreation/Attractions / Arena or Track"
 -- ----------------------------------------------------------------------------
    if (( object.tags["leisure"] == "dog_park" ) or
        ( object.tags["leisure"] == "court"    )) then
@@ -1519,6 +1520,7 @@ function process_all( objtype, object )
 -- For leisure=pitch, the "polygons" file appends "sport" if present 
 -- and so does the equivalent of 
 -- 'object = append_nonqa( object, "skateboard" )'
+-- 0x2c08 is searchable via "Recreation/Attractions / Arena or Track"
 -- ----------------------------------------------------------------------------
    if ((( object.tags["sport"]   == "skateboard" )   or
         ( object.tags["sport"]   == "skating"    ))  and
@@ -3092,6 +3094,10 @@ function process_all( objtype, object )
       object = append_nonqa( object, "sandpit" )
    end
 
+-- ----------------------------------------------------------------------------
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+-- ----------------------------------------------------------------------------
    if ( object.tags["golf"] == "tee" ) then
       object = append_nonqa( object, "tee" )
 
@@ -3102,12 +3108,20 @@ function process_all( objtype, object )
       object.tags["leisure"] = "unnamed_park"
    end
 
+-- ----------------------------------------------------------------------------
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+-- ----------------------------------------------------------------------------
    if ( object.tags["golf"] == "green" ) then
       object.tags["leisure"] = "unnamed_park"
       object.tags["name"] = object.tags["ref"]
       object = append_nonqa( object, "green" )
    end
 
+-- ----------------------------------------------------------------------------
+-- "unnamed_park" has a dot icon
+-- 0x6600 is searchable via "Geographic Points / Land Features"
+-- ----------------------------------------------------------------------------
    if ( object.tags["golf"] == "fairway" ) then
       object.tags["leisure"] = "unnamed_park"
       object.tags["name"] = object.tags["ref"]
@@ -3126,6 +3140,9 @@ function process_all( objtype, object )
       object = append_nonqa( object, "golf rough" )
    end
 
+-- ----------------------------------------------------------------------------
+-- 0x2c08 is searchable via "Recreation/Attractions / Arena or Track"
+-- ----------------------------------------------------------------------------
    if (( object.tags["golf"]    == "driving_range" ) and
        ( object.tags["leisure"] == nil             )) then
       object.tags["leisure"] = "pitch"

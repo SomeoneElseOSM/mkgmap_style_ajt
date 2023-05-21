@@ -4,7 +4,8 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## As yet unreleased
 Removed "shop=bags", "shop=beds", "shop=cars", "shop=closed", "shop=collectables", "shop=crafts", "shop=fabrics", "shop=farm_shop", "shop=haberdasher", "shop=lamps", "shop=misc", "shop=models", "shop=opticians", "shop=pets", no longer in the data.
 Changed "shop=spice" to "shop=spices", following some mechanical tag changes.
-Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "description:floor".
+Append "UH" to roads and tracks with e.g. "unclassified county road" designation.
+Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "gate".
 
 ## 13/05/2023
 Removed several internal-only values, and a couple of other errors from taginfo.

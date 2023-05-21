@@ -1881,8 +1881,7 @@ function process_all( objtype, object )
 --                    n (no)                              WN
 --                    d                                   -
 -- 
--- For mkgmap, we don't use different icons beyond "restaurant" and 
--- "social club" (used for "not an accessible pub").  
+-- For mkgmap, we don't use different icons beyond "restaurant"
 -- We do use appendices to the name.
 -- Initially, set some object flags that we will use later.
 -- ----------------------------------------------------------------------------
@@ -8368,6 +8367,12 @@ function ott.process_way( object )
        ( object.tags["designation"] == "public_byway"               ) or
        ( object.tags["designation"] == "byway"                      )) then
       designation_appendix = "BY"
+   end
+
+   if (( object.tags["designation"] == "unclassified_country_road"  ) or
+       ( object.tags["designation"] == "unclassified_county_road"   ) or
+       ( object.tags["designation"] == "unclassified_highway"       )) then
+      designation_appendix = "UH"
    end
 
    if (( object.tags["designation"] == "quiet_lane"                      ) or

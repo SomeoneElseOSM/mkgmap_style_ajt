@@ -7,7 +7,7 @@ Changed "shop=spice" to "shop=spices", following some mechanical tag changes.
 Append "UH" to roads and tracks with e.g. "unclassified county road" designation.
 Make allotments searchable as "Geographic Points / Land Features", like unnamed parks and trees.
 Made some other leisure etc. items searchable
-Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "leisure=firepit".
+Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "man_made=maypole".
 
 ## 13/05/2023
 Removed several internal-only values, and a couple of other errors from taginfo.

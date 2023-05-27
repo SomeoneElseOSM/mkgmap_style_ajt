@@ -3083,7 +3083,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Golf (and sandpits)
--- "0x2d05" is searchable via "Recreation / Golf Course
+-- "0x2d05" is searchable via "Recreation / Golf Course"
 -- Note that with potentially indoor things we call building_or_landuse; with
 -- obviously outdoor ones we do not.
 -- ----------------------------------------------------------------------------
@@ -3179,7 +3179,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Skiing
--- "0x2d06" is searchable via "Recreation / Skiing Center or Reso
+-- "0x2d06" is searchable via "Recreation / Skiing Center or Reso"
 -- ----------------------------------------------------------------------------
    if ( object.tags["sport"] == "skiing" ) then
       object = append_nonqa( object, object.tags["sport"] )
@@ -6586,6 +6586,7 @@ function process_all( objtype, object )
 -- Currently handle beauty salons etc. as just generic beauty.  Also "chemist"
 -- Mostly these have names that describe the business, so less need for a
 -- specific icon.
+-- "0x2e05" is shown as 'Shopping / Pharmacy or Chemist'
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"]      == "spa" ) then
       object.tags["shop"] = object.tags["amenity"]

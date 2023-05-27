@@ -1150,7 +1150,7 @@
     { "key": "landmark", "value": "obelisk", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "landmark", "value": "windsock", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "landuse", "description": "many for this tag processed" },
-    { "key": "landuse", "value": "allotments", "description": "Shown in brackets as orchard" },
+    { "key": "landuse", "value": "allotments", "description": "Shown in brackets as orchard; 'Geographic Points / Land Features'" },
     { "key": "landuse", "value": "aquaculture", "description": "many for this tag processed" },
     { "key": "landuse", "value": "basin", "description": "many for this tag processed" },
     { "key": "landuse", "value": "cemetery", "description": "many for this tag processed" },

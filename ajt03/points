@@ -233,8 +233,9 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 # barrier=ford [0x6512 resolution 21]
 natural=wetland {name '${name}'} [0x6513 resolution 21]
 
+landuse=allotments {name '${name}'} [0x6600 resolution 21]
 natural=tree {name '${name}'} [0x6600 resolution 21]
-# 0x6600 is also used for leisure=unnamed_park above
+# 0x6600 ("Land Feature") is also used for leisure=unnamed_park above
 natural=cave_entrance {name '${name}'} [0x6601 resolution 19]
 landuse=basin {name '${name}'} [0x6603 resolution 21]
 natural=beach {name '${name}'} [0x6604 resolution 21]

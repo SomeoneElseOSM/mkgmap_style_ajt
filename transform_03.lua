@@ -2424,15 +2424,32 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Other nonspecific leisure.  
--- qqq these will all need handling eventually, but no code here yet
+-- Other leisure.  These are mapped to "man_made=thing" just to
+-- make them searchable.  In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["sport"]    == "model_aerodrome"      ) or
-       ( object.tags["leisure"]  == "firepit"              ) or
-       ( object.tags["tourism"]  == "trail_riding_station" ) or
-       (( object.tags["building"] == "yes"                )  and
-        ( object.tags["amenity"]  == nil                  )  and
-        ( object.tags["sport"]    ~= nil                  ))) then
+   if ( object.tags["sport"] == "model_aerodrome" ) then
+      object = append_nonqa( object, object.tags["sport"] )
+
+      if (( object.tags["leisure"]  == nil ) and
+          ( object.tags["club"]     == nil ) and
+          ( object.tags["landuse"]  == nil )) then
+         object.tags["man_made"] = "thing"
+         object.tags["sport"] = nil
+      end
+   end
+
+   if ( object.tags["leisure"] == "firepit" ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["man_made"] = "thing"
+      object.tags["leisure"] = nil
+   end
+
+   if ( object.tags["tourism"]  == "trail_riding_station" ) then
+      object = append_nonqa( object, object.tags["tourism"] )
+      object.tags["man_made"] = "thing"
+      object.tags["tourism"] = nil
    end
 
 -- ----------------------------------------------------------------------------

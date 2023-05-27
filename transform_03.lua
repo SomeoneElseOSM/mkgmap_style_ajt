@@ -1345,8 +1345,8 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- landuse=field is rarely used.  I tried unsuccessfully to change the colour 
--- in the stylesheet so am mapping it here.
+-- landuse=field is rarely used.  It is mapped through to landuse=farmland here, 
+-- although that is not currently shown.
 -- ----------------------------------------------------------------------------
    if (object.tags["landuse"]   == "field") then
       object.tags["landuse"] = "farmland"
@@ -3176,7 +3176,7 @@ function process_all( objtype, object )
 -- Bowling Alleys
 -- Pitches are handled above (see "0x2c08"); any sport tags used there 
 -- have been removed.
--- "0x2d07" is searchable via "Recreation / Bowling Center
+-- "0x2d07" is searchable via "Recreation / Bowling Center"
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"] == "bowling_alley" ) then
       object.tags["sport"] = object.tags["leisure"]

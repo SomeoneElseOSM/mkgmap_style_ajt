@@ -5068,7 +5068,8 @@ function process_all( objtype, object )
    if ((  object.tags["historic"]   == "memorial"     ) and
        (( object.tags["memorial"]   == "grave"       )  or
         ( object.tags["memorial"]   == "graveyard"   ))) then
-      object.tags["historic"] = "thing"
+      object.tags["historic"] = nil
+      object.tags["man_made"] = "thing"
       object = append_nonqa( object, "memorial grave" )
    end
 

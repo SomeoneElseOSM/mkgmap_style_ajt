@@ -403,8 +403,9 @@ function process_all( objtype, object )
 -- Non-utility posts
 -- (for utility posts see below)
 -- ----------------------------------------------------------------------------
-   if (( object.tags["marker"]  == "post" ) and
-       ( object.tags["utility"] == nil    )) then
+   if (( object.tags["marker"]   == "post"  ) and
+       (( object.tags["utility"] == nil    )  or
+        ( object.tags["utility"] == "yes"  ))) then
       object = append_nonqa( object, "post" )
       object.tags["man_made"] = "marker"
    end
@@ -426,16 +427,20 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Aerial markers for pipelines etc.
+-- Non-utility marker posts are handled above
+-- Non-utility "marker=yes" are ignored
 -- In "points" as "0x4c00"
 -- "0x4c00" is searchable via "Geographic Points / Manmade Places"
 -- No icon is visible in QMapShack
 -- A "tourist information" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["marker"]   == "aerial"          ) or
-       (  object.tags["marker"]   == "pipeline"        ) or
-       (  object.tags["man_made"] == "pipeline_marker" ) or
-       (( object.tags["marker"]   == "post"           ) and
-        ( object.tags["utility"]  ~= nil              ))) then
+   if ((   object.tags["marker"]   == "aerial"           ) or
+       (   object.tags["marker"]   == "pipeline"         ) or
+       (   object.tags["man_made"] == "pipeline_marker"  ) or
+       ((( object.tags["marker"]   == "post"           )  or
+         ( object.tags["marker"]   == "yes"            )) and
+        ( object.tags["utility"]  ~= nil                ) and
+        ( object.tags["utility"]  ~= "yes"              ))) then
       object = append_nonqa( object, "pipeline marker" )
 
       if ( object.tags["utility"] ~= nil ) then

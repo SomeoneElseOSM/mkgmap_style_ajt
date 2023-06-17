@@ -4,7 +4,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 ## 17/06/2023
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micropub=yes".
 Show milestones as milestones, not pipeline markers.
-Show utility marker posts with the utility in brackets.
+Show utility marker posts and marker=yes with the utility in brackets.
 Show non-utility marker posts.
 
 ## 27/05/2023

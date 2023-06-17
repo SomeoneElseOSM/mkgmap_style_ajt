@@ -2,7 +2,7 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
-Show utility marker=pedestal with the utility in brackets.
+Show utility marker=pedestal and marker=plate with the utility in brackets.
 
 ## 17/06/2023
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micropub=yes".

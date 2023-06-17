@@ -1372,6 +1372,7 @@
     { "key": "marker", "value": "boundary_stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "pipeline", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "pedestal", "description": "If utility, shown in brackets with utility; 'Geographic Points / Manmade Places'" },
+    { "key": "marker", "value": "plate", "description": "If utility, shown in brackets with utility; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "post", "description": "Shown in brackets with utility if applicable; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "yes", "description": "If utility, shown in brackets with utility; 'Geographic Points / Manmade Places'" },

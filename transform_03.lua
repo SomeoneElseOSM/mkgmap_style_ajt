@@ -426,9 +426,9 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Aerial markers for pipelines etc.
+-- Aerial markers for pipelines etc. and other utilities
 -- Non-utility marker posts are handled above
--- Non-utility "marker=yes" and "marker=pedestal" are ignored
+-- Non-utility "marker=yes", "marker=pedestal" and "marker=plate" are ignored
 -- In "points" as "0x4c00"
 -- "0x4c00" is searchable via "Geographic Points / Manmade Places"
 -- No icon is visible in QMapShack
@@ -439,10 +439,11 @@ function process_all( objtype, object )
        (   object.tags["man_made"] == "pipeline_marker"  ) or
        ((( object.tags["marker"]   == "post"           )  or
          ( object.tags["marker"]   == "yes"            )  or
-         ( object.tags["marker"]   == "pedestal"       )) and
+         ( object.tags["marker"]   == "pedestal"       )  or
+         ( object.tags["marker"]   == "plate"          )) and
         ( object.tags["utility"]  ~= nil                ) and
         ( object.tags["utility"]  ~= "yes"              ))) then
-      object = append_nonqa( object, "pipeline marker" )
+      object = append_nonqa( object, "utility/pipeline marker" )
 
       if ( object.tags["utility"] ~= nil ) then
          append_nonqa( object, object.tags["utility"] )

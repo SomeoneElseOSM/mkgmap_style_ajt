@@ -5,6 +5,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 Show utility marker=pedestal, marker=plate, marker=pole with the utility in brackets.
 Show pipeline=marker in the same way marker=pipeline.
 Improve comments around historic=marker.
+Ensure that natural=scrub has a bracketed name.
 
 ## 17/06/2023
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micropub=yes".

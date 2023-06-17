@@ -1161,6 +1161,15 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- natural=scrub that is actually tagged as that
+-- Not in points, in polygons as "0x4f".
+-- Various other things map to natural=scrub below, with other appended names.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "scrub" ) then
+      object = append_nonqa( object, object.tags["natural"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Send parks through with "park" as a suffix.
 --
 -- In points:

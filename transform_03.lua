@@ -390,6 +390,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- man_made=marker etc.
+-- For historic markers see "Historic markers" below.
 -- In "points" as "0x4c00"
 -- "0x4c00" is searchable via "Geographic Points / Manmade Places"
 -- No icon is visible in QMapShack

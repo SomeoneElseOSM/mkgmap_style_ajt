@@ -1590,6 +1590,8 @@
     { "key": "path", "value": "sidewalk", "description": "processed value" },
     { "key": "pharmacy", "description": "processed value" },
     { "key": "pharmacy", "value": "yes", "description": "processed value" },
+    { "key": "pipeline", "description": "Detect pipeline markers" },
+    { "key": "pipeline", "value": "marker", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "place", "description": "many for this tag processed" },
     { "key": "place", "value": "island", "description": "many for this tag processed" },
     { "key": "place", "value": "quarter", "description": "many for this tag processed" },

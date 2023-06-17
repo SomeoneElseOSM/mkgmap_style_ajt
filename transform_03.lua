@@ -438,6 +438,7 @@ function process_all( objtype, object )
    if ((   object.tags["marker"]   == "aerial"           ) or
        (   object.tags["marker"]   == "pipeline"         ) or
        (   object.tags["man_made"] == "pipeline_marker"  ) or
+       (   object.tags["pipeline"] == "marker"           ) or
        ((( object.tags["marker"]   == "post"           )  or
          ( object.tags["marker"]   == "yes"            )  or
          ( object.tags["marker"]   == "pedestal"       )  or

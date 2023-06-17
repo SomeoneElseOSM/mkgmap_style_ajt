@@ -1,8 +1,11 @@
 # Changes made to this rendering
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 17/06/2023
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micropub=yes".
+Show milestones as milestones, not pipeline markers.
+Show utility marker posts with the utility in brackets.
+Show non-utility marker posts.
 
 ## 27/05/2023
 Removed "shop=bags", "shop=beds", "shop=cars", "shop=closed", "shop=collectables", "shop=crafts", "shop=fabrics", "shop=farm_shop", "shop=haberdasher", "shop=lamps", "shop=misc", "shop=models", "shop=opticians", "shop=pets", no longer in the data.

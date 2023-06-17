@@ -389,6 +389,27 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- man_made=marker etc.
+-- In "points" as "0x4c00"
+-- "0x4c00" is searchable via "Geographic Points / Manmade Places"
+-- No icon is visible in QMapShack
+-- A "tourist information" icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "marker" ) then
+      object = append_nonqa( object, "marker" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Non-utility posts
+-- (for utility posts see below)
+-- ----------------------------------------------------------------------------
+   if (( object.tags["marker"]  == "post" ) and
+       ( object.tags["utility"] == nil    )) then
+      object = append_nonqa( object, "post" )
+      object.tags["man_made"] = "marker"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Handle various sorts of milestones.
 -- man_made=marker
 -- In "points" as "0x4c00"
@@ -399,22 +420,28 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "milepost"  )  or
        ( object.tags["waterway"] == "milestone" )  or
        ( object.tags["railway"]  == "milestone" )) then
-      object.tags["man_made"] = "marker"
       object = append_nonqa( object, "milestone" )
+      object.tags["man_made"] = "marker"
    end
 
 -- ----------------------------------------------------------------------------
--- man_made=marker etc.  Aerial markers for pipelines etc.
+-- Aerial markers for pipelines etc.
 -- In "points" as "0x4c00"
 -- "0x4c00" is searchable via "Geographic Points / Manmade Places"
 -- No icon is visible in QMapShack
 -- A "tourist information" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["man_made"] == "marker"          ) or
-       ( object.tags["marker"]   == "aerial"          ) or
-       ( object.tags["marker"]   == "pipeline"        ) or
-       ( object.tags["man_made"] == "pipeline_marker" )) then
+   if ((  object.tags["marker"]   == "aerial"          ) or
+       (  object.tags["marker"]   == "pipeline"        ) or
+       (  object.tags["man_made"] == "pipeline_marker" ) or
+       (( object.tags["marker"]   == "post"           ) and
+        ( object.tags["utility"]  ~= nil              ))) then
       object = append_nonqa( object, "pipeline marker" )
+
+      if ( object.tags["utility"] ~= nil ) then
+         append_nonqa( object, object.tags["utility"] )
+      end
+
       object.tags["man_made"] = "marker"
    end
 

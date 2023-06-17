@@ -6,6 +6,7 @@ Show utility marker=pedestal, marker=plate, marker=pole with the utility in brac
 Show pipeline=marker in the same way marker=pipeline.
 Improve comments around historic=marker.
 Ensure that natural=scrub has a bracketed name.
+Show (steps) in brackets.
 
 ## 17/06/2023
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micropub=yes".

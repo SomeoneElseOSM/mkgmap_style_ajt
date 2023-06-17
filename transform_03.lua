@@ -8242,8 +8242,7 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- Where a wide width is specified on a normally narrow path, show as wider
 --
--- Note that "steps" and "footwaysteps" are unchanged by the 
--- track / path choice below:
+-- Note that "steps" are unchanged by the track / path choice below:
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "footway"   ) or 
        ( object.tags["highway"] == "bridleway" ) or 
@@ -8488,6 +8487,13 @@ function ott.process_way( object )
          ( object.tags["highway"]  == "service"   )) and
         (  object.tags["informal"] == "yes"        )) then
       object = append_nonqa( object, "I" )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Make it clear which ways are steps
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "steps" ) then
+      object = append_nonqa( object, "steps" )
    end
 
 -- ----------------------------------------------------------------------------

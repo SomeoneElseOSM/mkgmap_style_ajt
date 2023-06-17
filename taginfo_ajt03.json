@@ -955,7 +955,7 @@
     { "key": "highway", "value": "secondary_link", "description": "Shown as link road" },
     { "key": "highway", "value": "service", "description": "Shown as service road" },
     { "key": "highway", "value": "services", "description": "Shown as commercial landuse" },
-    { "key": "highway", "value": "steps", "description": "Shown as track" },
+    { "key": "highway", "value": "steps", "description": "Shown in brackets as footpath" },
     { "key": "highway", "value": "street_lamp", "description": "'gas lamp' or 'streetlight' appended; 'Others / Social Service'" },
     { "key": "highway", "value": "tertiary", "description": "Shown as tertiary" },
     { "key": "highway", "value": "tertiary_link", "description": "Shown as link road" },

@@ -1,5 +1,5 @@
-# Changes made to this rendering
-This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
+# Changes made to this map style
+This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
 Show utility marker=pedestal, marker=plate, marker=pole with the utility in brackets.

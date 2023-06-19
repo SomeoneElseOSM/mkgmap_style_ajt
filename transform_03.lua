@@ -2171,7 +2171,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "atm"                 ) or
        ( object.tags["shop"]   == "bank;atm"            ) or
        ( object.tags["shop"]   == "building_society"    ) or
-       ( object.tags["shop"]   == "bureau_de_change"    ) or
        ( object.tags["shop"]   == "credit_union"        ) or
        ( object.tags["shop"]   == "finance"             ) or
        ( object.tags["shop"]   == "financial"           ) or
@@ -5547,7 +5546,6 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["building"]    == "nursing_home"                 ) or
-       ( object.tags["building"]    == "residential_home"             ) or
        ( object.tags["building"]    == "preschool"                    ) or
        ( object.tags["building"]    == "health_centre"                ) or
        ( object.tags["building"]    == "medical_centre"               )) then
@@ -8030,10 +8028,7 @@ function ott.process_node( object )
          information_appendix = "S"
       end
 
-      if (( object.tags["operator"]  == "Peak & Northern Footpaths Society"                                )  or
-          ( object.tags["operator"]  == "Peak and Northern Footpaths Society"                              )  or
-          ( object.tags["operator"]  == "Peak District & Northern Counties Footpaths Preservation Sciety"  ) or
-          ( object.tags["operator"]  == "Peak District & Northern Counties Footpaths Preservation Society" )) then
+      if ( object.tags["operator"]  == "Peak & Northern Footpaths Society" ) then
          if ( information_appendix == nil ) then
              information_appendix = "PNFS"
          else

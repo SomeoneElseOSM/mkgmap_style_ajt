@@ -10,6 +10,7 @@ Show (steps) in brackets.
 Removed some no-longer-present key/value combinations from the lua code.
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "natural=cape".
 Update taginfo to reflect that shop=gun is back in the data again.
+Removed 'waterway=aqueduct', no longer in the data.
 
 ## 17/06/2023
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micropub=yes".

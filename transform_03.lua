@@ -8570,11 +8570,6 @@ function ott.process_way( object )
       object = append_nonqa( object, "spillway" )
    end
 
-   if ( object.tags["waterway"] == "aqueduct" )  then
-      object.tags["waterway"] = "drain"
-      object = append_nonqa( object, "aqueduct" )
-   end
-
    if ( object.tags["waterway"] == "fish_pass" )  then
       object.tags["waterway"] = "drain"
       object = append_nonqa( object, "fish pass" )

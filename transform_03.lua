@@ -3427,6 +3427,7 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Waterfalls
+-- In points as "0x6508"
 -- ----------------------------------------------------------------------------
    if ( object.tags["natural"] == "waterfall" ) then
       object.tags["waterway"] = "waterfall"

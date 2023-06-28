@@ -18,6 +18,9 @@ Show milestones as milestones, not pipeline markers.
 Show utility marker posts and marker=yes with the utility in brackets.
 Show non-utility marker posts.
 
+## As yet unreleased
+Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "reservoir_type=sewage".
+
 ## 27/05/2023
 Removed "shop=bags", "shop=beds", "shop=cars", "shop=closed", "shop=collectables", "shop=crafts", "shop=fabrics", "shop=farm_shop", "shop=haberdasher", "shop=lamps", "shop=misc", "shop=models", "shop=opticians", "shop=pets", no longer in the data.
 Changed "shop=spice" to "shop=spices", following some mechanical tag changes.

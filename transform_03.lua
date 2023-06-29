@@ -5830,14 +5830,14 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "art_gallery"              ) or
        ( object.tags["shop"]    == "internet_cafe"            ) or
        ( object.tags["shop"]    == "training"                 ) or
-       ( object.tags["shop"]    == "tutoring_centre"          ) or
+       ( object.tags["shop"]    == "tutoring"                 ) or
        ( object.tags["shop"]    == "stripclub"                ) or
        ( object.tags["shop"]    == "courier"                  ) or
        ( object.tags["shop"]    == "cobbler"                  ) or
        ( object.tags["shop"]    == "shoemaker"                ) or
        ( object.tags["shop"]    == "gunsmith"                 ) or
        ( object.tags["shop"]    == "auctioneer"               ) or
-       ( object.tags["shop"]    == "tutoring"                 ) or
+       ( object.tags["shop"]    == "tutoring_centre"          ) or
        ( object.tags["shop"]    == "performing_arts training" )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
@@ -7331,7 +7331,6 @@ function process_all( objtype, object )
 
    if (( object.tags["shop"]    == "car"                          )  or
        ( object.tags["shop"]    == "car;car_repair"               )  or
-       ( object.tags["shop"]    == "car"                          )  or
        ( object.tags["shop"]    == "car_showroom"                 )  or
        ( object.tags["shop"]    == "vehicle"                      )  or
        ( object.tags["shop"]    == "caravan"                      ) or

@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "shop=chiropodist".
+
 ## 28/06/2023
 Show utility marker=pedestal, marker=plate, marker=pole with the utility in brackets.
 Show pipeline=marker in the same way marker=pipeline.

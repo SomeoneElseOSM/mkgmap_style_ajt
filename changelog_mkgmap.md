@@ -3,6 +3,7 @@ This page describes changes made to the "03" map style [here](https://github.com
 
 ## As yet unreleased
 Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "shop=mattress".
+When detecting megaliths and standing stones, use "archaeological_site" as well as "site_type".  See the forum [here](https://community.openstreetmap.org/t/implementation-of-new-tagging-scheme-of-archaeological-site/7850/69) for more details.
 
 ## 28/06/2023
 Show utility marker=pedestal, marker=plate, marker=pole with the utility in brackets.

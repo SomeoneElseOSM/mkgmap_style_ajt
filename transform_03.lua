@@ -503,10 +503,12 @@ function process_all( objtype, object )
       object = append_nonqa( object, "historic stone" )
    end
 
-   if ((   object.tags["historic"]           == "standing_stone"        ) or
-       ((  object.tags["historic"]           == "archaeological_site"  )  and
-        (( object.tags["site_type"]          == "standing_stone"      )   or
-         ( object.tags["site_type"]          == "megalith"            )))) then
+   if ((   object.tags["historic"]            == "standing_stone"        ) or
+       ((  object.tags["historic"]            == "archaeological_site"  )  and
+        (( object.tags["archaeological_site"] == "standing_stone"      )   or
+         ( object.tags["archaeological_site"] == "megalith"            )   or
+         ( object.tags["site_type"]           == "standing_stone"      )   or
+         ( object.tags["site_type"]           == "megalith"            )))) then
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then

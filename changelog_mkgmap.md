@@ -2,8 +2,8 @@
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
-Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "shop=musical_instrument".
 When detecting megaliths and standing stones, use "archaeological_site" as well as "site_type".  See the forum [here](https://community.openstreetmap.org/t/implementation-of-new-tagging-scheme-of-archaeological-site/7850/69) for more details.
+Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "shop=plumbing".
 
 ## 28/06/2023
 Show utility marker=pedestal, marker=plate, marker=pole with the utility in brackets.

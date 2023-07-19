@@ -4230,7 +4230,7 @@ function process_all( objtype, object )
 -- It's in brackets because it's likely not signed.
 -- ----------------------------------------------------------------------------
    if ( object.tags["tpuk_ref"] ~= nil ) then
-      object.tags["name"] = "(" .. object.tags["tpuk_ref"] .. ")"
+      object = append_nonqa( object, object.tags["tpuk_ref"] )
    end
 
 -- ----------------------------------------------------------------------------

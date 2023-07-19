@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 19/07/2023
 When detecting megaliths and standing stones, use "archaeological_site" as well as "site_type".  See the forum [here](https://community.openstreetmap.org/t/implementation-of-new-tagging-scheme-of-archaeological-site/7850/69) for more details.
 Final iteration of taginfo_ajt03.json for the current lua.  Detailed descriptions Now complete.
 
@@ -21,9 +21,6 @@ Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "micro
 Show milestones as milestones, not pipeline markers.
 Show utility marker posts and marker=yes with the utility in brackets.
 Show non-utility marker posts.
-
-## As yet unreleased
-Next iteration of taginfo_ajt03.json.  Detailed descriptions done down to "shop=bag".
 
 ## 27/05/2023
 Removed "shop=bags", "shop=beds", "shop=cars", "shop=closed", "shop=collectables", "shop=crafts", "shop=fabrics", "shop=farm_shop", "shop=haberdasher", "shop=lamps", "shop=misc", "shop=models", "shop=opticians", "shop=pets", no longer in the data.

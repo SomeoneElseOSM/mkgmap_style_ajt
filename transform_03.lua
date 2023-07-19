@@ -7224,8 +7224,14 @@ function process_all( objtype, object )
 -- We try and use an appropriate suffix in each case, by first appending a 
 -- suffix based on what "shop" is, then setting "shop" to whatever tag is 
 -- characteristic for rendering for that item.
+--
+-- shop=car_rental maps to:
 -- "0x2f02" is supposed to be searchable via "Auto Services / Auto Rental"
--- "0x2f17" is searchable via "Transportation / Transport Service"
+--
+-- Currently, amenity=taxi (see above) among others maps to:
+-- "0x2f17" is searchable via "Transportation / Transport Service" and
+-- amenity=car_sharing (see above) maps to:
+-- "0x2f0d" is searchable via "Auto Services / Automobile Club"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "car_rental"                   ) or
        ( object.tags["amenity"] == "van_rental"                   ) or

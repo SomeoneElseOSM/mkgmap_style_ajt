@@ -1,7 +1,576 @@
-# "ajt03" map legend
-This page describes how OpenStreetMap features are shown on the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
+# Map Legend
 
-## General Processing
+## How things appear on screen
+
+### Points of interest
+
+The standard Garmin icons are used throughout. Shops appear as a shopping bag, food and drink with a knife and fork, supermarkets as a shopping trolley, etc.
+
+This map style varies from other similar ones in a couple of ways.  One is that often several OSM tags are processed to decide what category to show something as.  Another is that the OSM tags are used to provide more detail when you hover over the icon, or search for it on the Garmin menus. For example, a fuel station ("amenity=fuel" in OSM) will be shown with a petrol pump icon as normal, but it'll also have "fuel" qnd the brand in brackets after the name.
+
+For many features, lots of different (but related) OSM tags are shown with the same icon.  For example, several different types of shop that sell a variety of goods are shown as "general" shops.  "shop=general" is one example, but "shop=catalogue" is another, and an Argos will appear on screen and in the search menus as "Argos (catalogue)".
+
+### Other features
+
+Things like roads, tracks and paths appear as you would expect them to on a Garmin device, but with extra information for rights of way and quality control appended to the name (see below for more details).
+
+## How things can be searched for.
+
+Among the search options on the Garmin menus are searches for different POI types.
+
+The top level POI search options are:
+
+> Food and Drink, Cities, Transportation, All POIs, Shopping, Fuel Services, Lodging, Entertainment, Recreation, Attractions, Auto Services, Community, Hospitals, Geographic points, Others
+
+An attempt has been made to distribute OSM POIs logically among these menus.
+
+### Searching for the Garmin menu used for an OSM tag
+
+To find out what Garmin menu an OSM feature has been mapped to, go, [here](https://taginfo.openstreetmap.org/projects/someoneelse_mkgmap_ajt03#tags) and search for the OSM tag or value you are interested in.
+
+### Details of which OSM tags appear on which Garmin menu
+
+#### Food and Drink
+
+Garmin's menus here are very American (you can have "International", but you can't get a curry).  Fast food and "proper restaurants" are all lumped together.  I've tried to make the best use of the catagories as I can, which results in some odd mappings:
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Food and Drink</td>
+<td> All Categories </td>
+<td> Everything below </td>
+<td>  </td>
+</tr>
+<tr>
+<td> </td>
+<td> American </td>
+<td> Burger-led fast food </td>
+<td> (amenity=fast_food or amenity=restaurant) and (cuisine=burger or cuisine=american or cuisine=diner) </td>
+</tr>
+<tr>
+<td> </td>
+<td> Asian </td>
+<td> Not used as not uniquely searchable </td>
+<td> n/a </td>
+</tr>
+<tr>
+<td> </td>
+<td> Barbeque </td>
+<td> Chicken-led fast food </td>
+<td> amenity=fast_food and (cuisine=chicken or cuisine=fried_chicken) </td>
+</tr>
+<tr>
+<td> </td>
+<td> Chinese </td>
+<td> Chinese or similar fast food </td>
+<td> amenity=fast_food and cuisine one of chinese, thai, asian, japanese, sushi, korean, ramen, noodle, malaysian, indonesian, cantonese, oriental </td>
+</tr>
+<tr>
+<td> </td>
+<td> Deli or Bakery </td>
+<td> Bakery </td>
+<td> shop=bakery </td>
+</tr>
+<tr>
+<td> </td>
+<td> International </td>
+<td> Kebab-led fast food </td>
+<td> amenity=fast_food and (cuisine=kebab or cuisine=turkish) </td>
+</tr>
+<tr>
+<td> </td>
+<td> Fast Food </td>
+<td> Pie-led fast food </td>
+<td> amenity=fast_food and cuisine=pasties, pasty, cornish_pasty, pie, pies </td>
+</tr>
+<tr>
+<td> </td>
+<td> Italian </td>
+<td> Italian or similar Restaurant </td>
+<td> amenity=restaurant and cuisine=italian, pizza, mediterranean </td>
+</tr>
+<tr>
+<td> </td>
+<td> Mexican </td>
+<td> Curry-led fast food </td>
+<td> amenity=fast_food and cuisine=indian, curry, nepalese, bangladeshi, pakistani, tandoori, afghan, sri_lankan, punjabi </td>
+</tr>
+<tr>
+<td> </td>
+<td> Pizza </td>
+<td> Italian or similar fast food </td>
+<td> amenity=fast_food and cuisine=italian, pasta or pizza </td>
+</tr>
+<tr>
+<td> </td>
+<td> Seafood </td>
+<td> Fish and Chips led fast food </td>
+<td> amenity=fast_food and cuisine=fish_and_chips, fish, chines;fish_and_chips </td>
+</tr>
+<tr>
+<td> </td>
+<td> Steak or Grill </td>
+<td> Steak Restaurant </td>
+<td> amenity=restaurant and cuisine=steak_house, grill, brazilian, argentinian </td>
+</tr>
+<tr>
+<td> </td>
+<td> Bagel or Donut </td>
+<td> Ice Cream Parlours </td>
+<td> Various amenity, shop and cuisine=ice_cream tags </td>
+</tr>
+<tr>
+<td> </td>
+<td> Cafe or Diner </td>
+<td> Cafes and coffee shops </td>
+<td> amenity=fast_food and (cuisine=coffee or cuisine=sandwich) </td>
+</tr>
+<tr>
+<td> </td>
+<td> French </td>
+<td> Indian Restaurant </td>
+<td> amenity=restaurant and cuisine=indian </td>
+</tr>
+<tr>
+<td> </td>
+<td> German </td>
+<td> Chinese or similar Restaurant </td>
+<td> amenity=restaurant and cuisine=chinese, thai, asian, japanese, vietnamese, korean, sushi </td>
+</tr>
+<tr>
+<td> </td>
+<td> British Isles </td>
+<td> Pubs and bars </td>
+<td> amenity=pub or amenity=bar </td>
+</tr>
+<tr>
+<td> </td>
+<td> n/a </td>
+<td> Any other fast food or restaurant </td>
+<td> amenity=fast_food or amenity=restaurant with a cuisine not handled above</td>
+</tr>
+</table>
+
+#### Cities
+
+Most places are handled.
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Cities </td>
+<td> n/a </td>
+<td> Most "place" values </td>
+<td> place=city, town, suburb, village, hamlet, locality, cape</td>
+</tr>
+</table>
+
+#### Transportation
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Transportation </td>
+<td> All Categories </td>
+<td> Everything below </td>
+<td> </td>
+</tr>
+<tr>
+<td>  </td>
+<td> Auto Rental </td>
+<td> Car Rental etc. </td>
+<td> amenity=car_rental, van_rental </td>
+</tr>
+<tr>
+<td>  </td>
+<td> Air Transportation </td>
+<td> Public transportation airports </td>
+<td> aeroway=aerodrome, heliport with iata tag; terminal </td>
+</tr>
+<tr>
+<td>  </td>
+<td> Ground Transportation </td>
+<td> Railway stations, bus stations </td>
+<td> railway=station, amenity=bus_station, ferry_terminal, bicycle_rental </td>
+</tr>
+<tr>
+<td>  </td>
+<td> Transit Service </td>
+<td> Tram stops, bus stops </td>
+<td> railway=tram_stop, highway=bus_stop, amenity=taxi </td>
+</tr>
+</table>
+
+#### Shopping
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> All Categories </td>
+<td> Everything below </td>
+<td> </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Department </td>
+<td> Department stores </td>
+<td> shop=department_store</td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Grocery </td>
+<td> Supermarkets </td>
+<td> shop=supermarket</td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> General Merchandise </td>
+<td> Other shops taking a variety of goods </td>
+<td> shop=variety_store, outpost, general, catalogue</td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Shopping Center </td>
+<td> Various shop groups </td>
+<td> amenity=marketplace, market, food_court</td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Pharmacy or Chemist </td>
+<td> Parmacies, chemists etc. </td>
+<td> amenity=pharmacy, spa, healthcare=pharmacy, shop=beauty, chemist, cosmetics, leisure=spa </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Apparel </td>
+<td> Various clothes shops </td>
+<td> shop=clothes, shoes, etc.; craft=dressmaker, tailor </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> House and Garden </td>
+<td> Garden centres </td>
+<td> shop=garden_centre, plant_nursery, nursery, lawn_mower, etc. </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Home Furnishings </td>
+<td> DIY and hardware shops, also related trades. </td>
+<td> craft=plumber (and many others), shop=hardware, furniture, doityourself, homeware, etc. </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Specialty Retail </td>
+<td> Shops that don't fit other categories </td>
+<td> shop=hairdresser, butcher (and many, many others) </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Computer or Software </td>
+<td> Computer and mobile phone shops </td>
+<td> shop=mobile_phone, computer </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Convenience </td>
+<td> Shops that don't fit other categories </td>
+<td> shop=convenience, kiosk, newsagent </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Florist </td>
+<td> Florists </td>
+<td> shop=florist </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Gift/Antiques/Art </td>
+<td> Various gift etc. shops </td>
+<td> shop=gift, art, antiques, craft, bag among others </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Record/CD/Video </td>
+<td> Record,CD,Video and Music shops </td>
+<td> shop=music, records </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Sporting Goods </td>
+<td> Various sport shops </td>
+<td> shop=sports, fishing, etc. </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Wine and Liquor </td>
+<td> Shops specialising in alcohol (but not wineries) </td>
+<td> shop=alcohol, wine etc. </td>
+</tr>
+<tr>
+<td> Shopping </td>
+<td> Book Store </td>
+<td> Book shops </td>
+<td> shop=books </td>
+</tr>
+</table>
+
+
+#### Fuel Services
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Fuel Services </td>
+<td> </td>
+<td> Fuel stations (petrol and diesel, and electric) </td>
+<td> amenity=fuel, amenity=charging_station </td>
+</tr>
+</table>
+
+#### Lodging
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Lodging </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Lodging </td>
+<td> Hotel or Motel</td>
+<td> Hotels </td>
+<td> tourism=hotel, motel </td>
+</tr>
+<tr>
+<td> Lodging </td>
+<td> Bed and Breakfast or</td>
+<td> Guest houses, tourist apartments, etc. </td>
+<td> tourism=guest_house, apartment, holiday_village </td>
+</tr>
+<tr>
+<td> Lodging </td>
+<td> Resort</td>
+<td> Holiday resorts </td>
+<td> tourism=resort, spa_resort </td>
+</tr>
+<tr>
+<td> Lodging </td>
+<td> Campground </td>
+<td> Camp sites, hostels, caravan sites </td>
+<td> tourism=camp_site, hostel, caravan_site </td>
+</tr>
+<tr>
+<td> Lodging </td>
+<td> Other </td>
+<td> Nothing in this category </td>
+<td> n/a </td>
+</tr>
+</table>
+
+#### Entertainment
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Entertainment </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Entertainment </td>
+<td> Live Theater</td>
+<td> Theatres, arts centres </td>
+<td> amenity=theatre, arts_centre </td>
+</tr>
+<tr>
+<td> Entertainment </td>
+<td> Bar or Nightclub </td>
+<td> Nightclubs </td>
+<td> amenity=nightclub </td>
+</tr>
+<tr>
+<td> Entertainment </td>
+<td> Movie Theater </td>
+<td> Cinemas </td>
+<td> amenity=cinema </td>
+</tr>
+<tr>
+<td> Entertainment </td>
+<td> Casino </td>
+<td> Casinos </td>
+<td> amenity=casino </td>
+</tr>
+</table>
+
+#### Recreation
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Golf Course</td>
+<td> Golf courses </td>
+<td> leisure=golf_course </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Skiing Center or Reso</td>
+<td> Skiing </td>
+<td> sport=skiing </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Bowling Center</td>
+<td> Skiing </td>
+<td> leisure=bowling_alley, sport=bowls, 10pin, 9pin </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Ice Skating</td>
+<td> Skiing </td>
+<td> leisure=ice_rink, sport=ice_skating </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Swimming Pool</td>
+<td> Swimming pools </td>
+<td> leisure=swimming_pool, sport=swimming </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Sports or Fitness Cen</td>
+<td> Leisure centres etc. </td>
+<td> leisure=sports_centre, amenity=leisure_centre, dojo, gym, sport=fitness_centre </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Public Sport Airport</td>
+<td> Gliding clubs and general aviation </td>
+<td> amenity=aerodrome, heliport without 'iata' tag and non-military </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Park or Garden</td>
+<td> Parks and gardens (named) </td>
+<td> landuse=grass, meadow, recreation_ground, greenfield, flowerbed, leisure=park, garden, playground, outdoor_seating, common, fishing, recreation_ground, showground </td>
+</tr>
+<tr>
+<td> Recreation </td>
+<td> Arena or Track</td>
+<td> Sports pitches tracks and stadia </td>
+<td> leisure=pitch, track, stadium, dog_park </td>
+</tr>
+</table>
+
+#### Attractions
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Other</td>
+<td> Nothing in this category </td>
+<td> n/a </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Amusement Park or T</td>
+<td> (see above) </td>
+<td> </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Museum or Historical</td>
+<td> Various historic features </td>
+<td> tourism=artwork, museum, historic=memorial, wayside_cross, archaeological_site, ruins, wayside_shrine, monument, building, castle, tomb, manor, mine, mine_shaft </td>
+<td> </td>
+</tr>
+</table>
+
+(more to follow)
+
+#### Auto Services
+
+#### Community
+
+#### Hospitals
+
+#### Geographic Points
+
+#### Others
+
+## Rights of way and hiking trails
+
+## Quality control information on roads, tracks and paths
+
+With very few exceptions, most POIs processed by this style will have more details in brackets.
+
+
+## Technical Details
+
+This page describes how OpenStreetMap features are shown on the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), visible [here](../mkgmap_maps/ajt03/).
 
 No .typ file is used.
 
@@ -10,8 +579,6 @@ Most map features are transferred in the same way as mkgmap's standard style.  T
 * Names used on more objects
 * Removal of some duplicates and "typing error mappings" from the style; these are now handled in lua.
 * Hiking routes are shown
-
-The created maps are routable.
 
 Extra information is added to a tag in round brackets, for example "(meadow)".
 
@@ -70,8 +637,6 @@ A selection of industrial tags have the "landuse=industrial" tag added.
 ### Places
 
 place=quarter is shown as place=neighbourhood
-
-natural=cape is shown as place=locality
 
 ### Single point objects
 
@@ -168,28 +733,6 @@ OSM shops and amenities are matched to items on the Garmin search menus, so for 
 
 Unnamed farm shops with particular produce are shown as farm "vending machines".
 
-### Food and Drink
-
-Garmin's menus here are very American (you can have "International", but you can't get a curry).  Fast food and "proper restaurants" are all lumped together.  I've tried to make the best use of the catagories as a can, which results in some odd mappings:
-
-* American: Burger fast food and restaurants.
-* Asian: Not much use on its own, as its a composite including "Chinese".
-* Barbeque: Chicken-based fast food.
-* Chinese: Chinese and other Asian fast food.
-* Deli and Bakery: Bakeries and sandwich shops.
-* International: Kebab-led fast food.
-* Fast Food: Pie- and pasty-led fast food.
-* Italian: Itelian and pizza restaturants.
-* Mexican: Indian, Pakistani and Bangladeshi etc. fast food.
-* Pizza: Pizza and itelian fast food.
-* Seafood: Fish and Chips fast food.
-* Steak or Grill: Steakhouses (restaurants).
-* Bagel or Donut: Ice cream-led fast food.
-* Cafe or Diner: Cafes.
-* French: Indian, Pakistani and Bangladeshi etc. restaurants.
-* German: Chinese and other Asian restaurants.
-* British: Pubs and bars.  See below.
-* Other: All other restaurants.
 
 ### Pubs and bars
 

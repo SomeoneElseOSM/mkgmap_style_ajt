@@ -2648,7 +2648,7 @@ function process_all( objtype, object )
 -- miltiary ones appear as generic tourist attractions.
 -- all go through "building_or_landuse" at the end.
 -- "0x2f04" is searchable via "Transportation / Air Transportation"
--- "0x2d0b" is searchable via "Recreation / public-sport-airport"
+-- "0x2d0b" is searchable via "Recreation / public sport airport"
 -- "0x2c04" is searchable via "Attractions / Landmark"
 --
 -- Heliports are similar to airports, except an icao code (present on many

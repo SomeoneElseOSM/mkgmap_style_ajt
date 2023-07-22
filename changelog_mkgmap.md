@@ -1,5 +1,5 @@
 # Changes made to this map style
-This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
+This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## 22/07/2023
 The map legend has been significantly updated - "what Garmin contains what common OSM tag" is now complete, as a complement to [taginfo](https://taginfo.openstreetmap.org/projects/someoneelse_mkgmap_ajt03#tags).

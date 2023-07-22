@@ -1,8 +1,8 @@
 # Changes made to this map style
 This page describes changes made to the "03" map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
-Significant legend updates (more to follow).
+## 22/07/2023
+The map legend has been significantly updated - "what Garmin contains what common OSM tag" is now complete, as a complement to [taginfo](https://taginfo.openstreetmap.org/projects/someoneelse_mkgmap_ajt03#tags).
 
 ## 19/07/2023
 When detecting megaliths and standing stones, use "archaeological_site" as well as "site_type".  See the forum [here](https://community.openstreetmap.org/t/implementation-of-new-tagging-scheme-of-archaeological-site/7850/69) for more details.

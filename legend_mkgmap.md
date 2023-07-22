@@ -32,6 +32,8 @@ To find out what Garmin menu an OSM feature has been mapped to, go, [here](https
 
 #### Food and Drink
 
+All the items here appear on-screen as a knife and fork on a blue square background.
+
 Garmin's menus here are very American (you can have "International", but you can't get a curry).  Fast food and "proper restaurants" are all lumped together.  I've tried to make the best use of the catagories as I can, which results in some odd mappings:
 
 <table border="1">
@@ -159,7 +161,7 @@ Garmin's menus here are very American (you can have "International", but you can
 
 #### Cities
 
-Most places are handled.
+Most OSM places (not just cities) appear here.  They are shown as a dot.  Rare places ("cape") are consolidated into e.g. "locality".
 
 <table border="1">
 <tr>
@@ -183,6 +185,7 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
@@ -190,29 +193,34 @@ Most places are handled.
 <td> All Categories </td>
 <td> Everything below </td>
 <td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>  </td>
 <td> Auto Rental </td>
 <td> Car Rental etc. </td>
+<td> Red car with a black key </td>
 <td> amenity=car_rental, van_rental </td>
 </tr>
 <tr>
 <td>  </td>
 <td> Air Transportation </td>
 <td> Public transportation airports </td>
+<td> Blue aircraft on a grey square</td>
 <td> aeroway=aerodrome, heliport with iata tag; terminal </td>
 </tr>
 <tr>
 <td>  </td>
 <td> Ground Transportation </td>
-<td> Railway stations, bus stations </td>
+<td> Railway stations, bus stations, rental bikes </td>
+<td> A large bus</td>
 <td> railway=station, amenity=bus_station, ferry_terminal, bicycle_rental </td>
 </tr>
 <tr>
 <td>  </td>
 <td> Transit Service </td>
 <td> Tram stops, bus stops </td>
+<td> Small dot </td>
 <td> railway=tram_stop, highway=bus_stop, amenity=taxi </td>
 </tr>
 </table>
@@ -224,6 +232,7 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
@@ -231,107 +240,125 @@ Most places are handled.
 <td> All Categories </td>
 <td> Everything below </td>
 <td> </td>
+<td> </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Department </td>
 <td> Department stores </td>
+<td> Brown shopping bag</td>
 <td> shop=department_store</td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Grocery </td>
 <td> Supermarkets </td>
+<td> Shopping trolley on brown square </td>
 <td> shop=supermarket</td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> General Merchandise </td>
 <td> Other shops taking a variety of goods </td>
+<td> Brown shopping bag </td>
 <td> shop=variety_store, outpost, general, catalogue</td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Shopping Center </td>
 <td> Various shop groups </td>
+<td> Shopping trolley on brown square </td>
 <td> amenity=marketplace, market, food_court</td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Pharmacy or Chemist </td>
 <td> Parmacies, chemists etc. </td>
+<td> RX on white square </td>
 <td> amenity=pharmacy, spa, healthcare=pharmacy, shop=beauty, chemist, cosmetics, leisure=spa </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Apparel </td>
 <td> Various clothes shops </td>
+<td> Brown shopping bag </td>
 <td> shop=clothes, shoes, etc.; craft=dressmaker, tailor </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> House and Garden </td>
 <td> Garden centres </td>
+<td> Small dot</td>
 <td> shop=garden_centre, plant_nursery, nursery, lawn_mower, etc. </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Home Furnishings </td>
 <td> DIY and hardware shops, also related trades. </td>
+<td> Small dot</td>
 <td> craft=plumber (and many others), shop=hardware, furniture, doityourself, homeware, etc. </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Specialty Retail </td>
 <td> Shops that don't fit other categories </td>
+<td> Small dot</td>
 <td> shop=hairdresser, butcher (and many, many others) </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Computer or Software </td>
 <td> Computer and mobile phone shops </td>
+<td> Small dot</td>
 <td> shop=mobile_phone, computer </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Convenience </td>
-<td> Shops that don't fit other categories </td>
+<td> Local convenience stores </td>
+<td> Small dot </td>
 <td> shop=convenience, kiosk, newsagent </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Florist </td>
 <td> Florists </td>
+<td> Small dot</td>
 <td> shop=florist </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Gift/Antiques/Art </td>
 <td> Various gift etc. shops </td>
+<td> Small dot </td>
 <td> shop=gift, art, antiques, craft, bag among others </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Record/CD/Video </td>
 <td> Record,CD,Video and Music shops </td>
+<td> Small dot </td>
 <td> shop=music, records </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Sporting Goods </td>
 <td> Various sport shops </td>
+<td> Small dot </td>
 <td> shop=sports, fishing, etc. </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Wine and Liquor </td>
 <td> Shops specialising in alcohol (but not wineries) </td>
+<td> Small dot</td>
 <td> shop=alcohol, wine etc. </td>
 </tr>
 <tr>
 <td> Shopping </td>
 <td> Book Store </td>
 <td> Book shops </td>
+<td> Small dot</td>
 <td> shop=books </td>
 </tr>
 </table>
@@ -344,12 +371,14 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
 <td> Fuel Services </td>
 <td> </td>
 <td> Fuel stations (petrol and diesel, and electric) </td>
+<td> Petrol pump </td>
 <td> amenity=fuel, amenity=charging_station </td>
 </tr>
 </table>
@@ -361,6 +390,7 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
@@ -368,35 +398,41 @@ Most places are handled.
 <td> All catgories</td>
 <td> Everything below </td>
 <td>  </td>
+<td>  </td>
 </tr>
 <tr>
 <td> Lodging </td>
 <td> Hotel or Motel</td>
 <td> Hotels </td>
+<td> White bed on green square </td>
 <td> tourism=hotel, motel </td>
 </tr>
 <tr>
 <td> Lodging </td>
 <td> Bed and Breakfast or</td>
 <td> Guest houses, tourist apartments, etc. </td>
+<td> White bed on green square </td>
 <td> tourism=guest_house, apartment, holiday_village </td>
 </tr>
 <tr>
 <td> Lodging </td>
 <td> Resort</td>
 <td> Holiday resorts </td>
+<td> Green tent </td>
 <td> tourism=resort, spa_resort </td>
 </tr>
 <tr>
 <td> Lodging </td>
 <td> Campground </td>
 <td> Camp sites, hostels, caravan sites </td>
+<td> Green tent </td>
 <td> tourism=camp_site, hostel, caravan_site </td>
 </tr>
 <tr>
 <td> Lodging </td>
 <td> Other </td>
 <td> Nothing in this category </td>
+<td> White bed on green square </td>
 <td> n/a </td>
 </tr>
 </table>
@@ -408,6 +444,7 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
@@ -415,29 +452,34 @@ Most places are handled.
 <td> All catgories</td>
 <td> Everything below </td>
 <td>  </td>
+<td>  </td>
 </tr>
 <tr>
 <td> Entertainment </td>
 <td> Live Theater</td>
 <td> Theatres, arts centres </td>
+<td> Comedy and tragedy masks </td>
 <td> amenity=theatre, arts_centre </td>
 </tr>
 <tr>
 <td> Entertainment </td>
 <td> Bar or Nightclub </td>
 <td> Nightclubs </td>
+<td> Beer mug </td>
 <td> amenity=nightclub </td>
 </tr>
 <tr>
 <td> Entertainment </td>
 <td> Movie Theater </td>
 <td> Cinemas </td>
+<td> Projector </td>
 <td> amenity=cinema </td>
 </tr>
 <tr>
 <td> Entertainment </td>
 <td> Casino </td>
 <td> Casinos </td>
+<td> Characteristic but unknown </td>
 <td> amenity=casino </td>
 </tr>
 </table>
@@ -449,6 +491,7 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
@@ -456,59 +499,76 @@ Most places are handled.
 <td> All catgories</td>
 <td> Everything below </td>
 <td>  </td>
+<td>  </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Golf Course</td>
 <td> Golf courses </td>
+<td> Golf flag </td>
 <td> leisure=golf_course </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Skiing Center or Reso</td>
 <td> Skiing </td>
+<td> White skier on blue square </td>
 <td> sport=skiing </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Bowling Center</td>
-<td> Skiing </td>
+<td> Bowling and bowls </td>
+<td> Ball and skittle </td>
 <td> leisure=bowling_alley, sport=bowls, 10pin, 9pin </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Ice Skating</td>
-<td> Skiing </td>
+<td> Ice skating </td>
+<td> Ice skate on blue square </td>
 <td> leisure=ice_rink, sport=ice_skating </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Swimming Pool</td>
 <td> Swimming pools </td>
+<td> Swimmer </td>
 <td> leisure=swimming_pool, sport=swimming </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Sports or Fitness Cen</td>
 <td> Leisure centres etc. </td>
+<td> Exercise bike on a green square </td>
 <td> leisure=sports_centre, amenity=leisure_centre, dojo, gym, sport=fitness_centre </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Public Sport Airport</td>
 <td> Gliding clubs and general aviation </td>
+<td> Blue aircraft on a grey square </td>
 <td> amenity=aerodrome, heliport without 'iata' tag and non-military </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Amusement Park or T</td>
+<td> Theme parks </td>
+<td> Rollercoaster </td>
+<td> tourism=theme_park </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Park or Garden</td>
 <td> Parks and gardens (named) </td>
+<td> Green tree </td>
 <td> landuse=grass, meadow, recreation_ground, greenfield, flowerbed, leisure=park, garden, playground, outdoor_seating, common, fishing, recreation_ground, showground </td>
 </tr>
 <tr>
 <td> Recreation </td>
 <td> Arena or Track</td>
 <td> Sports pitches tracks and stadia </td>
+<td> Baseball </td>
 <td> leisure=pitch, track, stadium, dog_park </td>
 </tr>
 </table>
@@ -520,6 +580,7 @@ Most places are handled.
 <td> **Garmin Menu** </td>
 <td> **Submenu** </td>
 <td> **Description** </td>
+<td> **Appears as** </td>
 <td> **Example OSM tags** </td>
 </tr>
 <tr>
@@ -527,46 +588,460 @@ Most places are handled.
 <td> All catgories</td>
 <td> Everything below </td>
 <td>  </td>
+<td>  </td>
 </tr>
 <tr>
 <td> Attractions </td>
 <td> Other</td>
 <td> Nothing in this category </td>
+<td> Green tree </td>
 <td> n/a </td>
 </tr>
 <tr>
 <td> Attractions </td>
 <td> Amusement Park or T</td>
-<td> (see above) </td>
-<td> </td>
+<td> Theme parks </td>
+<td> Rollercoaster </td>
+<td> tourism=theme_park </td>
 </tr>
 <tr>
 <td> Attractions </td>
 <td> Museum or Historical</td>
 <td> Various historic features </td>
-<td> tourism=artwork, museum, historic=memorial, wayside_cross, archaeological_site, ruins, wayside_shrine, monument, building, castle, tomb, manor, mine, mine_shaft </td>
+<td> tourism=museum, gallery, historic=memorial, wayside_cross, archaeological_site, ruins, wayside_shrine, monument, building, castle, tomb, manor, mine, mine_shaft </td>
+<td> Museum </td>
 <td> </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Landmark </td>
+<td> Artworks, tourist railway stations, miiitary airports </td>
+<td> Blue camera </td>
+<td> tourism=artwork, railway=station, aeroway=aerodrome </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Park or Garden</td>
+<td> Parks and gardens (named) </td>
+<td> Green tree </td>
+<td> landuse=grass, meadow, recreation_ground, greenfield, flowerbed, leisure=park, garden, playground, outdoor_seating, common, fishing, recreation_ground, showground </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Zoo or Aquarium </td>
+<td> Zoos and aquariums </td>
+<td> Elephant </td>
+<td> tourism=zoo, aquarium </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Arena or Track</td>
+<td> Sports pitches tracks and stadia </td>
+<td> Baseball </td>
+<td> leisure=pitch, track, stadium, dog_park </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Hall or Auditorium </td>
+<td> Events venues, conference centres, exhibition centres, concert halls </td>
+<td> Museum </td>
+<td> amenity=events_venue, conference_centre, exhibition_centre, concert_hall, theatre:type=concert_hall, theatre=concert_hall </td>
+</tr>
+<tr>
+<td> Attractions </td>
+<td> Winery </td>
+<td> Wineries </td>
+<td> Wine glass </td>
+<td> craft=winery </td>
 </tr>
 </table>
 
-(more to follow)
-
 #### Auto Services
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Appears as** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Auto Rental </td>
+<td> Car Rental etc. </td>
+<td> Red car with a black key </td>
+<td> amenity=car_rental, van_rental </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Auto Repair </td>
+<td> Car and other vehicle repair </td>
+<td> Car on jack </td>
+<td> shop=car_repair, motorcycle_repair, truck_repair etc. </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Dealer or Auto Parts </td>
+<td> Vehicle dealers and parts suppliers </td>
+<td> Red car </td>
+<td> shop=car, car_parts, tyres, motorcyele, agrarian (machinery etc.), caravan </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Parking </td>
+<td> Car parking </td>
+<td> Red P on white square </td>
+<td> amenity=parking </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Rest Area or Tourism I </td>
+<td> Toilets (shown with a suffix indicating pay or free, male or female etc.)</td>
+<td> Toilets on blue square </td>
+<td> amenity=toilets </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Automobile Club </td>
+<td> Car rental, car sharing </td>
+<td> Red car </td>
+<td> amenity=car_rental, car_sharing etc. </td>
+</tr>
+<tr>
+<td> Auto Services </td>
+<td> Car Wash </td>
+<td> Car wash </td>
+<td> Red car </td>
+<td> amenity=car_wash </td>
+</tr>
+</table>
 
 #### Community
 
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Appears as** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Library </td>
+<td> Libraries and book exchanges </td>
+<td> Book </td>
+<td> amenity=library, book_exchange, public_bookcase </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> School </td>
+<td> Schools and other educational institutions </td>
+<td> American school bus </td>
+<td> amenity=school, kindergarten, college, university </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Place of Worship </td>
+<td> Places of worship </td>
+<td> Dot </td>
+<td> amenity=place_of_worship </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Police Station </td>
+<td> Police Stations </td>
+<td> American police badge </td>
+<td> amenity=police </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> City Hall </td>
+<td> Nothing in this category </td>
+<td> Blue building with flag </td>
+<td> n/a </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Court House </td>
+<td> Courthouses </td>
+<td> Red building </td>
+<td> amenity=courthouse </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Community Center </td>
+<td> Various community and social facilities </td>
+<td> Red building </td>
+<td> amenity=community_centre, social_facility, childcare, nursing_home, public_bath etc. </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Border Crossing </td>
+<td> Border controls and customs areas </td>
+<td> Red no entry sign </td>
+<td> barrier=border_control, government=customs </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Government Office </td>
+<td> Various government and related offices </td>
+<td> Dot </td>
+<td> office=government, administrative, forestry, register_office </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Fire Department </td>
+<td> Fire station </td>
+<td> Dot </td>
+<td> amenity=fire_station </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Post Office </td>
+<td> Post boxes and post offices </td>
+<td> Blue letter with stamp </td>
+<td> amenity=post_box, post_office </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Bank or ATM </td>
+<td> Banks, ATMs and building societies, currency exchange </td>
+<td> Dollar bill </td>
+<td> amenity=bank, atm, bureau_de_change </td>
+</tr>
+<tr>
+<td> Community </td>
+<td> Utility </td>
+<td> Recycling bins and recycling centres </td>
+<td> Dot </td>
+<td> amenity=recycling </td>
+</tr>
+</table>
+
 #### Hospitals
+
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Appears as** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Hospitals </td>
+<td> </td>
+<td> Medical services </td>
+<td> Blue cross on white square </td>
+<td> amenity=hospital, clinic, doctors, dentist etc. </td>
+</tr>
+</table>
 
 #### Geographic Points
 
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Appears as** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Geographic Points </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Geographic Points </td>
+<td> Manmade Places </td>
+<td> Various things that don't fit into other categories </td>
+<td> Dot </td>
+<td> natural=wood, man_made=tower, water_tower, chimney, telephone_box, amenity=grave_yard, tourism=picnic_site and more </td>
+</tr>
+<tr>
+<td> Geographic Points </td>
+<td> Water Features </td>
+<td> Various point water features (area may also be shown) </td>
+<td> Dot </td>
+<td> natural=water, drinking_water, leisure=marina, man_made=water_well, waterway=sluice_gate etc. </td>
+</tr>
+<tr>
+<td> Geographic Points </td>
+<td> Land Features </td>
+<td> Various land point features (area may also be shown) </td>
+<td> Dot </td>
+<td> natural=tree, natural=peak, natural=bare_rock, landuse=cemetery </td>
+</tr>
+</table>
+
 #### Others
 
-## Rights of way and hiking trails
+<table border="1">
+<tr>
+<td> **Garmin Menu** </td>
+<td> **Submenu** </td>
+<td> **Description** </td>
+<td> **Appears as** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> All catgories</td>
+<td> Everything below </td>
+<td>  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Marine Services </td>
+<td> Boat sales and services </td>
+<td> Anchor </td>
+<td> shop=boat, craft=boatbuilder </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Garmin Dealer </td>
+<td> Various sorts of gates </td>
+<td> G </td>
+<td> barrier=gate, lift_gate, swing_gate, kissing_gate etc. </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Personal Service </td>
+<td> Benches and shelters </td>
+<td> Dot </td>
+<td> amenity=bench, shelter </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Communications </td>
+<td> Emergency phones </td>
+<td> Dot </td>
+<td> emergency=phone  </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Repair Service </td>
+<td> Bicycle shops and services </td>
+<td> Dot </td>
+<td> shop=bicycle, bicycle_repair </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Social Service </td>
+<td> Point features that don't fit into categories </td>
+<td> Dot </td>
+<td> highway=street_lamp, ford=yes, barrier=bollard, block, amenity=bicycle_parking, parcel_locker, clock, information=guidepost, board, map, route_marker, office, etc., man_made=monitoring_station, historic:railway=station and more </td>
+</tr>
+<tr>
+<td> Others </td>
+<td> Other </td>
+<td> Nothing in this category </td>
+<td> Dot </td>
+<td> n/a </td>
+</tr>
+</table>
+
+#### Items not on menus
+
+Lots of things are shown on screen but don't aren't searchable.  To find out what Garmin menu an OSM feature has been mapped to, see [here](https://taginfo.openstreetmap.org/projects/someoneelse_mkgmap_ajt03#tags) and look for "not searchable".  See below for more detail.
+
+## Rights of way, hiking trails, etc.
+
+### Designations
+
+Many designations are appended in brackets to paths, tracks and roads.
+
+<table border="1">
+<tr>
+<td> **Description** </td>
+<td> **Appended** </td>
+<td> **Example OSM tags** </td>
+</tr>
+<tr>
+<td> Public footpaths </td>
+<td> PF </td>
+<td> designation=public_footpath </td>
+</tr>
+<tr>
+<td> Core paths (Scotland) </td>
+<td> CP </td>
+<td> designation=core_path </td>
+</tr>
+<tr>
+<td> Public bridleways </td>
+<td> PB </td>
+<td> designation=public_bridleway </td>
+</tr>
+<tr>
+<td> Restricted byways </td>
+<td> RB </td>
+<td> designation=restricted_bridleway </td>
+</tr>
+<tr>
+<td> Byways open to all traffic </td>
+<td> BY </td>
+<td> designation=byway_open_to_all_traffic </td>
+</tr>
+<tr>
+<td> Unclassified highways etc. </td>
+<td> UH </td>
+<td> designation=unclassified_highway </td>
+</tr>
+<tr>
+<td> Quiet lanes </td>
+<td> QL </td>
+<td> designation=quiet_lane </td>
+</tr>
+</table>
+
+### Long distance hiking routes
+
+Hiking route relation names are added in brackets after the names (if any) of paths, tracks and roads.
+
+### Informal
+
+Informal paths have "(I)" appended.
 
 ## Quality control information on roads, tracks and paths
 
-With very few exceptions, most POIs processed by this style will have more details in brackets.
+Objects with a fixme tag have "[fix]" appended to the name.
 
+Roads have various letters appended:
+
+* M  No speed limit defined where one would be expected.
+* L  Not known if lit
+* S  Not known if sidewalk
+* V  No sidewalk, but not known if sidewalk
+
+"[RD]" is appended to any "highway=road".
+
+"[A]" is appended to footways etc. if no "foot" tag and one is expected.
+
+Paths and tracks have various things appended for other missing tags:
+
+* U  No surface tag
+* O  No smoothness tag
+* G  No tracktype tag
 
 ## Technical Details
 
@@ -584,22 +1059,9 @@ Extra information is added to a tag in round brackets, for example "(meadow)".
 
 Tags useful for quality control are added to a tag in square brackets, for example "[fix]".
 
-## Processing for specific objects
+### Other highway processing
 
-### Roads and Paths
-
-Various designations are appended.  In England and Wales:
-
-* PF  Public Footpath
-* PB  Bridleways
-* RB  Restricted Byway
-* BY  Byway Open to All Traffic
-
-In Scotland:
-
-* CP  Core paths
-
-Informal paths have "(I)" appended.
+#### Roads and Paths
 
 Some corridors are shown as paths.
 
@@ -614,17 +1076,17 @@ Narrow tracks are shown as paths.
 
 Narrow tertiary roads are shown as unclassified.
 
-Show highway=busway as highway=service.
+"highway=busway" is shown as "highway=service".
 
-Roads with different names on left and right are shown correctly.
+Roads with different names on left and right are shown with both names.
 
-Don't show names on things that could be reasonably be thought to be sidewalks.
+Names are suppressed on things that could be reasonably be thought to be sidewalks.
 
 Unusual access tags such as "access:foot" are used if no more usual equivalent (here "foot") is available.
 
-Negative access tags (private / no) are consolidated to make value checks simpler.
+These maps are designed for foot access, so use tags such as "foot" are used for "is this private" etc. tests in place of "access".
 
-These maps are designed for foot access, so use tags such as "foot" in place of "access".
+## Other processing for specific objects
 
 ### Infrastructure and industrial landuse
 
@@ -634,31 +1096,6 @@ Electricity substations have "(el. sub.)" appended.
 
 A selection of industrial tags have the "landuse=industrial" tag added.
 
-### Places
-
-place=quarter is shown as place=neighbourhood
-
-### Single point objects
-
-Various milestones etc. are consolidated into "man_made=marker" and "(milestone)" is appended to the name.
-Various pipeline markers are consolidated into "man_made=marker" and "(pipeline marker)" is appended to the name.
-Various boundary stones are consolidated into "man_made=marker" and any inscription and "(boundary stone)" are appended to the name.
-Various other stones are consolidated into "man_made=marker" and any inscription and "(ogham stone)", "(historic stone)" or "(historic stone)" are appended to the name.
-Mass rocks are consolidated into "man_made=marker" and "(mass rock)" is appended to the name.
-Clocks (tower, pedestal and sundial) are shown as a dot with an appropriate suffix.
-Left luggage, parcel lockers and vending machines are all shown as a dot with an appropriate suffix.
-Pianos and musical instruments are shown with a suffix.
-Motorcycle and bicycle parking are shown, with a suffix if for pay.  
-Laybies are shown as parking.
-Toilets are shown with a suffix indicating pay or free, male or female etc.
-"historic=monument" are shown with a suffix of "(monument)"; and other historic things, with an appropriate suffix..  Similarly "tourism=attraction", "tourism=artwork", "amenity=arts_centre", information offices, audioguides.
-Historic mines are shown as ruins.  Also show non-historic mines are shown.
-Plaques and cairns, chimneys, and hogweed are all shown.
-Various points that have references (e.g. trig points) have that "ref" shown.
-Wind turbines and wind pumps, vent shafts and horse mounting blocks are all shown with an appropriate suffix.
-B&Bs and self catering etc. are shown.
-If we've named a node, and it has no other useful tag, it'll appear as a named point (actually searchable via "Others / Social Service").
-
 ### Former telephone boxes
 
 The current use is appended to the name, for example "(fmr phone defib)".
@@ -667,16 +1104,11 @@ The current use is appended to the name, for example "(fmr phone defib)".
 
 End-user diplomatic things are consolidated into "amenity=embassy".  Others (e.g. "diplomatic=trade_delegation") are shown as offices.
 
-### Wells
-
-Holy wells are shown as springs and have "(holy well)" appended to the name
-Ordinary wells are shown as springs and have "(well)" appended to the name
-
 ### Grass etc. landuse
 
 Unnamed "amenity=biergarten" are shown as pub beer gardens, which is all they likely are.
 
-Unlike the web maps, "landuse=farmland" is not explicitly shown, and neither is the "landuse=farmgrass" computer tag (from agricultural pasture and agricultural meadows).  Meadows that would count as "farmgrass" have their landuse tag removed.
+Unlike the web maps on this site, "landuse=farmland" is not explicitly shown, and neither is the "landuse=farmgrass" computed tag (from agricultural pasture and agricultural meadows).  Meadows that would count as "farmgrass" have their landuse tag removed.
 
 Many "green" features are shown as "leisure=park" wirh the type (e.g. "(common)") appended to the name.  
 This includes:
@@ -723,24 +1155,23 @@ NCN route markers are shown with "NCN", the marker type and the sustrans referen
 
 ### Trees
 
-"forestry" is handled as "forest".  Various tags are consolidated into "wood".  "operator" is appended to the name, if present.
+"landuse=forestry" is handled as "landuse=forest".  Various tags are consolidated into "natural=wood".  "operator" is appended to the name, if present.
 
-Broadleaved woodland has "B" appended; needleleaved has "C" and mixed "M".
+Broadleaved woodland has "B" appended in brackets; needleleaved has "C" and mixed "M".  "()" can be used as a QA tool to show that leaf_type has not been mapped yet.
 
 ### Shops and Amenities
 
-OSM shops and amenities are matched to items on the Garmin search menus, so for example "Shopping / General" shows general stores and also catalogue shops.  "Shopping / Apparel" shows all clothes shops, add also shoes etc.  Suffixes are added to show what the original OSM tag was (e.g. "(Clothes)", "(Shoes)" with "Apparel").
+See above for details of where these appear on the search menus.
 
 Unnamed farm shops with particular produce are shown as farm "vending machines".
 
 
-### Pubs and bars
+### Pubs and bars etc.
 
 Pubs that are inaccessible (e.g. "access=no") are hidden.
 Things that are both hotels and pubs are treated as pubs that do accommodation.
 Some other things that serve real ale are treated as pubs, unless another tag is more relevant (e.g. brewery).  Other tags (e.g. "food=yes", for restaurants) are also added.
-Pub beer gardens are handled as beer gardens (see grass landuse elsewhere).
-Various disused and former pubs are shown as social clubs (Garmin symbol "0x4f00").
+Pub beer gardens are handled as beer gardens (see "Grass etc. landuse" elsewhere).
 
 All open pubs and bars have a suffix added, that contains:
 
@@ -753,66 +1184,32 @@ All open pubs and bars have a suffix added, that contains:
 * A if they have accommodation
 * G if there is a beer garden
 * O if there is outside seating
+* WY if they are wheelchair accessible
+* WL if they have limited wheelchair access
+* WN if they have no wheelchair access
 
 Pubs that are allegedly still "closed due to covid" have an appropriate suffix added to the name.
 
-Restaurants have "(rest)" added as a suffix, or "(rest accomm)" if they have rooms.
-
-### Transportation
-
-On the Garmin menus, "Transportation / Air Transportation" only includes "proper airports" (i.e. not gliding clubs and not military facilities).
-
-"Transportation / Ground Transportation" includes regular bus and train stations, but not e.g. a station on a park miniature railway.  A suffix is added to show which is which.
-
-"Transportation / Transit Service" includes bus stops, taxi stands etc.
+Restaurants have "(restaurant)" added as a suffix, and also "(accomm)" if they have rooms.
 
 ### Railways
 
 Razed railways and old inclined_planes are shown as dismantled.
 Miniature railways (not handled in the style file) are shown as narrow_gauge.
-Render historic railway stations.
 
 ### Healthcare
 
-An appropriate suffix is added for doctors, dentists, hospitals and clinics.
 Vaccination centres are shown as clinics if no other tag applies.
-Pharmacies and chemists have a suffix added.
 
 ### Water features
 
-Point water features (waterfalls, lock gates) are displayed with a name.
-Sluice gates, weirs, floating barriers and derelict canals are all shown with names.
 Intermittent waterways, water and wetlands have "(int)" appended to the name.
-Display "waterway=leat" and "waterway=spillway" etc. as drain.
-Display "location=underground" waterways as tunnels.
-Show waterway lock references.
-Show Water monitoring stations etc.
-Show various sorts of rarer water as "natural=water".
+"waterway=leat" and "waterway=spillway" etc. are shown as drains.
+"location=underground" waterways are shown as tunnels.
+Lock references on waterways are shown.
+Various rarer sorts of water are shown as "natural=water".
 
 ### Other
 
-Libraries and public bookcases are shown as libraries with an appropriate suffix to the name.
-amenity=leisure_centre is shown as leisure=sports_centre.
-Display various man_made items as buildings, with a suffix saying what each one is.
-
-## Quality Control
-
-Objects with a fixme tag have "[fix]" appended to the name.
-
-Roads have various letters appended:
-
-* M  No speed limit defined where one would be expected.
-* L  Not known if lit
-* S  Not known if sidewalk
-* V  No sidewalk, but not known if sidewalk
-
-"[RD]" is appended to any "highway=road".
-
-"[A]" is appended to footways etc. if no "foot" tag and one is expected.
-
-Paths and tracks have various things appended for other missing tags:
-
-* U  No surface tag
-* O  No smoothness tag
-* G  No tracktype tag
+Various man_made edifices are hown as buildings, with a suffix saying what each one is.
 

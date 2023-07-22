@@ -190,7 +190,7 @@ function process_all( objtype, object )
 -- Both are in "points" as "0x6618" and in polygons as "0x50"
 -- On landuse=forest, append main tag and operator (if set)
 -- On natural=wood, append B, C, M or just "()", based on leaf_type.
--- "0x6618" is searchable via "Geographic Points / Man Made"
+-- "0x6618" is searchable via "Geographic Points / Manmade Places"
 -- A mid-green colour is used in QMapShack.
 -- A "woodland" land cover appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
@@ -540,7 +540,7 @@ function process_all( objtype, object )
 --
 -- amenity=telephone
 -- In "points" as "0x5100"
--- "0x5100" is searchable via "Geographic Points / Man Made",
+-- "0x5100" is searchable via "Geographic Points / Manmade Places",
 -- No icon appears in QMapShack
 -- A "telephone" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
@@ -1107,7 +1107,7 @@ function process_all( objtype, object )
 -- amenity=grave_yard
 -- landuse=cemetery
 -- Both are in "points" as "0x6403" 
--- "0x6403" is searchable via "Geographic Points / Man Made",
+-- "0x6403" is searchable via "Geographic Points / Manmade Places",
 -- A gravestone icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "grave_yard" ) then
@@ -3060,8 +3060,8 @@ function process_all( objtype, object )
 -- Render for-pay toilets differently to free ones, and if male vs female is
 -- known, show that too.
 -- 0x2f0c is searchable via "Auto Services / Rest Area or Tourist I"
--- An alterntive, 0x4e00 is searchable via "Geographic Points / Man Made",
--- but lots of other things also appear in there.
+-- An alternative, 0x4e00 is searchable via "Geographic Points / Manmade Places",
+-- but lots of other things also appear in there too, so this is used instead.
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "toilets" ) then
       if (( object.tags["fee"]     ~= nil       )  and
@@ -3763,6 +3763,11 @@ function process_all( objtype, object )
       object = append_nonqa( object, "gallery" )
    end
 
+-- ----------------------------------------------------------------------------
+-- tourism=artwork is in "points" as "0x2c04"
+-- "0x2c02" is searchable via "Attractions / Landmark"
+-- A "camera" icon appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
    if ( object.tags["tourism"] == "artwork" ) then
       object = append_nonqa( object, "artwork" )
    end
@@ -4793,7 +4798,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- landuse=military, and other military things
 -- landuse=military is in "points" as "0x640b" and in polygons as "0x04"
--- "0x640b" is searchable via "Geographic Points / Man Made" 
+-- "0x640b" is searchable via "Geographic Points / Manmade Places" 
 -- A unique "tank" icon appears on a GPSMAP64s.  Landuse appears as dark grey.
 --
 -- If a "landuse=military" tag already exists, add a suffix for it.

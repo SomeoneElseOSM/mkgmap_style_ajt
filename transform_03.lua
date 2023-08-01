@@ -7275,7 +7275,6 @@ function process_all( objtype, object )
        (  object.tags["shop"]    == "license_plates"               )  or
        (  object.tags["shop"]    == "car_audio"                    )  or
        (  object.tags["shop"]    == "motor"                        )  or
-       (  object.tags["shop"]    == "motoring"                     )  or
        (  object.tags["shop"]    == "motor_spares"                 )  or
        (  object.tags["shop"]    == "motor_accessories"            )  or
        (  object.tags["shop"]    == "car_parts;car_repair"         )  or

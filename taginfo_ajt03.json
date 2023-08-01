@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20230622T132200Z",
+  "data_updated": "20230801T085100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2067,7 +2067,6 @@
     { "key": "shop", "value": "motorcycle_rental", "description": "shown in brackets; 'Auto Services / Auto Rental'" },
     { "key": "shop", "value": "motorcycle_repair", "description": "Shown in brackets; 'Auto Services / Auto Repair'" },
     { "key": "shop", "value": "motorhome", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
-    { "key": "shop", "value": "motoring", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "music", "description": "shown in brackets; 'Shopping / Record/CD/Video'" },
     { "key": "shop", "value": "music;video", "description": "shown in brackets; 'Shopping / Record/CD/Video'" },
     { "key": "shop", "value": "musical_instrument", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

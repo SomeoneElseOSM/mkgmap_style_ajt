@@ -8380,25 +8380,56 @@ function ott.process_way( object )
 -- unless there isn't foot=yes/designated to say you can, or there is an 
 -- explicit foot=no".
 -- ----------------------------------------------------------------------------
-   if (((   object.tags["access"]      == "no"                          )  or
-        (   object.tags["access"]      == "destination"                 )) and
-       (((( object.tags["designation"] == "public_footpath"           )    or
-          ( object.tags["designation"] == "public_bridleway"          )    or
-          ( object.tags["designation"] == "restricted_byway"          )    or
-          ( object.tags["designation"] == "byway_open_to_all_traffic" )    or
-          ( object.tags["designation"] == "unclassified_county_road"  )    or
-          ( object.tags["designation"] == "unclassified_country_road" )    or
-          ( object.tags["designation"] == "unclassified_highway"      ))   and
-         (  object.tags["foot"]        ~= nil                          )   and
-         (  object.tags["foot"]        ~= "no"                         ))  or
-        ((( object.tags["highway"]     == "footway"                   )    or
-          ( object.tags["highway"]     == "bridleway"                 )    or
-          ( object.tags["highway"]     == "cycleway"                  )    or
-          ( object.tags["highway"]     == "path"                      )    or
-          ( object.tags["highway"]     == "track"                     )    or
-          ( object.tags["highway"]     == "service"                   ))   and
-         (( object.tags["foot"]        == "permissive"                )    or
-          ( object.tags["foot"]        == "yes"                       ))))) then
+   if (((   object.tags["access"]      == "no"                                               )  or
+        (   object.tags["access"]      == "destination"                                      )) and
+       (((( object.tags["designation"] == "public_footpath"                                )    or
+          ( object.tags["designation"] == "core_path"                                      )    or
+          ( object.tags["designation"] == "public_footway"                                 )    or
+          ( object.tags["designation"] == "public_footpath;permissive_bridleway"           )    or
+          ( object.tags["designation"] == "public_footpath;public_cycleway"                )    or
+          ( object.tags["designation"] == "PROW"                                           )    or
+          ( object.tags["designation"] == "access_land"                                    )    or
+          ( object.tags["designation"] == "public_bridleway"                               )    or
+          ( object.tags["designation"] == "public_bridleway;public_cycleway"               )    or
+          ( object.tags["designation"] == "public_bridleway;public_footpath"               )    or
+          ( object.tags["designation"] == "public_cycleway;public_bridleway"               )    or
+          ( object.tags["designation"] == "bridleway"                                      )    or
+          ( object.tags["designation"] == "restricted_byway"                               )    or
+          ( object.tags["designation"] == "public_right_of_way"                            )    or
+          ( object.tags["designation"] == "unknown_byway"                                  )    or
+          ( object.tags["designation"] == "public_way"                                     )    or
+          ( object.tags["designation"] == "orpa"                                           )    or
+          ( object.tags["designation"] == "byway_open_to_all_traffic"                      )    or
+          ( object.tags["designation"] == "public_byway"                                   )    or
+          ( object.tags["designation"] == "byway"                                          )    or
+          ( object.tags["designation"] == "carriageway"                                    )    or
+          ( object.tags["designation"] == "unclassified_county_road"                       )    or
+          ( object.tags["designation"] == "unclassified_country_road"                      )    or
+          ( object.tags["designation"] == "unclassified_highway"                           )    or
+          ( object.tags["designation"] == "unclassified_road"                              )    or
+          ( object.tags["designation"] == "unmade_road"                                    )    or
+          ( object.tags["designation"] == "adopted"                                        )    or
+          ( object.tags["designation"] == "adopted_highway"                                )    or
+          ( object.tags["designation"] == "adopted_highway;public_footpath"                )    or
+          ( object.tags["designation"] == "public_highway"                                 )    or
+          ( object.tags["designation"] == "unclassified_highway;public_footpath"           )    or
+          ( object.tags["designation"] == "unclassified_highway;public_bridleway"          )    or
+          ( object.tags["designation"] == "unclassified_highway;restricted_byway"          )    or
+          ( object.tags["designation"] == "unclassified_highway;byway_open_to_all_traffic" )    or
+          ( object.tags["designation"] == "tertiary_highway"                               )    or
+          ( object.tags["designation"] == "tertiary_highway;public_bridleway"              )    or
+          ( object.tags["designation"] == "tertiary_highway;restricted_byway"              )    or
+          ( object.tags["designation"] == "public_road"                                    ))   and
+         (  object.tags["foot"]        ~= nil                                               )   and
+         (  object.tags["foot"]        ~= "no"                                              ))  or
+        ((( object.tags["highway"]     == "footway"                                        )    or
+          ( object.tags["highway"]     == "bridleway"                                      )    or
+          ( object.tags["highway"]     == "cycleway"                                       )    or
+          ( object.tags["highway"]     == "path"                                           )    or
+          ( object.tags["highway"]     == "track"                                          )    or
+          ( object.tags["highway"]     == "service"                                        ))   and
+         (( object.tags["foot"]        == "permissive"                                     )    or
+          ( object.tags["foot"]        == "yes"                                            ))))) then
       object.tags["access"]  = nil
    end
 
@@ -8462,34 +8493,65 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
    designation_appendix = ""
 
-   if (( object.tags["designation"] == "public_footpath"  ) or
-       ( object.tags["designation"] == "footpath"         )) then
+   if (( object.tags["designation"] == "public_footpath"                      ) or
+       ( object.tags["designation"] == "footpath"                             ) or
+       ( object.tags["designation"] == "public_footpath;permissive_bridleway" ) or
+       ( object.tags["designation"] == "public_footpath;public_cycleway"      ) or
+       ( object.tags["designation"] == "PROW"                                 ) or
+       ( object.tags["designation"] == "public_footway"                       )) then
       designation_appendix = "PF"
+   end
+
+   if ( object.tags["designation"] == "access_land"  ) then
+      designation_appendix = "AL"
    end
 
    if ( object.tags["designation"] == "core_path"  ) then
       designation_appendix = "CP"
    end
 
-   if (( object.tags["designation"] == "public_bridleway" ) or
-       ( object.tags["designation"] == "bridleway"        )) then
+   if (( object.tags["designation"] == "public_bridleway"                 ) or
+       ( object.tags["designation"] == "public_bridleway;public_cycleway" ) or
+       ( object.tags["designation"] == "public_bridleway;public_footpath" ) or
+       ( object.tags["designation"] == "public_cycleway;public_bridleway" ) or
+       ( object.tags["designation"] == "bridleway"                        )) then
       designation_appendix = "PB"
    end
 
    if (( object.tags["designation"] == "restricted_byway"    ) or
+       ( object.tags["designation"] == "unknown_byway"       ) or
+       ( object.tags["designation"] == "public_way"          ) or
        ( object.tags["designation"] == "public_right_of_way" )) then
       designation_appendix = "RB"
    end
 
+   if ( object.tags["designation"] == "orpa" ) then
+      designation_appendix = "ORPA"
+   end
+
    if (( object.tags["designation"] == "byway_open_to_all_traffic"  ) or
        ( object.tags["designation"] == "public_byway"               ) or
-       ( object.tags["designation"] == "byway"                      )) then
+       ( object.tags["designation"] == "byway"                      ) or
+       ( object.tags["designation"] == "carriageway"                )) then
       designation_appendix = "BY"
    end
 
-   if (( object.tags["designation"] == "unclassified_country_road"  ) or
-       ( object.tags["designation"] == "unclassified_county_road"   ) or
-       ( object.tags["designation"] == "unclassified_highway"       )) then
+   if (( object.tags["designation"] == "unclassified_country_road"                      ) or
+       ( object.tags["designation"] == "unclassified_county_road"                       ) or
+       ( object.tags["designation"] == "unclassified_highway"                           ) or
+       ( object.tags["designation"] == "unclassified_road"                              ) or
+       ( object.tags["designation"] == "unmade_road"                                    ) or
+       ( object.tags["designation"] == "public_highway"                                 ) or
+       ( object.tags["designation"] == "unclassified_highway;public_fotpath"            ) or
+       ( object.tags["designation"] == "unclassified_highway;public_bridleway"          ) or
+       ( object.tags["designation"] == "unclassified_highway;byway_open_to_all_traffic" ) or
+       ( object.tags["designation"] == "tertiary_highway"                               ) or
+       ( object.tags["designation"] == "tertiary_highway;public_bridleway"              ) or
+       ( object.tags["designation"] == "tertiary_highway;restricted_byway"              ) or
+       ( object.tags["designation"] == "public_road"                                    ) or
+       ( object.tags["designation"] == "adopted"                                        ) or
+       ( object.tags["designation"] == "adopted_highway"                                ) or
+       ( object.tags["designation"] == "adopted_highway;public_footpath"                )) then
       designation_appendix = "UH"
    end
 

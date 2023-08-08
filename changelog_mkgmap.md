@@ -4,6 +4,8 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Append information to name from "community_centre", "community_centre:for", "social_centre", "social_centre:for", "social_facility", "social_facility:for", "club".
 Treat "carriageway" as "byway", and added more commonly used synonyms for designations, including with semicolons.
+Changed category of "audio_video" and "video" shops to "Shopping / Record/CD/Video".
+Changed category of "video_games" to "Shopping / Computer or Software".
 
 ## 03/08/2023
 Remove support for shop-motoring - it was actually a very old mistagging.

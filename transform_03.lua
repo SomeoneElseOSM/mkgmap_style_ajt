@@ -5434,8 +5434,6 @@ function process_all( objtype, object )
    if (( object.tags["shop"]   == "toys"           ) or
        ( object.tags["shop"]   == "model"          ) or
        ( object.tags["shop"]   == "games"          ) or
-       ( object.tags["shop"]   == "computer_games" ) or
-       ( object.tags["shop"]   == "video_games"    ) or
        ( object.tags["shop"]   == "hobby"          ) or
        ( object.tags["shop"]   == "fancy_dress"    )) then
       object = append_nonqa( object, object.tags["shop"] )
@@ -5829,8 +5827,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "cleaning"                 ) or
        ( object.tags["shop"]    == "collector"                ) or
        ( object.tags["shop"]    == "coins"                    ) or
-       ( object.tags["shop"]    == "video"                    ) or
-       ( object.tags["shop"]    == "audio_video"              ) or
        ( object.tags["shop"]    == "erotic"                   ) or
        ( object.tags["shop"]    == "service"                  ) or
        ( object.tags["shop"]    == "tobacco"                  ) or
@@ -6774,6 +6770,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]  == "computer"        ) or
        ( object.tags["shop"]  == "computer_games"  ) or
+       ( object.tags["shop"]  == "video_games"     ) or
        ( object.tags["shop"]  == "computer_repair" ) or
        ( object.tags["shop"]  == "mobile_phone"    ) or
        ( object.tags["shop"]  == "phone"           ) or
@@ -6839,7 +6836,9 @@ function process_all( objtype, object )
    if (( object.tags["shop"]   == "music"               ) or
        ( object.tags["shop"]   == "music;video"         ) or
        ( object.tags["shop"]   == "records"             ) or
-       ( object.tags["shop"]   == "record"              )) then
+       ( object.tags["shop"]   == "record"              ) or
+       ( object.tags["shop"]   == "audio_video"         ) or
+       ( object.tags["shop"]   == "video"               )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "music"
       object = building_or_landuse( objtype, object )

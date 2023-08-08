@@ -701,6 +701,35 @@ function process_all( objtype, object )
        ( object.tags["amenity"]  == "hospice"           ) or
        ( object.tags["amenity"]  == "daycare"           )) then
       object = append_nonqa( object, object.tags["amenity"] )
+
+      if ( object.tags["community_centre"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["community_centre"] )
+      end
+
+      if ( object.tags["community_centre:for"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["community_centre:for"] )
+      end
+
+      if ( object.tags["social_centre"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["social_centre"] )
+      end
+
+      if ( object.tags["social_centre:for"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["social_centre:for"] )
+      end
+
+      if ( object.tags["social_facility"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["social_facility"] )
+      end
+
+      if ( object.tags["social_facility:for"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["social_facility:for"] )
+      end
+
+      if ( object.tags["club"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["club"] )
+      end
+
       object.tags["amenity"] = "community_centre"
       object = building_or_landuse( objtype, object )
    end

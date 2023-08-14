@@ -7,6 +7,7 @@ Treat "carriageway" as "byway", and added more commonly used synonyms for design
 Changed category of "audio_video" and "video" shops to "Shopping / Record/CD/Video".
 Changed category of "video_games" to "Shopping / Computer or Software".
 Made non-government (commercial) offices searchable as 'Shopping / Speciality retail'.
+Made non-government (commercial) office-like amenities searchable as 'Shopping / Speciality retail'.
 
 ## 03/08/2023
 Remove support for shop-motoring - it was actually a very old mistagging.

@@ -7447,28 +7447,29 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Other non-government (mostly commercial) office-like places.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"]     == "post_depot"              ) or
+   if (( object.tags["amenity"]     == "accountants"             ) or
+       ( object.tags["amenity"]     == "convent"                 ) or
+       ( object.tags["amenity"]     == "cooking_school"          ) or
+       ( object.tags["amenity"]     == "coworking_space"         ) or
+       ( object.tags["amenity"]     == "delivery_office"         ) or
        ( object.tags["amenity"]     == "lawyer"                  ) or
+       ( object.tags["amenity"]     == "monastery"               ) or
+       ( object.tags["amenity"]     == "music_school"            ) or
+       ( object.tags["amenity"]     == "post_depot"              ) or
        ( object.tags["amenity"]     == "solicitor"               ) or
        ( object.tags["amenity"]     == "solicitors"              ) or
-       ( object.tags["amenity"]     == "accountants"             ) or
-       ( object.tags["amenity"]     == "tax_advisor"             ) or
-       ( object.tags["amenity"]     == "delivery_office"         ) or
        ( object.tags["amenity"]     == "sorting_office"          ) or
-       ( object.tags["amenity"]     == "coworking_space"         ) or
        ( object.tags["amenity"]     == "studio"                  ) or
-       ( object.tags["amenity"]     == "monastery"               ) or
-       ( object.tags["amenity"]     == "convent"                 ) or
-       ( object.tags["amenity"]     == "music_school"            ) or
-       ( object.tags["amenity"]     == "cooking_school"          )) then
+       ( object.tags["amenity"]     == "tax_advisor"             )) then
       object = append_nonqa( object, "amenity" )
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = nil
       object.tags["craft"] = nil
       object.tags["office"] = nil
-      object.tags["shop"] = nil
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
    end
 

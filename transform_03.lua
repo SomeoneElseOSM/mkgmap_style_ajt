@@ -7393,54 +7393,55 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Non-government (commercial) offices that you might visit for a service.
 -- "communication" below seems to be used for marketing / commercial PR.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["office"]      == "it"                      ) or
+   if (( object.tags["office"]      == "accountant"              ) or
+       ( object.tags["office"]      == "accountants"             ) or
+       ( object.tags["office"]      == "advertising"             ) or
+       ( object.tags["office"]      == "architect"               ) or
+       ( object.tags["office"]      == "builder"                 ) or
+       ( object.tags["office"]      == "charity"                 ) or
+       ( object.tags["office"]      == "communication"           ) or
        ( object.tags["office"]      == "computer"                ) or
        ( object.tags["office"]      == "consulting"              ) or
        ( object.tags["office"]      == "courier"                 ) or
-       ( object.tags["office"]      == "advertising"             ) or
-       ( object.tags["office"]      == "lawyer"                  ) or
-       ( object.tags["office"]      == "solicitor"               ) or
-       ( object.tags["office"]      == "solicitors"              ) or
-       ( object.tags["office"]      == "accountant"              ) or
-       ( object.tags["office"]      == "accountants"             ) or
-       ( object.tags["office"]      == "tax_advisor"             ) or
-       ( object.tags["office"]      == "employment_agency"       ) or
-       ( object.tags["office"]      == "home_care"               ) or
-       ( object.tags["office"]      == "recruitment_agency"      ) or
-       ( object.tags["office"]      == "recruitment"             ) or
-       ( object.tags["office"]      == "insurance"               ) or
-       ( object.tags["office"]      == "architect"               ) or
-       ( object.tags["office"]      == "telecommunication"       ) or
-       ( object.tags["office"]      == "financial"               ) or
-       ( object.tags["office"]      == "newspaper"               ) or
-       ( object.tags["office"]      == "delivery"                ) or
-       ( object.tags["office"]      == "parcel"                  ) or
-       ( object.tags["office"]      == "therapist"               ) or
-       ( object.tags["office"]      == "surveyor"                ) or
-       ( object.tags["office"]      == "marketing"               ) or
-       ( object.tags["office"]      == "graphic_design"          ) or
-       ( object.tags["office"]      == "interior_design"         ) or
-       ( object.tags["office"]      == "builder"                 ) or
-       ( object.tags["office"]      == "training"                ) or
-       ( object.tags["office"]      == "web_design"              ) or
-       ( object.tags["office"]      == "design"                  ) or
-       ( object.tags["office"]      == "communication"           ) or
-       ( object.tags["office"]      == "security"                ) or
-       ( object.tags["office"]      == "engineering"             ) or
-       ( object.tags["office"]      == "hvac"                    ) or
-       ( object.tags["office"]      == "laundry"                 ) or
        ( object.tags["office"]      == "coworking"               ) or
        ( object.tags["office"]      == "coworking_space"         ) or
+       ( object.tags["office"]      == "delivery"                ) or
+       ( object.tags["office"]      == "design"                  ) or
+       ( object.tags["office"]      == "employment_agency"       ) or
+       ( object.tags["office"]      == "engineering"             ) or
+       ( object.tags["office"]      == "financial"               ) or
+       ( object.tags["office"]      == "graphic_design"          ) or
+       ( object.tags["office"]      == "home_care"               ) or
+       ( object.tags["office"]      == "hvac"                    ) or
+       ( object.tags["office"]      == "insurance"               ) or
+       ( object.tags["office"]      == "interior_design"         ) or
+       ( object.tags["office"]      == "it"                      ) or
+       ( object.tags["office"]      == "laundry"                 ) or
+       ( object.tags["office"]      == "lawyer"                  ) or
+       ( object.tags["office"]      == "marketing"               ) or
+       ( object.tags["office"]      == "newspaper"               ) or
+       ( object.tags["office"]      == "parcel"                  ) or
+       ( object.tags["office"]      == "recruitment"             ) or
+       ( object.tags["office"]      == "recruitment_agency"      ) or
+       ( object.tags["office"]      == "security"                ) or
        ( object.tags["office"]      == "serviced_offices"        ) or
-       ( object.tags["office"]      == "charity"                 )) then
+       ( object.tags["office"]      == "solicitor"               ) or
+       ( object.tags["office"]      == "solicitors"              ) or
+       ( object.tags["office"]      == "surveyor"                ) or
+       ( object.tags["office"]      == "tax_advisor"             ) or
+       ( object.tags["office"]      == "telecommunication"       ) or
+       ( object.tags["office"]      == "therapist"               ) or
+       ( object.tags["office"]      == "training"                ) or
+       ( object.tags["office"]      == "web_design"              )) then
       object = append_nonqa( object, "office" )
       object = append_nonqa( object, object.tags["office"] )
       object.tags["amenity"] = nil
       object.tags["craft"] = nil
       object.tags["office"] = nil
-      object.tags["shop"] = nil
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
    end
 

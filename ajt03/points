@@ -220,6 +220,7 @@ aeroway=helipad {name '${name}'} [0x5904 resolution 20]
 
 amenity=grave_yard {name '${name}'} [0x6403 resolution 21]
 landuse=cemetery {name '${name}'} [0x6403 resolution 21]
+amenity=bus_depot {name '${name}'} [0x6405 resolution 21]
 man_made=tower {name '${name}'} [0x6411 resolution 21]
 man_made=mast {name '${name}'} [0x6411 resolution 21]
 landuse=military {name '${name}'} [0x640b resolution 21]

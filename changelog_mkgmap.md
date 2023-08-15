@@ -11,6 +11,8 @@ Made non-government (commercial) office-like amenities searchable as 'Shopping /
 Added amenity=bus_depot and industrial=bus_depot as manmade places.
 Added amenity=depot, industrial=depot and landuse=depot as manmade places.
 Added amenity=fuel_depot and industrial=fuel_depot as manmade places.
+Updated taginfo to say that amenity=lifeboat maps to "man_made=thing" (which comes through as "Others / Social Service").
+Also map "seamark:rescue_station:category=lifeboat_on_mooring" to "man_made=thing" (which comes through as "Others / Social Service").
 
 ## 03/08/2023
 Remove support for shop-motoring - it was actually a very old mistagging.

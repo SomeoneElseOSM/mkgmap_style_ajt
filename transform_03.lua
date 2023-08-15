@@ -7629,10 +7629,13 @@ function process_all( objtype, object )
 -- lifeboat station, and sometimes they're tagged _on_ the lifeboat station.
 -- If the latter, show the lifeboat station.
 -- Also detect lifeboats and coastguards tagged only as seamarks.
+-- Lone lifeboats are sent through as "man_made=thing", in "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
    if (( object.tags["seamark:rescue_station:category"] == "lifeboat_on_mooring" ) and
        ( object.tags["amenity"]                         == nil                   )) then
-      object = append_nonqa( object, "lifeboat" )
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, object.tags["seamark:rescue_station:category"] )
       object = building_or_landuse( objtype, object )
    end
 

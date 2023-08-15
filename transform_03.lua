@@ -310,19 +310,21 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Other depots
+-- Other depots and fuel depots
 -- "0x6405  Civil" is in points as "amenity=depot" 
 -- and is searchable via "Geographic Points / Manmade Places"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"]    == "depot" ) then
+   if (( object.tags["amenity"]    == "depot"      ) or
+       ( object.tags["amenity"]    == "fuel_depot" )) then
       object = append_nonqa( object, "amenity" )
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["landuse"] = nil
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["landuse"]    == "industrial"         ) and
-       ( object.tags["industrial"] == "depot"              )) then
+   if ((  object.tags["landuse"]    == "industrial"          ) and
+       (( object.tags["industrial"] == "depot"              )  or
+        ( object.tags["industrial"] == "fuel_depot"         ))) then
       object = append_nonqa( object, object.tags["landuse"] )
       object = append_nonqa( object, object.tags["industrial"] )
       object.tags["landuse"] = nil

@@ -10,6 +10,7 @@ Made non-government (commercial) offices searchable as 'Shopping / Speciality re
 Made non-government (commercial) office-like amenities searchable as 'Shopping / Speciality retail'.
 Added amenity=bus_depot and industrial=bus_depot as manmade places.
 Added amenity=depot, industrial=depot and landuse=depot as manmade places.
+Added amenity=fuel_depot and industrial=fuel_depot as manmade places.
 
 ## 03/08/2023
 Remove support for shop-motoring - it was actually a very old mistagging.

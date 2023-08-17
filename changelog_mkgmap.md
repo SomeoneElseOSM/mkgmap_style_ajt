@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 17/08/2023
 Append information to name from "community_centre", "community_centre:for", "social_centre", "social_centre:for", "social_facility", "social_facility:for", "club".
 Treat "carriageway" as "byway", and added more commonly used synonyms for designations, including with semicolons.
 Changed category of "audio_video" and "video" shops to "Shopping / Record/CD/Video".

@@ -2949,8 +2949,7 @@ function process_all( objtype, object )
 -- "0x2f14" is searchable via "Others / Social Service"
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "luggage_locker"  ) or
-       ( object.tags["shop"]    == "luggage_locker"  )) then
+   if ( object.tags["amenity"] == "luggage_locker"  ) then
       object.tags["man_made"]  = "thing"
       object.tags["amenity"] = nil
       object.tags["shop"]    = nil

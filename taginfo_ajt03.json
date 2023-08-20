@@ -2065,7 +2065,6 @@
     { "key": "shop", "value": "locksmith;dry_cleaning;shoe_repair", "description": "Not a current value in OSM data.  Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "lottery", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "luggage", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
-    { "key": "shop", "value": "luggage_locker", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "shop", "value": "luxury", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },
     { "key": "shop", "value": "magic", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },
     { "key": "shop", "value": "mall", "description": "Shown in brackets; 'Shopping / Shopping Center'" },

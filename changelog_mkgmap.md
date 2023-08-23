@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 23/08/2023
 Removed "shop=luggage_locker" as a synonym for left luggage; it was only ever an extreme outlier and it has now been removed from the data.
 
 ## 17/08/2023

@@ -1047,7 +1047,6 @@
     { "key": "historic", "value": "kiln", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "leat", "description": "'leat' shown in brackets, shown as drain" },
     { "key": "historic", "value": "lime_kiln", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
-    { "key": "historic", "value": "limekiln", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "locomotive", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "manor", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "mansion", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

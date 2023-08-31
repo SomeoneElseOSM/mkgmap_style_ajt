@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20230820T133800Z",
+  "data_updated": "20230831T213200Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1245,7 +1245,6 @@
     { "key": "leisure", "value": "gambling", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "leisure", "value": "garden", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "golf_course", "description": "Shown in brackets; 'Recreation / Golf Course'" },
-    { "key": "leisure", "value": "gym", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "leisure", "value": "hackerspace", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "leisure", "value": "high_ropes_course", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "leisure", "value": "horse_riding", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

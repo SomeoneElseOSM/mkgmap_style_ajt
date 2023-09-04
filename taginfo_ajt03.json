@@ -1735,7 +1735,6 @@
     { "key": "shop", "value": "amusement", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "amusements", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "angling", "description": "shown in brackets; 'Shopping / Sporting Goods'" },
-    { "key": "shop", "value": "animal_boarding", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "animal_feed", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "anime", "description": "shown in brackets; 'Shopping / Book Store'" },
     { "key": "shop", "value": "antiques", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },

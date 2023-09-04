@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## 23/08/2023
 Removed "shop=luggage_locker" as a synonym for left luggage; it was only ever an extreme outlier and it has now been removed from the data.
 Removed "historic=limekiln" as a synonym for "historic=lime_kiln"; no longer in the data.
+Removed "shop=animal_boarding"; no longer in the data.
 
 ## 17/08/2023
 Append information to name from "community_centre", "community_centre:for", "social_centre", "social_centre:for", "social_facility", "social_facility:for", "club".

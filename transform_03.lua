@@ -962,8 +962,7 @@ function process_all( objtype, object )
    if ((  object.tags["diplomatic"] == "embassy"            )  and
        (( object.tags["embassy"]    == "high_commission"   )   or
         ( object.tags["embassy"]    == "nunciature"        )   or
-        ( object.tags["embassy"]    == "delegation"        )   or
-        ( object.tags["embassy"]    == "embassy"           ))) then
+        ( object.tags["embassy"]    == "delegation"        ))) then
       object.tags["diplomatic"] = object.tags["embassy"]
    end
 

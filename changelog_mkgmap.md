@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## 11/10/2023
+Removed "embassy=embassy"; no longer in the data.
+
 ## 04/10/2023
 Removed "diplomatic=consulate_general"; no longer in the data.
 

@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.
+Treat "closed:" pubs and shops as disused.
 
 ## 04/10/2023
 Removed "diplomatic=consulate_general"; no longer in the data.

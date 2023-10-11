@@ -43,6 +43,19 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Treat "closed:" as "disused:"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["closed:amenity"]     ~= nil ) and
+       ( object.tags["disused:amenity"] == nil )) then
+      object.tags["disused:amenity"] = object.tags["closed:amenity"]
+   end
+
+   if (( object.tags["closed:shop"]     ~= nil ) and
+       ( object.tags["disused:shop"] == nil )) then
+      object.tags["disused:shop"] = object.tags["closed:shop"]
+   end
+
+-- ----------------------------------------------------------------------------
 -- If we have an est_width but no width, use the est_width
 -- ----------------------------------------------------------------------------
    if (( object.tags["width"]     == nil  ) and

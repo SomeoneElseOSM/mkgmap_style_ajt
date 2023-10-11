@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.
 Treat "closed:" pubs and shops as disused.
+Show historic=martello_tower (and some semicolon derivatives) as other eqivalent historic items.
 
 ## 04/10/2023
 Removed "diplomatic=consulate_general"; no longer in the data.

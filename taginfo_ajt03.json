@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231011T235280Z",
+  "data_updated": "20231012T103700Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -798,7 +798,6 @@
     { "key": "embassy", "description": "Actual embassies shown and searchable as government offices; others just as offices" },
     { "key": "embassy", "value": "branch_embassy", "description": "Shown as building if appropriate or just dot; not generally searchable" },
     { "key": "embassy", "value": "delegation", "description": "Shown in brackets as government office; 'Community / Government Office'" },
-    { "key": "embassy", "value": "embassy", "description": "Shown in brackets as government office; 'Community / Government Office'" },
     { "key": "embassy", "value": "high_commission", "description": "Shown in brackets as government office; 'Community / Government Office'" },
     { "key": "embassy", "value": "mission", "description": "Shown as building if appropriate or just dot; not generally searchable" },
     { "key": "embassy", "value": "nunciature", "description": "Shown in brackets as government office; 'Community / Government Office'" },

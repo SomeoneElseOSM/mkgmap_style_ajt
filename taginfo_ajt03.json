@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231012T103700Z",
+  "data_updated": "20231013T014600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -443,6 +443,7 @@
     { "key": "building", "value": "no", "description": "Used to detect buildings" },
     { "key": "building", "value": "nursing_home", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "building", "value": "office", "description": "Used to detect nonspecific offices" },
+    { "key": "building", "value": "pillbox", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "building", "value": "preschool", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "building", "value": "scout_hut", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "building", "value": "telephone_box", "description": "Used to detect telephone boxes" },
@@ -1075,6 +1076,7 @@
     { "key": "historic", "value": "oratory", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "palace", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "pillar", "description": "Shown in brackets; 'Geographic Points / Land Features'" },
+    { "key": "historic", "value": "pillbox", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "pinfold", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "plaque", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "police_call_box", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

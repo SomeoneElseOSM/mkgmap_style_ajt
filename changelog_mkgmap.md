@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Treat pillboxes (tagged as building or historic) as historic items.
+
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.
 Treat "closed:" pubs and shops as disused.

@@ -3903,6 +3903,10 @@ function process_all( objtype, object )
 -- "0x2c02" is searchable via "Attractions / Museum or Historical"
 -- A "museum" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if ( object.tags["building"] == "pillbox" ) then
+      object.tags["historic"] = object.tags["building"]
+   end
+
    if (( object.tags["historic"] == "abbey"                 ) or
        ( object.tags["historic"] == "aircraft"              ) or
        ( object.tags["historic"] == "almshouse"             ) or
@@ -3957,6 +3961,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "naval_mine"            ) or
        ( object.tags["historic"] == "oratory"               ) or
        ( object.tags["historic"] == "palace"                ) or
+       ( object.tags["historic"] == "pillbox"               ) or
        ( object.tags["historic"] == "pinfold"               ) or
        ( object.tags["historic"] == "police_call_box"       ) or
        ( object.tags["historic"] == "priory"                ) or

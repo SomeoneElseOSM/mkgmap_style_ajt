@@ -3221,6 +3221,24 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Various non-beach natural seaside things
+-- natural=sand is in polygons as 0x13.  It shows as a dot on grey, unlike 
+-- the "beach" point which appears as a desert island.
+-- "natural=sand" is also added to golf bunkers below.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["natural"]   == "sand"    ) or 
+       ( object.tags["natural"]   == "mud"     ) or
+       ( object.tags["natural"]   == "shingle" )) then
+      object = append_nonqa( object, object.tags["natural"] )
+
+      if ( object.tags["tidal"] == "yes" ) then
+         object = append_nonqa( object, "tidal" )
+      end
+
+      object.tags["natural"] = "sand"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Golf (and sandpits)
 -- "0x2d05" is searchable via "Recreation / Golf Course"
 -- Note that with potentially indoor things we call building_or_landuse; with
@@ -4476,7 +4494,7 @@ function process_all( objtype, object )
 -- In points as "0x6604", not in polygons.
 -- QMapShack understands "0x6604"
 -- On a GPSMAP64s, "0x6604" appears in "Geographic Points / Land Features"
--- A "desert icon" is used.
+-- A "desert island" icon is used.
 --
 -- natural=cave_entrance
 -- In points as "0x6601", not in polygons.
@@ -4490,9 +4508,7 @@ function process_all( objtype, object )
 -- On a GPSMAP64s, "0x6607" appears in "Geographic Points / Land Features"
 -- A dot is used for nodes.  Ways appear as a narrow solid line.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["natural"]   == "beach"   ) or 
-       ( object.tags["natural"]   == "mud"     ) or
-       ( object.tags["natural"]   == "shingle" )) then
+   if ( object.tags["natural"]   == "beach" ) then
       object = append_nonqa( object, object.tags["natural"] )
 
       if ( object.tags["tidal"] == "yes" ) then

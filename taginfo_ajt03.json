@@ -1961,6 +1961,7 @@
     { "key": "shop", "value": "forecourt", "description": "shown in brackets; 'Shopping / Convenience'" },
     { "key": "shop", "value": "forklift_repair", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "frame", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
+    { "key": "shop", "value": "frame;restoration", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "framing", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "frozen_food", "description": "shown in brackets; 'Shopping / Convenience'" },
     { "key": "shop", "value": "fuel", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

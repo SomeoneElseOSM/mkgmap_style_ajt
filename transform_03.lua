@@ -6679,6 +6679,7 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "flooring"                    ) or
        ( object.tags["shop"]   == "floors"                      ) or
        ( object.tags["shop"]   == "frame"                       ) or
+       ( object.tags["shop"]   == "frame;restoration"           ) or
        ( object.tags["shop"]   == "framing"                     ) or
        ( object.tags["shop"]   == "furnace"                     ) or
        ( object.tags["shop"]   == "furnishing"                  ) or
@@ -6713,9 +6714,8 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "luggage"                     ) or
        ( object.tags["shop"]   == "mattress"                    ) or
        ( object.tags["shop"]   == "paint"                       ) or
-       ( object.tags["shop"]   == "picture_framer"              ) or
-       ( object.tags["shop"]   == "picture_frames"              ) or
        ( object.tags["shop"]   == "picture_framing"             ) or
+       ( object.tags["shop"]   == "picture_framer"              ) or
        ( object.tags["shop"]   == "plant_hire"                  ) or
        ( object.tags["shop"]   == "plant_hire;tool_hire"        ) or
        ( object.tags["shop"]   == "plumbers_merchant"           ) or

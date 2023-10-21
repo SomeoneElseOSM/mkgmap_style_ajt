@@ -7,6 +7,7 @@ Added "natural=saltmarsh" and translate to more common tags.
 Handle "natural=mud" and "natural=shingle" as "sand", but append "mud" or "shingle" (or "sand") in brackets.
 Handle "natural=scree" as "rock", but append "scree" in brackets.
 Append any surface value and tidal to some natural values.
+Added "waterway=tidal_channel" as a synonym for "stream".
 
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.

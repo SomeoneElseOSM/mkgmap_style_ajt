@@ -2506,6 +2506,7 @@
     { "key": "waterway", "value": "sluice_gate", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "waterway", "value": "spillway", "description": "Shown in brackets; handled as 'waterway=river'" },
     { "key": "waterway", "value": "stream", "description": "Shown in brackets as stream" },
+    { "key": "waterway", "value": "tidal_channel", "description": "Shown in brackets; handled as 'waterway=stream'" },
     { "key": "waterway", "value": "weir", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "waterway", "value": "waterfall", "description": "Shown as waterfall" },
     { "key": "waterway:abandoned", "description": "Detect derelict canals" },

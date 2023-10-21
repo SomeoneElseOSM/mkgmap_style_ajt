@@ -3747,8 +3747,23 @@ function process_all( objtype, object )
        ( object.tags["natural"]   == "volcano" )  or
        ( object.tags["natural"]   == "col"     )  or
        ( object.tags["natural"]   == "rocks"   )  or
-       ( object.tags["natural"]   == "rock"    )  or
-       ( object.tags["natural"]   == "wetland" )) then
+       ( object.tags["natural"]   == "rock"    )) then
+      object = append_nonqa( object, object.tags["natural"] )
+   end
+
+   if ( object.tags["natural"]   == "wetland" ) then
+      if ( object.tags["wetland"] ~= nil ) then
+         object = append_nonqa( object, object.tags["wetland"] )
+      end
+
+      if ( object.tags["surface"] ~= nil ) then
+         object = append_nonqa( object, object.tags["surface"] )
+      end
+
+      if ( object.tags["tidal"] == "yes" ) then
+         object = append_nonqa( object, "tidal" )
+      end
+
       object = append_nonqa( object, object.tags["natural"] )
    end
 

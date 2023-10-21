@@ -3767,8 +3767,14 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["natural"] )
    end
 
-   if ( object.tags["natural"]   == "bare_rock"    )  then
+   if (( object.tags["natural"]   == "bare_rock" )  or
+       ( object.tags["natural"]   == "scree"     )) then
       object = append_nonqa( object, object.tags["natural"] )
+
+      if ( object.tags["tidal"] == "yes" ) then
+         object = append_nonqa( object, "tidal" )
+      end
+
       object.tags["natural"] = "rock"
    end
 

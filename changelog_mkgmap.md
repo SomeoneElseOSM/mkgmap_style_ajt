@@ -9,6 +9,7 @@ Handle "natural=scree" as "rock", but append "scree" in brackets.
 Append any surface value and tidal to some natural values.
 Added "waterway=tidal_channel" as a synonym for "stream".
 Removed "amenity=storage_rental", which no longer appears in the data, and replaced it with "office" which has a few examples.
+Removed "shop=jewellery", which no longer appears in the data, and added a number of semicolon-based versions as synonyms in the style.
 
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.

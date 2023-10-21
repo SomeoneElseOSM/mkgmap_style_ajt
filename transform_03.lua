@@ -5649,13 +5649,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- "jewellery" consolidation.  "jewelry" is most popular in the database.
+-- "jewellery" consolidation.  "jewelry" is in the database, until recently
+-- "jewellery" was too.  The style handles "jewellery", hence the change here.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"] == "jewelry"   ) or
-       ( object.tags["shop"] == "jewellery" ) or
-       ( object.tags["shop"] == "watch"     ) or
-       ( object.tags["shop"] == "watches"   )) then
+   if (( object.tags["shop"] == "jewelry"                 ) or
+       ( object.tags["shop"] == "jewelry;pawnbroker"      ) or
+       ( object.tags["shop"] == "yes;jewelry;e-cigarette" ) or
+       ( object.tags["shop"] == "jewelry;sunglasses"      ) or
+       ( object.tags["shop"] == "jeweller"                ) or
+       ( object.tags["shop"] == "yes;jewelry"             ) or
+       ( object.tags["shop"] == "jewelry, arts, crafts"   ) or
+       ( object.tags["shop"] == "jewelry;fabric"          ) or
+       ( object.tags["shop"] == "watch"                   ) or
+       ( object.tags["shop"] == "watches"                 )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )

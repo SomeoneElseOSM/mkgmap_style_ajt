@@ -3709,6 +3709,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Convert "natural=saltmarsh" into something we can handle below
+-- ----------------------------------------------------------------------------
+   if ( object.tags["natural"] == "saltmarsh" ) then
+      if ( object.tags["wetland"] == "tidalflat" ) then
+         object.tags["tidal"] = "yes"
+      else
+         object.tags["tidal"] = "no"
+      end
+
+      object.tags["natural"] = "wetland"
+      object.tags["wetland"] = "saltmarsh"
+   end
+
+-- ----------------------------------------------------------------------------
 -- natural=peak
 -- natural=volcano
 -- natural=col

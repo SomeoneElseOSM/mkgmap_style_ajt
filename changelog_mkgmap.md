@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 Treat pillboxes (tagged as building or historic) as historic items.
+Added "natural=saltmarsh" and translate to more common tags.
 
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.

@@ -7270,7 +7270,7 @@ function process_all( objtype, object )
 
    if (( object.tags["amenity"] == "storage"              ) or
        ( object.tags["amenity"] == "self_storage"         ) or
-       ( object.tags["amenity"] == "storage_rental"       )) then
+       ( object.tags["office"]  == "storage_rental"       )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )

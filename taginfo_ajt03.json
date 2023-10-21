@@ -1498,6 +1498,7 @@
     { "key": "natural", "value": "saltmarsh", "description": "Handled as wetland; shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "natural", "value": "scree", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "natural", "value": "scrub", "description": "shown as scrub" },
+    { "key": "natural", "value": "shingle", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "natural", "value": "shrubbery", "description": "shown as scrub" },
     { "key": "natural", "value": "spring", "description": "shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "natural", "value": "stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },

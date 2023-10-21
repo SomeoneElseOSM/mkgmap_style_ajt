@@ -4,7 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Treat pillboxes (tagged as building or historic) as historic items.
 Added "natural=saltmarsh" and translate to more common tags.
-Handle "natural=mud" as "beach", but append "mud" in brackets.
+Handle "natural=mud" and "natural=shingle" as "beach", but append "mud" or "shingle" in brackets.
 Handle "natural=scree" as "rock", but append "scree" in brackets.
 Append any surface value and tidal to some natural values.
 

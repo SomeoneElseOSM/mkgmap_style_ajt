@@ -4490,8 +4490,9 @@ function process_all( objtype, object )
 -- On a GPSMAP64s, "0x6607" appears in "Geographic Points / Land Features"
 -- A dot is used for nodes.  Ways appear as a narrow solid line.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["natural"]   == "beach" ) or 
-       ( object.tags["natural"]   == "mud"   )) then
+   if (( object.tags["natural"]   == "beach"   ) or 
+       ( object.tags["natural"]   == "mud"     ) or
+       ( object.tags["natural"]   == "shingle" )) then
       object = append_nonqa( object, object.tags["natural"] )
 
       if ( object.tags["tidal"] == "yes" ) then

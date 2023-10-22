@@ -12,6 +12,7 @@ Removed "amenity=storage_rental", which no longer appears in the data, and repla
 Removed "shop=jewellery", which no longer appears in the data, and added a number of semicolon-based versions as synonyms in the style.
 Removed "shop=picture_frames", which no longer appears in the data, and added "shop=frame;restoration", which does.
 Added "jewelry;art;crafts" to accommodate an oddly-tagged shop.
+Show "historic=vehicle" as a nonspecific historic item.
 
 ## 11/10/2023
 Removed "embassy=embassy"; no longer in the data.

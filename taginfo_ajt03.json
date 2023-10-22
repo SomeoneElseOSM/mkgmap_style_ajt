@@ -1105,6 +1105,7 @@
     { "key": "historic", "value": "tower_house", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "trough", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "tumulus", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
+    { "key": "historic", "value": "vehicle", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "watermill", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "wayside_chapel", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "wayside_cross", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

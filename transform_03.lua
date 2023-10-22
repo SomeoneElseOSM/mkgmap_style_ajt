@@ -4039,6 +4039,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "tower_house"           ) or
        ( object.tags["historic"] == "trough"                ) or
        ( object.tags["historic"] == "tumulus"               ) or
+       ( object.tags["historic"] == "vehicle"               ) or
        ( object.tags["historic"] == "watermill"             ) or
        ( object.tags["historic"] == "wayside_chapel"        ) or
        ( object.tags["historic"] == "well"                  ) or

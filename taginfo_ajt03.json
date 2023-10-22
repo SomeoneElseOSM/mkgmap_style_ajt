@@ -2044,7 +2044,7 @@
     { "key": "shop", "value": "ironmonger", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "jeweller", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "jewelry", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "shop", "value": "jewelry, arts, crafts", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "shop", "value": "jewelry;art;crafts", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "jewelry;fabric", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "jewelry;pawnbroker", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "jewelry;sunglasses", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

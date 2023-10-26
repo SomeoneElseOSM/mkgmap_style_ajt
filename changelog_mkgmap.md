@@ -2,6 +2,9 @@
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Removed "shop=food_court" from taginfo; no longer in the data.
+
+## 26/10/2023
 Treat pillboxes (tagged as building or historic) as historic items.
 Added "natural=saltmarsh" and translate to more common tags.
 Handle "natural=mud" and "natural=shingle" as "sand", but append "mud" or "shingle" (or "sand") in brackets.

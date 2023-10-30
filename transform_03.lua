@@ -1744,7 +1744,10 @@ function process_all( objtype, object )
       object = append_nonqa( object, "railway" )
       object = append_nonqa( object, object.tags["railway"] )
 
-      if ( object.tags["usage"] == "tourism" ) then
+      if (( object.tags["usage"]             == "tourism"   ) or
+          ( object.tags["railway:miniature"] == "station"   ) or
+          ( object.tags["station"]           == "miniature" ) or
+          ( object.tags["tourism"]           == "yes"       )) then
          object.tags["railway"] = "tourismstation"
          object.tags["tourism"] = nil
       end

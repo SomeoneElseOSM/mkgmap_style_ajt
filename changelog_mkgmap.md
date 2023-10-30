@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 02/11/2023
 Removed "shop=food_court" from taginfo; no longer in the data.
 
 ## 26/10/2023

@@ -3074,7 +3074,6 @@ function process_all( objtype, object )
 
       if (( object.tags["fee"]     ~= nil               )  and
           ( object.tags["fee"]     ~= "no"              )  and
-          ( object.tags["fee"]     ~= "No"              )  and
           ( object.tags["fee"]     ~= "none"            )  and
           ( object.tags["fee"]     ~= "None"            )  and
           ( object.tags["fee"]     ~= "Free"            )  and
@@ -3111,7 +3110,6 @@ function process_all( objtype, object )
       if ((  object.tags["amenity"] == "parking"  ) and
           (( object.tags["fee"]     ~= nil       )  and
            ( object.tags["fee"]     ~= "no"      )  and
-           ( object.tags["fee"]     ~= "No"      )  and
            ( object.tags["fee"]     ~= "none"    )  and
            ( object.tags["fee"]     ~= "None"    )  and
            ( object.tags["fee"]     ~= "Free"    )  and
@@ -3140,7 +3138,6 @@ function process_all( objtype, object )
 
       if (( object.tags["fee"]     ~= nil               )  and
           ( object.tags["fee"]     ~= "no"              )  and
-          ( object.tags["fee"]     ~= "No"              )  and
           ( object.tags["fee"]     ~= "none"            )  and
           ( object.tags["fee"]     ~= "None"            )  and
           ( object.tags["fee"]     ~= "Free"            )  and

@@ -5654,6 +5654,12 @@ function process_all( objtype, object )
 -- "jewellery" was too.  The style handles "jewellery", hence the change here.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
+   if (( object.tags["craft"] == "jeweller"         ) or
+       ( object.tags["craft"] == "jewellery_repair" ) or
+       ( object.tags["craft"] == "engraver"         ))then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
    if (( object.tags["shop"] == "jewelry"                 ) or
        ( object.tags["shop"] == "jewelry;pawnbroker"      ) or
        ( object.tags["shop"] == "yes;jewelry;e-cigarette" ) or
@@ -5663,7 +5669,9 @@ function process_all( objtype, object )
        ( object.tags["shop"] == "jewelry;art;crafts"      ) or
        ( object.tags["shop"] == "jewelry;fabric"          ) or
        ( object.tags["shop"] == "watch"                   ) or
-       ( object.tags["shop"] == "watches"                 )) then
+       ( object.tags["shop"] == "watches"                 ) or
+       ( object.tags["shop"] == "jewellery_repair"        ) or
+       ( object.tags["shop"] == "engraver"                )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
@@ -5935,7 +5943,8 @@ function process_all( objtype, object )
 
    if (( object.tags["craft"]   == "cobbler"                 ) or
        ( object.tags["craft"]   == "shoemaker"               ) or
-       ( object.tags["craft"]   == "gunsmith"                )) then
+       ( object.tags["craft"]   == "gunsmith"                ) or
+       ( object.tags["craft"]   == "builder"                 )) then
       object.tags["shop"] = object.tags["craft"]
    end
 
@@ -6936,7 +6945,8 @@ function process_all( objtype, object )
 -- gift and other tat shops, antiques, art.
 -- "0x2e10" is searchable via "Shopping / Gift/Antique/Art"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["craft"]  == "pottery" ) then
+   if (( object.tags["craft"]  == "pottery"  ) or
+       ( object.tags["craft"]  == "sculptor" )) then
       object.tags["shop"] = object.tags["craft"]
    end
 
@@ -6963,7 +6973,8 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "art"                 ) or
        ( object.tags["shop"]   == "craft"               ) or
        ( object.tags["shop"]   == "art_supplies"        ) or
-       ( object.tags["shop"]   == "pottery"             )) then
+       ( object.tags["shop"]   == "pottery"             ) or
+       ( object.tags["shop"]   == "sculptor"            )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "gift"
       object = building_or_landuse( objtype, object )
@@ -7074,6 +7085,10 @@ function process_all( objtype, object )
 -- fabric and wool etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]   == "embroiderer" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
    if (( object.tags["shop"]   == "fabric"               ) or
        ( object.tags["shop"]   == "linen"                ) or
        ( object.tags["shop"]   == "linens"               ) or
@@ -7085,7 +7100,8 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "wool"                 ) or
        ( object.tags["shop"]   == "yarn"                 ) or
        ( object.tags["shop"]   == "alteration"           ) or
-       ( object.tags["shop"]   == "clothing_alterations" )) then
+       ( object.tags["shop"]   == "clothing_alterations" ) or
+       ( object.tags["shop"]   == "embroiderer"          )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )

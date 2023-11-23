@@ -6630,16 +6630,18 @@ function process_all( objtype, object )
       object.tags["amenity"] = nil
    end
 
-   if (( object.tags["craft"]   == "signmaker"            ) or
-       ( object.tags["craft"]   == "roofer"               ) or
-       ( object.tags["craft"]   == "floorer"              ) or
+   if (( object.tags["craft"]  == "signmaker"             ) or
+       ( object.tags["craft"]  == "roofer"                ) or
+       ( object.tags["craft"]  == "floorer"               ) or
        ( object.tags["craft"]  == "window_construction"   ) or
        ( object.tags["craft"]  == "framing"               ) or
        ( object.tags["craft"]  == "glaziery"              ) or
        ( object.tags["craft"]  == "glazier"               ) or
        ( object.tags["craft"]  == "plumber"               ) or
        ( object.tags["craft"]  == "carpenter"             ) or
-       ( object.tags["craft"]  == "decorator"             )) then
+       ( object.tags["craft"]  == "decorator"             ) or
+       ( object.tags["craft"]  == "furniture"             ) or
+       ( object.tags["craft"]  == "furniture_maker"       )) then
       object.tags["shop"] = object.tags["craft"]
       object.tags["craft"] = nil
    end
@@ -7639,7 +7641,49 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Next, office like things mapped as shop, healthcare
+-- "craft" places you might visit for a service.
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- Add unnamedcommercial landuse to give non-building areas a background.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["craft"]   == "agricultural_engines"    ) or
+       ( object.tags["craft"]   == "atelier"                 ) or
+       ( object.tags["craft"]   == "beekeeper"               ) or
+       ( object.tags["craft"]   == "blacksmith"              ) or
+       ( object.tags["craft"]   == "bookbinder"              ) or
+       ( object.tags["craft"]   == "cabinet_maker"           ) or
+       ( object.tags["craft"]   == "carpet_layer"            ) or
+       ( object.tags["craft"]   == "caterer"                 ) or
+       ( object.tags["craft"]   == "cleaning"                ) or
+       ( object.tags["craft"]   == "clockmaker"              ) or
+       ( object.tags["craft"]   == "confectionery"           ) or
+       ( object.tags["craft"]   == "dental_technician"       ) or
+       ( object.tags["craft"]   == "engineering"             ) or
+       ( object.tags["craft"]   == "gardener"                ) or
+       ( object.tags["craft"]   == "handicraft"              ) or
+       ( object.tags["craft"]   == "hvac"                    ) or
+       ( object.tags["craft"]   == "insulation"              ) or
+       ( object.tags["craft"]   == "joiner"                  ) or
+       ( object.tags["craft"]   == "joinery"                 ) or
+       ( object.tags["craft"]   == "metal_construction"      ) or
+       ( object.tags["craft"]   == "painter"                 ) or
+       ( object.tags["craft"]   == "photographic_laboratory" ) or
+       ( object.tags["craft"]   == "plasterer"               ) or
+       ( object.tags["craft"]   == "saddler"                 ) or
+       ( object.tags["craft"]   == "sailmaker"               ) or
+       ( object.tags["craft"]   == "scaffolder"              ) or
+       ( object.tags["craft"]   == "tiler"                   ) or
+       ( object.tags["craft"]   == "watchmaker"              )) then
+      object = append_nonqa( object, "craft" )
+      object = append_nonqa( object, object.tags["craft"] )
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["office"] = nil
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Next, office like things mapped as shop, healthcare, craft
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]        == "lawyer"                  ) or
@@ -7665,16 +7709,6 @@ function process_all( objtype, object )
    if ( object.tags["healthcare"]  == "home_care"               ) then
       object = append_nonqa( object, "healthcare" )
       object = append_nonqa( object, object.tags["healthcare"] )
-      object.tags["amenity"] = nil
-      object.tags["craft"] = nil
-      object.tags["office"] = nil
-      object.tags["shop"] = nil
-      object = building_or_landuse( objtype, object )
-   end
-
-   if ( object.tags["craft"]       == "hvac"                    ) then
-      object = append_nonqa( object, "craft" )
-      object = append_nonqa( object, object.tags["craft"] )
       object.tags["amenity"] = nil
       object.tags["craft"] = nil
       object.tags["office"] = nil

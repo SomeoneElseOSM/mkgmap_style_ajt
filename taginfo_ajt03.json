@@ -557,6 +557,8 @@
     { "key": "craft", "value": "plumber", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "pottery", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },
     { "key": "craft", "value": "printer", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "craft", "value": "printmaker", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "craft", "value": "print_shop", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "roofer", "description": "Shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "craft", "value": "sawmill", "description": "Shown as industrial landuse, in brackets; not searchable" },
     { "key": "craft", "value": "shoe_repair", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

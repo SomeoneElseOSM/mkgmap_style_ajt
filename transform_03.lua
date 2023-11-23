@@ -8622,9 +8622,10 @@ function ott.process_way( object )
 -- There are currently no "location=overground" waterways that are not
 -- also "man_made=pipeline".
 -- ----------------------------------------------------------------------------
-   if (( object.tags["waterway"] ~= nil           )  and
-       ( object.tags["location"] == "underground" ) and
-       ( object.tags["tunnel"]   == nil           )) then
+   if ((  object.tags["waterway"] ~= nil            )  and
+       (( object.tags["location"] == "underground" )   or
+        ( object.tags["covered"]  == "yes"         ))  and
+       (  object.tags["tunnel"]   == nil            )) then
       object.tags["tunnel"] = "yes"
    end
 

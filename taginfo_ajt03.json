@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231120T111400Z",
+  "data_updated": "20231123T102000Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -295,6 +295,7 @@
     { "key": "amenity", "value": "undertaker", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "university", "description": "shown in brackets; 'Community / School'" },
     { "key": "amenity", "value": "van_rental", "description": "shown in brackets; 'Auto Services / Auto Rental'" },
+    { "key": "amenity", "value": "vehicle_inspection", "description": "Shown in brackets; 'Auto Services / Auto Repair'" },
     { "key": "amenity", "value": "vending_machine", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "veterinary", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "village_hall", "description": "shown in brackets; 'Community / Government Office'" },
@@ -1734,7 +1735,6 @@
     { "key": "shop", "value": "abandoned", "description": "shown as vacant shop" },
     { "key": "shop", "value": "accessories", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },
     { "key": "shop", "value": "accountant", "description": "shown in brackets with a light grey background; not searchable" },
-    { "key": "shop", "value": "accountants", "description": "shown in brackets with a light grey background; not searchable" },
     { "key": "shop", "value": "acupuncture", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "adult_gaming_centre", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "agrarian", "description": "shown in brackets; 'Shopping / Specialty Retail' or 'Auto Services / Dealer or Auto Parts'" },
@@ -1817,7 +1817,6 @@
     { "key": "shop", "value": "car_accessories", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "car_audio", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "car_bodyshop", "description": "Shown in brackets; 'Auto Services / Auto Repair'" },
-    { "key": "shop", "value": "car_inspection", "description": "Shown in brackets; 'Auto Services / Auto Repair'" },
     { "key": "shop", "value": "car_parts", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "car_parts;bicycle", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "car_parts;car_repair", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },

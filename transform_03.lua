@@ -7462,10 +7462,16 @@ function process_all( objtype, object )
       object.tags["shop"] = object.tags["craft"]
    end
 
+   if ( object.tags["amenity"] == "vehicle_inspection" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["shop"]    = "car_repair"
+      object.tags["amenity"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
    if (( object.tags["shop"]    == "car_repair"         )  or
        ( object.tags["shop"]    == "coachbuilder"       )  or
        ( object.tags["shop"]    == "car_service"        )  or
-       ( object.tags["shop"]    == "car_inspection"     )  or
        ( object.tags["shop"]    == "car_bodyshop"       )  or
        ( object.tags["shop"]    == "vehicle_inspection" )  or
        ( object.tags["shop"]    == "mechanic"           )  or
@@ -7621,7 +7627,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]        == "solicitor"               ) or
        ( object.tags["shop"]        == "solicitors"              ) or
        ( object.tags["shop"]        == "accountant"              ) or
-       ( object.tags["shop"]        == "accountants"             ) or
        ( object.tags["shop"]        == "employment_agency"       ) or
        ( object.tags["shop"]        == "employment"              ) or
        ( object.tags["shop"]        == "jobs"                    ) or

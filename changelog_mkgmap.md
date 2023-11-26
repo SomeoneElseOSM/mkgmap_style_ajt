@@ -7,6 +7,7 @@ Removed "shop=car_inspection" (no longer in the data), added "amenity=vehicle_in
 Removed "shop=accountants" (no longer in the data).
 Detect covered waterways as tunnels.
 Added a couple of "craft" printer synonyms, and some other craft synonyms.
+Removed "shop=alarm" and "shop=pet;florist", no longer in the data.
 
 ## 02/11/2023
 Removed "shop=food_court" from taginfo; no longer in the data.

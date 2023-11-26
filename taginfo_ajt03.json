@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231123T102000Z",
+  "data_updated": "20231126T101100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1777,7 +1777,6 @@
     { "key": "shop", "value": "adult_gaming_centre", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "agrarian", "description": "shown in brackets; 'Shopping / Specialty Retail' or 'Auto Services / Dealer or Auto Parts'" },
     { "key": "shop", "value": "agricultural_vehicles", "description": "shown in brackets; 'Auto Services / Dealer or Auto Parts'" },
-    { "key": "shop", "value": "alarm", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "alcohol", "description": "shown in brackets; 'Shopping / Wine & Liquor'" },
     { "key": "shop", "value": "alteration", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "alternative_health", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
@@ -2178,7 +2177,6 @@
     { "key": "shop", "value": "perfumery", "description": "shown in brackets; 'Shopping / Pharmacy or Chemist'" },
     { "key": "shop", "value": "pet", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "pet;corn", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "shop", "value": "pet;florist", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "pet;garden", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "pet_care", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "pet_food", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

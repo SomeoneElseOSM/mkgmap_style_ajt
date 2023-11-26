@@ -5404,7 +5404,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "electrical_supplies"     ) or
        ( object.tags["shop"]    == "electrical_repair"       ) or
        ( object.tags["shop"]    == "tv_repair"               ) or
-       ( object.tags["shop"]    == "alarm"                   ) or
        ( object.tags["shop"]    == "gadget"                  ) or
        ( object.tags["shop"]    == "appliances"              ) or
        ( object.tags["shop"]    == "vacuum_cleaner"          ) or
@@ -7199,7 +7198,6 @@ function process_all( objtype, object )
 
    if (( object.tags["shop"]    == "pet"                     ) or
        ( object.tags["shop"]    == "pet;garden"              ) or
-       ( object.tags["shop"]    == "pet;florist"             ) or
        ((  object.tags["shop"]     == "agrarian"                        )  and
         (( object.tags["agrarian"] == "feed"                           )  or
          ( object.tags["agrarian"] == "yes"                            )  or

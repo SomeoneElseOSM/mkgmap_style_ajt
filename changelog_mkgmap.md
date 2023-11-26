@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 26/11/2023
 Removed "fee=No", no longer in the data.
 Removed "shop=car_inspection" (no longer in the data), added "amenity=vehicle_inspection".
 Removed "shop=accountants" (no longer in the data).

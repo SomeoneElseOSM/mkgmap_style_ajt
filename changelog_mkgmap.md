@@ -6,6 +6,7 @@ Removed "shop=take_away", no longer in the data.
 Added support for various linear aerialway types (the same as https://taginfo.openstreetmap.org/projects/someoneelse_style ).
 Detect public transport stations not obviously bus, railway or aerialway stations.
 Show railway=funicular as narrow gauge railways.
+Append a bracketed description of "light_rail".
 
 ## 26/11/2023
 Removed "fee=No", no longer in the data.

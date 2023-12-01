@@ -8442,7 +8442,8 @@ function ott.process_way( object )
        ( object.tags["railway"] == "subway"       ) or
        ( object.tags["railway"] == "rail"         ) or
        ( object.tags["railway"] == "preserved"    ) or
-       ( object.tags["railway"] == "narrow_gauge" )) then
+       ( object.tags["railway"] == "narrow_gauge" ) or
+       ( object.tags["railway"] == "light_rail"   )) then
       object = append_nonqa( object, object.tags["railway"] )
    end
 

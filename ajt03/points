@@ -194,6 +194,7 @@ man_made=thing {name '${name}'}  [0x2f14 resolution 20]
 amenity=recycling {name '${name}'} [0x2f15 resolution 20]
 railway=tram_stop {name '${name}'} [0x2f17 resolution 21]
 highway=bus_stop {name '${name}'} [0x2f17 resolution 20]
+aeroway=gate {name '${name}'} [0x2f17 resolution 20]
 amenity=taxi {name '${name}'} [0x2f17 resolution 20]
 
 amenity=police {name '${name}'} [0x3001 resolution 21]

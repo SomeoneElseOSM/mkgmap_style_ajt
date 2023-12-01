@@ -1827,6 +1827,17 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
+   if ( object.tags["aeroway"] == "gate" ) then
+      object = append_nonqa( object, "aeroway" )
+      object = append_nonqa( object, object.tags["aeroway"] )
+
+      if ( object.tags["ref"] ~= nil ) then
+         object = append_nonqa( object, object.tags["ref"] )
+      end
+
+      object = building_or_landuse( objtype, object )
+   end
+
 -- ----------------------------------------------------------------------------
 -- "cafe" - consolidation of lesser used tags
 -- Done here because we suppress some that are not accessible before 

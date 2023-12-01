@@ -8,6 +8,7 @@ Detect public transport stations not obviously bus, railway or aerialway station
 Show railway=funicular as narrow gauge railways.
 Append a bracketed description of "light_rail".
 Detect aerialway stations.
+Added support for "aeroway=gate".
 
 ## 26/11/2023
 Removed "fee=No", no longer in the data.

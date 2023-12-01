@@ -3535,22 +3535,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Change miniature railways (not handled in the style file) to narrow_gauge.
--- After this change a suffix will be added in ott.process_way
--- ----------------------------------------------------------------------------
-   if ( object.tags["railway"] == "miniature" ) then
-      object.tags["railway"] = "narrow_gauge"
-   end
-
--- ----------------------------------------------------------------------------
--- Goods Conveyors - render as narrow_gauge railway.
--- After this change a suffix will be added in ott.process_way
--- ----------------------------------------------------------------------------
-   if ( object.tags["man_made"] == "goods_conveyor" ) then
-      object.tags["railway"] = "narrow_gauge"
-   end
-
--- ----------------------------------------------------------------------------
 -- Aerialways
 -- These are handled as aerialway=yes in "lines" as "default linear thing" 0x1d.
 -- ----------------------------------------------------------------------------
@@ -8460,6 +8444,26 @@ function ott.process_way( object )
        ( object.tags["railway"] == "preserved"    ) or
        ( object.tags["railway"] == "narrow_gauge" )) then
       object = append_nonqa( object, object.tags["railway"] )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Change miniature railways (not handled in the style file) to narrow_gauge.
+-- After this change a suffix will be added in ott.process_way 
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"] == "miniature" ) or
+       ( object.tags["railway"] == "funicular" )) then
+      object = append_nonqa( object, object.tags["railway"] )
+      object.tags["railway"] = "narrow_gauge"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Goods Conveyors - render as narrow_gauge railway.
+-- After this change a suffix will be added in ott.process_way
+-- ----------------------------------------------------------------------------
+   if ( object.tags["man_made"] == "goods_conveyor" ) then
+      object = append_nonqa( object, object.tags["man_made"] )
+      object.tags["railway"]  = "narrow_gauge"
+      object.tags["man_made"] = nil
    end
 
 -- ----------------------------------------------------------------------------

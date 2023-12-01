@@ -1731,6 +1731,10 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Various ground transportation features
 --
+-- Show unspecified "public_transport=station" as "railway=halt"
+-- These are normally one of amenity=bus_station, railway=station or
+--  aerialway=station.  If they are none of these at least sow them as something.
+--
 -- Railway, bus, ferry, bicycle_rental:
 -- "0x2f08" is searchable via "Transportation / Ground Transportation"
 -- These values are all also in "points", as the same Garmin ID
@@ -1743,6 +1747,25 @@ function process_all( objtype, object )
        ( object.tags["railway"] == "station" )) then
       object = append_nonqa( object, "railway" )
       object = append_nonqa( object, object.tags["railway"] )
+
+      if (( object.tags["usage"]             == "tourism"   ) or
+          ( object.tags["railway:miniature"] == "station"   ) or
+          ( object.tags["station"]           == "miniature" ) or
+          ( object.tags["tourism"]           == "yes"       )) then
+         object.tags["railway"] = "tourismstation"
+         object.tags["tourism"] = nil
+      end
+
+      object = building_or_landuse( objtype, object )
+   end
+
+   if (( object.tags["public_transport"] == "station" ) and
+       ( object.tags["amenity"]          == nil       ) and
+       ( object.tags["railway"]          == nil       ) and
+       ( object.tags["aerialway"]        == nil       )) then
+      object = append_nonqa( object, "public_transport" )
+      object = append_nonqa( object, object.tags["public_transport"] )
+      object.tags["railway"] = "halt"
 
       if (( object.tags["usage"]             == "tourism"   ) or
           ( object.tags["railway:miniature"] == "station"   ) or

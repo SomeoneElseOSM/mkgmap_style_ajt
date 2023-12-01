@@ -128,6 +128,7 @@ waterway=river {name '${name}'} [0x1f resolution 18]
 waterway=stream {name '${name}'} [0x18 resolution 22]
 waterway=derelict_canal {name '${name}'} [0x1d resolution 18]
 leisure=slipway {name '${name}'} [0x1d resolution 18]
+aerialway=yes {name '${name}'} [0x1d resolution 18]
 
 man_made=pipeline {name '${name}'} [0x28 resolution 23]
 

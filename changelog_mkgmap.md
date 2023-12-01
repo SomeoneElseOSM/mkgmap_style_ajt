@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 Removed "shop=take_away", no longer in the data.
+Added support for various linear aerialway types (the same as https://taginfo.openstreetmap.org/projects/someoneelse_style ).
 
 ## 26/11/2023
 Removed "fee=No", no longer in the data.

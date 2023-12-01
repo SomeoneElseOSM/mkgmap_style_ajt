@@ -3528,6 +3528,24 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Aerialways
+-- These are handled as aerialway=yes in "lines" as "default linear thing" 0x1d.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["aerialway"] == "cable_car"  ) or
+       ( object.tags["aerialway"] == "chair_lift" ) or
+       ( object.tags["aerialway"] == "drag_lift"  ) or
+       ( object.tags["aerialway"] == "gondola"    ) or
+       ( object.tags["aerialway"] == "goods"      ) or
+       ( object.tags["aerialway"] == "j-bar"      ) or
+       ( object.tags["aerialway"] == "platter"    ) or
+       ( object.tags["aerialway"] == "rope_tow"   ) or
+       ( object.tags["aerialway"] == "t-bar"      )) then
+      object = append_nonqa( object, "aerialway" )
+      object = append_nonqa( object, object.tags["aerialway"] )
+      object.tags["aerialway"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Slipways
 -- Linear slipways are handled in "lines" as "default linear thing" 0x1d.
 -- Point slipways are changed elsewhere to "man_made=thing"

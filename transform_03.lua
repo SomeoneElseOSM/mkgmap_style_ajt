@@ -1827,7 +1827,8 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if ( object.tags["aeroway"] == "gate" ) then
+   if (( object.tags["aeroway"] == "gate"             ) or
+       ( object.tags["aeroway"] == "parking_position" )) then
       object = append_nonqa( object, "aeroway" )
       object = append_nonqa( object, object.tags["aeroway"] )
 

@@ -70,6 +70,7 @@
     { "key": "aeroway", "value": "gate", "description": "'ref' appended to name; 'Transportation / Transit Service'" },
     { "key": "aeroway", "value": "helipad", "description": "Helipads" },
     { "key": "aeroway", "value": "heliport", "description": "Shown in the same way as aerodromes" },
+    { "key": "aeroway", "value": "parking_position", "description": "'ref' appended to name; 'Transportation / Transit Service'" },
     { "key": "aeroway", "value": "runway", "description": "Runways: depending on other tags (surface etc.) shown as normal or grass" },
     { "key": "aeroway", "value": "taxiway", "description": "Aerodrome taxiways" },
     { "key": "aeroway", "value": "terminal", "description": "Shown with a description in brackets" },

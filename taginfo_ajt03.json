@@ -58,6 +58,7 @@
     { "key": "aerialway", "value": "j-bar", "description": "Shown in brackets; ways as default line (not searchable)" },
     { "key": "aerialway", "value": "platter", "description": "Shown in brackets; ways as default line (not searchable)" },
     { "key": "aerialway", "value": "rope_tow", "description": "Shown in brackets; ways as default line (not searchable)" },
+    { "key": "aerialway", "value": "station", "description": "'aerialway' and 'station' appended in brackets; 'Transportation / Ground Transportation' (or if tourism) 'Attractions / Landmark'" },
     { "key": "aerialway", "value": "t-bar", "description": "Shown in brackets; ways as default line (not searchable)" },
     { "key": "aerodrome:type", "description": "Non-military aerodromes may be large airports depending on other tags" },
     { "key": "aerodrome:type", "value": "military", "description": "Military aerodromes are not shown as large airports" },

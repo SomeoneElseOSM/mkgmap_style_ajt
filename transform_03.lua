@@ -1778,6 +1778,24 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
+   if (( object.tags["aerialway"] == "station" ) and
+       ( object.tags["amenity"]   == nil       ) and
+       ( object.tags["railway"]   == nil       )) then
+      object = append_nonqa( object, "aerialway" )
+      object = append_nonqa( object, object.tags["aerialway"] )
+      object.tags["railway"] = "halt"
+
+      if (( object.tags["usage"]             == "tourism"   ) or
+          ( object.tags["railway:miniature"] == "station"   ) or
+          ( object.tags["station"]           == "miniature" ) or
+          ( object.tags["tourism"]           == "yes"       )) then
+         object.tags["railway"] = "tourismstation"
+         object.tags["tourism"] = nil
+      end
+
+      object = building_or_landuse( objtype, object )
+   end
+
    if (( object.tags["amenity"] == "bus_station"    )  or
        ( object.tags["amenity"] == "ferry_terminal" )  or
        ( object.tags["amenity"] == "bicycle_rental" )) then

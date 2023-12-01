@@ -6084,7 +6084,6 @@ function process_all( objtype, object )
 -- Also render fish and chips etc. with a unique icon.
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"] == "fast_food" ) or
-       ( object.tags["shop"] == "take_away" ) or
        ( object.tags["shop"] == "takeaway"  )) then
       object.tags["amenity"] = "fast_food"
    end

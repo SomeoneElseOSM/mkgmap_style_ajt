@@ -1682,6 +1682,11 @@ function process_all( objtype, object )
 -- "0x4c00" is searchable via "Geographic Points / Manmade Places"
 -- A "tourist information" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if (( object.tags["amenity"] == "bird_hide"     ) or
+       ( object.tags["amenity"] == "wildlife_hide" )) then
+      object.tags["leisure"] = object.tags["amenity"]
+   end
+
    if (( object.tags["leisure"] == "bird_hide"     )  or
        ( object.tags["leisure"] == "wildlife_hide" )) then
       object = append_nonqa( object, object.tags["leisure"] )

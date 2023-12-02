@@ -466,14 +466,13 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- amenity=bbq
--- "man_made=marker" is in "points" as "0x4c00"
--- "0x4c00" is searchable via "Geographic Points / Manmade Places"
--- No icon is visible in QMapShack
--- A "tourist information" icon appears on a GPSMAP64s
+-- "man_made=thing" is in "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "bbq" ) then
       object = append_nonqa( object, object.tags["amenity"] )
-      object.tags["man_made"] = "marker"
+      object.tags["man_made"] = "thing"
       object.tags["amenity"] = nil
    end
 

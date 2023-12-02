@@ -9,6 +9,7 @@ Added support for "amenity=compressed_air".
 Added "amenity=embassy" as a synonym for "diplomatic=embassy".
 Added support for "amenity=fountain", "amenity=grit_bin".
 Added support for hunting stands and grouse butts.
+Added support for "amenity=left=luggage".
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

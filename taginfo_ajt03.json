@@ -223,6 +223,7 @@
     { "key": "amenity", "value": "laboratory", "description": "Shown in brackets after '(amenity)'; 'Shopping / Speciality retail'" },
     { "key": "amenity", "value": "lawyer", "description": "Shown in brackets after '(amenity)'; 'Shopping / Speciality retail'" },
     { "key": "amenity", "value": "layby", "description": "shown as parking with 'pay' suffix if for pay" },
+    { "key": "amenity", "value": "left_luggage", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "leisure_centre", "description": "shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "amenity", "value": "library", "description": "shown in brackets; 'Community / Library'" },
     { "key": "amenity", "value": "lifeboat", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },

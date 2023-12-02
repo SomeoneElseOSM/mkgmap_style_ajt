@@ -895,6 +895,8 @@ function process_all( objtype, object )
         ( object.tags["social_facility"] == "shelter"              )   or
         ( object.tags["social_facility"] == "day_care"             )   or
         ( object.tags["social_facility"] == "day_centre"           )   or
+        ( object.tags["social_facility"] == "food_bank"            )   or
+        ( object.tags["social_facility"] == "outreach"             )   or
         ( object.tags["social_facility"] == "residential_home"     ))) then
       object = append_nonqa( object, object.tags["social_facility"] )
       object.tags["amenity"] = "community_centre"
@@ -1092,15 +1094,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["leisure"]  == "nature_reserve" ) then
       object = append_nonqa( object, object.tags["leisure"] )
-   end
-
--- ----------------------------------------------------------------------------
--- man_made=observatory
--- This might be either a building or not.
--- ----------------------------------------------------------------------------
-   if ( object.tags["man_made"] == "observatory" ) then
-      object = append_nonqa( object, "observatory" )
-      object = building_or_landuse( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
@@ -3746,7 +3739,6 @@ function process_all( objtype, object )
        ( object.tags["man_made"]   == "filtration_bed"   ) or
        ( object.tags["man_made"]   == "waste_treatment"  ) or
        ( object.tags["man_made"]   == "lighthouse"       ) or
-       ( object.tags["man_made"]   == "telescope"        ) or
        ( object.tags["man_made"]   == "street_cabinet"   ) or
        ( object.tags["man_made"]   == "aeroplane"        ) or
        ( object.tags["man_made"]   == "helicopter"       )) then
@@ -7619,6 +7611,7 @@ function process_all( objtype, object )
        ( object.tags["office"]      == "accountants"             ) or
        ( object.tags["office"]      == "advertising"             ) or
        ( object.tags["office"]      == "architect"               ) or
+       ( object.tags["office"]      == "association"             ) or
        ( object.tags["office"]      == "builder"                 ) or
        ( object.tags["office"]      == "charity"                 ) or
        ( object.tags["office"]      == "communication"           ) or
@@ -7629,6 +7622,8 @@ function process_all( objtype, object )
        ( object.tags["office"]      == "coworking_space"         ) or
        ( object.tags["office"]      == "delivery"                ) or
        ( object.tags["office"]      == "design"                  ) or
+       ( object.tags["office"]      == "diplomatic"              ) or
+       ( object.tags["office"]      == "educational_institution" ) or
        ( object.tags["office"]      == "employment_agency"       ) or
        ( object.tags["office"]      == "engineering"             ) or
        ( object.tags["office"]      == "financial"               ) or
@@ -7641,10 +7636,19 @@ function process_all( objtype, object )
        ( object.tags["office"]      == "laundry"                 ) or
        ( object.tags["office"]      == "lawyer"                  ) or
        ( object.tags["office"]      == "marketing"               ) or
+       ( object.tags["office"]      == "marriage_guidance"       ) or
        ( object.tags["office"]      == "newspaper"               ) or
+       ( object.tags["office"]      == "ngo"                     ) or
+       ( object.tags["office"]      == "organization"            ) or
        ( object.tags["office"]      == "parcel"                  ) or
+       ( object.tags["office"]      == "political_party"         ) or
+       ( object.tags["office"]      == "politician"              ) or
+       ( object.tags["office"]      == "political"               ) or
+       ( object.tags["office"]      == "property_maintenance"    ) or
+       ( object.tags["office"]      == "quango"                  ) or
        ( object.tags["office"]      == "recruitment"             ) or
        ( object.tags["office"]      == "recruitment_agency"      ) or
+       ( object.tags["office"]      == "religion"                ) or
        ( object.tags["office"]      == "security"                ) or
        ( object.tags["office"]      == "serviced_offices"        ) or
        ( object.tags["office"]      == "solicitor"               ) or
@@ -7654,6 +7658,7 @@ function process_all( objtype, object )
        ( object.tags["office"]      == "telecommunication"       ) or
        ( object.tags["office"]      == "therapist"               ) or
        ( object.tags["office"]      == "training"                ) or
+       ( object.tags["office"]      == "university"              ) or
        ( object.tags["office"]      == "web_design"              )) then
       object = append_nonqa( object, "office" )
       object = append_nonqa( object, object.tags["office"] )
@@ -7670,14 +7675,19 @@ function process_all( objtype, object )
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]     == "accountants"             ) or
+       ( object.tags["amenity"]     == "advice"                  ) or
+       ( object.tags["amenity"]     == "advice_service"          ) or
        ( object.tags["amenity"]     == "convent"                 ) or
        ( object.tags["amenity"]     == "cooking_school"          ) or
        ( object.tags["amenity"]     == "coworking_space"         ) or
        ( object.tags["amenity"]     == "delivery_office"         ) or
+       ( object.tags["amenity"]     == "laboratory"              ) or
        ( object.tags["amenity"]     == "lawyer"                  ) or
+       ( object.tags["amenity"]     == "medical_laboratory"      ) or
        ( object.tags["amenity"]     == "monastery"               ) or
        ( object.tags["amenity"]     == "music_school"            ) or
        ( object.tags["amenity"]     == "post_depot"              ) or
+       ( object.tags["amenity"]     == "research_institute"      ) or
        ( object.tags["amenity"]     == "solicitor"               ) or
        ( object.tags["amenity"]     == "solicitors"              ) or
        ( object.tags["amenity"]     == "sorting_office"          ) or
@@ -7759,7 +7769,8 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if ( object.tags["healthcare"]  == "home_care"               ) then
+   if (( object.tags["healthcare"]  == "home_care"  ) or
+       ( object.tags["healthcare"]  == "laboratory" )) then
       object = append_nonqa( object, "healthcare" )
       object = append_nonqa( object, object.tags["healthcare"] )
       object.tags["amenity"] = nil
@@ -7768,6 +7779,21 @@ function process_all( objtype, object )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
    end
+
+-- ----------------------------------------------------------------------------
+-- man_made=observatory and man_made=telescope
+-- This might be either a building or not.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"] == "observatory" ) or
+       ( object.tags["man_made"] == "telescope"   )) then
+      object = append_nonqa( object, object.tags["man_made"] )
+      object.tags["amenity"] = nil
+      object.tags["craft"] = nil
+      object.tags["office"] = nil
+      object.tags["shop"] = "specialty"
+      object = building_or_landuse( objtype, object )
+   end
+
 
 -- ----------------------------------------------------------------------------
 -- Telephone Exchanges

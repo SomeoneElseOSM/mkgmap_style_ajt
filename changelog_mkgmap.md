@@ -9,7 +9,7 @@ Show railway=funicular as narrow gauge railways.
 Append a bracketed description of "light_rail".
 Detect aerialway stations.
 Added support for "aeroway=gate" and "aeroway=parking_position".
-Moved numerous previously unsearchable shop and healthcare tags to "Shopping / Speciality retail".
+Moved numerous previously unsearchable shop, healthcare, office tags to "Shopping / Speciality retail" etc.
 
 ## 26/11/2023
 Removed "fee=No", no longer in the data.

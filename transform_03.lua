@@ -7735,7 +7735,8 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Next, office like things mapped as shop, healthcare, craft
+-- Next, office like things mapped as shop, healthcare
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]        == "lawyer"                  ) or
@@ -7754,7 +7755,7 @@ function process_all( objtype, object )
       object.tags["amenity"] = nil
       object.tags["craft"] = nil
       object.tags["office"] = nil
-      object.tags["shop"] = nil
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
    end
 
@@ -7764,7 +7765,7 @@ function process_all( objtype, object )
       object.tags["amenity"] = nil
       object.tags["craft"] = nil
       object.tags["office"] = nil
-      object.tags["shop"] = nil
+      object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
    end
 

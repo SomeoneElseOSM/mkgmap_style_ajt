@@ -471,7 +471,8 @@ function process_all( objtype, object )
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "bbq"            ) or
-       ( object.tags["amenity"] == "compressed_air" )) then
+       ( object.tags["amenity"] == "compressed_air" ) or
+       ( object.tags["amenity"] == "grit_bin"       )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["man_made"] = "thing"
       object.tags["amenity"] = nil

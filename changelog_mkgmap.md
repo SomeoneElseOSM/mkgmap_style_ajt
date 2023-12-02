@@ -10,6 +10,7 @@ Append a bracketed description of "light_rail".
 Detect aerialway stations.
 Added support for "aeroway=gate" and "aeroway=parking_position".
 Moved numerous previously unsearchable shop, healthcare, office tags to "Shopping / Speciality retail" etc.
+Added support for ambulance stations as government offices.
 
 ## 26/11/2023
 Removed "fee=No", no longer in the data.

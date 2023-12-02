@@ -7887,6 +7887,12 @@ function process_all( objtype, object )
 -- "0x3007" is searchable via "Community / Government Office"
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
+   if (( object.tags["emergency"] == "ambulance_station" ) and
+       ( object.tags["amenity"]   == nil                 )) then
+      object.tags["amenity"]   = object.tags["emergency"]
+      object.tags["emergency"] = nil
+   end
+
    if ((  object.tags["amenity"]    == "job_centre"              ) or
        (  object.tags["amenity"]    == "jobcentre"               ) or
        (  object.tags["amenity"]    == "public_building"         ) or
@@ -7897,7 +7903,8 @@ function process_all( objtype, object )
        (  object.tags["amenity"]    == "hall"                    ) or
        (  object.tags["amenity"]    == "lifeboat_station"        ) or
        (  object.tags["amenity"]    == "coast_guard"             ) or
-       (  object.tags["amenity"]    == "archive"                 )) then
+       (  object.tags["amenity"]    == "archive"                 ) or
+       (  object.tags["amenity"]    == "ambulance_station"       )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )

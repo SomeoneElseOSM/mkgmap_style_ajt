@@ -106,7 +106,6 @@
     { "key": "amenity", "value": "arts_centre", "description": "shown in brackets; 'Entertainment / Live Theater'" },
     { "key": "amenity", "value": "atm", "description": "shown in brackets; 'Community / Bank or ATM'" },
     { "key": "amenity", "value": "bank", "description": "shown in brackets; 'Community / Bank or ATM'" },
-    { "key": "amenity", "value": "bank;atm", "description": "shown in brackets; 'Community / Bank or ATM'" },
     { "key": "amenity", "value": "bar", "description": "shown as 'Food and Drink / British Isles' with suffix 'BQ' and suffixes for other features." },
     { "key": "amenity", "value": "bar;restaurant", "description": "shown as bar" },
     { "key": "amenity", "value": "beer_garden", "description": "shown in brackets; 'Geographic Points / Land Features'" },

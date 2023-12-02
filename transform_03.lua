@@ -2298,7 +2298,6 @@ function process_all( objtype, object )
        ( object.tags["amenity"] == "building_society" ) or
        ( object.tags["amenity"] == "credit_union"     ) or
        ( object.tags["amenity"] == "atm"              ) or
-       ( object.tags["amenity"] == "bank;atm"         ) or
        ( object.tags["amenity"] == "financial_advice" ) or
        ( object.tags["amenity"] == "bureau_de_change" )) then
       object.tags["shop"] = object.tags["amenity"]

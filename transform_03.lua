@@ -1207,6 +1207,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- amenity=fountain
+-- Mapped through to 0x6509 ("Geyser") in "points".
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "fountain" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- amenity=grave_yard
 -- landuse=cemetery
 -- Both are in "points" as "0x6403" 

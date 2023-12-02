@@ -235,6 +235,7 @@ natural=spring {name '${name}'} [0x6511 resolution 21]
 # This isn't in the data, hence commented out here
 # barrier=ford [0x6512 resolution 21]
 natural=wetland {name '${name}'} [0x6513 resolution 21]
+amenity=fountain {name '${name}'} [0x6509 resolution 21]
 
 landuse=allotments {name '${name}'} [0x6600 resolution 21]
 natural=tree {name '${name}'} [0x6600 resolution 21]

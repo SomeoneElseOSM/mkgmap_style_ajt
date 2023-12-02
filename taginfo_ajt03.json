@@ -178,6 +178,7 @@
     { "key": "amenity", "value": "driving_school", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "education_centre", "description": "shown in brackets; 'Community / School'" },
     { "key": "amenity", "value": "electronics_repair", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "amenity", "value": "embassy", "description": "Synonym for diplomatic=embassy" },
     { "key": "amenity", "value": "escape_game", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "escooter_rental", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "estate_agent", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

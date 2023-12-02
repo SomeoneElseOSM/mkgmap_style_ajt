@@ -981,6 +981,11 @@ function process_all( objtype, object )
 -- Embassies and embassy-adjacent things first.
 -- "0x3007" is searchable via "Community / Government Office"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "embassy" ) then
+      object.tags["diplomatic"] = object.tags["amenity"]
+      object.tags["amenity"]    = nil
+   end
+
    if ((  object.tags["diplomatic"] == "embassy"            )  and
        (( object.tags["embassy"]    == nil                 )   or
         ( object.tags["embassy"]    == "yes"               ))) then

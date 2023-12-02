@@ -125,6 +125,7 @@
     { "key": "amenity", "value": "bureau_de_change", "description": "shown in brackets; 'Community / Bank or ATM'" },
     { "key": "amenity", "value": "bus_depot", "description": "Shown after 'amenity' in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "amenity", "value": "bus_station", "description": "shown in brackets; 'Transportation / Ground Transportation'" },
+    { "key": "amenity", "value": "bus_stop", "description": "Synonym for 'highway=bus_stop'.  Naptan indicator appended to name; 'Transportation / Transit Service'" },
     { "key": "amenity", "value": "cafe", "description": "shown in brackets (inc 'with rooms'); 'Food and Drink / Cafe or Diner'" },
     { "key": "amenity", "value": "car_boot_sale", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "amenity", "value": "car_rental", "description": "shown in brackets; 'Auto Services / Auto Rental'" },

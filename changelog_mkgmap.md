@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Move "amenity=bbq" to the search menu "Others / Social Service".
 Added support for "amenity=bird_hide" and "amenity=wildlife_hide".
+Add "amenity=bus_stop" as a synonym of "highway=bus_stop".
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

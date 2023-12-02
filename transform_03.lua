@@ -1826,6 +1826,11 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
+   if ( object.tags["amenity"] == "bus_stop" ) then
+      object.tags["highway"] = object.tags["amenity"]
+      object.tags["amenity"] = nil
+   end
+
    if ( object.tags["highway"] == "bus_stop" ) then
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["amenity"] = nil

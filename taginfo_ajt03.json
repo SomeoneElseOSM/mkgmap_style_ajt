@@ -229,6 +229,7 @@
     { "key": "amenity", "value": "lifeboat", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "amenity", "value": "lifeboat_station", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "amenity", "value": "lottery", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "amenity", "value": "lounger", "description": "shown in brackets; 'Others / Personal Service'" },
     { "key": "amenity", "value": "luggage_locker", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "market", "description": "shown in brackets; 'Shopping / Shopping Center'" },
     { "key": "amenity", "value": "marketplace", "description": "shown in brackets; 'Shopping / Shopping Center'" },

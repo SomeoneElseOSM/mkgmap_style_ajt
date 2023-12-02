@@ -183,7 +183,7 @@ amenity=car_wash {name '${name}'} [0x2f0e resolution 21]
 barrier=gate [0x2f0f resolution 23 default_name 'Gate']
 barrier=kissing_gate [0x2f0f resolution 23 default_name 'Kissing Gate']
 barrier=lift_gate [0x2f0f resolution 23 default_name 'Lift Gate']
-amenity=bench [0x2f10 resolution 23 default_name 'Bench']
+amenity=bench {name '${name}'} [0x2f10 resolution 23 default_name 'Bench']
 amenity=shelter {name '${name}'} [0x2f10 resolution 20 default_name 'shelter']
 
 emergency=phone {name '${name}'} [0x2f12 resolution 21 default_name 'Emergency Phone']

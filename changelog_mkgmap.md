@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 01/12/2023
 Removed "shop=take_away", no longer in the data.
 Added support for various linear aerialway types (the same as https://taginfo.openstreetmap.org/projects/someoneelse_style ).
 Detect public transport stations not obviously bus, railway or aerialway stations.
@@ -11,6 +11,7 @@ Detect aerialway stations.
 Added support for "aeroway=gate" and "aeroway=parking_position".
 Moved numerous previously unsearchable shop, healthcare, office tags to "Shopping / Speciality retail" etc.
 Added support for ambulance stations as government offices.
+Added support for "amenity=bbq".
 
 ## 26/11/2023
 Removed "fee=No", no longer in the data.

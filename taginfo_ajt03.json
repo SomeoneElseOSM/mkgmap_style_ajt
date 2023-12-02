@@ -153,6 +153,7 @@
     { "key": "amenity", "value": "common", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "amenity", "value": "community_centre", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "amenity", "value": "community_hall", "description": "shown in brackets; 'Community / Community Center'" },
+    { "key": "amenity", "value": "compressed_air", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "amenity", "value": "concert_hall", "description": "shown in brackets; 'Attractions / Hall or Auditorium'" },
     { "key": "amenity", "value": "conference_centre", "description": "shown in brackets; 'Attractions / Hall or Auditorium'" },
     { "key": "amenity", "value": "convent", "description": "Shown in brackets after '(amenity)'; 'Shopping / Speciality retail'" },

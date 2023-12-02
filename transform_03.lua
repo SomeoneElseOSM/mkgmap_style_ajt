@@ -465,12 +465,13 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- amenity=bbq
+-- amenity=bbq and other small amenities
 -- "man_made=thing" is in "points" as "0x2f14"
 -- "0x2f14" is searchable via "Others / Social Service"
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "bbq" ) then
+   if (( object.tags["amenity"] == "bbq"            ) or
+       ( object.tags["amenity"] == "compressed_air" )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["man_made"] = "thing"
       object.tags["amenity"] = nil

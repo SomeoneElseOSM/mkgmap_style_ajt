@@ -5875,7 +5875,6 @@ function process_all( objtype, object )
        ( object.tags["healthcare"]  == "hospice"                      ) or
        ( object.tags["healthcare"]  == "cosmetic"                     ) or
        ( object.tags["healthcare"]  == "cosmetic_surgery"             ) or
-       ( object.tags["healthcare"]  == "cosmetic_treatments"          ) or
        ( object.tags["healthcare"]  == "dentures"                     ) or
        ( object.tags["healthcare"]  == "blood_donation"               ) or
        ( object.tags["healthcare"]  == "blood_bank"                   ) or

@@ -1003,7 +1003,6 @@
     { "key": "healthcare", "value": "clinic", "description": "Shown in brackets; 'Hospitals'" },
     { "key": "healthcare", "value": "cosmetic", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "cosmetic_surgery", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "healthcare", "value": "cosmetic_treatments", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "counselling", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "dentist", "description": "shown in brackets; 'Hospitals'" },
     { "key": "healthcare", "value": "dentures", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

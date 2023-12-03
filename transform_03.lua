@@ -6616,8 +6616,11 @@ function process_all( objtype, object )
       object.tags["man_made"] = "thing"
    end
 
-   if  (( object.tags["amenity"]                == "bicycle_parking"       )  and
-        ( object.tags["small_electric_vehicle"] == "designated"            )) then
+   if (((  object.tags["amenity"]                == "parking"               )  and
+        (( object.tags["parking"]                == "e-scooter"            )   or
+         ( object.tags["small_electric_vehicle"] == "designated"           ))) or
+       ((  object.tags["amenity"]                == "bicycle_parking"       )  and
+        (  object.tags["small_electric_vehicle"] == "designated"            ))) then
       object = append_nonqa( object, "small_electric_vehicle parking" )
       object.tags["man_made"] = "thing"
    end

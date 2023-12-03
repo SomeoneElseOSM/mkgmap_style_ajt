@@ -314,6 +314,7 @@
     { "key": "amenity", "value": "storage", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "stripclub", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "studio", "description": "Shown in brackets after '(amenity)'; 'Shopping / Speciality retail'" },
+    { "key": "amenity", "value": "sundial", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "surgery", "description": "shown in brackets; 'Hospitals'" },
     { "key": "amenity", "value": "tax_advisor", "description": "Shown in brackets after '(amenity)'; 'Shopping / Speciality retail'" },
     { "key": "amenity", "value": "taxi", "description": "shown in brackets; 'Transportation / Transit'" },

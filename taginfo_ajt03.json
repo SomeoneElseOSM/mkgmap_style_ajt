@@ -286,7 +286,6 @@
     { "key": "amenity", "value": "rental", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "research_institute", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "residential_home", "description": "shown in brackets; 'Community / Community Center'" },
-    { "key": "amenity", "value": "rest_area", "description": "shown in brackets; 'Auto Services / Parking'" },
     { "key": "amenity", "value": "restaurant", "description": "shown as restaurant and on 'Food and Drink'; 'cuisine' determines exactly where, unrecognised cuisines show as 'Food and Drink / All Categories'" },
     { "key": "amenity", "value": "retirement_home", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "amenity", "value": "school", "description": "shown in brackets; 'Community / School'" },

@@ -480,11 +480,13 @@ function process_all( objtype, object )
       object.tags["man_made"] = nil
    end
 
-   if (( object.tags["amenity"] == "bbq"            ) or
-       ( object.tags["amenity"] == "compressed_air" ) or
-       ( object.tags["amenity"] == "grit_bin"       ) or
-       ( object.tags["amenity"] == "grouse_butt"    ) or
-       ( object.tags["amenity"] == "hunting_stand"  )) then
+   if ((  object.tags["amenity"] == "bbq"             ) or
+       (  object.tags["amenity"] == "compressed_air"  ) or
+       (  object.tags["amenity"] == "grit_bin"        ) or
+       (  object.tags["amenity"] == "grouse_butt"     ) or
+       (  object.tags["amenity"] == "hunting_stand"   ) or
+       (( object.tags["amenity"] == "waste_basket"   )  and
+        ( object.tags["highway"] ==  nil             ))) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["man_made"] = "thing"
       object.tags["amenity"] = nil
@@ -1845,8 +1847,9 @@ function process_all( objtype, object )
 -- Various "transit" features
 -- "0x2f17" is searchable via "Transportation / Transit"
 -- These values are all also in "points", as the same Garmin ID
+--
 -- Some people tag shelter or waste_basket on bus_stop.  
--- We render just bus_stop.
+-- We render just bus_stop (the waste_basket code above handles this).
 -- ----------------------------------------------------------------------------
    if ( object.tags["railway"] == "tram_stop" ) then
       object = append_nonqa( object, object.tags["railway"] )

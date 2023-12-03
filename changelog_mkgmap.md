@@ -16,6 +16,7 @@ Support both "amenity=shopmobility" as well as "amenity=shop_mobility".
 Removed "healthcare=cosmetic_treatments", no longer in the data.
 Added "emergency=ses_station" as a synonym for "emergency=coast_guard" and show as a government office.
 Added "amenity=sundial" as a synonym for "amenity=clock; display=sundial".
+Added support for "amenity=waste_basket".
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

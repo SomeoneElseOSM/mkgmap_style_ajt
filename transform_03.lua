@@ -4057,6 +4057,11 @@ function process_all( objtype, object )
       object.tags["historic"] = object.tags["building"]
    end
 
+   if ( object.tags["amenity"] == "pinfold" ) then
+      object.tags["historic"] = object.tags["amenity"]
+      object.tags["amenity"]  = nil
+   end
+
    if (( object.tags["historic"] == "abbey"                 ) or
        ( object.tags["historic"] == "aircraft"              ) or
        ( object.tags["historic"] == "almshouse"             ) or

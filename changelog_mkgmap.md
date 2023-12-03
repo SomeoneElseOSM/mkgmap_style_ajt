@@ -11,7 +11,7 @@ Added support for "amenity=fountain", "amenity=grit_bin".
 Added support for hunting stands and grouse butts.
 Added support for "amenity=left_luggage" and "amenity=lounger".
 Added support for "amenity=mountain_rescue", "emergency=mountain_rescue" and "emergency=rescue_box".
-Added support for "amenity=outdoor_education_centre".
+Added support for "amenity=outdoor_education_centre" and "amenity=pinfold".
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

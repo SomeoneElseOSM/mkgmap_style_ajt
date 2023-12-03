@@ -8546,11 +8546,13 @@ function ott.process_node( object )
 
 -- ----------------------------------------------------------------------------
 -- Point horse_jumps are sent through as "thing" with a suffix
+-- Also point "barrier=barrier"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["barrier"] == "horse_jump" ) then
+   if (( object.tags["barrier"] == "horse_jump" ) or
+       ( object.tags["barrier"] == "barrier"    )) then
+      object = append_nonqa( object, object.tags["barrier"] )
       object.tags["man_made"] = "thing"
       object.tags["barrier"] = nil
-      object = append_nonqa( object, "horse_jump" )
    end
 
 -- ----------------------------------------------------------------------------
@@ -9134,12 +9136,14 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
--- Line horse_jumps are sent through as "fence" with a suffix
+-- Linear horse_jumps are sent through as "fence" with a suffix
+-- Also linear "barrier=barrier"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["barrier"] == "horse_jump" ) then
+   if (( object.tags["barrier"] == "horse_jump" ) or
+       ( object.tags["barrier"] == "barrier"    )) then
+      object = append_nonqa( object, object.tags["barrier"] )
       object.tags["man_made"] = "fence"
       object.tags["barrier"] = nil
-      object = append_nonqa( object, "horse_jump" )
    end
 
 -- ----------------------------------------------------------------------------

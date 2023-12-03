@@ -359,6 +359,7 @@
     { "key": "barrier", "description": "Various barriers detected, shown and searchable" },
     { "key": "barrier", "value": "a_frame", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "bar", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
+    { "key": "barrier", "value": "barrier", "description": "Points shown as dot; 'Others / Social Service', Lines shown as fence" },
     { "key": "barrier", "value": "block", "description": "Shown as dot; 'Others / Social Service'" },
     { "key": "barrier", "value": "bollard", "description": "Shown as dot; 'Others / Social Service'" },
     { "key": "barrier", "value": "border_control", "description": "Shown as border crossing; 'Community / Border Crossing'" },

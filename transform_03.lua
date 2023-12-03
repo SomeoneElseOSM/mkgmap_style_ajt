@@ -768,6 +768,7 @@ function process_all( objtype, object )
        ( object.tags["amenity"]  == "community_centre"         ) or
        ( object.tags["amenity"]  == "social_centre"            ) or
        ( object.tags["amenity"]  == "youth_club"               ) or
+       ( object.tags["amenity"]  == "youth_centre"             ) or
        ( object.tags["amenity"]  == "social_club"              ) or
        ( object.tags["amenity"]  == "working_mens_club"        ) or
        ( object.tags["amenity"]  == "club"                     ) or

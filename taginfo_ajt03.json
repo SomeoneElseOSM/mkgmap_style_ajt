@@ -337,6 +337,7 @@
     { "key": "amenity", "value": "watering_place", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "amenity", "value": "wildlife_hide", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "amenity", "value": "working_mens_club", "description": "shown in brackets; 'Community / Community Center'" },
+    { "key": "amenity", "value": "youth_centre", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "amenity", "value": "youth_club", "description": "Not an expected value in OSM data.  Shown in brackets; 'Community / Community Center'" },
     { "key": "amenity:disused", "description": "Used to detect former pubs" },
     { "key": "amenity:disused", "value": "pub", "description": "descriptionUsed to detect former pubs" },

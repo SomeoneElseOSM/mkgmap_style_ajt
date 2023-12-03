@@ -19,6 +19,7 @@ Added "amenity=sundial" as a synonym for "amenity=clock; display=sundial".
 Detect if someone has mapped scooter rental locations as "amenity=parking", detect that.
 Added support for "amenity=waste_basket" and "amenity=watering_place".
 Added "amenity=youth_centre" as a synonym for former tag "amenity=youth_club".
+Added "cow" to list of animals used to detect non-meadows.
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

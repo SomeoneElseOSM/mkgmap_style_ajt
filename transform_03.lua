@@ -1285,6 +1285,7 @@ function process_all( objtype, object )
         ( object.tags["meadow"]  == "cut"          )  or
         ( object.tags["animal"]  == "pig"          )  or
         ( object.tags["animal"]  == "sheep"        )  or
+        ( object.tags["animal"]  == "cow"          )  or
         ( object.tags["animal"]  == "cattle"       )  or
         ( object.tags["animal"]  == "chicken"      )  or
         ( object.tags["animal"]  == "horse"        ))) then

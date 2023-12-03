@@ -486,7 +486,8 @@ function process_all( objtype, object )
        (  object.tags["amenity"] == "grouse_butt"     ) or
        (  object.tags["amenity"] == "hunting_stand"   ) or
        (( object.tags["amenity"] == "waste_basket"   )  and
-        ( object.tags["highway"] ==  nil             ))) then
+        ( object.tags["highway"] ==  nil             )) or
+       (  object.tags["amenity"] == "watering_place"  )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["man_made"] = "thing"
       object.tags["amenity"] = nil

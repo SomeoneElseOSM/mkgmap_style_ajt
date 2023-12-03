@@ -5992,6 +5992,7 @@ function process_all( objtype, object )
    if ((   object.tags["amenity"]  == "mobility"                 ) or
        (   object.tags["amenity"]  == "mobility_equipment_hire"  ) or
        (   object.tags["amenity"]  == "mobility_aids_hire"       ) or
+       (   object.tags["amenity"]  == "shopmobility"             ) or
        (   object.tags["amenity"]  == "shop_mobility"            )) then
       object.tags["shop"] = object.tags["amenity"]
       object.tags["amenity"] = nil
@@ -6009,8 +6010,8 @@ function process_all( objtype, object )
    if ((   object.tags["shop"]  == "mobility"                    ) or
        (   object.tags["shop"]  == "mobility_equipment_hire"     ) or
        (   object.tags["shop"]  == "mobility_aids_hire"          ) or
-       (   object.tags["shop"]  == "shop_mobility"               ) or
-       (   object.tags["shop"]  == "shopmobility"                )) then
+       (   object.tags["shop"]  == "shopmobility"                ) or
+       (   object.tags["shop"]  == "shop_mobility"               )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )

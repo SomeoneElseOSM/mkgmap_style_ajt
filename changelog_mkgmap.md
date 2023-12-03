@@ -12,6 +12,7 @@ Added support for hunting stands and grouse butts.
 Added support for "amenity=left_luggage" and "amenity=lounger".
 Added support for "amenity=mountain_rescue", "emergency=mountain_rescue" and "emergency=rescue_box".
 Added support for "amenity=outdoor_education_centre" and "amenity=pinfold".
+Support both "amenity=shopmobility" as well as "amenity=shop_mobility".
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

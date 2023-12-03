@@ -298,6 +298,7 @@
     { "key": "amenity", "value": "self_storage", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "shelter", "description": "shown in brackets; 'Others / Personal Service'" },
     { "key": "amenity", "value": "sheltered_housing", "description": "shown in brackets; 'Community / Community Center'" },
+    { "key": "amenity", "value": "shopmobility", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "shop_mobility", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "show_ground", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "amenity", "value": "show_grounds", "description": "shown in brackets; 'Geographic Points / Land Features'" },

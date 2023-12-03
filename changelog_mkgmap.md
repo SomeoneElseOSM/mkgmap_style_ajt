@@ -14,6 +14,7 @@ Added support for "amenity=mountain_rescue", "emergency=mountain_rescue" and "em
 Added support for "amenity=outdoor_education_centre" and "amenity=pinfold".
 Support both "amenity=shopmobility" as well as "amenity=shop_mobility".
 Removed "healthcare=cosmetic_treatments", no longer in the data.
+Added "emergency=ses_station" as a synonym for "emergency=coast_guard" and show as a government office.
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

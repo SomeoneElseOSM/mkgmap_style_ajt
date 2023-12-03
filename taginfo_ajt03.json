@@ -890,6 +890,7 @@
     { "key": "emergency", "value": "phone", "description": "Shown in brackets; 'Others / Communications'" },
     { "key": "emergency", "value": "rescue_box", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "emergency", "value": "rescue_equipment", "description": "Shown in brackets; if life ring 'Geographic Points / Water Features'" },
+    { "key": "emergency", "value": "ses_station", "description": "Synonym for 'emergency=coast_goard'.  Shown in brackets; 'Community / Government Office'" },
     { "key": "emergency_service", "description": "If air, shown in brackets; 'Community / Government Office'" },
     { "key": "emergency_service", "value": "air", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "est_width", "description": "Used to set width if width is unset" },

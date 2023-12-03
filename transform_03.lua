@@ -4052,6 +4052,43 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- What "historic" items should be "archaeological_site"?
+-- Before we assume that a "historic=fort" is some sort of castle (big walls,
+-- moat, that sort of thing) check that it's not prehistoric or some sort of 
+-- hill fort (banks and ditches, people running around painted blue).  If it 
+-- is, set "historic=archaeological_site" so it gets picked up as one below.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["historic"]              == "fort"          ) and
+       (( object.tags["fortification_type"]    == "hill_fort"    )  or
+        ( object.tags["fortification_type"]    == "hillfort"     ))) then
+      object.tags["historic"]            = "archaeological_site"
+      object.tags["archaeological_site"] = "fortification"
+      object.tags["fortification_type"]  = "hill_fort"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Similarly, catch "historic" "ringfort"s
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"]           == "fortification" ) and
+       ( object.tags["fortification_type"] == "ringfort"      )) then
+      object.tags["historic"]            = "archaeological_site"
+      object.tags["archaeological_site"] = "fortification"
+      object.tags["fortification_type"]  = "ringfort"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Catch other archaeological fortifications.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["historic"]              == "fort"           ) and
+       (( object.tags["fortification_type"]    == "broch"         )  or
+        ( object.tags["historic:civilization"] == "prehistoric"   )  or
+        ( object.tags["historic:civilization"] == "iron_age"      )  or
+        ( object.tags["historic:civilization"] == "ancient_roman" ))) then
+      object.tags["historic"]            = "archaeological_site"
+      object.tags["archaeological_site"] = "fortification"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Ensure historic things are shown.
 -- There's no distinction here between building / almost a building / 
 -- not a building as there is with the web maps.

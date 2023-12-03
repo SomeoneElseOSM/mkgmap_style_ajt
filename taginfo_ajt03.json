@@ -257,6 +257,7 @@
     { "key": "amenity", "value": "old_pub", "description": "shown as other vacant shops" },
     { "key": "amenity", "value": "optician", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "optometrist", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "amenity", "value": "outdoor_education_centre", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "amenity", "value": "parcel_box", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "parcel_locker", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "parcel_pickup", "description": "shown in brackets; 'Others / Social Service'" },

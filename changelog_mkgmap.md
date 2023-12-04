@@ -22,6 +22,7 @@ Added "amenity=youth_centre" as a synonym for former tag "amenity=youth_club".
 Added "cow" to list of animals used to detect non-meadows.
 Add "archaeological_site", "fortification_type" or "historic:civilization" to historic items if set.
 Added "barrier=barrier"; handled the same way as "barrier=horse_jump".  Also "berm".  Added more synonyms for flood banks.
+Added support for point "barrier=bollards".
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

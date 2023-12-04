@@ -363,6 +363,7 @@
     { "key": "barrier", "value": "berm", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },
     { "key": "barrier", "value": "block", "description": "Shown as dot; 'Others / Social Service'" },
     { "key": "barrier", "value": "bollard", "description": "Shown as dot; 'Others / Social Service'" },
+    { "key": "barrier", "value": "bollards", "description": "Points shown as dot; 'Others / Social Service'" },
     { "key": "barrier", "value": "border_control", "description": "Shown as border crossing; 'Community / Border Crossing'" },
     { "key": "barrier", "value": "bump_gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "bund", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },

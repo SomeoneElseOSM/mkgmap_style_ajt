@@ -8560,6 +8560,18 @@ function ott.process_node( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- barrier=bollards
+-- "bollard" is in "points" as "0x660f".
+-- "0x660f" is searchable in "Geographic Points / Land Features"
+-- No icon appears in QMapShack
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"] == "bollards" )  then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"] = "bollard"
+   end
+
+-- ----------------------------------------------------------------------------
 -- If lcn_ref exists (for example as a location in a local cycling network),
 -- render it via a "man_made" tag if there's no other name tag on that node.
 -- ----------------------------------------------------------------------------

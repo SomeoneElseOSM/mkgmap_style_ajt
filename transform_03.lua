@@ -5187,7 +5187,11 @@ function process_all( objtype, object )
         ( object.tags["barrier"]    == "embankment"    )  or
         ( object.tags["man_made"]   == "dyke"          )  or
         ( object.tags["man_made"]   == "levee"         )  or
-        ( object.tags["embankment"] == "yes"           )) and
+        ( object.tags["embankment"] == "yes"           )  or
+        ( object.tags["barrier"]    == "berm"          )  or
+        ( object.tags["natural"]    == "ridge"         )  or
+        ( object.tags["natural"]    == "earth_bank"    )  or
+        ( object.tags["natural"]    == "arete"         )) and
        (  object.tags["highway"]    == nil              ) and
        (  object.tags["railway"]    == nil              ) and
        (  object.tags["waterway"]   == nil              )) then

@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".
 Added support for "amenity=bird_hide" and "amenity=wildlife_hide".
 Add "amenity=bus_stop" as a synonym of "highway=bus_stop".

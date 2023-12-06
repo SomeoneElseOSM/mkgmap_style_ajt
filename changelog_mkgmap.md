@@ -24,6 +24,7 @@ Add "archaeological_site", "fortification_type" or "historic:civilization" to hi
 Added "barrier=barrier"; handled the same way as "barrier=horse_jump".  Also "berm".  Added more synonyms for flood banks.
 Added support for point "barrier=bollards".
 Removed "shop=undertaker", "shop=solicitors", "shop=chandlers", "leisure=court", no longer in the data.
+Extended and consolidated the list of barriers shown; show more as "barrier=bollard".  Fixed bug that prevented some linear barriers from being shown.
 
 ## 01/12/2023
 Removed "shop=take_away", no longer in the data.

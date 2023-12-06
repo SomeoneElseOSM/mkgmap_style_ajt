@@ -5364,10 +5364,26 @@ function process_all( objtype, object )
 -- No icon appears in QMapShack
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"]   == "bollard"         )  or
-       ( object.tags["barrier"]   == "bus_trap"        )  or
-       ( object.tags["barrier"]   == "block"           )) then
+   if (( object.tags["barrier"]  == "block"          ) or
+       ( object.tags["barrier"]  == "bollard"        ) or
+       ( object.tags["barrier"]  == "bollards"       ) or
+       ( object.tags["barrier"]  == "bus_trap"       ) or
+       ( object.tags["barrier"]  == "car_trap"       ) or
+       ( object.tags["barrier"]  == "dragons_teeth"  ) or
+       ( object.tags["barrier"]  == "gate_pier"      ) or
+       ( object.tags["barrier"]  == "gate_post"      ) or
+       ( object.tags["barrier"]  == "hoarding"       ) or
+       ( object.tags["barrier"]  == "pole"           ) or
+       ( object.tags["barrier"]  == "post"           ) or
+       ( object.tags["barrier"]  == "rising_bollard" ) or
+       ( object.tags["barrier"]  == "step"           ) or
+       ( object.tags["barrier"]  == "steps"          ) or
+       ( object.tags["barrier"]  == "stone"          ) or
+       ( object.tags["barrier"]  == "sump_buster"    ) or
+       ( object.tags["barrier"]  == "tank_trap"      ) or
+       ( object.tags["barrier"]  == "yes"            )) then
       object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"] = "bollard"
    end
 
 -- ----------------------------------------------------------------------------
@@ -8290,6 +8306,22 @@ function ott.process_node( object )
     object = process_all( "n", object )
 
 -- ----------------------------------------------------------------------------
+-- Barriers that are different when point are linear are handled here and in 
+-- "ott.process_way".  Other barriers are in "process_all".
+--
+-- barrier=bollard (etc.) that otherwise would not have a suffix
+-- In "points" as "0x660f".
+-- "0x660f" is searchable in "Geographic Points / Land Features"
+-- No icon appears in QMapShack
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"]  == "barrier"        ) or
+       ( object.tags["barrier"]  == "horse_jump"     )) then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"] = "bollard"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Slipways
 -- Linear slipways are handled in "lines" as "default linear thing" 0x1d.
 -- Point slipways are mapped to "man_made=thing".
@@ -8517,29 +8549,6 @@ function ott.process_node( object )
       object.tags["natural"] = "spring"
       object.tags["waterway"] = nil
       object = append_nonqa( object, "weir" )
-   end
-
--- ----------------------------------------------------------------------------
--- Point horse_jumps are sent through as "thing" with a suffix
--- Also point "barrier=barrier"
--- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"] == "horse_jump" ) or
-       ( object.tags["barrier"] == "barrier"    )) then
-      object = append_nonqa( object, object.tags["barrier"] )
-      object.tags["man_made"] = "thing"
-      object.tags["barrier"] = nil
-   end
-
--- ----------------------------------------------------------------------------
--- barrier=bollards
--- "bollard" is in "points" as "0x660f".
--- "0x660f" is searchable in "Geographic Points / Land Features"
--- No icon appears in QMapShack
--- A dot appears on a GPSMAP64s
--- ----------------------------------------------------------------------------
-   if ( object.tags["barrier"] == "bollards" )  then
-      object = append_nonqa( object, object.tags["barrier"] )
-      object.tags["barrier"] = "bollard"
    end
 
 -- ----------------------------------------------------------------------------
@@ -9123,14 +9132,16 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Barriers that are different when point are linear are handled here and in 
+-- "ott.process_node".  Other barriers are in "process_all".
+--
 -- Linear horse_jumps are sent through as "fence" with a suffix
 -- Also linear "barrier=barrier"
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "horse_jump" ) or
        ( object.tags["barrier"] == "barrier"    )) then
       object = append_nonqa( object, object.tags["barrier"] )
-      object.tags["man_made"] = "fence"
-      object.tags["barrier"] = nil
+      object.tags["barrier"] = "fence"
    end
 
 -- ----------------------------------------------------------------------------

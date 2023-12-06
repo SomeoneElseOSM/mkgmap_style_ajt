@@ -1685,11 +1685,9 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- leisure=dog_park is used a few times.  Map to pitch to differentiate from
 -- underlying park.
--- Also "court" often means "pitch" (tennis, basketball).
 -- 0x2c08 is searchable via "Recreation/Attractions / Arena or Track"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["leisure"] == "dog_park" ) or
-       ( object.tags["leisure"] == "court"    )) then
+   if ( object.tags["leisure"] == "dog_park" ) then
       object.tags["leisure"] = "pitch"
       object = append_nonqa( object, "dog park" )
    end
@@ -5615,25 +5613,35 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- "funeral" consolidation.  All of these spellings currently in use in the UK
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
+-- "0x2e0a" is searchable via "Shopping / Specialty Retail".
+-- Also stonemasons.
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "funeral"             ) or
        ( object.tags["amenity"] == "funeral_directors"   ) or
        ( object.tags["amenity"] == "undertaker"          )) then
-      object.tags["shop"] = object.tags["amenity"]
+      object.tags["shop"]    = object.tags["amenity"]
       object.tags["amenity"] = nil
+   end
+
+   if ( object.tags["craft"]   == "stonemason" ) then
+      object.tags["shop"]  = object.tags["craft"]
+      object.tags["craft"] = nil
    end
 
    if (( object.tags["office"]  == "funeral_director"    ) or
        ( object.tags["office"]  == "funeral_directors"   )) then
-      object.tags["shop"] = object.tags["office"]
+      object.tags["shop"]   = object.tags["office"]
       object.tags["office"] = nil
    end
 
    if (( object.tags["shop"]    == "funeral"             ) or
-       ( object.tags["shop"]    == "undertaker"          ) or
        ( object.tags["shop"]    == "funeral_director"    ) or
-       ( object.tags["shop"]    == "funeral_directors"   )) then
+       ( object.tags["shop"]    == "funeral_directors"   ) or
+       ( object.tags["shop"]    == "gravestone"          ) or
+       ( object.tags["shop"]    == "memorials"           ) or
+       ( object.tags["shop"]    == "monumental_mason"    ) or
+       ( object.tags["shop"]    == "stonemason"          ) or
+       ( object.tags["shop"]    == "undertaker"          )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
@@ -5755,41 +5763,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "travel"        )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
-      object = building_or_landuse( objtype, object )
-   end
-
--- ----------------------------------------------------------------------------
--- Stonemasons etc., and funeral_directors
--- "0x2e0a" is searchable via "Shopping / Specialty Retail"
--- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "funeral"           ) or
-       ( object.tags["amenity"] == "funeral_directors" ) or
-       ( object.tags["amenity"] == "undertaker"        )) then
-      object.tags["shop"] = object.tags["amenity"]
-   end
-
-   if ( object.tags["craft"]   == "stonemason" ) then
-      object.tags["shop"] = object.tags["craft"]
-   end
-
-   if (( object.tags["office"]  == "funeral_director"  ) or
-       ( object.tags["office"]  == "funeral_directors" )) then
-      object.tags["shop"] = object.tags["office"]
-   end
-
-   if (( object.tags["shop"]    == "funeral_directors" ) or
-       ( object.tags["shop"]    == "gravestone"        ) or
-       ( object.tags["shop"]    == "monumental_mason"  ) or
-       ( object.tags["shop"]    == "memorials"         ) or
-       ( object.tags["shop"]    == "funeral"           ) or
-       ( object.tags["shop"]    == "undertaker"        ) or
-       ( object.tags["shop"]    == "stonemason"        ) or
-       ( object.tags["shop"]    == "funeral_director"  )) then
-      object = append_nonqa( object, object.tags["shop"] )
-      object.tags["shop"] = "specialty"
-      object.tags["amenity"] = nil
-      object.tags["craft"]   = nil
-      object.tags["office"]  = nil
       object = building_or_landuse( objtype, object )
    end
 
@@ -6063,7 +6036,6 @@ function process_all( objtype, object )
    if (( object.tags["shop"] == "boat"           )  or
        ( object.tags["shop"] == "boatbuilder"    ) or
        ( object.tags["shop"] == "chandler"       ) or
-       ( object.tags["shop"] == "chandlers"      ) or
        ( object.tags["shop"] == "chandlery"      ) or
        ( object.tags["shop"] == "ship_chandler"  )) then
       object = append_nonqa( object, object.tags["shop"] )
@@ -7853,7 +7825,6 @@ function process_all( objtype, object )
    if (( object.tags["shop"]        == "lawyer"                  ) or
        ( object.tags["shop"]        == "legal"                   ) or
        ( object.tags["shop"]        == "solicitor"               ) or
-       ( object.tags["shop"]        == "solicitors"              ) or
        ( object.tags["shop"]        == "accountant"              ) or
        ( object.tags["shop"]        == "employment_agency"       ) or
        ( object.tags["shop"]        == "employment"              ) or

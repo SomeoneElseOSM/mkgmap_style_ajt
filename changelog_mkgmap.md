@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Added support for "barrier=chain" as both point and linear.
+
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".
 Added support for "amenity=bird_hide" and "amenity=wildlife_hide".

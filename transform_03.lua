@@ -8315,8 +8315,9 @@ function ott.process_node( object )
 -- No icon appears in QMapShack
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"]  == "barrier"        ) or
-       ( object.tags["barrier"]  == "horse_jump"     )) then
+   if (( object.tags["barrier"] == "barrier"    ) or
+       ( object.tags["barrier"] == "chain"      ) or
+       ( object.tags["barrier"] == "horse_jump" )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "bollard"
    end
@@ -9138,8 +9139,10 @@ function ott.process_way( object )
 -- Linear horse_jumps are sent through as "fence" with a suffix
 -- Also linear "barrier=barrier"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["barrier"] == "horse_jump" ) or
-       ( object.tags["barrier"] == "barrier"    )) then
+   if (
+       ( object.tags["barrier"] == "barrier"    ) or
+       ( object.tags["barrier"] == "chain"      ) or
+       ( object.tags["barrier"] == "horse_jump" )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "fence"
    end

@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231205T235800Z",
+  "data_updated": "20231206T111600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -371,6 +371,7 @@
     { "key": "barrier", "value": "car_trap", "description": "Shown as dot; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "cattle_grid", "description": "Shown as dot; 'Others / Social Service'" },
     { "key": "barrier", "value": "cattle_grid;gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
+    { "key": "barrier", "value": "chain", "description": "Points shown as dot; 'Geographic Points / Land Features', Lines shown as fence" },
     { "key": "barrier", "value": "checkpoint", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "chicane", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "cycle_barrier", "description": "Shown as pillar; 'Geographic Points / Land Features'" },

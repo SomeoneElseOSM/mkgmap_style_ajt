@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231209T021900Z",
+  "data_updated": "20231209T111100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2514,7 +2514,6 @@
     { "key": "tourism", "value": "cottage", "description": "Shown in brackets; 'Lodging / Bed and Breakfast or'" },
     { "key": "tourism", "value": "gallery", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "tourism", "value": "guest_house", "description": "Shown in brackets; 'Lodging / Bed and Breakfast or'" },
-    { "key": "tourism", "value": "guesthouse", "description": "Shown in brackets; 'Lodging / Bed and Breakfast or'" },
     { "key": "tourism", "value": "holiday_cottage", "description": "Shown in brackets; 'Lodging / Bed and Breakfast or'" },
     { "key": "tourism", "value": "holiday_let", "description": "Shown in brackets; 'Lodging / Bed and Breakfast or'" },
     { "key": "tourism", "value": "holiday_lets", "description": "Shown in brackets; 'Lodging / Bed and Breakfast or'" },

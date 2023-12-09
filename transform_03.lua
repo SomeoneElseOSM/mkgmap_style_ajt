@@ -9021,12 +9021,13 @@ function ott.process_way( object )
 
 -- ----------------------------------------------------------------------------
 -- Some other things we map through to fence, with a different suffix
--- Note that "kerb" isn't handled separately as a point,
--- so kerb nodes won't appear.
+-- Note that "kerb" and "obstruction" aren't handled separately as points,
+-- so "kerb" or "obstruction" nodes won't appear.
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "guard_rail"      ) or
        ( object.tags["barrier"] == "hand_rail_fence" ) or
-       ( object.tags["barrier"] == "kerb"            )) then
+       ( object.tags["barrier"] == "kerb"            ) or
+       ( object.tags["barrier"] == "obstruction"     )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"]  = "fence"
    end

@@ -391,6 +391,8 @@
     { "key": "barrier", "value": "gate_pier", "description": "Shown as dot; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "gate_post", "description": "Shown as dot; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "gatehouse", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
+    { "key": "barrier", "value": "guard_rail", "description": "shown in brackets as line; not searchable" },
+    { "key": "barrier", "value": "haha", "description": "Shown in brackets; not searchable" },
     { "key": "barrier", "value": "hampshire_gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "hedge", "description": "shown in brackets; not searchable" },
     { "key": "barrier", "value": "hoarding", "description": "Shown as dot; 'Geographic Points / Land Features'" },

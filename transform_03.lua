@@ -9011,6 +9011,7 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["natural"] == "hedge" ) then
       object.tags["barrier"] = object.tags["natural"]
+      object.tags["natural"] = nil
    end
 
    if (( object.tags["barrier"] == "fence" ) or
@@ -9021,14 +9022,16 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- Some other things we map through to fence, with a different suffix
 -- ----------------------------------------------------------------------------
-   if ( object.tags["man_made"]   == "breakwater" ) then
-      object.tags["barrier"] = "fence"
-      object = append_nonqa( object, "breakwater" )
+   if ( object.tags["barrier"] == "guard_rail" ) then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"]  = "fence"
    end
 
-   if ( object.tags["man_made"]   == "groyne" ) then
-      object.tags["barrier"] = "fence"
-      object = append_nonqa( object, "groyne" )
+   if (( object.tags["man_made"]   == "breakwater" ) or
+       ( object.tags["man_made"]   == "groyne"     )) then
+      object = append_nonqa( object, object.tags["man_made"] )
+      object.tags["barrier"]  = "fence"
+      object.tags["man_made"] = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -9055,9 +9058,10 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
--- Show flood walls as walls
+-- Show flood walls and hahas as walls
 -- ----------------------------------------------------------------------------
-   if ( object.tags["barrier"] == "flood_wall" ) then
+   if (( object.tags["barrier"] == "flood_wall" ) or
+       ( object.tags["barrier"] == "haha"       )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "wall"
    end

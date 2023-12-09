@@ -400,6 +400,7 @@
     { "key": "barrier", "value": "horse_barrier", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "horse_jump", "description": "Points shown as dot; 'Geographic Points / Land Features', Lines shown as fence" },
     { "key": "barrier", "value": "horse_stile", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
+    { "key": "barrier", "value": "jersey_barrier", "description": "Shown in brackets; not searchable" },
     { "key": "barrier", "value": "kissing_gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "kissing_gate;gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "lift_gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },

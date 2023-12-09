@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Added support for "barrier=chain" as both point and linear.
 Treat "barrier=door" in a similar way to "barrier=gate".
+Treat "barrier=flood_wall" in a similar way to "barrier=wall".
 
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".

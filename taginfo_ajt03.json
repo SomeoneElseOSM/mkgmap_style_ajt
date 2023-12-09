@@ -382,6 +382,7 @@
     { "key": "barrier", "value": "fence", "description": "shown in brackets as line; not searchable" },
     { "key": "barrier", "value": "flood_bank", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },
     { "key": "barrier", "value": "flood_gate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
+    { "key": "barrier", "value": "flood_wall", "description": "Shown in brackets; not searchable" },
     { "key": "barrier", "value": "footgate", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "full-height_turnstile", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "gate", "description": "shown with 'G' symbol; 'Others / Garmin Dealer'" },

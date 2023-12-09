@@ -9056,6 +9056,14 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Show flood walls as walls
+-- ----------------------------------------------------------------------------
+   if ( object.tags["barrier"] == "flood_wall" ) then
+      object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"] = "wall"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Linear weirs are sent through as "county lines" with a name of "weir"
 -- Likewise floating barriers.
 -- ----------------------------------------------------------------------------

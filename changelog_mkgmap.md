@@ -6,7 +6,7 @@ Added support for "barrier=chain" as both point and linear.
 Treat "barrier=door" in a similar way to "barrier=gate".
 Treat "barrier=flood_wall" and "barrier=haha" in a similar way to "barrier=wall".
 Removed "tourism=guesthouse", no longer in the data (it was a typo for "tourism=guest_house").
-Treat "barrier=guard_rail" in a similar way to "barrier=fence".
+Treat "barrier=guard_rail" and "barrier=hand_rail_fence" in a similar way to "barrier=fence".
 
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".

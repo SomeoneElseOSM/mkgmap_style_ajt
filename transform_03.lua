@@ -9022,7 +9022,8 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
 -- Some other things we map through to fence, with a different suffix
 -- ----------------------------------------------------------------------------
-   if ( object.tags["barrier"] == "guard_rail" ) then
+   if (( object.tags["barrier"] == "guard_rail"      ) or
+       ( object.tags["barrier"] == "hand_rail_fence" )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"]  = "fence"
    end

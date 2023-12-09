@@ -376,6 +376,7 @@
     { "key": "barrier", "value": "chicane", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "cycle_barrier", "description": "Shown as pillar; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "ditch", "description": "shown as waterway=ditch" },
+    { "key": "barrier", "value": "door", "description": "shown in brackets after 'G' symbol; 'Others / Garmin Dealer'" },
     { "key": "barrier", "value": "dragons_teeth", "description": "Shown as dot; 'Geographic Points / Land Features'" },
     { "key": "barrier", "value": "embankment", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },
     { "key": "barrier", "value": "fence", "description": "shown in brackets as line; not searchable" },

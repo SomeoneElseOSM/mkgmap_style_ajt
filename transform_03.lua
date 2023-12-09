@@ -5318,7 +5318,8 @@ function process_all( objtype, object )
        ( object.tags["barrier"]   == "cattle_grid;gate"      )  or
        ( object.tags["barrier"]   == "gate;kissing_gate"     )  or
        ( object.tags["barrier"]   == "pull_apart_gate"       )  or
-       ( object.tags["barrier"]   == "snow_gate"             )) then
+       ( object.tags["barrier"]   == "snow_gate"             )  or
+       ( object.tags["barrier"]   == "door"                  )) then
 
       if ( object.tags["barrier"] ~= "gate" ) then
          object = append_nonqa( object, object.tags["barrier"] )

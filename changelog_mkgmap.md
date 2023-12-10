@@ -9,6 +9,7 @@ Removed "tourism=guesthouse", no longer in the data (it was a typo for "tourism=
 Treat "barrier=guard_rail", "barrier=hand_rail_fence", "barrier=railing", "barrier=traffic_island", "barrier=wire_fence" and "barrier=wood_fence" in a similar way to "barrier=fence".
 Treat linear "barrier=kerb" and "barrier=obstruction" in a similar way to "barrier=wall".
 Show "barrier=toll_booth" as kissing gate.
+Append value of "basin" to "landuse=basin" objects.  Similarly "reservoir" and "reservoir_type".
 
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".

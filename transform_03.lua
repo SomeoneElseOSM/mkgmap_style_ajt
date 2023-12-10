@@ -4619,6 +4619,18 @@ function process_all( objtype, object )
    if (( object.tags["landuse"]   == "reservoir"  ) or
        ( object.tags["landuse"]   == "basin"      )) then
       object = append_nonqa( object, object.tags["landuse"] )
+
+      if ( object.tags["basin"] ~= nil ) then
+         object = append_nonqa( object, object.tags["basin"] )
+      end
+
+      if ( object.tags["reservoir"] ~= nil ) then
+         object = append_nonqa( object, object.tags["reservoir"] )
+      end
+
+      if ( object.tags["reservoir_type"] ~= nil ) then
+         object = append_nonqa( object, object.tags["reservoir_type"] )
+      end
    end
 
 -- ----------------------------------------------------------------------------

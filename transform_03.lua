@@ -7728,6 +7728,19 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- "business" is used as an alternative to "office" and "industrial" by some
+-- people.  Wherever someone has used a more frequently-used tag we defer to
+-- that.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["business"]   ~= nil  ) and
+       ( object.tags["office"]     == nil  ) and
+       ( object.tags["shop"]       == nil  ) and
+       ( object.tags["playground"] == nil  )) then
+      object.tags["office"] = "yes"
+      object.tags["business"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Non-government (commercial) offices that you might visit for a service.
 -- "communication" below seems to be used for marketing / commercial PR.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
@@ -8301,16 +8314,19 @@ function process_all( objtype, object )
 -- Deliberately only use this for outdoor features that would not otherwise
 -- display, so not cliffs etc.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["sport"]    == "climbing"      ) and
-       ( object.tags["natural"]  ~= "peak"          ) and
-       ( object.tags["natural"]  ~= "cliff"         ) and
-       ( object.tags["leisure"]  ~= "sports_centre" ) and
-       ( object.tags["leisure"]  ~= "climbing_wall" ) and
-       ( object.tags["shop"]     ~= "sports"        ) and
-       ( object.tags["tourism"]  ~= "attraction"    ) and
-       ( object.tags["building"] == nil             ) and
-       ( object.tags["man_made"] ~= "tower"         ) and
-       ( object.tags["barrier"]  ~= "wall"          )) then
+   if ((( object.tags["sport"]    == "climbing"            )  or
+        ( object.tags["sport"]    == "climbing;bouldering" )  or
+        ( object.tags["climbing"] == "boulder"             )) and
+       (  object.tags["natural"]  ~= "hill"                 ) and
+       (  object.tags["natural"]  ~= "peak"                 ) and
+       (  object.tags["natural"]  ~= "cliff"                ) and
+       (  object.tags["leisure"]  ~= "sports_centre"        ) and
+       (  object.tags["leisure"]  ~= "climbing_wall"        ) and
+       (  object.tags["shop"]     ~= "sports"               ) and
+       (  object.tags["tourism"]  ~= "attraction"           ) and
+       (  object.tags["building"] == nil                    ) and
+       (  object.tags["man_made"] ~= "tower"                ) and
+       (  object.tags["barrier"]  ~= "wall"                 )) then
       object = append_nonqa( object, "climbing" )
       object.tags["man_made"] = "thing"
    end

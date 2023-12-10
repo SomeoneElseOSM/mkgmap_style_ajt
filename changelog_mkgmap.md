@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 09/12/2023
 Added support for "barrier=chain" and "barrier=v_stile" as both point and linear.
 Treat "barrier=door" in a similar way to "barrier=gate".
 Treat "barrier=flood_wall", "barrier=haha", "barrier=jersey_barrier", "barrier=retaining_wall" and "barrier=sea_wall" in a similar way to "barrier=wall".

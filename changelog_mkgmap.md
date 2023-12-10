@@ -12,6 +12,7 @@ Show "barrier=toll_booth" as kissing gate.
 Append value of "basin" to "landuse=basin" objects.  Similarly "reservoir" and "reservoir_type".
 Treat "boundary=forest" as "landuse=forest".
 Added more bridge types to list detected.
+Added better detection of the various ways that historic military bunkers are tagged.
 
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".

@@ -4073,6 +4073,17 @@ function process_all( objtype, object )
       object.tags["amenity"]  = nil
    end
 
+   if (( object.tags["disused:military"] == "bunker" ) and
+       ( object.tags["military"]         == nil      )) then
+      object.tags["historic"] = object.tags["disused:military"]
+   end
+
+   if (( object.tags["military"] == "bunker" ) and
+       ( object.tags["building"] == "bunker" ) and
+       ( object.tags["disused"]  == "yes"    )) then
+      object.tags["historic"] = object.tags["military"]
+   end
+
    if (( object.tags["historic"] == "abbey"                 ) or
        ( object.tags["historic"] == "aircraft"              ) or
        ( object.tags["historic"] == "almshouse"             ) or
@@ -4178,6 +4189,10 @@ function process_all( objtype, object )
 
       if ( object.tags["historic:civilization"]  ~= nil ) then
          object = append_nonqa( object, object.tags["historic:civilization"] ) 
+      end
+
+      if ( object.tags["ruins"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["ruins"] ) 
       end
    end
 

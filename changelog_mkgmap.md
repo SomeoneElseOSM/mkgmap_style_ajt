@@ -5,6 +5,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 "business" is used as an alternative to "office" and by some people.
 Add "climbing=boulder" and "sport=climbing;boundering" to the tags used to identify climbing features.
 Detect walking networks with a route colour.
+"colour" shown in brackets on telephones if set.
 
 ## 09/12/2023
 Added support for "barrier=chain" and "barrier=v_stile" as both point and linear.

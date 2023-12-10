@@ -675,6 +675,11 @@ function process_all( objtype, object )
           (  object.tags["tourism"]   ~= "artwork"       ) and
           (  object.tags["tourism"]   ~= "museum"        )) then
       	 object = append_nonqa( object, object.tags["amenity"] )
+
+         if ( object.tags["colour"] ~= nil ) then
+      	    object = append_nonqa( object, object.tags["colour"] )
+         end
+
          object.tags["amenity"] = "telephone"
          object.tags["tourism"] = nil
          object.tags["emergency"] = nil
@@ -7457,6 +7462,11 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["emergency"] == "phone" ) then
       object = append_nonqa( object, object.tags["emergency"] )
+
+      if ( object.tags["colour"] ~= nil ) then
+         object = append_nonqa( object, object.tags["colour"] )
+      end
+
       object = building_or_landuse( objtype, object )
    end
 

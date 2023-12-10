@@ -603,7 +603,7 @@
     { "key": "club", "value": "yes", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "club", "value": "youth", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "club", "value": "youth_movement", "description": "Shown in brackets; 'Community / Community Center'" },
-    { "key": "colour", "description": "Show trail colours as names" },
+    { "key": "colour", "description": "Show trail colours as names; shown in brackets on telephones if set" },
     { "key": "commercial", "description": "Used to detect nondescript offices" },
     { "key": "commercial", "value": "office", "description": "shown in brackets; not searchable" },
     { "key": "community_centre", "description": "shown in brackets; 'Community / Community Center'" },

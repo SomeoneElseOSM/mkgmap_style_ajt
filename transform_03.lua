@@ -4305,24 +4305,27 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Bridge types - only "yes" is checked below.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["bridge"] == "viaduct"     ) or
-       ( object.tags["bridge"] == "aqueduct"    ) or
-       ( object.tags["bridge"] == "movable"     ) or
-       ( object.tags["bridge"] == "boardwalk"   ) or
-       ( object.tags["bridge"] == "swing"       ) or
-       ( object.tags["bridge"] == "cantilever"  ) or
-       ( object.tags["bridge"] == "footbridge"  ) or
-       ( object.tags["bridge"] == "undefined"   ) or
-       ( object.tags["bridge"] == "covered"     ) or
-       ( object.tags["bridge"] == "cantilever"  ) or
-       ( object.tags["bridge"] == "gangway"     ) or
-       ( object.tags["bridge"] == "foot"        ) or
-       ( object.tags["bridge"] == "plank"       ) or
-       ( object.tags["bridge"] == "rope"        ) or
-       ( object.tags["bridge"] == "pontoon"     ) or
-       ( object.tags["bridge"] == "pier"        ) or
-       ( object.tags["bridge"] == "chain"       ) or
-       ( object.tags["bridge"] == "trestle"     )) then
+   if (( object.tags["bridge"] == "aqueduct"           ) or
+       ( object.tags["bridge"] == "bailey"             ) or
+       ( object.tags["bridge"] == "boardwalk"          ) or
+       ( object.tags["bridge"] == "building_passage"   ) or
+       ( object.tags["bridge"] == "cantilever"         ) or
+       ( object.tags["bridge"] == "chain"              ) or
+       ( object.tags["bridge"] == "covered"            ) or
+       ( object.tags["bridge"] == "foot"               ) or
+       ( object.tags["bridge"] == "footbridge"         ) or
+       ( object.tags["bridge"] == "gangway"            ) or
+       ( object.tags["bridge"] == "low_water_crossing" ) or
+       ( object.tags["bridge"] == "movable"            ) or
+       ( object.tags["bridge"] == "pier"               ) or
+       ( object.tags["bridge"] == "plank"              ) or
+       ( object.tags["bridge"] == "plank_bridge"       ) or
+       ( object.tags["bridge"] == "pontoon"            ) or
+       ( object.tags["bridge"] == "rope"               ) or
+       ( object.tags["bridge"] == "swing"              ) or
+       ( object.tags["bridge"] == "trestle"            ) or
+       ( object.tags["bridge"] == "undefined"          ) or
+       ( object.tags["bridge"] == "viaduct"            )) then
       object.tags["bridge"] = "yes"
    end
 

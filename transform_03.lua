@@ -7976,6 +7976,39 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- emergency=water_rescue is a poorly-designed key that makes it difficult to
+-- tell e.g. lifeboats from lifeboat stations.
+-- However, if we've got one of various buildings, it's a lifeboat station.
+-- ----------------------------------------------------------------------------
+   if (  object.tags["emergency"] == "water_rescue" ) then
+      if (( object.tags["building"]  == "boathouse"        ) or
+          ( object.tags["building"]  == "commercial"       ) or
+          ( object.tags["building"]  == "container"        ) or
+          ( object.tags["building"]  == "house"            ) or
+          ( object.tags["building"]  == "industrial"       ) or
+          ( object.tags["building"]  == "lifeboat_station" ) or
+          ( object.tags["building"]  == "no"               ) or
+          ( object.tags["building"]  == "office"           ) or
+          ( object.tags["building"]  == "public"           ) or
+          ( object.tags["building"]  == "retail"           ) or
+          ( object.tags["building"]  == "roof"             ) or
+          ( object.tags["building"]  == "ruins"            ) or
+          ( object.tags["building"]  == "service"          ) or
+          ( object.tags["building"]  == "yes"              )) then
+         object.tags["emergency"] = "lifeboat_station"
+      else
+         if (( object.tags["building"]                         == "ship"                ) or
+             ( object.tags["seamark:rescue_station:category"]  == "lifeboat_on_mooring" )) then
+            object.tags["amenity"]   = "lifeboat"
+            object.tags["emergency"] = nil
+         else
+            object.tags["emergency"] = "lifeboat_station"
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Handling of objects not (yet) tagfiddled to "emergency=water_rescue":
 -- Sometimes lifeboats are mapped in the see separately to the 
 -- lifeboat station, and sometimes they're tagged _on_ the lifeboat station.
 -- If the latter, show the lifeboat station.

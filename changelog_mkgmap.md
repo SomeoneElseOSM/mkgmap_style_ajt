@@ -6,6 +6,8 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 Add "climbing=boulder" and "sport=climbing;boundering" to the tags used to identify climbing features.
 Detect walking networks with a route colour.
 "colour" shown in brackets on telephones if set.
+Append "constructon" or "proposed" values to "highway=constructon" and "highway=proposed".
+Don't assume that roads under construction are routable.
 
 ## 09/12/2023
 Added support for "barrier=chain" and "barrier=v_stile" as both point and linear.

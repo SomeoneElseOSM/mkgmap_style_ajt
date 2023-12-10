@@ -106,6 +106,29 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- If "disused=yes" is set on highways, remove the highway tag.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] ~= nil   ) and
+       ( object.tags["disused"] == "yes" )) then
+      object.tags["highway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- "highway=proposed" and "highway=construction" - append any proposed or 
+-- construction value
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "proposed"     ) or
+       ( object.tags["highway"] == "construction" )) then
+      if ( object.tags["proposed"] ~= nil ) then
+         object = append_nonqa( object, object.tags["proposed"] )
+      end
+
+      if ( object.tags["construction"] ~= nil ) then
+         object = append_nonqa( object, object.tags["construction"] )
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Move unsigned road refs to the name, in brackets.
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "motorway"          ) or

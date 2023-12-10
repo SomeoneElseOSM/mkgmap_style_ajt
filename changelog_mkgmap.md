@@ -10,6 +10,7 @@ Treat "barrier=guard_rail", "barrier=hand_rail_fence", "barrier=railing", "barri
 Treat linear "barrier=kerb" and "barrier=obstruction" in a similar way to "barrier=wall".
 Show "barrier=toll_booth" as kissing gate.
 Append value of "basin" to "landuse=basin" objects.  Similarly "reservoir" and "reservoir_type".
+Treat "boundary=forest" as "landuse=forest".
 
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".

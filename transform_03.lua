@@ -209,6 +209,12 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["natural"] == "forest" ) then
       object.tags["landuse"] = "forest"
+      object.tags["natural"] = nil
+   end
+
+   if ( object.tags["boundary"] == "forest" ) then
+      object.tags["landuse"] = "forest"
+      object.tags["boundary"] = nil
    end
 
    if (( object.tags["landuse"] == "forest"   ) or

@@ -472,6 +472,7 @@
     { "key": "booth", "value": "ST6", "description": "Detect telephone boxes" },
     { "key": "booth", "value": "oakham", "description": "Detect telephone boxes" },
     { "key": "boundary", "description": "Boundary markers shown as Information; 'Geographic Points / Manmade Places'" },
+    { "key": "boundary", "value": "forest", "description": "Handled as 'landuse=forest'" },
     { "key": "boundary", "value": "marker", "description": "Boundary markers shown as Information; 'Geographic Points / Manmade Places'" },
     { "key": "brand", "description": "Brand shown after/in place of name" },
     { "key": "brand", "value": "Independant", "description": "Some brands not shown" },

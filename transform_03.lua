@@ -5277,7 +5277,8 @@ function process_all( objtype, object )
    if ((  object.tags["barrier"]   == "kissing_gate"           )  or
        (  object.tags["barrier"]   == "turnstile"              )  or
        (  object.tags["barrier"]   == "full-height_turnstile"  )  or
-       (  object.tags["barrier"]   == "kissing_gate;gate"      )) then
+       (  object.tags["barrier"]   == "kissing_gate;gate"      )  or
+       (  object.tags["barrier"]   == "toll_booth"             )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "kissing_gate"
    end
@@ -8317,7 +8318,8 @@ function ott.process_node( object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "barrier"    ) or
        ( object.tags["barrier"] == "chain"      ) or
-       ( object.tags["barrier"] == "horse_jump" )) then
+       ( object.tags["barrier"] == "horse_jump" ) or
+       ( object.tags["barrier"] == "v_stile"    )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "bollard"
    end
@@ -9027,7 +9029,11 @@ function ott.process_way( object )
    if (( object.tags["barrier"] == "guard_rail"      ) or
        ( object.tags["barrier"] == "hand_rail_fence" ) or
        ( object.tags["barrier"] == "kerb"            ) or
-       ( object.tags["barrier"] == "obstruction"     )) then
+       ( object.tags["barrier"] == "obstruction"     ) or
+       ( object.tags["barrier"] == "railing"         ) or
+       ( object.tags["barrier"] == "traffic_island"  ) or
+       ( object.tags["barrier"] == "wire_fence"      ) or
+       ( object.tags["barrier"] == "wood_fence"      )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"]  = "fence"
    end
@@ -9067,7 +9073,9 @@ function ott.process_way( object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "flood_wall"     ) or
        ( object.tags["barrier"] == "haha"           ) or
-       ( object.tags["barrier"] == "jersey_barrier" )) then
+       ( object.tags["barrier"] == "jersey_barrier" ) or
+       ( object.tags["barrier"] == "retaining_wall" ) or
+       ( object.tags["barrier"] == "sea_wall"       )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "wall"
    end
@@ -9160,7 +9168,8 @@ function ott.process_way( object )
    if (
        ( object.tags["barrier"] == "barrier"    ) or
        ( object.tags["barrier"] == "chain"      ) or
-       ( object.tags["barrier"] == "horse_jump" )) then
+       ( object.tags["barrier"] == "horse_jump" ) or
+       ( object.tags["barrier"] == "v_stile"    )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "fence"
    end

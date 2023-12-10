@@ -2,12 +2,13 @@
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
-Added support for "barrier=chain" as both point and linear.
+Added support for "barrier=chain" and "barrier=v_stile" as both point and linear.
 Treat "barrier=door" in a similar way to "barrier=gate".
-Treat "barrier=flood_wall", "barrier=haha" and "barrier=jersey_barrier" in a similar way to "barrier=wall".
+Treat "barrier=flood_wall", "barrier=haha", "barrier=jersey_barrier", "barrier=retaining_wall" and "barrier=sea_wall" in a similar way to "barrier=wall".
 Removed "tourism=guesthouse", no longer in the data (it was a typo for "tourism=guest_house").
-Treat "barrier=guard_rail" and "barrier=hand_rail_fence" in a similar way to "barrier=fence".
+Treat "barrier=guard_rail", "barrier=hand_rail_fence", "barrier=railing", "barrier=traffic_island", "barrier=wire_fence" and "barrier=wood_fence" in a similar way to "barrier=fence".
 Treat linear "barrier=kerb" and "barrier=obstruction" in a similar way to "barrier=wall".
+Show "barrier=toll_booth" as kissing gate.
 
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".

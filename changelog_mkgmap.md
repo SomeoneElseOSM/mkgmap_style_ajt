@@ -10,6 +10,7 @@ Append "constructon" or "proposed" values to "highway=constructon" and "highway=
 Don't assume that roads under construction are routable.
 Improved the detection of scooter rental parking places.
 Detect escooter operators via the "network" tag if used.
+Detect "bicycle_parking;bicycle_rental" as "bicycle_rental".
 
 ## 09/12/2023
 Added support for "barrier=chain" and "barrier=v_stile" as both point and linear.

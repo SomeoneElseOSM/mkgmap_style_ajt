@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231210T122800Z",
+  "data_updated": "20231213T212300Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -113,6 +113,7 @@
     { "key": "amenity", "value": "bench", "description": "shown in 'Others / Personal Service'" },
     { "key": "amenity", "value": "betting", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "bicycle_parking", "description": "shown in brackets; 'Others / Social Service'" },
+    { "key": "amenity", "value": "bicycle_parking;bicycle_rental", "description": "shown in brackets; 'Transportation / Ground Transportation'" },
     { "key": "amenity", "value": "bicycle_rental", "description": "shown in brackets; 'Transportation / Ground Transportation'" },
     { "key": "amenity", "value": "bicycle_repair_station", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "biergarten", "description": "Shown as 'beer garden' in brackets after name; ''Geographic Points / Land Features" },

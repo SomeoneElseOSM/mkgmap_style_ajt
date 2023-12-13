@@ -1804,6 +1804,13 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Handle these as bicycle_rental:
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "bicycle_parking;bicycle_rental" ) then
+      object.tags["amenity"] = "bicycle_rental"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various ground transportation features
 --
 -- Show unspecified "public_transport=station" as "railway=halt"

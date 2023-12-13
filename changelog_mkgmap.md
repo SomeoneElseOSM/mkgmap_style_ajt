@@ -9,6 +9,7 @@ Detect walking networks with a route colour.
 Append "constructon" or "proposed" values to "highway=constructon" and "highway=proposed".
 Don't assume that roads under construction are routable.
 Improved the detection of scooter rental parking places.
+Detect escooter operators via the "network" tag if used.
 
 ## 09/12/2023
 Added support for "barrier=chain" and "barrier=v_stile" as both point and linear.

@@ -3219,12 +3219,26 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Show e-scooter parking areas
+-- Scooter rental
+-- All legal scooter rental / scooter parking in UK are private; these are the
+-- the tags currently used.
+-- man_made=thing
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"]                == "parking"               )  and
-       ( object.tags["parking"]                == "e-scooter"             )) then
-      object = append_nonqa( object, "e-scooter parking" )
+   if ((  object.tags["amenity"]                 == "escooter_rental"        ) or
+       (  object.tags["amenity"]                 == "scooter_parking"        ) or
+       (  object.tags["amenity"]                 == "kick-scooter_rental"    ) or
+       (  object.tags["amenity"]                 == "small_electric_vehicle" ) or
+       ((  object.tags["amenity"]                == "parking"               )  and
+        (( object.tags["parking"]                == "e-scooter"            )   or
+         ( object.tags["small_electric_vehicle"] == "designated"           ))) or
+       ((  object.tags["amenity"]                == "bicycle_parking"       )  and
+        (  object.tags["small_electric_vehicle"] == "designated"            ))) then
+      object = append_nonqa( object, "small_electric_vehicle parking" )
       object.tags["man_made"] = "thing"
+      object.tags["amenity"]  = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -6681,32 +6695,6 @@ function process_all( objtype, object )
        ( object.tags["landmark"] == "windsock" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "windsock" )
-   end
-
--- ----------------------------------------------------------------------------
--- Scooter rental
--- All legal scooter rental / scooter parking in UK are private; these are the
--- the tags currently used.
--- man_made=thing
--- In "points" as "0x2f14"
--- "0x2f14" is searchable via "Others / Social Service"
--- A dot appears on a GPSMAP64s
--- ----------------------------------------------------------------------------
-   if ((  object.tags["amenity"]                == "escooter_rental"        ) or
-       (  object.tags["amenity"]                == "scooter_parking"        ) or
-       (  object.tags["amenity"]                == "kick-scooter_rental"    ) or
-       (  object.tags["amenity"]                == "small_electric_vehicle" )) then
-      object = append_nonqa( object, object.tags["amenity"] )
-      object.tags["man_made"] = "thing"
-   end
-
-   if (((  object.tags["amenity"]                == "parking"               )  and
-        (( object.tags["parking"]                == "e-scooter"            )   or
-         ( object.tags["small_electric_vehicle"] == "designated"           ))) or
-       ((  object.tags["amenity"]                == "bicycle_parking"       )  and
-        (  object.tags["small_electric_vehicle"] == "designated"            ))) then
-      object = append_nonqa( object, "small_electric_vehicle parking" )
-      object.tags["man_made"] = "thing"
    end
 
 -- ----------------------------------------------------------------------------

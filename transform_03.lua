@@ -5647,20 +5647,30 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["shop"]    == "electrical"              ) or
-       ( object.tags["shop"]    == "radiotechnics"           ) or
-       ( object.tags["shop"]    == "appliance"               ) or
-       ( object.tags["shop"]    == "electrical_supplies"     ) or
-       ( object.tags["shop"]    == "electrical_repair"       ) or
-       ( object.tags["shop"]    == "tv_repair"               ) or
-       ( object.tags["shop"]    == "gadget"                  ) or
+   if (( object.tags["craft"] == "electrician"         ) or
+       ( object.tags["craft"] == "electrician;plumber" )) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if ( object.tags["office"] == "electrician" ) then
+      object.tags["shop"] = object.tags["office"]
+   end
+
+   if (( object.tags["shop"]    == "appliance"               ) or
        ( object.tags["shop"]    == "appliances"              ) or
-       ( object.tags["shop"]    == "vacuum_cleaner"          ) or
-       ( object.tags["shop"]    == "sewing_machines"         ) or
        ( object.tags["shop"]    == "domestic_appliances"     ) or
-       ( object.tags["shop"]    == "white_goods"             ) or
-       ( object.tags["shop"]    == "electricial"             ) or
-       ( object.tags["shop"]    == "electricals"             )) then
+       ( object.tags["shop"]    == "electrical"              ) or
+       ( object.tags["shop"]    == "electrical_repair"       ) or
+       ( object.tags["shop"]    == "electrical_supplies"     ) or
+       ( object.tags["shop"]    == "electricals"             ) or
+       ( object.tags["shop"]    == "electrician"             ) or
+       ( object.tags["shop"]    == "electrician;plumber"     ) or
+       ( object.tags["shop"]    == "gadget"                  ) or
+       ( object.tags["shop"]    == "radiotechnics"           ) or
+       ( object.tags["shop"]    == "sewing_machines"         ) or
+       ( object.tags["shop"]    == "tv_repair"               ) or
+       ( object.tags["shop"]    == "vacuum_cleaner"          ) or
+       ( object.tags["shop"]    == "white_goods"             )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
@@ -5790,15 +5800,19 @@ function process_all( objtype, object )
 -- Photo shops etc.
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["craft"]  == "photographer" ) then
+      object.tags["shop"] = object.tags["craft"]
+   end
+
    if ( object.tags["office"]  == "photography" ) then
       object.tags["shop"] = object.tags["office"]
    end
 
    if (( object.tags["shop"]    == "camera"             ) or
        ( object.tags["shop"]    == "photo_studio"       ) or
-       ( object.tags["shop"]    == "photography"        ) or
+       ( object.tags["shop"]    == "photographer"       ) or
        ( object.tags["shop"]    == "photographic"       ) or
-       ( object.tags["shop"]    == "photographer"       )) then
+       ( object.tags["shop"]    == "photography"        )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
@@ -6839,7 +6853,8 @@ function process_all( objtype, object )
        ( object.tags["craft"]  == "carpenter"             ) or
        ( object.tags["craft"]  == "decorator"             ) or
        ( object.tags["craft"]  == "furniture"             ) or
-       ( object.tags["craft"]  == "furniture_maker"       )) then
+       ( object.tags["craft"]  == "furniture_maker"       ) or
+       ( object.tags["craft"]  == "upholsterer"           )) then
       object.tags["shop"] = object.tags["craft"]
       object.tags["craft"] = nil
    end
@@ -7145,7 +7160,8 @@ function process_all( objtype, object )
 -- gift and other tat shops, antiques, art.
 -- "0x2e10" is searchable via "Shopping / Gift/Antique/Art"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["craft"]  == "pottery"  ) or
+   if (( object.tags["craft"]  == "artist"   ) or
+       ( object.tags["craft"]  == "pottery"  ) or
        ( object.tags["craft"]  == "sculptor" )) then
       object.tags["shop"] = object.tags["craft"]
    end

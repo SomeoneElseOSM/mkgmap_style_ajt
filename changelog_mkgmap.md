@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 16/12/2023
 "business" is used as an alternative to "office" and by some people.
 Add "climbing=boulder" and "sport=climbing;boundering" to the tags used to identify climbing features.
 Detect walking networks with a route colour.

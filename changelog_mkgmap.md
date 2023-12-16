@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 Added craft and office values for various art, homeware, photo and electrician synonyms.
+Show crossings and traffic signals.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" and by some people.

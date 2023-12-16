@@ -2678,10 +2678,32 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Passing places and emergency parking bays
+-- Various types of traffic light controlled crossings
 -- ----------------------------------------------------------------------------
-   if (( object.tags["highway"] == "passing_place" ) or
-       ( object.tags["highway"] == "emergency_bay" )) then
+   if ((( object.tags["crossing"] == "traffic_signals"         )  or
+        ( object.tags["crossing"] == "toucan"                  )  or
+        ( object.tags["crossing"] == "puffin"                  )  or
+        ( object.tags["crossing"] == "traffic_signals;island"  )  or
+        ( object.tags["crossing"] == "traffic_lights"          )  or
+        ( object.tags["crossing"] == "island;traffic_signals"  )  or
+        ( object.tags["crossing"] == "signals"                 )  or
+        ( object.tags["crossing"] == "pegasus"                 )  or
+        ( object.tags["crossing"] == "pedestrian_signals"      )  or
+        ( object.tags["crossing"] == "light_controlled"        )  or
+        ( object.tags["crossing"] == "light controlled"        )  or
+        ( object.tags["crossing"] == "traffic_signals;pelican" )) and
+       (  object.tags["highway"]  == nil                        )) then
+      object.tags["highway"] = "traffic_signals"
+      object.tags["crossing"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Crossings, emergency parking bays, passing places and traffic_signals
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "crossing"        ) or
+       ( object.tags["highway"] == "emergency_bay"   ) or
+       ( object.tags["highway"] == "passing_place"   ) or
+       ( object.tags["highway"] == "traffic_signals" )) then
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["man_made"] = "thing"
       object.tags["highway"] = nil

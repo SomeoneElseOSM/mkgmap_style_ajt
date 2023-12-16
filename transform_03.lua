@@ -9292,6 +9292,17 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Covered highways
+-- Raster maps special-case some values and amend rendering based on that, but
+-- here we just append and non-nil value.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] ~= nil  ) and
+       ( object.tags["covered"] ~= nil  ) and
+       ( object.tags["covered"] ~= "no" )) then
+      object = append_nonqa( object, "covered: " .. object.tags["covered"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Quality Control tagging on ways
 --
 -- Append M to roads if no speed limit defined
@@ -9299,57 +9310,57 @@ function ott.process_way( object )
 -- Append S if not known if sidewalk
 -- Append V no sidewalk, but not known if verge
 -- ----------------------------------------------------------------------------
-    street_appendix = ""
+   street_appendix = ""
 
-    if (( object.tags["highway"] == "unclassified"  ) or
-        ( object.tags["highway"] == "living_street" ) or
-        ( object.tags["highway"] == "residential"   ) or
-        ( object.tags["highway"] == "tertiary"      ) or
-        ( object.tags["highway"] == "secondary"     ) or
-        ( object.tags["highway"] == "primary"       ) or
-        ( object.tags["highway"] == "trunk"         )) then
-        if ( object.tags["maxspeed"] == nil ) then
-            street_appendix = "M"
-        end
-    end
+   if (( object.tags["highway"] == "unclassified"  ) or
+       ( object.tags["highway"] == "living_street" ) or
+       ( object.tags["highway"] == "residential"   ) or
+       ( object.tags["highway"] == "tertiary"      ) or
+       ( object.tags["highway"] == "secondary"     ) or
+       ( object.tags["highway"] == "primary"       ) or
+       ( object.tags["highway"] == "trunk"         )) then
+      if ( object.tags["maxspeed"] == nil ) then
+          street_appendix = "M"
+      end
+   end
 
-    if (( object.tags["highway"] == "unclassified"  ) or
-        ( object.tags["highway"] == "living_street" ) or
-        ( object.tags["highway"] == "residential"   ) or
-        ( object.tags["highway"] == "service"       ) or
-        ( object.tags["highway"] == "tertiary"      ) or
-        ( object.tags["highway"] == "secondary"     ) or
-        ( object.tags["highway"] == "primary"       ) or
-        ( object.tags["highway"] == "trunk"         )) then
-        if ( object.tags["lit"] == nil ) then
+   if (( object.tags["highway"] == "unclassified"  ) or
+       ( object.tags["highway"] == "living_street" ) or
+       ( object.tags["highway"] == "residential"   ) or
+       ( object.tags["highway"] == "service"       ) or
+       ( object.tags["highway"] == "tertiary"      ) or
+       ( object.tags["highway"] == "secondary"     ) or
+       ( object.tags["highway"] == "primary"       ) or
+       ( object.tags["highway"] == "trunk"         )) then
+      if ( object.tags["lit"] == nil ) then
+         if ( street_appendix == nil ) then
+            street_appendix = "L"
+         else
+            street_appendix = street_appendix .. "L"
+         end
+      end
+
+      if ( object.tags["sidewalk"] == nil ) then
+         if ( object.tags["verge"] == nil ) then
             if ( street_appendix == nil ) then
-                street_appendix = "L"
+               street_appendix = "S"
             else
-                street_appendix = street_appendix .. "L"
+               street_appendix = street_appendix .. "S"
             end
-        end
-
-        if ( object.tags["sidewalk"] == nil ) then
+         end
+      else
+         if (( object.tags["sidewalk"] == "no"   ) or
+             ( object.tags["sidewalk"] == "none" )) then
             if ( object.tags["verge"] == nil ) then
-                if ( street_appendix == nil ) then
-                    street_appendix = "S"
-                else
-                    street_appendix = street_appendix .. "S"
-                end
+               if ( street_appendix == nil ) then
+                  street_appendix = "V"
+               else
+                  street_appendix = street_appendix .. "V"
+               end
             end
-        else
-            if (( object.tags["sidewalk"] == "no"   ) or
-                ( object.tags["sidewalk"] == "none" )) then
-                if ( object.tags["verge"] == nil ) then
-                    if ( street_appendix == nil ) then
-                        street_appendix = "V"
-                    else
-                        street_appendix = street_appendix .. "V"
-                    end
-                end
-            end
-        end
-    end
+         end
+      end
+   end
 
     if ( street_appendix ~= "" ) then
         if ( object.tags["name"] == nil ) then

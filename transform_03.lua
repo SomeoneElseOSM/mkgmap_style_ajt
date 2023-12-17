@@ -6170,7 +6170,9 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if ( object.tags["emergency"] == "life_ring" ) then
+   if (( object.tags["emergency"] == "flotation device" ) or
+       ( object.tags["emergency"] == "lifevest"         ) or
+       ( object.tags["emergency"] == "life_ring"        )) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["natural"] = "spring"
       object = building_or_landuse( objtype, object )

@@ -10,6 +10,7 @@ Improve detection of historic cemeteries and graveyards.
 Detect disused buildings.
 Detect disused mineshafts tagged as "disused:man_made".
 Detect information boards without "tourism=information".
+Added some synonyms for life_ring.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" and by some people.

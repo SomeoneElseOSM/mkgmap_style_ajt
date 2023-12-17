@@ -4132,6 +4132,22 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- A special case to check before the "vacant shops" check further down -
+-- potentially remove disused:amenity=graveyard
+-- Also check that historic cemeteraries are not also tagged as non-historic.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["disused:amenity"] == "grave_yard" ) and
+       ( object.tags["landuse"]         == "cemetery"   )) then
+      object.tags["disused:amenity"] = nil
+   end
+
+   if ((( object.tags["historic"] == "cemetery"   ) or
+        ( object.tags["historic"] == "grave_yard" )) and
+       (  object.tags["landuse"]  == "cemetery"    )) then
+      object.tags["historic"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Ensure historic things are shown.
 -- There's no distinction here between building / almost a building / 
 -- not a building as there is with the web maps.
@@ -4140,23 +4156,33 @@ function process_all( objtype, object )
 -- "0x2c02" is searchable via "Attractions / Museum or Historical"
 -- A "museum" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ( object.tags["building"] == "pillbox" ) then
-      object.tags["historic"] = object.tags["building"]
-   end
-
-   if ( object.tags["amenity"] == "pinfold" ) then
+   if (( object.tags["amenity"]  == "pinfold"    )  and
+       ( object.tags["historic"] == nil          )) then
       object.tags["historic"] = object.tags["amenity"]
       object.tags["amenity"]  = nil
    end
 
+   if (( object.tags["building"] == "pillbox"    )  and
+       ( object.tags["historic"] == nil          )) then
+      object.tags["historic"] = object.tags["building"]
+   end
+
+   if (( object.tags["disused:amenity"] == "grave_yard" ) and
+       ( object.tags["landuse"]         ~= "cemetery"   ) and
+       ( object.tags["historic"]        == nil          )) then
+      object.tags["historic"] = object.tags["disused:amenity"]
+   end
+
    if (( object.tags["disused:military"] == "bunker" ) and
+       ( object.tags["historic"]         == nil      ) and
        ( object.tags["military"]         == nil      )) then
       object.tags["historic"] = object.tags["disused:military"]
    end
 
    if (( object.tags["military"] == "bunker" ) and
        ( object.tags["building"] == "bunker" ) and
-       ( object.tags["disused"]  == "yes"    )) then
+       ( object.tags["disused"]  == "yes"    ) and
+       ( object.tags["historic"] == nil      )) then
       object.tags["historic"] = object.tags["military"]
    end
 
@@ -4172,6 +4198,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "camp"                  ) or
        ( object.tags["historic"] == "cannon"                ) or
        ( object.tags["historic"] == "castle"                ) or
+       ( object.tags["historic"] == "cemetery"              ) or
        ( object.tags["historic"] == "chapel"                ) or
        ( object.tags["historic"] == "church"                ) or
        ( object.tags["historic"] == "city_gate"             ) or
@@ -8272,15 +8299,6 @@ function process_all( objtype, object )
           ( object.tags["naptan:Indicator"] ~= nil )) then
          object.tags["name"] = object.tags["name"] .. " " .. object.tags["naptan:Indicator"]
       end
-   end
-
--- ----------------------------------------------------------------------------
--- A special case to check before the "vacant shops" check below - potentially
--- remove disused:amenity=graveyard
--- ----------------------------------------------------------------------------
-   if (( object.tags["disused:amenity"] == "grave_yard" ) and
-       ( object.tags["landuse"]         == "cemetery"   )) then
-      object.tags["disused:amenity"] = nil
    end
 
 -- ----------------------------------------------------------------------------

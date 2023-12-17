@@ -935,6 +935,7 @@
     { "key": "disused:amenity", "value": "parking", "description": "Used to detect things that are not vacant shops" },
     { "key": "disused:amenity", "value": "pub", "description": "Shown as disused pub with old name; not generally searchable" },
     { "key": "disused:amenity", "value": "telephone", "description": "Shown as telephone, 'fmr phone' shown in brackets; 'Geographic Points / Manmade Places'" },
+    { "key": "disused:building", "description": "If no other building tag, shown in brackets; 'Others / Social Service'" },
     { "key": "disused:landuse", "description": "Detect former quarries" },
     { "key": "disused:landuse", "value": "quarry", "description": "Shown as quarry" },
     { "key": "disused:leisure", "description": "Detect disused leisure facilities and remove 'sport' tag" },

@@ -3885,6 +3885,19 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Disused buildings
+-- "man_made=thing" is in "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- ----------------------------------------------------------------------------
+   if (( object.tags["disused:building"] ~= nil  )  and
+       ( object.tags["disused:building"] ~= "no" )  and
+       ( object.tags["building"]         == nil  )) then
+      object = append_nonqa( object, "disused:building" )
+      object = append_nonqa( object, object.tags["disused:building"] )
+      object.tags["man_made"] = "thing"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Map man_made=monument to historic=monument (handled below) if no better tag
 -- exists.
 -- ----------------------------------------------------------------------------

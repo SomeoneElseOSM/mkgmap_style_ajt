@@ -7,6 +7,7 @@ Show crossings and traffic signals.
 Detect Aberdeen March Stones.
 Added "designation=public_footpath" as a synonym of "designation=public_footway".
 Improve detection of historic cemeteries and graveyards.
+Detect disused buildings.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" and by some people.

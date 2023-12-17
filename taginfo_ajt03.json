@@ -877,7 +877,6 @@
     { "key": "designation", "value": "common", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "designation", "value": "core_path", "description": "CP appended to way with this designation" },
     { "key": "designation", "value": "footpath", "description": "PF appended to way with this designation" },
-    { "key": "designation", "value": "footway", "description": "PF appended to way with this designation" },
     { "key": "designation", "value": "orpa", "description": "ORPA appended to way with this designation" },
     { "key": "designation", "value": "public_bridleway", "description": "PB appended to way with this designation" },
     { "key": "designation", "value": "public_bridleway;public_cycleway", "description": "PB appended to way with this designation" },

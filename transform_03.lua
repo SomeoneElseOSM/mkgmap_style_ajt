@@ -9190,17 +9190,38 @@ function ott.process_way( object )
 -- End Designation tagging on ways
 -- ----------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------
--- Informal footway-service
+-- "trail_visibility" and "informal" for footway-service
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["highway"]  == "footway"   ) or
-         ( object.tags["highway"]  == "path"      ) or
-         ( object.tags["highway"]  == "steps"     ) or
-         ( object.tags["highway"]  == "bridleway" ) or
-         ( object.tags["highway"]  == "cycleway"  ) or
-         ( object.tags["highway"]  == "track"     ) or
-         ( object.tags["highway"]  == "service"   )) and
-        (  object.tags["informal"] == "yes"        )) then
-      object = append_nonqa( object, "I" )
+   if (( object.tags["highway"]  == "footway"   ) or
+        ( object.tags["highway"]  == "path"      ) or
+        ( object.tags["highway"]  == "steps"     ) or
+        ( object.tags["highway"]  == "bridleway" ) or
+        ( object.tags["highway"]  == "cycleway"  ) or
+        ( object.tags["highway"]  == "track"     ) or
+        ( object.tags["highway"]  == "service"   )) then
+      if (( object.tags["trail_visibility"] == "intermediate" ) or
+          ( object.tags["trail_visibility"] == "intermittent" )) then
+         object = append_nonqa( object, "TVI" )
+      end
+
+      if (( object.tags["trail_visibility"] == "bad"          ) or
+          ( object.tags["trail_visibility"] == "poor"         )) then
+         object = append_nonqa( object, "TVB" )
+      end
+
+      if (( object.tags["trail_visibility"] == "very_bad"     ) or
+          ( object.tags["trail_visibility"] == "horrible"     )) then
+         object = append_nonqa( object, "TVH" )
+      end
+
+      if (( object.tags["trail_visibility"] == "no"           ) or
+          ( object.tags["trail_visibility"] == "none"         )) then
+         object = append_nonqa( object, "TVN" )
+      end
+
+      if (  object.tags["informal"] == "yes" ) then
+         object = append_nonqa( object, "I" )
+      end
    end
 
 -- ----------------------------------------------------------------------------

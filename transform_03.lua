@@ -1671,30 +1671,30 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Change landuse=greenhouse_horticulture to farmyard.
 -- ----------------------------------------------------------------------------
-   if (object.tags["landuse"]   == "greenhouse_horticulture") then
+   if ( object.tags["landuse"] == "greenhouse_horticulture" ) then
+      object = append_nonqa( object, object.tags["landuse"] )
       object.tags["landuse"] = "farmyard"
-      object = append_nonqa( object, "greenhouse horticulture" )
    end
 
 -- ----------------------------------------------------------------------------
 -- Also map man_made=bunker_silo through to farmyard here
 -- ----------------------------------------------------------------------------
-   if (object.tags["man_made"]   == "bunker_silo") then
+   if ( object.tags["man_made"] == "bunker_silo" ) then
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["landuse"] = "farmyard"
       object.tags["man_made"] = nil
-      object = append_nonqa( object, "bunker silo" )
    end
 
-   if (object.tags["amenity"]   == "feeding_place") then
+   if ( object.tags["amenity"] == "feeding_place" ) then
+      object = append_nonqa( object, object.tags["amenity"] )
       object.tags["landuse"] = "farmyard"
       object.tags["amenity"] = nil
-      object = append_nonqa( object, "feeding place" )
    end
 
-   if (object.tags["animal"]   == "horse_walker") then
+   if ( object.tags["animal"] == "horse_walker" ) then
+      object = append_nonqa( object, object.tags["animal"] )
       object.tags["landuse"] = "farmyard"
       object.tags["animal"] = nil
-      object = append_nonqa( object, "horse walker" )
    end
 
 -- ----------------------------------------------------------------------------

@@ -4,6 +4,8 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Added craft and office values for various art, homeware, photo and electrician synonyms.
 Show crossings and traffic signals.
+Detect Aberdeen March Stones.
+Added "designation=public_footpath" as a synonym of "designation=public_footway".
 
 ## 16/12/2023
 "business" is used as an alternative to "office" and by some people.
@@ -34,7 +36,7 @@ Use building tag to tell "emergency=water_rescue" lifeboats from lifeboat statio
 ## 05/12/2023
 Move "amenity=bbq" to the search menu "Others / Social Service".
 Added support for "amenity=bird_hide" and "amenity=wildlife_hide".
-Add "amenity=bus_stop" as a synonym of "highway=bus_stop".
+Added "amenity=bus_stop" as a synonym of "highway=bus_stop".
 Added support for "amenity=compressed_air".
 Added "amenity=embassy" as a synonym for "diplomatic=embassy".
 Added support for "amenity=fountain", "amenity=grit_bin".

@@ -587,7 +587,8 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "boundary_marker" )  or
        ( object.tags["man_made"] == "boundary_marker" )  or
        ( object.tags["marker"]   == "boundary_stone"  )  or
-       ( object.tags["boundary"] == "marker"          )) then
+       ( object.tags["boundary"] == "marker"          )  or
+       ( object.tags["boundary"] == "March Stone"     )) then
       object.tags["man_made"] = "marker"
       object.tags["tourism"]  = nil
 

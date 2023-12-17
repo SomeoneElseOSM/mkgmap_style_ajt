@@ -8531,6 +8531,17 @@ function ott.process_node( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Some information boards don't have a "tourism" tag
+-- ----------------------------------------------------------------------------
+   if (( object.tags["information"]     == "board" ) and
+       ( object.tags["disused:tourism"] == nil     ) and
+       ( object.tags["ruins:tourism"]   == nil     ) and
+       ( object.tags["historic"]        == nil     )) then
+      object.tags["tourism"]     = "information"
+      object.tags["information"] = "board"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various types of information
 -- ----------------------------------------------------------------------------
    if ((   object.tags["amenity"]     == "notice_board" )  or

@@ -1021,6 +1021,7 @@
     { "key": "foot", "value": "permissive", "description": "Indicates foot access where general access is private" },
     { "key": "foot", "value": "private", "description": "Detect foot access" },
     { "key": "foot", "value": "yes", "description": "Detect foot access where general access is private" },
+    { "key": "foot:physical", "value": "no", "description": "Append (TVN) to less-visible footways etc." },
     { "key": "footway", "description": "Detect sidewalks and suppress name" },
     { "key": "footway", "value": "sidewalk", "description": "Detect sidewalks and suppress name" },
     { "key": "ford", "description": "Detect fords" },

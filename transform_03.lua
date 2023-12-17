@@ -9215,7 +9215,8 @@ function ott.process_way( object )
       end
 
       if (( object.tags["trail_visibility"] == "no"           ) or
-          ( object.tags["trail_visibility"] == "none"         )) then
+          ( object.tags["trail_visibility"] == "none"         ) or
+          ( object.tags["foot:physical"]    == "no"           )) then
          object = append_nonqa( object, "TVN" )
       end
 

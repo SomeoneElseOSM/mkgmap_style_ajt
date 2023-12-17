@@ -4121,13 +4121,16 @@ function process_all( objtype, object )
 -- "0x2c02" is searchable via "Attractions / Museum or Historical"
 -- A "museum" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["man_made"] == "mine"       )  or
-        ( object.tags["man_made"] == "mineshaft"  )  or
-        ( object.tags["man_made"] == "mine_shaft" )) and
-       (( object.tags["historic"] == "yes"        )  or
-        ( object.tags["historic"] == "mine"       )  or
-        ( object.tags["historic"] == "mineshaft"  )  or
-        ( object.tags["historic"] == "mine_shaft" ))) then
+   if ((  object.tags["disused:man_made"] == "mine"       )  or
+       (  object.tags["disused:man_made"] == "mineshaft"  )  or
+       (  object.tags["disused:man_made"] == "mine_shaft" )  or
+       (( object.tags["man_made"] == "mine"              )  or
+        ( object.tags["man_made"] == "mineshaft"         )  or
+        ( object.tags["man_made"] == "mine_shaft"        )) and
+       (( object.tags["historic"] == "yes"               )  or
+        ( object.tags["historic"] == "mine"              )  or
+        ( object.tags["historic"] == "mineshaft"         )  or
+        ( object.tags["historic"] == "mine_shaft"        ))) then
       object.tags["historic"] = "ruins"
       object.tags["man_made"] = nil
       object.tags["tourism"]  = nil

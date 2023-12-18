@@ -1030,6 +1030,7 @@
     { "key": "ford", "value": "ford", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "ford", "value": "intermittent", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "ford", "value": "seasonal", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
+    { "key": "ford", "value": "stepping_stones", "description": "Detect stepping stones, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "ford", "value": "stream", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "ford", "value": "tidal", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "ford", "value": "yes", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },

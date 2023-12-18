@@ -3783,6 +3783,22 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- ford=stepping_stones
+-- A suffix, but no tag changes, is used for ways.
+-- man_made=thing is added to nodes
+-- "man_made=thing" is in "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["ford"] == "stepping_stones" ) then
+      object = append_nonqa( object, object.tags["ford"] )
+
+      if ( objtype == "n" ) then
+         object.tags["man_made"] = "thing"
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Abandoned railways etc.
 -- All are passed through to the style as "railway=abandoned" with an
 -- appropriate suffix.

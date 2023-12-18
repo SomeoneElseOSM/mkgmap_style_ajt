@@ -17,7 +17,7 @@ Detect stepping stones, shown in brackets; points searchable as 'Others / Social
 Detect locked gates.
 
 ## 16/12/2023
-"business" is used as an alternative to "office" and by some people.
+"business" is used as an alternative to "office" by some people.
 Add "climbing=boulder" and "sport=climbing;boundering" to the tags used to identify climbing features.
 Detect walking networks with a route colour.
 "colour" shown in brackets on telephones if set.

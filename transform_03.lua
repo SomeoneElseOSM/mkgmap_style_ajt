@@ -3763,8 +3763,19 @@ function process_all( objtype, object )
 -- "0x2f14" is searchable via "Others / Social Service"
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ( object.tags["ford"] == "yes" ) then
+   if (( object.tags["ford"] == "ford"           ) or
+       ( object.tags["ford"] == "intermittent"   ) or
+       ( object.tags["ford"] == "seasonal"       ) or
+       ( object.tags["ford"] == "stream"         ) or
+       ( object.tags["ford"] == "tidal"          ) or
+       ( object.tags["ford"] == "yes"            ) or
+       ( object.tags["ford"] == "Tidal_Causeway" )) then
       object = append_nonqa( object, "ford" )
+
+      if (( object.tags["ford"] ~= "ford" ) and
+          ( object.tags["ford"] ~= "yes"  )) then
+         object = append_nonqa( object, object.tags["ford"] )
+      end
 
       if ( objtype == "n" ) then
          object.tags["man_made"] = "thing"

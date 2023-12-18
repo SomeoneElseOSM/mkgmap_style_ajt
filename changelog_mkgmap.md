@@ -14,6 +14,7 @@ Added some synonyms for life_ring.
 Append (TVI), (TVH), (TVN) to less-visible footways etc.
 Detect more "ford" values as fords.
 Detect stepping stones, shown in brackets; points searchable as 'Others / Social Service'
+Detect locked gates.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" and by some people.

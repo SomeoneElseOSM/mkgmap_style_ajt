@@ -5463,6 +5463,13 @@ function process_all( objtype, object )
        (  object.tags["barrier"]   == "toll_booth"             )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "kissing_gate"
+
+      if (( object.tags["gate"]   == "locked"      ) or
+          ( object.tags["locked"] == "permanently" ) or
+          ( object.tags["locked"] == "yes"         ) or
+          ( object.tags["status"] == "locked"      )) then
+         object = append_nonqa( object, "locked" )
+      end
    end
 
 -- ----------------------------------------------------------------------------
@@ -5477,6 +5484,13 @@ function process_all( objtype, object )
        ( object.tags["barrier"] == "gatehouse"        )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "lift_gate"
+
+      if (( object.tags["gate"]   == "locked"      ) or
+          ( object.tags["locked"] == "permanently" ) or
+          ( object.tags["locked"] == "yes"         ) or
+          ( object.tags["status"] == "locked"      )) then
+         object = append_nonqa( object, "locked" )
+      end
    end
 
 -- ----------------------------------------------------------------------------
@@ -5508,6 +5522,13 @@ function process_all( objtype, object )
       end
 
       object.tags["barrier"] = "gate"
+
+      if (( object.tags["gate"]   == "locked"      ) or
+          ( object.tags["locked"] == "permanently" ) or
+          ( object.tags["locked"] == "yes"         ) or
+          ( object.tags["status"] == "locked"      )) then
+         object = append_nonqa( object, "locked" )
+      end
    end
 
 -- ----------------------------------------------------------------------------

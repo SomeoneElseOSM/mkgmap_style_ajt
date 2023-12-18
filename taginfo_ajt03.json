@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231217T013000Z",
+  "data_updated": "20231218T011600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1035,9 +1035,9 @@
     { "key": "ford", "value": "tidal", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "ford", "value": "yes", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "former:amenity", "description": "Detect former pubs" },
-    { "key": "former:amenity", "value": "pub", "description": "Shown as disused pub with old name; not generally searchable" },
     { "key": "former_amenity", "value": "former_pub", "description": "Shown as disused pub with old name; not generally searchable" },
     { "key": "former_amenity", "value": "old_pub", "description": "Shown as disused pub with old name; not generally searchable" },
+    { "key": "former:amenity", "value": "pub", "description": "Shown as disused pub with old name; not generally searchable" },
     { "key": "former_name", "description": "Identify name of former shops etc." },
     { "key": "fortification_type", "description": "Show different fortification types differently" },
     { "key": "fortification_type", "value": "broch", "description": "Treat brochs as archaeological" },

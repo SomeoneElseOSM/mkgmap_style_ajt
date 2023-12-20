@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 19/12/2023
 Added craft and office values for various art, homeware, photo and electrician synonyms.
 Show crossings and traffic signals.
 Detect Aberdeen March Stones.

@@ -180,7 +180,6 @@
     { "key": "leisure", "value": "playground", "description": "Show leisure" },
     { "key": "leisure", "value": "recreation_ground", "description": "Show leisure" },
     { "key": "leisure", "value": "social_club", "description": "Show leisure" },
-    { "key": "leisure", "value": "sports_center", "description": "Show leisure" },
     { "key": "leisure", "value": "sports_centre", "description": "Show leisure" },
     { "key": "leisure", "value": "stadium", "description": "Show leisure" },
     { "key": "leisure", "value": "track", "description": "Show leisure" },

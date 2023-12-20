@@ -6121,44 +6121,46 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["healthcare"]  == "chiropodist"                  ) or
+   if (( object.tags["healthcare"]  == "audiologist"                  ) or
+       ( object.tags["healthcare"]  == "blood_bank"                   ) or
+       ( object.tags["healthcare"]  == "blood_donation"               ) or
+       ( object.tags["healthcare"]  == "centre"                       ) or
+       ( object.tags["healthcare"]  == "chiropodist"                  ) or
        ( object.tags["healthcare"]  == "chiropractor"                 ) or
+       ( object.tags["healthcare"]  == "clinic"                       ) or
+       ( object.tags["healthcare"]  == "clinic;doctor"                ) or
+       ( object.tags["healthcare"]  == "cosmetic"                     ) or
+       ( object.tags["healthcare"]  == "cosmetic_surgery"             ) or
+       ( object.tags["healthcare"]  == "counselling"                  ) or
+       ( object.tags["healthcare"]  == "dentures"                     ) or
+       ( object.tags["healthcare"]  == "department"                   ) or
        ( object.tags["healthcare"]  == "diagnostics"                  ) or
        ( object.tags["healthcare"]  == "dialysis"                     ) or
+       ( object.tags["healthcare"]  == "drug_rehabilitation"          ) or
+       ( object.tags["healthcare"]  == "hearing"                      ) or
+       ( object.tags["healthcare"]  == "hearing_care"                 ) or
+       ( object.tags["healthcare"]  == "hospice"                      ) or
+       ( object.tags["healthcare"]  == "massage"                      ) or
+       ( object.tags["healthcare"]  == "medical_imaging"              ) or
+       ( object.tags["healthcare"]  == "mental_health"                ) or
+       ( object.tags["healthcare"]  == "midwife"                      ) or
        ( object.tags["healthcare"]  == "nursing_home"                 ) or
+       ( object.tags["healthcare"]  == "occupational_therapist"       ) or
+       ( object.tags["healthcare"]  == "ocular_prosthetics"           ) or
        ( object.tags["healthcare"]  == "osteopath"                    ) or
        ( object.tags["healthcare"]  == "physiotherapist"              ) or
        ( object.tags["healthcare"]  == "physiotherapist;podiatrist"   ) or
        ( object.tags["healthcare"]  == "physiotherapy"                ) or
-       ( object.tags["healthcare"]  == "psychotherapist"              ) or
-       ( object.tags["healthcare"]  == "therapy"                      ) or
        ( object.tags["healthcare"]  == "podiatrist"                   ) or
        ( object.tags["healthcare"]  == "podiatrist;chiropodist"       ) or
        ( object.tags["healthcare"]  == "podiatry"                     ) or
-       ( object.tags["healthcare"]  == "clinic"                       ) or
-       ( object.tags["healthcare"]  == "clinic;doctor"                ) or
-       ( object.tags["healthcare"]  == "centre"                       ) or
-       ( object.tags["healthcare"]  == "counselling"                  ) or
-       ( object.tags["healthcare"]  == "hospice"                      ) or
-       ( object.tags["healthcare"]  == "cosmetic"                     ) or
-       ( object.tags["healthcare"]  == "cosmetic_surgery"             ) or
-       ( object.tags["healthcare"]  == "dentures"                     ) or
-       ( object.tags["healthcare"]  == "blood_donation"               ) or
-       ( object.tags["healthcare"]  == "blood_bank"                   ) or
-       ( object.tags["healthcare"]  == "sports_massage_therapist"     ) or
-       ( object.tags["healthcare"]  == "massage"                      ) or
+       ( object.tags["healthcare"]  == "psychotherapist"              ) or
        ( object.tags["healthcare"]  == "rehabilitation"               ) or
-       ( object.tags["healthcare"]  == "drug_rehabilitation"          ) or
-       ( object.tags["healthcare"]  == "medical_imaging"              ) or
-       ( object.tags["healthcare"]  == "midwife"                      ) or
-       ( object.tags["healthcare"]  == "occupational_therapist"       ) or
        ( object.tags["healthcare"]  == "speech_therapist"             ) or
+       ( object.tags["healthcare"]  == "sports_massage_therapist"     ) or
        ( object.tags["healthcare"]  == "tattoo_removal"               ) or
-       ( object.tags["healthcare"]  == "trichologist"                 ) or
-       ( object.tags["healthcare"]  == "ocular_prosthetics"           ) or
-       ( object.tags["healthcare"]  == "audiologist"                  ) or
-       ( object.tags["healthcare"]  == "hearing"                      ) or
-       ( object.tags["healthcare"]  == "mental_health"                )) then
+       ( object.tags["healthcare"]  == "therapy"                      ) or
+       ( object.tags["healthcare"]  == "trichologist"                 )) then
       object = append_nonqa( object, object.tags["healthcare"] )
       object.tags["shop"] = "specialty"
       object.tags["amenity"] = nil

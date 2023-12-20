@@ -797,6 +797,10 @@ function process_all( objtype, object )
       object.tags["amenity"] = object.tags["leisure"]
    end
 
+   if ( object.tags["healthcare"]  == "health_centre" ) then
+      object.tags["amenity"] = object.tags["healthcare"]
+   end
+
    if (( object.tags["amenity"]  == "function_room"            ) or
        ( object.tags["amenity"]  == "community_hall"           ) or
        ( object.tags["amenity"]  == "church_hall"              ) or
@@ -2429,11 +2433,21 @@ function process_all( objtype, object )
 -- Various mistagging, comma and semicolon healthcare
 -- 0x3002 appears on GPSMap64s as "Hospital" 
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "doctors"                 ) or
+   if ((( object.tags["healthcare"] == "doctor"               )   or
+        ( object.tags["healthcare"] == "doctor;pharmacy"      )   or
+        ( object.tags["healthcare"] == "general_practitioner" ))  and
+       (  object.tags["amenity"]    == nil                     )) then
+      object.tags["amenity"] = object.tags["healthcare"]
+   end
+
+   if (( object.tags["amenity"] == "doctor"                  ) or
+       ( object.tags["amenity"] == "doctor;pharmacy"         ) or
+       ( object.tags["amenity"] == "doctors"                 ) or
        ( object.tags["amenity"] == "doctors; pharmacy"       ) or
+       ( object.tags["amenity"] == "general_practitioner"    ) or
        ( object.tags["amenity"] == "surgery"                 )) then
+      object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = "doctors"
-      object = append_nonqa( object, "doctors" )
       object = building_or_landuse( objtype, object )
    end
 
@@ -2451,9 +2465,14 @@ function process_all( objtype, object )
 -- with a suffix.
 -- 0x3002 appears on GPSMap64s as "Hospital" 
 -- ----------------------------------------------------------------------------
-   if (( object.tags["healthcare"] == "dentist" ) and
-       ( object.tags["amenity"]    == nil       )) then
-      object.tags["amenity"] = "dentist"
+   if (((   object.tags["healthcare"]            == "dentist"    )  or
+        ((  object.tags["healthcare:speciality"] == "dentistry" )   and
+         (( object.tags["healthcare"]            == "yes"      )    or
+          ( object.tags["healthcare"]            == "centre"   )    or
+          ( object.tags["healthcare"]            == "clinic"   )))) and
+       (   object.tags["amenity"]    == nil                       )) then
+      object.tags["amenity"]    = "dentist"
+      object.tags["healthcare"] = nil
    end
 
    if ( object.tags["amenity"] == "dentist" ) then
@@ -6104,14 +6123,20 @@ function process_all( objtype, object )
 
    if (( object.tags["healthcare"]  == "chiropodist"                  ) or
        ( object.tags["healthcare"]  == "chiropractor"                 ) or
+       ( object.tags["healthcare"]  == "diagnostics"                  ) or
+       ( object.tags["healthcare"]  == "dialysis"                     ) or
+       ( object.tags["healthcare"]  == "nursing_home"                 ) or
        ( object.tags["healthcare"]  == "osteopath"                    ) or
        ( object.tags["healthcare"]  == "physiotherapist"              ) or
+       ( object.tags["healthcare"]  == "physiotherapist;podiatrist"   ) or
        ( object.tags["healthcare"]  == "physiotherapy"                ) or
        ( object.tags["healthcare"]  == "psychotherapist"              ) or
        ( object.tags["healthcare"]  == "therapy"                      ) or
        ( object.tags["healthcare"]  == "podiatrist"                   ) or
        ( object.tags["healthcare"]  == "podiatrist;chiropodist"       ) or
+       ( object.tags["healthcare"]  == "podiatry"                     ) or
        ( object.tags["healthcare"]  == "clinic"                       ) or
+       ( object.tags["healthcare"]  == "clinic;doctor"                ) or
        ( object.tags["healthcare"]  == "centre"                       ) or
        ( object.tags["healthcare"]  == "counselling"                  ) or
        ( object.tags["healthcare"]  == "hospice"                      ) or
@@ -6124,7 +6149,10 @@ function process_all( objtype, object )
        ( object.tags["healthcare"]  == "massage"                      ) or
        ( object.tags["healthcare"]  == "rehabilitation"               ) or
        ( object.tags["healthcare"]  == "drug_rehabilitation"          ) or
+       ( object.tags["healthcare"]  == "medical_imaging"              ) or
+       ( object.tags["healthcare"]  == "midwife"                      ) or
        ( object.tags["healthcare"]  == "occupational_therapist"       ) or
+       ( object.tags["healthcare"]  == "speech_therapist"             ) or
        ( object.tags["healthcare"]  == "tattoo_removal"               ) or
        ( object.tags["healthcare"]  == "trichologist"                 ) or
        ( object.tags["healthcare"]  == "ocular_prosthetics"           ) or
@@ -7910,6 +7938,10 @@ function process_all( objtype, object )
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- Add unnamedcommercial landuse to give non-building areas a background.
 -- ----------------------------------------------------------------------------
+   if ( object.tags["healthcare"] == "home_care" ) then
+      object.tags["office"] = object.tags["healthcare"]
+   end
+
    if (( object.tags["office"]      == "accountant"              ) or
        ( object.tags["office"]      == "accountants"             ) or
        ( object.tags["office"]      == "advertising"             ) or

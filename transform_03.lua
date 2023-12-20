@@ -9238,15 +9238,15 @@ function ott.process_way( object )
 -- End Designation tagging on ways
 -- ----------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------
--- "trail_visibility" and "informal" for footway-service
+-- "trail_visibility", "informal" and "dog" for footway-service
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]  == "footway"   ) or
-        ( object.tags["highway"]  == "path"      ) or
-        ( object.tags["highway"]  == "steps"     ) or
-        ( object.tags["highway"]  == "bridleway" ) or
-        ( object.tags["highway"]  == "cycleway"  ) or
-        ( object.tags["highway"]  == "track"     ) or
-        ( object.tags["highway"]  == "service"   )) then
+       ( object.tags["highway"]  == "path"      ) or
+       ( object.tags["highway"]  == "steps"     ) or
+       ( object.tags["highway"]  == "bridleway" ) or
+       ( object.tags["highway"]  == "cycleway"  ) or
+       ( object.tags["highway"]  == "track"     ) or
+       ( object.tags["highway"]  == "service"   )) then
       if (( object.tags["trail_visibility"] == "intermediate" ) or
           ( object.tags["trail_visibility"] == "intermittent" )) then
          object = append_nonqa( object, "TVI" )
@@ -9270,6 +9270,16 @@ function ott.process_way( object )
 
       if (  object.tags["informal"] == "yes" ) then
          object = append_nonqa( object, "I" )
+      end
+
+      if (( object.tags["dog"]  == "no" )  or
+          ( object.tags["dogs"] == "no" )) then
+         object = append_nonqa( object, "nodog" )
+      end
+
+      if (( object.tags["dog"]  == "leashed" )  or
+          ( object.tags["dogs"] == "leashed" )) then
+         object = append_nonqa( object, "doglead" )
       end
    end
 

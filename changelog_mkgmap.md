@@ -15,6 +15,7 @@ Append (TVI), (TVH), (TVN) to less-visible footways etc.
 Detect more "ford" values as fords.
 Detect stepping stones, shown in brackets; points searchable as 'Others / Social Service'
 Detect locked gates.
+Display "nodog" or "doglead" to show dog restrictions on paths.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

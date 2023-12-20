@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Append "flood" on flood-prone paths.
 Detect more "healthcare" values and combinations.
+Added support for some "unexpected" highway values and some expected but rarer ones.
 
 ## 19/12/2023
 Added craft and office values for various art, homeware, photo and electrician synonyms.

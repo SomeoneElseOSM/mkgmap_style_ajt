@@ -129,6 +129,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Cater for unusual link values on the off chance
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "living_street_link" ) then
+      object.tags["highway"] = "living_street"
+   end
+
+   if ( object.tags["highway"] == "service_link" ) then
+      object.tags["highway"] = "service"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Move unsigned road refs to the name, in brackets.
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "motorway"          ) or
@@ -542,8 +553,9 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "milestone" )  or
        ( object.tags["historic"] == "milepost"  )  or
-       ( object.tags["waterway"] == "milestone" )  or
-       ( object.tags["railway"]  == "milestone" )) then
+       ( object.tags["highway"]  == "milestone" )  or
+       ( object.tags["railway"]  == "milestone" )  or
+       ( object.tags["waterway"] == "milestone" )) then
       object = append_nonqa( object, "milestone" )
       object.tags["man_made"] = "marker"
    end
@@ -2722,8 +2734,10 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "crossing"        ) or
        ( object.tags["highway"] == "emergency_bay"   ) or
+       ( object.tags["highway"] == "mini_roundabout" ) or
        ( object.tags["highway"] == "passing_place"   ) or
-       ( object.tags["highway"] == "traffic_signals" )) then
+       ( object.tags["highway"] == "traffic_signals" ) or
+       ( object.tags["highway"] == "turning_circle"  )) then
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["man_made"] = "thing"
       object.tags["highway"] = nil

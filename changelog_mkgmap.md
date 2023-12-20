@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Append "flood" on flood-prone paths.
+
 ## 19/12/2023
 Added craft and office values for various art, homeware, photo and electrician synonyms.
 Show crossings and traffic signals.
@@ -15,7 +18,7 @@ Append (TVI), (TVH), (TVN) to less-visible footways etc.
 Detect more "ford" values as fords.
 Detect stepping stones, shown in brackets; points searchable as 'Others / Social Service'
 Detect locked gates.
-Display "nodog" or "doglead" to show dog restrictions on paths.
+Append "nodog" or "doglead" to show dog restrictions on paths.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

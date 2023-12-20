@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231220T005800Z",
+  "data_updated": "20231220T220500Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1006,6 +1006,8 @@
     { "key": "fence_type", "description": "Detect hedges" },
     { "key": "fence_type", "value": "hedge", "description": "Detect hedges" },
     { "key": "fixme", "description": "'[fix]' appended to object" },
+    { "key": "flood_prone", "description": "Flood-prone paths have 'flood' appended" },
+    { "key": "flood_prone", "value": "yes", "description": "Flood-prone paths have 'flood' appended" },
     { "key": "floor:material", "description": "'L' appended to pubs with 'muddy boots likely OK' floors" },
     { "key": "floor:material", "value": "brick", "description": "pub floor treated as muddy boots likely OK" },
     { "key": "floor:material", "value": "concrete", "description": "pub floor treated as muddy boots likely OK" },
@@ -1109,6 +1111,10 @@
     { "key": "hazard", "description": "Detect hogweed" },
     { "key": "hazard", "value": "plant", "description": "Detect hogweed" },
     { "key": "hazard", "value": "toxic_plant", "description": "Detect hogweed" },
+    { "key": "hazard_prone", "description": "Flood-prone paths have 'flood' appended" },
+    { "key": "hazard_prone", "value": "yes", "description": "Flood-prone paths have 'flood' appended" },
+    { "key": "hazard_type", "description": "Flood-prone paths have 'flood' appended" },
+    { "key": "hazard_type", "value": "flood", "description": "Flood-prone paths have 'flood' appended" },
     { "key": "healthcare", "description": "Various healthcare and related features shown" },
     { "key": "healthcare", "value": "acupuncture", "description": "'alt health' shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "alternative", "description": "'alt health' shown in brackets; 'Shopping / Specialty Retail'" },

@@ -413,26 +413,45 @@ function process_all( objtype, object )
       object.tags["landuse"] = "industrial"
    end
 
-   if (( object.tags["craft"]      == "distillery"             ) or
-       ( object.tags["craft"]      == "bakery"                 ) or
+   if (( object.tags["craft"]      == "bakery"                 ) or
+       ( object.tags["craft"]      == "distillery"             ) or
        ( object.tags["craft"]      == "sawmill"                )) then
       object = append_nonqa( object, object.tags["craft"] )
       object.tags["craft"] = nil
       object.tags["landuse"] = "industrial"
    end
 
-   if (( object.tags["industrial"] == "warehouse"              ) or
+   if (( object.tags["industrial"] == "auto_wrecker"           ) or 
+       ( object.tags["industrial"] == "automotive_industry"    ) or 
+       ( object.tags["industrial"] == "bakery"                 ) or 
+       ( object.tags["industrial"] == "checkpoint"             ) or 
+       ( object.tags["industrial"] == "chemical"               ) or 
+       ( object.tags["industrial"] == "concrete_plant"         ) or 
+       ( object.tags["industrial"] == "construction"           ) or 
        ( object.tags["industrial"] == "distillery"             ) or 
-       ( object.tags["industrial"] == "sawmill"                ) or
-       ( object.tags["industrial"] == "factory"                ) or 
-       ( object.tags["industrial"] == "yes"                    ) or 
-       ( object.tags["industrial"] == "depot"                  ) or 
-       ( object.tags["industrial"] == "scrap_yard"             ) or 
-       ( object.tags["industrial"] == "yard"                   ) or 
+       ( object.tags["industrial"] == "distributor"            ) or 
+       ( object.tags["industrial"] == "electrical"             ) or 
        ( object.tags["industrial"] == "engineering"            ) or
+       ( object.tags["industrial"] == "factory"                ) or 
+       ( object.tags["industrial"] == "fish_farm"              ) or 
+       ( object.tags["industrial"] == "furniture"              ) or 
+       ( object.tags["industrial"] == "gas"                    ) or 
+       ( object.tags["industrial"] == "haulage"                ) or
        ( object.tags["industrial"] == "machine_shop"           ) or
+       ( object.tags["industrial"] == "machinery"              ) or
+       ( object.tags["industrial"] == "metal_finishing"        ) or
+       ( object.tags["industrial"] == "mobile_equipment"       ) or
+       ( object.tags["industrial"] == "oil"                    ) or
        ( object.tags["industrial"] == "packaging"              ) or
-       ( object.tags["industrial"] == "haulage"                )) then
+       ( object.tags["industrial"] == "sawmill"                ) or
+       ( object.tags["industrial"] == "scaffolding"            ) or 
+       ( object.tags["industrial"] == "scrap_yard"             ) or 
+       ( object.tags["industrial"] == "shop_fitters"           ) or 
+       ( object.tags["industrial"] == "waste_handling"         ) or 
+       ( object.tags["industrial"] == "warehouse"              ) or
+       ( object.tags["industrial"] == "woodworking"            ) or
+       ( object.tags["industrial"] == "yard"                   ) or 
+       ( object.tags["industrial"] == "yes"                    )) then
       object = append_nonqa( object, object.tags["industrial"] )
    end
 
@@ -7934,6 +7953,13 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["shop"]    = "car_repair"
       object.tags["amenity"] = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["industrial"] == "truck_repair" ) then
+      object = append_nonqa( object, object.tags["industrial"] )
+      object.tags["shop"]    = "car_repair"
+      object.tags["industrial"] = nil
       object = building_or_landuse( objtype, object )
    end
 

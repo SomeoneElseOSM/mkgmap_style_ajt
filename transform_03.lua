@@ -8832,33 +8832,32 @@ function ott.process_node( object )
       end
 
       if (( object.tags["information"] == "board"                            )  or
+          ( object.tags["information"] == "board;map"                        )  or
+          ( object.tags["information"] == "citymap"                          )  or
+          ( object.tags["information"] == "departure times and destinations" )  or
+          ( object.tags["information"] == "electronic_board"                 )  or
+          ( object.tags["information"] == "estate_map"                       )  or
+          ( object.tags["information"] == "former_telephone_box"             )  or
+          ( object.tags["information"] == "hikingmap"                        )  or
+          ( object.tags["information"] == "hospital map"                     )  or
+          ( object.tags["information"] == "information_board"                )  or
+          ( object.tags["information"] == "interpretation"                   )  or
+          ( object.tags["information"] == "interpretive_board"               )  or
+          ( object.tags["information"] == "leaflet_board"                    )  or
+          ( object.tags["information"] == "leaflets"                         )  or
           ( object.tags["information"] == "map"                              )  or
-          ( object.tags["information"] == "terminal"                         )  or
-          ( object.tags["information"] == "nature"                           )  or
-          ( object.tags["information"] == "noticeboard"                      )  or
+          ( object.tags["information"] == "map and posters"                  )  or
+          ( object.tags["information"] == "map;board"                        )  or
           ( object.tags["information"] == "map_board"                        )  or
-          ( object.tags["information"] == "wildlife"                         )  or
-          ( object.tags["information"] == "sitemap"                          )  or
+          ( object.tags["information"] == "nature"                           )  or
           ( object.tags["information"] == "notice_board"                     )  or
-          ( object.tags["information"] == "tactile_map"                      )  or
-          ( object.tags["information"] == "electronic_board"                 )  or
-          ( object.tags["information"] == "hikingmap"                        )  or
-          ( object.tags["information"] == "interpretation"                   )  or
-          ( object.tags["information"] == "map;board"                        )  or
-          ( object.tags["information"] == "former_telephone_box"             )  or
-          ( object.tags["information"] == "leaflets"                         )  or
-          ( object.tags["information"] == "departure times and destinations" )  or
+          ( object.tags["information"] == "noticeboard"                      )  or
+          ( object.tags["information"] == "orientation_map"                  )  or
           ( object.tags["information"] == "sitemap"                          )  or
-          ( object.tags["information"] == "notice_board"                     )  or
           ( object.tags["information"] == "tactile_map"                      )  or
-          ( object.tags["information"] == "electronic_board"                 )  or
-          ( object.tags["information"] == "hikingmap"                        )  or
-          ( object.tags["information"] == "interpretation"                   )  or
-          ( object.tags["information"] == "map;board"                        )  or
-          ( object.tags["information"] == "former_telephone_box"             )  or
-          ( object.tags["information"] == "leaflets"                         )  or
-          ( object.tags["information"] == "departure times and destinations" )  or
-          ( object.tags["information"] == "board;map"                        )) then
+          ( object.tags["information"] == "tactile_model"                    )  or
+          ( object.tags["information"] == "terminal"                         )  or
+          ( object.tags["information"] == "wildlife"                         )) then
          information_appendix = "B"
       end
 

@@ -25,6 +25,7 @@ Append "nodog" or "doglead" to show dog restrictions on paths.
 Removed "historic=churchyard cross", no longer in the data, and was misspelt here.
 Added "amenity=scrapyard" to the "depot" logic, and fixed "amenity=fuel_depot" to appear too.
 Added more handling of "industrial" values.
+Added more handling of "information" values.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

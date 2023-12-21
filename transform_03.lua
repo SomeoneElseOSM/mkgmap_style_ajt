@@ -2036,6 +2036,13 @@ function process_all( objtype, object )
       object.tags["old_amenity"] = nil
    end
 
+   if (( object.tags["historic"] == "pub" ) and
+       ( object.tags["amenity"]  == nil   ) and
+       ( object.tags["shop"]     == nil   )) then
+      object.tags["disused:amenity"] = "pub"
+      object.tags["historic"] = nil
+   end
+
    if ((  object.tags["amenity"]           == "closed_pub"      )   or
        (  object.tags["amenity"]           == "dead_pub"        )   or
        (  object.tags["amenity"]           == "disused_pub"     )   or
@@ -3883,7 +3890,12 @@ function process_all( objtype, object )
        ( object.tags["waterway"]           == "former_canal"    ) or
        ( object.tags["waterway:historic"]  == "canal"           ) or
        ( object.tags["waterway:abandoned"] == "canal"           ) or
-       ( object.tags["abandoned"]          == "waterway=canal"  )) then
+       ( object.tags["abandoned"]          == "waterway=canal"  ) or
+       (( object.tags["historic"]          == "moat"           )  and
+        ( object.tags["natural"]           == nil              )  and
+        ( object.tags["man_made"]          == nil              )  and
+        ( object.tags["waterway"]          == nil              )  and
+        ( object.tags["area"]              ~= "yes"            ))) then
       object.tags["waterway"] = "derelict_canal"
    end
 
@@ -4262,21 +4274,70 @@ function process_all( objtype, object )
       object.tags["historic"] = object.tags["military"]
    end
 
+-- ----------------------------------------------------------------------------
+-- If a historic monastery etc. is still active, remove the historic tag.
+-- ----------------------------------------------------------------------------
+   if ((   object.tags["historic"] == "abbey"            ) or
+       (   object.tags["historic"] == "cathedral"        ) or
+       (   object.tags["historic"] == "monastery"        ) or
+       (   object.tags["historic"] == "priory"           ) or
+       ((  object.tags["historic"] == "ruins"            )  and
+        (( object.tags["ruins"] == "abbey"              )  or
+         ( object.tags["ruins"] == "cathedral"          )  or
+         ( object.tags["ruins"] == "monastery"          )  or
+         ( object.tags["ruins"] == "priory"             )))) then
+      if ( object.tags["amenity"] == "place_of_worship" ) then
+         object.tags["historic"] = nil
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- If a historic church etc. is something else, remove the historic tag.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "chapel"           )  or
+       ( object.tags["historic"] == "church"           )  or
+       ( object.tags["historic"] == "place_of_worship" )  or
+       ( object.tags["historic"] == "wayside_chapel"   )) then
+      if (( object.tags["amenity"]  ~= nil ) or
+          ( object.tags["shop"]     ~= nil )) then
+         object.tags["historic"] = nil
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- "historic=industrial" has been used as a modifier for all sorts.  
+-- We're not interested in most of these but do display a generic historical
+-- marker for some.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["historic"] == "industrial" ) then
+      if (( object.tags["building"] ~= nil ) or
+          ( object.tags["man_made"] ~= nil ) or
+          ( object.tags["waterway"] ~= nil ) or
+          ( object.tags["name"]     == nil )) then
+         object.tags["historic"] = nil
+      end
+   end
+
    if (( object.tags["historic"] == "abbey"                 ) or
        ( object.tags["historic"] == "aircraft"              ) or
+       ( object.tags["historic"] == "aircraft_wreck"        ) or
        ( object.tags["historic"] == "almshouse"             ) or
        ( object.tags["historic"] == "bakery"                ) or
        ( object.tags["historic"] == "barrow"                ) or
        ( object.tags["historic"] == "baths"                 ) or
        ( object.tags["historic"] == "battlefield"           ) or
+       ( object.tags["historic"] == "bridge_site"           ) or
        ( object.tags["historic"] == "building"              ) or
        ( object.tags["historic"] == "bunker"                ) or
        ( object.tags["historic"] == "camp"                  ) or
        ( object.tags["historic"] == "cannon"                ) or
        ( object.tags["historic"] == "castle"                ) or
+       ( object.tags["historic"] == "cathedral"             ) or
+       ( object.tags["historic"] == "celtic_cross"          ) or
        ( object.tags["historic"] == "cemetery"              ) or
        ( object.tags["historic"] == "chapel"                ) or
        ( object.tags["historic"] == "church"                ) or
+       ( object.tags["historic"] == "churchyard_cross"      ) or
        ( object.tags["historic"] == "city_gate"             ) or
        ( object.tags["historic"] == "country_mansion"       ) or
        ( object.tags["historic"] == "cross"                 ) or
@@ -4296,6 +4357,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "high_cross"            ) or
        ( object.tags["historic"] == "house"                 ) or
        ( object.tags["historic"] == "icon"                  ) or
+       ( object.tags["historic"] == "industrial"            ) or
        ( object.tags["historic"] == "jail"                  ) or
        ( object.tags["historic"] == "kiln"                  ) or
        ( object.tags["historic"] == "lime_kiln"             ) or
@@ -4307,8 +4369,10 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "martello_tower;fort"   ) or
        ( object.tags["historic"] == "market_cross"          ) or
        ( object.tags["historic"] == "mill"                  ) or
+       ( object.tags["historic"] == "millstone"             ) or
        ( object.tags["historic"] == "mine"                  ) or
        ( object.tags["historic"] == "mine_adit"             ) or
+       ( object.tags["historic"] == "mine_level"            ) or
        ( object.tags["historic"] == "mine_shaft"            ) or
        ( object.tags["historic"] == "monastery"             ) or
        ( object.tags["historic"] == "monastic_grange"       ) or
@@ -4318,13 +4382,16 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "oratory"               ) or
        ( object.tags["historic"] == "palace"                ) or
        ( object.tags["historic"] == "pillbox"               ) or
+       ( object.tags["historic"] == "pillory"               ) or
        ( object.tags["historic"] == "pinfold"               ) or
+       ( object.tags["historic"] == "place_of_worship"      ) or
        ( object.tags["historic"] == "police_call_box"       ) or
        ( object.tags["historic"] == "priory"                ) or
        ( object.tags["historic"] == "prison"                ) or
        ( object.tags["historic"] == "protected_building"    ) or
        ( object.tags["historic"] == "residence"             ) or
        ( object.tags["historic"] == "roundhouse"            ) or
+       ( object.tags["historic"] == "round_tower"           ) or
        ( object.tags["historic"] == "ruins"                 ) or
        ( object.tags["historic"] == "sawmill"               ) or
        ( object.tags["historic"] == "shelter"               ) or
@@ -4335,6 +4402,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "statue"                ) or
        ( object.tags["historic"] == "stocks"                ) or
        ( object.tags["historic"] == "tank"                  ) or
+       ( object.tags["historic"] == "tau_cross"             ) or
        ( object.tags["historic"] == "theatre"               ) or
        ( object.tags["historic"] == "toll_house"            ) or
        ( object.tags["historic"] == "tomb"                  ) or
@@ -4372,6 +4440,10 @@ function process_all( objtype, object )
 
       if ( object.tags["ruins"]  ~= nil ) then
          object = append_nonqa( object, object.tags["ruins"] ) 
+      end
+
+      if ( object.tags["tower:type"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["tower:type"] ) 
       end
    end
 
@@ -5284,9 +5356,11 @@ function process_all( objtype, object )
 -- Show historic railway stations.
 -- "0x2f14" is searchable via "Others / Social Service"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["abandoned:railway"] == "station" )  or
-       ( object.tags["historic:railway"]  == "station" )  or
-       ( object.tags["disused:railway"]   == "station" )) then
+   if ((( object.tags["abandoned:railway"] == "station"         )  or
+        ( object.tags["disused:railway"]   == "station"         )  or
+        ( object.tags["historic:railway"]  == "station"         )  or
+        ( object.tags["historic"]          == "railway_station" )) and
+       (  object.tags["tourism"]           ~= "information"      )) then
       object = append_nonqa( object, "historic station" )
       object.tags["man_made"] = "thing"
       object = building_or_landuse( objtype, object )
@@ -8354,8 +8428,12 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- If a quarry is disused, it's still likely a hole in the ground, so render it
 -- ----------------------------------------------------------------------------
-   if (( object.tags["disused:landuse"] == "quarry" ) and
-       ( object.tags["landuse"]         == nil      )) then
+   if ((( object.tags["disused:landuse"] == "quarry" )  and
+        ( object.tags["landuse"]         == nil      )) or
+       (( object.tags["historic"]        == "quarry" )  and
+        ( object.tags["landuse"]         == nil      )) or
+       (( object.tags["landuse"]         == "quarry" )  and
+        ( object.tags["disused"]         == "yes"    ))) then
       object.tags["landuse"] = "quarry"
       object = append_nonqa( object, "disused quarry" )
    end

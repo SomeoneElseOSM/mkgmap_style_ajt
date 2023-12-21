@@ -22,6 +22,7 @@ Detect more "ford" values as fords.
 Detect stepping stones, shown in brackets; points searchable as 'Others / Social Service'
 Detect locked gates.
 Append "nodog" or "doglead" to show dog restrictions on paths.
+Removed "historic=churchyard cross", no longer in the data, and was misspelt here.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

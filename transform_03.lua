@@ -363,14 +363,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Other depots and fuel depots
+-- Other depots and fuel depots etc.
 -- "0x6405  Civil" is in points as "amenity=depot" 
 -- and is searchable via "Geographic Points / Manmade Places"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]    == "depot"      ) or
-       ( object.tags["amenity"]    == "fuel_depot" )) then
+       ( object.tags["amenity"]    == "fuel_depot" ) or
+       ( object.tags["amenity"]    == "scrapyard"  )) then
       object = append_nonqa( object, "amenity" )
       object = append_nonqa( object, object.tags["amenity"] )
+      object.tags["amenity"] = "depot"
       object.tags["landuse"] = nil
       object = building_or_landuse( objtype, object )
    end
@@ -385,7 +387,7 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (  object.tags["landuse"]    == "depot" ) then
+   if (  object.tags["landuse"] == "depot" ) then
       object = append_nonqa( object, "landuse" )
       object = append_nonqa( object, object.tags["landuse"] )
       object.tags["landuse"] = nil
@@ -408,13 +410,6 @@ function process_all( objtype, object )
         ( object.tags["industrial"] ~= "depot"                  )) or
        (  object.tags["landuse"]    == "construction"            )) then
       object = append_nonqa( object, object.tags["landuse"] )
-      object.tags["landuse"] = "industrial"
-   end
-
-   if (( object.tags["amenity"]    == "fuel_depot"             ) or
-       ( object.tags["amenity"]    == "scrapyard"              )) then
-      object = append_nonqa( object, object.tags["amenity"] )
-      object.tags["amenity"] = nil
       object.tags["landuse"] = "industrial"
    end
 

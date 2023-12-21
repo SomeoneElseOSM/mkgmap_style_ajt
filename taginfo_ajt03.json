@@ -1365,6 +1365,7 @@
     { "key": "horse", "description": "In 'lines', change 'highway=path' to 'highway=bridleway'" },
     { "key": "horse", "value": "designated", "description": "In 'lines', change 'highway=path' to 'highway=bridleway'" },
     { "key": "horse", "value": "official", "description": "In 'lines', change 'highway=path' to 'highway=bridleway'" },
+    { "key": "horse", "value": "private", "description": "Treated as a synonym for 'no'" },
     { "key": "hunting_stand", "description": "Detect grouse butts" },
     { "key": "hunting_stand", "value": "grouse_butt", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "iata", "description": "Shown in brackets; can determine whether an airport appears in the transportation or recreation menu" },

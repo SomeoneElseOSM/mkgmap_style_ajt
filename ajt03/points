@@ -107,9 +107,10 @@ leisure=unnamed_park {name '${name}'} [0x6600 resolution 21]
 
 tourism=zoo {name '${name}'} [0x2c07 resolution 20]
 tourism=aquarium {name '${name}'} [0x2c07 resolution 20]
+
+# Various other leisure mapped through to this.
 leisure=pitch { name '${name}' } [0x2c08 resolution 21]
-leisure=stadium { name '${name}' } [0x2c08 resolution 21]
-leisure=track { name '${name}' } [0x2c08 resolution 21]
+
 amenity=concert_hall {name '${name}'} [0x2c09 resolution 20]
 amenity=conference_centre {name '${name}'} [0x2c09 resolution 20]
 craft=winery {name '${name}'} [0x2c0a resolution 20]

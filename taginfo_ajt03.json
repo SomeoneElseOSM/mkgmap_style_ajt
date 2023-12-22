@@ -1556,6 +1556,7 @@
     { "key": "leisure", "value": "pitch", "description": "Shown in brackets, as sport landuse; 'Recreation/Attractions / Arena or Track'" },
     { "key": "leisure", "value": "playground", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "pool", "description": "Shown in brackets; 'Recreation / Swimming Pool'" },
+    { "key": "leisure", "value": "practice_pitch", "description": "Shown in brackets, as sport landuse; 'Recreation/Attractions / Arena or Track'" },
     { "key": "leisure", "value": "racetrack", "description": "Shown as commercial landuse; not searchable" },
     { "key": "leisure", "value": "recreation_ground", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "resort", "description": "Shown in brackets; 'Lodging / Resort'" },

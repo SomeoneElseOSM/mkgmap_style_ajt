@@ -1748,10 +1748,12 @@ function process_all( objtype, object )
 -- with the sport appended to the name.
 -- 0x2c08 is searchable via "Recreation/Attractions / Arena or Track"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["leisure"] == "stadium" ) or
-       ( object.tags["leisure"] == "pitch"   ) or
-       ( object.tags["leisure"] == "track"   )) then
+   if (( object.tags["leisure"] == "stadium"        ) or
+       ( object.tags["leisure"] == "pitch"          ) or
+       ( object.tags["leisure"] == "practice_pitch" ) or
+       ( object.tags["leisure"] == "track"          )) then
       object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["leisure"] = "pitch"
 
       if ( object.tags["sport"] ~= nil ) then
          object = append_nonqa( object, object.tags["sport"] )

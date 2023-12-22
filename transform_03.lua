@@ -610,12 +610,12 @@ function process_all( objtype, object )
 -- that tag.
 -- Note that "marker=stone" (for "non boundary stones") are handled elsewhere.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["historic"] == "boundary_stone"  )  or
-       ( object.tags["historic"] == "boundary_marker" )  or
-       ( object.tags["man_made"] == "boundary_marker" )  or
-       ( object.tags["marker"]   == "boundary_stone"  )  or
-       ( object.tags["boundary"] == "marker"          )  or
-       ( object.tags["boundary"] == "March Stone"     )) then
+   if (( object.tags["historic"]    == "boundary_stone"  )  or
+       ( object.tags["historic"]    == "boundary_marker" )  or
+       ( object.tags["man_made"]    == "boundary_marker" )  or
+       ( object.tags["marker"]      == "boundary_stone"  )  or
+       ( object.tags["boundary"]    == "marker"          )  or
+       ( object.tags["designation"] == "March Stone"     )) then
       object.tags["man_made"] = "marker"
       object.tags["tourism"]  = nil
 

@@ -29,10 +29,16 @@ fi
 #file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
 #
 #file_prefix1=cheshire
+#file_prefix1=cumbria
 #file_prefix1=derbyshire
+#file_prefix1=east-yorkshire-with-hull
 #file_prefix1=greater-london
+#file_prefix1=lincolnshire
 file_prefix1=north-yorkshire
+#file_prefix1=nottinghamshire
 #file_prefix1=south-yorkshire
+#file_prefix1=suffolk
+#file_prefix1=west-yorkshire
 file_page1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}.html
 file_url1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}-latest.osm.pbf
 #
@@ -117,20 +123,19 @@ fi
 java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt03  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
 #
 if [ -f gmapsupp.img ]; then
-  mv gmapsupp.img ajt03supp.img
-  #
-  mkdir etrex
+  mkdir -p etrex
   mv 6???????.img etrex
-  mv ajt03supp.img etrex
-  mv ajt03map.tdb  etrex
-  mv ajt03map.img  etrex
+  mv gmapsupp.img  etrex/ajt03_${file_prefix1}_supp.img
+  mv ajt03map.tdb  etrex/ajt03_${file_prefix1}_map.tdb
+  mv ajt03map.img  etrex/ajt03_${file_prefix1}_map.img
   # ---------------------------------------------------------------------------
   # At this point we know that a file was successfully created.
   # Copy it to a directory below a webserver /var/www/html/maps/mkgmap_maps/ajt03:
   # ---------------------------------------------------------------------------
-  cp etrex/ajt03supp.img /var/www/html/maps/mkgmap_maps/ajt03
-  cp etrex/ajt03map.tdb /var/www/html/maps/mkgmap_maps/ajt03
-  cp etrex/ajt03map.img /var/www/html/maps/mkgmap_maps/ajt03
+  mkdir -p /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}
+  cp etrex/ajt03_${file_prefix1}_supp.img /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/
+  cp etrex/ajt03_${file_prefix1}_map.tdb /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/
+  cp etrex/ajt03_${file_prefix1}_map.img /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/
   # ---------------------------------------------------------------------------
   # Update html files from markdown.
   # ---------------------------------------------------------------------------

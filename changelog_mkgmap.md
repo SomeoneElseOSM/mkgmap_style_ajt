@@ -1,11 +1,20 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 21/12/2023
 Append "flood" on flood-prone paths.
 Detect more "healthcare" values and combinations.
 Added support for some "unexpected" highway values and some expected but rarer ones.
 Added support for more historical tags.
+Removed "historic=churchyard cross", no longer in the data, and was misspelt here.
+Added "amenity=scrapyard" to the "depot" logic, and fixed "amenity=fuel_depot" to appear too.
+Added more handling of "industrial" values.
+Added more handling of "information" values.
+Detect ladders.
+Added more handling of "landuse" values.
+Fixed bug where Aberdeen March Stones were not detected.
+Detect some "leisure=swimming_pool" synonyms, and "leisure=swimming_area".
+Show "leisure=practice_pitch" as "leisure=pitch".
 
 ## 19/12/2023
 Added craft and office values for various art, homeware, photo and electrician synonyms.
@@ -22,15 +31,6 @@ Detect more "ford" values as fords.
 Detect stepping stones, shown in brackets; points searchable as 'Others / Social Service'
 Detect locked gates.
 Append "nodog" or "doglead" to show dog restrictions on paths.
-Removed "historic=churchyard cross", no longer in the data, and was misspelt here.
-Added "amenity=scrapyard" to the "depot" logic, and fixed "amenity=fuel_depot" to appear too.
-Added more handling of "industrial" values.
-Added more handling of "information" values.
-Detect ladders.
-Added more handling of "landuse" values.
-Fixed bug where Aberdeen March Stones were not detected.
-Detect some "leisure=swimming_pool" synonyms, and "leisure=swimming_area".
-Show "leisure=practice_pitch" as "leisure=pitch".
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

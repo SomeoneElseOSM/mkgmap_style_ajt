@@ -2765,6 +2765,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Detect ladders qqq
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"] == "ladder"   ) and
+       ( object.tags["highway"]  == nil        )) then
+      object = append_nonqa( object, object.tags["man_made"] )
+      object.tags["man_made"] = "thing"
+      object.tags["ladder"]  = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- highway=motorway_junction
 -- In points as "0x2000"
 -- QMapShack understands "0x2000" and displays the text
@@ -9255,10 +9265,13 @@ function ott.process_way( object )
 -- Remove name from footway=sidewalk (we expect it to be shown via the
 -- road that this is a sidewalk for), or "is_sidepath=yes".
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["footway"]     == "sidewalk" )  or
-        ( object.tags["cycleway"]    == "sidewalk" )  or
-	( object.tags["cycleway"]    == "sidepath" )  or
-        ( object.tags["is_sidepath"] == "yes"      )) and
+   if ((( object.tags["footway"]             == "sidewalk" )  or
+        ( object.tags["cycleway"]            == "sidewalk" )  or
+	( object.tags["cycleway"]            == "sidepath" )  or
+        ( object.tags["is_sidepath"]         == "yes"      )  or
+        ( object.tags["is_sidepath:of"]      ~= nil        )  or
+        ( object.tags["is_sidepath:of:name"] ~= nil        )  or
+        ( object.tags["is_sidepath:of:ref"]  ~= nil        )) and
        (  object.tags["name"]    ~= nil             )) then
       object.tags["name"] = nil
    end
@@ -9383,7 +9396,7 @@ function ott.process_way( object )
 -- End Designation tagging on ways
 -- ----------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------
--- "trail_visibility", "informal" and "dog" for footway-service
+-- "ladder", "trail_visibility", "informal" and "dog" for footway-service
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]  == "footway"   ) or
        ( object.tags["highway"]  == "path"      ) or
@@ -9392,6 +9405,10 @@ function ott.process_way( object )
        ( object.tags["highway"]  == "cycleway"  ) or
        ( object.tags["highway"]  == "track"     ) or
        ( object.tags["highway"]  == "service"   )) then
+      if ( object.tags["laddder"] == "yes" ) then
+         object = append_nonqa( object, "ladder" )
+      end
+
       if (( object.tags["trail_visibility"] == "intermediate" ) or
           ( object.tags["trail_visibility"] == "intermittent" )) then
          object = append_nonqa( object, "TVI" )

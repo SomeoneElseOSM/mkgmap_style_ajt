@@ -29,6 +29,7 @@ Added more handling of "information" values.
 Detect ladders.
 Added more handling of "landuse" values.
 Fixed bug where Aberdeen March Stones were not detected.
+Detect some "leisure=swimming_pool" synonyms, and "leisure=swimming_area".
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

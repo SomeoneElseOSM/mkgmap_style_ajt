@@ -3651,8 +3651,11 @@ function process_all( objtype, object )
 -- Some swimming pools do not have "sport=swimming", so set that here.
 -- "0x2d09" is searchable via "Recreation / Swimming Pool"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["leisure"] == "swimming_pool"  ) and
-       ( object.tags["sport"]   == nil              )) then
+   if ((( object.tags["leisure"] == "pool"           ) or
+        ( object.tags["leisure"] == "swimming"       ) or
+        ( object.tags["leisure"] == "swimming_area"  ) or
+        ( object.tags["leisure"] == "swimming_pool"  )) and
+       (  object.tags["sport"]   == nil               )) then
       object.tags["sport"] = "swimming"
    end
 

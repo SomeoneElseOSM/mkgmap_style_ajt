@@ -402,12 +402,13 @@ function process_all( objtype, object )
 -- This tag is also used by the building_or_landuse function (no suffix there
 -- obviously as it's not representing industrial landuse there)
 --
--- Also append suffix for landuse=construction
+-- Also append suffix for landuse=brownfield and landuse=construction
 -- 0x0c is used in polygons for these
 -- ----------------------------------------------------------------------------
    if ((( object.tags["landuse"]    == "industrial"             )  and
         ( object.tags["industrial"] ~= "bus_depot"              )  and
         ( object.tags["industrial"] ~= "depot"                  )) or
+       (  object.tags["landuse"]    == "brownfield"              ) or
        (  object.tags["landuse"]    == "construction"            )) then
       object = append_nonqa( object, object.tags["landuse"] )
       object.tags["landuse"] = "industrial"
@@ -1178,11 +1179,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- leisure=marina
+-- landuse=harbour and leisure=marina
 -- In "points" as "0x4300", in "polygons" as "0x09"
 -- "0x4300" is searchable via "Geographic Points / Water Features"
 -- An "anchor" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if ( object.tags["landuse"]  == "harbour" ) then
+      object = append_nonqa( object, object.tags["landuse"] )
+      object.tags["leisure"] = "marina"
+   end
+
    if ( object.tags["leisure"]  == "marina" ) then
       object = append_nonqa( object, object.tags["leisure"] )
    end
@@ -1304,6 +1310,11 @@ function process_all( objtype, object )
 -- "0x6403" is searchable via "Geographic Points / Manmade Places",
 -- A gravestone icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if ( object.tags["landuse"] == "grave_yard" ) then
+      object.tags["amenity"] = object.tags["landuse"]
+      object.tags["landuse"] = nil
+   end
+
    if ( object.tags["amenity"] == "grave_yard" ) then
       object = append_nonqa( object, object.tags["amenity"] )
    end
@@ -1510,6 +1521,7 @@ function process_all( objtype, object )
 
    if (( object.tags["landuse"]   == "grass"         ) or
        ( object.tags["landuse"]   == "college_court" ) or
+       ( object.tags["landuse"]   == "conservation"  ) or
        ( object.tags["landuse"]   == "flowerbed"     ) or
        ( object.tags["landuse"]   == "greenfield"    ) or
        ( object.tags["landuse"]   == "meadow"        ) or
@@ -1694,8 +1706,8 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- These all map to farmyard in the web maps
 -- ----------------------------------------------------------------------------
-   if ( object.tags["landuse"]   == "farmyard" ) then
-      object = append_nonqa( object, "farmyard" )
+   if ( object.tags["landuse"] == "farmyard" ) then
+      object = append_nonqa( object, object.tags["landuse"] )
    end
 
 -- ----------------------------------------------------------------------------
@@ -2859,11 +2871,12 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- landuse=allotments
+-- landuse=allotments and landuse=orchard
 -- Mapped through to "0x4e" ("orchard"), append suffix.
 -- See also "vineyard" below.
 -- ----------------------------------------------------------------------------
-   if ( object.tags["landuse"] == "allotments" ) then
+   if (( object.tags["landuse"] == "allotments" ) or
+       ( object.tags["landuse"] == "orchard"    )) then
       object = append_nonqa( object, object.tags["landuse"] )
    end
 
@@ -2872,7 +2885,7 @@ function process_all( objtype, object )
 -- "0x2c0a" is searchable via "Attractions / Winery"
 -- That is in "points" for craft=winery and landuse=vineyard.
 -- In addition there is 0x4e ("orchard") in polygons, used for 
--- landuse=allotments and landuse=vineyard
+-- landuse=allotments, landuse=orchard and landuse=vineyard
 -- A "woodland" land cover appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
    if ( object.tags["craft"] == "winery" ) then

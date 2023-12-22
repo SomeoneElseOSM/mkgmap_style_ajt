@@ -80,6 +80,7 @@ landuse=basin {name '${name}'} [0x3f resolution 18]
 landuse=reservoir {name '${name}'} [0x3f resolution 18]
 
 landuse=allotments {name '${name}'} [0x4e resolution 20]
+landuse=orchard {name '${name}'} [0x4e resolution 20]
 landuse=vineyard {name '${name}'} [0x4e resolution 20]
 natural=scrub {name '${name}'} [0x4f resolution 20]
 

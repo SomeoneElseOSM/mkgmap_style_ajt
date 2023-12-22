@@ -27,6 +27,7 @@ Added "amenity=scrapyard" to the "depot" logic, and fixed "amenity=fuel_depot" t
 Added more handling of "industrial" values.
 Added more handling of "information" values.
 Detect ladders.
+Added more handling of "landuse" values.
 
 ## 16/12/2023
 "business" is used as an alternative to "office" by some people.

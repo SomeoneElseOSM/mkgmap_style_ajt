@@ -1672,7 +1672,6 @@
     { "key": "man_made", "value": "telephone_box", "description": "Shown as telephone; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "telephone_exchange", "description": "IF no name, 'Telephone Exchange' used instead; not searchable" },
     { "key": "man_made", "value": "telephone_kiosk", "description": "Shown as telephone; 'Geographic Points / Manmade Places'" },
-    { "key": "man_made", "value": "observatory", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "man_made", "value": "tower", "description": "Shown in brackets as tower; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "transmitter", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "trickling_filter", "description": "Shown in brackets as building; not searchable" },

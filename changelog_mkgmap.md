@@ -3,7 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 Show "leisure=picnic_table" in the same way as benches.
-Detect "leisure=music_venue" as a synonym for "amenity=music_venue".
+Detect "leisure=bandstand" and "leisure=music_venue" as synonyms for "amenity=music_venue".
 Detect "leisure=bleachers" and "leisure=fitness_station" as leisure items.
 
 ## 21/12/2023

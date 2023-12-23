@@ -5498,12 +5498,14 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if ( object.tags["leisure"] == "music_venue" ) then
+   if (( object.tags["leisure"] == "bandstand"   ) or
+       ( object.tags["leisure"] == "music_venue" )) then
       object.tags["amenity"] = object.tags["leisure"]
       object.tags["leisure"] = nil
    end
 
-   if ((  object.tags["amenity"] == "concert_hall"  ) or
+   if ((  object.tags["amenity"] == "bandstand"     ) or
+       (  object.tags["amenity"] == "concert_hall"  ) or
        (  object.tags["amenity"] == "music_venue"   )) then
       object = append_nonqa( object, object.tags["amenity"] )
       object.tags["amenity"] = "concert_hall"

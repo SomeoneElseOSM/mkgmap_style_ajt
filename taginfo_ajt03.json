@@ -1519,6 +1519,7 @@
     { "key": "leisure", "value": "adult_gaming_centre", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "leisure", "value": "adventure_park", "description": "Shown in brackets; 'Lodging / Resort'" },
     { "key": "leisure", "value": "amusement_arcade", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "leisure", "value": "bandstand", "description": "shown in brackets; 'Attractions / Hall or Auditorium'" },
     { "key": "leisure", "value": "beach_resort", "description": "Shown in brackets; 'Lodging / Resort'" },
     { "key": "leisure", "value": "beer_garden", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "bingo", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

@@ -5772,6 +5772,15 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Show picnic tables as benches
+-- ----------------------------------------------------------------------------
+   if ( object.tags["leisure"] == "picnic_table" ) then
+      object = append_nonqa( object, object.tags["leisure"] )
+      object.tags["amenity"] = "bench"
+      object.tags["leisure"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Ogham stones mapped without other tags
 -- ----------------------------------------------------------------------------
    if ( object.tags["historic"]   == "ogham_stone" ) then

@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Show "leisure=picnic_table" in the same way as benches.
+
 ## 21/12/2023
 Append "flood" on flood-prone paths.
 Detect more "healthcare" values and combinations.

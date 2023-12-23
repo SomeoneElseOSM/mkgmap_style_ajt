@@ -23,8 +23,10 @@ fi
 # files user by update_render.sh; if that is also installed.
 #
 # While still testing, just use a small area:
+# Live weekly builds on map.atownsend.org.uk use "great-britain".
 # ----------------------------------------------------------------------------
 #file_prefix1=great-britain
+#file_prefix1=britain-and-ireland
 #file_page1=http://download.geofabrik.de/europe/${file_prefix1}.html
 #file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
 #

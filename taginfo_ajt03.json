@@ -1553,6 +1553,7 @@
     { "key": "leisure", "value": "outdoor_centre", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "outdoor_seating", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "park", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
+    { "key": "leisure", "value": "picnic_table", "description": "shown in 'Others / Personal Service'" },
     { "key": "leisure", "value": "pitch", "description": "Shown in brackets, as sport landuse; 'Recreation/Attractions / Arena or Track'" },
     { "key": "leisure", "value": "playground", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "pool", "description": "Shown in brackets; 'Recreation / Swimming Pool'" },

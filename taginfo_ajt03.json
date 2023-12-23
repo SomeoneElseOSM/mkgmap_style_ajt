@@ -1524,6 +1524,7 @@
     { "key": "leisure", "value": "bingo", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "leisure", "value": "bingo_hall", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "leisure", "value": "bird_hide", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
+    { "key": "leisure", "value": "bleachers", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "leisure", "value": "bowling_alley", "description": "Shown in brackets; 'Recreation / Bowling Center'" },
     { "key": "leisure", "value": "climbing", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "leisure", "value": "climbing_wall", "description": "Shown in brackets; 'Other / Social Service'" },

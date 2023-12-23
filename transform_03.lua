@@ -3686,12 +3686,13 @@ function process_all( objtype, object )
       object.tags["leisure"] = object.tags["highway"]
    end
 
-   if (( object.tags["leisure"] == "sports_centre"   ) or
-       ( object.tags["leisure"] == "leisure_centre"  ) or
+   if (( object.tags["leisure"] == "bleachers"       ) or
        ( object.tags["leisure"] == "dojo"            ) or
-       ( object.tags["leisure"] == "gym"             ) or
        ( object.tags["leisure"] == "fitness_centre"  ) or
        ( object.tags["leisure"] == "fitness_station" ) or
+       ( object.tags["leisure"] == "gym"             ) or
+       ( object.tags["leisure"] == "leisure_centre"  ) or
+       ( object.tags["leisure"] == "sports_centre"   ) or
        ( object.tags["leisure"] == "trailhead"       )) then
       object = append_nonqa( object, object.tags["leisure"] )
 

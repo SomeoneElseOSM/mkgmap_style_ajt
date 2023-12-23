@@ -1549,6 +1549,7 @@
     { "key": "leisure", "value": "leisure_centre", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "leisure", "value": "marina", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "leisure", "value": "miniature_golf", "description": "Shown in brackets; 'Recreation / Golf Course'" },
+    { "key": "leisure", "value": "music_venue", "description": "shown in brackets; 'Attractions / Hall or Auditorium'" },
     { "key": "leisure", "value": "nature_reserve", "description": "Shown in brackets in green; 'Geographic Points / Land Features'" },
     { "key": "leisure", "value": "outdoor_centre", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "outdoor_seating", "description": "If grass, shown as beer gardens" },

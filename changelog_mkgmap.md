@@ -5,6 +5,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 Show "leisure=picnic_table" in the same way as benches.
 Detect "leisure=bandstand" and "leisure=music_venue" as synonyms for "amenity=music_venue".
 Detect "leisure=bleachers" and "leisure=fitness_station" as leisure items.
+Added "man_made=windsock" as a synonym of "aeroway=windsock".
 
 ## 21/12/2023
 Append "flood" on flood-prone paths.

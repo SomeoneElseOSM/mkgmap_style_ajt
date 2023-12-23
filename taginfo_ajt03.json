@@ -1691,6 +1691,7 @@
     { "key": "man_made", "value": "wind_turbine", "description": "Shown in brackets as tower; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "windmill", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "windpump", "description": "Shown in brackets; 'Others / Social Service'" },
+    { "key": "man_made", "value": "windsock", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "man_made", "value": "works", "description": "Shown in brackets as a building or with a light grey background; not searchable" },
     { "key": "marker", "description": "Many values handled; values are shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "aerial", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },

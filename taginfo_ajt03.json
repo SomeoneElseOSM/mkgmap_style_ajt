@@ -1601,6 +1601,7 @@
     { "key": "locked", "value": "yes", "description": "Detect locked gates and append to name" },
     { "key": "lock_name", "description": "Appended to lock name in brackets" },
     { "key": "lock_ref", "description": "Appended to lock name in brackets" },
+    { "key": "loc_ref", "description": "Indicates an unsigned ref, potentially displayed in brackets after any name" },
     { "key": "male", "description": "Detect male toilets" },
     { "key": "male", "value": "yes", "description": "Detect male toilets" },
     { "key": "man_made", "description": "Most 'man_made' features handled" },

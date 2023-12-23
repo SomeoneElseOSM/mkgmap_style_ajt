@@ -1536,6 +1536,7 @@
     { "key": "leisure", "value": "firepit", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "leisure", "value": "fishing", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "fitness_centre", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
+    { "key": "leisure", "value": "fitness_station", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "leisure", "value": "gambling", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "leisure", "value": "garden", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
     { "key": "leisure", "value": "golf_course", "description": "Shown in brackets; 'Recreation / Golf Course'" },

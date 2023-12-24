@@ -7588,7 +7588,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "copyshop"           ) or
        ( object.tags["shop"]    == "printer_cartridges" ) or
        ( object.tags["shop"]    == "printer_ink"        ) or
-       ( object.tags["shop"]    == "ink_cartridge"      ) or
        ( object.tags["shop"]    == "printers"           ) or
        ( object.tags["shop"]    == "design"             ) or
        ( object.tags["shop"]    == "printmaker"         ) or
@@ -8388,6 +8387,9 @@ function process_all( objtype, object )
 -- Also detect lifeboats and coastguards tagged only as seamarks.
 -- Lone lifeboats are sent through as "man_made=thing", in "points" as "0x2f14"
 -- "0x2f14" is searchable via "Others / Social Service"
+--
+-- See below for the similar but different tag "emergency=water_rescue_station"
+-- which seems to be used on buildings, huts, etc. (not lifeboats).
 -- ----------------------------------------------------------------------------
    if (( object.tags["seamark:rescue_station:category"] == "lifeboat_on_mooring" ) and
        ( object.tags["amenity"]                         == nil                   )) then
@@ -8454,6 +8456,7 @@ function process_all( objtype, object )
    if ((  object.tags["emergency"]  == "coast_guard"             ) or
        (  object.tags["emergency"]  == "lifeboat_station"        ) or
        (  object.tags["emergency"]  == "lifeguard_tower"         ) or
+       (  keyvalues["emergency"]    == "water_rescue_station"    ) or
        (  object.tags["emergency"]  == "ses_station"             )) then
       object = append_nonqa( object, object.tags["emergency"] )
       object.tags["office"] = "government"

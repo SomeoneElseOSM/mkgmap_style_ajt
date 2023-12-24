@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231223T024700Z",
+  "data_updated": "20231224T114200Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -991,6 +991,7 @@
     { "key": "emergency", "value": "rescue_equipment", "description": "Shown in brackets; if life ring 'Geographic Points / Water Features'" },
     { "key": "emergency", "value": "ses_station", "description": "Synonym for 'emergency=coast_goard'.  Shown in brackets; 'Community / Government Office'" },
     { "key": "emergency", "value": "water_rescue", "description": "Unhelpful tag; other tags used to see what object actually is" },
+    { "key": "emergency", "value": "water_rescue_station", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "emergency_service", "description": "If air, shown in brackets; 'Community / Government Office'" },
     { "key": "emergency_service", "value": "air", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "est_width", "description": "Used to set width if width is unset" },
@@ -2358,7 +2359,6 @@
     { "key": "shop", "value": "hunting", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "ice_cream", "description": "shown in brackets; 'Food and Drink / Bagel or Donut'" },
     { "key": "shop", "value": "industrial_supplies", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
-    { "key": "shop", "value": "ink_cartridge", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "insurance", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "interior", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "interior_decoration", "description": "shown in brackets; 'Shopping / Home Furnishings'" },

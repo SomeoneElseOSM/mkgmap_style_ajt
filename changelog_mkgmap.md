@@ -7,6 +7,8 @@ Detect "leisure=bandstand" and "leisure=music_venue" as synonyms for "amenity=mu
 Detect "leisure=bleachers" and "leisure=fitness_station" as leisure items.
 Added "man_made=windsock" as a synonym of "aeroway=windsock".
 Added "man_made=wildlife_hide" as a synonym of "leisure=wildlife_hide".
+Added "emergency=water_rescue_station" to the list of lifeguard etc. tags.
+Removed "shop=ink_cartridge", no longer in the data.
 
 ## 21/12/2023
 Append "flood" on flood-prone paths.

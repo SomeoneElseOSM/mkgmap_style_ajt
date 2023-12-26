@@ -9,6 +9,7 @@ Added "man_made=windsock" as a synonym of "aeroway=windsock".
 Added "man_made=wildlife_hide" as a synonym of "leisure=wildlife_hide".
 Added "emergency=water_rescue_station" to the list of lifeguard etc. tags.
 Removed "shop=ink_cartridge", no longer in the data.
+Add "historic=anchor", "historic=chlochan", "historic=deserted_medieval_village", "historic=ice_house" and "historic=rath" to list of historic items.
 
 ## 21/12/2023
 Append "flood" on flood-prone paths.

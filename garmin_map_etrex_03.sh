@@ -40,6 +40,7 @@ file_prefix1=north-yorkshire
 #file_prefix1=nottinghamshire
 #file_prefix1=south-yorkshire
 #file_prefix1=suffolk
+#file_prefix1=tyne-and-wear
 #file_prefix1=west-yorkshire
 file_page1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}.html
 file_url1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}-latest.osm.pbf

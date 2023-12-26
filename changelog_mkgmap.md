@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 26/12/2023
 Show "leisure=picnic_table" in the same way as benches.
 Detect "leisure=bandstand" and "leisure=music_venue" as synonyms for "amenity=music_venue".
 Detect "leisure=bleachers" and "leisure=fitness_station" as leisure items.
@@ -12,6 +12,7 @@ Removed "shop=ink_cartridge", no longer in the data.
 Add "historic=anchor", "historic=chlochan", "historic=deserted_medieval_village", "historic=ice_house" and "historic=rath" to list of historic items.
 Added "historic=tramway" to the list of detected abandoned railways.
 Detect "historic=bullaun_stone" a a historic stone.
+"garmin_map_etrex_03.sh" script now takes parameters.
 
 ## 21/12/2023
 Append "flood" on flood-prone paths.

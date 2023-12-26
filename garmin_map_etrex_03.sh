@@ -24,29 +24,60 @@ fi
 #
 # While still testing, just use a small area:
 # Live weekly builds on map.atownsend.org.uk use "great-britain".
+#
+# Four parameters can be set, such as:
+# europe great-britain england north-yorkshire
 # ----------------------------------------------------------------------------
-#file_prefix1=great-britain
-#file_prefix1=britain-and-ireland
-#file_page1=http://download.geofabrik.de/europe/${file_prefix1}.html
-#file_url1=http://download.geofabrik.de/europe/${file_prefix1}-latest.osm.pbf
+if [ -z "$4" ]
+then
+    if [ -z "$3" ]
+    then
+	if [ -z "$2" ]
+	then
+	    if [ -z "$1" ]
+	    then
+		echo "1-4 arguments needed (continent, country, state, region).  No arguments passed - exiting"
+		rm update_garmin.running
+		exit 1
+	    else
+		# ----------------------------------------------------------------------
+		# Sensible options here might be "antarctica" or possibly "central-america".
+		# ----------------------------------------------------------------------
+		echo "1 argument passed - processing a continent"
+		file_prefix1=${1}
+		file_page1=http://download.geofabrik.de/${file_prefix1}.html
+		file_url1=http://download.geofabrik.de/${file_prefix1}-latest.osm.pbf
+	    fi
+	else
+	    # ----------------------------------------------------------------------
+	    # Sensible options here might be e.g. "europe" and "albania".
+	    # ----------------------------------------------------------------------
+	    echo "2 arguments passed - processing a continent and a country"
+	    file_prefix1=${2}
+	    file_page1=http://download.geofabrik.de/${1}/${file_prefix1}.html
+	    file_url1=http://download.geofabrik.de/${1}/${file_prefix1}-latest.osm.pbf
+	fi
+    else
+	# ----------------------------------------------------------------------
+	# Sensible options here might be e.g. "europe" "united-kingdom" and "england".
+	# ----------------------------------------------------------------------
+	echo "3 arguments passed - processing a continent, a country and a subregion"
+	file_prefix1=${3}
+	file_page1=http://download.geofabrik.de/${1}/${2}/${file_prefix1}.html
+	file_url1=http://download.geofabrik.de/${1}/${2}/${file_prefix1}-latest.osm.pbf
+    fi
+else
+    # ----------------------------------------------------------------------
+    # Sensible options here might be e.g. "europe" "united-kingdom", "england" and "bedfordshire"
+    # ----------------------------------------------------------------------
+    echo "3 arguments passed - processing a continent, a country and a subregion"
+    file_prefix1=${4}
+    file_page1=http://download.geofabrik.de/${1}/${2}/${3}/${file_prefix1}.html
+    file_url1=http://download.geofabrik.de/${1}/${2}/${3}/${file_prefix1}-latest.osm.pbf
+fi
+
 #
-#file_prefix1=cheshire
-#file_prefix1=cumbria
-#file_prefix1=derbyshire
-#file_prefix1=east-yorkshire-with-hull
-#file_prefix1=greater-london
-#file_prefix1=lincolnshire
-file_prefix1=north-yorkshire
-#file_prefix1=nottinghamshire
-#file_prefix1=south-yorkshire
-#file_prefix1=suffolk
-#file_prefix1=tyne-and-wear
-#file_prefix1=west-yorkshire
-file_page1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}.html
-file_url1=http://download.geofabrik.de/europe/great-britain/england/${file_prefix1}-latest.osm.pbf
-#
-#
-# First things first - define some shared functions
+# Now we know what we are downloading, define some shared functions
 #
 final_tidy_up()
 {

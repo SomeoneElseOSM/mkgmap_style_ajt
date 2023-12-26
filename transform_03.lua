@@ -3766,15 +3766,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Handle razed railways and old inclined_planes as dismantled.
--- ----------------------------------------------------------------------------
-   if (( object.tags["railway:historic"] == "rail"           ) or
-       ( object.tags["railway"]          == "razed"          ) or
-       ( object.tags["historic"]         == "inclined_plane" )) then
-      object.tags["railway"] = "dismantled"
-   end
-
--- ----------------------------------------------------------------------------
 -- The "OpenRailwayMap" crowd prefer the less popular railway:preserved=yes
 -- instead of railway=preserved (which has the advantage of still allowing
 -- e.g. narrow_gauge in addition to rail).
@@ -3891,16 +3882,36 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Abandoned railways etc.
--- All are passed through to the style as "railway=abandoned" with an
+-- Appropriate suffixes are added, then
+-- all then are passed through to the style as "railway=abandoned" with an
 -- appropriate suffix.
 -- ----------------------------------------------------------------------------
+   if ((( object.tags["railway:historic"] == "rail"           )  or
+        ( object.tags["historic"]         == "inclined_plane" )  or
+        ( object.tags["historic"]         == "tramway"        )) and
+       (  object.tags["building"]         == nil               ) and
+       (  object.tags["highway"]          == nil               ) and
+       (  object.tags["railway"]          == nil               ) and
+       (  object.tags["waterway"]         == nil               )) then
+      if ( object.tags["railway:historic"] ~= nil ) then
+         object = append_nonqa( object, "railway:historic" )
+         object = append_nonqa( object, object.tags["railway:historic"] )
+      end
+
+      if ( object.tags["historic"] ~= nil ) then
+         object = append_nonqa( object, "historic" )
+         object = append_nonqa( object, object.tags["historic"] )
+      end
+
+      object.tags["railway"] = "abandoned"
+   end
+
    if ( object.tags["railway"] == "abandoned" ) then
       object = append_nonqa( object, "abrly" )
    end
 
-   if (( object.tags["railway:historic"] == "rail"           ) or
-       ( object.tags["railway"]          == "dismantled"     ) or
-       ( object.tags["historic"]         == "inclined_plane" )) then
+   if (( object.tags["railway"] == "dismantled" ) or
+       ( object.tags["railway"] == "razed"      )) then
       object.tags["railway"] = "abandoned"
       object = append_nonqa( object, "dismrly" )
    end

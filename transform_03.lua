@@ -643,14 +643,15 @@ function process_all( objtype, object )
       object = append_nonqa( object, "historic stone" )
    end
 
-   if ( object.tags["historic"]   == "stone" ) then
+   if (( object.tags["historic"]   == "bullaun_stone" ) or
+       ( object.tags["historic"]   == "stone"         )) then
+      object = append_nonqa( object, "historic" )
+      object = append_nonqa( object, object.tags["historic"] )
       object.tags["man_made"] = "marker"
 
       if ( object.tags["inscription"] ~= nil ) then
          object = append_nonqa( object, object.tags["inscription"] )
       end
-
-      object = append_nonqa( object, "historic stone" )
    end
 
    if ((   object.tags["historic"]            == "standing_stone"        ) or

@@ -1242,6 +1242,7 @@
     { "key": "historic", "value": "boundary_stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "historic", "value": "bridge_site", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "building", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
+    { "key": "historic", "value": "bullaun_stone", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "historic", "value": "bunker", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "cairn", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "historic", "value": "camp", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

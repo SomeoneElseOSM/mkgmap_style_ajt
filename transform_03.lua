@@ -4402,7 +4402,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "chapel"                    ) or
        ( object.tags["historic"] == "church"                    ) or
        ( object.tags["historic"] == "city_gate"                 ) or
-       ( object.tags["historic"] == "chlochan"                  ) or
+       ( object.tags["historic"] == "clochan"                   ) or
        ( object.tags["historic"] == "country_mansion"           ) or
        ( object.tags["historic"] == "cross"                     ) or
        ( object.tags["historic"] == "deserted_medieval_village" ) or

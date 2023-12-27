@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231226T131500Z",
+  "data_updated": "20231227T105700Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1256,7 +1256,7 @@
     { "key": "historic", "value": "chimney", "description": "Shown in brackets as tower; 'Others / Social Service'" },
     { "key": "historic", "value": "church", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "city_gate", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
-    { "key": "historic", "value": "chlochan", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
+    { "key": "historic", "value": "clochan", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "citywalls", "description": "'city wall' shown in brackets, shown as wall" },
     { "key": "historic", "value": "country_mansion", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "cross", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

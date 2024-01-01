@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20231227T105700Z",
+  "data_updated": "20240101T121600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2501,7 +2501,6 @@
     { "key": "shop", "value": "pound", "description": "shown in brackets; 'Shopping / General Merchandise'" },
     { "key": "shop", "value": "print", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "printer", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "shop", "value": "printer_cartridges", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "printer_ink", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "printers", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "printing", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

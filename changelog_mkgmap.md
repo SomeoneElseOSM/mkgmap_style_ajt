@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## 27/12/2023
 Fixed bug with spelling of "historic=clochan"
+Removed "shop=printer_cartridges", no longer in the data.
 
 ## 26/12/2023
 Show "leisure=picnic_table" in the same way as benches.

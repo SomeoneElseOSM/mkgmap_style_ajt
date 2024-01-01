@@ -5,6 +5,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 Fixed bug with spelling of "historic=clochan"
 Removed "shop=printer_cartridges", no longer in the data.
 Append "castle_type"to to historic and archaeological items if set.
+Added "historic=battery" to list of historic items identified.
 
 ## 26/12/2023
 Show "leisure=picnic_table" in the same way as benches.

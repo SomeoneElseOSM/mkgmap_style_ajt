@@ -4512,6 +4512,10 @@ function process_all( objtype, object )
       if ( object.tags["tower:type"]  ~= nil ) then
          object = append_nonqa( object, object.tags["tower:type"] ) 
       end
+
+      if ( object.tags["castle_type"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["castle_type"] ) 
+      end
    end
 
 -- ----------------------------------------------------------------------------

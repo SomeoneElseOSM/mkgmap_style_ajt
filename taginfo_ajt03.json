@@ -1329,6 +1329,7 @@
     { "key": "historic", "value": "protected_building", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "pub", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "quarry", "description": "Shown as quarry" },
+    { "key": "historic", "value": "railway_station", "description": "Detect historic railway stations" },
     { "key": "historic", "value": "rath", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "residence", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "roundhouse", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

@@ -8103,9 +8103,9 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- "business" is used as an alternative to "office" and "industrial" by some
--- people.  Wherever someone has used a more frequently-used tag we defer to
--- that.
+-- "business" and "company" are used as an alternative to "office" and 
+-- "industrial" by some people.  Wherever someone has used a more 
+-- frequently-used tag we defer to that.
 -- ----------------------------------------------------------------------------
    if (( object.tags["business"]   ~= nil  ) and
        ( object.tags["office"]     == nil  ) and
@@ -8113,6 +8113,14 @@ function process_all( objtype, object )
        ( object.tags["playground"] == nil  )) then
       object.tags["office"] = "yes"
       object.tags["business"] = nil
+   end
+
+   if (( object.tags["company"]   ~= nil  ) and
+       ( object.tags["man_made"]  == nil  ) and
+       ( object.tags["office"]    == nil  ) and
+       ( object.tags["shop"]      == nil  )) then
+      object.tags["office"] = "yes"
+      object.tags["company"] = nil
    end
 
 -- ----------------------------------------------------------------------------

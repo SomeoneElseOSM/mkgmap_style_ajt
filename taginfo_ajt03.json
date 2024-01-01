@@ -612,6 +612,7 @@
     { "key": "commercial", "value": "office", "description": "shown in brackets; not searchable" },
     { "key": "community_centre", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "community_centre:for", "description": "shown in brackets; 'Community / Community Center'" },
+    { "key": "company", "description": "'company' is used as an alternative to 'office' and by some people." },
     { "key": "construction", "description": "Shown in brackets after roads under construction" },
     { "key": "consulate", "description": "USed to detect diplomatic features and offices" },
     { "key": "consulate", "value": "consular_agency", "description": "Shown as office; not searchable" },

@@ -7,6 +7,7 @@ Removed "shop=printer_cartridges", no longer in the data.
 Append "castle_type"to to historic and archaeological items if set.
 Added "historic=battery", "historic=village", "historic=village_pump", "historic=water_pump" to list of historic items identified.
 Append value of "historic" to windmills, if set.
+Detect "leisure=sport" as either sports club or golf, depending on "sport" tag.
 
 ## 26/12/2023
 Show "leisure=picnic_table" in the same way as benches.

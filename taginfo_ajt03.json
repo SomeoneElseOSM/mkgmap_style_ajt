@@ -1587,6 +1587,7 @@
     { "key": "leisure", "value": "social_club", "description": "Shown in brackets; 'Community / Community Center'" },
     { "key": "leisure", "value": "soft_play", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "leisure", "value": "spa", "description": "Shown in brackets as chemist; 'Shopping / Pharmacy or Chemist'" },
+    { "key": "leisure", "value": "sport", "description": "Shown in brackets, type depends on 'sport'; 'Recreation / Golf Course' or 'Community / Community Center'" },
     { "key": "leisure", "value": "sports_centre", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "leisure", "value": "stadium", "description": "Shown in brackets; 'Recreation/Attractions / Arena or Track'" },
     { "key": "leisure", "value": "summer_camp", "description": "Shown in brackets; 'Lodging / Resort'" },

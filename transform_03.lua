@@ -821,7 +821,9 @@ function process_all( objtype, object )
       object.tags["amenity"] = object.tags["building"]
    end
 
-   if ( object.tags["leisure"]  == "social_club"          ) then
+   if ((  object.tags["leisure"]  == "social_club"          ) or
+       (( object.tags["leisure"]  == "sport"               )  and
+        ( object.tags["sport"]    ~= "golf"                ))) then
       object.tags["amenity"] = object.tags["leisure"]
    end
 
@@ -829,39 +831,40 @@ function process_all( objtype, object )
       object.tags["amenity"] = object.tags["healthcare"]
    end
 
-   if (( object.tags["amenity"]  == "function_room"            ) or
-       ( object.tags["amenity"]  == "community_hall"           ) or
-       ( object.tags["amenity"]  == "church_hall"              ) or
-       ( object.tags["amenity"]  == "community_centre"         ) or
-       ( object.tags["amenity"]  == "social_centre"            ) or
-       ( object.tags["amenity"]  == "youth_club"               ) or
-       ( object.tags["amenity"]  == "youth_centre"             ) or
-       ( object.tags["amenity"]  == "social_club"              ) or
-       ( object.tags["amenity"]  == "working_mens_club"        ) or
-       ( object.tags["amenity"]  == "club"                     ) or
-       ( object.tags["amenity"]  == "scout_hut"                ) or
-       ( object.tags["amenity"]  == "scout_hall"               ) or
-       ( object.tags["amenity"]  == "clubhouse"                ) or
-       ( object.tags["amenity"]  == "club_house"               ) or
-       ( object.tags["amenity"]  == "dancing_school"           ) or
-       ( object.tags["amenity"]  == "public_bath"              ) or
-       (( object.tags["amenity"]  == "social_facility"        )  and
-        ( object.tags["social_facility"] == nil               )) or
-       ( object.tags["amenity"]  == "nursing_home"             ) or
-       ( object.tags["amenity"]  == "care_home"                ) or
-       ( object.tags["amenity"]  == "retirement_home"          ) or
-       ( object.tags["amenity"]  == "residential_home"         ) or
-       ( object.tags["amenity"]  == "sheltered_housing"        ) or
+   if (( object.tags["amenity"]  == "care_home"                ) or
        ( object.tags["amenity"]  == "childcare"                ) or
        ( object.tags["amenity"]  == "childrens_centre"         ) or
-       ( object.tags["amenity"]  == "preschool"                ) or
+       ( object.tags["amenity"]  == "church_hall"              ) or
+       ( object.tags["amenity"]  == "club"                     ) or
+       ( object.tags["amenity"]  == "club_house"               ) or
+       ( object.tags["amenity"]  == "clubhouse"                ) or
+       ( object.tags["amenity"]  == "community_centre"         ) or
+       ( object.tags["amenity"]  == "community_hall"           ) or
+       ( object.tags["amenity"]  == "dancing_school"           ) or
+       ( object.tags["amenity"]  == "daycare"                  ) or
+       ( object.tags["amenity"]  == "function_room"            ) or
+       ( object.tags["amenity"]  == "health_centre"            ) or
+       ( object.tags["amenity"]  == "hospice"                  ) or
+       ( object.tags["amenity"]  == "medical_centre"           ) or
        ( object.tags["amenity"]  == "nursery"                  ) or
        ( object.tags["amenity"]  == "nursery_school"           ) or
-       ( object.tags["amenity"]  == "health_centre"            ) or
-       ( object.tags["amenity"]  == "medical_centre"           ) or
-       ( object.tags["amenity"]  == "hospice"                  ) or
-       ( object.tags["amenity"]  == "daycare"                  ) or
-       ( object.tags["amenity"]  == "outdoor_education_centre" )) then
+       ( object.tags["amenity"]  == "nursing_home"             ) or
+       ( object.tags["amenity"]  == "outdoor_education_centre" ) or
+       ( object.tags["amenity"]  == "preschool"                ) or
+       ( object.tags["amenity"]  == "public_bath"              ) or
+       ( object.tags["amenity"]  == "residential_home"         ) or
+       ( object.tags["amenity"]  == "retirement_home"          ) or
+       ( object.tags["amenity"]  == "scout_hall"               ) or
+       ( object.tags["amenity"]  == "scout_hut"                ) or
+       ( object.tags["amenity"]  == "sheltered_housing"        ) or
+       ( object.tags["amenity"]  == "social_centre"            ) or
+       (( object.tags["amenity"]  == "social_facility"        )  and
+        ( object.tags["social_facility"] == nil               )) or
+       ( object.tags["amenity"]  == "social_club"              ) or
+       ( object.tags["amenity"]  == "sport"                    ) or
+       ( object.tags["amenity"]  == "working_mens_club"        ) or
+       ( object.tags["amenity"]  == "youth_centre"             ) or
+       ( object.tags["amenity"]  == "youth_club"               )) then
       object = append_nonqa( object, object.tags["amenity"] )
 
       if ( object.tags["community_centre"]  ~= nil ) then
@@ -3514,6 +3517,12 @@ function process_all( objtype, object )
 -- Note that with potentially indoor things we call building_or_landuse; with
 -- obviously outdoor ones we do not.
 -- ----------------------------------------------------------------------------
+   if (( object.tags["leisure"] == "sport" ) and
+       ( object.tags["sport"]   == "golf"  )) then
+      object.tags["leisure"] = "golf_course"
+      object.tags["sport"] = nil
+   end
+
    if ( object.tags["leisure"] == "golf_course"  ) then
       object = append_nonqa( object, object.tags["leisure"] )
    end

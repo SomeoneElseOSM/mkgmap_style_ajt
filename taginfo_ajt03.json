@@ -1627,6 +1627,7 @@
     { "key": "man_made", "value": "beacon", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "bird_hide", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "boundary_marker", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
+    { "key": "man_made", "value": "boundary_stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "breakwater", "description": "Shown as default line (not searchable)" },
     { "key": "man_made", "value": "bunker_silo", "description": "Shown in brackets; as farmyard" },
     { "key": "man_made", "value": "cairn", "description": "Shown in brackets; 'Others / Social Service'" },

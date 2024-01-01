@@ -613,6 +613,7 @@ function process_all( objtype, object )
    if (( object.tags["historic"]    == "boundary_stone"  )  or
        ( object.tags["historic"]    == "boundary_marker" )  or
        ( object.tags["man_made"]    == "boundary_marker" )  or
+       ( object.tags["man_made"]    == "boundary_stone"  )  or
        ( object.tags["marker"]      == "boundary_stone"  )  or
        ( object.tags["boundary"]    == "marker"          )  or
        ( object.tags["designation"] == "March Stone"     )) then

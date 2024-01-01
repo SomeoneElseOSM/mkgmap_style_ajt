@@ -5771,15 +5771,24 @@ function process_all( objtype, object )
 -- No icon appears in QMapShack
 -- A dot appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]  == "concrete_post" ) or
+       ( object.tags["man_made"]  == "marker_post"   ) or
+       ( object.tags["man_made"]  == "post"          )) then
+      object.tags["barrier"] = object.tags["man_made"]
+      object.tags["man_made"] = nil
+   end
+
    if (( object.tags["barrier"]  == "block"          ) or
        ( object.tags["barrier"]  == "bollard"        ) or
        ( object.tags["barrier"]  == "bollards"       ) or
        ( object.tags["barrier"]  == "bus_trap"       ) or
        ( object.tags["barrier"]  == "car_trap"       ) or
+       ( object.tags["barrier"]  == "concrete_post"  ) or
        ( object.tags["barrier"]  == "dragons_teeth"  ) or
        ( object.tags["barrier"]  == "gate_pier"      ) or
        ( object.tags["barrier"]  == "gate_post"      ) or
        ( object.tags["barrier"]  == "hoarding"       ) or
+       ( object.tags["barrier"]  == "marker_post"    ) or
        ( object.tags["barrier"]  == "pole"           ) or
        ( object.tags["barrier"]  == "post"           ) or
        ( object.tags["barrier"]  == "rising_bollard" ) or

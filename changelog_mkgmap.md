@@ -9,6 +9,7 @@ Added "historic=battery", "historic=village", "historic=village_pump", "historic
 Append value of "historic" to windmills, if set.
 Detect "leisure=sport" as either sports club or golf, depending on "sport" tag.
 Detect "man_made=boundary_stone" in the same way as "man_made=boundary_marker".
+Detect "man_made=concrete_post", "man_made=marker_post" and "man_made=post" in the same way as "barrier=post".
 
 ## 26/12/2023
 Show "leisure=picnic_table" in the same way as benches.

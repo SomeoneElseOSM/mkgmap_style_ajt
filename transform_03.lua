@@ -2236,16 +2236,24 @@ function process_all( objtype, object )
 -- We do use appendices to the name.
 -- Initially, set some object flags that we will use later.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["description:floor"] ~= nil                ) or
-       ( object.tags["floor:material"]    == "tiles"            ) or
-       ( object.tags["floor:material"]    == "stone"            ) or
-       ( object.tags["floor:material"]    == "lino"             ) or
-       ( object.tags["floor:material"]    == "slate"            ) or
-       ( object.tags["floor:material"]    == "brick"            ) or
-       ( object.tags["floor:material"]    == "rough_wood"       ) or
-       ( object.tags["floor:material"]    == "rough wood"       ) or
-       ( object.tags["floor:material"]    == "concrete"         ) or
-       ( object.tags["floor:material"]    == "lino;tiles;stone" )) then
+   if (( object.tags["description:floor"] ~= nil                  ) or
+       ( object.tags["floor:material"]    == "brick"              ) or
+       ( object.tags["floor:material"]    == "concrete"           ) or
+       ( object.tags["floor:material"]    == "lino"               ) or
+       ( object.tags["floor:material"]    == "lino;carpet"        ) or
+       ( object.tags["floor:material"]    == "lino;rough_wood"    ) or
+       ( object.tags["floor:material"]    == "lino;tiles;stone"   ) or
+       ( object.tags["floor:material"]    == "rough_wood"         ) or
+       ( object.tags["floor:material"]    == "rough_wood;stone"   ) or
+       ( object.tags["floor:material"]    == "rough_wood;tiles"   ) or
+       ( object.tags["floor:material"]    == "slate"              ) or
+       ( object.tags["floor:material"]    == "slate;carpet"       ) or
+       ( object.tags["floor:material"]    == "stone"              ) or
+       ( object.tags["floor:material"]    == "stone;carpet"       ) or
+       ( object.tags["floor:material"]    == "stone;rough_carpet" ) or
+       ( object.tags["floor:material"]    == "stone;rough_wood"   ) or
+       ( object.tags["floor:material"]    == "tiles"              ) or
+       ( object.tags["floor:material"]    == "tiles;rough_wood"   )) then
       object.tags["noncarpeted"] = "yes"
    end
 

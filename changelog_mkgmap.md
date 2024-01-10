@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 10/01/2024
 Removed "shop=printer_cartridges", no longer in the data.
 Append "castle_type"to to historic and archaeological items if set.
 Added "historic=battery", "historic=village", "historic=village_pump", "historic=water_pump" to list of historic items identified.
@@ -10,6 +10,7 @@ Detect "leisure=sport" as either sports club or golf, depending on "sport" tag.
 Detect "man_made=boundary_stone" in the same way as "man_made=boundary_marker".
 Detect "man_made=concrete_post", "man_made=marker_post" and "man_made=post" in the same way as "barrier=post".
 Updated "floor:material" list to match what is now in the data.  
+Removed "craft=glazier", no longer in the data.
 
 ## 27/12/2023
 Fixed bug with spelling of "historic=clochan"

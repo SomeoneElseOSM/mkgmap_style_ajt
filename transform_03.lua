@@ -7205,7 +7205,6 @@ function process_all( objtype, object )
        ( object.tags["craft"]  == "window_construction"   ) or
        ( object.tags["craft"]  == "framing"               ) or
        ( object.tags["craft"]  == "glaziery"              ) or
-       ( object.tags["craft"]  == "glazier"               ) or
        ( object.tags["craft"]  == "plumber"               ) or
        ( object.tags["craft"]  == "carpenter"             ) or
        ( object.tags["craft"]  == "decorator"             ) or

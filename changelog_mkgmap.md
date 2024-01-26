@@ -11,6 +11,7 @@ Detect "man_made=boundary_stone" in the same way as "man_made=boundary_marker".
 Detect "man_made=concrete_post", "man_made=marker_post" and "man_made=post" in the same way as "barrier=post".
 Updated "floor:material" list to match what is now in the data.  
 Removed "craft=glazier", no longer in the data.
+Removed "shop=adult_gaming_centre" from taginfo (it had been there in error).
 
 ## 27/12/2023
 Fixed bug with spelling of "historic=clochan"

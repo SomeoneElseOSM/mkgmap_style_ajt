@@ -3,6 +3,8 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 Removed "shop=adult_gaming_centre" from taginfo (it had been there in error).
+Removed "cuisine=ice_cream;coffee;waffles;crepes", no longer in the data.
+Removed "emergency_service=air", no longer in the data.
 
 ## 10/01/2024
 Removed "shop=printer_cartridges", no longer in the data.

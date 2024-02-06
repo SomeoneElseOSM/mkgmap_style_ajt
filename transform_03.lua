@@ -6954,7 +6954,6 @@ function process_all( objtype, object )
         ( object.tags["cuisine"] == "ice_cream;cake;sandwich"         )   or
         ( object.tags["cuisine"] == "ice_cream;coffee_shop"           )   or
         ( object.tags["cuisine"] == "ice_cream;coffee;waffle"         )   or
-        ( object.tags["cuisine"] == "ice_cream;coffee;waffles;crepes" )   or
         ( object.tags["cuisine"] == "ice_cream;donut"                 )   or
         ( object.tags["cuisine"] == "ice_cream;pizza"                 )   or
         ( object.tags["cuisine"] == "ice_cream;sandwich"              )   or
@@ -8543,14 +8542,6 @@ function process_all( objtype, object )
        (( object.tags["lifeguard"] == "base"                  )   or
         ( object.tags["lifeguard"] == "tower"                 ))) then
       object = append_nonqa( object, "lifeguard" )
-      object.tags["office"] = "government"
-      object = building_or_landuse( objtype, object )
-   end
-
-   if (( object.tags["emergency_service"] == "air"             )  and
-       ( object.tags["office"]            == nil               )  and
-       ( object.tags["building"]          ~= nil               )) then
-      object = append_nonqa( object, "air emergency" )
       object.tags["office"] = "government"
       object = building_or_landuse( objtype, object )
    end

@@ -1964,6 +1964,13 @@ function process_all( objtype, object )
    if ( object.tags["highway"] == "bus_stop" ) then
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["amenity"] = nil
+
+      if (( object.tags["flag"]               == "no" ) or
+          ( object.tags["pole"]               == "no" ) or
+          ( object.tags["physically_present"] == "no" )) then
+         object = append_nonqa( object, "no flag" )
+      end
+
       object = building_or_landuse( objtype, object )
    end
 
@@ -3199,8 +3206,6 @@ function process_all( objtype, object )
 -- man_made=maypole
 -- ----------------------------------------------------------------------------
    if ((  object.tags["man_made"] == "maypole"   ) or
-       (( object.tags["man_made"] == "pole"     )  and
-        ( object.tags["pole"]      == "maypole" )) or
        (  object.tags["historic"] == "maypole"   )) then
       object = append_nonqa( object, "maypole" )
       object.tags["man_made"] = "mast"

@@ -2894,6 +2894,7 @@
     { "key": "waterway", "value": "disused_canal", "description": "Handled as 'waterway=derelict_canal'" },
     { "key": "waterway", "value": "ditch", "description": "Shown in brackets; handled as 'waterway=stream'" },
     { "key": "waterway", "value": "drain", "description": "Shown in brackets; handled as 'waterway=river'" },
+    { "key": "waterway", "value": "drainage_channel", "description": "Shown in brackets; handled as 'waterway=stream'" },
     { "key": "waterway", "value": "fish_pass", "description": "Shown in brackets; handled as 'waterway=river'" },
     { "key": "waterway", "value": "floating_barrier", "description": "Shown in brackets; handled as wall" },
     { "key": "waterway", "value": "flow_control", "description": "Detect sluice gates" },

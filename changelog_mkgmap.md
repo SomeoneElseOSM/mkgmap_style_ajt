@@ -7,6 +7,7 @@ Detect former kilns tagged as "ruins:man_made".
 Show non-historic watermills. 
 Show "historic=pound" as a synonym for "historic=pinfold". 
 Added support for "vending=bottle_return" 
+Display "waterway=drainage_channel" as "waterway=ditch". 
 
 ## 18/02/2024
 Show whether a bus stop has no flag or pole at all.

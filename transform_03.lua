@@ -5801,10 +5801,11 @@ function process_all( objtype, object )
 -- Apparently there are a few "waterway=brook" in the UK.  Render as stream.
 -- 0x18 is used in lines.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["waterway"] == "ditch"         ) or
-       ( object.tags["waterway"] == "stream"        ) or
-       ( object.tags["waterway"] == "brook"         ) or
-       ( object.tags["waterway"] == "tidal_channel" )) then
+   if (( object.tags["waterway"] == "ditch"            ) or
+       ( object.tags["waterway"] == "stream"           ) or
+       ( object.tags["waterway"] == "brook"            ) or
+       ( object.tags["waterway"] == "drainage_channel" ) or
+       ( object.tags["waterway"] == "tidal_channel"    )) then
       object = append_nonqa( object, object.tags["waterway"] )
       object.tags["waterway"] = "stream"
    end

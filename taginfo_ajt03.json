@@ -2862,6 +2862,7 @@
     { "key": "usage", "value": "tourism", "description": "Detect tourist stations; shown in brackets; 'Attractions / Landmark' (NOT 'Transportation / Ground Transportation')" },
     { "key": "utility", "description": "Determine if a marker is a utility marker or not" },
     { "key": "vending", "description": "Vending machines and parcel lockers etc." },
+    { "key": "vending", "value": "bottle_return", "description": "Reverse Vending" },
     { "key": "vending", "value": "excrement_bags", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "vending", "value": "fuel", "description": "Detect oddly tagged fuel stations" },
     { "key": "vending", "value": "parcel_mail_in", "description": "Shown in brackets; 'Others / Social Service'" },

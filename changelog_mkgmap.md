@@ -6,6 +6,7 @@ If a "ref" is set for an international walking network, use that instead of "nam
 Detect former kilns tagged as "ruins:man_made". 
 Show non-historic watermills. 
 Show "historic=pound" as a synonym for "historic=pinfold". 
+Added support for "vending=bottle_return" 
 
 ## 18/02/2024
 Show whether a bus stop has no flag or pole at all.

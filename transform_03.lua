@@ -3337,13 +3337,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Excrement bags
+-- Append certain "vending" values to name
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "vending_machine" ) and
-       ( object.tags["vending"] == "excrement_bags"  )) then
+   if ( object.tags["amenity"] == "vending_machine" ) then
       object.tags["man_made"]  = "thing"
       object.tags["amenity"]  = nil
-      object = append_nonqa( object,"excrement bags" )
+
+      if (( object.tags["vending"] == "bottle_return"  ) or
+          ( object.tags["vending"] == "excrement_bags" )) then
+         object = append_nonqa( object, object.tags["vending"] )
+      end
    end
 
 -- ----------------------------------------------------------------------------

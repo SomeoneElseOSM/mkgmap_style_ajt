@@ -4479,6 +4479,14 @@ function process_all( objtype, object )
       end
    end
 
+-- ----------------------------------------------------------------------------
+-- Detect former kilns tagged as "ruins:man_made". 
+-- ----------------------------------------------------------------------------
+   if ( object.tags["ruins:man_made"] == "kiln" ) then
+      object.tags["historic"]       = "kiln"
+      object.tags["ruins:man_made"] = nil
+   end
+
    if (( object.tags["historic"] == "abbey"                     ) or
        ( object.tags["historic"] == "aircraft"                  ) or
        ( object.tags["historic"] == "aircraft_wreck"            ) or

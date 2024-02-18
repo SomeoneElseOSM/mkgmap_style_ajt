@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 If a "ref" is set for an international walking network, use that instead of "name".
+Detect former kilns tagged as "ruins:man_made". 
 
 ## 18/02/2024
 Show whether a bus stop has no flag or pole at all.

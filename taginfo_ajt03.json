@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240218T111700Z",
+  "data_updated": "20240218T201800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2091,6 +2091,8 @@
     { "key": "room", "description": "suppress real ale values on rooms alone" },
     { "key": "ruins", "description": "Detect former military bunkers.  Also appended to historic and archaeological items if set" },
     { "key": "ruins", "value": "bunker", "description": "Shown in brackets; 'Others / Social Service'" },
+    { "key": "ruins:man_made", "description": "Detect ruins" },
+    { "key": "ruins:man_made", "value": "kiln", "description": "Detect ruined kilns" },
     { "key": "ruins:tourism", "description": "Used to decide whether a board should be shown" },
     { "key": "seamark:rescue_station:category", "description": "detect lifeboats" },
     { "key": "seamark:rescue_station:category", "value": "lifeboat_on_mooring", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },

@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+If a "ref" is set for an international walking network, use that instead of "name".
+
 ## 18/02/2024
 Show whether a bus stop has no flag or pole at all.
 Removed "pole=maypole", no longer in the data.

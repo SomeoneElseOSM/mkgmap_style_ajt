@@ -10005,16 +10005,22 @@ end
 function ott.process_relation( object )
    object = process_all( "r", object )
 
-   if ((  object.tags["type"]    == "route"         ) and
-       (( object.tags["network"] == "iwn"          )  or
-        ( object.tags["network"] == "nwn"          )  or
-        ( object.tags["network"] == "rwn"          )  or
-        ( object.tags["network"] == "lwn"          )  or
-        ( object.tags["network"] == "lwn;lcn"      )  or
-        ( object.tags["network"] == "lwn;lcn;lhn"  )) and
-       (  object.tags["name"]    == nil             ) and
-       (  object.tags["colour"]  ~= nil             )) then
-      object.tags["name"] = object.tags["colour"]
+   if ( object.tags["type"] == "route" ) then
+      if (( object.tags["network"] == "iwn" ) and
+          ( object.tags["ref"]     ~= nil   )) then
+         object.tags["name"] = object.tags["ref"]
+      end
+
+      if ((( object.tags["network"] == "iwn"          )  or
+           ( object.tags["network"] == "nwn"          )  or
+           ( object.tags["network"] == "rwn"          )  or
+           ( object.tags["network"] == "lwn"          )  or
+           ( object.tags["network"] == "lwn;lcn"      )  or
+           ( object.tags["network"] == "lwn;lcn;lhn"  )) and
+          (  object.tags["name"]    == nil             ) and
+          (  object.tags["colour"]  ~= nil             )) then
+         object.tags["name"] = object.tags["colour"]
+      end
    end
 
    return object.tags

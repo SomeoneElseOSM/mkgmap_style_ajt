@@ -6,6 +6,10 @@ Show whether a bus stop has no flag or pole at all.
 Removed "pole=maypole", no longer in the data.
 Removed "man_made=telephone_kiosk" and "telephone_kiosk=K4", no longer in the data.
 Show whether a bus stop has a real-time departures board, a timetable or no flag or pole at all.  Also show whether the departures board has speech output.
+Removed "emergency_service=air", no longer in the data. 
+Treat "status=abandoned" as a synonym for "disused=yes". 
+Detect tumuli mapped as tombs. 
+Include "tower:type = ventilation_shaft" in the "vent shaft" list.
 
 ## 06/02/2024
 Removed "shop=adult_gaming_centre" from taginfo (it had been there in error).

@@ -56,6 +56,13 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Treat "status=abandoned" as "disused=yes"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["status"] == "abandoned" ) then
+      object.tags["disused"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
 -- If we have an est_width but no width, use the est_width
 -- ----------------------------------------------------------------------------
    if (( object.tags["width"]     == nil  ) and
@@ -653,6 +660,15 @@ function process_all( objtype, object )
       if ( object.tags["inscription"] ~= nil ) then
          object = append_nonqa( object, object.tags["inscription"] )
       end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Some tumuli are tagged as tombs, so dig those out first.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["historic"] == "tomb"    ) and
+       ( object.tags["tomb"]     == "tumulus" )) then
+         object.tags["historic"]            = "archaeological_site"
+         object.tags["archaeological_site"] = "tumulus"
    end
 
    if ((   object.tags["historic"]            == "standing_stone"        ) or
@@ -2018,7 +2034,7 @@ function process_all( objtype, object )
          if (( object.tags["departures_board"]              == "timetable"        ) or
              ( object.tags["departures_board"]              == "schedule"         ) or
              ( object.tags["departures_board"]              == "separate"         ) or
-             ( object.tags["departures_board"]              == "paper_timetable"  ) or
+             ( object.tags["departures_board"]              == "paper timetable"  ) or
              ( object.tags["passenger_information_display"] == "timetable"        ) or
              ( object.tags["passenger_information_display"] == "yes"              )) then
             if (( object.tags["departures_board:speech_output"]              == "yes" ) or
@@ -5153,7 +5169,8 @@ function process_all( objtype, object )
        ( object.tags["building"]   == "ventilation_shaft" ) or
        ( object.tags["building"]   == "vent_shaft"        ) or
        ( object.tags["man_made"]   == "vent_shaft"        ) or
-       ( object.tags["tower:type"] == "vent"              )) then
+       ( object.tags["tower:type"] == "vent"              ) or
+       ( object.tags["tower:type"] == "ventilation_shaft" )) then
       object.tags["man_made"] = "thing"
 
       if ( object.tags["name"] == nil ) then

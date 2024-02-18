@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240217T112500Z",
+  "data_updated": "20240218T095800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1698,7 +1698,6 @@
     { "key": "man_made", "value": "tank", "description": "Shown in brackets as building; not searchable" },
     { "key": "man_made", "value": "telephone_box", "description": "Shown as telephone; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "telephone_exchange", "description": "IF no name, 'Telephone Exchange' used instead; not searchable" },
-    { "key": "man_made", "value": "telephone_kiosk", "description": "Shown as telephone; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "tower", "description": "Shown in brackets as tower; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "transmitter", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "trickling_filter", "description": "Shown in brackets as building; not searchable" },
@@ -2713,7 +2712,6 @@
     { "key": "taxon", "value": "Heracleum mantegazzianum", "description": "Giant hogweed" },
     { "key": "telecom", "description": "Detect telephone exchanges" },
     { "key": "telephone_kiosk", "description": "Detect telephone boxes" },
-    { "key": "telephone_kiosk", "value": "K4", "description": "'Geographic Points / Manmade Places'" },
     { "key": "telephone_kiosk", "value": "K6", "description": "'Geographic Points / Manmade Places'" },
     { "key": "theatre", "description": "Detect concert halls" },
     { "key": "theatre", "value": "concert_hall", "description": "Shown in brackets; 'Attractions / Hall or Auditorium'" },

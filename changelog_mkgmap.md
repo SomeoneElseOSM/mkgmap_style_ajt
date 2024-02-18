@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleaased
+## 18/02/2024
 Show whether a bus stop has no flag or pole at all.
 Removed "pole=maypole", no longer in the data.
 Removed "man_made=telephone_kiosk" and "telephone_kiosk=K4", no longer in the data.

@@ -1349,6 +1349,7 @@
     { "key": "historic", "value": "place_of_worship", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "plaque", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "police_call_box", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
+    { "key": "historic", "value": "pound", "description": "Synonym for historic pinfold" },
     { "key": "historic", "value": "priory", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "prison", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "historic", "value": "protected_building", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

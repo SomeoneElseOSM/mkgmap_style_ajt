@@ -4559,6 +4559,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "pinfold"                   ) or
        ( object.tags["historic"] == "place_of_worship"          ) or
        ( object.tags["historic"] == "police_call_box"           ) or
+       ( object.tags["historic"] == "pound"                     ) or
        ( object.tags["historic"] == "priory"                    ) or
        ( object.tags["historic"] == "prison"                    ) or
        ( object.tags["historic"] == "protected_building"        ) or

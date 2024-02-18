@@ -4895,7 +4895,79 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Render windmill buildings and former windmills as windmills.
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["man_made"] == "windmill"        )  or
+   if (( object.tags["man_made"] == "watermill") or
+       ( object.tags["man_made"] == "windmill" )) then
+      if (( object.tags["disused"]           == "yes"  ) or
+          ( object.tags["watermill:disused"] == "yes"  ) or
+          ( object.tags["windmill:disused"]  == "yes"  )) then
+         object.tags["historic"] = object.tags["man_made"]
+         object.tags["man_made"] = nil
+      else
+         object.tags["historic"] = nil
+      end
+   end
+
+   if ((( object.tags["disused:man_made"] == "watermill")  or
+        ( object.tags["disused:man_made"] == "windmill" )) and
+       (  object.tags["amenity"]          == nil         ) and
+       (  object.tags["man_made"]         == nil         ) and
+       (  object.tags["shop"]             == nil         )) then
+      object.tags["historic"] = object.tags["disused:man_made"]
+      object.tags["disused:man_made"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Render (windmill buildings and former windmills) that are not something 
+-- else as historic windmills.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["historic"] == "ruins"      ) and
+       (( object.tags["ruins"]    == "watermill" )  or
+        ( object.tags["ruins"]    == "windmill"  ))) then
+      object.tags["historic"] = object.tags["ruins"]
+      object.tags["ruins"] = "yes"
+   end
+
+   if (((   object.tags["building"] == "watermill"        )  or
+        (   object.tags["building"] == "former_watermill" )) and
+       ((   object.tags["amenity"]  == nil                 ) and
+        (   object.tags["man_made"] == nil                 ) and
+        ((  object.tags["historic"] == nil                )  or
+         (  object.tags["historic"] == "restoration"      )  or
+         (  object.tags["historic"] == "heritage"         )  or
+         (  object.tags["historic"] == "industrial"       )  or
+         (  object.tags["historic"] == "tower"            )))) then
+      object.tags["historic"] = "watermill"
+   end
+
+   if (((   object.tags["building"] == "windmill"        )  or
+        (   object.tags["building"] == "former_windmill" )) and
+       ((   object.tags["amenity"]  == nil                ) and
+        (   object.tags["man_made"] == nil                ) and
+        ((  object.tags["historic"] == nil               )  or
+         (  object.tags["historic"] == "restoration"     )  or
+         (  object.tags["historic"] == "heritage"        )  or
+         (  object.tags["historic"] == "industrial"      )  or
+         (  object.tags["historic"] == "tower"           )))) then
+      object.tags["historic"] = "windmill"
+   end
+
+   if ((( object.tags["historic"] == "watermill"        )  or
+        ( object.tags["man_made"] == "watermill"        )  or
+        ( object.tags["building"] == "watermill"        )  or
+        ( object.tags["building"] == "former_watermill" )) and
+       (  object.tags["amenity"]  == nil                )) then
+      object.tags["man_made"] = "thing"
+      object.tags["building"] = "watermill"
+      object.tags["tourism"] = nil
+      object = append_nonqa( object, "watermill" )
+
+      if ( object.tags["historic"]  ~= nil ) then
+         object = append_nonqa( object, object.tags["historic"] ) 
+      end
+   end
+
+   if ((( object.tags["historic"] == "windmill"        )  or
+        ( object.tags["man_made"] == "windmill"        )  or
         ( object.tags["building"] == "windmill"        )  or
         ( object.tags["building"] == "former_windmill" )) and
        (  object.tags["amenity"]  == nil                )) then

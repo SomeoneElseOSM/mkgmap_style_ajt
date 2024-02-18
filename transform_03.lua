@@ -609,6 +609,10 @@ function process_all( objtype, object )
          append_nonqa( object, object.tags["utility"] )
       end
 
+      if ( object.tags["ref"] ~= nil ) then
+         append_nonqa( object, object.tags["ref"] )
+      end
+
       object.tags["man_made"] = "marker"
    end
 

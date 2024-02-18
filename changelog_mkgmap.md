@@ -34,6 +34,7 @@ Detect "man_made=boundary_stone" in the same way as "man_made=boundary_marker".
 Detect "man_made=concrete_post", "man_made=marker_post" and "man_made=post" in the same way as "barrier=post".
 Updated "floor:material" list to match what is now in the data.  
 Removed "craft=glazier", no longer in the data.
+Append a "ref" from zoom 19 for aerial pipeline markers. 
 
 ## 27/12/2023
 Fixed bug with spelling of "historic=clochan"

@@ -5,6 +5,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 Show whether a bus stop has no flag or pole at all.
 Removed "pole=maypole", no longer in the data.
 Removed "man_made=telephone_kiosk" and "telephone_kiosk=K4", no longer in the data.
+Show whether a bus stop has a real-time departures board, a timetable or no flag or pole at all.  Also show whether the departures board has speech output.
 
 ## 06/02/2024
 Removed "shop=adult_gaming_centre" from taginfo (it had been there in error).

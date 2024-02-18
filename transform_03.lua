@@ -1947,6 +1947,9 @@ function process_all( objtype, object )
 --
 -- Some people tag shelter or waste_basket on bus_stop.  
 -- We render just bus_stop (the waste_basket code above handles this).
+-- 
+-- Also concatenate a couple of names for bus stops so that the most useful ones
+-- are displayed.
 -- ----------------------------------------------------------------------------
    if ( object.tags["railway"] == "tram_stop" ) then
       object = append_nonqa( object, object.tags["railway"] )
@@ -1960,6 +1963,32 @@ function process_all( objtype, object )
    end
 
    if ( object.tags["highway"] == "bus_stop" ) then
+      if ( object.tags["name"] == nil ) then
+         if ( object.tags["ref"] == nil ) then
+            if ( object.tags["naptan:Indicator"] ~= nil ) then
+               object.tags["name"] = object.tags["naptan:Indicator"]
+            end
+         else -- ref not nil
+            if ( object.tags["naptan:Indicator"] == nil ) then
+               object.tags["name"] = object.tags["ref"]
+            else
+               object.tags["name"] = object.tags["ref"] .. " " .. object.tags["naptan:Indicator"]
+            end
+         end
+      else -- name not nil
+         if ( object.tags["ref"] == nil ) then
+            if ( object.tags["naptan:Indicator"] ~= nil ) then
+               object.tags["name"] = object.tags["name"] .. " " .. object.tags["naptan:Indicator"]
+            end
+         else -- neither name nor ref nil
+            if ( object.tags["naptan:Indicator"] == nil ) then
+               object.tags["name"] = object.tags["name"] .. " " .. object.tags["ref"]
+            else -- naptan:Indicator not nil
+               object.tags["name"] = object.tags["name"] .. " " .. object.tags["ref"] .. " " .. object.tags["naptan:Indicator"]
+            end
+         end
+      end
+
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["amenity"] = nil
 
@@ -1967,6 +1996,38 @@ function process_all( objtype, object )
           ( object.tags["pole"]               == "no" ) or
           ( object.tags["physically_present"] == "no" )) then
          object = append_nonqa( object, "no flag" )
+      end
+
+      if (( object.tags["departures_board"]              == "realtime"                     ) or
+          ( object.tags["departures_board"]              == "timetable; realtime"          ) or
+          ( object.tags["departures_board"]              == "realtime;timetable"           ) or
+          ( object.tags["departures_board"]              == "timetable;realtime"           ) or
+          ( object.tags["departures_board"]              == "realtime_multiline"           ) or
+          ( object.tags["departures_board"]              == "realtime; timetable"          ) or
+          ( object.tags["departures_board"]              == "realtime,timetable"           ) or
+          ( object.tags["departures_board"]              == "multiline"                    ) or
+          ( object.tags["departures_board"]              == "realtime_multiline;timetable" ) or
+          ( object.tags["passenger_information_display"] == "realtime"                     )) then
+         if (( object.tags["departures_board:speech_output"]              == "yes" ) or
+             ( object.tags["passenger_information_display:speech_output"] == "yes" )) then
+            object = append_nonqa( object, "rts" )
+         else
+            object = append_nonqa( object, "rt" )
+         end
+      else
+         if (( object.tags["departures_board"]              == "timetable"        ) or
+             ( object.tags["departures_board"]              == "schedule"         ) or
+             ( object.tags["departures_board"]              == "separate"         ) or
+             ( object.tags["departures_board"]              == "paper_timetable"  ) or
+             ( object.tags["passenger_information_display"] == "timetable"        ) or
+             ( object.tags["passenger_information_display"] == "yes"              )) then
+            if (( object.tags["departures_board:speech_output"]              == "yes" ) or
+                ( object.tags["passenger_information_display:speech_output"] == "yes" )) then
+               object = append_nonqa( object, "tts" )
+            else
+               object = append_nonqa( object, "tt" )
+            end
+         end
       end
 
       object = building_or_landuse( objtype, object )
@@ -8613,17 +8674,6 @@ function process_all( objtype, object )
       object = append_nonqa( object, "observation tower" )
       object.tags["man_made"] = "tower"
       object.tags["tourism"] = nil
-   end
-
--- ----------------------------------------------------------------------------
--- Concatenate a couple of names for bus stops so that the most useful ones
--- are displayed.
--- ----------------------------------------------------------------------------
-   if ( object.tags["highway"] == "bus_stop" ) then
-      if (( object.tags["name"]             ~= nil ) and
-          ( object.tags["naptan:Indicator"] ~= nil )) then
-         object.tags["name"] = object.tags["name"] .. " " .. object.tags["naptan:Indicator"]
-      end
    end
 
 -- ----------------------------------------------------------------------------

@@ -7594,7 +7594,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]         == "tan"               ) or
        ( object.tags["shop"]         == "suntan"            ) or
        ( object.tags["shop"]         == "health_and_beauty" ) or
-       ( object.tags["shop"]         == "beautician"        ) or
        ( object.tags["shop"]         == "health club"       ) or
        ( object.tags["shop"]         == "tanning_salon"     )) then
       object = append_nonqa( object, object.tags["shop"] )

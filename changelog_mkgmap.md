@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Removed "shop=beautician", no longer in the data.
+
 ## 21/02/2024
 If a "ref" is set for an international walking network, use that instead of "name".
 Detect former kilns tagged as "ruins:man_made". 

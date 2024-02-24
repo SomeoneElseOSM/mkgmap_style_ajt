@@ -881,6 +881,7 @@
     { "key": "departures_board", "value": "schedule", "description": "Append 'tt' in brackets to name" },
     { "key": "departures_board", "value": "separate", "description": "Append 'tt' in brackets to name" },
     { "key": "departures_board", "value": "paper timetable", "description": "Append 'tt' in brackets to name" },
+    { "key": "departures_board", "value": "yes", "description": "Append 'tt' in brackets to name" },
     { "key": "departures_board:speech_output", "description": "Is there a button you can press to hear bus times" },
     { "key": "departures_board:speech_output", "value": "yes", "description": "Append 's' in brackets to name" },
     { "key": "designation", "description": "Detect public rights of way and commons" },

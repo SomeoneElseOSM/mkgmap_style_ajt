@@ -2039,6 +2039,7 @@ function process_all( objtype, object )
              ( object.tags["departures_board"]              == "schedule"         ) or
              ( object.tags["departures_board"]              == "separate"         ) or
              ( object.tags["departures_board"]              == "paper timetable"  ) or
+             ( object.tags["departures_board"]              == "yes"              ) or
              ( object.tags["passenger_information_display"] == "timetable"        ) or
              ( object.tags["passenger_information_display"] == "yes"              )) then
             if (( object.tags["departures_board:speech_output"]              == "yes" ) or

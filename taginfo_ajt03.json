@@ -2294,6 +2294,7 @@
     { "key": "shop", "value": "doityourself;garden_centre", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "domestic_appliances", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "dressmaker", "description": "shown in brackets; 'Shopping / Apparel'" },
+    { "key": "shop", "value": "duty_free", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },
     { "key": "shop", "value": "e-cigarette", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "eggs", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "electric_bicycle", "description": "shown in brackets; 'Others / Repair Services'" },

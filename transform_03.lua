@@ -2023,7 +2023,6 @@ function process_all( objtype, object )
           ( object.tags["departures_board"]              == "realtime;timetable"           ) or
           ( object.tags["departures_board"]              == "timetable;realtime"           ) or
           ( object.tags["departures_board"]              == "realtime_multiline"           ) or
-          ( object.tags["departures_board"]              == "realtime; timetable"          ) or
           ( object.tags["departures_board"]              == "realtime,timetable"           ) or
           ( object.tags["departures_board"]              == "multiline"                    ) or
           ( object.tags["departures_board"]              == "realtime_multiline;timetable" ) or

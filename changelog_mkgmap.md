@@ -6,6 +6,7 @@ Removed "shop=beautician", no longer in the data.
 Append 'dog gate' in brackets to stiles with dog gates.
 Added "departures_board=yes" as "implying at least a timetable".
 Added "shop=duty_free" to list of ships shown as "gift".
+Removed "departures_board=realtime; timetable", no longer in the data.
 
 ## 21/02/2024
 If a "ref" is set for an international walking network, use that instead of "name".

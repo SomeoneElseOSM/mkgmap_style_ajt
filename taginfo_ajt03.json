@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240224T005700Z",
+  "data_updated": "20240224T132800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -873,7 +873,6 @@
     { "key": "departures_board", "value": "realtime;timetable", "description": "Append 'rt' in brackets to name" },
     { "key": "departures_board", "value": "timetable;realtime", "description": "Append 'rt' in brackets to name" },
     { "key": "departures_board", "value": "realtime_multiline", "description": "Append 'rt' in brackets to name" },
-    { "key": "departures_board", "value": "realtime; timetable", "description": "Append 'rt' in brackets to name" },
     { "key": "departures_board", "value": "realtime,timetable", "description": "Append 'rt' in brackets to name" },
     { "key": "departures_board", "value": "multiline", "description": "Append 'rt' in brackets to name" },
     { "key": "departures_board", "value": "realtime_multiline;timetable", "description": "Append 'rt' in brackets to name" },

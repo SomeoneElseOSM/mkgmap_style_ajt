@@ -980,6 +980,8 @@
     { "key": "dogs", "description": "Synonym for 'dog'.  Show dog restrictions on paths" },
     { "key": "dogs", "value": "leashed", "description": "'doglead' appended in brackets" },
     { "key": "dogs", "value": "no", "description": "'nodog' appended in brackets" },
+    { "key": "dog_gate", "description": "Detect stiles with dog gates" },
+    { "key": "dog_gate", "value": "yes", "description": "'dog gate' appended in brackets" },
     { "key": "ele", "description": "Appended to peak name" },
     { "key": "embankment", "description": "Detect embankments, whether a highway is on them or not" },
     { "key": "embankment", "value": "yes", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },

@@ -3,6 +3,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 
 ## As yet unreleased
 Removed "shop=beautician", no longer in the data.
+Append 'dog gate' in brackets to stiles with dog gates.
 
 ## 21/02/2024
 If a "ref" is set for an international walking network, use that instead of "name".

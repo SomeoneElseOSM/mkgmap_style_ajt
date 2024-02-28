@@ -1,6 +1,10 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Render shop=esoteric in the same list as other "woo" shops such as "new_age" etc.
+Added a couple of other checks to what makes a meadow "farmgrass".
+
 ## 28/02/2024
 Removed "shop=beautician", no longer in the data.
 Append 'dog gate' in brackets to stiles with dog gates.

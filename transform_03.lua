@@ -1371,23 +1371,26 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- We don't show landuse=farmland here (yet)
 -- We also don't show farmland processed in style.lua as "landuse=farmgrass"
--- We do process meadows here that would process as "farmgrass" here so that
+-- We do process meadows here that would process as "farmgrass" so that
 -- they don't (yet) get handled as meadows.
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["landuse"] == "meadow"        ) and
-       (( object.tags["meadow"]  == "agricultural" )  or
-        ( object.tags["meadow"]  == "paddock"      )  or
-        ( object.tags["meadow"]  == "pasture"      )  or
-        ( object.tags["meadow"]  == "agriculture"  )  or
-        ( object.tags["meadow"]  == "hay"          )  or
-        ( object.tags["meadow"]  == "managed"      )  or
-        ( object.tags["meadow"]  == "cut"          )  or
-        ( object.tags["animal"]  == "pig"          )  or
-        ( object.tags["animal"]  == "sheep"        )  or
-        ( object.tags["animal"]  == "cow"          )  or
-        ( object.tags["animal"]  == "cattle"       )  or
-        ( object.tags["animal"]  == "chicken"      )  or
-        ( object.tags["animal"]  == "horse"        ))) then
+   if ((  object.tags["landuse"]  == "meadow"        ) and
+       (( object.tags["meadow"]   == "agricultural" )  or
+        ( object.tags["meadow"]   == "paddock"      )  or
+        ( object.tags["meadow"]   == "pasture"      )  or
+        ( object.tags["meadow"]   == "agriculture"  )  or
+        ( object.tags["meadow"]   == "hay"          )  or
+        ( object.tags["meadow"]   == "managed"      )  or
+        ( object.tags["meadow"]   == "cut"          )  or
+        ( object.tags["animal"]   == "pig"          )  or
+        ( object.tags["animal"]   == "sheep"        )  or
+        ( object.tags["animal"]   == "cow"          )  or
+        ( object.tags["animal"]   == "cattle"       )  or
+        ( object.tags["animal"]   == "chicken"      )  or
+        ( object.tags["animal"]   == "horse"        )  or
+        ( object.tags["farmland"] == "field"        )  or
+        ( object.tags["farmland"] == "pasture"      )  or
+        ( object.tags["farmland"] == "crofts"       ))) then
       object.tags["landuse"] = nil
    end
 
@@ -7896,7 +7899,8 @@ function process_all( objtype, object )
        ( object.tags["shop"]       == "acupuncture"             ) or
        ( object.tags["healthcare"] == "acupuncture"             ) or
        ( object.tags["shop"]       == "aromatherapy"            ) or
-       ( object.tags["shop"]       == "meditation"              )) then
+       ( object.tags["shop"]       == "meditation"              ) or
+       ( object.tags["shop"]       == "esoteric"                )) then
       object = append_nonqa( object, "alt health" )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )

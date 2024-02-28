@@ -2018,6 +2018,15 @@ function process_all( objtype, object )
          object = append_nonqa( object, "no flag" )
       end
 
+-- ----------------------------------------------------------------------------
+-- Is there a departures board, and if so what sort?
+-- Confusinging both "departures_board" and "passenger_information_display"
+-- need to be checked here (and there is a hodge-podge of values).
+-- For speech output, it's "departures_board:speech_output" or 
+-- "passenger_information_display:speech_output".
+-- Finally, "qdb" is used for QA for timetables that have not been surveyed
+-- to see if there is a departures board or not.
+-- ----------------------------------------------------------------------------
       if (( object.tags["departures_board"]              == "realtime"                     ) or
           ( object.tags["departures_board"]              == "timetable; realtime"          ) or
           ( object.tags["departures_board"]              == "realtime;timetable"           ) or
@@ -2046,6 +2055,11 @@ function process_all( objtype, object )
                object = append_nonqa( object, "tts" )
             else
                object = append_nonqa( object, "tt" )
+            end
+         else
+            if (( object.tags["departures_board"]              == nil ) and
+                ( object.tags["passenger_information_display"] == nil )) then
+               object = append_qa( object, "qdb" )
             end
          end
       end
@@ -10156,6 +10170,20 @@ function append_nonqa( object, appendage )
       object.tags.name = "(" .. appendage .. ")"
     else
       object.tags.name = object.tags["name"] .. " (" .. appendage .. ")"
+    end
+
+    return object
+end
+
+
+-- ----------------------------------------------------------------------------
+-- "append QA information" function
+-- ----------------------------------------------------------------------------
+function append_qa( object, appendage )
+    if ( object.tags["name"] == nil ) then
+      object.tags.name = "[" .. appendage .. "]"
+    else
+      object.tags.name = object.tags["name"] .. " [" .. appendage .. "]"
     end
 
     return object

@@ -1,12 +1,13 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 28/02/2024
 Removed "shop=beautician", no longer in the data.
 Append 'dog gate' in brackets to stiles with dog gates.
 Added "departures_board=yes" as "implying at least a timetable".
 Added "shop=duty_free" to list of ships shown as "gift".
 Removed "departures_board=realtime; timetable", no longer in the data.
+Append "qdb" as QA to "no destination board known about" bus stops.
 
 ## 21/02/2024
 If a "ref" is set for an international walking network, use that instead of "name".

@@ -2015,10 +2015,20 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["amenity"] = nil
 
-      if (( object.tags["flag"]               == "no" ) or
-          ( object.tags["pole"]               == "no" ) or
-          ( object.tags["physically_present"] == "no" )) then
+-- ----------------------------------------------------------------------------
+-- Various tags that mean there is no physical bus stop pole.
+-- ----------------------------------------------------------------------------
+      if (( object.tags["flag"]               == "no"  ) or
+          ( object.tags["pole"]               == "no"  ) or
+          ( object.tags["physically_present"] == "no"  )) then
          object = append_nonqa( object, "no flag" )
+      end
+
+-- ----------------------------------------------------------------------------
+-- NaPTAN customary stops.  There may be no flag.
+-- ----------------------------------------------------------------------------
+      if ( object.tags["naptan:BusStopType"] == "CUS" ) then
+         object = append_nonqa( object, "CUS" )
       end
 
 -- ----------------------------------------------------------------------------

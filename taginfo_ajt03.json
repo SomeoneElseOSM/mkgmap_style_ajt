@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240228T211300Z",
+  "data_updated": "20240302T190000Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1825,6 +1825,8 @@
     { "key": "name:right", "description": "name:left and name:right are combined into name if they exist" },
     { "key": "name:signed", "description": "Detect unsigned names" },
     { "key": "name:signed", "value": "no", "description": "Unsigned road names shown in brackets; unsigned motorway junction names suppressed" },
+    { "key": "naptan:BusStopType", "description": "According to NaPTAN, is this only a customary stop?" },
+    { "key": "naptan:BusStopType", "value": "CUS", "description": "If set, append CUS to bus stop names" },
     { "key": "naptan:Indicator", "description": "If set, append to bus stop names" },
     { "key": "natural", "description": "Most 'natural' features handled" },
     { "key": "natural", "value": "arete", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },

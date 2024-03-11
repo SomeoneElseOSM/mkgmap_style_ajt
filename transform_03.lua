@@ -9984,6 +9984,9 @@ function ott.process_way( object )
          end
       end
 
+-- ----------------------------------------------------------------------------
+-- The test here is e.g. "is verge set to anything, including yes or none".
+-- ----------------------------------------------------------------------------
       if ( object.tags["sidewalk"] == nil ) then
          if ( object.tags["verge"] == nil ) then
             if ( street_appendix == nil ) then

@@ -2087,8 +2087,16 @@ function process_all( objtype, object )
                object = append_nonqa( object, "tt" )
             end
          else
-            if (( object.tags["departures_board"]              == nil ) and
-                ( object.tags["passenger_information_display"] == nil )) then
+-- ----------------------------------------------------------------------------
+-- If we expect there might be some sort of departures board, and there isn't,
+-- Add a QA note to look for it.
+-- ----------------------------------------------------------------------------
+            if (( object.tags["flag"]                          ~= "no"  ) and
+                ( object.tags["pole"]                          ~= "no"  ) and
+                ( object.tags["physically_present"]            ~= "no"  ) and
+                ( object.tags["naptan:BusStopType"]            ~= "CUS" ) and
+                ( object.tags["departures_board"]              == nil   ) and
+                ( object.tags["passenger_information_display"] == nil   )) then
                object = append_qa( object, "qdb" )
             end
          end

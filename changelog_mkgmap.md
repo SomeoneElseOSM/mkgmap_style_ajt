@@ -6,6 +6,7 @@ Render shop=esoteric in the same list as other "woo" shops such as "new_age" etc
 Added a couple of other checks to what makes a meadow "farmgrass".
 Append CUS to NaPTAN customary bus stop names.
 Removed "man_made=bird_hide", no longer in the data.
+Don't append "check for bus stop departures board" QA if there is no flag/pole.
 
 ## 28/02/2024
 Removed "shop=beautician", no longer in the data.

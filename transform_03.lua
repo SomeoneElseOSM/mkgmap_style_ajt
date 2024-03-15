@@ -1842,8 +1842,7 @@ function process_all( objtype, object )
       object.tags["amenity"] = nil
    end
 
-   if (( object.tags["man_made"] == "bird_hide"     ) or
-       ( object.tags["man_made"] == "wildlife_hide" )) then
+   if ( object.tags["man_made"] == "wildlife_hide" ) then
       object.tags["leisure"] = object.tags["man_made"]
       object.tags["man_made"] = nil
    end

@@ -1654,7 +1654,6 @@
     { "key": "man_made", "value": "air_shaft", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "antenna", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "beacon", "description": "Shown in brackets; 'Others / Social Service'" },
-    { "key": "man_made", "value": "bird_hide", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "boundary_marker", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "boundary_stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "man_made", "value": "breakwater", "description": "Shown as default line (not searchable)" },

@@ -1748,6 +1748,14 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------------
+-- Some people tag beach resorts as beaches - remove "beach_resort" there.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["leisure"] == "beach_resort" ) and
+       ( object.tags["natural"] == "beach"        )) then
+      object.tags["leisure"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- These all map to farmyard in the web maps
 -- ----------------------------------------------------------------------------
    if ( object.tags["landuse"] == "farmyard" ) then
@@ -2002,7 +2010,51 @@ function process_all( objtype, object )
       object.tags["amenity"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- If a bus stop pole exists but it's known to be disused, indicate that
+-- ----------------------------------------------------------------------------
+   if (( object.tags["disused:highway"]    == "bus_stop" ) and
+       ( object.tags["physically_present"] == "yes"      )) then
+      object.tags["highway"] = "bus_stop"
+      object = append_nonqa( object, "disused" )
+      object.tags["disused:highway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Many "naptan:Indicator" are "opp" or "adj", but some are "Stop XYZ" or
+-- various other bits and pieces.  See 
+-- https://taginfo.openstreetmap.org/keys/naptan%3AIndicator#values
+-- We remove overly long ones.
+-- Similarly, long "ref" values.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["naptan:Indicator"] ~= nil           ) and
+       ( string.len( object.tags["naptan:Indicator"]) > 3 )) then
+      object.tags["naptan:Indicator"] = nil
+   end
+
+   if (( object.tags["highway"] == "bus_stop" ) and
+       ( object.tags["ref"]     ~= nil        ) and
+       ( string.len( object.tags["ref"]) > 3  )) then
+      object.tags["ref"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Concatenate a couple of names for bus stops so that the most useful ones
+-- are displayed.
+-- ----------------------------------------------------------------------------
    if ( object.tags["highway"] == "bus_stop" ) then
+      if ( object.tags["name"] ~= nil ) then
+         if (( object.tags["bus_speech_output_name"] ~= nil                                ) and
+             ( not string.match( object.tags["name"], object.tags["bus_speech_output_name"] ))) then
+            object.tags["name"] = object.tags["name"] .. " / " .. object.tags["bus_speech_output_name"]
+         end
+
+         if (( object.tags["bus_display_name"] ~= nil                                ) and
+             ( not string.match( object.tags["name"], object.tags["bus_display_name"] ))) then
+            object.tags["name"] = object.tags["name"] .. " / " .. object.tags["bus_display_name"]
+         end
+      end
+
       if ( object.tags["name"] == nil ) then
          if ( object.tags["ref"] == nil ) then
             if ( object.tags["naptan:Indicator"] ~= nil ) then
@@ -2377,6 +2429,7 @@ function process_all( objtype, object )
    if (( object.tags["description:floor"] ~= nil                  ) or
        ( object.tags["floor:material"]    == "brick"              ) or
        ( object.tags["floor:material"]    == "concrete"           ) or
+       ( object.tags["floor:material"]    == "grubby carpet"      ) or
        ( object.tags["floor:material"]    == "lino"               ) or
        ( object.tags["floor:material"]    == "lino;carpet"        ) or
        ( object.tags["floor:material"]    == "lino;rough_wood"    ) or
@@ -2422,6 +2475,20 @@ function process_all( objtype, object )
       object = append_nonqa( object, "closed covid" )
       object.tags["real_ale"] = nil
       object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Does a pub really serve food?
+-- Below we check for "any food value but no".
+-- Here we exclude certain food values from counting towards displaying the "F"
+-- that says a pub serves food.  As far as I am concerned, sandwiches, pies,
+-- or even one of Michael Gove's scotch eggs would count as "food" but a packet
+-- of crisps would not.
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["amenity"] == "pub"         ) and
+       (( object.tags["food"]    == "snacks"     ) or
+        ( object.tags["food"]    == "bar_snacks" ))) then
+      object.tags["food"] = "no"
    end
 
 -- ----------------------------------------------------------------------------
@@ -8203,6 +8270,19 @@ function process_all( objtype, object )
 
    if ( object.tags["sport"]    == "laser_tag" ) then
       object = append_nonqa( object, object.tags["sport"] )
+      object.tags["shop"] = "specialty"
+      object.tags["amenity"] = nil
+      object.tags["leisure"]  = nil
+      object = building_or_landuse( objtype, object )
+   end
+
+-- ----------------------------------------------------------------------------
+-- Mazes
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["leisure"]    == "maze" ) or
+        ( object.tags["attraction"] == "maze" )) and
+       (  object.tags["historic"]   == nil     )) then
+      object = append_nonqa( object, "maze" )
       object.tags["shop"] = "specialty"
       object.tags["amenity"] = nil
       object.tags["leisure"]  = nil

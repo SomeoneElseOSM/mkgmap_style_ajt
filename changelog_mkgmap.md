@@ -7,6 +7,13 @@ Added a couple of other checks to what makes a meadow "farmgrass".
 Append CUS to NaPTAN customary bus stop names.
 Removed "man_made=bird_hide", no longer in the data.
 Don't append "check for bus stop departures board" QA if there is no flag/pole.
+Show "bus_speech_output_name" and/or "bus_display_name" if non-blank and not contained within "name".
+Show bus stops which exist but have no service with a unique suffix.
+Suppress "naptan:Indicator" or "ref" on a bus stop if more than 3 characters long.
+Show mazes as "speciality shops", in the same way as other leisure items.
+Excluded some "food" values (such as "snacks") from indicating that "this pub serves food".
+Added "grubby carpet" to the list of floor:material values that indicate a less-precious floor.
+If something has been tagged as a beach resort and a beach, show as just a beach.
 
 ## 28/02/2024
 Removed "shop=beautician", no longer in the data.

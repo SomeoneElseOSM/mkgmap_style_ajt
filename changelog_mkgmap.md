@@ -1,6 +1,8 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleeased
+
 ## 20/03/2024
 Render shop=esoteric in the same list as other "woo" shops such as "new_age" etc.
 Added a couple of other checks to what makes a meadow "farmgrass".

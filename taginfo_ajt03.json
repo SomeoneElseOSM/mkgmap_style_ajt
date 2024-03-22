@@ -2402,7 +2402,6 @@
     { "key": "shop", "value": "grocer", "description": "shown in brackets; 'Shopping / Convenience'" },
     { "key": "shop", "value": "grocery", "description": "shown in brackets; 'Shopping / Convenience'" },
     { "key": "shop", "value": "gun", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "shop", "value": "guns", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "gunsmith", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "haberdashery", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "hairdresser", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

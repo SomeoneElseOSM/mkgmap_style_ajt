@@ -8591,7 +8591,6 @@ function process_all( objtype, object )
        ( object.tags["craft"]   == "hvac"                    ) or
        ( object.tags["craft"]   == "insulation"              ) or
        ( object.tags["craft"]   == "joiner"                  ) or
-       ( object.tags["craft"]   == "joinery"                 ) or
        ( object.tags["craft"]   == "metal_construction"      ) or
        ( object.tags["craft"]   == "painter"                 ) or
        ( object.tags["craft"]   == "photographic_laboratory" ) or

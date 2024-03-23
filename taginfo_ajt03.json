@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240322T221000Z",
+  "data_updated": "20240323T112100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -678,7 +678,6 @@
     { "key": "craft", "value": "jeweller", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "jewellery_repair", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "joiner", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "craft", "value": "joinery", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "key_cutter", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "key_cutter;shoe_repair", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "craft", "value": "locksmith", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

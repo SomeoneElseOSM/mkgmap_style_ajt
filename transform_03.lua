@@ -5266,9 +5266,16 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Finally append water type or landuse suffix if appropriate.
 -- Regular natural=water without a water type doesn't get a suffix.
+-- Also don't add a suffix for common linear types, as the centroid may be 
+-- often outside the area.
 -- ----------------------------------------------------------------------------
    if ( object.tags["natural"] == "water"  ) then
-      if ( object.tags["water"] ~= nil  ) then
+      if (( object.tags["water"] ~= nil      ) and
+          ( object.tags["water"] ~= "river"  ) and
+          ( object.tags["water"] ~= "canal"  ) and
+          ( object.tags["water"] ~= "stream" ) and
+          ( object.tags["water"] ~= "ditch"  ) and
+          ( object.tags["water"] ~= "drain"  )) then
          object = append_nonqa( object, object.tags["water"] )
       end
 

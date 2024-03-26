@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240323T112100Z",
+  "data_updated": "20240326T004600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1696,7 +1696,7 @@
     { "key": "man_made", "value": "mast", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "man_made", "value": "maypole", "description": "Shown in brackets as tower; 'Others / Social Service'" },
     { "key": "man_made", "value": "mine", "description": "Shown in brackets.  If current, 'Others / Social Service'; if historical, 'Attractions / Museum or Historical'" },
-    { "key": "man_made", "value": "mine_shaft", "description": "Shown in brackets.  If current, 'Others / Social Service'; if historical, 'Attractions / Museum or Historical'" },
+    { "key": "man_made", "value": "mine_shaft", "description": "Not an expected value in OSM data.  Shown in brackets.  If current, 'Others / Social Service'; if historical, 'Attractions / Museum or Historical'" },
     { "key": "man_made", "value": "mineshaft", "description": "Shown in brackets.  If current, 'Others / Social Service'; if historical, 'Attractions / Museum or Historical'" },
     { "key": "man_made", "value": "monitoring_station", "description": "Shown in brackets as spring; 'Geographic Points / Water Features'" },
     { "key": "man_made", "value": "monument", "description": "Handle as historic=memorial" },

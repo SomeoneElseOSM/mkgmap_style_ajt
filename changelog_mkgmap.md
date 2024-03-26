@@ -1,6 +1,8 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+
 ## 26/03/2024
 Removed "shop=guns", no longer in the data.
 Removed "craft=joinery", no longer in the data.

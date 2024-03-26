@@ -4,7 +4,8 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleeased
 Removed "shop=guns", no longer in the data.
 Removed "craft=joinery", no longer in the data.
-Don't appear "water" value if a linear water type.
+Don't append "water" value if a linear water type.
+Don't append "QDB" QA if a bus stop is disused.
 
 ## 20/03/2024
 Render shop=esoteric in the same list as other "woo" shops such as "new_age" etc.

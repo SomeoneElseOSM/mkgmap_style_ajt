@@ -2017,7 +2017,7 @@ function process_all( objtype, object )
        ( object.tags["physically_present"] == "yes"      )) then
       object.tags["highway"] = "bus_stop"
       object = append_nonqa( object, "disused" )
-      object.tags["disused:highway"] = nil
+      object.tags["physically_present"] = nil
    end
 
 -- ----------------------------------------------------------------------------
@@ -2148,7 +2148,8 @@ function process_all( objtype, object )
                 ( object.tags["physically_present"]            ~= "no"  ) and
                 ( object.tags["naptan:BusStopType"]            ~= "CUS" ) and
                 ( object.tags["departures_board"]              == nil   ) and
-                ( object.tags["passenger_information_display"] == nil   )) then
+                ( object.tags["passenger_information_display"] == nil   ) and
+                ( object.tags["disused:highway"]               == nil   )) then
                object = append_qa( object, "qdb" )
             end
          end

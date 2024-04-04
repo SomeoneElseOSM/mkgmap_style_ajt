@@ -2,6 +2,8 @@
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
+Removed "shop=takeaway" and "shop=offlicence", no longer in the data.
+Removed "amenity=shopmobility" from list of expected tags, no longer in the data.
 
 ## 26/03/2024
 Removed "shop=guns", no longer in the data.

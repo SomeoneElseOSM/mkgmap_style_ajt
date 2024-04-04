@@ -6777,7 +6777,6 @@ function process_all( objtype, object )
    if ((   object.tags["amenity"]  == "mobility"                 ) or
        (   object.tags["amenity"]  == "mobility_equipment_hire"  ) or
        (   object.tags["amenity"]  == "mobility_aids_hire"       ) or
-       (   object.tags["amenity"]  == "shopmobility"             ) or
        (   object.tags["amenity"]  == "shop_mobility"            )) then
       object.tags["shop"] = object.tags["amenity"]
       object.tags["amenity"] = nil
@@ -6977,8 +6976,7 @@ function process_all( objtype, object )
 -- "fast_food" consolidation of lesser used tags.  
 -- Also render fish and chips etc. with a unique icon.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"] == "fast_food" ) or
-       ( object.tags["shop"] == "takeaway"  )) then
+   if ( object.tags["shop"] == "fast_food" ) then
       object.tags["amenity"] = "fast_food"
    end
 
@@ -7875,7 +7873,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "beer"            ) or
        ( object.tags["shop"]    == "off_licence"     ) or
        ( object.tags["shop"]    == "off_license"     ) or
-       ( object.tags["shop"]    == "offlicence"      ) or
        ( object.tags["shop"]    == "wine"            ) or
        ( object.tags["shop"]    == "whisky"          )) then
       object = append_nonqa( object, object.tags["shop"] )

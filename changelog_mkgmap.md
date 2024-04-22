@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Removed "shop=takeaway" and "shop=offlicence", no longer in the data.
 Removed "amenity=shopmobility" from list of expected tags, no longer in the data.
+Added "playground=trampoline" to complement "leisure=trampoline"; most of the latter are no longer in the data but new ones are still being added.
 
 ## 26/03/2024
 Removed "shop=guns", no longer in the data.

@@ -3961,34 +3961,40 @@ function process_all( objtype, object )
       object = append_nonqa( object, "playground climbing frame" )
    end
 
-   if (( object.tags["leisure"]    == nil             )  and
+   if (( object.tags["leisure"]    == nil     )  and
        ( object.tags["playground"] == "slide" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "playground slide" )
    end
 
-   if (( object.tags["leisure"]    == nil             )  and
+   if (( object.tags["leisure"]    == nil       )  and
        ( object.tags["playground"] == "springy" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "playground springy" )
    end
 
-   if (( object.tags["leisure"]    == nil             )  and
+   if (( object.tags["leisure"]    == nil       )  and
        ( object.tags["playground"] == "zipwire" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "playground zipwire" )
    end
 
-   if (( object.tags["leisure"]    == nil             )  and
+   if (( object.tags["leisure"]    == nil      )  and
        ( object.tags["playground"] == "seesaw" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "playground seesaw" )
    end
 
-   if (( object.tags["leisure"]    == nil             )  and
+   if (( object.tags["leisure"]    == nil          )  and
        ( object.tags["playground"] == "roundabout" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "playground roundabout" )
+   end
+
+   if (( object.tags["leisure"]    == nil          )  and
+       ( object.tags["playground"] == "trampoline" )) then
+      object.tags["man_made"] = "thing"
+      object = append_nonqa( object, "playground trampoline" )
    end
 
 -- ----------------------------------------------------------------------------

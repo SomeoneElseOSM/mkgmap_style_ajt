@@ -2035,6 +2035,7 @@
     { "key": "playground", "value": "springy", "description": "'playground springy' shown in brackets; 'Others / Social Service'" },
     { "key": "playground", "value": "structure", "description": "'playground structure' shown in brackets; 'Others / Social Service'" },
     { "key": "playground", "value": "swing", "description": "'playground swing' shown in brackets; 'Others / Social Service'" },
+    { "key": "playground", "value": "trampoline", "description": "'playground trampoline' shown in brackets; 'Others / Social Service'" },
     { "key": "playground", "value": "zipwire", "description": "'playground zipwire' shown in brackets; 'Others / Social Service'" },
     { "key": "pole", "description": "Does a bus stop have a flag or pole?" },
     { "key": "pole", "value": "no", "description": "'no flag' shown in brackets" },

@@ -2983,8 +2983,7 @@ function process_all( objtype, object )
         ( object.tags["crossing"] == "pegasus"                 )  or
         ( object.tags["crossing"] == "pedestrian_signals"      )  or
         ( object.tags["crossing"] == "light_controlled"        )  or
-        ( object.tags["crossing"] == "light controlled"        )  or
-        ( object.tags["crossing"] == "traffic_signals;pelican" )) and
+        ( object.tags["crossing"] == "light controlled"        )) and
        (  object.tags["highway"]  == nil                        )) then
       object.tags["highway"] = "traffic_signals"
       object.tags["crossing"] = nil

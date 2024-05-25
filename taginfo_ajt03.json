@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240502T095000Z",
+  "data_updated": "20240525T102600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1776,7 +1776,7 @@
     { "key": "memorial", "value": "obelisk", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "memorial", "value": "pavement plaque", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "plaque", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
-    { "key": "memorial", "value": "plate", "description": "Shown in brackets; 'Others / Social Service'" },
+    { "key": "memorial", "value": "plate", "description": "Not a current value in OSM data. Shown in brackets; 'Others / Social Service'" },
     { "key": "memorial", "value": "sculpture", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "statue", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "stone", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

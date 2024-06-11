@@ -778,7 +778,6 @@ function process_all( objtype, object )
       	    object = append_nonqa( object, "fmr phone defib" )
          else
             if (( object.tags["amenity"] == "public_bookcase" )  or
-                ( object.tags["amenity"] == "book_exchange"   )  or
                 ( object.tags["amenity"] == "library"         )) then
                object.tags["amenity"] = "telephone"
       	       object = append_nonqa( object, "fmr phone book exchange" )
@@ -2915,8 +2914,7 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["amenity"] == "book_exchange"   ) or
-       ( object.tags["amenity"] == "public_bookcase" )) then
+   if ( object.tags["amenity"] == "public_bookcase" ) then
       object.tags["amenity"] = "library"
       object = append_nonqa( object, "book exchange" )
       object = building_or_landuse( objtype, object )

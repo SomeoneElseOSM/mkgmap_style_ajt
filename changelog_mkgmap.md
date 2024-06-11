@@ -2,7 +2,8 @@
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
 ## As yet unreleased
-Removed "crossing=traffic_signals;pelican", no longer in the data.
+Removed "[crossing=traffic_signals;pelican](https://taginfo.openstreetmap.org/tags/crossing=traffic_signals%3Bpelican#overview)", only stragglers left in the data.
+Removed "[amenity=book_exchange](https://taginfo.openstreetmap.org/tags/amenity=book_exchange#overview)", no longer in the data.
 
 ## 27/04/2024
 Removed "shop=takeaway" and "shop=offlicence", no longer in the data.

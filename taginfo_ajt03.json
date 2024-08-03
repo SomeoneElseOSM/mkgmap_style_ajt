@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240803T183300Z",
+  "data_updated": "20240803T203600Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -332,6 +332,7 @@
     { "key": "amenity", "value": "veterinary", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "village_hall", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "amenity", "value": "waste_basket", "description": "Shown in brackets; 'Other / Social Service'" },
+    { "key": "amenity", "value": "waste_disposal", "description": "shown in brackets; 'Community / Utility'" },
     { "key": "amenity", "value": "waste_transfer_station", "description": "shown in brackets; not searchable unless actually recycling" },
     { "key": "amenity", "value": "watering_place", "description": "Shown in brackets; 'Other / Social Service'" },
     { "key": "amenity", "value": "wildlife_hide", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },

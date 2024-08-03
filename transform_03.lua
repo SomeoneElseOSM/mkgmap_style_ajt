@@ -5528,10 +5528,9 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Recycling bins and recycling centres.
--- Recycling bins are only shown from z19.  Recycling centres are shown from
--- z16 and have a characteristic icon.  Any object without recycling_type
--- is assumed to be a bin.
--- "0x2f15" is searchable via "Community / Utility"
+-- Any recycling object without recycling_type is assumed to be a bin.
+-- "amenity=recycling" is in "points" as "0x2f15" 
+-- and is searchable via "Community / Utility"
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "recycling" ) then
       if ( object.tags["recycling_type"] == "centre" ) then
@@ -5539,6 +5538,16 @@ function process_all( objtype, object )
       else
          object = append_nonqa( object, "recycling bins" )
       end
+   end
+
+-- ----------------------------------------------------------------------------
+-- Waste disposal
+-- We set the tag to "amenity=recycling" which is in "points" as "0x2f15"
+-- and is searchable via "Community / Utility"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["amenity"] == "waste_disposal" ) then
+      object.tags["amenity"] = "recycling"
+      object = append_nonqa( object, "waste disposal" )
    end
 
 -- ----------------------------------------------------------------------------

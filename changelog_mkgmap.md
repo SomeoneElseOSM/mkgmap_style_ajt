@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Removed "[crossing=traffic_signals;pelican](https://taginfo.openstreetmap.org/tags/crossing=traffic_signals%3Bpelican#overview)", only stragglers left in the data.
 Removed "[amenity=book_exchange](https://taginfo.openstreetmap.org/tags/amenity=book_exchange#overview)", no longer in the data.
+Removed "[shop=electric_bicycle](https://taginfo.openstreetmap.org/tags/shop=electric_bicycle#overview)", no longer in the data.
 
 ## 27/04/2024
 Removed "shop=takeaway" and "shop=offlicence", no longer in the data.

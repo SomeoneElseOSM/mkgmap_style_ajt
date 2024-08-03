@@ -8123,8 +8123,7 @@ function process_all( objtype, object )
 -- "0x2f13" is searchable via "Others / Repair Services"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"] == "bicycle"          ) or
-       ( object.tags["shop"] == "bicycle_repair"   ) or
-       ( object.tags["shop"] == "electric_bicycle" )) then
+       ( object.tags["shop"] == "bicycle_repair"   )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "bicycle"
       object = building_or_landuse( objtype, object )

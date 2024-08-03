@@ -2106,7 +2106,9 @@ function process_all( objtype, object )
 -- For speech output, it's "departures_board:speech_output" or 
 -- "passenger_information_display:speech_output".
 -- Finally, "qdb" is used for QA for timetables that have not been surveyed
--- to see if there is a departures board or not.
+-- to see if there is a departures board or not, and for various potentially
+-- incomplete combinations such as "realtime departures board, 
+-- but no info on speech output".
 -- ----------------------------------------------------------------------------
       if (( object.tags["departures_board"]              == "realtime"                     ) or
           ( object.tags["departures_board"]              == "timetable; realtime"          ) or
@@ -2122,6 +2124,11 @@ function process_all( objtype, object )
             object = append_nonqa( object, "rts" )
          else
             object = append_nonqa( object, "rt" )
+
+            if (( object.tags["departures_board:speech_output"]              ~= "no" ) and
+                ( object.tags["passenger_information_display:speech_output"] ~= "no" )) then
+               object = append_qa( object, "qdb" )
+            end
          end
       else
          if (( object.tags["departures_board"]              == "timetable"        ) or

@@ -1760,7 +1760,7 @@
     { "key": "marker", "value": "stone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "marker", "value": "yes", "description": "If utility, shown in brackets with utility; 'Geographic Points / Manmade Places'" },
     { "key": "maxspeed", "description": "If no maxspeed set on a road, append '(M)' to the name" },
-    { "key": "meadow", "description": "Detect 'agricultural' meadows and don't show them" },
+    { "key": "meadow", "description": "Detect 'agricultural' meadows and don't show them; show others in brackets" },
     { "key": "meadow", "value": "agriculture", "description": "Detect 'agricultural' meadows and don't show them" },
     { "key": "meadow", "value": "cut", "description": "Detect 'agricultural' meadows and don't show them" },
     { "key": "meadow", "value": "hay", "description": "Detect 'agricultural' meadows and don't show them" },

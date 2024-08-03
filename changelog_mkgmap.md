@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Show "[amenity=waste_disposal](https://taginfo.openstreetmap.org/tags/amenity=waste_disposal#overview)" in a similar manner to recycling.
 Append "QDB" if we know a bus stop has a realtime display but don't know "[departures_board:speech_output](https://taginfo.openstreetmap.org/keys/departures_board:speech_output#values)".
+Append meadow type in brackets for the meadow types that we show.
 
 ## 03/08/2024
 Removed "[crossing=traffic_signals;pelican](https://taginfo.openstreetmap.org/tags/crossing=traffic_signals%3Bpelican#overview)", only stragglers left in the data.

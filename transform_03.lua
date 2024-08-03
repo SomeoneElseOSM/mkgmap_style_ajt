@@ -1577,6 +1577,11 @@ function process_all( objtype, object )
       end
 
       object = append_nonqa( object, object.tags["landuse"] )
+
+      if ( object.tags["meadow"] ~= nil ) then
+	 object = append_nonqa( object, object.tags["meadow"] )
+      end
+
       object.tags["landuse"] = nil
    end
 

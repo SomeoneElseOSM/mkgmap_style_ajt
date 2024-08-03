@@ -9131,6 +9131,17 @@ function ott.process_node( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Other waterway access points
+-- ----------------------------------------------------------------------------
+   if (( object.tags["waterway"]   == "access_point"  ) or
+       ( object.tags["whitewater"] == "put_in"        ) or
+       ( object.tags["whitewater"] == "put_in;egress" ) or
+       ( object.tags["canoe"]      == "put_in"        )) then
+      object = append_nonqa( object, "canoe put-in" )
+      object.tags["man_made"] = "thing"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Render amenity=information as tourism
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "information"  ) then

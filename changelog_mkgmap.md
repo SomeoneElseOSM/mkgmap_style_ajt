@@ -6,6 +6,7 @@ Show "[amenity=waste_disposal](https://taginfo.openstreetmap.org/tags/amenity=wa
 Append "QDB" if we know a bus stop has a realtime display but don't know "[departures_board:speech_output](https://taginfo.openstreetmap.org/keys/departures_board:speech_output#values)".
 Append meadow type in brackets for the meadow types that we show.
 Append prow_ref in brackets where relevant.
+Removed "[memorial=plate](https://taginfo.openstreetmap.org/tags/memorial=plate#overview)", no longer in the data.
 
 ## 03/08/2024
 Removed "[crossing=traffic_signals;pelican](https://taginfo.openstreetmap.org/tags/crossing=traffic_signals%3Bpelican#overview)", only stragglers left in the data.

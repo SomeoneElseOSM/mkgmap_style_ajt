@@ -6188,9 +6188,8 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Memorial plates
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["historic"]      == "memorial"  ) and
-       (( object.tags["memorial"]      == "plate"    )  or
-        ( object.tags["memorial:type"] == "plate"    ))) then
+   if (( object.tags["historic"]      == "memorial" ) and
+       ( object.tags["memorial:type"] == "plate"    )) then
       object = append_nonqa( object, "memorial plate" )
       object.tags["man_made"] = "thing"
    end

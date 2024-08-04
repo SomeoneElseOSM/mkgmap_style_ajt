@@ -1935,8 +1935,11 @@ function process_all( objtype, object )
 --
 -- Railway, bus, ferry, bicycle_rental:
 -- "0x2f08" is searchable via "Transportation / Ground Transportation"
--- These values are all also in "points", as the same Garmin ID
+-- These values are all also in "points", as the same Garmin ID, for example:
+-- "railway=station {name '${name}'} [0x2f08 resolution 20]"
 -- "bicycle_rental" is also in the brand / operator logic below.
+-- We also send "building=train_station" through to make them searchable as 
+-- stations; the suffix will show which is which.
 --
 -- "Tourism:
 -- "0x2c04" is searchable via "Attractions / Landmark"
@@ -1954,6 +1957,17 @@ function process_all( objtype, object )
          object.tags["tourism"] = nil
       end
 
+      object = building_or_landuse( objtype, object )
+   end
+
+   if (( object.tags["building"] == "train_station" ) and
+       ( object.tags["name"]     ~= nil             ) and
+       ( object.tags["shop"]     == nil             ) and
+       ( object.tags["office"]   == nil             ) and
+       ( object.tags["tourism"]  == nil             )) then
+      object.tags["railway"] = "station"
+      object = append_nonqa( object, "building" )
+      object = append_nonqa( object, object.tags["building"] )
       object = building_or_landuse( objtype, object )
    end
 

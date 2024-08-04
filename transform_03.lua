@@ -2990,6 +2990,34 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- We show entrances as "man_made=thing".
+-- Unfortunately "entrance=main" seems to be significantly misused in some 
+-- areas, so we need to check for the absense of lots of other tags.
+-- In "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["entrance"]         == "main"                   ) or
+        ( object.tags["building"]         == "entrance"               ) or
+        ( object.tags["entrance"]         == "entrance"               ) or
+        ( object.tags["public_transport"] == "entrance"               ) or
+        ( object.tags["railway"]          == "entrance"               ) or
+        ( object.tags["railway"]          == "train_station_entrance" ) or
+        ( object.tags["school"]           == "entrance"               )) and
+       (  object.tags["amenity"]          == nil                       ) and
+       (  object.tags["barrier"]          == nil                       ) and
+       (  object.tags["building"]         == nil                       ) and
+       (  object.tags["craft"]            == nil                       ) and
+       (  object.tags["highway"]          == nil                       ) and
+       (  object.tags["office"]           == nil                       ) and
+       (  object.tags["shop"]             == nil                       ) and
+       (  object.tags["tourism"]          == nil                       )) then
+      object.tags["man_made"] = "thing"
+      object.tags["amenity"] = nil
+      object = append_nonqa( object, "entrance" )
+   end
+
+-- ----------------------------------------------------------------------------
 -- Bicycle repair stations not in phone boxes.
 -- See above for phone box ones.
 -- man_made=thing

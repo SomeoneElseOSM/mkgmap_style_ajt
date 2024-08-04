@@ -9,6 +9,7 @@ Append prow_ref in brackets where relevant.
 Removed "[memorial=plate](https://taginfo.openstreetmap.org/tags/memorial=plate#overview)", no longer in the data.
 Show "[waterway=cave_of_debouchement](https://taginfo.openstreetmap.org/tags/waterway=cave_of_debouchement#overview)" in brackets as a spring; searchable as 'Geographic Points / Water Features'.
 Show "[building=train_station](https://taginfo.openstreetmap.org/tags/building=train_station#overview)" in brackets as a railway station; searchable as 'Transportation / Ground Transportation'.
+Show various building entrances as "entrance" in brackets.
 
 ## 03/08/2024
 Removed "[crossing=traffic_signals;pelican](https://taginfo.openstreetmap.org/tags/crossing=traffic_signals%3Bpelican#overview)", only stragglers left in the data.

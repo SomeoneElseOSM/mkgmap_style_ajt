@@ -1315,6 +1315,15 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- cave_of_debouchement
+-- 0x6511 is searchable via "Geographic Points / Water Features"
+-- ----------------------------------------------------------------------------
+   if ( object.tags["waterway"]   == "cave_of_debouchement" ) then
+      object.tags["natural"] = "spring"
+      object = append_nonqa( object, object.tags["waterway"] )
+   end
+
+-- ----------------------------------------------------------------------------
 -- amenity=drinking_water
 -- In "points" as "0x5000"
 -- "0x5000" is searchable via "Geographic Points / Water Features"
@@ -3014,7 +3023,7 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Detect ladders qqq
+-- Detect ladders
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"] == "ladder"   ) and
        ( object.tags["highway"]  == nil        )) then

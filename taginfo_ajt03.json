@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240804T013600Z",
+  "data_updated": "20240804T020300Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2899,6 +2899,7 @@
     { "key": "waterway", "value": "access_point", "description": "Shown in brackets as 'Other / Social Service'" },
     { "key": "waterway", "value": "brook", "description": "Shown in brackets; handled as 'waterway=stream'" },
     { "key": "waterway", "value": "canal", "description": "Shown in brackets; handled as 'waterway=river'" },
+    { "key": "waterway", "value": "cave_of_debouchement", "description": "Shown in brackets as spring; 'Geographic Points / Water Features'" },
     { "key": "waterway", "value": "derelict_canal", "description": "Shown in brackets as line" },
     { "key": "waterway", "value": "disused_canal", "description": "Handled as 'waterway=derelict_canal'" },
     { "key": "waterway", "value": "ditch", "description": "Shown in brackets; handled as 'waterway=stream'" },

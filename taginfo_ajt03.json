@@ -2050,6 +2050,7 @@
     { "key": "proposed", "description": "Shown in brackets after proposed roads" },
     { "key": "protection_title", "description": "detect commons" },
     { "key": "protection_title", "value": "common", "description": "Shown in brackets.  If named, shown as a park ('Attractions / Park or Garden'), or if no name unnamed park ('Geographic Points / Land Features')" },
+    { "key": "prow_ref", "description": "Shown in brackets" },
     { "key": "pub", "description": "detect micropubs and hotels with bars" },
     { "key": "pub", "value": "micro", "description": "detect micropubs" },
     { "key": "pub", "value": "yes", "description": "detect hotels with bars" },

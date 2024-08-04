@@ -9823,6 +9823,10 @@ function ott.process_way( object )
 
    if ( designation_appendix ~= "" ) then
       object = append_nonqa( object, designation_appendix )
+
+      if ( object.tags["prow_ref"] ~= nil ) then
+         object = append_nonqa( object, object.tags["prow_ref"] )
+      end
    end
 
 -- ----------------------------------------------------------------------------

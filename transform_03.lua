@@ -1960,11 +1960,12 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if (( object.tags["building"] == "train_station" ) and
-       ( object.tags["name"]     ~= nil             ) and
-       ( object.tags["shop"]     == nil             ) and
-       ( object.tags["office"]   == nil             ) and
-       ( object.tags["tourism"]  == nil             )) then
+   if (( object.tags["building"]          == "train_station" ) and
+       ( object.tags["name"]              ~= nil             ) and
+       ( object.tags["shop"]              == nil             ) and
+       ( object.tags["office"]            == nil             ) and
+       ( object.tags["tourism"]           == nil             ) and
+       ( object.tags["historic:railway"]  == nil             )) then
       object.tags["railway"] = "station"
       object = append_nonqa( object, "building" )
       object = append_nonqa( object, object.tags["building"] )

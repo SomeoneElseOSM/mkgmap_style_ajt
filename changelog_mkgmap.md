@@ -8,7 +8,7 @@ Append meadow type in brackets for the meadow types that we show.
 Append prow_ref in brackets where relevant.
 Removed "[memorial=plate](https://taginfo.openstreetmap.org/tags/memorial=plate#overview)", no longer in the data.
 Show "[waterway=cave_of_debouchement](https://taginfo.openstreetmap.org/tags/waterway=cave_of_debouchement#overview)" in brackets as a spring; searchable as 'Geographic Points / Water Features'.
-Show "[building=train_station](https://taginfo.openstreetmap.org/tags/building=train_station#overview)" in brackets as a railway station; searchable as 'Transportation / Ground Transportation'.
+Show "[building=train_station](https://taginfo.openstreetmap.org/tags/building=train_station#overview)" in brackets as a railway station; searchable as 'Transportation / Ground Transportation', unless some other tag is set.
 Show various building entrances as "entrance" in brackets.
 
 ## 03/08/2024

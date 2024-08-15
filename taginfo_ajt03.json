@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240804T141900Z",
+  "data_updated": "20240815T235300Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2200,6 +2200,7 @@
     { "key": "shop", "value": "blinds", "description": "Shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "boat", "description": "Shown in brackets; 'Others / Marine Services'" },
     { "key": "shop", "value": "boat_rental", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
+    { "key": "shop", "value": "boat_repair", "description": "Shown in brackets; 'Others / Marine Services'" },
     { "key": "shop", "value": "bookmaker", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "books", "description": "shown in brackets; 'Shopping / Book Store'" },
     { "key": "shop", "value": "boutique", "description": "shown in brackets; 'Shopping / Apparel'" },
@@ -2483,6 +2484,7 @@
     { "key": "shop", "value": "magic", "description": "Shown in brackets; 'Shopping / Gift/Antique/Art'" },
     { "key": "shop", "value": "mall", "description": "Shown in brackets; 'Shopping / Shopping Center'" },
     { "key": "shop", "value": "maps", "description": "shown in brackets; 'Shopping / Book Store'" },
+    { "key": "shop", "value": "marine", "description": "Shown in brackets; 'Others / Marine Services'" },
     { "key": "shop", "value": "market", "description": "Shown in brackets; 'Shopping / Shopping Center'" },
     { "key": "shop", "value": "marketplace", "description": "Shown in brackets; 'Shopping / Shopping Center'" },
     { "key": "shop", "value": "massage", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

@@ -10,6 +10,7 @@ Removed "[memorial=plate](https://taginfo.openstreetmap.org/tags/memorial=plate#
 Show "[waterway=cave_of_debouchement](https://taginfo.openstreetmap.org/tags/waterway=cave_of_debouchement#overview)" in brackets as a spring; searchable as 'Geographic Points / Water Features'.
 Show "[building=train_station](https://taginfo.openstreetmap.org/tags/building=train_station#overview)" in brackets as a railway station; searchable as 'Transportation / Ground Transportation', unless some other tag is set.
 Show various building entrances as "entrance" in brackets.
+Show [shop=marine](https://taginfo.openstreetmap.org/tags/shop=marine#overview) and [shop=boat_repair](https://taginfo.openstreetmap.org/tags/shop=boat_repair#overview) as marine facilities.
 
 ## 03/08/2024
 Removed "[crossing=traffic_signals;pelican](https://taginfo.openstreetmap.org/tags/crossing=traffic_signals%3Bpelican#overview)", only stragglers left in the data.

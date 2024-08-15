@@ -6884,10 +6884,12 @@ function process_all( objtype, object )
       object.tags["craft"] = nil
    end
 
-   if (( object.tags["shop"] == "boat"           )  or
+   if (( object.tags["shop"] == "boat"           ) or
+       ( object.tags["shop"] == "boat_repair"    ) or
        ( object.tags["shop"] == "boatbuilder"    ) or
        ( object.tags["shop"] == "chandler"       ) or
        ( object.tags["shop"] == "chandlery"      ) or
+       ( object.tags["shop"] == "marine"         ) or
        ( object.tags["shop"] == "ship_chandler"  )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "boat"

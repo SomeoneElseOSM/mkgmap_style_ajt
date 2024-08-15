@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 16/08/2024
 Show "[amenity=waste_disposal](https://taginfo.openstreetmap.org/tags/amenity=waste_disposal#overview)" in a similar manner to recycling.
 Append "QDB" if we know a bus stop has a realtime display but don't know "[departures_board:speech_output](https://taginfo.openstreetmap.org/keys/departures_board:speech_output#values)".
 Append meadow type in brackets for the meadow types that we show.

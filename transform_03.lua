@@ -10163,10 +10163,21 @@ function ott.process_way( object )
       end
 
 -- ----------------------------------------------------------------------------
--- The test here is e.g. "is verge set to anything, including yes or none".
+-- The test here is e.g. "is sidewalk or verge set to anything, including 
+-- yes or none".
+-- We don't look at individual values because we're looking to add an 
+-- "S" or "V" to those roads that don't have sidewalk or verge information 
+-- already.
 -- ----------------------------------------------------------------------------
-      if ( object.tags["sidewalk"] == nil ) then
-         if ( object.tags["verge"] == nil ) then
+      if (( object.tags["sidewalk"]          == nil ) and
+          ( object.tags["sidewalk:left"]     == nil ) and 
+          ( object.tags["sidewalk:right"]    == nil ) and 
+          ( object.tags["sidewalk:both"]     == nil ) and
+          ( object.tags["sidewalk:separate"] == nil )) then
+         if (( object.tags["verge"]          == nil ) and
+             ( object.tags["verge:left"]     == nil ) and
+             ( object.tags["verge:right"]    == nil ) and
+             ( object.tags["verge:both"]     == nil )) then
             if ( street_appendix == nil ) then
                street_appendix = "S"
             else
@@ -10176,7 +10187,10 @@ function ott.process_way( object )
       else
          if (( object.tags["sidewalk"] == "no"   ) or
              ( object.tags["sidewalk"] == "none" )) then
-            if ( object.tags["verge"] == nil ) then
+            if (( object.tags["verge"]          == nil ) and
+                ( object.tags["verge:left"]     == nil ) and
+                ( object.tags["verge:right"]    == nil ) and
+                ( object.tags["verge:both"]     == nil )) then
                if ( street_appendix == nil ) then
                   street_appendix = "V"
                else
@@ -10185,7 +10199,7 @@ function ott.process_way( object )
             end
          end
       end
-   end
+   end -- if (( object.tags["highway"] == "unclassified"  ) or
 
     if ( street_appendix ~= "" ) then
         if ( object.tags["name"] == nil ) then

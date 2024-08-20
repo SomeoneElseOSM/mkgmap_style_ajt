@@ -9930,13 +9930,11 @@ function ott.process_way( object )
          object = append_nonqa( object, "flood" )
       end
 
-      if (( object.tags["dog"]  == "no" )  or
-          ( object.tags["dogs"] == "no" )) then
+      if ( object.tags["dog"]  == "no" ) then
          object = append_nonqa( object, "nodog" )
       end
 
-      if (( object.tags["dog"]  == "leashed" )  or
-          ( object.tags["dogs"] == "leashed" )) then
+      if ( object.tags["dog"]  == "leashed" ) then
          object = append_nonqa( object, "doglead" )
       end
    end

@@ -4,6 +4,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 ## As yet unreleased
 Removed "[dogs=leashed](https://taginfo.openstreetmap.org/tags/dogs=leashed#overview)" and "[dogs=no](https://taginfo.openstreetmap.org/tags/dogs=no#overview)", no longer in the data.
 When checking sidewalks and verges, also look for e.g. [sidewalk:left](https://taginfo.openstreetmap.org/keys/sidewalk%3Aleft#overview) and [verge:left](https://taginfo.openstreetmap.org/keys/verge%3Aleft#overview) (and right, both, and separate).
+Removed [waterway=life_belt](https://taginfo.openstreetmap.org/tags/waterway=life_belt#overview) and [waterway=life_ring](https://taginfo.openstreetmap.org/tags/waterway=life_ring#overview), no longer in the data.
 
 ## 16/08/2024
 Show "[amenity=waste_disposal](https://taginfo.openstreetmap.org/tags/amenity=waste_disposal#overview)" in a similar manner to recycling.

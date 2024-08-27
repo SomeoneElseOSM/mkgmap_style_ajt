@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240820T201400Z",
+  "data_updated": "20240827T162800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2928,8 +2928,6 @@
     { "key": "waterway", "value": "fuel", "description": "Handled as 'amenity=charging_station' or 'amenity=fuel' depending on other tags" },
     { "key": "waterway", "value": "historic_canal", "description": "Handled as 'waterway=derelict_canal'" },
     { "key": "waterway", "value": "leat", "description": "Shown in brackets; handled as 'waterway=river'" },
-    { "key": "waterway", "value": "life_belt", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
-    { "key": "waterway", "value": "life_ring", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "waterway", "value": "lock_gate", "description": "Shown in brackets as unique icon (white exclamation mark); not searchable" },
     { "key": "waterway", "value": "milestone", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "waterway", "value": "mill_pond", "description": "Shown in brackets; handled as 'natural=water'" },

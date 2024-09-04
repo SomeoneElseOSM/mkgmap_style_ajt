@@ -4980,6 +4980,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Tunnel values - show as "yes" if appropriate.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["tunnel"] == "culvert"             ) or
+       ( object.tags["tunnel"] == "covered"             ) or
+       ( object.tags["tunnel"] == "avalanche_protector" ) or
+       ( object.tags["tunnel"] == "passage"             ) or
+       ( object.tags["tunnel"] == "1"                   ) or
+       ( object.tags["tunnel"] == "cave"                ) or
+       ( object.tags["tunnel"] == "flooded"             ) or
+       ( object.tags["tunnel"] == "building_passage"    )) then
+      object.tags["tunnel"] = "yes"
+   end
+
+-- ----------------------------------------------------------------------------
 -- The code to handle various sorts of ways of supplying electricity is 
 -- borrowed from the web maps' "style.lua".  We later move these to appropriate
 -- Garmin menus.
@@ -9753,19 +9767,6 @@ function ott.process_way( object )
         ( object.tags["is_sidepath:of:ref"]  ~= nil        )) and
        (  object.tags["name"]    ~= nil             )) then
       object.tags["name"] = nil
-   end
-
--- ----------------------------------------------------------------------------
--- Tunnel values - show as "yes" if appropriate.
--- ----------------------------------------------------------------------------
-   if (( object.tags["tunnel"] == "culvert"             ) or
-       ( object.tags["tunnel"] == "covered"             ) or
-       ( object.tags["tunnel"] == "avalanche_protector" ) or
-       ( object.tags["tunnel"] == "passage"             ) or
-       ( object.tags["tunnel"] == "1"                   ) or
-       ( object.tags["tunnel"] == "cave"                ) or
-       ( object.tags["tunnel"] == "flooded"             )) then
-      object.tags["tunnel"] = "yes"
    end
 
 -- ----------------------------------------------------------------------------

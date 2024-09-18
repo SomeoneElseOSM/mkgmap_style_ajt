@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240827T162800Z",
+  "data_updated": "20240918T192100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1023,9 +1023,7 @@
     { "key": "est_width", "description": "Used to set width if width is unset" },
     { "key": "fee", "description": "If set to a non-free value, 'pay' appended to some objects" },
     { "key": "fee", "value": "0", "description": "Treated as free" },
-    { "key": "fee", "value": "Free", "description": "Treated as free" },
     { "key": "fee", "value": "None", "description": "Treated as free" },
-    { "key": "fee", "value": "free", "description": "Treated as free" },
     { "key": "fee", "value": "no", "description": "Treated as free" },
     { "key": "fee", "value": "none", "description": "Treated as free" },
     { "key": "female", "description": "Detect female toilets" },

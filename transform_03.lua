@@ -3608,8 +3608,6 @@ function process_all( objtype, object )
           ( object.tags["fee"]     ~= "no"              )  and
           ( object.tags["fee"]     ~= "none"            )  and
           ( object.tags["fee"]     ~= "None"            )  and
-          ( object.tags["fee"]     ~= "Free"            )  and
-          ( object.tags["fee"]     ~= "free"            )  and
           ( object.tags["fee"]     ~= "0"               )) then
          object = append_nonqa( object, "pay" )
       end
@@ -3662,8 +3660,6 @@ function process_all( objtype, object )
            ( object.tags["fee"]     ~= "no"      )  and
            ( object.tags["fee"]     ~= "none"    )  and
            ( object.tags["fee"]     ~= "None"    )  and
-           ( object.tags["fee"]     ~= "Free"    )  and
-           ( object.tags["fee"]     ~= "free"    )  and
            ( object.tags["fee"]     ~= "0"       ))) then
          object = append_nonqa( object, "pay" )
       end
@@ -3690,8 +3686,6 @@ function process_all( objtype, object )
           ( object.tags["fee"]     ~= "no"              )  and
           ( object.tags["fee"]     ~= "none"            )  and
           ( object.tags["fee"]     ~= "None"            )  and
-          ( object.tags["fee"]     ~= "Free"            )  and
-          ( object.tags["fee"]     ~= "free"            )  and
           ( object.tags["fee"]     ~= "0"               )) then
          object = append_nonqa( object, "pay" )
       end
@@ -3710,8 +3704,6 @@ function process_all( objtype, object )
           ( object.tags["fee"]     ~= "No"      )  and
           ( object.tags["fee"]     ~= "none"    )  and
           ( object.tags["fee"]     ~= "None"    )  and
-          ( object.tags["fee"]     ~= "Free"    )  and
-          ( object.tags["fee"]     ~= "free"    )  and
           ( object.tags["fee"]     ~= "0"       )) then
          if (( object.tags["male"]   == "yes" ) and
              ( object.tags["female"] ~= "yes" )) then

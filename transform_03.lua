@@ -751,7 +751,6 @@ function process_all( objtype, object )
        (  object.tags["booth"]           == "K8"              )  or
        (  object.tags["telephone_kiosk"] == "K6"              )  or
        (  object.tags["man_made"]        == "telephone_box"   )  or
-       (  object.tags["building"]        == "telephone_kiosk" )  or
        (  object.tags["building"]        == "telephone_box"   )  or
        (  object.tags["historic"]        == "telephone"       )  or
        (  object.tags["disused:amenity"] == "telephone"       )  or

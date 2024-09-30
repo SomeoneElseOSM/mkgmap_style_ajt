@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20240922T113600Z",
+  "data_updated": "20240930T120800Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -540,7 +540,6 @@
     { "key": "building", "value": "ship", "description": "Tell lifeboats from lifeboat stations" },
     { "key": "building", "value": "telephone_box", "description": "Used to detect telephone boxes" },
     { "key": "building", "value": "telephone_exchange", "description": "shown in brackets; not searchable" },
-    { "key": "building", "value": "telephone_kiosk", "description": "Used to detect telephone boxes" },
     { "key": "building", "value": "train_station", "description": "Used to detect railway stations" },
     { "key": "building", "value": "tower", "description": "Used to detect church spires" },
     { "key": "building", "value": "unit", "description": "Used to detect shopmobility" },

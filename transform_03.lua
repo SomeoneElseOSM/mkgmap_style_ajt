@@ -7689,7 +7689,8 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "waterbed"                    ) or
        ( object.tags["shop"]   == "window_blind"                ) or
        ( object.tags["shop"]   == "window_construction"         ) or
-       ( object.tags["shop"]   == "windows"                     )) then
+       ( object.tags["shop"]   == "windows"                     ) or
+       ( object.tags["shop"]   == "doors"                       )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"]    = "doityourself"
       object = building_or_landuse( objtype, object )

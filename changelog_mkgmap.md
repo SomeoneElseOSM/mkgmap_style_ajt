@@ -5,6 +5,7 @@ This page describes changes made to the detailed mkgmap / Garmin map style [here
 Removed various rare "fee=no" synonyms, no longer in the data.
 Removed "building=telephone_kiosk", no longer in the data.
 If a shop=agrarian doesn't have "agrarian" set, show as a speciality shop with "agrarian" appended.
+Added shop=doors to the list of homeware shops processed.
 
 ## 18/09/2024
 Removed "[dogs=leashed](https://taginfo.openstreetmap.org/tags/dogs=leashed#overview)" and "[dogs=no](https://taginfo.openstreetmap.org/tags/dogs=no#overview)", no longer in the data.

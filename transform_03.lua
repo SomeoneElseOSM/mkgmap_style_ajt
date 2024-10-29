@@ -7017,21 +7017,23 @@ function process_all( objtype, object )
       object.tags["shop"] = "unknown"
    end
 
-   if (( object.tags["shop"]    == "unknown"         ) or
-       ( object.tags["shop"]    == "unknown craft"   ) or
-       ( object.tags["shop"]    == "hire"            ) or
-       ( object.tags["shop"]    == "rental"          ) or
-       ( object.tags["shop"]    == "second_hand"     ) or
-       ( object.tags["shop"]    == "junk"            ) or
-       ( object.tags["shop"]    == "retail"          ) or
-       ( object.tags["shop"]    == "trade"           ) or
-       ( object.tags["shop"]    == "cash_and_carry"  ) or
-       ( object.tags["shop"]    == "wholesale"       ) or
-       ( object.tags["shop"]    == "wood"            ) or
-       ( object.tags["shop"]    == "childrens"       ) or
-       ( object.tags["shop"]    == "factory_outlet"  ) or
-       ( object.tags["shop"]    == "specialist"      ) or
-       ( object.tags["shop"]    == "specialist_shop" )) then
+   if ((  object.tags["shop"]     == "unknown"          ) or
+       (  object.tags["shop"]     == "unknown craft"    ) or
+       (  object.tags["shop"]     == "hire"             ) or
+       (  object.tags["shop"]     == "rental"           ) or
+       (  object.tags["shop"]     == "second_hand"      ) or
+       (  object.tags["shop"]     == "junk"             ) or
+       (  object.tags["shop"]     == "retail"           ) or
+       (  object.tags["shop"]     == "trade"            ) or
+       (  object.tags["shop"]     == "cash_and_carry"   ) or
+       (  object.tags["shop"]     == "wholesale"        ) or
+       (  object.tags["shop"]     == "wood"             ) or
+       (  object.tags["shop"]     == "childrens"        ) or
+       (  object.tags["shop"]     == "factory_outlet"   ) or
+       (  object.tags["shop"]     == "specialist"       ) or
+       (  object.tags["shop"]     == "specialist_shop"  ) or
+       (( object.tags["shop"]     == "agrarian"        )  and
+        ( object.tags["agrarian"] == nil               ))) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
@@ -8155,6 +8157,11 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "animal shelter"          ) or
        ( object.tags["shop"]    == "animal wellness"         )) then
       object = append_nonqa( object, object.tags["shop"] )
+
+      if ( object.tags["agrarian"] ~= nil ) then
+         object = append_nonqa( object, object.tags["agrarian"] )
+      end
+
       object.tags["shop"] = "specialty"
       object = building_or_landuse( objtype, object )
    end

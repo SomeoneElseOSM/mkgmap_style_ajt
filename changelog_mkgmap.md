@@ -7,6 +7,7 @@ Removed "building=telephone_kiosk", no longer in the data.
 If a shop=agrarian doesn't have "agrarian" set, show as a speciality shop with "agrarian" appended.
 Added shop=doors to the list of homeware shops processed.
 Added various piercing variations to shop=tattoo.
+Added more shops from the "long tail", mostly as "nonspecific specialist", or "gift" shops.
 
 ## 18/09/2024
 Removed "[dogs=leashed](https://taginfo.openstreetmap.org/tags/dogs=leashed#overview)" and "[dogs=no](https://taginfo.openstreetmap.org/tags/dogs=no#overview)", no longer in the data.

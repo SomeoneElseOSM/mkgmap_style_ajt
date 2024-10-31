@@ -2072,12 +2072,12 @@ function process_all( objtype, object )
    if ( object.tags["highway"] == "bus_stop" ) then
       if ( object.tags["name"] ~= nil ) then
          if (( object.tags["bus_speech_output_name"] ~= nil                                ) and
-             ( not string.match( object.tags["name"], object.tags["bus_speech_output_name"] ))) then
+             ( not string.find( object.tags["name"], object.tags["bus_speech_output_name"], 1, true ))) then
             object.tags["name"] = object.tags["name"] .. " / " .. object.tags["bus_speech_output_name"]
          end
 
          if (( object.tags["bus_display_name"] ~= nil                                ) and
-             ( not string.match( object.tags["name"], object.tags["bus_display_name"] ))) then
+             ( not string.find( object.tags["name"], object.tags["bus_display_name"], 1, true ))) then
             object.tags["name"] = object.tags["name"] .. " / " .. object.tags["bus_display_name"]
          end
       end

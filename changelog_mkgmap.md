@@ -8,6 +8,7 @@ If a shop=agrarian doesn't have "agrarian" set, show as a speciality shop with "
 Added shop=doors to the list of homeware shops processed.
 Added various piercing variations to shop=tattoo.
 Added more shops from the "long tail", mostly as "nonspecific specialist", or "gift" shops.
+Fix the appending of parts of names of bus stops so that it handles odd characters in them.
 
 ## 18/09/2024
 Removed "[dogs=leashed](https://taginfo.openstreetmap.org/tags/dogs=leashed#overview)" and "[dogs=no](https://taginfo.openstreetmap.org/tags/dogs=no#overview)", no longer in the data.

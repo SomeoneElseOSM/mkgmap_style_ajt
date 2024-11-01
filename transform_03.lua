@@ -5309,8 +5309,13 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Suppress "name" on riverbanks mapped as "natural=water"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["natural"]   == "water"  ) and
-       ( object.tags["water"]     == "river"  )) then
+   if ((  object.tags["natural"]   == "water"   ) and
+       (( object.tags["water"]     == "river"  )  or
+        ( object.tags["water"]     == "canal"  )  or
+        ( object.tags["water"]     == "stream" )  or
+        ( object.tags["water"]     == "ditch"  )  or
+        ( object.tags["water"]     == "lock"   )  or
+        ( object.tags["water"]     == "drain"  ))) then
       object.tags["name"] = nil
    end
 

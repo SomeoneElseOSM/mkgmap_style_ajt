@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 05/11/2024
 Removed various rare "fee=no" synonyms, no longer in the data.
 Removed "building=telephone_kiosk", no longer in the data.
 If a shop=agrarian doesn't have "agrarian" set, show as a speciality shop with "agrarian" appended.
@@ -10,6 +10,7 @@ Added various piercing variations to shop=tattoo.
 Added more shops from the "long tail", mostly as "nonspecific specialist", or "gift" shops.
 Fix the appending of parts of names of bus stops so that it handles odd characters in them.
 Remove the name from the area component of linear water bodies to add to river (such as canal, stream, etc.)
+Removed "shop=petfood", no longer in the data.
 
 ## 18/09/2024
 Removed "[dogs=leashed](https://taginfo.openstreetmap.org/tags/dogs=leashed#overview)" and "[dogs=no](https://taginfo.openstreetmap.org/tags/dogs=no#overview)", no longer in the data.

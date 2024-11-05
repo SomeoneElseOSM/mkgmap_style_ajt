@@ -8161,7 +8161,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "pet_supplies"            ) or
        ( object.tags["shop"]    == "pet_care"                ) or
        ( object.tags["shop"]    == "pet_food"                ) or
-       ( object.tags["shop"]    == "petfood"                 ) or
        ( object.tags["shop"]    == "pet_grooming"            ) or
        ( object.tags["shop"]    == "dog_grooming"            ) or
        ( object.tags["shop"]    == "pet;corn"                ) or

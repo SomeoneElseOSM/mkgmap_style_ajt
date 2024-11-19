@@ -1,6 +1,9 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+If a trunk road has a sidewalk on it, treat as primary to allow pedestrian routing.
+
 ## 05/11/2024
 Removed various rare "fee=no" synonyms, no longer in the data.
 Removed "building=telephone_kiosk", no longer in the data.

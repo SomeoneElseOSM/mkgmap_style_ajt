@@ -165,6 +165,31 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- By default, trunk roads are mapped to roads you can't walk along, as if 
+-- it was in Germany.
+-- If there's a sidewalk, obviously you can, so map to primary.
+-- ----------------------------------------------------------------------------
+   if (((  object.tags["highway"]           == "trunk"          )  or
+        (  object.tags["highway"]           == "trunk_link"     )) and
+       ((( object.tags["sidewalk"]          ~= nil             )   and
+         ( object.tags["sidewalk"]          ~= "no"            )   and
+         ( object.tags["sidewalk"]          ~= "none"          ))  or
+        (( object.tags["sidewalk:left"]     ~= nil             )   and
+         ( object.tags["sidewalk:left"]     ~= "no"            )   and
+         ( object.tags["sidewalk:left"]     ~= "none"          ))  or 
+        (( object.tags["sidewalk:right"]    ~= nil             )   and
+         ( object.tags["sidewalk:right"]    ~= "no"            )   and
+         ( object.tags["sidewalk:right"]    ~= "none"          ))  or 
+        (( object.tags["sidewalk:both"]     ~= nil             )   and
+         ( object.tags["sidewalk:both"]     ~= "no"            )   and
+         ( object.tags["sidewalk:both"]     ~= "none"          ))  or
+        (( object.tags["sidewalk:separate"] ~= nil             )   and
+         ( object.tags["sidewalk:separate"] ~= "no"            )   and
+         ( object.tags["sidewalk:separate"] ~= "none"          )))) then
+      object.tags["highway"] = "primary"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Move unsigned road refs to the name, in brackets.
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "motorway"          ) or

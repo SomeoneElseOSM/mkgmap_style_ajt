@@ -509,7 +509,7 @@
     { "key": "bridge", "value": "yes", "description": "One of many bridge types detected" },
     { "key": "bridge:name", "description": "Used in place of name" },
     { "key": "bridge:ref", "description": "Used in place of ref" },
-    { "key": "bridge_name", "description": "Used in place of name" },
+    { "key": "bridge_name", "description": "Not a current value in OSM data.  Used in place of name" },
     { "key": "bridge_ref", "description": "Used in place of ref" },
     { "key": "building", "description": "Handle various sorts of buildings" },
     { "key": "building", "value": "air_shaft", "description": "shown in brackets; 'Others / Social Service'" },

@@ -1,7 +1,7 @@
 # Changes made to this map style
 This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 21/11/2024
 If a trunk road has a sidewalk on it, treat as primary to allow pedestrian routing.
 
 ## 05/11/2024

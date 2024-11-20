@@ -159,10 +159,9 @@ if [ -f gmapsupp.img ]; then
   cp etrex/ajt02_${file_prefix1}_map.tdb /var/www/html/maps/mkgmap_maps/ajt02/${file_prefix1}/
   cp etrex/ajt02_${file_prefix1}_map.img /var/www/html/maps/mkgmap_maps/ajt02/${file_prefix1}/
   # ---------------------------------------------------------------------------
-  # Update html files from markdown.
+  # The html files are no longer updated from markdown from the "02" script;
+  # only the "03" ones.
   # ---------------------------------------------------------------------------
-  pandoc /home/${local_filesystem_user}/src/SomeoneElse-map/mkgmap.md > /var/www/html/maps/map/mkgmap.html
-  pandoc /home/${local_filesystem_user}/src/mkgmap_style_ajt/changelog_mkgmap.md > /var/www/html/maps/map/changelog_mkgmap.html
 else
   echo No gmapsupp.img file found
 fi

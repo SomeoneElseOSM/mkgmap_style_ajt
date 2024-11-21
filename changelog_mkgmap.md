@@ -1,8 +1,9 @@
-# Changes made to this map style
-This page describes changes made to the detailed mkgmap / Garmin map style [here](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/), downloadable [here](../mkgmap_maps/ajt03/).
+# Changes made
+This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
 ## 21/11/2024
 If a trunk road has a sidewalk on it, treat as primary to allow pedestrian routing.
+Readability changes to documents on the hosting website.
 
 ## 05/11/2024
 Removed various rare "fee=no" synonyms, no longer in the data.

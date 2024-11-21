@@ -174,7 +174,7 @@ if [ -f gmapsupp.img ]; then
   # Update html files from markdown.
   # ---------------------------------------------------------------------------
   pandoc -s -f markdown -t html --metadata-file /home/${local_filesystem_user}/src/SomeoneElse-map/metadata.yaml --metadata title="Maps for Garmin devices" /home/${local_filesystem_user}/src/SomeoneElse-map/mkgmap.md > /var/www/html/maps/map/mkgmap.html
-  pandoc -s -f markdown -t html --metadata-file /home/${local_filesystem_user}/src/SomeoneElse-map/metadata.yaml --metadata title="Changelog for detailed 03 mkgmap map" /home/${local_filesystem_user}/src/mkgmap_style_ajt/changelog_mkgmap.md > /var/www/html/maps/map/changelog_mkgmap.html
+  pandoc -s -f markdown -t html --metadata-file /home/${local_filesystem_user}/src/SomeoneElse-map/metadata.yaml --metadata title="Changelog for mkgmap maps" /home/${local_filesystem_user}/src/mkgmap_style_ajt/changelog_mkgmap.md > /var/www/html/maps/map/changelog_mkgmap.html
 else
   echo No gmapsupp.img file found
 fi

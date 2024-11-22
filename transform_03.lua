@@ -4352,8 +4352,10 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Things that are both peaks and cairns should render as the former.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["natural"]   == "peak"     ) and
-       ( object.tags["man_made"]  == "cairn" )) then
+   if ((( object.tags["natural"]   == "hill"         )  or
+        ( object.tags["natural"]   == "peak"         )) and
+       (( object.tags["man_made"]  == "cairn"        )  or
+        ( object.tags["man_made"]  == "survey_point" ))) then
       object.tags["man_made"] = nil
    end
 

@@ -4332,6 +4332,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Various tags are used for milk churn stands
+-- "man_made=thing" is in "points" as "0x2f14"
+-- "0x2f14" is searchable via "Others / Social Service"
+-- ----------------------------------------------------------------------------
+   if ((  object.tags["man_made"] == "milk_churn_stand" ) or
+       (  object.tags["memorial"] == "milk_churn_stand" ) or
+       (  object.tags["historic"] == "milk_churn_stand" )) then
+      object = append_nonqa( object, "milk_churn_stand" )
+      object.tags["man_made"] = "thing"
+      object.tags["historic"] = nil
+      object.tags["memorial"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Map man_made=monument to historic=monument (handled below) if no better tag
 -- exists.
 -- ----------------------------------------------------------------------------

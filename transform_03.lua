@@ -5447,7 +5447,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ((   object.tags["man_made"]         == "wind_turbine"   ) or
        (   object.tags["generator:method"] == "wind_turbine"   ) or
-       (   object.tags["generator:type"]   == "wind_turbine"   ) or
        ((  object.tags["man_made"]         == "tower"         )  and
         (  object.tags["power"]            == "generator"     )  and
         (( object.tags["power_source"]     == "wind"         )   or

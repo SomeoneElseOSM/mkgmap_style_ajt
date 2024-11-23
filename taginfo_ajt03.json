@@ -1111,8 +1111,6 @@
     { "key": "generator:method", "value": "wind_turbine", "description": "Detect wind turbines" },
     { "key": "generator:source", "description": "Wind turbines shown as tower; 'Geographic Points / Manmade Places'" },
     { "key": "generator:source", "value": "wind", "description": "Detect wind turbines" },
-    { "key": "generator:type", "description": "Wind turbines shown as tower; 'Geographic Points / Manmade Places'" },
-    { "key": "generator:type", "value": "wind_turbine", "description": "Detect wind turbines" },
     { "key": "geological", "description": "Detect palaeontological sites" },
     { "key": "geological", "value": "palaeontological_site", "description": "'palaeontological site' shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "golf", "description": "Various golf features shown" },

@@ -10024,7 +10024,8 @@ function ott.process_way( object )
 -- will cause it to appear on the map.
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "gate"        ) or
-       ( object.tags["barrier"] == "gate_locked" )) then
+       ( object.tags["barrier"] == "gate_locked" ) or
+       ( object.tags["barrier"] == "lift_gate"   )) then
       object.tags["barrier"]  = "fence"
    end
 

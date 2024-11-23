@@ -5877,15 +5877,6 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Where military has been overtagged over natural=wood, remove military.
--- ----------------------------------------------------------------------------
-   if ((( object.tags["natural"]   == "wood"        )  or
-        ( object.tags["landuse"]   == "forest"      )) and
-       (  object.tags["military"]  == "danger_area"  )) then
-      object.tags["military"] = nil
-   end
-
--- ----------------------------------------------------------------------------
 -- landuse=military, and other military things
 -- landuse=military is in "points" as "0x640b" and in polygons as "0x04"
 -- "0x640b" is searchable via "Geographic Points / Manmade Places" 

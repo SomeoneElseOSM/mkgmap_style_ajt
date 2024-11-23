@@ -1790,7 +1790,6 @@
     { "key": "military", "description": "detect military aeroway features, add suffix to military items" },
     { "key": "military", "value": "barracks", "description": "Append brand/operator to name" },
     { "key": "military", "value": "bunker", "description": "Treated as building" },
-    { "key": "military", "value": "danger_area", "description": "Ignored on wood/forest" },
     { "key": "monitoring:air_quality", "description": "Append 'air quality' in brackets to name" },
     { "key": "monitoring:air_quality", "value": "yes", "description": "Append 'air quality' in brackets to name" },
     { "key": "monitoring:rainfall", "description": "Append 'rainfall' in brackets to name" },

@@ -1642,7 +1642,6 @@
     { "key": "lifeguard", "value": "base", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "lifeguard", "value": "tower", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "lit", "description": "'L' appended as QA to streets with no 'lit' tag" },
-    { "key": "loc_ref", "description": "Appended to street name in brackets" },
     { "key": "loc_ref", "description": "Indicates an unsigned ref, potentially displayed in brackets after any name" },
     { "key": "location", "description": "Suppress Underground railway platforms" },
     { "key": "location", "value": "underground", "description": "Suppress Underground railway platforms" },

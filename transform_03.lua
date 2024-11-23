@@ -6142,7 +6142,8 @@ function process_all( objtype, object )
        ( object.tags["barrier"]   == "snow_gate"             )  or
        ( object.tags["barrier"]   == "door"                  )) then
 
-      if ( object.tags["barrier"] ~= "gate" ) then
+      if (( object.tags["barrier"] ~= "gate" ) or
+          ( objtype                == "w"    )) then
          object = append_nonqa( object, object.tags["barrier"] )
       end
 
@@ -10013,6 +10014,17 @@ function ott.process_way( object )
        ( object.tags["barrier"] == "wire_fence"      ) or
        ( object.tags["barrier"] == "wood_fence"      )) then
       object = append_nonqa( object, object.tags["barrier"] )
+      object.tags["barrier"]  = "fence"
+   end
+
+-- ----------------------------------------------------------------------------
+-- A gate (unlocked or locked) should have had "gate" appended.
+-- If locked, "locked" should also have been appended.
+-- All that remains is to set "barrier" to "fence" so that the entry in "lines"
+-- will cause it to appear on the map.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["barrier"] == "gate"        ) or
+       ( object.tags["barrier"] == "gate_locked" )) then
       object.tags["barrier"]  = "fence"
    end
 

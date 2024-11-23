@@ -1077,6 +1077,7 @@
     { "key": "ford", "value": "yes", "description": "Detect fords, shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "former:amenity", "description": "Detect former pubs" },
     { "key": "former:amenity", "value": "pub", "description": "Shown as disused pub with old name; not generally searchable" },
+    { "key": "former_amenity", "description": "Detect former pubs" },
     { "key": "former_amenity", "value": "former_pub", "description": "Shown as disused pub with old name; not generally searchable" },
     { "key": "former_amenity", "value": "old_pub", "description": "Shown as disused pub with old name; not generally searchable" },
     { "key": "former_name", "description": "Identify name of former shops etc." },

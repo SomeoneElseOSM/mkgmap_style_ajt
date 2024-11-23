@@ -4,6 +4,7 @@ This page describes changes made to the [detailed map style](https://github.com/
 ## As yet unreleased
 Linear locked and unlocked gates are shown on the map, with a suffix of "locked" if appropriate.
 Linear lift gates are also shown.
+Show some more utility aerial pipeline markers.
 
 ## 22/11/2024
 If a trunk road has a sidewalk on it, treat as primary to allow pedestrian routing.

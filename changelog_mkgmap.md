@@ -7,6 +7,7 @@ Linear lift gates are also shown.
 Show some more utility aerial pipeline markers.
 Removed `military=danger_area` check on woodland; no longer in the data.
 Removed `shop=casino`; no longer in the data.
+Added `amenity=motorcycle_rental`.
 
 ## 22/11/2024
 If a trunk road has a sidewalk on it, treat as primary to allow pedestrian routing.

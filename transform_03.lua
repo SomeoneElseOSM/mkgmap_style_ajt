@@ -8429,7 +8429,8 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "car_rental"                   ) or
        ( object.tags["amenity"] == "van_rental"                   ) or
-       ( object.tags["amenity"] == "car_rental;bicycle_rental"    )) then
+       ( object.tags["amenity"] == "car_rental;bicycle_rental"    ) or
+       ( object.tags["amenity"] == "motorcycle_rental"            )) then
       object.tags["shop"] = object.tags["amenity"]
       object.tags["amenity"] = nil
    end

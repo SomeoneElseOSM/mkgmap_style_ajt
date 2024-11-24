@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20241123T175900Z",
+  "data_updated": "20241124T133100Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2930,7 +2930,6 @@
     { "key": "waterway", "value": "sluice", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "waterway", "value": "sluice_gate", "description": "Shown in brackets; 'Geographic Points / Water Features'" },
     { "key": "waterway", "value": "spillway", "description": "Shown in brackets; handled as 'waterway=river'" },
-    { "key": "waterway", "value": "stream", "description": "Shown in brackets as river" },
     { "key": "waterway", "value": "stream", "description": "Shown in brackets as stream" },
     { "key": "waterway", "value": "tidal_channel", "description": "Shown in brackets; handled as 'waterway=stream'" },
     { "key": "waterway", "value": "waterfall", "description": "Shown as waterfall" },

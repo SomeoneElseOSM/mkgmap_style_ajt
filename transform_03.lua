@@ -7008,7 +7008,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "coal_merchant"            ) or
        ( object.tags["shop"]    == "ironing"                  ) or
        ( object.tags["shop"]    == "gallery"                  ) or
-       ( object.tags["shop"]    == "art_gallery"              ) or
        ( object.tags["shop"]    == "internet_cafe"            ) or
        ( object.tags["shop"]    == "training"                 ) or
        ( object.tags["shop"]    == "tutoring"                 ) or
@@ -7872,7 +7871,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "lottery"             ) or
        ( object.tags["shop"]    == "amusements"          ) or
        ( object.tags["shop"]    == "amusement"           ) or
-       ( object.tags["shop"]    == "casino"              ) or
        ( object.tags["shop"]    == "amusement_arcade"    ) or
        ( object.tags["shop"]    == "video_arcade"        ) or
        ( object.tags["shop"]    == "adult_gaming_centre" )) then

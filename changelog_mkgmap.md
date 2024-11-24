@@ -8,6 +8,7 @@ Show some more utility aerial pipeline markers.
 Removed `military=danger_area` check on woodland; no longer in the data.
 Removed `shop=casino`; no longer in the data.
 Added `amenity=motorcycle_rental`.
+Removed `shop=marketplace`; the only example is also a car park.
 
 ## 22/11/2024
 If a trunk road has a sidewalk on it, treat as primary to allow pedestrian routing.

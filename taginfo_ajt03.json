@@ -2480,7 +2480,6 @@
     { "key": "shop", "value": "maps", "description": "shown in brackets; 'Shopping / Book Store'" },
     { "key": "shop", "value": "marine", "description": "Shown in brackets; 'Others / Marine Services'" },
     { "key": "shop", "value": "market", "description": "Shown in brackets; 'Shopping / Shopping Center'" },
-    { "key": "shop", "value": "marketplace", "description": "Shown in brackets; 'Shopping / Shopping Center'" },
     { "key": "shop", "value": "massage", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "mattress", "description": "shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "mechanic", "description": "Shown in brackets; 'Auto Services / Auto Repair'" },

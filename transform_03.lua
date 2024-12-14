@@ -3091,6 +3091,16 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Railway crossings
+-- ----------------------------------------------------------------------------
+   if (( object.tags["railway"] == "crossing"        ) or
+       ( object.tags["railway"] == "level_crossing"  )) then
+      object = append_nonqa( object, object.tags["railway"] )
+      object.tags["man_made"] = "thing"
+      object.tags["railway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Detect ladders
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"] == "ladder"   ) and

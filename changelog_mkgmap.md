@@ -8,6 +8,7 @@ Show `railway=crane` (which are all linear) as miniature railways in their own r
 Handle a couple more historic railway features as "named historic stations".
 Show `railway=subway_entrance` with 'entrance' shown in brackets; points searchable as 'Others / Social Service'.
 Show `railway=crossing` and `railway=level_crossing` in brackets along the railway.
+Show `railway=turntable` in brackets; points searchable as 'Others / Social Service'.
 
 ## 09/12/2024
 Linear locked and unlocked gates are shown on the map, with a suffix of "locked" if appropriate.

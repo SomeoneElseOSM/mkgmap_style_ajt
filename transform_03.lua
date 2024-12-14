@@ -2218,6 +2218,26 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
+-- ----------------------------------------------------------------------------
+-- Railway turntables.
+-- We ignore these if they're also mapped as buildings.
+-- We force "area=no" on all to handle them as area features
+-- On whatever's left, we add landuse=railway to allow name display, if not 
+-- already set.
+-- "0x2f14" is searchable via "Others / Social Service"
+-- A dot appears on a GPSMAP64s
+-- ----------------------------------------------------------------------------
+   if ( object.tags["railway"] == "turntable" ) then
+      if (( object.tags["building"] ~= nil  )  and
+          ( object.tags["building"] ~= "no" )) then
+         object.tags["railway"] = nil
+      else
+         object.tags["area"] = "yes"
+         object.tags["man_made"] = "thing"
+         object = append_nonqa( object, "railway turntable" )
+      end
+   end
+
    if ( object.tags["amenity"] == "taxi" ) then
       object = append_nonqa( object, object.tags["amenity"] )
       object = building_or_landuse( objtype, object )
@@ -2373,7 +2393,6 @@ function process_all( objtype, object )
 -- Ways without a building tag will not be searchable, even on "All POIs" but
 -- will appear as landuse.
 -- ----------------------------------------------------------------------------
-
    if ((  object.tags["real_ale"]  ~= nil    ) and
        (( object.tags["amenity"]   == nil   )  and
         ( object.tags["shop"]      == nil   )  and

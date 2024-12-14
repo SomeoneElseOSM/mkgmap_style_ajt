@@ -1,7 +1,7 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 14/12/2024
 Handle `railway=phone` as `emergency=phone`.
 Handle `railway=water_crane` as historic object.
 Show `railway=crane` (which are all linear) as miniature railways in their own right.

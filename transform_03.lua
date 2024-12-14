@@ -3027,6 +3027,7 @@ function process_all( objtype, object )
         ( object.tags["entrance"]         == "entrance"               ) or
         ( object.tags["public_transport"] == "entrance"               ) or
         ( object.tags["railway"]          == "entrance"               ) or
+        ( object.tags["railway"]          == "subway_entrance"        ) or
         ( object.tags["railway"]          == "train_station_entrance" ) or
         ( object.tags["school"]           == "entrance"               )) and
        (  object.tags["amenity"]          == nil                       ) and

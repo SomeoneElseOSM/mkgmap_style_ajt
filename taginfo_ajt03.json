@@ -2076,6 +2076,7 @@
     { "key": "railway", "value": "razed", "description": "shown as line with 'dismrly' appended" },
     { "key": "railway", "value": "station", "description": "'station' appended in brackets; 'Transportation / Ground Transportation' (or if tourism) 'Attractions / Landmark'" },
     { "key": "railway", "value": "subway", "description": "shown as line with 'subway' appended" },
+    { "key": "railway", "value": "subway_entrance", "description": "'entrance' shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "railway", "value": "train_station_entrance", "description": "'entrance' shown in brackets; points searchable as 'Others / Social Service'" },
     { "key": "railway", "value": "tram", "description": "shown as line with 'tram' appended" },
     { "key": "railway", "value": "tram_stop", "description": "shown in brackets; 'Transportation / Transit'" },

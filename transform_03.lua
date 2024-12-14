@@ -8266,6 +8266,10 @@ function process_all( objtype, object )
 -- Emergency phones
 -- "0x2f12" is searchable via "Others / Communications"
 -- ----------------------------------------------------------------------------
+   if ( object.tags["railway"] == "phone" ) then
+      object.tags["emergency"] = object.tags["railway"]
+   end
+
    if ( object.tags["emergency"] == "phone" ) then
       object = append_nonqa( object, object.tags["emergency"] )
 

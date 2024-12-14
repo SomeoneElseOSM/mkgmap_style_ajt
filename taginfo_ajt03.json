@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20241124T133100Z",
+  "data_updated": "20241214T215000Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2066,6 +2066,7 @@
     { "key": "railway", "value": "milestone", "description": "'milestone' appended in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "railway", "value": "miniature", "description": "shown as railway=narrow_gauge with 'miniature' appended" },
     { "key": "railway", "value": "narrow_gauge", "description": "shown as line with 'narrow_gauge' appended" },
+    { "key": "railway", "value": "phone", "description": "Shown in brackets; 'Others / Communications'" },
     { "key": "railway", "value": "platform", "description": "'Platform' and ref appended" },
     { "key": "railway", "value": "preserved", "description": "shown as line with 'preserved' appended" },
     { "key": "railway", "value": "rail", "description": "shown as railway with 'rail' appended" },

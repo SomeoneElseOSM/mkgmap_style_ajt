@@ -4704,6 +4704,19 @@ function process_all( objtype, object )
       object.tags["ruins:man_made"] = nil
    end
 
+-- ----------------------------------------------------------------------------
+-- Detect former kilns tagged as "ruins:man_made". 
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["railway"]          == "water_crane" ) or
+        ( object.tags["disused:railway"]  == "water_crane" )) and
+       (( object.tags["historic"]         == nil           )  or
+        ( object.tags["historic"]         == "yes"         ))) then
+      object.tags["historic"] = "water_crane"
+   end
+
+-- ----------------------------------------------------------------------------
+-- Various historic items
+-- ----------------------------------------------------------------------------
    if (( object.tags["historic"] == "abbey"                     ) or
        ( object.tags["historic"] == "aircraft"                  ) or
        ( object.tags["historic"] == "aircraft_wreck"            ) or
@@ -4804,6 +4817,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "vehicle"                   ) or
        ( object.tags["historic"] == "village"                   ) or
        ( object.tags["historic"] == "village_pump"              ) or
+       ( object.tags["historic"] == "water_crane"               ) or
        ( object.tags["historic"] == "water_pump"                ) or
        ( object.tags["historic"] == "watermill"                 ) or
        ( object.tags["historic"] == "wayside_chapel"            ) or

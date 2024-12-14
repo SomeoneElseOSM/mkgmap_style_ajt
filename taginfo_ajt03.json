@@ -2078,6 +2078,7 @@
     { "key": "railway", "value": "tram_stop", "description": "shown in brackets; 'Transportation / Transit'" },
     { "key": "railway", "value": "transfer_station", "description": "'halt' appended in brackets; 'Transportation / Ground Transportation' (or if tourism) 'Attractions / Landmark'" },
     { "key": "railway", "value": "ventilation_shaft", "description": "Shown in brackets; 'Others / Social Service'" },
+    { "key": "railway", "value": "water_crane", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "railway:historic", "description": "detect abandoned railways" },
     { "key": "railway:historic", "value": "rail", "description": "shown as line with 'abrly' appended" },
     { "key": "railway:miniature", "description": "Detect tourist stations; shown in brackets; 'Attractions / Landmark' (NOT 'Transportation / Ground Transportation')" },

@@ -9568,10 +9568,12 @@ function ott.process_way( object )
 
 -- ----------------------------------------------------------------------------
 -- Change miniature railways (not handled in the style file) to narrow_gauge.
+-- Also "railway=crane" - render as narrow_gauge railway.
 -- After this change a suffix will be added in ott.process_way 
 -- ----------------------------------------------------------------------------
    if (( object.tags["railway"] == "miniature" ) or
-       ( object.tags["railway"] == "funicular" )) then
+       ( object.tags["railway"] == "funicular" ) or
+       ( object.tags["railway"] == "crane"     )) then
       object = append_nonqa( object, object.tags["railway"] )
       object.tags["railway"] = "narrow_gauge"
    end

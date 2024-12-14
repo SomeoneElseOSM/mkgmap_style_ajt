@@ -2057,6 +2057,7 @@
     { "key": "railway", "description": "Most 'railway' values handled" },
     { "key": "railway", "value": "abandoned", "description": "shown as line with 'abrly' appended" },
     { "key": "railway", "value": "construction", "description": "shown as line with 'constrly' appended" },
+    { "key": "railway", "value": "crane", "description": "shown as railway=narrow_gauge with 'crane' appended" },
     { "key": "railway", "value": "dismantled", "description": "shown as line with 'dismrly' appended" },
     { "key": "railway", "value": "disused", "description": "shown as line with 'disuly' appended" },
     { "key": "railway", "value": "entrance", "description": "'entrance' shown in brackets; points searchable as 'Others / Social Service'" },

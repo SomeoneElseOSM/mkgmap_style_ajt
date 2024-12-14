@@ -4,6 +4,7 @@ This page describes changes made to the [detailed map style](https://github.com/
 ## As yet unreleased
 Handle `railway=phone` as `emergency=phone`.
 Handle `railway=water_crane` as historic object.
+Show `railway=crane` (which are all linear) as miniature railways in their own right.
 
 ## 09/12/2024
 Linear locked and unlocked gates are shown on the map, with a suffix of "locked" if appropriate.

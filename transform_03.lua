@@ -5913,7 +5913,7 @@ function process_all( objtype, object )
         ( object.tags["disused:railway"]   == "station"             )  or
         ( object.tags["historic:railway"]  == "station"             )  or
         ( object.tags["historic"]          == "railway_station"     )  or
-        ( object.tags["railway"]           == "demolished_colliery" )  or
+        ( object.tags["railway"]           == "dismantled_colliery" )  or
         ( object.tags["railway"]           == "colliery_site"       )) and
        (  object.tags["tourism"]           ~= "information"      )) then
       object = append_nonqa( object, "historic station" )

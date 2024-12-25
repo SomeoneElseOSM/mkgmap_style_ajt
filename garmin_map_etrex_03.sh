@@ -92,7 +92,10 @@ final_tidy_up()
 m_error_01()
 {
     final_tidy_up
-    # qqq date | mail -s "garmin_map_etrex_03 FAILED on `hostname`" ${local_filesystem_user}
+# -----------------------------------------------------------------------------
+# Uncomment to send an email on build failure
+# -----------------------------------------------------------------------------
+    # date | mail -s "garmin_map_etrex_03 FAILED on `hostname`" ${local_filesystem_user}
     exit 1
 }
 

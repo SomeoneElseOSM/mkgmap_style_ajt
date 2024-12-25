@@ -150,7 +150,7 @@ highway=road { add mkgmap:dead-end-check = false} [0x06 road_class=0 road_speed=
 highway=* & area!=yes [0x07 ]
 
 natural=coastline [0x15 resolution 12]
-# qqq Power lines removed - see how this pans out:
+# Power lines removed from this simple style - see how this pans out:
 #power=line [0x29 resolution 20]
 
 barrier=wall [0x1d resolution 20]
@@ -185,7 +185,7 @@ man_made=pipeline {name '${operator}'} [0x28 resolution 23]
 # The following boundary styles are after the highway rules because ways
 # are frequently tagged with both and we want the highway to take priority.
 #
-# qqq all removed by AJT to suppress boundaries:
+# These were all removed by AJT to suppress boundaries:
 #boundary=administrative { name '${mkgmap:boundary_name}' }
 #boundary=administrative & admin_level<3 [0x1e resolution 16]
 #boundary=administrative & admin_level<5 [0x1d resolution 18]

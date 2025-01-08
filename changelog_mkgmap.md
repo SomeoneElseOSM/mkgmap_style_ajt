@@ -1,8 +1,10 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 08/01/2025
 Fixed typo in "dismantled_colliery", one of the odd tags used for "named historic stations".
+Removed `natural=col` from taginfo and code, no longer in the data.
+
 
 ## 14/12/2024
 Handle `railway=phone` as `emergency=phone`.

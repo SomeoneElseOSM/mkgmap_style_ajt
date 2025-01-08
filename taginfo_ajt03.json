@@ -1838,7 +1838,6 @@
     { "key": "natural", "value": "cape", "description": "handled as place=locality" },
     { "key": "natural", "value": "cave_entrance", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "natural", "value": "cliff", "description": "ways shown as line; not searchable, nodes shown in brackets; 'Geographic Points / Land Features'" },
-    { "key": "natural", "value": "col", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "natural", "value": "earth_bank", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },
     { "key": "natural", "value": "forest", "description": "treated as landuse=forest" },
     { "key": "natural", "value": "hedge", "description": "treated as barrier=hedge" },

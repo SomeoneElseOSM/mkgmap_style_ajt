@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20241226T092400Z",
+  "data_updated": "20250124T010301",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -998,6 +998,7 @@
     { "key": "embassy", "value": "residence", "description": "Shown as building if appropriate or just dot; not generally searchable" },
     { "key": "embassy", "value": "yes", "description": "'embassy' shown in brackets as government office; 'Community / Government Office'" },
     { "key": "emergency", "description": "Various emergency features handled" },
+    { "key": "emergency", "value": "access_point", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "emergency", "value": "ambulance_station", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "emergency", "value": "beach_safety_sign", "description": "Shown as dot with 'S' shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "emergency", "value": "coast_guard", "description": "shown in brackets; 'Community / Government Office'" },
@@ -1215,6 +1216,7 @@
     { "key": "highway", "value": "corridor", "description": "Some corridors shown as path" },
     { "key": "highway", "value": "crossing", "description": "Shown in brackets along the road" },
     { "key": "highway", "value": "cycleway", "description": "Shown as track" },
+    { "key": "highway", "value": "emergency_access_point", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "highway", "value": "emergency_bay", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "highway", "value": "escape", "description": "Shown as service road" },
     { "key": "highway", "value": "footway", "description": "Shown as track" },

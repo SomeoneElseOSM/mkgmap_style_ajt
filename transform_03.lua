@@ -6897,6 +6897,18 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
+   if ( object.tags["highway"] == "emergency_access_point" ) then
+      object = append_nonqa( object, object.tags["highway"] )
+      object.tags["man_made"] = "thing"
+      object = building_or_landuse( objtype, object )
+   end
+
+   if ( object.tags["emergency"] == "access_point" ) then
+      object = append_nonqa( object, "emergency access_point" )
+      object.tags["man_made"] = "thing"
+      object = building_or_landuse( objtype, object )
+   end
+
 -- ----------------------------------------------------------------------------
 -- Water emergency features are sent through as springs with 
 -- an appropriate suffix.

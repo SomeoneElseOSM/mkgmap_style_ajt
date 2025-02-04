@@ -6815,7 +6815,6 @@ function process_all( objtype, object )
        ( object.tags["healthcare"]  == "nursing_home"                 ) or
        ( object.tags["healthcare"]  == "occupational_therapist"       ) or
        ( object.tags["healthcare"]  == "ocular_prosthetics"           ) or
-       ( object.tags["healthcare"]  == "osteopath"                    ) or
        ( object.tags["healthcare"]  == "physiotherapist"              ) or
        ( object.tags["healthcare"]  == "physiotherapist;podiatrist"   ) or
        ( object.tags["healthcare"]  == "physiotherapy"                ) or
@@ -6838,7 +6837,8 @@ function process_all( objtype, object )
       object = building_or_landuse( objtype, object )
    end
 
-   if ( object.tags["office"]      == "medical_supply"               ) then
+   if (( object.tags["office"]  == "medical_supply"               )  or
+       ( object.tags["office"]  == "osteopath"                    )) then
       object = append_nonqa( object, object.tags["office"] )
       object.tags["shop"] = "specialty"
       object.tags["amenity"] = nil

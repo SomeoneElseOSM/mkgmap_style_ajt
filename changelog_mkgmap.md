@@ -1,6 +1,9 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+`ford=Tidal_Causeway` has been renamed to the more normal `ford=tidal_causeway`.
+
 ## 04/02/2025
 Show `emergency=access_point` and `highway=emergency_access_point`; searchable as 'Others / Social Service'.
 Removed `healthcare=osteopath`, no longer in the data, and added `office=osteopath`.

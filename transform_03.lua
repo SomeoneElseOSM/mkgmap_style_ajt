@@ -4181,7 +4181,7 @@ function process_all( objtype, object )
        ( object.tags["ford"] == "stream"         ) or
        ( object.tags["ford"] == "tidal"          ) or
        ( object.tags["ford"] == "yes"            ) or
-       ( object.tags["ford"] == "Tidal_Causeway" )) then
+       ( object.tags["ford"] == "tidal_causeway" )) then
       object = append_nonqa( object, "ford" )
 
       if (( object.tags["ford"] ~= "ford" ) and

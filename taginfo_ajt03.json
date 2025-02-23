@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20250210T135201Z",
+  "data_updated": "20250223T224101Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1485,7 +1485,6 @@
     { "key": "information", "value": "marker", "description": "'GP' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "nature", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "notice_board", "description": "'B' appended to name; 'Other / Social Service'" },
-    { "key": "information", "value": "noticeboard", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "office", "description": "'info' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "orientation_map", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "plaque", "description": "'historic plaque' appended to name; 'Other / Social Service'" },

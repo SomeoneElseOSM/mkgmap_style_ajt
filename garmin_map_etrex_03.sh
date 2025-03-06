@@ -103,7 +103,7 @@ m_error_01()
 # When was the target file last modified?
 # -----------------------------------------------------------------------------
 echo "Checking last modified date for ${file_prefix1}"
-wget $file_page1 -O file_page1.$$ -output-file /dev/null
+wget $file_page1 -O file_page1.$$ --output-file /dev/null
 grep " and contains all OSM data up to " file_page1.$$ | sed "s/.*and contains all OSM data up to //" | sed "s/. File size.*//" > last_modified1.$$
 rm file_page1.$$
 #
@@ -114,7 +114,7 @@ then
     echo "${file_prefix1} already downloaded"
 else
     echo "Downloading ${file_prefix1}"
-    wget $file_url1 -O ${file_prefix1}_${file_extension1}.osm.pbf -output-file /dev/null
+    wget $file_url1 -O ${file_prefix1}_${file_extension1}.osm.pbf --output-file /dev/null
     rm -f mkgmap/6???????.osm.gz
 fi
 #

@@ -26,7 +26,7 @@ fi
 # Live weekly builds on map.atownsend.org.uk use "great-britain".
 #
 # Four parameters can be set, such as:
-# europe great-britain england north-yorkshire
+# europe united-kingdom england north-yorkshire
 # ----------------------------------------------------------------------------
 if [ -z "$4" ]
 then
@@ -102,7 +102,8 @@ m_error_01()
 # -----------------------------------------------------------------------------
 # When was the target file last modified?
 # -----------------------------------------------------------------------------
-wget $file_page1 -O file_page1.$$
+echo "Checking last modified date for ${file_prefix1}"
+wget $file_page1 -O file_page1.$$ -output-file /dev/null
 grep " and contains all OSM data up to " file_page1.$$ | sed "s/.*and contains all OSM data up to //" | sed "s/. File size.*//" > last_modified1.$$
 rm file_page1.$$
 #
@@ -110,13 +111,14 @@ file_extension1=`cat last_modified1.$$`
 #
 if test -e ${file_prefix1}_${file_extension1}.osm.pbf
 then
-    echo "File1 already downloaded"
+    echo "${file_prefix1} already downloaded"
 else
-    wget $file_url1 -O ${file_prefix1}_${file_extension1}.osm.pbf
-    rm mkgmap/6???????.osm.gz
+    echo "Downloading ${file_prefix1}"
+    wget $file_url1 -O ${file_prefix1}_${file_extension1}.osm.pbf -output-file /dev/null
+    rm -f mkgmap/6???????.osm.gz
 fi
 #
-mkdir mkgmap
+mkdir -p mkgmap
 cd mkgmap
 #
 # ------------------------------------------------------------------------------
@@ -138,7 +140,8 @@ if test -e  "6........osm.gz"
 then
   echo "Splitter already run"
 else
-  java  -Xmx9600m -jar /usr/share/mkgmap-splitter/splitter.jar transformed_after.pbf --max-nodes=800000 --output=xml
+  echo "Running Splitter"
+  java  -Xmx9600m -jar /usr/share/mkgmap-splitter/splitter.jar transformed_after.pbf --max-nodes=800000 --output=xml > /dev/null
 fi
 #
 # ------------------------------------------------------------------------------
@@ -157,7 +160,8 @@ fi
 # "/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt03" rather than 
 # "~/src/mkgmap_style_ajt/ajt03".
 # ------------------------------------------------------------------------------
-java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt03  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz
+echo "Running mkgmap"
+java -Xmx9600m -jar /usr/share/mkgmap/mkgmap.jar --style-file=/home/${local_filesystem_user}/src/mkgmap_style_ajt/ajt03  --add-pois-to-areas --remove-short-arcs --levels="0=24, 1=22, 2=21, 3=19, 4=18, 5=16" --location-autofill=3 --route --gmapsupp --overview-mapname=ajt03map --country-name="United Kingdom" --country-abbr="UK" --copyright-message="Copyright OpenStreetMap contributors" *.osm.gz > /dev/null
 #
 if [ -f gmapsupp.img ]; then
   mkdir -p etrex
@@ -170,6 +174,12 @@ if [ -f gmapsupp.img ]; then
   # Copy it to a directory below a webserver /var/www/html/maps/mkgmap_maps/ajt03:
   # ---------------------------------------------------------------------------
   mkdir -p /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}
+  mkdir -p /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/old
+  #
+  mv /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/ajt03_${file_prefix1}_supp.img /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/old/
+  mv /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/ajt03_${file_prefix1}_map.tdb  /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/old/
+  mv /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/ajt03_${file_prefix1}_map.img  /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/old/
+  #
   cp etrex/ajt03_${file_prefix1}_supp.img /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/
   cp etrex/ajt03_${file_prefix1}_map.tdb /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/
   cp etrex/ajt03_${file_prefix1}_map.img /var/www/html/maps/mkgmap_maps/ajt03/${file_prefix1}/

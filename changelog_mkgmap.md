@@ -1,12 +1,12 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 10/03/2025
 Removed `shop=loan_shark`, no longer in the data.
 Removed `crossing=light_controlled`.  No longer in the data.
 Removed `landmark=windsock`.  No longer in the data.
 
-## 06/03/2023
+## 06/03/2025
 Changed the weekly "detailed" map build to save a copy of last week's files in an "old" directory on the web server.
 
 ## 23/02/2025

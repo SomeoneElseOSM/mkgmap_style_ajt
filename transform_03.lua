@@ -6626,7 +6626,6 @@ function process_all( objtype, object )
    if (( object.tags["shop"] == "pawnbroker"         ) or
        ( object.tags["shop"] == "money"              ) or
        ( object.tags["shop"] == "money_lender"       ) or
-       ( object.tags["shop"] == "loan_shark"         ) or
        ( object.tags["shop"] == "cash"               )) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "specialty"

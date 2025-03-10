@@ -4,6 +4,7 @@ This page describes changes made to the [detailed map style](https://github.com/
 ## As yet unreleased
 Removed `shop=loan_shark`, no longer in the data.
 Removed `crossing=light_controlled`.  No longer in the data.
+Removed `landmark=windsock`.  No longer in the data.
 
 ## 06/03/2023
 Changed the weekly "detailed" map build to save a copy of last week's files in an "old" directory on the web server.

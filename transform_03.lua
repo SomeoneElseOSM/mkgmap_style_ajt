@@ -7537,7 +7537,6 @@ function process_all( objtype, object )
 -- Windsocks
 -- ----------------------------------------------------------------------------
    if (( object.tags["aeroway"]  == "windsock" ) or
-       ( object.tags["landmark"] == "windsock" ) or
        ( object.tags["man_made"] == "windsock" )) then
       object.tags["man_made"] = "thing"
       object = append_nonqa( object, "windsock" )

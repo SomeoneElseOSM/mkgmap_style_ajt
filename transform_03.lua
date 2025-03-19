@@ -6338,7 +6338,6 @@ function process_all( objtype, object )
 -- Memorial obelisks
 -- ----------------------------------------------------------------------------
    if ((   object.tags["man_made"]      == "obelisk"     ) or
-       (   object.tags["landmark"]      == "obelisk"     ) or
        ((  object.tags["historic"]      == "memorial"   ) and
         (( object.tags["memorial"]      == "obelisk"   )  or
          ( object.tags["memorial:type"] == "obelisk"   )))) then

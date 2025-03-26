@@ -1245,6 +1245,7 @@
     { "key": "highway", "value": "street_lamp", "description": "'gas lamp' or 'streetlight' appended; 'Others / Social Service'" },
     { "key": "highway", "value": "tertiary", "description": "Shown as tertiary" },
     { "key": "highway", "value": "tertiary_link", "description": "Shown as link road" },
+    { "key": "highway", "value": "toll_gantry", "description": "Shown as a toll gantry" },
     { "key": "highway", "value": "track", "description": "Shown as track" },
     { "key": "highway", "value": "traffic_signals", "description": "Shown in brackets along the road" },
     { "key": "highway", "value": "trailhead", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },

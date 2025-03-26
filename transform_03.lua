@@ -5732,6 +5732,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- highway=toll_gantry is changed to barrier=toll_gantry, 
+-- which is easier for rendering code below to search for.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "toll_gantry" ) then
+      object.tags["barrier"] = "toll_gantry"
+   end
+
+-- ----------------------------------------------------------------------------
 -- highway=escape to service
 -- There aren't many escape lanes mapped, but they do exist
 -- ----------------------------------------------------------------------------
@@ -6109,6 +6117,7 @@ function process_all( objtype, object )
 -- "0x2f0f" is searchable via "Others / Garmin Dealer"
 -- For each gate, choose which of the two gate icons to used based on tagging.
 -- A suffix is always used for kissing gates
+-- Toll gantries aren't gates, but showing a "G" symbol is also appropriate.
 -- ----------------------------------------------------------------------------
    if  (( object.tags["barrier"]   == "gate"                  )   and
         ( object.tags["gate"]      == "kissing"               )) then
@@ -6119,7 +6128,8 @@ function process_all( objtype, object )
        (  object.tags["barrier"]   == "turnstile"              )  or
        (  object.tags["barrier"]   == "full-height_turnstile"  )  or
        (  object.tags["barrier"]   == "kissing_gate;gate"      )  or
-       (  object.tags["barrier"]   == "toll_booth"             )) then
+       (  object.tags["barrier"]   == "toll_booth"             )  or
+       (  object.tags["barrier"]   == "toll_gantry"            )) then
       object = append_nonqa( object, object.tags["barrier"] )
       object.tags["barrier"] = "kissing_gate"
 

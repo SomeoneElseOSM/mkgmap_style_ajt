@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20250319T195101Z",
+  "data_updated": "20250326T214301Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2751,7 +2751,8 @@
     { "key": "status", "description": "Detect locked gates and append to name" },
     { "key": "status", "value": "abandoned", "description": "Handle as a synonym for 'disused=yes'" },
     { "key": "status", "value": "locked", "description": "Detect locked gates and append to name" },
-    { "key": "substance", "description": "Appended to pipelines in brackets" },
+    { "key": "substance", "description": "Appended to pipelines in brackets and detect non-pipeline pipelines" },
+    { "key": "substance", "value": "gas_topology", "description": "Detect non-pipeline pipelines" },
     { "key": "support", "description": "Detect and distinguish clock types" },
     { "key": "support", "value": "column", "description": "'pedestal clock' appended in brackets; 'Others / Social Service'" },
     { "key": "support", "value": "pedestal", "description": "'pedestal clock' appended in brackets; 'Others / Social Service'" },

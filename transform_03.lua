@@ -9876,6 +9876,16 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Pipelines
+-- Suppress substance=gas_topology
+-- See https://www.openstreetmap.org/changeset/130415897 for more on this.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"]  == "pipeline"     ) and
+       ( object.tags["substance"] == "gas_topology" )) then
+      object.tags["man_made"]     = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Don't show subsurface waterways
 -- ----------------------------------------------------------------------------
    if (( object.tags["waterway"] ~= nil   ) and

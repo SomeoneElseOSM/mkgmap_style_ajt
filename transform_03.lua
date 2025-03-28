@@ -6119,11 +6119,6 @@ function process_all( objtype, object )
 -- A suffix is always used for kissing gates
 -- Toll gantries aren't gates, but showing a "G" symbol is also appropriate.
 -- ----------------------------------------------------------------------------
-   if  (( object.tags["barrier"]   == "gate"                  )   and
-        ( object.tags["gate"]      == "kissing"               )) then
-      object.tags["barrier"] = "kissing_gate"
-   end
-
    if ((  object.tags["barrier"]   == "kissing_gate"           )  or
        (  object.tags["barrier"]   == "turnstile"              )  or
        (  object.tags["barrier"]   == "full-height_turnstile"  )  or

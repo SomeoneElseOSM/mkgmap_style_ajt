@@ -9443,7 +9443,6 @@ function ott.process_node( object )
           ( object.tags["information"] == "information_board"                )  or
           ( object.tags["information"] == "interpretation"                   )  or
           ( object.tags["information"] == "interpretive_board"               )  or
-          ( object.tags["information"] == "leaflet_board"                    )  or
           ( object.tags["information"] == "leaflets"                         )  or
           ( object.tags["information"] == "map"                              )  or
           ( object.tags["information"] == "map and posters"                  )  or

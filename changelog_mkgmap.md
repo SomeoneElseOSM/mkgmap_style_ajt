@@ -6,6 +6,7 @@ Removed `landmark=obelisk`.  No longer in the data.
 Suppress `substance=gas_topology`.  Not really a pipeline.
 Show `barrier=toll_gantry` as "G", searchable via "Others / Garmin Dealer"
 Removed `gate=kissing`.  No longer in the data.
+Removed `information=leaflet_board`.  No longer in the data.
 
 ## 10/03/2025
 Removed `shop=loan_shark`, no longer in the data.

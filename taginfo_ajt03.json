@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20250330T111501Z",
+  "data_updated": "20250411T103801Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -2855,7 +2855,7 @@
     { "key": "trail_visibility", "value": "intermediate", "description": "Append (TVI) to less-visible footways etc." },
     { "key": "trail_visibility", "value": "intermittent", "description": "Processed as synonym for 'intermediate'.  Append (TVI) to less-visible footways etc." },
     { "key": "trail_visibility", "value": "no", "description": "Append (TVN) to less-visible footways etc." },
-    { "key": "trail_visibility", "value": "none", "description": "Processed as synonym for 'no'.  Append (TVN) to less-visible footways etc." },
+    { "key": "trail_visibility", "value": "none", "description": "Not a current value in OSM data. Processed as synonym for 'no'.  Append (TVN) to less-visible footways etc." },
     { "key": "trail_visibility", "value": "poor", "description": "Processed as synonym for 'bad'.  Append (TVB) to less-visible footways etc." },
     { "key": "trail_visibility", "value": "very_bad", "description": "Processed as synonym for 'horrible'.  Append (TVH) to less-visible footways etc." },
     { "key": "training", "description": "Detect some training establishments" },

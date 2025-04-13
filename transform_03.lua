@@ -2506,25 +2506,47 @@ function process_all( objtype, object )
 -- We do use appendices to the name.
 -- Initially, set some object flags that we will use later.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["description:floor"] ~= nil                  ) or
+
+-- ----------------------------------------------------------------------------
+-- Look at "noncarpeted floors" first.
+-- For these we might either see an explicit "floor:material" (which takes 
+-- precedence of set) or a more general "description:floor" (which if set to 
+-- anything is assumed to be noncarpeted)
+--
+-- Many "floor:material" are seicolon-separated values.  We're only interested
+-- in the first (assued to be "main") material, so remove the others.
+--
+-- The string.find parameters here are:
+-- * the string to search in
+-- *.the thing to look for
+-- * start looking from 1 (lua things are 1-based)
+-- * do an exact match not a pattern match
+--
+-- Values without semicolons or with a semicolon as the first character
+-- are returned as is.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["floor:material"] ~= nil ) then
+      commapos = string.find( object.tags["floor:material"], ";", 1, true )
+
+      if (( commapos ~= nil                  ) and
+          ( commapos > 1                     )) then
+        object.tags["floor:material"] = object.tags["floor:material"].sub( object.tags["floor:material"], 1, commapos-1 )
+      end
+   end
+
+   if ((( object.tags["description:floor"] ~= nil                )  and
+        ( object.tags["floor:material"]    == nil                )) or
        ( object.tags["floor:material"]    == "brick"              ) or
        ( object.tags["floor:material"]    == "concrete"           ) or
+       ( object.tags["floor:material"]    == "glued gravel"       ) or
        ( object.tags["floor:material"]    == "grubby carpet"      ) or
        ( object.tags["floor:material"]    == "lino"               ) or
-       ( object.tags["floor:material"]    == "lino;carpet"        ) or
-       ( object.tags["floor:material"]    == "lino;rough_wood"    ) or
-       ( object.tags["floor:material"]    == "lino;tiles;stone"   ) or
+       ( object.tags["floor:material"]    == "paving_stones"      ) or
+       ( object.tags["floor:material"]    == "rough_carpet"       ) or
        ( object.tags["floor:material"]    == "rough_wood"         ) or
-       ( object.tags["floor:material"]    == "rough_wood;stone"   ) or
-       ( object.tags["floor:material"]    == "rough_wood;tiles"   ) or
        ( object.tags["floor:material"]    == "slate"              ) or
-       ( object.tags["floor:material"]    == "slate;carpet"       ) or
        ( object.tags["floor:material"]    == "stone"              ) or
-       ( object.tags["floor:material"]    == "stone;carpet"       ) or
-       ( object.tags["floor:material"]    == "stone;rough_carpet" ) or
-       ( object.tags["floor:material"]    == "stone;rough_wood"   ) or
-       ( object.tags["floor:material"]    == "tiles"              ) or
-       ( object.tags["floor:material"]    == "tiles;rough_wood"   )) then
+       ( object.tags["floor:material"]    == "tiles"              )) then
       object.tags["noncarpeted"] = "yes"
    end
 

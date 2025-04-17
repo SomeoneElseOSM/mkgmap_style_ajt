@@ -89,6 +89,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- If "name" does not exist but "is_sidepath:of:name" does, use it.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["name"]                == nil ) and
+       ( object.tags["is_sidepath:of:name"] ~= nil )) then
+      object.tags["name"] = object.tags["is_sidepath:of:name"]
+   end
+
+-- ----------------------------------------------------------------------------
 -- If name does not exist but name:en does, use it.
 -- ----------------------------------------------------------------------------
    if (( object.tags["name"]    == nil ) and

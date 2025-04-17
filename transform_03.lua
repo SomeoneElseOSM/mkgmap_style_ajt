@@ -165,9 +165,13 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- By default, trunk roads are mapped to roads you can't walk along, as if 
--- it was in Germany.
+-- By default, trunk roads are mapped to roads you can't by default walk along,
+-- as if it was in Germany (although this is probably configurable from the
+-- default on the device).
 -- If there's a sidewalk, obviously you can, so map to primary.
+-- The list of things checked here is a bit less inclusive than 
+-- "append_edge_etc" on vector and the equivalent on raster (it doesn't
+-- include non-expressway shoulders)
 -- ----------------------------------------------------------------------------
    if (((  object.tags["highway"]           == "trunk"          )  or
         (  object.tags["highway"]           == "trunk_link"     )) and

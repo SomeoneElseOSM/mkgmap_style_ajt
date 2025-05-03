@@ -380,8 +380,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Electricity substations
 -- ----------------------------------------------------------------------------
-   if (( object.tags["power"] == "substation"  )  or
-       ( object.tags["power"] == "sub_station" )) then
+   if ( object.tags["power"] == "substation" ) then
       object.tags["power"]   = nil
 
       if (( object.tags["building"] == nil  ) or
@@ -8445,7 +8444,6 @@ function process_all( objtype, object )
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"]  == "bingo"        ) or
-       ( object.tags["amenity"]  == "escape_game"  ) or
        ( object.tags["amenity"]  == "brothel"      )) then
       object.tags["leisure"] = object.tags["amenity"]
       object.tags["amenity"] = nil

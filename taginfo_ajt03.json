@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20250413T123001Z",
+  "data_updated": "20250503T095801Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -179,7 +179,6 @@
     { "key": "amenity", "value": "education_centre", "description": "shown in brackets; 'Community / School'" },
     { "key": "amenity", "value": "electronics_repair", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "embassy", "description": "Synonym for diplomatic=embassy" },
-    { "key": "amenity", "value": "escape_game", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "escooter_rental", "description": "shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "estate_agent", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "events_venue", "description": "shown in brackets; 'Attractions / Hall or Auditorium'" },
@@ -2042,7 +2041,6 @@
     { "key": "power", "description": "detect electrical features" },
     { "key": "power", "value": "generator", "description": "detect wind turbines" },
     { "key": "power", "value": "plant", "description": "Shown in brackets with a light grey background; not searchable" },
-    { "key": "power", "value": "sub_station", "description": "'el.sub' shown in brackets with a light grey background; not searchable" },
     { "key": "power", "value": "substation", "description": "'el.sub' shown in brackets with a light grey background; not searchable" },
     { "key": "produce", "description": "vending machine produce appended to name" },
     { "key": "product", "description": "detect cider breweries" },

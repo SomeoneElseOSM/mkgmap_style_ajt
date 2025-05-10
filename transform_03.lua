@@ -9759,6 +9759,16 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
+-- "access=emergency" is used surprisingly frequently.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["access"]  == "emergency"        )  or
+        ( object.tags["service"] == "emergency_access" )) and
+       (( object.tags["foot"] == nil                   )  or
+        ( object.tags["foot"] == ""                    ))) then
+      object.tags["access"] = "no"
+   end
+
+-- ----------------------------------------------------------------------------
 -- Handle dodgy access tags.  Note that this doesn't affect my "designation"
 -- processing, but may be used by the main style, as "foot", "bicycle" and 
 -- "horse" are all in as columns.

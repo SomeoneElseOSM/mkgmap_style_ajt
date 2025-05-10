@@ -1,6 +1,9 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## As yet unreleased
+Treat `access=emergency` and `services=emergency_access` as "no access".
+
 ## 03/05/2025
 Removed `power=sub_station` and `amenity=escape_game`.  No longer in the data.
 

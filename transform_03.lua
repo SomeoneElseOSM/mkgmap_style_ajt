@@ -5440,6 +5440,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ((  object.tags["man_made"]       == "wastewater_reservoir"  ) or
        (  object.tags["basin"]          == "wastewater"            ) or
+       (  object.tags["basin"]          == "waste_water"           ) or
        (( object.tags["landuse"]        == "reservoir"            )  and
         ( object.tags["reservoir_type"] == "sewage"               ))) then
       object = append_nonqa( object, "wastewater" )

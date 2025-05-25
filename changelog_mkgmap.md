@@ -3,7 +3,8 @@ This page describes changes made to the [detailed map style](https://github.com/
 
 ## As yet unreleased
 Treat `access=emergency` and `services=emergency_access` as "no access".
-Handle both spellings of `basin=waste_water`
+Handle both spellings of `basin=waste_water`.
+Removed `shop=clothing`.  No longer in the data.
 
 ## 03/05/2025
 Removed `power=sub_station` and `amenity=escape_game`.  No longer in the data.

@@ -2270,7 +2270,6 @@
     { "key": "shop", "value": "clocks", "description": "Shown in brackets; 'Shopping / Home Furnishings'" },
     { "key": "shop", "value": "clothes", "description": "shown in brackets; 'Shopping / Apparel'" },
     { "key": "shop", "value": "clothes_hire", "description": "shown in brackets; 'Shopping / Apparel'" },
-    { "key": "shop", "value": "clothing", "description": "shown in brackets; 'Shopping / Apparel'" },
     { "key": "shop", "value": "clothing_alterations", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "coal_merchant", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "shop", "value": "cobbler", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

@@ -10109,7 +10109,6 @@ function ott.process_way( object )
 -- so "kerb" or "obstruction" nodes won't appear.
 -- ----------------------------------------------------------------------------
    if (( object.tags["barrier"] == "guard_rail"      ) or
-       ( object.tags["barrier"] == "hand_rail_fence" ) or
        ( object.tags["barrier"] == "kerb"            ) or
        ( object.tags["barrier"] == "obstruction"     ) or
        ( object.tags["barrier"] == "railing"         ) or

@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20250629T145901Z",
+  "data_updated": "20250705T102801Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -11,8 +11,6 @@
   },
   "tags": [
     { "key": "FIXME", "description": "'[fix]' appended to object" },
-    { "key": "LPG", "description": "Detect non-standard tagging of LPG fuel stations" },
-    { "key": "LPG", "value": "yes", "description": "Detect non-standard tagging of LPG fuel stations" },
     { "key": "abandoned", "description": "Obscure tagging used to say if a canal has been abandoned" },
     { "key": "abandoned", "value": "waterway=canal", "description": "Obscure tagging used to say if a canal has been abandoned" },
     { "key": "abandoned:amenity", "description": "Obscure tagging used for former pubs and telephones" },

@@ -5182,8 +5182,7 @@ function process_all( objtype, object )
    end
 
    if ((  object.tags["amenity"]  == "fuel"  ) and
-       (( object.tags["LPG"]      == "yes"  )  or
-        ( object.tags["fuel"]     == "lpg"  )  or
+       (( object.tags["fuel"]     == "lpg"  )  or
         ( object.tags["fuel:lpg"] == "yes"  ))) then
       object = append_nonqa( object, "LPG" )
    end

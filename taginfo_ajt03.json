@@ -145,7 +145,7 @@
     { "key": "amenity", "value": "clock", "description": "detail shown in brackets; 'Others / Social Service'" },
     { "key": "amenity", "value": "closed_pub", "description": "shown as other vacant shops" },
     { "key": "amenity", "value": "club", "description": "shown in brackets; 'Community / Community Center'" },
-    { "key": "amenity", "value": "club_house", "description": "shown in brackets; 'Community / Community Center'" },
+    { "key": "amenity", "value": "club_house", "description": "Not a current value in OSM data.  Shown in brackets; 'Community / Community Center'" },
     { "key": "amenity", "value": "clubhouse", "description": "shown in brackets; 'Community / Community Center'" },
     { "key": "amenity", "value": "coast_guard", "description": "shown in brackets; 'Community / Government Office'" },
     { "key": "amenity", "value": "college", "description": "shown in brackets; 'Community / School'" },

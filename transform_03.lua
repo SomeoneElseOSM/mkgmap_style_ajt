@@ -3711,7 +3711,7 @@ function process_all( objtype, object )
        (  object.tags["amenity"]                 == "kick-scooter_rental"    ) or
        (  object.tags["amenity"]                 == "small_electric_vehicle" ) or
        ((  object.tags["amenity"]                == "parking"               )  and
-        (( object.tags["parking"]                == "e-scooter"            )   or
+        (( object.tags["parking"]                == "e_scooter"            )   or
          ( object.tags["small_electric_vehicle"] == "designated"           ))) or
        ((  object.tags["amenity"]                == "bicycle_parking"       )  and
         (  object.tags["small_electric_vehicle"] == "designated"            ))) then

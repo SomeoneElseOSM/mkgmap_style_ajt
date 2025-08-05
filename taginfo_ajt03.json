@@ -1997,7 +1997,7 @@
     { "key": "outdoor_seating", "value": "yes", "description": "shown in brackets, shown as beer garden if grass; 'Geographic Points / Land Features'" },
     { "key": "parking", "description": "detect different sorts of parking" },
     { "key": "parking", "value": "depot", "description": "Shown in brackets with a light grey background; not searchable" },
-    { "key": "parking", "value": "e-scooter", "description": "Shown in brackets; 'Others / Social Service'" },
+    { "key": "parking", "value": "e_scooter", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "parking", "value": "motorcycle", "description": "Shown in brackets (with 'pay' if for pay); 'Others / Social Service'" },
     { "key": "passenger_information_display", "description": "What sort of departures board does a bus stop have?" },
     { "key": "passenger_information_display", "value": "realtime", "description": "Append 'rt' in brackets to name" },

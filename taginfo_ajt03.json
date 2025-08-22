@@ -1835,6 +1835,7 @@
     { "key": "natural", "description": "Most 'natural' features handled" },
     { "key": "natural", "value": "arete", "description": "Shown in brackets; if not highway, railway or waterway shown as line; not searchable" },
     { "key": "natural", "value": "bare_rock", "description": "shown in brackets; 'Geographic Points / Land Features'" },
+    { "key": "natural", "value": "blockfield", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "natural", "value": "beach", "description": "shown in brackets; 'Geographic Points / Land Features'" },
     { "key": "natural", "value": "cape", "description": "handled as place=locality" },
     { "key": "natural", "value": "cave_entrance", "description": "shown in brackets; 'Geographic Points / Land Features'" },

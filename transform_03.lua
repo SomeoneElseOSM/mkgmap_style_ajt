@@ -4493,8 +4493,9 @@ function process_all( objtype, object )
       object = append_nonqa( object, object.tags["natural"] )
    end
 
-   if (( object.tags["natural"]   == "bare_rock" )  or
-       ( object.tags["natural"]   == "scree"     )) then
+   if (( object.tags["natural"]   == "bare_rock"  )  or
+       ( object.tags["natural"]   == "blockfield" )  or
+       ( object.tags["natural"]   == "scree"      )) then
       object = append_nonqa( object, object.tags["natural"] )
 
       if ( object.tags["tidal"] == "yes" ) then
@@ -7695,6 +7696,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if ( object.tags["amenity"] == "plant_hire;tool_hire" ) then
       object.tags["shop"] = object.tags["amenity"]
+      object = append_eco( object )
       object.tags["amenity"] = nil
    end
 
@@ -7928,6 +7930,7 @@ function process_all( objtype, object )
        ( object.tags["shop"]         == "health club"       ) or
        ( object.tags["shop"]         == "tanning_salon"     )) then
       object = append_nonqa( object, object.tags["shop"] )
+      object = append_eco( object )
       object.tags["shop"] = "chemist"
       object = building_or_landuse( objtype, object )
    end
@@ -8048,6 +8051,7 @@ function process_all( objtype, object )
        ( object.tags["shop"]   == "sculptor"            ) or
        ( object.tags["shop"]   == "duty_free"           )) then
       object = append_nonqa( object, object.tags["shop"] )
+      object = append_eco( object )
       object.tags["shop"] = "gift"
       object = building_or_landuse( objtype, object )
    end
@@ -8292,6 +8296,7 @@ function process_all( objtype, object )
        ( object.tags["shop"]    == "animal shelter"          ) or
        ( object.tags["shop"]    == "animal wellness"         )) then
       object = append_nonqa( object, object.tags["shop"] )
+      object = append_eco( object )
 
       if ( object.tags["agrarian"] ~= nil ) then
          object = append_nonqa( object, object.tags["agrarian"] )

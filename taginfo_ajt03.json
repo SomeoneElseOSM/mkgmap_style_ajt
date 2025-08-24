@@ -2767,6 +2767,8 @@
     { "key": "surface", "description": "Detect grass aprons and taxiways; append 'U' if no surface on roads and tracks; append to some natural features" },
     { "key": "surface", "value": "grass", "description": "Detect grass aprons and taxiways" },
     { "key": "sustrans_ref", "description": "Append to NCN Route marker names" },
+    { "key": "tactile_paving", "description": "Detect non-crossings added by StreetComplete" },
+    { "key": "tactile_paving", "value": "no", "description": "Detect non-crossings added by StreetComplete" },
     { "key": "taxon", "description": "Detect 'giant hogweed' hazards" },
     { "key": "taxon", "value": "Heracleum mantegazzianum", "description": "Giant hogweed" },
     { "key": "telecom", "description": "Detect telephone exchanges" },

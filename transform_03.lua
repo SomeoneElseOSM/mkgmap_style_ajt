@@ -3110,6 +3110,17 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Detect some "non-crossings" added by StreetComplete and remove them.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"]           == "crossing" )  and
+       ( object.tags["crossing:island"]   == "no"       )  and
+       ( object.tags["crossing:markings"] == "no"       )  and
+       ( object.tags["crossing:signals"]  == "no"       )  and
+       ( object.tags.tactile_paving       == "no"       )) then
+      object.tags["highway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Various types of traffic light controlled crossings
 -- ----------------------------------------------------------------------------
    if ((( object.tags["crossing"] == "traffic_signals"         )  or

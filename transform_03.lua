@@ -9498,7 +9498,6 @@ function ott.process_node( object )
           ( object.tags["information"] == "nature"                           )  or
           ( object.tags["information"] == "notice_board"                     )  or
           ( object.tags["information"] == "orientation_map"                  )  or
-          ( object.tags["information"] == "sitemap"                          )  or
           ( object.tags["information"] == "tactile_map"                      )  or
           ( object.tags["information"] == "tactile_model"                    )  or
           ( object.tags["information"] == "terminal"                         )  or

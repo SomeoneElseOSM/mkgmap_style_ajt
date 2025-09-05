@@ -159,8 +159,7 @@ function process_all( objtype, object )
        ( object.tags["highway"] ~= "pedestrian"   ) and
        ( object.tags["highway"] ~= "service"      ) and
        ( object.tags["highway"] ~= "track"        ) and
-       ( object.tags["highway"] ~= "pedestrian"   ) and
-       ( object.tags["highway"] ~= "pedestrian"   )) then
+       ( object.tags["highway"] ~= "bridleway"    )) then
       object.tags["highway"] = nil
    end
 

@@ -1,6 +1,9 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## 06/09/2025
+Removed `shop=department`; no longed in OSM data.
+
 ## 05/09/2025
 Added an "ajt04" map style, as per "ajt03" but without most `footway=sidewalk`.
 

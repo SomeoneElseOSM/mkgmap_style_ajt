@@ -2925,8 +2925,7 @@ function process_all( objtype, object )
 -- "department_store" consolidation.
 -- "0x2e01" is searchable as "Shopping / Department"
 -- ----------------------------------------------------------------------------
-   if (( object.tags["shop"] == "department_store" ) or
-       ( object.tags["shop"] == "department"       )) then
+   if ( object.tags["shop"] == "department_store" ) then
       object = append_nonqa( object, object.tags["shop"] )
       object.tags["shop"] = "department_store"
       object = building_or_landuse( objtype, object )

@@ -7933,7 +7933,6 @@ function process_all( objtype, object )
        ( object.tags["shop"]         == "beauty_treatment"  ) or
        ( object.tags["shop"]         == "perfumery"         ) or
        ( object.tags["shop"]         == "cosmetics"         ) or
-       ( object.tags["shop"]         == "tanning"           ) or
        ( object.tags["shop"]         == "tan"               ) or
        ( object.tags["shop"]         == "suntan"            ) or
        ( object.tags["shop"]         == "health_and_beauty" ) or

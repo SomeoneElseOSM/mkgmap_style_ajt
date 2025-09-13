@@ -1611,6 +1611,7 @@ function process_all( objtype, object )
        ( object.tags["landuse"]   == "college_court" ) or
        ( object.tags["landuse"]   == "conservation"  ) or
        ( object.tags["landuse"]   == "flowerbed"     ) or
+       ( object.tags["landuse"]   == "planter"       ) or
        ( object.tags["landuse"]   == "greenfield"    ) or
        ( object.tags["landuse"]   == "meadow"        ) or
        ( object.tags["landuse"]   == "playground"    ) or
@@ -4370,6 +4371,7 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["man_made"]   == "storage_tank"     ) or
        ( object.tags["man_made"]   == "silo"             ) or
+       ( object.tags["man_made"]   == "slurry_tank"      ) or
        ( object.tags["man_made"]   == "tank"             ) or
        ( object.tags["man_made"]   == "water_tank"       ) or
        ( object.tags["man_made"]   == "kiln"             ) or
@@ -4636,23 +4638,27 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Mineshafts
+-- Mineshafts and adits
 -- First make sure that we treat historic ones as historic
 --
 -- historic=ruins is in "points" as "0x2c02"
 -- "0x2c02" is searchable via "Attractions / Museum or Historical"
 -- A "museum" icon appears on a GPSMAP64s
 -- ----------------------------------------------------------------------------
-   if ((  object.tags["disused:man_made"] == "mine"       )  or
+   if ((  object.tags["disused:man_made"] == "adit"       )  or
+       (  object.tags["disused:man_made"] == "mine"       )  or
        (  object.tags["disused:man_made"] == "mineshaft"  )  or
        (  object.tags["disused:man_made"] == "mine_shaft" )  or
-       (( object.tags["man_made"] == "mine"              )  or
+       (( object.tags["man_made"] == "adit"              )  or
+        ( object.tags["man_made"] == "mine"              )  or
         ( object.tags["man_made"] == "mineshaft"         )  or
         ( object.tags["man_made"] == "mine_shaft"        )) and
        (( object.tags["historic"] == "yes"               )  or
+        ( object.tags["historic"] == "adit"              )  or
         ( object.tags["historic"] == "mine"              )  or
         ( object.tags["historic"] == "mineshaft"         )  or
-        ( object.tags["historic"] == "mine_shaft"        ))) then
+        ( object.tags["historic"] == "mine_shaft"        )  or
+        ( object.tags["disused"]  == "yes"               ))) then
       object.tags["historic"] = "ruins"
       object.tags["man_made"] = nil
       object.tags["tourism"]  = nil
@@ -4660,13 +4666,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Then other spellings of mineshaft
+-- Then other spellings of mineshaft, and adits
 -- ----------------------------------------------------------------------------
-   if (( object.tags["man_made"] == "mine"       )  or
+   if (( object.tags["man_made"] == "adit"       )  or
+       ( object.tags["man_made"] == "mine"       )  or
        ( object.tags["man_made"] == "mineshaft"  )  or
        ( object.tags["man_made"] == "mine_shaft" )) then
+      object = append_nonqa( object, object.tags["man_made"] ) 
       object.tags["man_made"] = "thing"
-      object = append_nonqa( object, "mine" ) 
    end
 
 -- ----------------------------------------------------------------------------
@@ -4844,6 +4851,7 @@ function process_all( objtype, object )
        ( object.tags["historic"] == "market_cross"              ) or
        ( object.tags["historic"] == "mill"                      ) or
        ( object.tags["historic"] == "millstone"                 ) or
+       ( object.tags["historic"] == "adit"                      ) or
        ( object.tags["historic"] == "mine"                      ) or
        ( object.tags["historic"] == "mine_adit"                 ) or
        ( object.tags["historic"] == "mine_level"                ) or
@@ -5417,9 +5425,13 @@ function process_all( objtype, object )
 -- Firstly, let's reorganise tags if needed so that the rest of the lua can 
 -- understand what we are dealing with:
 -- ----------------------------------------------------------------------------
-   if ( object.tags["man_made"] == "lagoon"  ) then
+   if (( object.tags["man_made"] == "lagoon"       ) or
+       ( object.tags["man_made"] == "clarifier"    ) or
+       ( object.tags["man_made"] == "slurry_basin" ) or
+       ( object.tags["man_made"] == "slurry_pit"   ) or
+       ( object.tags["man_made"] == "slurry_pond"  )) then
       object.tags["natural"] = "water"
-      object.tags["water"] = "lagoon"
+      object.tags["water"] = object.tags["man_made"]
       object.tags["landuse"] = nil
       object.tags["man_made"] = nil
    end
@@ -9267,11 +9279,12 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- man_made=footwear_decontamination
+-- Other man_made
 -- ----------------------------------------------------------------------------
-   if ( object.tags["man_made"] == "footwear_decontamination" ) then
+   if (( object.tags["man_made"] == "beehive"                  ) or
+       ( object.tags["man_made"] == "footwear_decontamination" )) then
+      object = append_nonqa( object, object.tags["man_made"] )
       object.tags["man_made"] = "thing"
-      object = append_nonqa( object, "footwear decontamination" )
    end
 
 -- ----------------------------------------------------------------------------

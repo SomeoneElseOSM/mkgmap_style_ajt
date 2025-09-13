@@ -1,6 +1,13 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## 13/09/2025
+Send `man_made=slurry_tank` through as buildings.
+Send `man_made=clarifier` and slurry basins, pits and ponds through as water.
+Handle `man_made=planter` as flowerbed.
+Include `adit` in the values used when searching various keys for historic and current mines.
+Detect `man_made=beehive`.
+
 ## 10/09/2025
 Removed `shop=tanning`; no longed in OSM data.
 

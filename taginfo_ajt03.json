@@ -1,8 +1,8 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20250913T164401Z",
-  "project": {
+  "data_updated": "20250915T233501Z",
+  "project": {v
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
     "project_url": "https://github.com/SomeoneElseOSM/mkgmap_style_ajt",
@@ -1940,7 +1940,6 @@
     { "key": "office", "value": "minicab", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "office", "value": "newspaper", "description": "Shown as an office in brackets; 'Shopping / Speciality retail'" },
     { "key": "office", "value": "ngo", "description": "Shown as an office in brackets; 'Shopping / Speciality retail'" },
-    { "key": "office", "value": "office", "description": "Shown in brackets as a building or with a light grey background; not searchable" },
     { "key": "office", "value": "optician", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "office", "value": "organization", "description": "Shown as an office in brackets; 'Shopping / Speciality retail'" },
     { "key": "office", "value": "osteopath", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

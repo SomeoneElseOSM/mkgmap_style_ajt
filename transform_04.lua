@@ -9528,8 +9528,7 @@ function ott.process_node( object )
           ( object.tags["information"] == "orientation_map"                  )  or
           ( object.tags["information"] == "tactile_map"                      )  or
           ( object.tags["information"] == "tactile_model"                    )  or
-          ( object.tags["information"] == "terminal"                         )  or
-          ( object.tags["information"] == "wildlife"                         )) then
+          ( object.tags["information"] == "terminal"                         )) then
          information_appendix = "B"
       end
 

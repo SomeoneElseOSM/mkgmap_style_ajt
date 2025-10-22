@@ -9935,8 +9935,8 @@ function ott.process_way( object )
    end
 
 -- ----------------------------------------------------------------------------
--- Remove name from footway=sidewalk (we expect it to be shown via the
--- road that this is a sidewalk for), or "is_sidepath=yes".
+-- Unlikely with maps for display, we do not remove name from footway=sidewalk.
+-- We do however moved street:name into name for sidewalks.
 -- ----------------------------------------------------------------------------
    if ((( object.tags["footway"]             == "sidewalk" )  or
         ( object.tags["cycleway"]            == "sidewalk" )  or
@@ -9945,8 +9945,9 @@ function ott.process_way( object )
         ( object.tags["is_sidepath:of"]      ~= nil        )  or
         ( object.tags["is_sidepath:of:name"] ~= nil        )  or
         ( object.tags["is_sidepath:of:ref"]  ~= nil        )) and
-       (  object.tags["name"]    ~= nil             )) then
-      object.tags["name"] = nil
+       (  object.tags["street:name"]         ~= nil         ) and
+       (  object.tags["name"]                == nil         )) then
+      object.tags["name"] = object.tags["street:name"]
    end
 
 -- ----------------------------------------------------------------------------

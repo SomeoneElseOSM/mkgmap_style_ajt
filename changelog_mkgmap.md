@@ -1,6 +1,11 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## 22/10/2025
+Detect sidewalk names that are recorded via "street:name".  
+"name" (and hence "street:name") are shown on the display, but don't overwhelm things.
+They do appear in directions, which is the main point of including them.
+
 ## 24/09/2025
 Removed `information=wildlife`; no longer in OSM data.
 

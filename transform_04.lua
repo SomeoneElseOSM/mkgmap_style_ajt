@@ -10122,6 +10122,14 @@ function ott.process_way( object )
       if ( object.tags["dog"]  == "leashed" ) then
          object = append_nonqa( object, "doglead" )
       end
+
+      if ( object.tags["hazard"] ~= nil ) then
+         object = append_nonqa( object, "haz: " .. object.tags["hazard"] )
+      end
+
+      if ( object.tags["overgrown"] ~= nil ) then
+         object = append_nonqa( object, "overgrown: " .. object.tags["overgrown"] )
+      end
    end
 
 -- ----------------------------------------------------------------------------

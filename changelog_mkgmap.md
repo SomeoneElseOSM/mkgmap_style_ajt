@@ -3,6 +3,7 @@ This page describes changes made to the [detailed map style](https://github.com/
 
 ## 06/11/2025
 Detect general `hazard` and `overgrown` on highways.
+Handle more synonyms for `level_crossing`.
 
 ## 22/10/2025
 Detect sidewalk names that are recorded via "street:name".  

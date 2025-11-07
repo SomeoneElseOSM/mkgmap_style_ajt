@@ -3127,6 +3127,226 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Some crossings aren't mapped as highways, so we look at the "crossing" tag.
+-- However, first remove disused and proposed crossings.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["disused:railway"]  ~= nil )  and
+        ( object.tags["disused:railway"]  ~= ""  )) or
+       (( object.tags["disused:highway"]  ~= nil )  and
+        ( object.tags["disused:highway"]  ~= ""  )) or
+       (( object.tags["removed:highway"]  ~= nil )  and
+        ( object.tags["removed:highway"]  ~= ""  )) or
+       (( object.tags["proposed:railway"] ~= nil )  and
+        ( object.tags["proposed:railway"] ~= ""  )) or
+       (( object.tags["proposed:highway"] ~= nil )  and
+        ( object.tags["proposed:highway"] ~= ""  ))) then
+      object.tags["crossing"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Crossings are spectacularly complicated.
+--
+-- First, detect some oddly tagged crossings by the "highway" value.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["highway"] == "traffic_signals;crossing" ) or
+       ( object.tags["highway"] == "crossing;traffic_signals" )) then
+      object.tags["highway"] = "traffic_signals"
+      object.tags["crossing"] = nil
+   end
+
+   if (( object.tags["highway"] == "give_way;crossing" ) or
+       ( object.tags["highway"] == "crossing;give_way" )) then
+      object.tags["highway"] = "crossing"
+      object.tags["crossing"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
+-- Not all crossings have "highway=crossing" set.
+-- Some may have "railway=crossing" set, some may have neither.
+-- Some may be disused.
+--
+-- Many, but not all, will have "crossing=<something>" set.
+-- Some of these will not have "highway" set at all.
+-- Some will have "highway=<something>", where "something" is not "crossing".
+-- "crossing" can also be set to "no" or another non-"no" negative value.
+--
+-- Others again will have a tag such as "crossing:markings" set.
+-- That can of course be set to "no".
+-- Or if not "crossing:markings", maybe "crossing:signals" (which can also be "no").
+-- Or if not one of those, maybe "crossing:island" (which can also be "no",
+-- and can also be applied to a part of the crossing only).
+--
+-- We want to be able to processing highway crossings using either
+-- "highway=traffic_signals" or "highway=crossing".  The former for whenever
+-- there are traffic signals; the latter for "actual crossings".
+-- Detecting "actual crossings is difficult because a pile of other tags can
+-- get added to "somewhere you can cross the road" without any infrastructure.
+-- We try and weed that out so it's only available to be rendered if there is
+-- some actual infrastructure.
+--
+-- But first things first, try and fill in missing tags.  First, identify
+-- places where we can add "highway=crossing" by looking at the value of
+-- "crossing", if any.  For reference see
+-- https://taginfo.geofabrik.de/europe:britain-and-ireland/keys/crossing#values
+-- down to 5 uses or me.
+-- ----------------------------------------------------------------------------
+   if ((( object.tags["highway"]             == nil        )   or
+        ( object.tags["highway"]             == ""         ))  and
+       (( object.tags["disused:highway"]     == nil        )   or
+        ( object.tags["disused:highway"]     == ""         ))  and
+       (( object.tags["railway"]             == nil        )   or
+        ( object.tags["railway"]             == ""         ))  and
+       (( object.tags["disused:railway"]     == nil        )   or
+        ( object.tags["disused:railway"]     == ""         ))) then
+      if (( object.tags["crossing"] == "traffic_signals"        ) and 
+          ( object.tags["crossing"] == "marked"                 ) and 
+          ( object.tags["crossing"] == "zebra"                  ) and 
+          ( object.tags["crossing"] == "yes"                    ) and
+          ( object.tags["crossing"] == "island"                 ) and
+          ( object.tags["crossing"] == "pelican"                ) and
+          ( object.tags["crossing"] == "pedestrian_signals"     ) and
+          ( object.tags["crossing"] == "controlled"             ) and
+          ( object.tags["crossing"] == "toucan"                 ) and
+          ( object.tags["crossing"] == "traffic_island"         ) and
+          ( object.tags["crossing"] == "traffic_signals;marked" ) and
+          ( object.tags["crossing"] == "zebra;dots"             ) and
+          ( object.tags["crossing"] == "uncontrolled;marked"    ) and
+          ( object.tags["crossing"] == "marked;uncontrolled"    ) and
+          ( object.tags["crossing"] == "puffin"                 ) and
+          ( object.tags["crossing"] == "pegasus"                ) and
+          ( object.tags["crossing"] == "traffic_signals;island" ) and
+          ( object.tags["crossing"] == "tiger"                  )) then
+         object.tags["highway"] = "crossing"
+      else
+-- ----------------------------------------------------------------------------
+-- What "crossing:" tags should we look at?
+-- https://taginfo.geofabrik.de/europe:britain-and-ireland/search?q=crossing
+-- shows which ones occur.
+--
+-- First "crossing:markings", processed in the negative, with "troll" values
+-- ----------------------------------------------------------------------------
+         if (( object.tags["crossing:markings"] ~= nil       ) and
+             ( object.tags["crossing:markings"] ~= ""        ) and
+             ( object.tags["crossing:markings"] ~= "no"      ) and
+             ( object.tags["crossing:markings"] ~= "surface" )) then
+            object.tags["highway"] = "crossing"
+         else
+-- ----------------------------------------------------------------------------
+-- Next, just one positive value for "crossing:island"
+-- ----------------------------------------------------------------------------
+            if ( object.tags["crossing:island"] == "yes" ) then
+               object.tags["highway"] = "crossing"
+            else
+-- ----------------------------------------------------------------------------
+-- Next, "crossing_ref", in the negative, with "troll" or "irrelevant" values
+-- ----------------------------------------------------------------------------
+               if (( object.tags["crossing_ref"] ~= nil        ) and
+                   ( object.tags["crossing_ref"] ~= ""         ) and
+                   ( object.tags["crossing_ref"] ~= "informal" ) and
+                   ( object.tags["crossing_ref"] ~= "none"     )) then
+                  object.tags["highway"] = "crossing"
+               else
+-- ----------------------------------------------------------------------------
+-- Next, "crossing:signals", in the negative, with "troll" or "irrelevant" values
+-- ----------------------------------------------------------------------------
+	          if (( object.tags["crossing:signals"] ~= nil       ) and
+                      ( object.tags["crossing:signals"] ~= ""        ) and
+                      ( object.tags["crossing:signals"] ~= "no"      ) and
+                      ( object.tags["crossing:signals"] ~= "separate" )) then
+                     object.tags["highway"] = "crossing"
+-- ----------------------------------------------------------------------------
+--                  else
+-- "crossing:barrier" would be next, but isn't helpful, so ignore.
+-- Next, "crossing:continuous", but that implies no stopping for pedestrians, 
+-- so also ignore.
+-- "crossing:light" is mainly railway and isn't something we consider here.
+-- "crossing:bell" doesn't occur on its own.
+-- The "crossing:activation" outliers occur with crossing:light" and are ignored.
+-- "crossing:supervision" doesn't occur on its own.
+-- After that we're into the long tail of random lifecycle tags, all ignored.
+-- ----------------------------------------------------------------------------
+                  end
+               end
+            end
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
+-- We've now set "highway=crossing" for all "crossing", "crossing:" or 
+-- "crossing_ref" that might indicate a "highway=crossing".
+--
+-- Which of those should actually be "crossing=traffic_signals"?
+-- "crossing=controlled" is omitted from this list because often the traffic
+-- signals are mapped separately.
+-- ----------------------------------------------------------------------------
+   if ( object.tags["highway"] == "crossing" ) then
+      if (( object.tags["crossing"] == "traffic_signals"        ) or 
+          ( object.tags["crossing"] == "pelican"                ) or
+          ( object.tags["crossing"] == "pedestrian_signals"     ) or
+          ( object.tags["crossing"] == "toucan"                 ) or
+          ( object.tags["crossing"] == "traffic_signals;marked" ) or
+          ( object.tags["crossing"] == "puffin"                 ) or
+          ( object.tags["crossing"] == "pegasus"                ) or
+          ( object.tags["crossing"] == "traffic_signals;island" ) or
+          ( object.tags["crossing"] == "tiger"                  ) or
+          ( object.tags["crossing_ref"] == "pelican"            ) or
+          ( object.tags["crossing_ref"] == "toucan"             ) or
+          ( object.tags["crossing_ref"] == "puffin"             ) or
+          ( object.tags["crossing_ref"] == "pegasus"            ) or
+          ( object.tags["crossing_ref"] == "tiger"              ) or
+          (( object.tags["crossing:signals"]    ~= nil         ) and
+           ( object.tags["crossing:signals"]    ~= ""          ) and
+           ( object.tags["crossing:signals"]    ~= "no"        ) and
+           ( object.tags["crossing:signals"]    ~= "separate"  ))) then
+         object.tags["highway"] = "traffic_signals"
+      else
+-- ----------------------------------------------------------------------------
+-- Which of those should actually NOT be "highway=crossing"?
+-- If all of the "negative" tests are true together, it's not a crossing.
+-- Note that "tactile_paving" is also checked here.
+-- https://taginfo.geofabrik.de/europe:britain-and-ireland/keys/tactile_paving#values
+-- Has some garbage values, but we interpret garbage as 
+-- "some sort of crossing is intended here"
+-- ----------------------------------------------------------------------------
+         if ((( object.tags["crossing"]             == nil         )  or 
+              ( object.tags["crossing"]             == ""          )  or 
+              ( object.tags["crossing"]             == "informal"  )  or 
+              ( object.tags["crossing"]             == "no"        )  or
+              ( object.tags["crossing"]             == "separate"  )  or
+              ( object.tags["crossing"]             == "pavement"  )  or
+              ( object.tags["crossing"]             == "stop_sign" )  or
+              ( object.tags["crossing"]             == "unknown"   )  or
+              ( object.tags["crossing"]             == "unmarked"  )) and
+             (( object.tags["crossing:markings"]    == nil         )  or
+              ( object.tags["crossing:markings"]    == ""          )  or
+              ( object.tags["crossing:markings"]    == "no"        )  or
+              ( object.tags["crossing:markings"]    == "surface"   )) and
+             (  object.tags["crossing:island"]      ~= "yes"        ) and
+             (( object.tags["crossing_ref"]         == nil         )  or
+              ( object.tags["crossing_ref"]         == ""          )  or
+              ( object.tags["crossing_ref"]         == "informal"  )  or
+              ( object.tags["crossing_ref"]         == "none"      )) and
+	     (( object.tags["crossing:signals"]     == nil         )  or
+              ( object.tags["crossing:signals"]     == ""          )  or
+              ( object.tags["crossing:signals"]     == "no"        )  or
+              ( object.tags["crossing:signals"]     == "separate"  )) and
+             (( object.tags["tactile_paving"]       == nil         )  or
+              ( object.tags["tactile_paving"]       == ""          )  or
+              ( object.tags["tactile_paving"]       == "no"        )) and
+             (( object.tags["traffic_calming"]      == nil         )  or
+              ( object.tags["traffic_calming"]      == ""          )  or
+              ( object.tags["traffic_calming"]      == "no"        )) and
+             (  object.tags["kerb"]                 ~= "lowered"    ) and
+             (  object.tags["kerb"]                 ~= "flush"      ) and
+             (  object.tags["kerb"]                 ~= "no"         ) and
+             (  object.tags["kerb"]                 ~= "none"       )) then
+            object.tags["highway"] = nil
+         end
+      end
+   end
+
+-- ----------------------------------------------------------------------------
 -- Detect some "non-crossings" added by StreetComplete and remove them.
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]           == "crossing" )  and
@@ -3138,31 +3358,111 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Various types of traffic light controlled crossings
+-- Finally we have a list of things that are genuinely "crossing" or
+-- "traffic_signals".
+--
+-- Append "crossing" and other relevant values.
+-- We don't append "crossing=traffic_signals" 
+-- because "highway" will already be that.
 -- ----------------------------------------------------------------------------
-   if ((( object.tags["crossing"] == "traffic_signals"         )  or
-        ( object.tags["crossing"] == "toucan"                  )  or
-        ( object.tags["crossing"] == "puffin"                  )  or
-        ( object.tags["crossing"] == "traffic_signals;island"  )  or
-        ( object.tags["crossing"] == "traffic_lights"          )  or
-        ( object.tags["crossing"] == "island;traffic_signals"  )  or
-        ( object.tags["crossing"] == "signals"                 )  or
-        ( object.tags["crossing"] == "pegasus"                 )  or
-        ( object.tags["crossing"] == "pedestrian_signals"      )  or
-        ( object.tags["crossing"] == "light controlled"        )) and
-       (  object.tags["highway"]  == nil                        )) then
-      object.tags["highway"] = "traffic_signals"
-      object.tags["crossing"] = nil
+   if (( object.tags["highway"] == "crossing"        ) or
+       ( object.tags["highway"] == "traffic_signals" )) then
+      object = append_nonqa( object, object.tags["highway"] )
+
+      appendage = nil
+      if (( object.tags["crossing"] ~= nil               )  and
+          ( object.tags["crossing"] ~= ""                )  and
+          ( object.tags["crossing"] ~= "informal"        )  and
+          ( object.tags["crossing"] ~= "no"              )  and
+          ( object.tags["crossing"] ~= "separate"        )  and
+          ( object.tags["crossing"] ~= "pavement"        )  and
+          ( object.tags["crossing"] ~= "stop_sign"       )  and
+          ( object.tags["crossing"] ~= "unknown"         )  and
+          ( object.tags["crossing"] ~= "unmarked"        )  and
+          ( object.tags["crossing"] ~= "traffic_signals" )) then
+         appendage = object.tags["crossing"]
+      end
+
+      if (( object.tags["crossing:markings"] ~= nil       ) and
+          ( object.tags["crossing:markings"] ~= ""        ) and
+          ( object.tags["crossing:markings"] ~= "no"      ) and
+          ( object.tags["crossing:markings"] ~= "surface" )) then
+         if ( appendage == nil ) then
+            appendage = object.tags["crossing:markings"]
+         else
+            appendage = appendage .. ", " .. object.tags["crossing:markings"]
+         end
+      end
+
+      if ( object.tags["crossing:island"] == "yes" ) then
+         if ( appendage == nil ) then
+            appendage = "island"
+         else
+            appendage = appendage .. ", " .. "island"
+         end
+      end
+
+      if (( object.tags["crossing_ref"] ~= nil        )  and
+          ( object.tags["crossing_ref"] ~= ""         )  and
+          ( object.tags["crossing_ref"] ~= "informal" )  and
+          ( object.tags["crossing_ref"] ~= "none"     )) then
+         if ( appendage == nil ) then
+            appendage = object.tags["crossing_ref"]
+         else
+            appendage = appendage .. ", " .. object.tags["crossing_ref"]
+         end
+      end
+
+      if (( object.tags["crossing:signals"] ~= nil        ) and
+          ( object.tags["crossing:signals"] ~= ""         ) and
+          ( object.tags["crossing:signals"] ~= "no"       ) and
+          ( object.tags["crossing:signals"] ~= "separate" )) then
+         if ( appendage == nil ) then
+            appendage = "signals"
+         else
+            appendage = appendage .. ", " .. "signals"
+         end
+      end
+
+      if (( object.tags["tactile_paving"] ~= nil  )  and
+          ( object.tags["tactile_paving"] ~= ""   )  and
+          ( object.tags["tactile_paving"] ~= "no" )) then
+         if ( appendage == nil ) then
+            appendage = "tactile"
+         else
+            appendage = appendage .. ", " .. "tactile"
+         end
+      end
+
+      if (( object.tags["traffic_calming"] ~= nil  ) and
+          ( object.tags["traffic_calming"] ~= ""   ) and
+          ( object.tags["traffic_calming"] ~= "no" )) then
+         if ( appendage == nil ) then
+            appendage = "calming"
+         else
+            appendage = appendage .. ", " .. "calming"
+         end
+      end
+
+      if ( object.tags["kerb"] ~= nil ) then
+         if ( appendage == nil ) then
+            appendage = object.tags["kerb"]
+         else
+            appendage = appendage .. ", " .. object.tags["kerb"]
+         end
+      end
+
+      object = append_nonqa( object, appendage )
+      object.tags["man_made"] = "thing"
+      object.tags["highway"] = nil
    end
 
 -- ----------------------------------------------------------------------------
--- Crossings, emergency parking bays, passing places and traffic_signals
+-- Crossings, emergency parking bays, and passing places
 -- ----------------------------------------------------------------------------
-   if (( object.tags["highway"] == "crossing"        ) or
-       ( object.tags["highway"] == "emergency_bay"   ) or
+   if (( object.tags["highway"] == "emergency_bay"   ) or
        ( object.tags["highway"] == "mini_roundabout" ) or
        ( object.tags["highway"] == "passing_place"   ) or
-       ( object.tags["highway"] == "traffic_signals" ) or
        ( object.tags["highway"] == "turning_circle"  )) then
       object = append_nonqa( object, object.tags["highway"] )
       object.tags["man_made"] = "thing"
@@ -10601,10 +10901,12 @@ end
 -- "append non QA information" function
 -- ----------------------------------------------------------------------------
 function append_nonqa( object, appendage )
-    if ( object.tags["name"] == nil ) then
-      object.tags.name = "(" .. appendage .. ")"
-    else
-      object.tags.name = object.tags["name"] .. " (" .. appendage .. ")"
+    if ( appendage ~= nil ) then
+      if ( object.tags["name"] == nil ) then
+        object.tags.name = "(" .. appendage .. ")"
+      else
+        object.tags.name = object.tags["name"] .. " (" .. appendage .. ")"
+      end
     end
 
     return object

@@ -6779,7 +6779,6 @@ function process_all( objtype, object )
        ( object.tags["shop"] == "dance"        ) or
        ( object.tags["shop"] == "clothes_hire" ) or
        ( object.tags["shop"] == "hat"          ) or
-       ( object.tags["shop"] == "hats"         ) or
        ( object.tags["shop"] == "wigs"         ) or
        ( object.tags["shop"] == "tailor"       ) or
        ( object.tags["shop"] == "dressmaker"   )) then

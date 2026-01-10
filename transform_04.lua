@@ -6927,8 +6927,7 @@ function process_all( objtype, object )
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail".
 -- Also stonemasons.
 -- ----------------------------------------------------------------------------
-   if (( object.tags["amenity"] == "funeral"             ) or
-       ( object.tags["amenity"] == "funeral_directors"   ) or
+   if (( object.tags["amenity"] == "funeral_directors"   ) or
        ( object.tags["amenity"] == "undertaker"          )) then
       object.tags["shop"]    = object.tags["amenity"]
       object.tags["amenity"] = nil

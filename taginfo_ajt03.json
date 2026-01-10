@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20251230T111705Z",
+  "data_updated": "20260110T110505Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -195,7 +195,6 @@
     { "key": "amenity", "value": "fuel", "description": "shown in brackets; 'Fuel Services / Auto Fuel'" },
     { "key": "amenity", "value": "fuel_depot", "description": "Shown after 'amenity' in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "amenity", "value": "function_room", "description": "shown in brackets; 'Community / Community Center'" },
-    { "key": "amenity", "value": "funeral", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "funeral_directors", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "gallery", "description": "shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "gambling", "description": "shown in brackets; 'Shopping / Specialty Retail'" },

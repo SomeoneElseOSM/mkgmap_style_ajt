@@ -3276,43 +3276,46 @@ function process_all( objtype, object )
 -- has some garbage values, but we interpret garbage as 
 -- "some sort of crossing is intended here"
 -- ----------------------------------------------------------------------------
-      if ((( object.tags["crossing"]             == nil         )  or 
-           ( object.tags["crossing"]             == ""          )  or 
-           ( object.tags["crossing"]             == "informal"  )  or 
-           ( object.tags["crossing"]             == "no"        )  or
-           ( object.tags["crossing"]             == "separate"  )  or
-           ( object.tags["crossing"]             == "pavement"  )  or
-           ( object.tags["crossing"]             == "stop_sign" )  or
-           ( object.tags["crossing"]             == "unknown"   )  or
-           ( object.tags["crossing"]             == "unmarked"  )) and
-          (( object.tags["crossing:markings"]    == nil         )  or
-           ( object.tags["crossing:markings"]    == ""          )  or
-           ( object.tags["crossing:markings"]    == "no"        )  or
-           ( object.tags["crossing:markings"]    == "surface"   )) and
-          (  object.tags["crossing:island"]      ~= "yes"        ) and
-          (( object.tags["crossing_ref"]         == nil         )  or
-           ( object.tags["crossing_ref"]         == ""          )  or
-           ( object.tags["crossing_ref"]         == "informal"  )  or
-           ( object.tags["crossing_ref"]         == "none"      )) and
-          (( object.tags["crossing:signals"]     == nil         )  or
-           ( object.tags["crossing:signals"]     == ""          )  or
-           ( object.tags["crossing:signals"]     == "no"        )  or
-           ( object.tags["crossing:signals"]     == "separate"  )) and
-          (( object.tags["tactile_paving"]       == nil         )  or
-           ( object.tags["tactile_paving"]       == ""          )  or
-           ( object.tags["tactile_paving"]       == "no"        )) and
-          (( object.tags["traffic_calming"]      == nil         )  or
-           ( object.tags["traffic_calming"]      == ""          )  or
-           ( object.tags["traffic_calming"]      == "no"        )) and
-          (( object.tags["flashing_lights"]      == nil         )  or
-           ( object.tags["flashing_lights"]      == ""          )  or
-           ( object.tags["flashing_lights"]      == "no"        )) and
-          (  object.tags["kerb"]                 ~= "rolled"     ) and
-          (  object.tags["kerb"]                 ~= "sloped"     ) and
-          (  object.tags["kerb"]                 ~= "lowered"    ) and
-          (  object.tags["kerb"]                 ~= "flush"      ) and
-          (  object.tags["kerb"]                 ~= "no"         ) and
-          (  object.tags["kerb"]                 ~= "none"       )) then
+      if ((( object.tags["crossing"]             == nil                     )  or 
+           ( object.tags["crossing"]             == ""                      )  or 
+           ( object.tags["crossing"]             == "informal"              )  or 
+           ( object.tags["crossing"]             == "no"                    )  or
+           ( object.tags["crossing"]             == "no_traffic_signals"    )  or
+           ( object.tags["crossing"]             == "separate"              )  or
+           ( object.tags["crossing"]             == "pavement"              )  or
+           ( object.tags["crossing"]             == "stop_sign"             )  or
+           ( object.tags["crossing"]             == "uncontrolled;unmarked" )  or
+           ( object.tags["crossing"]             == "unmarked;uncontrolled" )  or
+           ( object.tags["crossing"]             == "unknown"               )  or
+           ( object.tags["crossing"]             == "unmarked"              )) and
+          (( object.tags["crossing:markings"]    == nil                     )  or
+           ( object.tags["crossing:markings"]    == ""                      )  or
+           ( object.tags["crossing:markings"]    == "no"                    )  or
+           ( object.tags["crossing:markings"]    == "surface"               )) and
+          (  object.tags["crossing:island"]      ~= "yes"                    ) and
+          (( object.tags["crossing_ref"]         == nil                     )  or
+           ( object.tags["crossing_ref"]         == ""                      )  or
+           ( object.tags["crossing_ref"]         == "informal"              )  or
+           ( object.tags["crossing_ref"]         == "none"                  )) and
+          (( object.tags["crossing:signals"]     == nil                     )  or
+           ( object.tags["crossing:signals"]     == ""                      )  or
+           ( object.tags["crossing:signals"]     == "no"                    )  or
+           ( object.tags["crossing:signals"]     == "separate"              )) and
+          (( object.tags["tactile_paving"]       == nil                     )  or
+           ( object.tags["tactile_paving"]       == ""                      )  or
+           ( object.tags["tactile_paving"]       == "no"                    )) and
+          (( object.tags["traffic_calming"]      == nil                     )  or
+           ( object.tags["traffic_calming"]      == ""                      )  or
+           ( object.tags["traffic_calming"]      == "no"                    )) and
+          (( object.tags["flashing_lights"]      == nil                     )  or
+           ( object.tags["flashing_lights"]      == ""                      )  or
+           ( object.tags["flashing_lights"]      == "no"                    )) and
+          (  object.tags["kerb"]                 ~= "rolled"                 ) and
+          (  object.tags["kerb"]                 ~= "sloped"                 ) and
+          (  object.tags["kerb"]                 ~= "lowered"                ) and
+          (  object.tags["kerb"]                 ~= "flush"                  ) and
+          (  object.tags["kerb"]                 ~= "no"                     ) and
+          (  object.tags["kerb"]                 ~= "none"                   )) then
          object.tags["highway"] = nil
       end
    end

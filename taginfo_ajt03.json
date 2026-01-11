@@ -1058,6 +1058,8 @@
     { "key": "fixme", "description": "'[fix]' appended to object" },
     { "key": "flag", "description": "Does a bus stop have a flag or pole?" },
     { "key": "flag", "value": "no", "description": "'no flag' shown in brackets" },
+    { "key": "flashing_lights", "description": "Does a crossing have flashing_lights? ('flas') is appended if set and not 'no'" },
+    { "key": "flashing_lights", "value": "no", "description": "No flashing lights on a crossing" },
     { "key": "flood_prone", "description": "Flood-prone paths have 'flood' appended" },
     { "key": "flood_prone", "value": "yes", "description": "Flood-prone paths have 'flood' appended" },
     { "key": "floor:material", "description": "'L' appended to pubs with 'muddy boots likely OK' floors" },

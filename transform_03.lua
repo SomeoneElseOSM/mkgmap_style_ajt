@@ -3110,6 +3110,8 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Crossings are spectacularly complicated.
+--
 -- Some crossings aren't mapped as highways, so we look at the "crossing" tag.
 -- However, first remove disused and proposed crossings.
 -- ----------------------------------------------------------------------------
@@ -3127,9 +3129,7 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Crossings are spectacularly complicated.
---
--- First, detect some oddly tagged crossings by the "highway" value.
+-- Next, detect some oddly tagged crossings by the "highway" value.
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"] == "traffic_signals;crossing" ) or
        ( object.tags["highway"] == "crossing;traffic_signals" )) then
@@ -3144,7 +3144,7 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- Not all crossings have "highway=crossing" set.
+-- Next, not all crossings have "highway=crossing" set.
 -- Some may have "railway=crossing" set, some may have neither.
 -- Some may be disused.
 --
@@ -3240,12 +3240,16 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 --                  else
 -- "crossing:barrier" would be next, but isn't helpful, so ignore.
+--
 -- Next, "crossing:continuous", but that implies no stopping for pedestrians, 
 -- so also ignore.
+--
 -- "crossing:light" is mainly railway and isn't something we consider here.
 -- "crossing:bell" doesn't occur on its own.
+--
 -- The "crossing:activation" outliers occur with crossing:light" and are ignored.
 -- "crossing:supervision" doesn't occur on its own.
+--
 -- After that we're into the long tail of random lifecycle tags, all ignored.
 -- ----------------------------------------------------------------------------
                   end
@@ -3256,20 +3260,20 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
--- We've now set "highway=crossing" for all "crossing", "crossing:" or 
+-- We've now set "highway=crossing" for all "crossing", "crossing:*" or 
 -- "crossing_ref" that might indicate a "highway=crossing".
 --
--- Which of those should actually be "crossing=traffic_signals"?
--- "crossing=controlled" is omitted from this list because often the traffic
--- signals are mapped separately.
+-- On web-based maps we show crossings with signals with a traffic light icon,
+-- but on Garmin we don't do that.
 -- ----------------------------------------------------------------------------
    if ( object.tags["highway"] == "crossing" ) then
 -- ----------------------------------------------------------------------------
 -- Which of those should actually NOT be "highway=crossing"?
 -- If all of the "negative" tests are true together, it's not a crossing.
+--
 -- Note that "tactile_paving" is also checked here.
 -- https://taginfo.geofabrik.de/europe:britain-and-ireland/keys/tactile_paving#values
--- Has some garbage values, but we interpret garbage as 
+-- has some garbage values, but we interpret garbage as 
 -- "some sort of crossing is intended here"
 -- ----------------------------------------------------------------------------
       if ((( object.tags["crossing"]             == nil         )  or 
@@ -3300,6 +3304,9 @@ function process_all( objtype, object )
           (( object.tags["traffic_calming"]      == nil         )  or
            ( object.tags["traffic_calming"]      == ""          )  or
            ( object.tags["traffic_calming"]      == "no"        )) and
+          (( object.tags["flashing_lights"]      == nil         )  or
+           ( object.tags["flashing_lights"]      == ""          )  or
+           ( object.tags["flashing_lights"]      == "no"        )) and
           (  object.tags["kerb"]                 ~= "lowered"    ) and
           (  object.tags["kerb"]                 ~= "flush"      ) and
           (  object.tags["kerb"]                 ~= "no"         ) and
@@ -3310,7 +3317,8 @@ function process_all( objtype, object )
 
 -- ----------------------------------------------------------------------------
 -- Detect some "non-crossings" added by StreetComplete and remove them.
--- Note that here we're explicitly looking for "values set to no".
+-- Note that here we're explicitly looking for "values set to no" 
+-- by StreetComplete.
 -- ----------------------------------------------------------------------------
    if (( object.tags["highway"]           == "crossing" )  and
        ( object.tags["crossing:island"]   == "no"       )  and
@@ -3365,7 +3373,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = object.tags["crossing:markings"]
          else
-            appendage = appendage .. ", " .. object.tags["crossing:markings"]
+            if ( not string.find( appendage, object.tags["crossing:markings"], 1, true )) then
+               appendage = appendage .. ", " .. object.tags["crossing:markings"]
+            end
          end
       end
 
@@ -3373,7 +3383,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = "isl"
          else
-            appendage = appendage .. ", " .. "isl"
+            if ( not string.find( appendage, "isl", 1, true )) then
+               appendage = appendage .. ", " .. "isl"
+            end
          end
       end
 
@@ -3388,7 +3400,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = object.tags["crossing_ref"]
          else
-            appendage = appendage .. ", " .. object.tags["crossing_ref"]
+            if ( not string.find( appendage, object.tags["crossing_ref"], 1, true )) then
+               appendage = appendage .. ", " .. object.tags["crossing_ref"]
+            end
          end
       end
 
@@ -3399,7 +3413,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = "sgnls"
          else
-            appendage = appendage .. ", " .. "sgnls"
+            if ( not string.find( appendage, "sgnls", 1, true )) then
+               appendage = appendage .. ", " .. "sgnls"
+            end
          end
       end
 
@@ -3407,7 +3423,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = "beep"
          else
-            appendage = appendage .. ", " .. "beep"
+            if ( not string.find( appendage, "beep", 1, true )) then
+               appendage = appendage .. ", " .. "beep"
+            end
          end
       end
 
@@ -3415,7 +3433,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = "cone"
          else
-            appendage = appendage .. ", " .. "cone"
+            if ( not string.find( appendage, "cone", 1, true )) then
+               appendage = appendage .. ", " .. "cone"
+            end
          end
       end
 
@@ -3425,7 +3445,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = "tact"
          else
-            appendage = appendage .. ", " .. "tact"
+            if ( not string.find( appendage, "tact", 1, true )) then
+               appendage = appendage .. ", " .. "tact"
+            end
          end
       end
 
@@ -3435,7 +3457,9 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = "calm"
          else
-            appendage = appendage .. ", " .. "calm"
+            if ( not string.find( appendage, "calm", 1, true )) then
+               appendage = appendage .. ", " .. "calm"
+            end
          end
       end
 
@@ -3447,7 +3471,21 @@ function process_all( objtype, object )
          if ( appendage == nil ) then
             appendage = object.tags["kerb"]
          else
-            appendage = appendage .. ", " .. object.tags["kerb"]
+            if ( not string.find( appendage, object.tags["kerb"], 1, true )) then
+               appendage = appendage .. ", " .. object.tags["kerb"]
+            end
+         end
+      end
+
+      if (( object.tags["flashing_lights"] ~= nil  ) and
+          ( object.tags["flashing_lights"] ~= ""   ) and
+          ( object.tags["flashing_lights"] ~= "no" )) then
+         if ( appendage == nil ) then
+            appendage = "flas"
+         else
+            if ( not string.find( appendage, "flas", 1, true )) then
+               appendage = appendage .. ", " .. "flas"
+            end
          end
       end
 

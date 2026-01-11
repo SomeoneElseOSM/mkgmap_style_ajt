@@ -3,6 +3,7 @@ This page describes changes made to the [detailed map style](https://github.com/
 
 ## 11/01/2026
 Detect crossings with flashing lights and append ('flas') if found.
+Treat `rolled` and `sloped` as notable kerb values.
 
 ## 10/01/2026
 Removed `amenity=funeral`; no longer in the data.

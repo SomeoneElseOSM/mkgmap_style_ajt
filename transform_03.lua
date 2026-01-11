@@ -3307,6 +3307,8 @@ function process_all( objtype, object )
           (( object.tags["flashing_lights"]      == nil         )  or
            ( object.tags["flashing_lights"]      == ""          )  or
            ( object.tags["flashing_lights"]      == "no"        )) and
+          (  object.tags["kerb"]                 ~= "rolled"     ) and
+          (  object.tags["kerb"]                 ~= "sloped"     ) and
           (  object.tags["kerb"]                 ~= "lowered"    ) and
           (  object.tags["kerb"]                 ~= "flush"      ) and
           (  object.tags["kerb"]                 ~= "no"         ) and

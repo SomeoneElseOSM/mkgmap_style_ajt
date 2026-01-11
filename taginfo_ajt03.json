@@ -1547,6 +1547,8 @@
     { "key": "kerb", "value": "flush", "description": "Treated as a notable `kerb` value" },
     { "key": "kerb", "value": "no", "description": "Treated as a notable `kerb` value" },
     { "key": "kerb", "value": "none", "description": "Treated as a notable `kerb` value" },
+    { "key": "kerb", "value": "rolled", "description": "Treated as a notable `kerb` value" },
+    { "key": "kerb", "value": "sloped", "description": "Treated as a notable `kerb` value" },
     { "key": "ladder", "description": "Detect ladders" },
     { "key": "ladder", "value": "yes", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "lamp_type", "description": "Appended to name; 'Other / Social Service'" },

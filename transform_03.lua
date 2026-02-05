@@ -9852,10 +9852,8 @@ function ott.process_node( object )
       if (( object.tags["information"] == "board"                            )  or
           ( object.tags["information"] == "board;map"                        )  or
           ( object.tags["information"] == "citymap"                          )  or
-          ( object.tags["information"] == "departure times and destinations" )  or
           ( object.tags["information"] == "electronic_board"                 )  or
           ( object.tags["information"] == "estate_map"                       )  or
-          ( object.tags["information"] == "former_telephone_box"             )  or
           ( object.tags["information"] == "hikingmap"                        )  or
           ( object.tags["information"] == "hospital map"                     )  or
           ( object.tags["information"] == "information_board"                )  or

@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20260117T110409Z",
+  "data_updated": "20260205T112101Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1507,11 +1507,9 @@
     { "key": "information", "value": "board", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "board;map", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "citymap", "description": "'B' appended to name; 'Other / Social Service'" },
-    { "key": "information", "value": "departure times and destinations", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "electronic_board", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "estate_map", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "fingerpost", "description": "'GP' appended to name; 'Other / Social Service'" },
-    { "key": "information", "value": "former_telephone_box", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "guidepost", "description": "'GP' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "hikingmap", "description": "'B' appended to name; 'Other / Social Service'" },
     { "key": "information", "value": "hospital map", "description": "'B' appended to name; 'Other / Social Service'" },

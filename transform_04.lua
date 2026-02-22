@@ -2967,7 +2967,6 @@ function process_all( objtype, object )
 -- "0x2e03" is searchable as "Shopping / General Merchandise"
 -- ----------------------------------------------------------------------------
    if (( object.tags["shop"]   == "variety"       ) or
-       ( object.tags["shop"]   == "pound"         ) or
        ( object.tags["shop"]   == "thrift"        ) or
        ( object.tags["shop"]   == "variety_store" ) or
        ( object.tags["shop"]   == "discount"      )) then

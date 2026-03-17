@@ -1440,7 +1440,6 @@ function process_all( objtype, object )
        (( object.tags["meadow"]   == "agricultural" )  or
         ( object.tags["meadow"]   == "paddock"      )  or
         ( object.tags["meadow"]   == "pasture"      )  or
-        ( object.tags["meadow"]   == "agriculture"  )  or
         ( object.tags["meadow"]   == "hay"          )  or
         ( object.tags["meadow"]   == "managed"      )  or
         ( object.tags["meadow"]   == "cut"          )  or

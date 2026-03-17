@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20260222T131101Z",
+  "data_updated": "20260316T234801Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1810,7 +1810,6 @@
     { "key": "marker", "value": "yes", "description": "If utility, shown in brackets with utility; 'Geographic Points / Manmade Places'" },
     { "key": "maxspeed", "description": "If no maxspeed set on a road, append '(M)' to the name" },
     { "key": "meadow", "description": "Detect 'agricultural' meadows and don't show them; show others in brackets" },
-    { "key": "meadow", "value": "agriculture", "description": "Detect 'agricultural' meadows and don't show them" },
     { "key": "meadow", "value": "cut", "description": "Detect 'agricultural' meadows and don't show them" },
     { "key": "meadow", "value": "hay", "description": "Detect 'agricultural' meadows and don't show them" },
     { "key": "meadow", "value": "managed", "description": "Detect 'agricultural' meadows and don't show them" },

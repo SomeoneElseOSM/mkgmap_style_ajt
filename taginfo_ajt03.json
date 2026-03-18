@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20260316T234801Z",
+  "data_updated": "20260318T221801Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -967,7 +967,7 @@
     { "key": "diplomatic", "value": "consulate;embassy", "description": "Shown in brackets as government office; 'Community / Government Office'" },
     { "key": "diplomatic", "value": "embassy", "description": "Shown in brackets as government office; 'Community / Government Office'" },
     { "key": "diplomatic", "value": "embassy;consulate", "description": "Shown in brackets as government office; 'Community / Government Office'" },
-    { "key": "diplomatic", "value": "embassy;mission", "description": "Shown in brackets as government office; 'Community / Government Office'" },
+    { "key": "diplomatic", "value": "embassy;mission", "description": "Not a current value in OSM data.  Shown in brackets as government office; 'Community / Government Office'" },
     { "key": "diplomatic", "value": "liaison", "description": "Shown as building if appropriate or just dot; not generally searchable" },
     { "key": "diplomatic", "value": "mission", "description": "Shown as building if appropriate or just dot; not generally searchable" },
     { "key": "diplomatic", "value": "non_diplomatic", "description": "Shown as building if appropriate or just dot; not generally searchable" },

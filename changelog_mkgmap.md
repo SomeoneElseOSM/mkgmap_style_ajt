@@ -1,7 +1,7 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
-## As yet unreleased
+## 21/03/2026
 Removed `meadow=agriculture`; no longer in the data.
 
 ## 22/02/2026

@@ -20,6 +20,8 @@
 -- Apply "name" transformations to ways for "map style 03"
 -- ----------------------------------------------------------------------------
 
+local utf8 = require "utf8"
+
 -- ----------------------------------------------------------------------------
 -- "all" function
 -- ----------------------------------------------------------------------------
@@ -3357,8 +3359,9 @@ function process_all( objtype, object )
           ( object.tags["crossing"] ~= "yes"             )  and
           ( object.tags["crossing"] ~= "controlled"      )  and
           ( object.tags["crossing"] ~= "traffic_signals" )) then
-         if ( string.len( object.tags["crossing"] ) > 4 ) then
-            object.tags["crossing"] = string.sub( object.tags["crossing"], 1, 4 )
+         if ( utf8.len( object.tags["crossing"] ) > 4 ) then
+            start5 = utf8.offset( object.tags["crossing"], 5 )
+            object.tags["crossing"] = string.sub( object.tags["crossing"], 1, start5-1 )
          end
 
          appendage = object.tags["crossing"]
@@ -3369,8 +3372,9 @@ function process_all( objtype, object )
           ( object.tags["crossing:markings"] ~= "no"      ) and
           ( object.tags["crossing:markings"] ~= "yes"     ) and
           ( object.tags["crossing:markings"] ~= "surface" )) then
-         if ( string.len( object.tags["crossing:markings"] ) > 4 ) then
-            object.tags["crossing:markings"] = string.sub( object.tags["crossing:markings"], 1, 4 )
+         if ( utf8.len( object.tags["crossing:markings"] ) > 4 ) then
+            start5 = utf8.offset( object.tags["crossing:markings"], 5 )
+            object.tags["crossing:markings"] = string.sub( object.tags["crossing:markings"], 1, start5-1 )
          end
 
          if ( appendage == nil ) then
@@ -3396,8 +3400,9 @@ function process_all( objtype, object )
           ( object.tags["crossing_ref"] ~= ""         )  and
           ( object.tags["crossing_ref"] ~= "informal" )  and
           ( object.tags["crossing_ref"] ~= "none"     )) then
-         if ( string.len( object.tags["crossing_ref"] ) > 4 ) then
-            object.tags["crossing_ref"] = string.sub( object.tags["crossing_ref"], 1, 4 )
+         if ( utf8.len( object.tags["crossing_ref"] ) > 4 ) then
+            start5 = utf8.offset( object.tags["crossing_ref"], 5 )
+            object.tags["crossing_ref"] = string.sub( object.tags["crossing_ref"], 1, start5-1 )
          end
 
          if ( appendage == nil ) then
@@ -3467,8 +3472,9 @@ function process_all( objtype, object )
       end
 
       if ( object.tags["kerb"] ~= nil ) then
-         if ( string.len( object.tags["kerb"] ) > 4 ) then
-            object.tags["kerb"] = string.sub( object.tags["kerb"], 1, 4 )
+         if ( utf8.len( object.tags["kerb"] ) > 4 ) then
+            start5 = utf8.offset( object.tags["kerb"], 5 )
+            object.tags["kerb"] = string.sub( object.tags["kerb"], 1, start5-1 )
          end
 
          if ( appendage == nil ) then

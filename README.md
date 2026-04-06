@@ -31,6 +31,8 @@ If you already have a version of Java installed you may be able to skip the "ope
 
 Older versions of mkgmap and splitter will also work; it doesn't need to be a bleeding edge version.
 
+It uses "osm-tags-transform", which must be installed and built locally.  See [here](https://github.com/osmcode/osm-tags-transform#prerequisites) for how to do that.
+
 A "local filesystem user" is defined at the top of the script.  This repository is expected to be at ".../src/mkgmap_style_ajt" and a "data" directory at ".../data" is expected to exist.
 
 The amount of memory and disk space needed will depend on the size of the files downloaded and the map created.  4GB memory and a few GB disk should be enough for a medium-sized country (in OSM terms) such as Great Britain, which is a 1.4GB download from Geofabrik.

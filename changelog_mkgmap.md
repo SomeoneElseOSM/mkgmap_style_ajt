@@ -1,6 +1,9 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## 12/04/2026
+Support more memorial types.  Sensible memorial types (i.e. not just things like "yes") are appended to the name.
+
 ## 02/04/2026
 A bugfix to the shared lua to fix long name truncation of UTF-8 names requires lua 5.3, so "sudo apt install lua5.3 liblua5.3-dev ".
 

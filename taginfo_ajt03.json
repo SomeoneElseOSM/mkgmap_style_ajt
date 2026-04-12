@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20260318T221801Z",
+  "data_updated": "20260412T125201Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -1819,7 +1819,9 @@
     { "key": "megalith_type", "value": "standing_stone", "description": "Detect whether a megalith is a standing stone or not" },
     { "key": "memorial", "description": "Many memorials are handled" },
     { "key": "memorial", "value": "blue_plaque", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
+    { "key": "memorial", "value": "cairn", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "cross", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
+    { "key": "memorial", "value": "cross;stone", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "grave", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "memorial", "value": "graveyard", "description": "Shown in brackets; 'Others / Social Service'" },
     { "key": "memorial", "value": "mercat_cross", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

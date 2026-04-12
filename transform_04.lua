@@ -4940,6 +4940,14 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Show memorial benches as benches not memorials
+-- ----------------------------------------------------------------------------
+   if ( object.tags["memorial"] == "bench" ) then
+      object.tags["amenity"] = "bench"
+      object.tags["memorial"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Render historic=memorial, wayside_cross and wayside_shrine
 -- "0x2c02" points are searchable via "Attractions / Museum or Historical"
 -- "0x0d" polygons don't appear to be searchable directly, but the 
@@ -4953,15 +4961,18 @@ function process_all( objtype, object )
          object.tags["memorial"] = object.tags["memorial:type"]
       end
 
-      if (( object.tags["memorial"] == "cross"           )  or
+      if (( object.tags["memorial"] == "blue_plaque"     )  or
+          ( object.tags["memorial"] == "cairn"           )  or
+          ( object.tags["memorial"] == "celtic_cross"    )  or
+          ( object.tags["memorial"] == "cross"           )  or
+          ( object.tags["memorial"] == "cross;stone"     )  or
           ( object.tags["memorial"] == "mercat_cross"    )  or
-          ( object.tags["memorial"] == "war_memorial"    )  or
-          ( object.tags["memorial"] == "plaque"          )  or
-          ( object.tags["memorial"] == "blue_plaque"     )  or
           ( object.tags["memorial"] == "pavement plaque" )  or
-          ( object.tags["memorial"] == "statue"          )  or
+          ( object.tags["memorial"] == "plaque"          )  or
           ( object.tags["memorial"] == "sculpture"       )  or
-          ( object.tags["memorial"] == "stone"           )) then
+          ( object.tags["memorial"] == "statue"          )  or
+          ( object.tags["memorial"] == "stone"           )  or
+          ( object.tags["memorial"] == "war_memorial"    )) then
          object = append_nonqa( object, object.tags["memorial"] )
          object.tags["historic"] = "memorial"
       end
@@ -6762,8 +6773,10 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
 -- Memorial plates
 -- ----------------------------------------------------------------------------
-   if (( object.tags["historic"]      == "memorial" ) and
-       ( object.tags["memorial:type"] == "plate"    )) then
+   if ((  object.tags["historic"]      == "memorial"  ) and
+       (( object.tags["memorial"]      == "plate"    )  or
+        ( object.tags["memorial"]      == "tablet"   )  or
+        ( object.tags["memorial:type"] == "plate"    ))) then
       object = append_nonqa( object, "memorial plate" )
       object.tags["man_made"] = "thing"
    end

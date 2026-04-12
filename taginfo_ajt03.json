@@ -1818,6 +1818,7 @@
     { "key": "megalith_type", "description": "Detect whether a megalith is a standing stone or not" },
     { "key": "megalith_type", "value": "standing_stone", "description": "Detect whether a megalith is a standing stone or not" },
     { "key": "memorial", "description": "Many memorials are handled" },
+    { "key": "memorial", "value": "bench", "description": "Shown as a bench, in 'Others / Personal Service'" },
     { "key": "memorial", "value": "blue_plaque", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "cairn", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },
     { "key": "memorial", "value": "cross", "description": "Shown in brackets; 'Attractions / Museum or Historical'" },

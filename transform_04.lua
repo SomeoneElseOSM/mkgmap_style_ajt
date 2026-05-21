@@ -7268,7 +7268,6 @@ function process_all( objtype, object )
        ( object.tags["healthcare"]  == "ocular_prosthetics"           ) or
        ( object.tags["healthcare"]  == "physiotherapist"              ) or
        ( object.tags["healthcare"]  == "physiotherapist;podiatrist"   ) or
-       ( object.tags["healthcare"]  == "physiotherapy"                ) or
        ( object.tags["healthcare"]  == "podiatrist"                   ) or
        ( object.tags["healthcare"]  == "podiatrist;chiropodist"       ) or
        ( object.tags["healthcare"]  == "podiatry"                     ) or

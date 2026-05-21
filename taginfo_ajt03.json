@@ -1226,7 +1226,6 @@
     { "key": "healthcare", "value": "pharmacy", "description": "Shown in brackets; 'Shopping / Pharmacy or Chemist'" },
     { "key": "healthcare", "value": "physiotherapist", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "physiotherapist;podiatrist", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
-    { "key": "healthcare", "value": "physiotherapy", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "podiatrist", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "podiatrist;chiropodist", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "healthcare", "value": "podiatry", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

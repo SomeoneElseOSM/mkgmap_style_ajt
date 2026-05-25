@@ -47,7 +47,7 @@ Ensure that the dependencies above are met.
 
 Run the "garmin_map_etrex_02.sh" script with parameters specifying what Geofabrik area you want to download, so something like:
 
-    ./garmin_map_etrex_02.sh europe great-britain england north-yorkshire
+    ./garmin_map_etrex_02.sh europe united-kingdom england north-yorkshire
 
 should work.
 
@@ -81,7 +81,7 @@ In addition, another [script](https://github.com/SomeoneElseOSM/mkgmap_style_ajt
 
 Run the script with parameters such as these
 
-    ./garmin_map_etrex_03.sh europe great-britain england north-yorkshire
+    ./garmin_map_etrex_03.sh europe united-kingdom england north-yorkshire
 
 When run, if it succeeds, it will create 3 files:
 

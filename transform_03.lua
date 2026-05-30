@@ -5475,6 +5475,26 @@ function process_all( objtype, object )
    end
 
 -- ----------------------------------------------------------------------------
+-- Somewhat related, "highway=pedestrian" is a challenging tag.  The equivalent
+-- vector maps to these assume that closed "highway=pedestrian" ways with no
+-- "area" tag are areas.  That's broadly the consensus of OSM data
+-- (maybe 70/30) even though many styles do not process that as an area.
+-- However, with mkgmap routing is important, and we don't want to lose routing
+-- some of the time just to make the on-screen display nicer.  Hence 
+-- closed "highway=pedestrian" ways with no "area" tag are not assumed to be
+-- areas (although some other tag may take make it so - see 
+-- 'Add "area=yes" if "place=square"' above). 
+--
+-- In addition, there are some objects that we can remove "highway=pedestrian" 
+-- from.  In all cases the highway is duplicating linear highways, and so this
+-- does not break routing.
+-- ----------------------------------------------------------------------------
+   if (( object.tags["man_made"] == "bridge"     )  and
+       ( object.tags["highway"]  == "pedestrian" )) then
+      object.tags["highway"] = nil
+   end
+
+-- ----------------------------------------------------------------------------
 -- Tunnel values - show as "yes" if appropriate.
 -- ----------------------------------------------------------------------------
    if (( object.tags["tunnel"] == "culvert"             ) or

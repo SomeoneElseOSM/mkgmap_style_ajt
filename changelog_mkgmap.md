@@ -1,6 +1,9 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## 05/06/2026
+Removed `vending=parcel_mail_in;parcel_pickup`; no longer in the data.
+
 ## 30/05/2026
 Remove any `highway-pedestrian` tag from a `man_made=bridge` - it'll be a duplicate of a linear way.
 

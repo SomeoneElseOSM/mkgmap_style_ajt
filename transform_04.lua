@@ -3991,7 +3991,6 @@ function process_all( objtype, object )
    if ((   object.tags["amenity"]         == "parcel_locker"                   )  or
        ((  object.tags["amenity"]         == "vending_machine"                )   and
         (( object.tags["vending"]         == "parcel_pickup;parcel_mail_in"  )    or
-         ( object.tags["vending"]         == "parcel_mail_in;parcel_pickup"  )    or
          ( object.tags["vending"]         == "parcel_mail_in"                )    or
          ( object.tags["vending"]         == "parcel_pickup"                 )    or
          ( object.tags["vending_machine"] == "parcel_pickup"                 )))  or

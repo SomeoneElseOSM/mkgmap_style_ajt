@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20260605T120901Z",
+  "data_updated": "20260605T120902Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -730,7 +730,7 @@
     { "key": "crossing", "value": "tiger", "description": "Shown as 'highway=traffic_signals'" },
     { "key": "crossing", "value": "toucan", "description": "Shown as 'highway=traffic_signals'" },
     { "key": "crossing", "value": "traffic_island", "description": "Shown as 'highway=crossing'" },
-    { "key": "crossing", "value": "traffic_lights", "description": "Shown as 'highway=traffic_signals'" },
+    { "key": "crossing", "value": "traffic_lights", "description": "Not a current value in OSM data.  Shown as 'highway=traffic_signals'" },
     { "key": "crossing", "value": "traffic_signals", "description": "Shown as 'highway=traffic_signals'" },
     { "key": "crossing", "value": "traffic_signals;island", "description": "Shown as 'highway=traffic_signals'" },
     { "key": "crossing", "value": "traffic_signals;marked", "description": "Shown as 'highway=traffic_signals'" },

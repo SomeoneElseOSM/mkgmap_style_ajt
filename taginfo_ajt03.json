@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20260605T120902Z",
+  "data_updated": "20260605T120903Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -64,7 +64,7 @@
     { "key": "aeroway", "description": "Many aeroway features rendered.  Also used to detect and not render non-historic beacons" },
     { "key": "aeroway", "value": "aerodrome", "description": "Aerodromes: depending on other tags (iata, military etc.) searchable as 'Transportation / Air Transportation', 'Recreation / public-sport-airport' or 'Attractions / Landmark'" },
     { "key": "aeroway", "value": "apron", "description": "Runway aprons: depending on other tags (surface etc.) shown as normal or grass" },
-    { "key": "aeroway", "value": "control_tower", "description": "Synonym for tower:type=aircraft_control" },
+    { "key": "aeroway", "value": "control_tower", "description": "Not a current value in OSM data.  Synonym for tower:type=aircraft_control" },
     { "key": "aeroway", "value": "fuel", "description": "Show as amenity=fuel" },
     { "key": "aeroway", "value": "gate", "description": "'ref' appended to name; 'Transportation / Transit Service'" },
     { "key": "aeroway", "value": "helipad", "description": "Helipads" },

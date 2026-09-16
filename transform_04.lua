@@ -2218,7 +2218,6 @@ function process_all( objtype, object )
          if (( object.tags["departures_board"]              == "timetable"        ) or
              ( object.tags["departures_board"]              == "schedule"         ) or
              ( object.tags["departures_board"]              == "separate"         ) or
-             ( object.tags["departures_board"]              == "paper timetable"  ) or
              ( object.tags["departures_board"]              == "yes"              ) or
              ( object.tags["passenger_information_display"] == "timetable"        ) or
              ( object.tags["passenger_information_display"] == "yes"              )) then
@@ -2238,6 +2237,7 @@ function process_all( objtype, object )
                 ( object.tags["physically_present"]            ~= "no"  ) and
                 ( object.tags["naptan:BusStopType"]            ~= "CUS" ) and
                 ( object.tags["departures_board"]              == nil   ) and
+                ( object.tags["broken:departures_board"]       == nil   ) and
                 ( object.tags["passenger_information_display"] == nil   ) and
                 ( object.tags["disused:highway"]               == nil   )) then
                object = append_qa( object, "qdb" )

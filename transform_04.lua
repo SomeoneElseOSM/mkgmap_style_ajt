@@ -941,7 +941,6 @@ function process_all( objtype, object )
        ( object.tags["amenity"]  == "nursery_school"           ) or
        ( object.tags["amenity"]  == "nursing_home"             ) or
        ( object.tags["amenity"]  == "outdoor_education_centre" ) or
-       ( object.tags["amenity"]  == "preschool"                ) or
        ( object.tags["amenity"]  == "public_bath"              ) or
        ( object.tags["amenity"]  == "residential_home"         ) or
        ( object.tags["amenity"]  == "retirement_home"          ) or
@@ -3055,7 +3054,6 @@ function process_all( objtype, object )
 -- ----------------------------------------------------------------------------
    if (( object.tags["amenity"] == "childcare"        ) or
        ( object.tags["amenity"] == "childrens_centre" ) or
-       ( object.tags["amenity"] == "preschool"        ) or
        ( object.tags["amenity"] == "kindergarten"     ) or
        ( object.tags["amenity"] == "nursery"          ) or
        ( object.tags["amenity"] == "nursery_school"   ) or
@@ -7236,7 +7234,6 @@ function process_all( objtype, object )
    end
 
    if (( object.tags["building"]    == "nursing_home"                 ) or
-       ( object.tags["building"]    == "preschool"                    ) or
        ( object.tags["building"]    == "health_centre"                ) or
        ( object.tags["building"]    == "medical_centre"               )) then
       object = append_nonqa( object, object.tags["building"] )

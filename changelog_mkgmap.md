@@ -1,6 +1,10 @@
 # Changes made
 This page describes changes made to the [detailed map style](https://github.com/SomeoneElseOSM/mkgmap_style_ajt/) for use with [mkgmap](https://wiki.openstreetmap.org/wiki/Mkgmap) and [Garmin](https://wiki.openstreetmap.org/wiki/Garmin) devices.  Maps are downloadable from below [here](../mkgmap_maps/ajt03/).
 
+## 18/09/2026
+Remove `amenity=preschool`, no longer in the data.
+No need to look at `building=preschool` either.
+
 ## 16/09/2026
 Don't append QDB to a bus stop if we know that there is a departures_board but it is broken.
 

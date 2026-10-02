@@ -8852,10 +8852,6 @@ function process_all( objtype, object )
 -- Taxi offices
 -- "0x2e0a" is searchable via "Shopping / Specialty Retail"
 -- ----------------------------------------------------------------------------
-   if ( object.tags["amenity"] == "minicab" ) then
-      object.tags["shop"] = object.tags["amenity"]
-   end
-
    if (( object.tags["office"]  == "taxi"    ) or
        ( object.tags["office"]  == "minicab" )) then
       object.tags["shop"] = object.tags["office"]

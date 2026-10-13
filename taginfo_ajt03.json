@@ -1,7 +1,7 @@
 {
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/SomeoneElseOSM/mkgmap_style_ajt/master/taginfo_ajt03.json",
-  "data_updated": "20261002T165701Z",
+  "data_updated": "20261002T165702Z",
   "project": {
     "name": "SomeoneElse: Rural pedestrian AJT03 detailed mkgmap maps with QA",
     "description": "This is a detailed map style for Garmin devices.  It shows lots of information about the OSM tags used, and in some cases what tags may be missing.",
@@ -200,7 +200,7 @@
     { "key": "amenity", "value": "gambling", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "grave_yard", "description": "Shown in brackets; 'Geographic Points / Manmade Places'" },
     { "key": "amenity", "value": "grit_bin", "description": "Shown in brackets; 'Other / Social Service'" },
-    { "key": "amenity", "value": "gym", "description": "Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
+    { "key": "amenity", "value": "gym", "description": "Not a current value in OSM data.  Shown in brackets; 'Recreation / Sports or Fitness Cen'" },
     { "key": "amenity", "value": "hall", "description": "Shown in brackets; 'Community / Government Office'" },
     { "key": "amenity", "value": "health_centre", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },
     { "key": "amenity", "value": "healthcare", "description": "Shown in brackets; 'Shopping / Specialty Retail'" },

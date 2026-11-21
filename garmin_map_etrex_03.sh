@@ -45,8 +45,8 @@ then
 		# ----------------------------------------------------------------------
 		echo "1 argument passed - processing a continent"
 		file_prefix1=${1}
-		file_page1=http://download.geofabrik.de/${file_prefix1}.html
-		file_url1=http://download.geofabrik.de/${file_prefix1}-latest.osm.pbf
+		file_page1=http://download.geofabrik.de/${file_prefix1}/index.html
+		file_url1=http://download.geofabrik.de/${file_prefix1}/${file_prefix1}-latest.osm.pbf
 	    fi
 	else
 	    # ----------------------------------------------------------------------
@@ -55,7 +55,7 @@ then
 	    echo "2 arguments passed - processing a continent and a country"
 	    file_prefix1=${2}
 	    file_page1=http://download.geofabrik.de/${1}/${file_prefix1}.html
-	    file_url1=http://download.geofabrik.de/${1}/${file_prefix1}-latest.osm.pbf
+	    file_url1=http://download.geofabrik.de/${1}/${file_prefix1}/${file_prefix1}-latest.osm.pbf
 	fi
     else
 	# ----------------------------------------------------------------------
@@ -64,7 +64,7 @@ then
 	echo "3 arguments passed - processing a continent, a country and a subregion"
 	file_prefix1=${3}
 	file_page1=http://download.geofabrik.de/${1}/${2}/${file_prefix1}.html
-	file_url1=http://download.geofabrik.de/${1}/${2}/${file_prefix1}-latest.osm.pbf
+	file_url1=http://download.geofabrik.de/${1}/${2}/${file_prefix1}/${file_prefix1}-latest.osm.pbf
     fi
 else
     # ----------------------------------------------------------------------
@@ -73,7 +73,7 @@ else
     echo "3 arguments passed - processing a continent, a country and a subregion"
     file_prefix1=${4}
     file_page1=http://download.geofabrik.de/${1}/${2}/${3}/${file_prefix1}.html
-    file_url1=http://download.geofabrik.de/${1}/${2}/${3}/${file_prefix1}-latest.osm.pbf
+    file_url1=http://download.geofabrik.de/${1}/${2}/${3}/${file_prefix1}/${file_prefix1}-latest.osm.pbf
 fi
 
 #
@@ -104,7 +104,7 @@ m_error_01()
 # -----------------------------------------------------------------------------
 echo "Checking last modified date for ${file_prefix1}"
 wget $file_page1 -O file_page1.$$ --output-file /dev/null
-grep " and contains all OSM data up to " file_page1.$$ | sed "s/.*and contains all OSM data up to //" | sed "s/. File size.*//" > last_modified1.$$
+grep " and contains all OSM data up to " file_page1.$$ | sed "s/.*and contains//" | sed 's/.*, datetime="//' | sed 's/+..:..">.*/Z/' > last_modified1.$$
 rm file_page1.$$
 #
 file_extension1=`cat last_modified1.$$`
